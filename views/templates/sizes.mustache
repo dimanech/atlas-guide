@@ -1,0 +1,35 @@
+{{> header}}
+
+<div class="b-stat-sizes-page-title">
+    <div class="b-guide-component-type">
+        <svg width="16" height="16" role="img">
+            <use xlink:href="#icon-bundle"></use>
+        </svg>
+        Components file size
+    </div>
+    <div class="b-atlas-section">
+        <h1 class="b-atlas b-atlas-title b-atlas-title_1">
+        <span class="b-atlas-title__text">
+            {{projectInfo.name}}
+        </span>
+        </h1>
+    </div>
+</div>
+
+<ul class="b-stat-sizes-grid">
+{{#content}}
+    <li>
+        <figure class="b-stat-size-file">
+            <svg width="{{svg.radius}}" height="{{svg.radius}}">
+                <rect width="{{svg.radius}}" height="{{svg.radius}}" x="0" y="0" fill="currentColor"></rect>
+            </svg>
+            <figcaption class="b-stat-size-file__caption">
+                <p class="b-stat-size-file__size">{{view.size}}</p>
+                <h2 class="b-stat-size-file__title">{{filename}}</h2>
+            </figcaption>
+        </figure>
+    </li>
+{{/content}}
+</ul>
+
+{{> footer}}

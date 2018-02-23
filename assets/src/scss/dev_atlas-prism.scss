@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+@import "dev-atlas-settings";
+
+.b-playground {
+	pre[class*="language-"] {
+		color: #f8f8f2;
+	}
+
+	.token.comment,
+	.token.prolog,
+	.token.doctype,
+	.token.cdata {
+		color: slategray;
+	}
+
+	.token.punctuation {
+		color: #f8f8f2;
+	}
+
+	.namespace {
+		opacity: 0.7;
+	}
+
+	.token.property,
+	.token.tag,
+	.token.constant,
+	.token.symbol,
+	.token.deleted {
+		color: #f92672;
+	}
+
+	.token.boolean,
+	.token.number {
+		color: #ae81ff;
+	}
+
+	.token.selector,
+	.token.attr-name,
+	.token.string,
+	.token.char,
+	.token.builtin,
+	.token.inserted {
+		color: #a6e22e;
+	}
+
+	/* stylelint-disable */
+	.token.operator,
+	.token.entity,
+	.token.url,
+	.language-css .token.string,
+	.style .token.string,
+	.token.variable {
+		color: #f8f8f2;
+	}
+	/* stylelint-enable */
+
+	.token.atrule,
+	.token.attr-value,
+	.token.function {
+		color: #e6db74;
+	}
+
+	.token.keyword {
+		color: #66d9ef;
+	}
+
+	.token.regex,
+	.token.important {
+		color: #fd971f;
+	}
+
+	.token.important,
+	.token.bold {
+		font-weight: bold;
+	}
+
+	.token.italic {
+		font-style: italic;
+	}
+
+	.token.entity {
+		cursor: help;
+	}
+
+	// Painting effect animation
+
+	//&.js-opened {
+	//	code > span {
+	//		opacity: 1;
+	//	}
+	//}
+
+	//code > span {
+	//	opacity: 0;
+	//	transition: 330ms ease;
+
+	//	@for $i from 0 to 30 {
+	//		&:nth-child(#{$i}) {
+	//			transition-delay: #{$i * 20}ms;
+	//		}
+	//	}
+	//}
+}
+
+.b-atlas-code {
+	.token.comment,
+	.token.prolog,
+	.token.doctype,
+	.token.cdata {
+		color: slategray;
+	}
+
+	.token.punctuation {
+		color: #999;
+	}
+
+	.namespace {
+		opacity: 0.7;
+	}
+
+	.token.property,
+	.token.tag,
+	.token.boolean,
+	.token.number,
+	.token.constant,
+	.token.symbol,
+	.token.deleted {
+		color: #905;
+	}
+
+	.token.selector,
+	.token.attr-name,
+	.token.string,
+	.token.char,
+	.token.builtin,
+	.token.inserted {
+		color: #690;
+	}
+
+	/* stylelint-disable */
+	.token.operator,
+	.token.entity,
+	.token.url,
+	.language-css .token.string,
+	.style .token.string {
+		background: hsla(0, 0%, 100%, 0.5);
+		color: #a67f59;
+	}
+	/* stylelint-enable */
+
+	.token.atrule,
+	.token.attr-value,
+	.token.keyword {
+		color: #07a;
+	}
+
+	.token.function {
+		color: #dd4a68;
+	}
+
+	.token.regex,
+	.token.important,
+	.token.variable {
+		color: #e90;
+	}
+}

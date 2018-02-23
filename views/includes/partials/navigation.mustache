@@ -1,0 +1,13 @@
+{{#subPages}}
+    <li class="b-docs-nav__item {{#type}}b-docs-nav__item_{{type}}{{/type}}">
+        <a class="b-docs-nav__ln {{#type}}b-docs-nav__ln_{{type}}{{/type}}" {{#id}}href="{{id}}.html" id="nav-{{id}}"{{/id}}>
+            {{#type}}<svg width="14" height="14" role="img"><use xlink:href="#icon-{{{type}}}"></use></svg>{{/type}}
+            {{title}}
+        </a>
+        {{#subPages.length}}
+            <ul class="b-docs-nav__sub-nav">
+                {{>navigation}}
+            </ul>
+        {{/subPages.length}}
+    </li>
+{{/subPages}}

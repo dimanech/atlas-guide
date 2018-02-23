@@ -1,0 +1,66 @@
+{{#content.componentStats}}
+    <aside class="b-component-stat">
+        <section class="b-component-stat__section">
+            <h2 class="b-component-stat__title">
+                Included in:
+            </h2>
+            <ul class="b-component-stat__list">
+                {{#importedBy}}
+                    <li class="b-component-stat__list-item">
+                        <svg width="16" height="16" role="img">
+                            <use xlink:href="#icon-out"></use>
+                        </svg>
+                        {{.}}
+                    </li>
+                {{/importedBy}}
+            </ul>
+        </section>
+        {{#includes.length}}
+            <section class="b-component-stat__section">
+                <h2 class="b-component-stat__title">
+                    Depends from:
+                </h2>
+                <ul class="b-component-stat__list">
+                    {{#includes}}
+                        <li class="b-component-stat__list-item">
+                            <svg width="16" height="16" role="img">
+                                <use xlink:href="#icon-component"></use>
+                            </svg>
+                            {{.}}
+                        </li>
+                    {{/includes}}
+                </ul>
+            </section>
+        {{/includes.length}}
+        {{#variables.length}}
+            <section class="b-component-stat__section">
+                <h2 class="b-component-stat__title">Local variables:</h2>
+                <ul class="b-component-stat__list">
+                    {{#variables}}
+                        <li class="b-component-stat__list-item">
+                            <svg width="16" height="16" role="img">
+                                <use xlink:href="#icon-variable"></use>
+                            </svg>
+                            {{prop}}: {{value}}
+                        </li>
+                    {{/variables}}
+                </ul>
+            </section>
+        {{/variables.length}}
+        {{#imports.length}}
+            <section class="b-component-stat__section">
+                <h2 class="b-component-stat__title">Local imports:</h2>
+                <ul class="b-component-stat__list">
+                    {{#imports}}
+                        <li class="b-component-stat__list-item">
+                            <svg width="16" height="16" role="img">
+                                <use xlink:href="#icon-in"></use>
+                            </svg>
+                            {{.}}
+                        </li>
+                    {{/imports}}
+                </ul>
+            </section>
+        {{/imports.length}}
+    </aside>
+{{/content.componentStats}}

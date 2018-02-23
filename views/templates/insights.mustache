@@ -1,0 +1,583 @@
+{{> header}}
+
+<link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-insights.css"/>
+
+<main class="b-stat-page">
+    <i class="b-loader">{{>logo}}</i>
+    {{#content}}
+        {{#.}}
+            <div class="b-stat-sheet">
+
+                <header class="b-stat-header">
+                    <h1 class="b-stat-header__title">
+                        {{name}}
+                    </h1>
+                    <p class="b-stat-header__caption">
+                        {{size.view.raw}} / {{size.view.zipped}}
+                    </p>
+                </header>
+
+                <ul class="b-stat-columns">
+                    <li class="b-stat-columns__item">
+                        <figure class="b-stat-digit _large">
+                            <p class="b-stat-digit__data">{{totals.selectors}}</p>
+                            <figcaption class="b-stat-digit__caption">Selectors</figcaption>
+                        </figure>
+                    </li>
+                    <li class="b-stat-columns__item">
+                        <figure class="b-stat-digit _large">
+                            <p class="b-stat-digit__data">{{totals.rules}}</p>
+                            <figcaption class="b-stat-digit__caption">Rules</figcaption>
+                        </figure>
+                    </li>
+                    <li class="b-stat-columns__item">
+                        <figure class="b-stat-digit _large">
+                            <p class="b-stat-digit__data">{{totals.declarations}}</p>
+                            <figcaption class="b-stat-digit__caption">Declarations</figcaption>
+                        </figure>
+                    </li>
+                    <li class="b-stat-columns__item">
+                        <figure class="b-stat-digit _large">
+                            <p class="b-stat-digit__data">{{totals.properties}}</p>
+                            <figcaption class="b-stat-digit__caption">Properties</figcaption>
+                        </figure>
+                    </li>
+                </ul>
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">Total Declarations</h2>
+
+                    <ul class="b-stat-columns">
+                        {{#totalsDeclarations}}
+                            <li class="b-stat-columns__item">
+                                <figure class="b-stat-digit">
+                                    <figcaption class="b-stat-digit__caption">{{name}}</figcaption>
+                                    <p class="b-stat-digit__data">{{count}}</p>
+                                </figure>
+                            </li>
+                        {{/totalsDeclarations}}
+                    </ul>
+                </section>
+
+                {{#sizes}}
+                    <section class="b-stat-section">
+                        <h2 class="b-stat-section__title">Files size</h2>
+                        {{{sizes}}}
+                    </section>
+                {{/sizes}}
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        Specificity Graph
+                        <span class="b-stat-info">
+                            <svg width="14" height="14" role="img"><use xlink:href="#icon-index"></use></svg>
+                            <span class="b-stat-info__popup">
+                                This is zones that
+                                could be hard to overwrite and work with,
+                                zones that could escalate specificity
+                                and not scaled well during project lifetime
+                            </span>
+                        </span>
+                    </h2>
+                    {{{specificityChart.chart}}}
+
+                    <div class="b-stat-columns _selectors">
+                        <section class="b-stat-columns__item">
+                            <h2 class="b-stat-columns__title">
+                                {{specificityTops.length}}
+                                {{#pluralize}}{{specificityTops.length}},Heavy selector,Heavy selectors{{/pluralize}}
+                                <span class="b-stat-info">
+                                    <svg width="14" height="14" role="img"><use xlink:href="#icon-index"></use></svg>
+                                    <span class="b-stat-info__popup">
+                                        This selectors should be simplified
+                                    </span>
+                                </span>
+                            </h2>
+                            {{#specificityTops.length}}
+                            <div class="b-stat-scroll-view">
+                                <table class="b-stat-table">
+                                    <thead class="b-stat-table__head">
+                                        <tr class="b-stat-table__item">
+                                            <th class="b-stat-table__cell _title " scope="col">
+                                                Specifisity
+                                            </th>
+                                            <td class="b-stat-table__cell _value" scope="col">
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="b-stat-table__body">
+                                    {{#specificityTops}}
+                                        <tr class="b-stat-table__item">
+                                            <th class="b-stat-table__cell _title ">
+                                                {{specificity}}
+                                            </th>
+                                            <td class="b-stat-table__cell _value">
+                                                {{selector}}
+                                            </td>
+                                        </tr>
+                                    {{/specificityTops}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{/specificityTops.length}}
+                        </section>
+                        <section class="b-stat-columns__item">
+                            <h2 class="b-stat-columns__title">
+                                {{selectorsListTops.length}}
+                                {{#pluralize}}{{selectorsListTops.length}},Long selectors list,Long selectors lists{{/pluralize}}
+                                <span class="b-stat-info">
+                                    <svg width="14" height="14" role="img"><use xlink:href="#icon-index"></use></svg>
+                                    <span class="b-stat-info__popup">
+                                        This selectors is potential candidates for simple CSS class
+                                    </span>
+                                </span>
+                            </h2>
+                            {{#selectorsListTops.length}}
+                            <div class="b-stat-scroll-view">
+                                <table class="b-stat-table">
+                                    <thead class="b-stat-table__head">
+                                        <tr class="b-stat-table__item">
+                                            <th class="b-stat-table__cell _title " scope="col">
+                                                Selectors
+                                            </th>
+                                            <td class="b-stat-table__cell _value" scope="col">
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="b-stat-table__body">
+                                        {{#selectorsListTops}}
+                                            <tr class="b-stat-table__item">
+                                                <th class="b-stat-table__cell _title">
+                                                    {{selectors}}
+                                                </th>
+                                                <td class="b-stat-table__cell _value" style="white-space: nowrap">
+                                                    {{{selector}}}
+                                                </td>
+                                            </tr>
+                                        {{/selectorsListTops}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{/selectorsListTops.length}}
+                        </section>
+                    </div>
+                </section>
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        Ruleset Size
+                        <span class="b-stat-info">
+                            <svg width="14" height="14" role="img"><use xlink:href="#icon-index"></use></svg>
+                            <span class="b-stat-info__popup">
+                                This graph show you places with selectors that have 15 or more rules inside
+                            </span>
+                        </span>
+                    </h2>
+                    <p class="b-chart-caption">Number of declarations per ruleset</p>
+                    {{{rulesizeChart.chart}}}
+
+                    <div class="b-stat-columns _selectors">
+                        <section class="b-stat-columns__item">
+                            <h2 class="b-stat-columns__title">
+                                {{rulesizeTops.heavy.length}}
+                                {{#pluralize}}{{rulesizeTops.heavy.length}},Heavy ruleset,Heavy rulesets{{/pluralize}}
+                                <span class="b-stat-info">
+                                    <svg width="14" height="14" role="img"><use xlink:href="#icon-index"></use></svg>
+                                    <span class="b-stat-info__popup">
+                                        This classes potentially could be changed to single global class
+                                    </span>
+                                </span>
+                            </h2>
+                            {{#rulesizeTops.heavy.length}}
+                                <div class="b-stat-scroll-view">
+                                    <table class="b-stat-table">
+                                        <thead class="b-stat-table__head">
+                                            <tr class="b-stat-table__item">
+                                                <th class="b-stat-table__cell _title " scope="col">
+                                                    Declarations
+                                                </th>
+                                                <td class="b-stat-table__cell _value" scope="col">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="b-stat-table__body">
+                                            {{#rulesizeTops.heavy}}
+                                                <tr class="b-stat-table__item">
+                                                    <th class="b-stat-table__cell _title ">
+                                                        {{declarations}}
+                                                    </th>
+                                                    <td class="b-stat-table__cell _value">
+                                                        {{selector}}
+                                                    </td>
+                                                </tr>
+                                            {{/rulesizeTops.heavy}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {{/rulesizeTops.heavy.length}}
+                        </section>
+                        <section class="b-stat-columns__item">
+                            <h2 class="b-stat-columns__title">
+                                {{rulesizeTops.light.length}}
+                                {{#pluralize}}{{rulesizeTops.light.length}},Empty ruleset,Empty rulesets{{/pluralize}}
+                                <span class="b-stat-info">
+                                    <svg width="14" height="14" role="img"><use xlink:href="#icon-index"></use></svg>
+                                    <span class="b-stat-info__popup">
+                                        This selectors should be removed from project
+                                    </span>
+                                </span>
+                            </h2>
+                            {{#rulesizeTops.light.length}}
+                                <div class="b-stat-scroll-view">
+                                    <table class="b-stat-table">
+                                        <thead class="b-stat-table__head">
+                                            <tr class="b-stat-table__item">
+                                                <th class="b-stat-table__cell _title " scope="col">
+                                                    Declarations
+                                                </th>
+                                                <td class="b-stat-table__cell _value" scope="col">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="b-stat-table__body">
+                                            {{#rulesizeTops.light}}
+                                                <tr class="b-stat-table__item">
+                                                    <th class="b-stat-table__cell _title ">
+                                                        {{declarations}}
+                                                    </th>
+                                                    <td class="b-stat-table__cell _value">
+                                                        {{selector}}
+                                                    </td>
+                                                </tr>
+                                            {{/rulesizeTops.light}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {{/rulesizeTops.light.length}}
+                        </section>
+                    </div>
+                </section>
+
+                {{#uniquesChart.total}}
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        Total vs. Unique Declarations
+                        <span class="b-stat-info">
+                            <svg width="14" height="14" role="img"><use xlink:href="#icon-index"></use></svg>
+                            <span class="b-stat-info__popup">
+                                This graph could show how effective is code organized and reused over styling properties
+                            </span>
+                        </span>
+                    </h2>
+                    <p class="b-chart-caption">{{uniquesChart.total}} total, {{uniquesChart.unique}} unique declarations</p>
+                    <div class="b-chart">
+                        <div class="b-chart__item">
+                            {{{uniquesChart.color.chart}}}
+                            <div class="b-chart__bean-name">Color</div>
+                        </div>
+                        <div class="b-chart__item">
+                            {{{uniquesChart.backgroundColor.chart}}}
+                            <div class="b-chart__bean-name">Background Color</div>
+                        </div>
+                        <div class="b-chart__item">
+                            {{{uniquesChart.fontSize.chart}}}
+                            <div class="b-chart__bean-name">Font Size</div>
+                        </div>
+                        <div class="b-chart__item">
+                            {{{uniquesChart.fontFamily.chart}}}
+                            <div class="b-chart__bean-name">Font Family</div>
+                        </div>
+                        <div class="b-chart__item">
+                            {{{uniquesChart.borderRadius.chart}}}
+                            <div class="b-chart__bean-name">Border radius</div>
+                        </div>
+                        <div class="b-chart__item">
+                            {{{uniquesChart.zIndex.chart}}}
+                            <div class="b-chart__bean-name">Z-index</div>
+                        </div>
+                    </div>
+                </section>
+                {{/uniquesChart.total}}
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        {{uniques.color.length}}
+                        {{#pluralize}}{{uniques.color.length}},Unique Color,Unique Colors{{/pluralize}}
+                    </h2>
+                    {{#uniques.color.length}}
+                    <ul class="b-stat-columns _condenced">
+                        {{#uniques.color}}
+                            <li class="b-stat-columns__item">
+                                <figure class="b-stat-digit _color">
+                                    <p class="b-stat-digit__data" style="color:{{.}}">Aa</p>
+                                    <figcaption class="b-stat-digit__caption">{{.}}</figcaption>
+                                </figure>
+                            </li>
+                        {{/uniques.color}}
+                    </ul>
+                    {{/uniques.color.length}}
+                </section>
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        {{uniques.backgroundColor.length}}
+                        {{#pluralize}}{{uniques.backgroundColor.length}},Unique Background Color,Unique Background Colors{{/pluralize}}
+                    </h2>
+                    {{#uniques.backgroundColor.length}}
+                    <ul class="b-stat-columns _colors">
+                        {{#uniques.backgroundColor}}
+                            <li class="b-stat-columns__item">
+                                <figure class="b-stat-digit _color">
+                                    <svg class="b-stat-digit__data" viewBox="0 0 64 84" width="64" height="84">
+                                        <rect width="64" height="84" fill="{{.}}"/>
+                                    </svg>
+                                    <figcaption class="b-stat-digit__caption">{{.}}</figcaption>
+                                </figure>
+                            </li>
+                        {{/uniques.backgroundColor}}
+                    </ul>
+                    {{/uniques.backgroundColor.length}}
+                </section>
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        {{uniques.fontSize.length}}
+                        {{#pluralize}}{{uniques.fontSize.length}},Unique Font Size,Unique Font Sizes{{/pluralize}}
+                    </h2>
+                    {{#uniques.fontSize.length}}
+                    <ul class="b-fonts-scale">
+                        {{#uniques.fontSizeSorted}}
+                            <li class="b-fonts-scale__item">
+                                <p class="b-fonts-scale__example" style="font-size:{{abs}}px">
+                                    Abc
+                                </p>
+                                <p class="b-fonts-scale__size">
+                                    {{orig}}
+                                </p>
+                            </li>
+                        {{/uniques.fontSizeSorted}}
+                    </ul>
+                    {{/uniques.fontSize.length}}
+                </section>
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        {{uniques.fontFamily.length}}
+                        {{#pluralize}}{{uniques.fontFamily.length}},Unique Font Family,Unique Font Families{{/pluralize}}
+                    </h2>
+                    {{#uniques.fontFamily.length}}
+                    <ol class="b-stat-columns _fonts">
+                        {{#uniques.fontFamily}}
+                            <li class="b-stat-columns__item">
+                                <figure class="b-stat-font">
+                                    <div class="b-stat-font__figure" style="font-family: {{.}}">
+                                        <p class="b-stat-font__short">
+                                            Aa
+                                        </p>
+                                        <p class="b-stat-font__alphabet">
+                                            a b c d e f g h i j k l m n o p q r s t u v w x y z
+                                            <br>
+                                            A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+                                            <br>
+                                            1 2 3 4 5 6 7 8 9 0
+                                        </p>
+                                    </div>
+                                    <figcaption class="b-stat-font__name">
+                                        {{.}}
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        {{/uniques.fontFamily}}
+                    </ol>
+                    {{/uniques.fontFamily.length}}
+                </section>
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        {{uniques.borderRadius.length}}
+                        {{#pluralize}}{{uniques.borderRadius.length}},Unique Border Radius,Unique Border Radii{{/pluralize}}
+                    </h2>
+                    <ul class="b-stat-list _indexes">
+                        {{#uniques.borderRadius}}
+                            <li class="b-stat-list__item">
+                                <p class="b-stat-item">{{.}}</p>
+                            </li>
+                        {{/uniques.borderRadius}}
+                    </ul>
+                </section>
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        {{uniques.zIndex.length}}
+                        {{#pluralize}}{{uniques.zIndex.length}},Unique Z Index,Unique Z Indices{{/pluralize}}
+                    </h2>
+                    <ul class="b-stat-list _indexes">
+                        {{#uniques.zIndexSorted}}
+                            <li class="b-stat-list__item">
+                                <p class="b-stat-item" style="font-family:{{.}}">{{.}}</p>
+                            </li>
+                        {{/uniques.zIndexSorted}}
+                    </ul>
+                </section>
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        Spacing declarations
+                    </h2>
+                    <ul class="b-stat-columns">
+                        {{#spacingResets.margins}}
+                            <li class="b-stat-columns__item">
+                                <figure class="b-stat-digit">
+                                    <p class="b-stat-digit__data">{{count}}</p>
+                                    <figcaption class="b-stat-digit__caption">{{name}}</figcaption>
+                                </figure>
+                            </li>
+                        {{/spacingResets.margins}}
+                    </ul>
+                    <ul class="b-stat-columns">
+                        {{#spacingResets.paddings}}
+                            <li class="b-stat-columns__item">
+                                <figure class="b-stat-digit">
+                                    <p class="b-stat-digit__data">{{count}}</p>
+                                    <figcaption class="b-stat-digit__caption">{{name}}</figcaption>
+                                </figure>
+                            </li>
+                        {{/spacingResets.paddings}}
+                    </ul>
+                </section>
+
+                {{#uniquesChart.total}}
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        Total vs. Unique Space/Metric Declarations
+                        <span class="b-stat-info">
+                            <svg width="14" height="14" role="img"><use xlink:href="#icon-index"></use></svg>
+                            <span class="b-stat-info__popup">
+                                This graph could show how effective is code organized and reused over space and metric properties
+                            </span>
+                        </span>
+                    </h2>
+                    <p class="b-chart-caption">{{uniquesChart.total}} total, {{uniquesChart.unique}} unique declarations</p>
+                    <div class="b-chart">
+                        <div class="b-chart__item">
+                            {{{uniquesChart.margin.chart}}}
+                            <div class="b-chart__bean-name">
+                                {{uniques.margin.length}}
+                                {{#pluralize}}{{uniques.margin.length}},Margin,Margins{{/pluralize}}
+                            </div>
+                            {{#uniques.margin.length}}
+                                <ul class="b-chart__stat b-stat-space">
+                                    {{#uniques.margin}}
+                                        <li class="b-stat-space__item">
+                                            <p class="b-stat-space__caption">{{orig}}</p>
+                                            <div class="b-stat-space__line" style="width: {{abs}}px;{{#isNegative}}margin-left:{{abs}}px; width: {{normalized}}px{{/isNegative}}"></div>
+                                        </li>
+                                    {{/uniques.margin}}
+                                </ul>
+                            {{/uniques.margin.length}}
+                        </div>
+                        <div class="b-chart__item">
+                            {{{uniquesChart.padding.chart}}}
+                            <div class="b-chart__bean-name">
+                                {{uniques.padding.length}}
+                                {{#pluralize}}{{uniques.padding.length}},Padding,Paddings{{/pluralize}}
+                            </div>
+                            {{#uniques.padding.length}}
+                                <ul class="b-chart__stat b-stat-space">
+                                    {{#uniques.padding}}
+                                        <li class="b-stat-space__item">
+                                            <p class="b-stat-space__caption">{{orig}}</p>
+                                            <div class="b-stat-space__line" style="width: {{abs}}px"></div>
+                                        </li>
+                                    {{/uniques.padding}}
+                                </ul>
+                            {{/uniques.padding.length}}
+                        </div>
+                        <div class="b-chart__item">
+                            {{{uniquesChart.lineHeight.chart}}}
+                            <div class="b-chart__bean-name">
+                                {{uniques.lineHeight.length}}
+                                {{#pluralize}}{{uniques.lineHeight.length}},Line Height,Line Heights{{/pluralize}}
+                            </div>
+                            {{#uniques.lineHeight.length}}
+                                <ul class="b-chart__stat b-stat-list">
+                                    {{#uniques.lineHeight}}
+                                        <li class="b-stat-list__item">
+                                            <p class="b-stat-item">{{.}}</p>
+                                        </li>
+                                    {{/uniques.lineHeight}}
+                                </ul>
+                            {{/uniques.lineHeight.length}}
+                        </div>
+                        <div class="b-chart__item">
+                            {{{uniquesChart.width.chart}}}
+                            <div class="b-chart__bean-name">
+                                {{uniques.width.length}}
+                                {{#pluralize}}{{uniques.width.length}},Width,Widths{{/pluralize}}
+                            </div>
+                            {{#uniques.width.length}}
+                                <ul class="b-chart__stat b-stat-list">
+                                    {{#uniques.width}}
+                                        <li class="b-stat-list__item">
+                                            <p class="b-stat-item">{{.}}</p>
+                                        </li>
+                                    {{/uniques.width}}
+                                </ul>
+                            {{/uniques.width.length}}
+                        </div>
+                        <div class="b-chart__item">
+                            {{{uniquesChart.height.chart}}}
+                            <div class="b-chart__bean-name">
+                                {{uniques.height.length}}
+                                {{#pluralize}}{{uniques.height.length}},Height,Heights{{/pluralize}}
+                            </div>
+                            {{#uniques.height.length}}
+                                <ul class="b-chart__stat b-stat-list">
+                                    {{#uniques.height}}
+                                        <li class="b-stat-list__item">
+                                            <p class="b-stat-item">{{.}}</p>
+                                        </li>
+                                    {{/uniques.height}}
+                                </ul>
+                            {{/uniques.height.length}}
+                        </div>
+                    </div>
+                </section>
+                {{/uniquesChart.total}}
+
+                <section class="b-stat-section">
+                    <h2 class="b-stat-section__title">
+                        {{uniques.mediaQueries.length}}
+                        {{#pluralize}}{{uniques.mediaQueries.length}},Media Query,Media Queries{{/pluralize}}
+                        <span class="b-stat-info">
+                            <svg width="14" height="14" role="img"><use xlink:href="#icon-index"></use></svg>
+                            <span class="b-stat-info__popup">
+                                Consistency of media queries utilization on the project
+                            </span>
+                        </span>
+                    </h2>
+                    <ul class="b-stat-list">
+                        {{#uniques.mediaQueries}}
+                            <li class="b-stat-list__item">
+                                <p class="b-stat-item">{{.}}</p>
+                            </li>
+                        {{/uniques.mediaQueries}}
+                    </ul>
+                </section>
+
+            </div>
+        {{/.}}
+    {{/content}}
+</main>
+
+<script src="assets/js/loader.js"></script>
+<script src="assets/js/d3.v4.min.js"></script>
+<script src="assets/js/d3stackedchart.js"></script>
+<script src="assets/js/d3linechart.js"></script>
+<script src="assets/js/d3barchart.js"></script>
+
+{{> footer}}

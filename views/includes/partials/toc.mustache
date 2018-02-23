@@ -1,0 +1,11 @@
+<nav>
+    <ul class="b-toc">
+        {{#content.toc}}
+            <li class="b-toc__item">
+                <a class="b-toc__ln b-toc__ln_{{level}}" href="#h{{level}}-{{escapedText}}">
+                    {{{text}}}
+                </a>
+            </li>
+        {{/content.toc}}
+    </ul>
+</nav>

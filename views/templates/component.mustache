@@ -1,0 +1,18 @@
+{{> header}}
+
+{{> componentstataside}}
+
+<div class="b-guide-component-type">
+    <svg width="16" height="16" role="img">
+        <use xlink:href="#icon-{{type}}"></use>
+    </svg>
+    {{type}}
+</div>
+
+<section><!-- this is hacky, but we have sections in markdown, so we need to open and close it on wrapper -->
+{{{content.documentation}}}
+</section>
+
+{{> componentstatcard}}
+
+{{> footer}}

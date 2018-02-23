@@ -1,0 +1,50 @@
+<div class="b-docs-aside">
+    <div class="b-docs-aside__header">
+        <div class="b-docs-header">
+            <div class="b-docs-header__actions">
+                {{>logo}}
+            </div>
+            <div class="b-docs-header__search">
+                <div class="b-docs-guide-search">
+                    <svg width="14" height="14" role="img">
+                        <use xlink:href="#icon-filter"></use>
+                    </svg>
+                    <input type="search" id="js-search" placeholder="Filter" />
+                    <button id="js-search-clear">✕</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="b-docs-aside__content">
+        <ul class="b-docs-nav">
+            {{> navigation}}
+            <li class="b-docs-nav__item">
+                <a class="b-docs-nav__ln b-docs-nav__ln_imports" href="imports.html" id="nav-imports">
+                    <svg width="14" height="14" role="img">
+                        <use xlink:href="#icon-counterparts"></use>
+                    </svg>
+                    Dependencies
+                </a>
+            </li>
+            <li class="b-docs-nav__item">
+                <a class="b-docs-nav__ln b-docs-nav__ln_sizes" href="sizes.html" id="nav-sizes">
+                    <svg width="14" height="14" role="img">
+                        <use xlink:href="#icon-bundle"></use>
+                    </svg>
+                    Sizes
+                </a>
+            </li>
+            <li class="b-docs-nav__item">
+                <a class="b-docs-nav__ln b-docs-nav__ln_insights" href="insights.html" id="nav-insights">
+                    <svg width="14" height="14" role="img">
+                        <use xlink:href="#icon-insights"></use>
+                    </svg>
+                    Insights
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="b-docs-aside__footer">
+        {{> copyright}}
+    </div>
+</div>

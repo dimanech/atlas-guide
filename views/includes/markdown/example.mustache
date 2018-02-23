@@ -1,0 +1,21 @@
+<figure class="b-playground b-playground_{{language}} js-playground">
+    <figcaption>
+        <button class="b-playground__summary" aria-controls="{{title}}" title="Expand {{language}} example">
+           <span class="b-playground__summary-text">
+               {{title}}
+           </span>
+            <svg class="b-playground__summary-ico" width="24" height="24" role="img">
+                <use xlink:href="#icon-code-example"></use>
+            </svg>
+        </button>
+        <div class="b-playground__details" id="{{title}}" aria-hidden="true">
+<pre><code class="language-{{language}}" contenteditable="true">{{code}}</code></pre>
+        </div>
+    </figcaption>
+    <div class="b-playground__example">
+        <div class="b-playground-test-frame js-playground__example-rubicon">
+{{{code}}}
+        </div>
+    </div>
+    <i class="b-playground__notifier js-playground__notifier" role="region" aria-live="polite"></i>
+</figure>

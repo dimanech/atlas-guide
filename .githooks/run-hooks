@@ -1,0 +1,18 @@
+#!/bin/sh
+export PATH=$PATH:/usr/local/bin
+SCRIPTPATH="$(pwd)/.githooks"
+HOOKS=$@
+
+for hook in $HOOKS
+do
+	# if it returns with nonzero exit, 1 and thus abort the commit
+	if [ -f "$SCRIPTPATH/$hook" ]; then
+		"$SCRIPTPATH/$hook"
+		if [ $? != 0 ]; then
+			exit 1
+		fi
+	else
+		echo "[GUARD]: Error. File $hook not found" >&2
+		exit 1
+	fi
+done

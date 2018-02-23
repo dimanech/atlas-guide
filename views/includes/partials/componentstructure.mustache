@@ -1,0 +1,13 @@
+{{#nodes}}
+    <li class="b-component-stat-structure__node">
+        <div class="b-component-stat-structure__selector" title="{{type}}">
+            <span class="b-component-stat-structure__type b-component-stat-structure__type_{{type}}"></span>
+            <span class="b-component-stat-structure__name">{{node}}</span>{{#isBlock}} {...}{{/isBlock}}{{^isBlock}};{{/isBlock}}
+        </div>
+        {{#nodes.length}}
+            <ul class="b-component-stat-structure__nodes">
+                {{>componentstructure}}
+            </ul>
+        {{/nodes.length}}
+    </li>
+{{/nodes}}
