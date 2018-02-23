@@ -174,11 +174,11 @@ and partials.
     "guideSrc": "assets/src/scss/components/",
     "guideDest": "test-pages/",
     "cssSrc": "assets/css/",
-    "scssSrc": "assets/src/scss/", // Optional. Should be used if guideSrc is defferent from scss root. If not defined guideSrc will be used.
+    "scssSrc": "assets/src/scss/",
     "scssAdditionalImportsArray": "",
-    "excludedCssFiles": "dev2_", // Regexp
-    "excludedSassFiles": "dev2_", // Regexp
-    "excludedDirs": "dev2_", // Regexp
+    "excludedCssFiles": "dev2_",
+    "excludedSassFiles": "dev2_",
+    "excludedDirs": "dev2_",
     "copyInternalAssets": true,
     "templates": {
         "component": "",
@@ -202,6 +202,8 @@ and partials.
     }
 }
 ```
+
+`scssSrc` is optional. Should be used if guideSrc is different from scss root. If not defined guideSrc will be used.
 
 ## Usage
 

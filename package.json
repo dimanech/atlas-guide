@@ -58,7 +58,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:dimanech/atlas-guide.git"
   },
   "author": "Dima Nechepurenko"
 }
