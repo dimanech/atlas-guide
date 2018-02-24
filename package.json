@@ -3,7 +3,17 @@
   "version": "0.0.4",
   "license": "MIT",
   "description": "Atlas living style guides & pattern library static site generator with extensive CSS monitoring and components info",
-  "keywords": ["style guide", "living style guide", "pattern library", "guidelines", "docset", "static site generator", "styles statistic", "scss statistic", "statistic"],
+  "keywords": [
+    "style guide",
+    "living style guide",
+    "pattern library",
+    "guidelines",
+    "docset",
+    "static site generator",
+    "styles statistic",
+    "scss statistic",
+    "statistic"
+  ],
   "engines": {
     "node": ">=6.1",
     "npm": ">=5.4"
@@ -33,6 +43,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.4",
     "mocha": "^5.0.0",
+    "nyc": "^11.4.1",
     "stylelint": "^8.4.0",
     "stylelint-order": "^0.8.0",
     "stylelint-scss": "^2.2.0"
@@ -53,7 +64,7 @@
   },
   "scripts": {
     "lint": "eslint **/*.js && stylelint **/*.scss",
-    "test": "mocha",
+    "test": "nyc mocha",
     "build:guide": "",
     "copyhooks": "node .githooks/copy-hooks.js"
   },
