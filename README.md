@@ -6,6 +6,8 @@ styles monitoring and Sass components reports.
 Comes without any guarantee, but with analytics and beautiful data visualization to keep you project clean 
 and supportable from iteration to iteration.
 
+![atlas-component](docs/screens/atlas-component.jpeg)
+
 ## Features
 
 * blazing fast thanks to Mustache and Marked. It primary designed as development platform;
