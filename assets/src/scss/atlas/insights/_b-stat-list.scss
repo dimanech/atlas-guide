@@ -1,0 +1,10 @@
+.b-stat-list {
+	font-family: $font-mono-guide;
+	font-size: 0.8rem;
+	font-weight: bold;
+	line-height: 1.2;
+
+	&._tops {
+		font-size: 1rem;
+	}
+}

@@ -1,0 +1,32 @@
+.b-stat-header {
+	align-items: stretch;
+	background: rgba(white, 0.9);
+	border-bottom: 1px solid rgba(black, 0.1);
+	color: $guide-color-text;
+	display: flex;
+	font-family: $font-sans-guide;
+	font-size: 2rem;
+	font-weight: bold;
+	letter-spacing: -0.06em;
+	line-height: 1.2;
+	margin: 0 -#{$space-md-guide} $space-lg-guide;
+	padding: $space-sm-guide $space-md-guide;
+	position: sticky;
+	top: -1px; // compensate composition positioning bug
+	z-index: 5;
+
+	@supports (backdrop-filter: blur(10px)) {
+		backdrop-filter: saturate(180%) blur(10px);
+		background: rgba(white, 0.7);
+	}
+
+	&__title {
+		font-weight: bold;
+		margin-right: auto;
+		max-width: 80%;
+	}
+
+	&__caption {
+		margin-left: auto;
+	}
+}

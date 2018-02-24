@@ -1,0 +1,71 @@
+.b-cross-dependencies-graph {
+	color: $guide-color-text;
+	margin-top: -#{$space-md-guide};
+	user-select: none;
+
+	.link {
+		stroke: $color-blue-guide;
+	}
+
+	.node__circle {
+		fill: $color-blue-guide;
+		stroke: white;
+	}
+
+	.node__text {
+		fill: currentColor;
+		font-family: $font-mono-guide;
+		font-size: $guide-mono-small;
+
+		&._partial {
+			fill: $color-blue-guide;
+		}
+	}
+}
+
+.b-cross-dependencies-legend {
+	align-items: start;
+	border-top: 1px solid $guide-color-divider;
+	display: flex;
+	justify-content: space-between;
+	margin: $space-sm-guide 0 0;
+	max-width: none;
+	padding: $scale-sm-guide 0 0;
+
+	> svg {
+		color: $color-blue-guide;
+		height: 20px;
+		min-width: 50px;
+		width: 50px;
+	}
+
+	&__caption {
+		font-size: 1.2rem;
+		margin-bottom: 5px;
+		margin-right: $space-md-guide;
+		width: 50%;
+	}
+
+	&__example {
+		font-size: 0.9rem;
+		margin-right: $space-md-guide;
+		text-align: justify;
+		width: 50%;
+	}
+
+	&__list {
+		font-size: 0.9rem;
+		margin: 0 0 0 $space-md-guide;
+		min-width: 20%;
+		padding: 0;
+
+		p {
+			display: inline-block;
+		}
+
+		svg {
+			height: 10px;
+			width: 10px;
+		}
+	}
+}

@@ -6,6 +6,14 @@ const assert = require('assert');
 const cwd = process.cwd();
 
 describe('Atlas', function() {
+    let initialConfig = '';
+    before(function () {
+        return initialConfig = fs.readFileSync('.atlasrc.json');
+    });
+    after(function () {
+        fs.writeFileSync('.atlasrc.json', initialConfig, 'utf8');
+    });
+
     describe('Build', function () {
         const guideDest = 'test/results/';
 

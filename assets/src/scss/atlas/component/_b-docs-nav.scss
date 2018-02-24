@@ -1,0 +1,143 @@
+.b-docs-nav { // b-docs-outline-view
+	font-family: $font-sans-guide;
+	font-size: 13px;
+	line-height: 1.2;
+	list-style: none;
+	padding-bottom: $space-md-guide;
+	text-transform: capitalize;
+
+	&__item {
+		display: block;
+		position: relative;
+
+		&_index + &_index {
+			display: none;
+		}
+	}
+
+	&__ln {
+		color: inherit;
+		cursor: pointer;
+		display: block;
+		padding: 2px 0 4px;
+		position: relative;
+		text-decoration: none;
+		text-overflow: ellipsis;
+		transition: opacity ease 0.2s;
+		user-select: none;
+		white-space: nowrap;
+
+		&:hover,
+		&:focus {
+			color: black;
+		}
+
+		&:active {
+			color: $color-blue-guide;
+		}
+
+		&.js-current-page {
+			background-color: $aside-selected;
+			color: black;
+			cursor: default;
+			//font-weight: bold;
+			//pointer-events: none;
+		}
+
+		svg {
+			height: 18px;
+			pointer-events: none;
+			vertical-align: text-bottom;
+			width: 18px;
+		}
+
+		&_landing {
+			svg {
+				display: none;
+			}
+		}
+
+		&_category {
+			svg {
+				transform: rotate(90deg);
+				width: 8px;
+			}
+		}
+
+		&_guide {
+			svg {
+				width: 14px;
+			}
+		}
+
+		&_index {
+			svg {
+				margin-right: 3px;
+				width: 15px;
+			}
+		}
+	}
+
+	/* stylelint-disable */
+	// Recursive structure - refactor me later
+	> li {
+		> .b-docs-nav__ln {
+			background: $aside-bg;
+			display: block;
+			padding: $space-sm-guide $space-md-guide;
+			position: sticky;
+			top: 0;
+			z-index: 1;
+
+			&::after {
+				$color-shadow: black;
+				background: radial-gradient(farthest-side at 50% 0, rgba($color-shadow, 0.3), rgba($color-shadow, 0)) no-repeat center bottom;
+				background-size: 120% 1px;
+				bottom: 0;
+				content: "";
+				height: 1px;
+				left: $space-md-guide;
+				position: absolute;
+				right: $space-md-guide;
+			}
+		}
+
+		li {
+			> .b-docs-nav__ln {
+				padding-left: ($space-md-guide * 2);
+				padding-right: ($space-md-guide * 2);
+			}
+
+			li {
+				> .b-docs-nav__ln {
+					padding-left: ($space-md-guide * 3);
+					padding-right: ($space-md-guide * 3);
+				}
+
+				li {
+					> .b-docs-nav__ln {
+						padding-left: ($space-md-guide * 4);
+						padding-right: ($space-md-guide * 4);
+					}
+				}
+			}
+		}
+	}
+	/* stylelint-enable */
+
+	.b-docs-nav__ln_category {
+		svg {
+			transition: transform ease 0.4s;
+		}
+	}
+
+	.b-docs-nav__ln_category.js-collapsed {
+		svg {
+			transform: rotate(0);
+		}
+
+		+ .b-docs-nav__sub-nav { /* stylelint-disable-line */
+			display: none;
+		}
+	}
+}

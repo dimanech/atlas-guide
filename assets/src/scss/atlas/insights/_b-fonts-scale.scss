@@ -1,0 +1,31 @@
+.b-fonts-scale {
+	align-items: flex-end;
+	display: flex;
+	flex-wrap: wrap;
+	font-family: $font-sans-guide;
+	line-height: 1.2;
+
+	&__item {
+		margin-bottom: 4rem;
+		position: relative;
+		width: (100%/10);
+	}
+
+	&__example {
+		border-bottom: 1px solid hotpink;
+		border-top: 1px solid hotpink;
+		overflow: hidden;
+	}
+
+	&__size {
+		font-family: $font-mono-guide;
+		font-size: $guide-mono-small;
+		font-weight: bold;
+		margin-top: 10px;
+		max-width: 90px;
+		overflow: hidden;
+		position: absolute;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}

@@ -1,0 +1,56 @@
+/*md
+
+# l-atlas-container
+
+*/
+
+.l-atlas-container {
+	height: 100%;
+
+	&__aside {
+		//background-color: $aside-bg;
+		border-right: 1px solid $aside-bd;
+		bottom: 0;
+		left: 0;
+		//min-width: 200px;
+		position: fixed;
+		top: 0;
+		//transition: width ease 0.2s;
+		width: 270px;
+		z-index: 10;
+	}
+
+	&__main {
+		background-color: white;
+		margin-left: 270px;
+		position: relative;
+		z-index: 1;
+	}
+
+	&.js-aside-panel-hidden {
+		.l-atlas-container__aside {
+			min-width: 5px;
+			width: 5px;
+		}
+
+		.b-docs-aside__header,
+		.b-docs-aside__footer,
+		.b-docs-aside__content {
+			display: none;
+		}
+
+		.l-atlas-container__main {
+			margin-left: 5px;
+		}
+	}
+}
+
+.b-atlas-page_index {
+	.l-atlas-container__main {
+		margin-right: 270px;
+	}
+
+	.b-toc {
+		position: fixed;
+	}
+}

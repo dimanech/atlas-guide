@@ -1,0 +1,15 @@
+.b-stat-sizes-grid {
+	display: block;
+
+	li {
+		display: inline-block;
+		padding: $space-sm-guide;
+		vertical-align: bottom;
+		width: (100%/10);
+	}
+}
+
+.b-stat-sizes-page-title {
+	position: relative;
+	z-index: 1;
+}

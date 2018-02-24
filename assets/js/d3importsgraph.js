@@ -7,7 +7,7 @@
 
     const margin = {top: 0, right: 0, bottom: 0, left: 0};
     const width = document.querySelector('.b-atlas-section').offsetWidth;
-    const height = window.innerHeight - 200;
+    const height = window.innerHeight - 150;
     const nodeRadius = 17;
 
     const simulation = d3.forceSimulation(data.nodes)

@@ -1,0 +1,46 @@
+.b-stat-info {
+	font-family: $font-sans-guide;
+	font-size: 0.8rem;
+	font-weight: normal;
+	letter-spacing: 0;
+	line-height: 1.2;
+	position: relative;
+
+	&:hover {
+		.b-stat-info__popup {
+			display: block;
+		}
+	}
+
+	svg {
+		color: $color-blue-guide;
+		cursor: help;
+	}
+
+	&__popup {
+		background: rgba(white, 0.9);
+		border: 1px solid #e0e0e0;
+		border-left: 7px solid $color-blue-guide;
+		border-radius: 5px;
+		box-shadow: 0 0 20px -4px rgba(black, 0.3);
+		display: none;
+		left: 20px;
+		padding: $space-sm-guide;
+		position: absolute;
+		top: -10px;
+		width: 300px;
+		z-index: 10;
+
+		&::before {
+			border-bottom: 7px solid transparent;
+			border-right: 7px solid $color-blue-guide;
+			border-top: 7px solid transparent;
+			content: "";
+			display: block;
+			height: 0;
+			left: -13px;
+			position: absolute;
+			width: 0;
+		}
+	}
+}

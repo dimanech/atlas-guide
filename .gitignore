@@ -29,9 +29,8 @@ logs
 node_modules
 
 *.html
-*.css
+*.css.map
 
-atlas
-.atlasrc.json
+atlas/*
 test/results/*
 

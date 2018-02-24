@@ -1,0 +1,18 @@
+.b-stat-space {
+	&__item {
+		display: flex;
+		margin-bottom: 2px;
+	}
+
+	&__line {
+		background-color: $color-blue92-guide;
+		border-right: 1px solid hotpink;
+	}
+
+	&__caption {
+		font-family: $font-mono-guide;
+		font-size: 0.8rem;
+		font-weight: bold;
+		width: 100px;
+	}
+}
