@@ -36,38 +36,12 @@ function ruleSetChart(dataArr) {
         .curve(d3shape.curveCatmullRom.alpha(0.5))(dataArr);
 }
 
-function componentProfileChart(dataArr) {
-    // const width = 250;
-    const height = 250;
-    const margin = 10;
-    const innerRadius = 5;
-    const outerRadius = (height / 2) - (margin * 2);
-    const data = dataArr;
-    data.push(data[0]); // close the circle
-
-    const max = Math.max(...data); // < 4 ? 4 : Math.max(dataValues)
-
-    const angle = d3scale.scaleLinear()
-        .domain([0, data.length - 1])
-        .range([0, Math.PI * 2]);
-
-    const radius = d3scale.scaleLinear()
-        .domain([0, max])
-        .range([innerRadius, outerRadius]);
-
-    return d3shape.areaRadial()
-        .angle((d, i) => angle(i))
-        .innerRadius(0)
-        .outerRadius(d => radius(d))(data);
-}
-
 function getStatistic(componentStat, componentImports) {
     const componentProfile = [
         'padding', 'display', 'position', 'width', 'height',
         'margin', 'scale', 'font', 'color', 'background'
     ];
     const stats = ['important', 'vendorPrefix', 'floats'];
-    let chartData = [];
     let viewModel = {
         includes: _uniq(componentStat.includes.sort()),
         imports: _uniq(componentStat.imports),
@@ -76,7 +50,7 @@ function getStatistic(componentStat, componentImports) {
         nodes: componentStat.componentStructure.nodes, // component structure recursion
         totalDeclarations: humanize(componentStat.totalDeclarations),
         ruleSetsLine: ruleSetChart(componentStat.ruleSets),
-        componentProfileDetails: {},
+        componentProfileDetails: [],
         stats: {}
     };
 
@@ -90,14 +64,14 @@ function getStatistic(componentStat, componentImports) {
     componentProfile.forEach(stat => {
         const rawStat = componentStat.stats[stat];
         const rawStatLength = rawStat.length;
-        viewModel.componentProfileDetails[stat] = {
+        viewModel.componentProfileDetails.push({
             total: rawStatLength,
+            name: rawStatLength === 1 ? stat : stat + 's',
             values: rawStat
-        };
-        chartData.push(rawStatLength);
+        });
     });
 
-    viewModel.componentProfileShape = componentProfileChart(chartData);
+    viewModel.componentProfileDetails.sort((a, b) => b.total - a.total);
 
     return viewModel;
 }

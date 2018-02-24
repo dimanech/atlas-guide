@@ -262,16 +262,27 @@
 			font-weight: normal;
 		}
 	}
+}
 
-	&._horiz {
-		align-items: center;
-		max-width: none;
-		width: 100%;
+.b-component-stat-list {
+	display: flex;
+	flex-wrap: wrap;
+	font-weight: bold;
+	list-style: none;
+	margin: 0 0 $space-md-guide;
+	padding: 0;
+	text-transform: capitalize;
+	width: 100%;
 
-		.b-component-stat-digit__item {
-			font-size: 2.5rem;
-			font-weight: bold;
-		}
+	li {
+		margin: 0 0 10px;
+		width: (100%/3);
+	}
+
+	&__total {
+		color: $color-blue-guide;
+		font-size: 2rem;
+		font-weight: normal;
 	}
 }
 
