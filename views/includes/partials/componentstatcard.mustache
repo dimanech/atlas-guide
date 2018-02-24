@@ -92,10 +92,11 @@
                 <h3 class="b-component-stat-profile__title">
                     Separation of <br/> concerns
                 </h3>
+                {{#componentProfileShape}}
                 <svg class="b-component-stat-profile__graph" width="270" height="270">
                     <defs>
                         <clipPath id="radar-area">
-                            <path d="{{componentProfileShape}}"></path>
+                            <path d="{{.}}"></path>
                         </clipPath>
                     </defs>
                     <g transform="translate(125,125)">
@@ -164,11 +165,12 @@
                         <path stroke="rgba(0,0,0,0.03)" fill="none" class="line" d="M0,-80L47.022820183397855,-64.7213595499958L76.08452130361228,-24.721359549995796L76.08452130361229,24.72135954999579L47.02282018339786,64.72135954999578L9.797174393178826e-15,80L-47.02282018339784,64.7213595499958L-76.08452130361228,24.721359549995803L-76.08452130361229,-24.72135954999578L-47.02282018339787,-64.72135954999578L-1.9594348786357652e-14,-80"></path>
                         <g transform="translate(3, 3)">
                             <path fill="rgba(0, 0, 0, 0.3)" filter="url(#blur-filter)" class="area"
-                                  d="{{componentProfileShape}}"></path>
+                                  d="{{.}}"></path>
                         </g>
                         <rect x="-125" y="-125" width="250" height="250" fill="url(#atlas-graph-gradient)" clip-path="url(#radar-area)"></rect>
                     </g>
                 </svg>
+                {{/componentProfileShape}}
                 {{#componentProfileDetails}}
                     <table class="b-component-stat-profile__table">
                         <thead>
