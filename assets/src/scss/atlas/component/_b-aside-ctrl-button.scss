@@ -35,4 +35,9 @@
 		//background: rgba($aside-bd, 0.4);
 		color: $color-blue-guide;
 	}
+
+	.js-aside-panel-hidden & {
+		//cursor: e-resize; wait for implementation of drag
+		cursor: pointer;
+	}
 }
