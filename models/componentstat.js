@@ -19,7 +19,7 @@ function guessType(name) {
     }
 
     // parse suffixes
-    if (/_.*$/.test(name) || /--.*$/.test(name)) {
+    if (/[a-z]_[a-z\d]*$/.test(name) || /--.*$/.test(name)) {
         return 'modifier';
     }
 
