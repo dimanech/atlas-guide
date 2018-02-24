@@ -101,7 +101,6 @@
 		}
 
 		&[aria-hidden="false"] {
-			max-height: 400px; /* stylelint-disable-line */
 			max-height: 40vh;
 			opacity: 1;
 			overflow: initial;
@@ -110,7 +109,6 @@
 
 		pre {
 			background-color: transparent;
-			max-height: 400px;
 			max-height: 40vh;
 			overflow: auto;
 			padding: $space-sm-guide;
