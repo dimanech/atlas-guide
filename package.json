@@ -3,12 +3,13 @@
   "version": "0.0.2",
   "license": "MIT",
   "description": "Atlas living style guides & pattern library static site generator with extensive CSS monitoring and components info",
+  "keywords": ["style guide", "living style guide", "pattern library", "guidelines", "docset", "static site generator", "styles statistic", "scss statistic", "statistic"],
   "engines": {
     "node": ">=6.1",
     "npm": ">=5.4"
   },
   "dependencies": {
-    "cssstats": "file:../core",
+    "cssstats": "https://github.com/dimanech/core.git",
     "d3-color": "^1.0.3",
     "d3-format": "^1.2.2",
     "d3-scale": "^2.0.0",

@@ -1,4 +1,4 @@
-# Atlas
+# Atlas-guide
 
 Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive 
 styles monitoring and Sass components reports.
@@ -13,15 +13,16 @@ and supportable from iteration to iteration.
 * could be setup with live reload and used as standalone development platform;
 * small dependencies (Mustache, Marked, PostCSS, CSSStats, ImportsGraph, D3 parts, Lodash parts). It could help you to controll you project dependencies and do not blow `node_modules` folder to FS black hole;
 * extremely flexible. All internal templates could be overloaded on project level;
-* could be used as simple guide docs.
+* could be used as simple guide docs;
+* Hologram compatible (but without front matter sections).
 
 ### Components library
 
-Support in `scss` files `/*md` comment with component description, examples and guidelines.
+Support `/*md` comment in `scss` files where regular markdown could be placed.
 
 * comes with simple playground, so code examples could be live-edited, previewed and copy-pasted to different place. It could be used by content-management team;
 * comes with different types of pages - component, guide and reports. But could be expanded to many different types;
-* filtering and easy navigation over components. Navigation tree copy project tree, to ease orientation;
+* filtering and easy navigation over components. Navigation tree copy project tree, to ease orientation and successful handling huge components library;
 * component local variables, internal and external dependencies;
 * component raw structure;
 * component statistic.
@@ -73,12 +74,11 @@ npm atlas-guide --build-all
 ```js
 const atlas = require('atlas-guide');
 atlas.build(); // build all guide files without reports.
-atlas.build('path/to/changed/file.scss'); // compile only this file if was documented on module import
+atlas.build('path/to/changed/file.scss'); // compile only particular file, if it marked as documented in project tree
 atlas.buildAll(); // compile all guide and reports
 ```
 
-Use `atlas.build()` for incremental development builds, where no need to have extensive havy weight statistics 
-on each start.
+Use `atlas.build()` for incremental development builds, where it is not required to have extensive heavy-weight statistic.
 
 ### CLI
 
@@ -100,8 +100,7 @@ Atlas search configuration in this order:
 
 ### `.atlasrc.json`
 
-If you use `package.json` only for project packaging data you probably prefer to use appropriate file for atlas configuration.
-To do that add `.atlasrc.json` to project root directory.
+By default atlas search for configuration in `.atlasrc.json` file in root of the project.
 
 Minimal configuration:
 
@@ -115,10 +114,10 @@ Minimal configuration:
 
 ### `atlasConfig` in `package.json`
 
-If you store all your configurations in `package.json` you probably want to store atlas configuration here and do not 
-pollute project with configuration files. Add `atlasConfig` to your `package.json`.
+If you project stores all configurations in `package.json` you probably want to store atlas configuration here also. 
+To do that add `atlasConfig` field to your `package.json`.
 
-`.atlasrc.json` will be used if configuration stored in `package.json` and `.atlasrc.json`.
+Note: if you have both `.atlasrc.json` and `package.json` -- `.atlasrc.json` will be used.
 
 Minimal configuration:
 
@@ -134,10 +133,10 @@ Minimal configuration:
 }
 ```
 
-### Templates overrides
+### Templates overwrites
 
-As the next step you probably want to add your project CSS and JS to render components examples properly. 
-To make this happen you need to add `partials` to the config, with paths to templates.
+As the next step you, probably, want to add your project CSS and JS to render components examples properly. 
+To make this happen you need to add `partials` to the config, with paths to templates:
 
 ```json
 {
@@ -148,11 +147,11 @@ To make this happen you need to add `partials` to the config, with paths to temp
 }
 ```
 
-Ex: `project-head.mustache`
+...and add links to your project CSS/JS. Ex: `project-head.mustache`
 
 ```html
 <link rel="stylesheet" type="text/css" href="../css/project.css"/>
-<link rel="stylesheet" type="text/css" href="../css/additional-project.css"/>
+<link rel="stylesheet" type="text/css" href="../css/additional.css"/>
 ```
 
 `project-footer.mustache`:
@@ -172,13 +171,13 @@ and partials.
 ```json
 {
     "guideSrc": "assets/src/scss/components/",
-    "guideDest": "test-pages/",
+    "guideDest": "guide/",
     "cssSrc": "assets/css/",
     "scssSrc": "assets/src/scss/",
     "scssAdditionalImportsArray": "",
-    "excludedCssFiles": "dev2_",
-    "excludedSassFiles": "dev2_",
-    "excludedDirs": "dev2_",
+    "excludedCssFiles": "dev_",
+    "excludedSassFiles": "dev_",
+    "excludedDirs": "dev_",
     "copyInternalAssets": true,
     "templates": {
         "component": "",
@@ -203,19 +202,21 @@ and partials.
 }
 ```
 
-`scssSrc` is optional. Should be used if guideSrc is different from scss root. If not defined guideSrc will be used.
+`scssSrc` is optional. It should be used if `guideSrc` is different from scss root. If not defined `guideSrc` will be used.
 
 ## Usage
 
-Atlas like Vim consists of two functions - beeping and corrupt files. But with minor difference. 
+Atlas like Vim consists of two functions - beeping and corrupting files. But with minor difference. 
 It generate guide and generate reports. You need to document code to make it "beeping" and provide config to make it 
-generate files for you properly.
+generate files for you project properly. 
+
+In this section we need to cover 2 topics - documenting, reports configuration.
 
 ### Documenting code
 
 #### Doc comment
 
-Add this comment to the scss file and it appears as guide page
+Add this comment to the scss file and it appears as guide page.
 
 ```scss
 /*md
@@ -225,7 +226,7 @@ Add this comment to the scss file and it appears as guide page
  */
 ```
 
-This comment use markdown syntax, so any valid markdown will supported here
+Inside this comment regular markdown syntax used, so any valid markdown will supported here. 
 
 ```scss
 /*md
@@ -251,10 +252,14 @@ etc.
  */
 ```
 
+Note: Please avoid some tricky markdown construction, because `marked` super fast, but with this comes not great smartness.
+
 #### Component example
 
-In this guide block code "fences" notation extended with custom attribute. To create component example you need
-to add code-block with `html_example`: 
+Atlas extended markdown code block "fences" notation with custom type (just like Hologram) -- `html_example`. 
+That render component playground instead of code-example. This keeps documentation compatible with regular markdown.
+
+To create component example you need to add code-block with `html_example`: 
 
 ```scss
 /*md
@@ -266,9 +271,9 @@ to add code-block with `html_example`:
 */
 ```
 
-Just in case, it should not be indented like this, this is because the code below is markdown in markdown).
+Just in case, it should not be indented like this, this is because the code below is markdown in markdown.
 
-Simple `html` "fence" become regular code-block:
+Simple `html`, `scss`, `css` "fences" become regular code-block:
 
 ```scss
 /*md
@@ -286,11 +291,11 @@ Simple `html` "fence" become regular code-block:
 
 #### Guideline/Documentation page
 
-Simply put regular markdown file to components tree and they automatically become part of the guide.
+Simply put regular markdown file to components tree and they automatically become part of atlas.
 
-#### Code "fences"
+#### Styling code "fences"
 
-All "_" in block code "fences" will be removed, but original "fence" will be added as CSS-class, so you could
+All "_" in code block "fences" will be removed, but original "fence" will be added as CSS-class, so you could
 use it to style code by your needs. Atlas by default style 2 class `*_bad`, `*_good`. This is used in guidelines.
 
 ```md
@@ -307,7 +312,7 @@ Bad/good screen
 
 #### Template helpers
 
-To inline some resources like svg icons, inlined critical styles etc. you could use `inline` helper. Ex:
+To inline some resources like svg icons, inlined styles etc. you could use `inline` helper. Ex:
 
 ```html
 {{#inline}}assets/src/images/icons.svg{{/inline}}
@@ -322,12 +327,13 @@ Regular flow to build all guide pages on start and incrementally build pages on 
 ```js
 const atlas = require('atlas-guide');
 atlas.build(); // build all guide files without reports
+// watch for changes, get changed file path and build needed page:
 atlas.build('path/to/changed/file.scss'); // compile only this file if was documented on module import
 ```
 
 ##### Gulp example
 
-See example of configuration with gulp in gulpfile.js in this repo.
+See example of configuration with gulp in `gulpfile.js` in this repo.
 
 #### Full Atlas generation
 
