@@ -1,6 +1,9 @@
 sudo: false
 language: node_js
 
+node_js:
+  - "6"
+
 git:
   depth: 1
 
@@ -10,12 +13,12 @@ branches:
     - /^greenkeeper/.*$/
 
 cache:
-  directories:
-    - node_modules
+  directories: node_modules
 
-install:
-  - npm install
+install: npm install
 
 script:
   - npm run lint
   - npm run test
+
+after_success: npm run coverage

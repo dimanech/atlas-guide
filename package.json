@@ -1,6 +1,6 @@
 {
   "name": "atlas-guide",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "description": "Atlas living style guides & pattern library static site generator with extensive CSS monitoring and components info",
   "keywords": [

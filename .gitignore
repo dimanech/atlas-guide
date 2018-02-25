@@ -29,7 +29,5 @@ node_modules
 .nyc_output
 
 *.html
-
 atlas/*
-test/results/*
 

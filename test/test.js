@@ -35,6 +35,7 @@ describe('Atlas', function() {
                     }
                 }
             `, 'utf8');
+            fs.unlinkSync(path.join(cwd, guideDest, '.gitkeep'));
         });
 
         describe('Single component', function() {
@@ -228,6 +229,7 @@ describe('Atlas', function() {
                 }
                 done();
             });
+            fs.writeFileSync(path.join(cwd, guideDest, '.gitkeep'), '', 'utf8');
         });
     });
 
