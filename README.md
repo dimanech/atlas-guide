@@ -1,5 +1,8 @@
 # Atlas-guide
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/f37cf365f3315cfc287c/maintainability)](https://codeclimate.com/github/dimanech/atlas-guide/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master)](https://coveralls.io/github/dimanech/atlas-guide?branch=master)
+
 Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive 
 styles monitoring and Sass components reports.
 

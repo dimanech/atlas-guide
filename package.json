@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^8.0.0",
+    "coveralls": "^3.0.0",
     "eslint": "^4.17.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "gulp": "^3.9.1",
@@ -65,7 +66,8 @@
   "scripts": {
     "lint": "eslint **/*.js && stylelint **/*.scss",
     "test": "nyc mocha",
-    "build:guide": "",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "build": "gulp build",
     "copyhooks": "node .githooks/copy-hooks.js"
   },
   "repository": {

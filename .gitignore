@@ -25,11 +25,10 @@ logs
 *.map
 .grunt
 
-# Ignore dependency directory
 node_modules
+.nyc_output
 
 *.html
-*.css.map
 
 atlas/*
 test/results/*
