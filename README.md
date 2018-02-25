@@ -3,6 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master)](https://coveralls.io/github/dimanech/atlas-guide?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/dimanech/atlas-guide.svg)](https://greenkeeper.io/)
 [![Travis badge](https://travis-ci.org/dimanech/atlas-guide.svg?branch=master)](https://travis-ci.org/dimanech/atlas-guide/)
+[![npm version](https://badge.fury.io/js/atlas-guide.svg)](https://badge.fury.io/js/atlas-guide)
 
 Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive 
 styles monitoring and Sass components reports.
@@ -69,10 +70,18 @@ npm install atlas-guide
 }
 ```
 
-Then:
+Then in package.json
+
+```json
+{
+  "scripts": {
+    "build-atlas": "atlas-guide --build"
+  }
+}
+```
 
 ```
-npm atlas-guide --build-all
+npm run build-atlas
 ```
 
 ### API
