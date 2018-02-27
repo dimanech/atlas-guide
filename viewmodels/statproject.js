@@ -409,31 +409,6 @@ function statProject(stat) {
         return longestSelectors;
     }
 
-    function spacingResets(stats) {
-        // we should count "0" decl to guess resets. Currently marked as "Metric declarations"
-        let spacing = {
-            margins: [],
-            paddings: []
-        };
-        const spacingProperties = {
-            margins: ['margin', 'margin-top', 'margin-left', 'margin-right', 'margin-bottom'],
-            paddings: ['padding', 'padding-top', 'padding-left', 'padding-bottom', 'padding-right']
-        };
-
-        for (let item in spacingProperties) {
-            if (spacingProperties.hasOwnProperty(item)) {
-                spacingProperties[item].forEach(property => {
-                    spacing[item].push({
-                        name: property.replace('-', ' '),
-                        count: stats.declarations.getPropertyValueCount(property, '0')
-                    });
-                });
-            }
-        }
-
-        return spacing;
-    }
-
     stat.forEach(bundle => {
         const name = bundle.name;
         const stats = bundle.stat;
@@ -450,8 +425,7 @@ function statProject(stat) {
             specificityTops: specificityTops(stats.selectors.getSpecificityValues()),
             rulesizeChart: ruleSizeChart(stats),
             rulesizeTops: ruleSizeStat(stats.rules.selectorRuleSizes),
-            selectorsListTops: selectorsListTops(stats.selectors.selectorsLists),
-            spacingResets: spacingResets(stats)
+            selectorsListTops: selectorsListTops(stats.selectors.selectorsLists)
         });
     });
 
