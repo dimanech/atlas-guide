@@ -81,13 +81,8 @@ describe('Atlas', function() {
             it('should contain imported by');
             it('should contain component structure');
 
-            after(function (done) {
-                fs.unlink(expectedFile, err => {
-                    if (err) {
-                        throw err;
-                    }
-                    done();
-                });
+            after(function () {
+                fs.unlinkSync(expectedFile);
             });
         });
 
@@ -135,13 +130,8 @@ describe('Atlas', function() {
                 assert.strictEqual(result, true, 'titles have permalinks');
             });
 
-            after(function (done) {
-                fs.unlink(expectedFile, err => {
-                    if (err) {
-                        throw err;
-                    }
-                    done();
-                });
+            after(function () {
+                fs.unlinkSync(expectedFile);
             });
         });
 

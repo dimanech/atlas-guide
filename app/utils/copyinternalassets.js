@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const assetsSrc = path.join(__dirname, '../../assets');
-const rootRegExp = new RegExp(path.resolve(__dirname, '../../'));
+const rootRegExp = new RegExp(path.resolve(__dirname, '../../').replace(/\\/g, '\\\\'));
 
 /**
  * Copy internal assets to specified Atlas destination directory, so they will be available in generated static files.

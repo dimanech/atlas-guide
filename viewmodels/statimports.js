@@ -3,7 +3,7 @@
 const path = require('path');
 
 function prepareImportsData(importsGraph, excludesRegexp) {
-    const pathToSCSS = new RegExp(path.resolve(importsGraph.dir) + '/');
+    const pathToSCSS = new RegExp(path.resolve(importsGraph.dir).replace(/\\/g, '\\\\'));
 
     function isExcludedFile(file) {
         return excludesRegexp.test(file);
@@ -11,6 +11,7 @@ function prepareImportsData(importsGraph, excludesRegexp) {
 
     function getReducedPath(str) {
         return str.replace(pathToSCSS, '')
+            .replace(/(^\/)|(\\)/, '')
             .replace(/\.scss/, '');
     }
 
