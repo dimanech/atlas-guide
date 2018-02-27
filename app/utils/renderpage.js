@@ -56,9 +56,10 @@ function prepareView(config) {
  * Prepare data and write file to the destination.
  * @private
  * @param config {object} - config object with templates and data
+ * @param callback {function} - callback function
  */
-function writeGuidePage(config) {
-    fs.writeFile( // consider writeFile async
+function writeGuidePage(config, callback) {
+    fs.writeFile(
         config.target,
         mustache.render(
             config.templateString,
@@ -68,6 +69,10 @@ function writeGuidePage(config) {
         error => {
             if (error) {
                 throw error;
+            }
+
+            if (typeof callback === 'function') {
+                return callback();
             }
         }
     );

@@ -43,8 +43,7 @@ describe('Atlas', function() {
 
             before(function (done) {
                 const atlas = require(cwd + '/app/atlas-guide');
-                atlas.build(path.join(cwd, '/test/fixtures/atlas/_component.scss'));
-                done();
+                atlas.build(path.join(cwd, '/test/fixtures/atlas/_component.scss'), done);
             });
 
             it('should be written', function () {
@@ -91,8 +90,7 @@ describe('Atlas', function() {
 
             before(function (done) {
                 const atlas = require(cwd + '/app/atlas-guide');
-                atlas.build(path.join(cwd, '/test/fixtures/atlas/guide.md'));
-                done();
+                atlas.build(path.join(cwd, '/test/fixtures/atlas/guide.md'), done);
             });
 
             it('only one file should be written', function () {
@@ -358,7 +356,7 @@ describe('Atlas', function() {
             });
         });
     });
-    describe('copyassets', function () {
+    describe('copyassets()', function () {
         const copyAssets = require(path.resolve(__dirname, '../app/utils/copyassets.js'));
         const assetsDest = path.join(cwd, '/test/results/');
         const assetsSrc = path.join(cwd, '/test/fixtures/assets/');

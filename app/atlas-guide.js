@@ -52,12 +52,13 @@ function getCachedTemplates(type, path) {
  * Walk though documented files in project and generate particular page (if path specified) or full docset if no string
  * provided.
  * @public
- * @param [url] {string} - path to file. If no string provided function build all components
+ * @param url {string} - path to file. If no string provided or function is passed this build all components
+ * @param callback {function} - callback function
  */
-function makeComponent(url) {
+function makeComponent(url, callback) {
     function traverseDocumentedTree(components, targetPath) {
         components.forEach(component => {
-            const makeAllComponents = targetPath === undefined;
+            const makeAllComponents = targetPath === undefined || typeof targetPath === 'function';
             const isFileInConfig = makeAllComponents ? true : targetPath === component.src;
             const isFile = component.target;
 
@@ -78,7 +79,7 @@ function makeComponent(url) {
                         componentStats: stat
                     },
                     subPages: projectTree.subPages
-                });
+                }, callback);
                 if (!makeAllComponents) {
                     return;
                 }
@@ -95,7 +96,7 @@ function makeComponent(url) {
 
 module.exports = {
     'build': makeComponent,
-    'buildAll': () => {
+    'buildAll': function() {
         makeComponent();
         // this heavy statistic models not needed for common dev flow
         require('./buildreports.js')(atlasConfig, projectTree, importsGraph);
