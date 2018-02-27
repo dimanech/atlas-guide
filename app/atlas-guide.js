@@ -22,13 +22,14 @@ const componentStat = require(path.resolve(__dirname, '../models/componentstat.j
 
 const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'));
 const pageContent = require(path.join(__dirname, '../viewmodels/pagecontent.js'));
-const writePage = require(path.join(__dirname, 'utils/renderpage.js'));
+const writePage = require(__dirname + '/utils/renderpage.js');
 
 // Copy internal assets to the components destinations
 if (atlasBase.copyInternalAssets) {
     const guideDest = atlasBase.guideDest;
-    const copyInternalAssets = require(path.join(__dirname, 'utils/copyinternalassets.js'));
-    copyInternalAssets(guideDest);
+    const assetsSrc = atlasBase.internalAssetsPath;
+    const copyInternalAssets = require(__dirname + '/utils/copyassets.js');
+    copyInternalAssets(assetsSrc, guideDest);
 }
 
 // Cache basic templates

@@ -358,6 +358,51 @@ describe('Atlas', function() {
             });
         });
     });
+    describe('copyassets', function () {
+        const copyAssets = require(path.resolve(__dirname, '../app/utils/copyassets.js'));
+        const assetsDest = path.join(cwd, '/test/results/');
+        const assetsSrc = path.join(cwd, '/test/fixtures/assets/');
+
+        before(function () {
+            copyAssets(assetsSrc, assetsDest);
+        });
+
+        it('should create missing folders', function () {
+            const assetsDir = fs.existsSync(path.join(assetsDest, '/assets'));
+            assert.strictEqual(assetsDir, true, 'assets directory is created');
+        });
+        it('should copy files', function () {
+            const style = fs.existsSync(path.join(assetsDest, '/assets/css/style.css'));
+            const script = fs.existsSync(path.join(assetsDest, '/assets/my js/bundle.js'));
+            assert.strictEqual(style && script, true, 'needed files is copied');
+        });
+        it('should not copy "src" folder', function () {
+            const assetsSourceFiles = fs.existsSync(path.join(assetsDest, '/assets/src'));
+            assert.strictEqual(assetsSourceFiles, false, '"src" folder not copied');
+        });
+        it('should not copy "map" files', function () {
+            const styleMap = fs.existsSync(path.join(assetsDest, '/assets/css/style.css.map'));
+            assert.strictEqual(styleMap, false, 'map file not copied');
+        });
+
+        after(function () {
+            function deleteRes(res) {
+                fs.readdirSync(res).forEach(item => {
+                    const source = path.join(res, item);
+                    if (fs.statSync(source).isFile()) {
+                        if (item === '.gitkeep') {
+                            return;
+                        }
+                        fs.unlinkSync(source);
+                    } else {
+                        deleteRes(source);
+                        fs.rmdirSync(source);
+                    }
+                });
+            }
+            deleteRes(assetsDest);
+        });
+    });
     describe('Component statistics', function () {
         describe('getStatFor', function () {
             it('should skip keyframes rules');

@@ -120,6 +120,7 @@ function getBaseConfig(configRaw) {
         atlasConfig.excludedSassFiles = new RegExp(config.excludedSassFiles || '.^', 'g');
 
         atlasConfig.copyInternalAssets = copyInternalAssets !== undefined ? copyInternalAssets : true;
+        atlasConfig.internalAssetsPath = path.join(__dirname, '../assets');
     }
 
     function getTemplates() {
