@@ -1,10 +1,10 @@
 'use strict';
 
 (function() {
-    const navigation = document.querySelector('.b-docs-nav');
+    const navigation = document.querySelector('.b-atlas-nav');
 
     function menuCollapse(ev) {
-        if (!ev.target.classList.contains('b-docs-nav__ln_category')) {
+        if (!ev.target.classList.contains('b-atlas-nav__ln_category')) {
             return;
         }
         ev.preventDefault();
@@ -21,7 +21,7 @@
         if (!location) {
             return;
         }
-        const currentFile = location.replace('.html', '').replace('/', '');
+        const currentFile = location.href.split('/').pop().replace('.html', '');
         const linkCurrent = document.getElementById('nav-' + currentFile);
         if (!linkCurrent) {
             return;

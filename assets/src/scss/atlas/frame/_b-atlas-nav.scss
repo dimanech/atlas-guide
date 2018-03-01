@@ -1,4 +1,4 @@
-.b-docs-nav { // b-docs-outline-view
+.b-atlas-nav { // b-atlas-outline-view
 	font-family: $font-sans-guide;
 	font-size: 13px;
 	line-height: 1.2;
@@ -81,7 +81,7 @@
 	/* stylelint-disable */
 	// Recursive structure - refactor me later
 	> li {
-		> .b-docs-nav__ln {
+		> .b-atlas-nav__ln {
 			background: $aside-bg;
 			display: block;
 			padding: $space-sm-guide $space-md-guide;
@@ -103,19 +103,19 @@
 		}
 
 		li {
-			> .b-docs-nav__ln {
+			> .b-atlas-nav__ln {
 				padding-left: ($space-md-guide * 2);
 				padding-right: ($space-md-guide * 2);
 			}
 
 			li {
-				> .b-docs-nav__ln {
+				> .b-atlas-nav__ln {
 					padding-left: ($space-md-guide * 3);
 					padding-right: ($space-md-guide * 3);
 				}
 
 				li {
-					> .b-docs-nav__ln {
+					> .b-atlas-nav__ln {
 						padding-left: ($space-md-guide * 4);
 						padding-right: ($space-md-guide * 4);
 					}
@@ -125,19 +125,57 @@
 	}
 	/* stylelint-enable */
 
-	.b-docs-nav__ln_category {
+	.b-atlas-nav__ln_category {
 		svg {
 			transition: transform ease 0.4s;
 		}
 	}
 
-	.b-docs-nav__ln_category.js-collapsed {
+	.b-atlas-nav__ln_category.js-collapsed {
 		svg {
 			transform: rotate(0);
 		}
 
-		+ .b-docs-nav__sub-nav { /* stylelint-disable-line */
+		+ .b-atlas-nav__sub-nav { /* stylelint-disable-line */
 			display: none;
 		}
+	}
+}
+
+.js-searching {
+	.b-atlas-nav__ln {
+		color: lighten($guide-color-text, 40%);
+		cursor: default;
+		pointer-events: none;
+	}
+}
+
+.js-found {
+	.b-atlas-nav__ln {
+		color: lighten($guide-color-text, 40%);
+		cursor: default;
+		display: none;
+		pointer-events: none;
+	}
+
+	.b-atlas-nav__ln.js-relevant {
+		color: $guide-color-text;
+		cursor: pointer;
+		display: block;
+		pointer-events: initial;
+
+		&:hover,
+		&:focus {
+			color: black;
+		}
+
+		&:active {
+			color: $color-blue-guide;
+		}
+	}
+
+	.b-atlas-nav__sub-nav,
+	.b-atlas-nav__ln_category {
+		display: block !important; /* stylelint-disable-line */
 	}
 }

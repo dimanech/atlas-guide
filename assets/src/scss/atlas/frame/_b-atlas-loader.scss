@@ -1,17 +1,17 @@
 /*md
 
-# b-loader
+# b-atlas-loader
 
 Used to hide content before it loaded
 
 ```html
-<div class="b-loader"></div>
+<div class="b-atlas-loader"></div>
 ```
 
 ```html_example
 <h1 class="b-atlas b-atlas-title b-atlas-title_1" id="h1-b-loader">
     <span class="b-atlas-title__text">
-        b-loader
+        b-atlas-loader
     </span>
     <a class="b-atlas-title__anchor" href="#h1-b-loader" title="Copy link to this title">
         <svg width="14" height="14" role="img">
@@ -22,7 +22,7 @@ Used to hide content before it loaded
 ```
 */
 
-.b-loader {
+.b-atlas-loader {
 	align-items: center;
 	background: rgba(white, 0.96);
 	bottom: 0;

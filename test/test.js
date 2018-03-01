@@ -66,9 +66,9 @@ describe('Atlas', function() {
 
             it('should contain another components in navigation', function () {
                 const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const categoryLink = /class="b-docs-nav__ln b-docs-nav__ln_guide" href="category-guide.html"/
+                const categoryLink = /class="b-atlas-nav__ln b-atlas-nav__ln_guide" href="category-guide.html"/
                     .test(expectedFileContent);
-                const rootLink = /class="b-docs-nav__ln b-docs-nav__ln_guide" href="atlas-guide.html"/
+                const rootLink = /class="b-atlas-nav__ln b-atlas-nav__ln_guide" href="atlas-guide.html"/
                     .test(expectedFileContent);
                 assert.strictEqual(categoryLink && rootLink, true,
                     'component contain another components in navigation');
@@ -118,8 +118,8 @@ describe('Atlas', function() {
 
             it('should contain toc', function () {
                 const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const result = /class="b-toc__ln b-toc__ln_1"/.test(expectedFileContent);
-                assert.strictEqual(result, true, 'contain TOC');
+                const result = /class="b-atlas-toc__ln b-atlas-toc__ln_1"/.test(expectedFileContent);
+                assert.strictEqual(result, true, 'contain Table of content');
             });
 
             it('should have permalinks on titles', function () {

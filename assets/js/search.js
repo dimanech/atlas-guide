@@ -19,7 +19,7 @@
 
     function clearSearch() {
         asidePanel.classList.remove(hasResults);
-        document.querySelectorAll('.b-docs-nav__ln')
+        document.querySelectorAll('.b-atlas-nav__ln')
             .forEach(link => link.classList.remove(isRelevant));
         searchField.value = '';
     }
@@ -37,7 +37,10 @@
             const elementText = link.textContent;
 
             if (term.length && ~elementText.indexOf(term)) {
-                document.querySelector('.b-docs-aside__content').scrollTo(0, link);
+                const asideContent = document.querySelector('.b-docs-aside__content');
+                if (asideContent.scrollTo() !== undefined) {
+                    asideContent.scrollTo(0, link);
+                }
                 asidePanel.classList.add(hasResults);
                 link.classList.add(isRelevant);
             } else {

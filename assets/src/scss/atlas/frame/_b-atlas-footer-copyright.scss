@@ -1,15 +1,9 @@
-.b-footer-copyright {
+.b-atlas-footer-copyright {
 	color: $guide-color-text;
 	font-family: $font-sans-guide;
 	font-size: 10px;
 	line-height: 1.2;
+	margin: 0;
 	padding: 10px;
 	text-align: center;
-
-	svg {
-		height: 30px;
-		margin-left: 6px;
-		vertical-align: middle;
-		width: 40px;
-	}
 }

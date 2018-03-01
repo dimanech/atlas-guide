@@ -7,24 +7,27 @@ $aside-bd: #e0e0e0;
 $aside-selected: #e2e2e2;
 
 @import "atlas/frame/global-normalization";
-@import "atlas/frame/l-atlas-container";
-@import "atlas/frame/b-container-docs";
-@import "atlas/frame/b-docs-guide-search";
-@import "atlas/frame/b-docs-search";
-@import "atlas/frame/b-aside-ctrl-button";
-@import "atlas/frame/b-docs-header";
-@import "atlas/frame/b-docs-aside";
-@import "atlas/frame/b-docs-nav";
 @import "atlas/frame/b-atlas";
-@import "atlas/frame/b-footer-copyright";
+@import "atlas/frame/l-atlas-container";
+@import "atlas/frame/b-atlas-content";
+@import "atlas/frame/b-atlas-search";
+@import "atlas/frame/b-atlas-aside-ctrl";
+@import "atlas/frame/b-atlas-header";
+@import "atlas/frame/b-atlas-aside";
+@import "atlas/frame/b-atlas-nav";
+@import "atlas/frame/b-atlas-footer-copyright";
 
-@import "atlas/guide/b-toc";
+@import "atlas/guide/b-atlas-toc";
 
-@import "atlas/component/b-playground";
+@import "atlas/component/b-atlas-playground";
 @import "atlas/component/b-component-stat";
 @import "atlas/component/b-component-stat-digit";
+@import "atlas/component/b-component-postcard";
+@import "atlas/component/b-component-stat-graph";
+@import "atlas/component/b-component-stat-list";
+@import "atlas/component/b-component-stat-structure";
 
 @import "atlas/imports/b-cross-dependencies-graph";
 
-@import "atlas/sizes/b-stat-sieze-grid";
+@import "atlas/sizes/b-stat-sizes-grid";
 @import "atlas/sizes/b-stat-size-file";

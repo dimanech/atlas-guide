@@ -1,4 +1,4 @@
-.b-playground {
+.b-atlas-playground {
 	clear: both;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -142,7 +142,7 @@
 		font-style: normal;
 		height: 20px;
 		left: 50%;
-		line-height: 1;
+		line-height: 0;
 		min-width: 20px;
 		opacity: 0;
 		padding: $space-md-guide;
@@ -179,20 +179,20 @@
 	}
 }
 
-.b-playground.js-opened {
-	.b-playground__example {
+.b-atlas-playground.js-opened {
+	.b-atlas-playground__example {
 		border-color: black;
 		@include blueprint();
 	}
 }
 
 .b-atlas-page_layout {
-	.b-playground__example {
+	.b-atlas-playground__example {
 		@include blueprint();
 	}
 }
 
-.b-playground-test-frame {
+.b-atlas-playground-test-frame {
 	// overflow: auto;
 	outline: none;
 	padding: 2px;

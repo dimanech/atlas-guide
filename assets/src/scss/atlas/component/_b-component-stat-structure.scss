@@ -1,0 +1,157 @@
+.b-component-stat-structure {
+	margin-top: $space-lg-guide;
+
+	&__title {
+		font-size: $scale-lg-guide;
+		font-weight: bold;
+		line-height: $space-md-guide;
+		margin-bottom: $space-md-guide;
+	}
+
+	&__nodes {
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)) no-repeat;
+		background-position: 26px 0;
+		background-size: 1px 100%;
+		font-family: $font-mono-guide;
+		font-size: 0.8rem;
+		list-style: none;
+		padding-bottom: 5px;
+		padding-left: $space-md-guide;
+		position: relative;
+
+		&::after {
+			background-color: rgba(0, 0, 0, 0.3);
+			border-radius: 5px;
+			bottom: 0;
+			content: "";
+			height: 3px;
+			left: 25px;
+			position: absolute;
+			width: 3px;
+		}
+
+		.b-component-stat-structure__nodes {
+			background: none;
+			padding-bottom: 0;
+
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	&__node {
+		margin: 5px 0;
+	}
+
+	&__type {
+		background: grey;
+		border-radius: 3px;
+		color: white;
+		display: inline-block;
+		font-family: $font-sans-guide;
+		font-size: 9px;
+		font-weight: bold;
+		height: 13px;
+		line-height: 13px;
+		position: relative;
+		text-align: center;
+		top: -1px;
+		width: 13px;
+
+		&::after {
+			border: 3px solid #fafafa;
+			bottom: -3px;
+			content: "";
+			left: -3px;
+			position: absolute;
+			right: -3px;
+			top: -3px;
+		}
+
+		&_mixin {
+			background-color: #b9adad;
+
+			&::before {
+				content: "↵"; // change me to svg
+			}
+
+			//background-color: transparent;
+			//svg {
+			//	color: $guide-color-text;
+			//	height: 15px;
+			//	left: -1px;
+			//	position: absolute;
+			//	top: 1px;
+			//	width: 15px;
+			//}
+		}
+
+		&_condition {
+			background-color: lighten(#c6ae9f, 17%);
+
+			&::before {
+				content: "?";
+			}
+		}
+
+		&_component {
+			background-color: #6d7ce5;
+
+			&::before {
+				content: "b";
+			}
+		}
+
+		&_modifier {
+			background-color: #e56daa;
+
+			&::before {
+				content: "m";
+			}
+		}
+
+		&_modifier-adjacent {
+			background-color: darken(#e56daa, 5%);
+
+			&::before {
+				content: "ma";
+			}
+		}
+
+		&_modifier-implicit {
+			background-color: lighten(#e56daa, 10%);
+
+			&::before {
+				content: "mi";
+			}
+		}
+
+		&_modifier-context {
+			background-color: darken(#e56daa, 10%);
+
+			&::before {
+				content: "mc";
+			}
+		}
+
+		&_element {
+			background-color: #2196f3;
+
+			&::before {
+				content: "e";
+			}
+		}
+
+		&_element-implicit {
+			background-color: lighten(#2196f3, 10%);
+
+			&::before {
+				content: "ei";
+			}
+		}
+	}
+
+	&__name {
+	}
+}

@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-    const loader = document.querySelector('.b-loader');
+    const loader = document.querySelector('.b-atlas-loader');
 
     if (!loader) {
         return;

@@ -1,0 +1,21 @@
+.b-component-stat-list {
+	display: flex;
+	flex-wrap: wrap;
+	font-weight: bold;
+	list-style: none;
+	margin: 0 0 $space-md-guide;
+	padding: 0;
+	text-transform: capitalize;
+	width: 100%;
+
+	li {
+		margin: 0 0 10px;
+		width: (100%/3);
+	}
+
+	&__total {
+		color: $color-blue-guide;
+		font-size: 2rem;
+		font-weight: normal;
+	}
+}
