@@ -17,11 +17,8 @@
     }
 
     function highlightCurrentPage() {
-        const location = window.location.pathname;
-        if (!location) {
-            return;
-        }
-        const currentFile = location.href.split('/').pop().replace('.html', '');
+        const location = window.location.href;
+        const currentFile = location.split('/').pop().replace('.html', '');
         const linkCurrent = document.getElementById('nav-' + currentFile);
         if (!linkCurrent) {
             return;
@@ -29,7 +26,7 @@
         const linkPosition = linkCurrent.getBoundingClientRect().top;
 
         linkCurrent.classList.add('js-current-page');
-        document.querySelector('.b-docs-aside__content').scrollTo(0, linkPosition - (window.innerHeight / 2));
+        document.querySelector('.b-atlas-aside__content').scrollTo(0, linkPosition - (window.innerHeight / 2));
     }
 
     navigation.addEventListener('click', menuCollapse);

@@ -41,6 +41,8 @@
 	}
 
 	&__node {
+		font-size: 13px;
+		line-height: 13px;
 		margin: 5px 0;
 	}
 
@@ -50,10 +52,8 @@
 		color: white;
 		display: inline-block;
 		font-family: $font-sans-guide;
-		font-size: 9px;
 		font-weight: bold;
 		height: 13px;
-		line-height: 13px;
 		position: relative;
 		text-align: center;
 		top: -1px;
@@ -73,18 +73,8 @@
 			background-color: #b9adad;
 
 			&::before {
-				content: "↵"; // change me to svg
+				content: "↩"; // change me to svg
 			}
-
-			//background-color: transparent;
-			//svg {
-			//	color: $guide-color-text;
-			//	height: 15px;
-			//	left: -1px;
-			//	position: absolute;
-			//	top: 1px;
-			//	width: 15px;
-			//}
 		}
 
 		&_condition {
