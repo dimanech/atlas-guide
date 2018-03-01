@@ -11,8 +11,7 @@ const hooks = [
     'commit-msg',
     'post-merge',
     'post-update',
-    'pre-commit',
-    'pre-push'
+    'pre-commit'
 ];
 
 const gitRepo = path.resolve(process.cwd(), '.git');
