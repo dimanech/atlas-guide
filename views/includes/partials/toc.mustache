@@ -1,11 +1,9 @@
-<nav>
-    <ul class="b-atlas-toc">
-        {{#content.toc}}
-            <li class="b-atlas-toc__item">
-                <a class="b-atlas-toc__ln b-atlas-toc__ln_{{level}}" href="#h{{level}}-{{escapedText}}">
-                    {{{text}}}
-                </a>
-            </li>
-        {{/content.toc}}
-    </ul>
-</nav>
+<div class="b-atlas-toc" role="directory">
+    {{#content.toc}}
+        <div class="b-atlas-toc__item" role="listitem">
+            <a class="b-atlas-toc__ln b-atlas-toc__ln_{{level}}" href="#h{{level}}-{{escapedText}}">
+                {{{text}}}
+            </a>
+        </div>
+    {{/content.toc}}
+</div>

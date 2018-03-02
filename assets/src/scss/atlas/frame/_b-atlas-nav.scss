@@ -79,8 +79,8 @@
 	}
 
 	/* stylelint-disable */
-	// Recursive structure - refactor me later
-	> li {
+	// Recursive nesting level structure - refactor me later
+	> .b-atlas-nav__item {
 		> .b-atlas-nav__ln {
 			background: $aside-bg;
 			display: block;
@@ -102,19 +102,19 @@
 			}
 		}
 
-		li {
+		.b-atlas-nav__item {
 			> .b-atlas-nav__ln {
 				padding-left: ($space-md-guide * 2);
 				padding-right: ($space-md-guide * 2);
 			}
 
-			li {
+			.b-atlas-nav__item {
 				> .b-atlas-nav__ln {
 					padding-left: ($space-md-guide * 3);
 					padding-right: ($space-md-guide * 3);
 				}
 
-				li {
+				.b-atlas-nav__item {
 					> .b-atlas-nav__ln {
 						padding-left: ($space-md-guide * 4);
 						padding-right: ($space-md-guide * 4);

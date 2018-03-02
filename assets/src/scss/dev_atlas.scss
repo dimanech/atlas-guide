@@ -8,6 +8,7 @@ $aside-selected: #e2e2e2;
 
 @import "atlas/frame/global-normalization";
 @import "atlas/frame/b-atlas";
+@import "atlas/frame/b-atlas-component-type-ico";
 @import "atlas/frame/l-atlas-container";
 @import "atlas/frame/b-atlas-content";
 @import "atlas/frame/b-atlas-search";
@@ -22,7 +23,7 @@ $aside-selected: #e2e2e2;
 @import "atlas/component/b-atlas-playground";
 @import "atlas/component/b-component-stat";
 @import "atlas/component/b-component-stat-digit";
-@import "atlas/component/b-component-postcard";
+@import "atlas/component/b-atlas-postcard";
 @import "atlas/component/b-component-stat-graph";
 @import "atlas/component/b-component-stat-list";
 @import "atlas/component/b-component-stat-structure";

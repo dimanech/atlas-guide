@@ -27,8 +27,18 @@
 		color: $color-blue-guide;
 		display: block;
 		overflow: hidden;
+		text-decoration: underline;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+
+		&:hover,
+		&:focus {
+			color: darken($color-blue-guide, 15%);
+		}
+
+		&:active {
+			color: $color-yellow;
+		}
 
 		&_1 {
 			font-size: 14px;

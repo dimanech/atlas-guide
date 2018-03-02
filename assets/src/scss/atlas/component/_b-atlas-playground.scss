@@ -160,7 +160,17 @@
 			visibility: visible;
 		}
 	}
+
+	// Frame for screenshot caption
+	&-test-frame {
+		// overflow: auto;
+		outline: none;
+		padding: 2px;
+		// position: relative;
+	}
 }
+
+// Blueprint
 
 @mixin blueprint() {
 	background-color: $guide-color-text;
@@ -189,11 +199,4 @@
 	.b-atlas-playground__example {
 		@include blueprint();
 	}
-}
-
-.b-atlas-playground-test-frame {
-	// overflow: auto;
-	outline: none;
-	padding: 2px;
-	// position: relative;
 }

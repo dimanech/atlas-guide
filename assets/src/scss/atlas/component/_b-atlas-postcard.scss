@@ -1,4 +1,4 @@
-.b-component-postcard {
+.b-atlas-postcard {
 	background: #fafafa;
 	clear: both;
 	display: flex;
@@ -18,7 +18,8 @@
 	&__section {
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		display: flex;
-		padding-top: 20px;
+		margin: 0;
+		padding: $space-md-guide 0 0;
 		position: relative;
 
 		&_last {

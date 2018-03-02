@@ -1,10 +1,18 @@
 .b-atlas {
+	all: initial;
+	color: $guide-color-text;
 	font-family: $font-sans-guide;
 	font-size: 15px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 
 	&-title {
+		display: block;
+
+		&:target {
+			animation: target-highlight 2s ease;
+		}
+
 		&_1,
 		&_2,
 		&_3 {
@@ -28,7 +36,7 @@
 			font-weight: bold;
 			letter-spacing: -0.04em;
 			line-height: 2.75rem;
-			margin-top: 22px;
+			margin-top: $space-md-guide;
 			padding-top: 1rem;
 		}
 
@@ -63,7 +71,9 @@
 	}
 
 	&-p {
-		margin-bottom: $space-md-guide;
+		display: block;
+		margin: 0 0 $space-md-guide;
+		padding: 0;
 
 		a {
 			color: $color-blue-guide;
@@ -85,6 +95,7 @@
 
 	&-ol,
 	&-ul {
+		display: block;
 		list-style: disc;
 		margin-bottom: $space-md-guide;
 		margin-top: $space-md-guide;
@@ -97,6 +108,7 @@
 
 	&-table {
 		border-collapse: collapse;
+		display: table;
 		margin-bottom: $space-md-guide;
 
 		th,
@@ -111,6 +123,7 @@
 	}
 
 	&-code {
+		display: block;
 		font-family: $font-mono-guide;
 		font-weight: 400;
 		line-height: 1.5;
@@ -179,8 +192,17 @@
 	max-width: 800px;
 }
 
-// Article Headline
+@keyframes target-highlight {
+	0% {
+		background-color: $color-yellow;
+	}
 
+	100% {
+		background-color: transparent;
+	}
+}
+
+// Article Headline
 .b-container-docs__inner { /* stylelint-disable-line */
 	.b-atlas-title_1 {
 		+ .b-atlas-p {
@@ -192,7 +214,6 @@
 }
 
 // Title Anchor
-
 .b-atlas-title { /* stylelint-disable-line */
 	align-items: flex-end;
 	display: flex;
@@ -232,7 +253,6 @@
 }
 
 // Sticky headings logic
-
 .b-atlas-section {
 	padding: 1px 0;
 	position: relative;
@@ -250,24 +270,5 @@
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
 		background: rgba(white, 0.7);
-	}
-}
-
-// Component type heading and icon
-
-.b-guide-component-type {
-	font-family: $font-sans-guide;
-	font-size: $scale-lg-guide;
-	line-height: $space-md-guide;
-	margin-bottom: -#{$space-md-guide};
-	padding-top: $space-md-guide;
-	text-transform: capitalize;
-
-	svg {
-		color: $color-blue-guide;
-		height: 24px;
-		position: relative;
-		top: 4px;
-		width: 24px;
 	}
 }

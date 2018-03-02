@@ -1,15 +1,15 @@
 {{#content.componentStats}}
-    <aside class="b-component-postcard">
-        <div class="b-component-postcard__item">
-            <section class="b-component-postcard__section">
+    <div class="b-atlas-postcard" role="complementary">
+        <div class="b-atlas-postcard__item">
+            <section class="b-atlas-postcard__section">
                 <figure class="b-component-stat-digit _primary">
-                    <p class="b-component-stat-digit__digit">
+                    <div class="b-component-stat-digit__digit">
                         {{totalDeclarations}}
-                    </p>
+                    </div>
                     <figcaption class="b-component-stat-digit__details">
-                        <h3 class="b-component-stat-digit__title">
+                        <div role="heading" aria-level="3" class="b-component-stat-digit__title">
                             Total declarations
-                        </h3>
+                        </div>
                     </figcaption>
                 </figure>
                 <svg width="300" height="80" viewBox="0 0 300 80" class="b-component-stat-digit b-component-stat-graph" aria-labelledby="component-graph-title">
@@ -26,87 +26,86 @@
                         </g>
                     </g>
                 </svg>
-
             </section>
         {{#stats}}
-            <section class="b-component-postcard__section">
+            <section class="b-atlas-postcard__section">
                 {{#important}}
                     <figure class="b-component-stat-digit">
-                        <p class="b-component-stat-digit__digit">
+                        <div class="b-component-stat-digit__digit">
                             {{total}}
-                        </p>
+                        </div>
                         <figcaption class="b-component-stat-digit__details">
-                            <h3 class="b-component-stat-digit__title">
+                            <div role="heading" aria-level="3" class="b-component-stat-digit__title">
                                 {{#pluralize}}{{values.length}},Important<br>declaration,Important<br>declarations{{/pluralize}}
-                            </h3>
+                            </div>
                             {{#values.length}}
-                            <ul class="b-component-stat-digit__popup">
+                            <div role="list" class="b-component-stat-digit__popup">
                                 {{#values}}
-                                    <li class="b-component-stat-digit__item">{{prop}}</li>
+                                    <div role="listitem" class="b-component-stat-digit__item">{{prop}}</div>
                                 {{/values}}
-                            </ul>
+                            </div>
                             {{/values.length}}
                         </figcaption>
                     </figure>
                 {{/important}}
                 {{#vendorPrefix}}
                     <figure class="b-component-stat-digit">
-                        <p class="b-component-stat-digit__digit">
+                        <div class="b-component-stat-digit__digit">
                             {{total}}
-                        </p>
+                        </div>
                         <figcaption class="b-component-stat-digit__details">
-                            <h3 class="b-component-stat-digit__title">
+                            <div role="heading" aria-level="3" class="b-component-stat-digit__title">
                                 {{#pluralize}}{{values.length}},Vendor<br>prefix,Vendor<br>prefixes{{/pluralize}}
-                            </h3>
+                            </div>
                             {{#values.length}}
-                                <ul class="b-component-stat-digit__popup">
+                                <div role="list" class="b-component-stat-digit__popup">
                                     {{#values}}
-                                        <li class="b-component-stat-digit__item">{{prop}}{{value}}</li>
+                                        <div role="listitem" class="b-component-stat-digit__item">{{prop}}{{value}}</div>
                                     {{/values}}
-                                </ul>
+                                </div>
                             {{/values.length}}
                         </figcaption>
                     </figure>
                 {{/vendorPrefix}}
                 {{#floats}}
                     <figure class="b-component-stat-digit">
-                        <p class="b-component-stat-digit__digit">
+                        <div class="b-component-stat-digit__digit">
                             {{total}}
-                        </p>
+                        </div>
                         <figcaption class="b-component-stat-digit__details">
-                            <h3 class="b-component-stat-digit__title">
+                            <div role="heading" aria-level="3" class="b-component-stat-digit__title">
                                 {{#pluralize}}{{values.length}},Float<br>declared,Floats<br>declared{{/pluralize}}
-                            </h3>
+                            </div>
                             {{#values.length}}
-                                <ul class="b-component-stat-digit__popup">
+                                <div role="list" class="b-component-stat-digit__popup">
                                     {{#values}}
-                                        <li class="b-component-stat-digit__item">{{value}}</li>
+                                        <div role="listitem" class="b-component-stat-digit__item">{{value}}</div>
                                     {{/values}}
-                                </ul>
+                                </div>
                             {{/values.length}}
                         </figcaption>
                     </figure>
                 {{/floats}}
             </section>
         {{/stats}}
-            <section class="b-component-postcard__section b-component-postcard__section_last">
-                <ul class="b-component-stat-list">
+            <section class="b-atlas-postcard__section b-atlas-postcard__section_last">
+                <div class="b-component-stat-list" role="list">
                 {{#componentProfileDetails}}
-                    <li><span class="b-component-stat-list__total">{{total}}</span> {{name}}</li>
+                    <div role="listitem"><span class="b-component-stat-list__total">{{total}}</span> {{name}}</div>
                 {{/componentProfileDetails}}
-                </ul>
+                </div>
             </section>
         </div>
 
-        <div class="b-component-postcard__item">
+        <div class="b-atlas-postcard__item">
             <section class="b-component-stat-structure">
-                <h3 class="b-component-stat-structure__title">
+                <div role="heading" aria-level="3" class="b-component-stat-structure__title">
                     Component structure
-                </h3>
-                <ul class="b-component-stat-structure__nodes">
+                </div>
+                <div class="b-component-stat-structure__nodes" role="list">
                     {{>componentstructure}}
-                </ul>
+                </div>
             </section>
         </div>
-    </aside>
+    </div>
 {{/content.componentStats}}
