@@ -30,14 +30,14 @@
             clearSearch();
         }
 
-        document.querySelectorAll('.b-docs-nav__ln').forEach(link => {
+        document.querySelectorAll('.b-atlas-nav__ln').forEach(link => {
             if (link.getAttribute('href') === '') {
                 return;
             }
             const elementText = link.textContent;
 
             if (term.length && ~elementText.indexOf(term)) {
-                const asideContent = document.querySelector('.b-docs-aside__content');
+                const asideContent = document.querySelector('.b-atlas-aside__content');
                 if (asideContent.scrollTo() !== undefined) {
                     asideContent.scrollTo(0, link);
                 }
