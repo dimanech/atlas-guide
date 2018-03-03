@@ -1,10 +1,10 @@
 'use strict';
 
 (function() {
-    const navigation = document.querySelector('.b-atlas-nav');
+    const navigation = document.getElementById('js-atlas-navigation');
 
     function menuCollapse(ev) {
-        if (!ev.target.classList.contains('b-atlas-nav__ln_category')) {
+        if (!ev.target.classList.contains('_category')) {
             return;
         }
         ev.preventDefault();
@@ -26,7 +26,7 @@
         const linkPosition = linkCurrent.getBoundingClientRect().top;
 
         linkCurrent.classList.add('js-current-page');
-        document.querySelector('.b-atlas-aside__content').scrollTo(0, linkPosition - (window.innerHeight / 2));
+        document.getElementById('js-atlas-aside-content').scrollTo(0, linkPosition - (window.innerHeight / 2));
     }
 
     navigation.addEventListener('click', menuCollapse);

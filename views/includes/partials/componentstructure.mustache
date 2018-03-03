@@ -1,11 +1,11 @@
 {{#nodes}}
-    <div role="listitem" class="b-component-stat-structure__node">
-        <div class="b-component-stat-structure__selector" title="{{type}}">
-            <span class="b-component-stat-structure__type b-component-stat-structure__type_{{type}}"></span>
-            <span class="b-component-stat-structure__name">{{node}}</span>{{#isBlock}} {...}{{/isBlock}}{{^isBlock}};{{/isBlock}}
+    <div role="listitem" class="atlas-component-structure__node">
+        <div class="atlas-component-structure__selector" title="{{type}}">
+            <span class="atlas-component-structure__type atlas-component-structure__type_{{type}}"></span>
+            <span class="atlas-component-structure__name">{{node}}</span>{{#isBlock}} {...}{{/isBlock}}{{^isBlock}};{{/isBlock}}
         </div>
         {{#nodes.length}}
-            <div role="list" class="b-component-stat-structure__nodes">
+            <div role="list" class="atlas-component-structure__nodes">
                 {{>componentstructure}}
             </div>
         {{/nodes.length}}

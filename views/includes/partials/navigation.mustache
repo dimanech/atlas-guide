@@ -1,11 +1,11 @@
 {{#subPages}}
-    <div role="listitem" class="b-atlas-nav__item {{#type}}b-atlas-nav__item_{{type}}{{/type}}">
-        <a class="b-atlas-nav__ln {{#type}}b-atlas-nav__ln_{{type}}{{/type}}" {{#id}}href="{{id}}.html" id="nav-{{id}}"{{/id}}>
+    <div role="listitem" class="atlas-nav__item {{#type}}atlas-nav__item_{{type}}{{/type}}">
+        <a class="atlas-nav__ln {{#type}}_{{type}}{{/type}} js-atlas-nav-ln" {{#id}}href="{{id}}.html" id="nav-{{id}}"{{/id}}>
             {{#type}}<svg width="14" height="14" role="img"><use xlink:href="#icon-{{{type}}}"></use></svg>{{/type}}
             {{title}}
         </a>
         {{#subPages.length}}
-            <div role="list" class="b-atlas-nav__sub-nav">
+            <div role="list" class="atlas-nav__sub-nav">
                 {{>navigation}}
             </div>
         {{/subPages.length}}

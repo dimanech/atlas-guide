@@ -1,0 +1,63 @@
+/*md
+
+# atlas-loader
+
+Used to hide content before it loaded
+
+```html
+<div class="atlas-loader"></div>
+```
+
+```html_example
+<h1 class="atlas atlas-title atlas-title_1" id="h1-b-loader">
+    <span class="atlas-title__text">
+        atlas-loader
+    </span>
+    <a class="atlas-title__anchor" href="#h1-b-loader" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+</h1>
+```
+*/
+
+.atlas-loader {
+	align-items: center;
+	background: rgba(white, 0.96);
+	bottom: 0;
+	color: $color-blue-guide;
+	display: flex;
+	justify-content: center;
+	left: 270px;
+	position: fixed;
+	right: 0;
+	text-align: center;
+	top: 0;
+	z-index: 9;
+	//display: none;
+
+	@supports (backdrop-filter: blur(10px)) {
+		backdrop-filter: saturate(180%) blur(10px);
+		background: rgba(white, 0.7);
+	}
+
+	svg {
+		animation: dasharray 3s infinite alternate-reverse;
+		height: 100px;
+		margin: -100px 0 0 -50px;
+		stroke-dasharray: 200 0;
+		stroke-dashoffset: 400;
+		width: 200px;
+	}
+
+	&.js-hide {
+		display: none;
+	}
+
+	@keyframes dasharray {
+		100% {
+			stroke-dasharray: 0 50;
+		}
+	}
+}

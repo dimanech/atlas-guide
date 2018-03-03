@@ -33,9 +33,9 @@
 			width: 5px;
 		}
 
-		.b-docs-aside__header,
-		.b-docs-aside__footer,
-		.b-docs-aside__content {
+		.atlas-aside__header,
+		.atlas-aside__footer,
+		.atlas-aside__content {
 			display: none;
 		}
 
@@ -45,12 +45,12 @@
 	}
 }
 
-.b-atlas-page_index {
+.atlas-page_index {
 	.l-atlas-container__main {
 		margin-right: 270px;
 	}
 
-	.b-atlas-toc {
+	.atlas-toc {
 		position: fixed;
 	}
 }

@@ -1,47 +1,47 @@
 {{#content.componentStats}}
-    <div class="b-atlas-postcard" role="complementary">
-        <div class="b-atlas-postcard__item">
-            <section class="b-atlas-postcard__section">
-                <figure class="b-component-stat-digit _primary">
-                    <div class="b-component-stat-digit__digit">
+    <div role="complementary" class="atlas-component-footer">
+        <div class="atlas-component-footer__item">
+            <div role="region" class="atlas-component-footer__section" aria-label="Ruleset sizes">
+                <figure class="atlas-info-digit _primary">
+                    <div class="atlas-info-digit__digit">
                         {{totalDeclarations}}
                     </div>
-                    <figcaption class="b-component-stat-digit__details">
-                        <div role="heading" aria-level="3" class="b-component-stat-digit__title">
+                    <figcaption class="atlas-info-digit__details">
+                        <div role="heading" aria-level="3" class="atlas-info-digit__title">
                             Total declarations
                         </div>
                     </figcaption>
                 </figure>
-                <svg width="300" height="80" viewBox="0 0 300 80" class="b-component-stat-digit b-component-stat-graph" aria-labelledby="component-graph-title">
+                <svg width="300" height="80" viewBox="0 0 300 80" class="atlas-info-digit atlas-sparkline" aria-labelledby="component-graph-title">
                     <title id="component-graph-title">Declaration sets size through the file</title>
                     <defs>
                         <filter id="blur-filter" x="0" y="0">
                             <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
                         </filter>
                     </defs>
-                    <g class="b-component-stat-graph__line">
+                    <g class="atlas-sparkline__line">
                         <path d="{{ruleSetsLine}}" stroke="currentColor" fill="none"/>
-                        <g class="b-component-stat-graph__shadow">
+                        <g class="atlas-sparkline__shadow">
                             <path d="{{ruleSetsLine}}" stroke="currentColor" fill="none" filter="url(#blur-filter)"/>
                         </g>
                     </g>
                 </svg>
-            </section>
+            </div>
         {{#stats}}
-            <section class="b-atlas-postcard__section">
+            <div role="region" class="atlas-component-footer__section" aria-label="Health check">
                 {{#important}}
-                    <figure class="b-component-stat-digit">
-                        <div class="b-component-stat-digit__digit">
+                    <figure class="atlas-info-digit">
+                        <div class="atlas-info-digit__digit">
                             {{total}}
                         </div>
-                        <figcaption class="b-component-stat-digit__details">
-                            <div role="heading" aria-level="3" class="b-component-stat-digit__title">
+                        <figcaption class="atlas-info-digit__details">
+                            <div role="heading" aria-level="3" class="atlas-info-digit__title">
                                 {{#pluralize}}{{values.length}},Important<br>declaration,Important<br>declarations{{/pluralize}}
                             </div>
                             {{#values.length}}
-                            <div role="list" class="b-component-stat-digit__popup">
+                            <div role="list" class="atlas-info-digit__popup">
                                 {{#values}}
-                                    <div role="listitem" class="b-component-stat-digit__item">{{prop}}</div>
+                                    <div role="listitem" class="atlas-info-digit__item">{{prop}}</div>
                                 {{/values}}
                             </div>
                             {{/values.length}}
@@ -49,18 +49,18 @@
                     </figure>
                 {{/important}}
                 {{#vendorPrefix}}
-                    <figure class="b-component-stat-digit">
-                        <div class="b-component-stat-digit__digit">
+                    <figure class="atlas-info-digit">
+                        <div class="atlas-info-digit__digit">
                             {{total}}
                         </div>
-                        <figcaption class="b-component-stat-digit__details">
-                            <div role="heading" aria-level="3" class="b-component-stat-digit__title">
+                        <figcaption class="atlas-info-digit__details">
+                            <div role="heading" aria-level="3" class="atlas-info-digit__title">
                                 {{#pluralize}}{{values.length}},Vendor<br>prefix,Vendor<br>prefixes{{/pluralize}}
                             </div>
                             {{#values.length}}
-                                <div role="list" class="b-component-stat-digit__popup">
+                                <div role="list" class="atlas-info-digit__popup">
                                     {{#values}}
-                                        <div role="listitem" class="b-component-stat-digit__item">{{prop}}{{value}}</div>
+                                        <div role="listitem" class="atlas-info-digit__item">{{prop}}{{value}}</div>
                                     {{/values}}
                                 </div>
                             {{/values.length}}
@@ -68,44 +68,47 @@
                     </figure>
                 {{/vendorPrefix}}
                 {{#floats}}
-                    <figure class="b-component-stat-digit">
-                        <div class="b-component-stat-digit__digit">
+                    <figure class="atlas-info-digit">
+                        <div class="atlas-info-digit__digit">
                             {{total}}
                         </div>
-                        <figcaption class="b-component-stat-digit__details">
-                            <div role="heading" aria-level="3" class="b-component-stat-digit__title">
+                        <figcaption class="atlas-info-digit__details">
+                            <div role="heading" aria-level="3" class="atlas-info-digit__title">
                                 {{#pluralize}}{{values.length}},Float<br>declared,Floats<br>declared{{/pluralize}}
                             </div>
                             {{#values.length}}
-                                <div role="list" class="b-component-stat-digit__popup">
+                                <div role="list" class="atlas-info-digit__popup">
                                     {{#values}}
-                                        <div role="listitem" class="b-component-stat-digit__item">{{value}}</div>
+                                        <div role="listitem" class="atlas-info-digit__item">{{value}}</div>
                                     {{/values}}
                                 </div>
                             {{/values.length}}
                         </figcaption>
                     </figure>
                 {{/floats}}
-            </section>
+            </div>
         {{/stats}}
-            <section class="b-atlas-postcard__section b-atlas-postcard__section_last">
-                <div class="b-component-stat-list" role="list">
+            <div role="region" class="atlas-component-footer__section _last" aria-label="Component profile">
+                <div class="atlas-info-list" role="list">
                 {{#componentProfileDetails}}
-                    <div role="listitem"><span class="b-component-stat-list__total">{{total}}</span> {{name}}</div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">{{total}}</span>
+                        <span class="atlas-info-list__name">{{name}}</span>
+                    </div>
                 {{/componentProfileDetails}}
                 </div>
-            </section>
+            </div>
         </div>
 
-        <div class="b-atlas-postcard__item">
-            <section class="b-component-stat-structure">
-                <div role="heading" aria-level="3" class="b-component-stat-structure__title">
+        <div class="atlas-component-footer__item">
+            <div role="region" class="atlas-component-structure" aria-labelledby="atlas-component-structure">
+                <div role="heading" aria-level="3" class="atlas-component-structure__title" id="atlas-component-structure">
                     Component structure
                 </div>
-                <div class="b-component-stat-structure__nodes" role="list">
+                <div class="atlas-component-structure__nodes" role="list">
                     {{>componentstructure}}
                 </div>
-            </section>
+            </div>
         </div>
     </div>
 {{/content.componentStats}}

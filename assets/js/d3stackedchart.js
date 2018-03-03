@@ -18,7 +18,7 @@
     StackedChart.prototype.initChart = function() {
         const d3 = window.d3;
         const margin = {top: 20, right: 0, bottom: 150, left: 30};
-        const width = (document.querySelector('.b-stat-sheet').offsetWidth) - margin.right - margin.left;
+        const width = (document.querySelector('.atlas-stat-sheet').offsetWidth) - margin.right - margin.left;
         const height = 400;
         const formatBites = d3.format('.2s');
         const svg = d3.select(this.instance);
@@ -106,7 +106,7 @@
 
         // Legend
         const legend = inner.append('g')
-            .attr('class', 'b-chart__legend')
+            .attr('class', 'atlas-stat-chart__legend')
             .attr('text-anchor', 'end')
             .attr('transform', 'translate(0,20)')
             .selectAll('g')

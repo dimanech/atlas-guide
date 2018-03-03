@@ -1,66 +1,70 @@
 {{#content.componentStats}}
-    <aside class="b-component-stat">
-        <section class="b-component-stat__section">
-            <h2 class="b-component-stat__title">
+    <div role="complementary" class="atlas-component-aside">
+        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-included-in">
+            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-included-in">
                 Included in:
-            </h2>
-            <ul class="b-component-stat__list">
+            </div>
+            <div role="list" class="atlas-component-aside__list">
                 {{#importedBy}}
-                    <li class="b-component-stat__list-item">
-                        <svg width="16" height="16" role="img">
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="16" height="16">
                             <use xlink:href="#icon-out"></use>
                         </svg>
                         {{.}}
-                    </li>
+                    </div>
                 {{/importedBy}}
-            </ul>
-        </section>
+            </div>
+        </div>
         {{#includes.length}}
-            <section class="b-component-stat__section">
-                <h2 class="b-component-stat__title">
-                    Depends from:
-                </h2>
-                <ul class="b-component-stat__list">
-                    {{#includes}}
-                        <li class="b-component-stat__list-item">
-                            <svg width="16" height="16" role="img">
-                                <use xlink:href="#icon-component"></use>
-                            </svg>
-                            {{.}}
-                        </li>
-                    {{/includes}}
-                </ul>
-            </section>
+        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-depends-from">
+            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-depends-from">
+                Depends from:
+            </div>
+            <div role="list" class="atlas-component-aside__list">
+                {{#includes}}
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="16" height="16">
+                            <use xlink:href="#icon-component"></use>
+                        </svg>
+                        {{.}}
+                    </div>
+                {{/includes}}
+            </div>
+        </div>
         {{/includes.length}}
         {{#variables.length}}
-            <section class="b-component-stat__section">
-                <h2 class="b-component-stat__title">Local variables:</h2>
-                <ul class="b-component-stat__list">
-                    {{#variables}}
-                        <li class="b-component-stat__list-item">
-                            <svg width="16" height="16" role="img">
-                                <use xlink:href="#icon-variable"></use>
-                            </svg>
-                            {{prop}}: {{value}}
-                        </li>
-                    {{/variables}}
-                </ul>
-            </section>
+        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-local-vars">
+            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-local-vars">
+                Local variables:
+            </div>
+            <div role="list" class="atlas-component-aside__list">
+                {{#variables}}
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="16" height="16">
+                            <use xlink:href="#icon-variable"></use>
+                        </svg>
+                        {{prop}}: {{value}}
+                    </div>
+                {{/variables}}
+            </div>
+        </div>
         {{/variables.length}}
         {{#imports.length}}
-            <section class="b-component-stat__section">
-                <h2 class="b-component-stat__title">Local imports:</h2>
-                <ul class="b-component-stat__list">
-                    {{#imports}}
-                        <li class="b-component-stat__list-item">
-                            <svg width="16" height="16" role="img">
-                                <use xlink:href="#icon-in"></use>
-                            </svg>
-                            {{.}}
-                        </li>
-                    {{/imports}}
-                </ul>
-            </section>
+        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-local-imports">
+            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-local-imports">
+                Local imports:
+            </div>
+            <div role="list" class="atlas-component-aside__list">
+                {{#imports}}
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="16" height="16">
+                            <use xlink:href="#icon-in"></use>
+                        </svg>
+                        {{.}}
+                    </div>
+                {{/imports}}
+            </div>
+        </div>
         {{/imports.length}}
-    </aside>
+    </div>
 {{/content.componentStats}}

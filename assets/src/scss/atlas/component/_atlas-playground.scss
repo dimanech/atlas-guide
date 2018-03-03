@@ -1,0 +1,202 @@
+.atlas-playground {
+	clear: both;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	margin: 0 -#{$space-sm-guide} $space-md-guide;
+	padding: 0 $space-sm-guide $space-sm-guide;
+	position: relative;
+
+	&__summary {
+		align-items: center;
+		background: transparent;
+		border: none;
+		color: $color-grey80-guide;
+		cursor: pointer;
+		display: flex;
+		font-family: $font-mono-guide;
+		justify-content: space-between;
+		outline: none;
+		overflow: hidden;
+		padding: 3px 0;
+		text-align: left;
+		transition: background-color ease-in-out 0.2s, color ease-in-out 0.2s;
+		width: 100%;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&::after {
+			background-color: lighten($color-grey90-guide, 10%);
+			border-radius: 5px;
+			bottom: 0;
+			content: "";
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+			transition: inherit;
+		}
+
+		&:hover,
+		&:focus {
+			color: $guide-color-text;
+
+			&::after {
+				background-color: $color-grey95-guide;
+			}
+		}
+
+		details[open] &,
+		&[aria-expanded="true"] {
+			background-color: #38382d;
+			color: white;
+
+			&::after {
+				background-color: #38382d;
+			}
+		}
+
+		&:focus:active {
+			background-color: darken(#38382d, 5%);
+			color: white;
+			transition: none;
+
+			&::after {
+				background-color: darken(#38382d, 5%);
+			}
+		}
+
+		&-text {
+			font-size: $guide-mono-small;
+			line-height: 25px;
+			pointer-events: none;
+			position: relative;
+			z-index: 1;
+		}
+
+		&-ico {
+			pointer-events: none;
+			position: relative;
+			width: 18px;
+			z-index: 1;
+		}
+	}
+
+	&__details {
+		position: relative;
+		transition: ease-in-out 0.3s;
+		transition-property: max-height, opacity;
+		z-index: 1;
+
+		&:focus {
+			outline: none;
+		}
+
+		&[aria-hidden="true"] {
+			max-height: 0;
+			opacity: 0;
+			overflow: hidden;
+			visibility: hidden;
+		}
+
+		&[aria-hidden="false"] {
+			max-height: 40vh;
+			opacity: 1;
+			overflow: initial;
+			visibility: visible;
+		}
+
+		pre {
+			background-color: transparent;
+			max-height: 40vh;
+			overflow: auto;
+			padding: $space-sm-guide;
+			padding-top: 0;
+		}
+
+		code {
+			color: whitesmoke;
+			font-family: $font-mono-guide;
+			font-size: 13px;
+			line-height: 1.2;
+			outline: none;
+		}
+	}
+
+	&__example {
+		background-color: $color-white-guide;
+		border: 1px solid $color-grey90-guide;
+		border-radius: 3px;
+		padding: $space-sm-guide;
+		position: relative;
+		z-index: 1;
+	}
+
+	&__notifier {
+		background-color: rgba(black, 0.5);
+		border-radius: 5px;
+		color: white;
+		font-family: $font-mono-guide;
+		font-size: 1.2rem;
+		font-style: normal;
+		left: 50%;
+		line-height: 20px;
+		min-width: 20px;
+		opacity: 0;
+		padding: $space-md-guide;
+		pointer-events: none;
+		position: absolute;
+		text-align: center;
+		top: 50%;
+		transform: translate(-50%, -25%);
+		transition: ease 0.6s;
+		transition-property: opacity, visibility;
+		visibility: hidden;
+		z-index: 10;
+
+		&.js-show {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	// Frame for screenshot caption
+	&-test-frame {
+		// overflow: auto;
+		outline: none;
+		padding: 2px;
+		// position: relative;
+	}
+}
+
+// Blueprint
+
+@mixin blueprint() {
+	background-color: $guide-color-text;
+	background-image:
+		linear-gradient(0deg, transparent 7px, hsla(205, 65, 80%, 0.25) 7px),
+		linear-gradient(90deg, transparent 7px, hsla(205, 65, 80%, 0.25) 7px);
+	background-position: left top;
+	background-size: 8px 8px;
+	padding: 0;
+
+	* { /* stylelint-disable-line */
+		background-color: hsla(205, 65, 80%, 0.125);
+		color: hsl(205, 65, 80%);
+		outline: hsla(205, 65, 80%, 0.5) solid 1px;
+	}
+}
+
+.atlas-playground.js-opened {
+	.atlas-playground__example {
+		border-color: black;
+		@include blueprint();
+	}
+}
+
+.atlas-page_layout {
+	.atlas-playground__example {
+		@include blueprint();
+	}
+}

@@ -1,0 +1,54 @@
+.atlas-stat-table {
+	display: block;
+	font-family: $font-mono-guide;
+	font-size: 0.8rem;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	width: 100%;
+
+	&__cell,
+	&__head,
+	&__body {
+		box-sizing: border-box;
+		display: block;
+	}
+
+	&__head {
+		.atlas-stat-table__cell {
+			border-bottom: 1px solid $guide-color-divider;
+		}
+	}
+
+	&__body {
+		max-height: 50vh;
+		overflow: auto;
+	}
+
+	&__item {
+		display: flex;
+
+		&:nth-child(even) {
+			.atlas-stat-table__cell {
+				background-color: rgba($color-blue92-guide, 0.15);
+			}
+		}
+	}
+
+	&__cell {
+		padding: 0.3em $space-md-guide;
+		vertical-align: top;
+
+		&._title {
+			border-right: 1px solid $guide-color-divider;
+			font-weight: bold;
+			padding-left: 0;
+			text-align: right;
+			width: 100px;
+		}
+
+		&._value {
+			font-weight: normal;
+			width: 80%;
+		}
+	}
+}

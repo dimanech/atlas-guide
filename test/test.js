@@ -66,9 +66,9 @@ describe('Atlas', function() {
 
             it('should contain another components in navigation', function () {
                 const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const categoryLink = /class="b-atlas-nav__ln b-atlas-nav__ln_guide" href="category-guide.html"/
+                const categoryLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="category-guide.html"/
                     .test(expectedFileContent);
-                const rootLink = /class="b-atlas-nav__ln b-atlas-nav__ln_guide" href="atlas-guide.html"/
+                const rootLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="atlas-guide.html"/
                     .test(expectedFileContent);
                 assert.strictEqual(categoryLink && rootLink, true,
                     'component contain another components in navigation');
@@ -118,7 +118,7 @@ describe('Atlas', function() {
 
             it('should contain toc', function () {
                 const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const result = /class="b-atlas-toc__ln b-atlas-toc__ln_1"/.test(expectedFileContent);
+                const result = /class="atlas-toc__ln atlas-toc__ln_1"/.test(expectedFileContent);
                 assert.strictEqual(result, true, 'contain Table of content');
             });
 
@@ -174,7 +174,7 @@ describe('Atlas', function() {
             });
             it('insights should be with basic global stat', function () {
                 const fileContent = fs.readFileSync(guideDest + 'insights.html', 'utf8');
-                const isContain = /<p class="b-stat-digit__data">10</
+                const isContain = /<p class="atlas-stat-digit__data">10</
                     .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
@@ -192,7 +192,7 @@ describe('Atlas', function() {
             });
             it('sizes should be with sizes chart', function () {
                 const fileContent = fs.readFileSync(guideDest + 'sizes.html', 'utf8');
-                const isContain = /<p class="b-stat-size-file__size">70B<\/p>/
+                const isContain = /<p class="atlas-stat-size-file__size">70B<\/p>/
                     .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });

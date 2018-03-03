@@ -1,0 +1,50 @@
+.atlas-stat-font {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: stretch;
+	overflow: hidden;
+
+	&__figure {
+	}
+
+	&__short {
+		font-size: 4rem;
+		line-height: 1.2;
+	}
+
+	&__alphabet {
+		white-space: nowrap;
+	}
+
+	&__line {
+		display: block;
+
+		&._1 {
+			&::before {
+				content: "a b c d e f g h i j k l m n o p q r s t u v w x y z";
+			}
+		}
+
+		&._2 {
+			&::before {
+				content: "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
+			}
+		}
+
+		&._3 {
+			&::before {
+				content: "1 2 3 4 5 6 7 8 9 0";
+			}
+		}
+	}
+
+	&__name {
+		border-top: 1px solid $guide-color-divider;
+		font-family: $font-mono-guide;
+		font-size: $guide-mono-small;
+		font-weight: bold;
+		margin-top: $space-sm-guide;
+		padding-top: $space-sm-guide;
+	}
+}

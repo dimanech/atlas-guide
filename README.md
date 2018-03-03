@@ -252,7 +252,7 @@ Inside this comment regular markdown syntax used, so any valid markdown will sup
 
 ## Heading level 3
 
-Regular **paragraph** and _inline_ `code`.
+Regular paragraph with **bold**, _italic_ and `inline code`.
 
 * list item
 * list item

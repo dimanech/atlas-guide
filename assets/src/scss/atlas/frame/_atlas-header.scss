@@ -1,0 +1,25 @@
+.atlas-header {
+	&__logo {
+		padding-bottom: $space-sm-guide;
+		text-align: center;
+
+		//svg {
+		//	animation: dasharray 1s alternate;
+		//}
+		//
+		//@keyframes dasharray {
+		//	0% {
+		//		stroke-dasharray: 0 800; // 0 800
+		//		stroke-dashoffset: 250; // 250
+		//	}
+		//	100% {
+		//		stroke-dasharray: 200 0; // 200 0
+		//		stroke-dashoffset: 0;
+		//	}
+		//}
+	}
+
+	&__search {
+
+	}
+}

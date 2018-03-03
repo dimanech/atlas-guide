@@ -1,0 +1,75 @@
+.atlas-search {
+	position: relative;
+
+	input {
+		-webkit-appearance: none;
+		background: transparent;
+		border: 1px solid $aside-bd;
+		border-radius: 5px;
+		font-family: $font-sans-guide;
+		font-size: 13px;
+		height: 25px;
+		line-height: 25px;
+		outline: none;
+		padding: 0 10px;
+		text-indent: 16px;
+		width: 100%;
+
+		&:focus {
+			background: darken($aside-bg, 5%);
+		}
+
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-decoration {
+			display: none;
+		}
+
+		&::-ms-clear {
+			display: none;
+		}
+	}
+
+	svg {
+		color: $guide-color-text;
+		height: 16px;
+		left: 6px;
+		position: absolute;
+		top: 5px;
+		width: 16px;
+
+		.js-found & {
+			color: $color-blue-guide;
+		}
+	}
+
+	button {
+		background: darken($aside-bd, 30%);
+		border: none;
+		border-radius: 50%;
+		color: white;
+		font-family: $font-sans-guide;
+		font-size: 8px;
+		height: 14px;
+		outline: none;
+		padding: 0;
+		position: absolute;
+		right: 5px;
+		top: 6px;
+		transform: scale(0);
+		transition: transform ease 0.2s;
+		width: 14px;
+
+		&:hover,
+		&:focus {
+			background: darken($aside-bd, 40%);
+		}
+
+		&:active {
+			background: darken($aside-bd, 50%);
+		}
+
+		.js-found & {
+			transform: scale(1);
+		}
+	}
+}

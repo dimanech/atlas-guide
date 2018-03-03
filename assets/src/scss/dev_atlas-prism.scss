@@ -2,7 +2,7 @@
 
 @import "dev-atlas-settings";
 
-.b-atlas-playground {
+.atlas-playground {
 	pre[class*="language-"] {
 		color: #f8f8f2;
 	}
@@ -103,7 +103,7 @@
 	//}
 }
 
-.b-atlas-code {
+.atlas-code {
 	.token.comment,
 	.token.prolog,
 	.token.doctype,

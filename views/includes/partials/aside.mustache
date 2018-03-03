@@ -1,12 +1,12 @@
 <div class="l-atlas-container__aside" id="js-guide-aside" role="contentinfo">
-    <div class="b-atlas-aside">
-        <div class="b-atlas-aside__header">
-            <div class="b-atlas-header">
-                <div class="b-atlas-header__logo" role="banner">
+    <div class="atlas-aside">
+        <div class="atlas-aside__header">
+            <div class="atlas-header">
+                <div class="atlas-header__logo" role="banner">
                     {{>logo}}
                 </div>
-                <div class="b-atlas-header__search">
-                    <div class="b-atlas-search" role="search">
+                <div class="atlas-header__search">
+                    <div class="atlas-search" role="search">
                         <svg width="14" height="14" role="img">
                             <use xlink:href="#icon-filter"></use>
                         </svg>
@@ -16,27 +16,27 @@
                 </div>
             </div>
         </div>
-        <div class="b-atlas-aside__content" role="navigation">
-            <div class="b-atlas-nav" role="list">
+        <div class="atlas-aside__content" role="navigation" id="js-atlas-aside-content">
+            <div class="atlas-nav" role="list" id="js-atlas-navigation">
                 {{> navigation}}
-                <div class="b-atlas-nav__item" role="listitem">
-                    <a class="b-atlas-nav__ln b-atlas-nav__ln_imports" href="imports.html" id="nav-imports">
+                <div class="atlas-nav__item" role="listitem">
+                    <a class="atlas-nav__ln _imports js-atlas-nav-ln" href="imports.html" id="nav-imports">
                         <svg width="14" height="14" role="img">
                             <use xlink:href="#icon-counterparts"></use>
                         </svg>
                         Dependencies
                     </a>
                 </div>
-                <div class="b-atlas-nav__item" role="listitem">
-                    <a class="b-atlas-nav__ln b-atlas-nav__ln_sizes" href="sizes.html" id="nav-sizes">
+                <div class="atlas-nav__item" role="listitem">
+                    <a class="atlas-nav__ln _sizes js-atlas-nav-ln" href="sizes.html" id="nav-sizes">
                         <svg width="14" height="14" role="img">
                             <use xlink:href="#icon-bundle"></use>
                         </svg>
                         Sizes
                     </a>
                 </div>
-                <div class="b-atlas-nav__item" role="listitem">
-                    <a class="b-atlas-nav__ln b-atlas-nav__ln_insights" href="insights.html" id="nav-insights">
+                <div class="atlas-nav__item" role="listitem">
+                    <a class="atlas-nav__ln _insights js-atlas-nav-ln" href="insights.html" id="nav-insights">
                         <svg width="14" height="14" role="img">
                             <use xlink:href="#icon-insights"></use>
                         </svg>
@@ -45,9 +45,9 @@
                 </div>
             </div>
         </div>
-        <div class="b-atlas-aside__footer">
+        <div class="atlas-aside__footer">
             {{> copyright}}
         </div>
     </div>
-    <button class="b-atlas-aside-ctrl" id="js-aside-toggle"></button>
+    <button class="atlas-aside-ctrl" id="js-aside-toggle"></button>
 </div>

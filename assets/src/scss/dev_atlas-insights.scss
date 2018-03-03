@@ -2,16 +2,16 @@
 
 @import "dev-atlas-settings";
 
-@import "atlas/insights/b-stat-section";
-@import "atlas/insights/b-stat-list";
-@import "atlas/insights/b-stat-header";
-@import "atlas/insights/b-stat-columns";
-@import "atlas/insights/b-stat-digit";
-@import "atlas/insights/b-stat-font";
-@import "atlas/insights/b-stat-item";
-@import "atlas/insights/b-stat-table";
-@import "atlas/insights/b-stat-info";
-@import "atlas/insights/b-stat-space";
-@import "atlas/insights/b-fonts-scale";
-@import "atlas/frame/b-atlas-loader";
-@import "atlas/insights/b-chart";
+@import "atlas/insights/atlas-stat-section";
+@import "atlas/insights/atlas-stat-list";
+@import "atlas/insights/atlas-stat-header";
+@import "atlas/insights/atlas-stat-columns";
+@import "atlas/insights/atlas-stat-digit";
+@import "atlas/insights/atlas-stat-font";
+@import "atlas/insights/atlas-stat-item";
+@import "atlas/insights/atlas-stat-table";
+@import "atlas/insights/atlas-stat-info";
+@import "atlas/insights/atlas-stat-space";
+@import "atlas/insights/atlas-stat-font-scale";
+@import "atlas/frame/atlas-loader";
+@import "atlas/insights/atlas-stat-chart";

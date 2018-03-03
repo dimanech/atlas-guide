@@ -1,0 +1,21 @@
+.atlas-stat-space {
+	&__item {
+		display: flex;
+		margin-bottom: 2px;
+	}
+
+	&__line {
+		background-color: $color-blue92-guide;
+		border-right: 1px solid hotpink;
+	}
+
+	&__caption {
+		font-family: $font-mono-guide;
+		font-size: 0.7rem;
+		font-weight: bold;
+		padding-right: 5px;
+		position: relative;
+		text-align: right;
+		width: 90px;
+	}
+}

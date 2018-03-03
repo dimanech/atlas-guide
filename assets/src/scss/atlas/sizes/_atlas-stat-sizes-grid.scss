@@ -1,0 +1,15 @@
+.atlas-stat-sizes-grid {
+	display: block;
+
+	li {
+		display: inline-block;
+		padding: $space-sm-guide;
+		vertical-align: bottom;
+		width: (100%/10);
+	}
+}
+
+.atlas-stat-sizes-page-title {
+	position: relative;
+	z-index: 1;
+}

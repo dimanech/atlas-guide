@@ -1,0 +1,113 @@
+.atlas-stat-chart {
+	display: flex;
+	font-family: $font-sans-guide;
+	font-weight: bold;
+	text-align: center;
+
+	&__item {
+		font-size: 1rem;
+	}
+
+	&__legend {
+		margin-top: $space-md-guide;
+	}
+
+	&__stat {
+		margin-top: $space-xm-guide;
+		text-align: left;
+	}
+
+	.atlas-stat-list {
+		font-size: $guide-mono-small;
+		list-style: none;
+		padding-left: 40px;
+	}
+}
+
+.atlas-stat-chart-caption {
+	font-family: $font-sans-guide;
+	font-size: 0.8rem;
+	font-weight: bold;
+	margin: $space-sm-guide 0;
+}
+
+.atlas-stat-page {
+	.bar {
+		fill: $color-blue92-guide;
+	}
+
+	.bar-caption {
+		fill: $guide-color-text;
+		font-size: 0.8rem;
+	}
+
+	.bar-caption-bottom {
+		fill: $guide-color-text;
+		font-size: 0.8rem;
+	}
+
+	.area {
+		fill: url("#atlas-blue-gradient");
+		stroke: none;
+
+		&._huge {
+			fill: $color-blue92-guide;
+		}
+	}
+
+	.area-line {
+		stroke: $color-blue-guide;
+
+		&._huge {
+			stroke: none;
+		}
+	}
+
+	.tick {
+		font-family: $font-mono-guide;
+
+		line {
+			stroke: rgba(black, 0.1);
+		}
+
+		&.mean {
+			line {
+				stroke: hotpink;
+				stroke-dasharray: 5, 5;
+				stroke-width: 0.4;
+			}
+
+			text {
+				fill: hotpink;
+			}
+		}
+	}
+
+	.focus {
+		color: $guide-color-text;
+		fill: black;
+		font-family: $font-mono-guide;
+
+		circle {
+			fill: white;
+			stroke: $color-blue-guide;
+			stroke-width: 1px;
+		}
+
+		text {
+			font-size: $guide-mono-small;
+		}
+	}
+
+	.js-bar-chart,
+	.js-line-chart {
+		width: 100%;
+		//margin: 0 -#{$space-md-guide} 0 0;
+	}
+
+	.atlas-stat-chart__legend {
+		color: $guide-color-text;
+		font-family: $font-sans-guide;
+		font-size: 0.6rem;
+	}
+}

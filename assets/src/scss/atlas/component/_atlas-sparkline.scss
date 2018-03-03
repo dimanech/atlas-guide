@@ -1,0 +1,23 @@
+.atlas-sparkline {
+	margin: $space-sm-guide 0 0 $space-lg-guide;
+	max-width: none;
+	width: 100%;
+
+	&__line {
+		transform: translate(5px, 3px);
+
+		> path {
+			stroke: url("#atlas-graph-gradient");
+			stroke-linecap: round;
+			stroke-width: 2px;
+		}
+	}
+
+	&__shadow {
+		transform: translate(3px, 3px);
+
+		> path {
+			stroke: rgba(0, 0, 0, 0.2);
+		}
+	}
+}

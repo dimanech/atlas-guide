@@ -1,0 +1,43 @@
+.atlas-aside-ctrl {
+	background: rgba(0, 0, 0, 0);
+	border: none;
+	bottom: 0;
+	color: transparent;
+	cursor: ew-resize;
+	outline: none;
+	position: absolute;
+	right: -5px;
+	top: 0;
+	transition: color ease 0.2s;
+	width: 10px;
+	z-index: 2;
+
+	&::after {
+		border-left: 2px solid;
+		bottom: 0;
+		content: "";
+		position: absolute;
+		top: 0;
+	}
+
+	&::before {
+		border-left: 2px solid;
+		border-radius: 5px;
+		content: "";
+		height: 20px;
+		margin: auto;
+		position: absolute;
+		right: -1px;
+	}
+
+	&:hover,
+	&:focus {
+		//background: rgba($aside-bd, 0.4);
+		color: $color-blue-guide;
+	}
+
+	.js-aside-panel-hidden & {
+		//cursor: e-resize; wait for implementation of drag
+		cursor: pointer;
+	}
+}

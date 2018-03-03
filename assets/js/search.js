@@ -4,6 +4,7 @@
     const asidePanel = document.getElementById('js-guide-aside');
     const searchField = document.getElementById('js-search');
     const searchClearBtn = document.getElementById('js-search-clear');
+    const links = document.querySelectorAll('.js-atlas-nav-ln');
 
     const waiteForSearch = 'js-searching';
     const hasResults = 'js-found';
@@ -19,8 +20,7 @@
 
     function clearSearch() {
         asidePanel.classList.remove(hasResults);
-        document.querySelectorAll('.b-atlas-nav__ln')
-            .forEach(link => link.classList.remove(isRelevant));
+        links.forEach(link => link.classList.remove(isRelevant));
         searchField.value = '';
     }
 
@@ -30,14 +30,14 @@
             clearSearch();
         }
 
-        document.querySelectorAll('.b-atlas-nav__ln').forEach(link => {
+        links.forEach(link => {
             if (link.getAttribute('href') === '') {
                 return;
             }
             const elementText = link.textContent;
 
             if (term.length && ~elementText.indexOf(term)) {
-                const asideContent = document.querySelector('.b-atlas-aside__content');
+                const asideContent = document.getElementById('js-atlas-aside-content');
                 if (asideContent.scrollTo() !== undefined) {
                     asideContent.scrollTo(0, link);
                 }
