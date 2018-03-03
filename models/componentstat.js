@@ -14,12 +14,12 @@ function guessType(name) {
         return 'mixin';
     }
 
-    if (/^media/.test(name) || /^supports/.test(name) || /^if/.test(name)) {
+    if (/(^media)|(^supports)|(^if)/.test(name)) {
         return 'condition';
     }
 
     // parse suffixes
-    if (/[a-z]_[a-z\d]*$/.test(name) || /--.*$/.test(name)) {
+    if (/([a-z]_[a-z\d]*$)|(--.*$)/.test(name)) {
         return 'modifier';
     }
 
@@ -45,44 +45,17 @@ function guessType(name) {
     }
 
     // if nested (namespaced) than this is component. Could be implemented. isRootChild argument
-    if (/^.b-/.test(name) || /^.l-/.test(name)) { // TODO: move me to config
+    if (/(^.b-)|(^.l-)/.test(name)) { // TODO: move me to config
         return 'component';
     }
 
     return 'element';
 }
 
-function getStatistic(file) {
-    const fileAST = postcss().process(file, {parser: postscss}).root;
-
-    let rawStat = {
-        includes: [],
-        imports: [],
-        variables: [],
-        componentStructure: {
-            'node': 'root',
-            'nodes': []
-        },
-        totalDeclarations: 0,
-        ruleSets: [],
-        profile: {},
-        stats: {
-            'scale': [],
-            'font': [],
-            'margin': [],
-            'padding': [],
-            'color': [],
-            'background': [],
-            'important': [],
-            'width': [],
-            'height': [],
-            'mediaQuery': [],
-            'vendorPrefix': [],
-            'zIndex': [],
-            'position': [],
-            'floats': [],
-            'display': []
-        }
+function getComponentStructure(fileAST) {
+    let componentStructure = {
+        'node': 'root',
+        'nodes': []
     };
 
     function deconstructStructure(nodes, structure) {
@@ -113,10 +86,57 @@ function getStatistic(file) {
             }
         });
     }
+    deconstructStructure(fileAST.nodes, componentStructure.nodes);
 
-    deconstructStructure(fileAST.nodes, rawStat.componentStructure.nodes);
+    return componentStructure;
+}
 
-    fileAST.walkAtRules(atrule => {
+function getRuleSets(fileAST) {
+    let ruleSets = [];
+
+    fileAST.walkRules(rule => {
+        let declarations = 0;
+        rule.nodes.forEach(node => {
+            if (node.type === 'decl') {
+                declarations++;
+            }
+        });
+        ruleSets.push(declarations);
+    });
+
+    return ruleSets;
+}
+
+function getStatistic(file) {
+    const fileAST = postcss().process(file, {parser: postscss}).root;
+
+    let rawStat = {
+        includes: [],
+        imports: [],
+        variables: [],
+        componentStructure: getComponentStructure(fileAST),
+        totalDeclarations: 0,
+        ruleSets: getRuleSets(fileAST),
+        stats: {
+            'scale': [],
+            'font': [],
+            'margin': [],
+            'padding': [],
+            'color': [],
+            'background': [],
+            'important': [],
+            'width': [],
+            'height': [],
+            'mediaQuery': [],
+            'vendorPrefix': [],
+            'zIndex': [],
+            'position': [],
+            'floats': [],
+            'display': []
+        }
+    };
+
+    fileAST.walkAtRules(atrule => { // getAtRules
         if (atrule.name === 'include') {
             rawStat.includes.push(atrule.params);
         }
@@ -130,17 +150,7 @@ function getStatistic(file) {
         }
     });
 
-    fileAST.walkRules(rule => {
-        let declarations = 0;
-        rule.nodes.forEach(node => {
-            if (node.type === 'decl') {
-                declarations++;
-            }
-        });
-        rawStat.ruleSets.push(declarations);
-    });
-
-    fileAST.walkDecls(decl => {
+    fileAST.walkDecls(decl => { // getDeclsStats
         if (decl.parent.selector !== undefined && /^\d/.test(decl.parent.selector)) {
             // ignore animation declaration blocks
             return;
@@ -190,16 +200,15 @@ function getStatistic(file) {
             rawStat.stats.height.push(decl.value);
         }
 
-        if (/(^margin)/.test(decl.prop)) {
+        if (/^margin/.test(decl.prop)) {
             const metricList = decl.value.split(' ');
             // declared spaces stat could be here
             metricList.forEach(value => rawStat.stats.padding.push(value));
         }
 
-        if (/(^padding)/.test(decl.prop)) {
+        if (/^padding/.test(decl.prop)) {
             const metricList = decl.value.split(' ');
             metricList.forEach(value => rawStat.stats.margin.push(value));
-            // if (/(^\$|^--)/.test(value))
         }
 
         if (decl.prop === 'position') {
@@ -207,7 +216,7 @@ function getStatistic(file) {
         }
 
         if (decl.prop === 'display') { // positioning display. Probability of block, i-b usage in components?
-            if (/flex/.test(decl.value) || /grid/.test(decl.value)) {
+            if (/(flex|grid)/.test(decl.value)) {
                 rawStat.stats.display.push(decl.value);
             }
         }
@@ -259,9 +268,6 @@ function getStatFor(url) {
     }
     return getStatistic(fs.readFileSync(url, 'utf8'));
 }
-
-// getStatistic(path.join(process.cwd(), 'test/fixtures/atlas/_component.scss'));
-// fs.writeFileSync('component-stat.json', JSON.stringify(stat, null, '\t'));
 
 module.exports = {
     getStatFor: getStatFor
