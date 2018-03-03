@@ -208,7 +208,7 @@ function getPartialsConfig(configRaw) {
             'assetsfooter': '',
             'assetshead': '',
             'componentstataside': '',
-            'componentstatcard': '',
+            'componentstatfooter': '',
             'componentstructure': '',
             'copyright': '',
             'footer': '',
