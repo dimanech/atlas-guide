@@ -24,6 +24,8 @@ const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'
 const pageContent = require(path.join(__dirname, '../viewmodels/pagecontent.js'));
 const writePage = require(__dirname + '/utils/renderpage.js');
 
+const componentPrefixes = atlasBase.componentPrefixes;
+
 // Copy internal assets to the components destinations
 if (atlasBase.copyInternalAssets) {
     const guideDest = atlasBase.guideDest;
@@ -66,7 +68,10 @@ function makeComponent(url, callback) {
                 const content = pageContent(component.src, {'title': component.title});
                 let stat;
                 if (component.type === 'component' || component.type === 'layout') {
-                    stat = statistics(componentStat.getStatFor(component.src), componentImports(component.src));
+                    stat = statistics(
+                        componentStat.getStatFor(component.src, componentPrefixes),
+                        componentImports(component.src)
+                    );
                 }
                 writePage({
                     title: component.title,

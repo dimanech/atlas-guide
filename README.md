@@ -190,6 +190,7 @@ and partials.
     "cssSrc": "assets/css/",
     "scssSrc": "assets/src/scss/",
     "scssAdditionalImportsArray": "",
+    "componentPrefixes": ["b-", "l-"],
     "excludedCssFiles": "dev_",
     "excludedSassFiles": "dev_",
     "excludedDirs": "dev_",

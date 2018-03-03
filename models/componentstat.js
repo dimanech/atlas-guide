@@ -6,6 +6,8 @@ const path = require('path');
 const color = require('d3-color');
 const postcss = require('postcss');
 const postscss = require('postcss-scss');
+
+let componentPrefixRegExp;
 // check invalid scss handling
 
 function guessType(name) {
@@ -35,7 +37,7 @@ function guessType(name) {
         return 'modifier-implicit';
     }
 
-    // parse prefix
+    // parse prefix again
     if (/ &/.test(name)) {
         return 'modifier-context';
     }
@@ -44,8 +46,9 @@ function guessType(name) {
         return 'modifier-adjacent';
     }
 
-    // if nested (namespaced) than this is component. Could be implemented. isRootChild argument
-    if (/(^.b-)|(^.l-)/.test(name)) { // TODO: move me to config
+    if (componentPrefixRegExp.test(name)) {
+        // if no prefix defined we should mark first level selectors as component.
+        // isRootImmediateChild arg could be used
         return 'component';
     }
 
@@ -262,10 +265,11 @@ function getStatistic(file) {
     return rawStat;
 }
 
-function getStatFor(url) {
+function getStatFor(url, componentPrefix) {
     if (path.extname(url) !== '.scss') {
         return;
     }
+    componentPrefixRegExp = componentPrefix;
     return getStatistic(fs.readFileSync(url, 'utf8'));
 }
 

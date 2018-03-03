@@ -2,5 +2,6 @@
     "guideSrc": "assets/src/scss/",
     "guideDest": "atlas",
     "cssSrc": "assets/css/",
-    "copyInternalAssets": false
+    "copyInternalAssets": false,
+    "componentPrefixes": ["atlas-", "l-"]
 }

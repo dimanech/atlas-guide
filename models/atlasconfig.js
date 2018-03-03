@@ -41,6 +41,24 @@ function getConfig(configSrc) {
     return {};
 }
 
+function getComponentsPrefix(config) {
+    const prefixes = config.componentPrefixes;
+    let prefixExp = '';
+
+    if (prefixes && !Array.isArray(prefixes)) {
+        printMessage('warn', '"componentPrefixes" is defined, but it is not array. Default values used as fallback.');
+    }
+
+    if (Array.isArray(prefixes)) {
+        prefixes.forEach(prefix => prefixExp += `^.${prefix}|`); // could be id or class
+        prefixExp = prefixExp.replace(/\|$/g, '');
+    } else {
+        prefixExp = '^.b-|^.l-';
+    }
+
+    return new RegExp(prefixExp);
+}
+
 function getBaseConfig(configRaw) {
     let atlasConfig = {
         'isCorrupted': false
@@ -103,7 +121,7 @@ function getBaseConfig(configRaw) {
             const scssSrc = path.join(projectRoot, config.scssSrc, '/');
             if (!fs.existsSync(scssSrc)) {
                 atlasConfig.scssSrc = atlasConfig.guideSrc;
-                printMessage('warn', '"scssSrc" if defined, but directory (' + config.scssSrc + ') unavailable or ' +
+                printMessage('warn', '"scssSrc" is defined, but directory (' + config.scssSrc + ') unavailable or ' +
                     'unreadable. "cssSrc" directory used as fallback.');
             } else {
                 atlasConfig.scssSrc = scssSrc;
@@ -121,6 +139,8 @@ function getBaseConfig(configRaw) {
 
         atlasConfig.copyInternalAssets = copyInternalAssets !== undefined ? copyInternalAssets : true;
         atlasConfig.internalAssetsPath = path.join(__dirname, '../assets');
+
+        atlasConfig.componentPrefixes = getComponentsPrefix(config);
     }
 
     function getTemplates() {

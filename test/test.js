@@ -326,6 +326,35 @@ describe('Atlas', function() {
             it('should use default and throw message');
         });
 
+        context('when component prefix is defined', function () {
+            it('should process list to regexp', function () {
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'componentPrefixes': ['atlas-', 'l-']
+                });
+                assert.strictEqual(atlasConfig.componentPrefixes.toString(), '/^.atlas-|^.l-/');
+            });
+            it('should handle invalid list', function () {
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'componentPrefixes': 'atlas-'
+                });
+                assert.strictEqual(atlasConfig.componentPrefixes.toString(), '/^.b-|^.l-/');
+            });
+            it('should return default list if not declared', function () {
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/'
+                });
+                assert.strictEqual(atlasConfig.componentPrefixes.toString(), '/^.b-|^.l-/');
+            });
+        });
+
         context('when overloaded templates is defined', function () {
             context('but template not available', function () {
                 it('should throw message and fall gracefully');
