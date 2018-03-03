@@ -1,0 +1,11 @@
+plugins:
+  stylelint:
+    enabled: true
+  eslint:
+   	enabled: true
+exclude_patterns:
+- "node_modules"
+- "test"
+- ".githooks"
+- "assets/**/*.js"
+- "assets/**/*.css"
