@@ -32,7 +32,7 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
         'templateString': fs.readFileSync(templates.sizes, 'utf8'),
         'type': 'insights',
         'subPages': projectDocumentedTree.subPages,
-        'content': statFileWeight(importsGraph, projectName, cssSrc)
+        'content': statFileWeight(importsGraph, projectName, cssSrc, excludedSassFiles)
     });
 
     writePage({

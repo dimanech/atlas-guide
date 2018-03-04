@@ -3,5 +3,6 @@
     "guideDest": "atlas",
     "cssSrc": "assets/css/",
     "copyInternalAssets": false,
+    "excludedSassFiles": "_dev-atlas-settings",
     "componentPrefixes": ["atlas-", "l-"]
 }
