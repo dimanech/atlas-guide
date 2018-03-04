@@ -52,6 +52,9 @@ function guessType(name) {
         return 'component';
     }
 
+    // implement me - orphan element (element from another component or element without root)
+    // context modification from another component - this should be warn
+
     return 'element';
 }
 

@@ -9,6 +9,10 @@ function getImportsGraph(atlasConfig) {
     const sassSrcPath = config.scssSrc;
     const sassSrcExternalImportsPath = config.scssAdditionalImportsArray;
 
+    // const fs = require('fs');
+    // fs.writeFileSync('./imports2.json',
+    // JSON.stringify(sassGraph.parseDir(sassSrcPath, {loadPaths: sassSrcExternalImportsPath}), null, '\t'));
+
     return sassGraph.parseDir(sassSrcPath, {loadPaths: sassSrcExternalImportsPath});
 }
 

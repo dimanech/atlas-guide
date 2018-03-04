@@ -10,7 +10,6 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
     // Config
     const atlasBase = atlasConfig.getBase();
     const projectName = atlasConfig.getProjectInfo().projectInfo.name;
-    const guideSrc = atlasBase.guideSrc;
     const guideDest = atlasBase.guideDest;
     const cssSrc = atlasBase.cssSrc;
     const templates = atlasBase.templates;
@@ -33,7 +32,7 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
         'templateString': fs.readFileSync(templates.sizes, 'utf8'),
         'type': 'insights',
         'subPages': projectDocumentedTree.subPages,
-        'content': statFileWeight(guideSrc)
+        'content': statFileWeight(importsGraph)
     });
 
     writePage({

@@ -33,7 +33,7 @@ function getProjectConstants(url) {
     return rawConstants;
 }
 
-fs.writeFileSync('const.json', JSON.stringify(getProjectConstants(declaredConstants.constantsSrc), null, '\t'));
+// fs.writeFileSync('const.json', JSON.stringify(getProjectConstants(declaredConstants.constantsSrc), null, '\t'));
 
 module.exports = {
     getStatFor: getProjectConstants
