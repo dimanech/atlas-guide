@@ -55,27 +55,27 @@ function prepareView(config) {
 /**
  * Prepare data and write file to the destination.
  * @private
- * @param config {object} - config object with templates and data
- * @param callback {function} - callback function
+ * @param {object} config - config object with templates and data
+ * @return {Promise<string>}
  */
-function writeGuidePage(config, callback) {
-    fs.writeFile(
-        config.target,
-        mustache.render(
-            config.templateString,
-            prepareView(config),
-            partials
-        ),
-        error => {
-            if (error) {
-                throw error;
+function writeGuidePage(config) {
+    return new Promise(function(resolve, reject) {
+        fs.writeFile(
+            config.target,
+            mustache.render(
+                config.templateString,
+                prepareView(config),
+                partials
+            ),
+            error => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve('Page saved');
+                }
             }
-
-            if (typeof callback === 'function') {
-                return callback();
-            }
-        }
-    );
+        );
+    });
 }
 
 module.exports = writeGuidePage;

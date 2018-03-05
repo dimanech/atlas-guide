@@ -54,13 +54,15 @@ function getCachedTemplates(type, path) {
  * Walk though documented files in project and generate particular page (if path specified) or full docset if no string
  * provided.
  * @public
- * @param url {string} - path to file. If no string provided or function is passed this build all components
- * @param callback {function} - callback function
+ * @param {string} [url] - path to file. If no string provided or function is passed this build all components
+ * @return {Promise<string>}
  */
-function makeComponent(url, callback) {
+function makeComponent(url) {
+    let docSet = [];
+
     function traverseDocumentedTree(components, targetPath) {
         components.forEach(component => {
-            const makeAllComponents = targetPath === undefined || typeof targetPath === 'function';
+            const makeAllComponents = targetPath === undefined;
             const isFileInConfig = makeAllComponents ? true : targetPath === component.src;
             const isFile = component.target;
 
@@ -73,7 +75,7 @@ function makeComponent(url, callback) {
                         componentImports(component.src)
                     );
                 }
-                writePage({
+                docSet.push({
                     title: component.title,
                     target: component.target,
                     templateString: getCachedTemplates(component.type, component.template),
@@ -84,7 +86,8 @@ function makeComponent(url, callback) {
                         componentStats: stat
                     },
                     subPages: projectTree.subPages
-                }, callback);
+                });
+
                 if (!makeAllComponents) {
                     return;
                 }
@@ -95,15 +98,21 @@ function makeComponent(url, callback) {
             }
         });
     }
-
     traverseDocumentedTree(projectTree.subPages, url);
+
+    return Promise.all(docSet.map(writePage));
 }
 
 module.exports = {
     'build': makeComponent,
     'buildAll': function() {
-        makeComponent();
-        // this heavy statistic models not needed for common dev flow
-        require('./buildreports.js')(atlasConfig, projectTree, importsGraph);
+        return new Promise(function(resolve, reject) {
+            makeComponent()
+                .then(undefined, err => reject(err));
+            // this heavy statistic models not needed for common dev flow
+            require('./buildreports.js')(atlasConfig, projectTree, importsGraph)
+                .then(undefined, err => reject(err));
+            resolve('buildAll success');
+        });
     }
 };
