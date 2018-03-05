@@ -1,3 +1,7 @@
 .githooks
 .ssl
-test-pages/*
+atlas
+assets/src
+.nyc_output
+docs
+test
