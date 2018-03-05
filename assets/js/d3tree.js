@@ -9,10 +9,10 @@
     const maxSize = d3.max(Object.keys(rawdata).map(d => rawdata[d].size));
 
     const z = d3.scaleOrdinal()
-        .range(['#307fe2', '#ffc107', '#8bc34a']);
+        .range(['#8bc34a', '#ffc107', '#307fe2']);
     const fileSize = d3.scaleLinear()
         .domain([0, maxSize])
-        .range([0, 100]);
+        .range([0, 150]);
 
     function radialPoint(x, y) {
         return [(y = +y) * Math.cos(x -= Math.PI / 2), y * Math.sin(x)];
@@ -23,10 +23,9 @@
             return 0;
         } else {
             return (d.x < Math.PI ? (d.x - Math.PI / 2) : (d.x + Math.PI / 2)) * (180 / Math.PI);
+            // return (d.x < Math.PI ? (d.x - Math.PI / 2) : (d.x + Math.PI / 2)) * (180 / Math.PI) / 10;
+            // return d.x < Math.PI ? (d.x - Math.PI / 2) * (90 / Math.PI) : (d.x + Math.PI / 2) * (180 / Math.PI);
         }
-        // half rotated
-        // .attr('transform', d => 'rotate(' + (d.x < Math.PI ?
-        // (d.x - Math.PI / 2) * (90 / Math.PI) : (d.x + Math.PI / 2) * (180 / Math.PI)) + ')')
     }
 
     function markFileSize(d) {
@@ -36,9 +35,7 @@
         if (d.children) {
             radius = fileWeight;
         } else {
-            if (fileWeight > 5) {
-            }
-                radius = fileWeight;
+            radius = fileWeight;
         }
 
         if (d.depth === 0) {
@@ -57,7 +54,8 @@
         .separation((a, b) => (a.parent === b.parent ? 1 : 2) / a.depth)
         .size([2 * Math.PI, 500])(data);
 
-    data.descendants().forEach(d => d.y = d.depth * 100); // normalize levels
+    // data.descendants().forEach(d => d.y = d.depth === 1 ? 200 : 200 + (d.depth * 150)); // normalize levels
+    data.descendants().forEach(d => d.y = 150 * d.depth); // normalize levels
 
     const svg = d3.select('#js-graph-svg')
         .attr('width', width)
@@ -88,17 +86,15 @@
     const node = inner.selectAll('.node')
         .data(data.descendants())
         .enter().append('g')
-        .attr('class', d => 'node' + (d.children ? ' node--internal' : ' node--leaf'))
+        .attr('class', d => 'atlas-node' + (d.children ? ' _internal' : ' _leaf') + ' _' + d.depth) // but not 1 level
         .attr('transform', d => 'translate(' + radialPoint(d.x, d.y) + ')');
 
     node.append('circle')
         .attr('fill', d => d.depth === 0 ? 'white' : 'black')
-        .attr('r', d => d.depth === 0 ? 80 : 2);
+        .attr('r', d => d.depth === 0 ? 110 : 2);
 
     node.append('text')
         .attr('dy', 3)
-        .attr('x', d => d.children ? -8 : 10)
-        .style('font-size', d => d.depth === 0 ? 24 : 8)
         .attr('x', d => d.x < Math.PI === !d.children ? 6 : -6)
         .attr('text-anchor', d => d.x < Math.PI === !d.children ? 'start' : 'end')
         .attr('transform', d => 'rotate(' + rotateText(d) + ')')

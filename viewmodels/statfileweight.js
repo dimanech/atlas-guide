@@ -47,31 +47,32 @@ function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
             importedBy.forEach(importedBy => {
                 // push resulted file
                 const importFile = importedBy.toString().replace(pathToSCSS, ''); // could be import to partial file
-                let cummulativePath = projectName + '/' + importFile;
+                let cumulativePath = projectName + '/' + importFile;
 
-                if (!importsPaths.hasOwnProperty(cummulativePath)) {
-                    importsPaths[cummulativePath] = {
-                        id: cummulativePath,
+                if (!importsPaths.hasOwnProperty(cumulativePath)) {
+                    importsPaths[cumulativePath] = {
+                        id: cumulativePath,
                         size: getResultedFileSize(importFile, pathToCSS)
                     };
                 }
 
                 // push missing folders
                 for (let i = 0; i < dest.length - 1; i++) {
-                    cummulativePath = cummulativePath + '/' + dest[i];
-                    if (!importsPaths.hasOwnProperty(cummulativePath)) {
-                        importsPaths[cummulativePath] = {
-                            id: cummulativePath,
+                    // check atlas/ not added here
+                    cumulativePath = cumulativePath + '/' + dest[i];
+                    if (!importsPaths.hasOwnProperty(cumulativePath)) {
+                        importsPaths[cumulativePath] = {
+                            id: cumulativePath,
                             size: 0
                         };
                     }
                 }
 
                 // push file
-                const partial = cummulativePath + '/' + fileName;
+                const partial = cumulativePath + '/' + fileName;
                 if (!importsPaths.hasOwnProperty(partial)) {
                     importsPaths[partial] = {
-                        id: cummulativePath,
+                        id: cumulativePath,
                         size: getfileSizeWithoutComments(prop)
                     };
                 }
