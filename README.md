@@ -18,16 +18,16 @@ and supportable from iteration to iteration.
 * blazing fast thanks to Mustache and Marked. It primary designed as development platform;
 * supports incremental builds. You could build pages only on start, and rebuild changed pages separately;
 * could be setup with live reload and used as standalone development platform;
-* small dependencies (Mustache, Marked, PostCSS, CSSStats, ImportsGraph, D3 parts, Lodash parts). It could help you to controll you project dependencies and do not blow `node_modules` folder to FS black hole;
-* extremely flexible. All internal templates could be overloaded on project level;
+* small dependencies (Mustache, Marked, PostCSS, CSSStats, ImportsGraph, D3 parts, Lodash parts);
+* extremely flexible. All internal templates could be overwritten on project level;
 * could be used as simple guide docs;
-* Hologram compatible (but without front matter sections).
+* Hologram compatible (do not use front matter section).
 
 ### Components library
 
 Support `/*md` comment in `scss` files where regular markdown could be placed.
 
-* comes with simple playground, so code examples could be live-edited, previewed and copy-pasted to different place. It could be used by content-management team;
+* comes with simple playground, so code examples could be live-edited, previewed and copy-pasted to different place;
 * comes with different types of pages - component, guide and reports. But could be expanded to many different types;
 * filtering and easy navigation over components. Navigation tree copy project tree, to ease orientation and successful handling huge components library;
 * component local variables, internal and external dependencies;
@@ -178,7 +178,7 @@ To make this happen you need to add `partials` to the config, with paths to temp
 Note, that paths should be related to generated HTML, no matter where templates are stored. This is simple include that
 will be incorporated into resulted html.
 
-All templates and partials in Atlas could be overloaded. Please see this repo views folder to get list of all templates 
+All templates and partials in Atlas could be overwritten. Please see this repo views folder to get list of all templates 
 and partials.
 
 ### All available configuration options
