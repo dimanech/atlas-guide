@@ -106,13 +106,9 @@ function makeComponent(url) {
 module.exports = {
     'build': makeComponent,
     'buildAll': function() {
-        return new Promise(function(resolve, reject) {
-            makeComponent()
-                .then(undefined, err => reject(err));
-            // this heavy statistic models not needed for common dev flow
+        return Promise.all([
+            makeComponent(),
             require('./buildreports.js')(atlasConfig, projectTree, importsGraph)
-                .then(undefined, err => reject(err));
-            resolve('buildAll success');
-        });
+        ]);
     }
 };
