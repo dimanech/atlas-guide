@@ -17,7 +17,7 @@ const path = require('path');
  * This will be used as data for pages generation and as high availability project map to prevent unnecessary direct
  * work with FS.
  * @private
- * @param atlasConfig {object}
+ * @param {object} atlasConfig
  * @return {atlasComponentObject} tree of nodes
  */
 function makeProjectTree(atlasConfig) {
@@ -44,9 +44,9 @@ function makeProjectTree(atlasConfig) {
 
     /**
      * Traverse directories and generate components config
-     * @param url {string} - components source
-     * @param config {object} - base for generated config
-     * @param categoryName {string} - category name that will be used as component prefix. 'atlas' as start point,
+     * @param {string} url - components source
+     * @param {object} config - base for generated config
+     * @param {string} categoryName - category name that will be used as component prefix. 'atlas' as start point,
      * directory name in all future cases.
      */
     function findComponents(url, config, categoryName) {

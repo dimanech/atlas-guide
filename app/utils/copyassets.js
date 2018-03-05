@@ -6,9 +6,9 @@ const path = require('path');
 /**
  * Copy internal assets to specified Atlas destination directory, so they will be available in generated static files.
  * @private
- * @param assetsRoot {string} - abs path to internal assets directory
- * @param assetsSrc {string} - abs path to processed internal assets directory
- * @param assetsDest {string} - abs path to atlas directory in project space
+ * @param {string} assetsRoot - abs path to internal assets directory
+ * @param {string} assetsSrc - abs path to processed internal assets directory
+ * @param {string} assetsDest - abs path to atlas directory in project space
  */
 function copyAssetsFiles(assetsRoot, assetsSrc, assetsDest) {
     const dir = fs.readdirSync(assetsSrc);

@@ -26,7 +26,8 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
     const statProject = require(path.resolve(__dirname, '../viewmodels/statproject.js'));
     const statImports = require(path.resolve(__dirname, '../viewmodels/statimports.js'));
 
-    writePage({
+    // Page configs
+    const reportsPages = [{
         'id': 'sizes',
         'title': 'sizes',
         'target': path.join(guideDest, '/sizes.html'),
@@ -34,9 +35,7 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
         'type': 'insights',
         'subPages': projectDocumentedTree.subPages,
         'content': statFileWeight(guideSrc)
-    });
-
-    writePage({
+    }, {
         'id': 'imports',
         'title': 'imports',
         'target': path.join(guideDest, '/imports.html'),
@@ -44,9 +43,7 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
         'type': 'imports',
         'subPages': projectDocumentedTree.subPages,
         'content': statImports(importsGraph, excludedSassFiles)
-    });
-
-    writePage({
+    }, {
         'id': 'insides',
         'title': 'insides',
         'target': path.join(guideDest, '/insights.html'),
@@ -54,5 +51,7 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
         'type': 'insights',
         'subPages': projectDocumentedTree.subPages,
         'content': statProject(projectStat, projectName)
-    });
+    }];
+
+    return Promise.all(reportsPages.map(writePage));
 };

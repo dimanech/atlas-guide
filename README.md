@@ -88,9 +88,9 @@ npm run build-atlas
 
 ```js
 const atlas = require('atlas-guide');
-atlas.build(); // build all guide files without reports.
+atlas.build(); // build all guide files without reports. Return promise.
 atlas.build('path/to/changed/file.scss'); // compile only particular file, if it marked as documented in project tree
-atlas.buildAll(); // compile all guide and reports
+atlas.buildAll(); // compile all guide and reports. Return promise.
 ```
 
 Use `atlas.build()` for incremental development builds, where it is not required to have extensive heavy-weight statistic.

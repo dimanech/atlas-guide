@@ -1,8 +1,8 @@
 {
   "name": "atlas-guide",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "license": "MIT",
-  "description": "Atlas living style guides & pattern library static site generator with extensive CSS monitoring and components info",
+  "description": "Atlas living style guide & pattern library static site generator with extensive CSS monitoring and components info",
   "keywords": [
     "styleguide",
     "styleguide-css",
