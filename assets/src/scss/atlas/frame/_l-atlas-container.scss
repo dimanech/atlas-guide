@@ -5,32 +5,29 @@
 */
 
 .l-atlas-container {
+	display: flex;
 	height: 100%;
 
 	&__aside {
-		//background-color: $aside-bg;
-		border-right: 1px solid $aside-bd;
-		bottom: 0;
-		left: 0;
-		//min-width: 200px;
-		position: fixed;
-		top: 0;
-		//transition: width ease 0.2s;
-		width: 270px;
+		box-shadow: 0 0 0 1px $aside-bd;
+		height: 100vh;
+		position: relative;
+		transition: width ease 0.2s;
 		z-index: 10;
 	}
 
 	&__main {
 		background-color: white;
-		margin-left: 270px;
+		height: 100vh;
 		position: relative;
+		width: 100%;
 		z-index: 1;
 	}
 
 	&.js-aside-panel-hidden {
 		.l-atlas-container__aside {
-			min-width: 5px;
-			width: 5px;
+			min-width: 3px;
+			width: 3px;
 		}
 
 		.atlas-aside__header,
@@ -38,19 +35,5 @@
 		.atlas-aside__content {
 			display: none;
 		}
-
-		.l-atlas-container__main {
-			margin-left: 5px;
-		}
-	}
-}
-
-.atlas-page_index {
-	.l-atlas-container__main {
-		margin-right: 270px;
-	}
-
-	.atlas-toc {
-		position: fixed;
 	}
 }

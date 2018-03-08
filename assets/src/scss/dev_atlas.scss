@@ -2,22 +2,11 @@
 
 @import "dev-atlas-settings";
 
-$aside-bg: #f6f6f6;
-$aside-bd: #e0e0e0;
-$aside-selected: #e2e2e2;
-
 @import "atlas/global/global-normalization";
 
+@import "atlas/frame/atlas-content";
 @import "atlas/frame/atlas";
 @import "atlas/frame/atlas-component-type-ico";
-@import "atlas/frame/l-atlas-container";
-@import "atlas/frame/atlas-content";
-@import "atlas/frame/atlas-search";
-@import "atlas/frame/atlas-aside-ctrl";
-@import "atlas/frame/atlas-header";
-@import "atlas/frame/atlas-aside";
-@import "atlas/frame/atlas-nav";
-@import "atlas/frame/atlas-footer-copyright";
 
 @import "atlas/guide/atlas-toc";
 

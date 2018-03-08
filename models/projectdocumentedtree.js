@@ -107,8 +107,8 @@ function makeProjectTree(atlasConfig) {
         'atlas'
     );
 
-    if (atlasConfig.additionalPages.subPages !== undefined && atlasConfig.additionalPages.subPages.length) {
-        atlasConfig.additionalPages.subPages.forEach(item => docSet.subPages.push(item));
+    if (atlasConfig.additionalPages.length) {
+        atlasConfig.additionalPages.forEach(page => docSet.subPages.push(page));
     }
 
     return docSet;

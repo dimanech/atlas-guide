@@ -60,6 +60,23 @@ function getCachedTemplates(type, path) {
 function makeComponent(url) {
     let docSet = [];
 
+    function prepareContent(component) {
+        const content = pageContent(component.src, {'title': component.title});
+        let stat;
+        if (component.type === 'component' || component.type === 'layout') {
+            stat = statistics(
+                componentStat.getStatFor(component.src, componentPrefixes),
+                componentImports(component.src)
+            );
+        }
+
+        return {
+            documentation: content.content,
+            toc: content.toc,
+            componentStats: stat
+        };
+    }
+
     function traverseDocumentedTree(components, targetPath) {
         components.forEach(component => {
             const makeAllComponents = targetPath === undefined;
@@ -67,25 +84,12 @@ function makeComponent(url) {
             const isFile = component.target;
 
             if (isFile && isFileInConfig) {
-                const content = pageContent(component.src, {'title': component.title});
-                let stat;
-                if (component.type === 'component' || component.type === 'layout') {
-                    stat = statistics(
-                        componentStat.getStatFor(component.src, componentPrefixes),
-                        componentImports(component.src)
-                    );
-                }
                 docSet.push({
                     title: component.title,
                     target: component.target,
                     templateString: getCachedTemplates(component.type, component.template),
                     type: component.type,
-                    content: {
-                        documentation: content.content,
-                        toc: content.toc,
-                        componentStats: stat
-                    },
-                    subPages: projectTree.subPages
+                    content: prepareContent(component)
                 });
 
                 if (!makeAllComponents) {
@@ -99,6 +103,14 @@ function makeComponent(url) {
         });
     }
     traverseDocumentedTree(projectTree.subPages, url);
+
+    docSet.push({
+        title: 'atlas',
+        target: path.join(atlasBase.guideDest, '/index.html'),
+        templateString: fs.readFileSync(atlasBase.templates.index, 'utf8'),
+        type: 'index',
+        content: projectTree
+    });
 
     return Promise.all(docSet.map(writePage));
 }

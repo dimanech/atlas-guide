@@ -1,6 +1,6 @@
-<div class="l-atlas-container__aside" id="js-guide-aside" role="contentinfo">
+<div class="l-atlas-container__aside" id="js-atlas-aside" role="contentinfo">
     <script>
-        document.getElementById('js-guide-aside').style.width =
+        document.getElementById('js-atlas-aside').style.minWidth =
             window.sessionStorage && (window.sessionStorage.getItem('asideWidth')) ?
                 window.sessionStorage.getItem('asideWidth') + 'px' : '';
     </script>
@@ -23,7 +23,10 @@
         </div>
         <div class="atlas-aside__content" role="navigation" id="js-atlas-aside-content">
             <div class="atlas-nav" role="list" id="js-atlas-navigation">
-                {{> navigation}}
+                {{#content}}
+                    {{> navigation}}
+                {{/content}}
+
                 <div class="atlas-nav__item" role="listitem">
                     <a class="atlas-nav__ln _imports js-atlas-nav-ln" href="imports.html" id="nav-imports">
                         <svg width="14" height="14" role="img">
@@ -54,5 +57,6 @@
             {{> copyright}}
         </div>
     </div>
-    <button class="atlas-aside-ctrl" id="js-aside-toggle"></button>
+    <button class="atlas-aside-ctrl" id="js-atlas-aside-resizer"></button>
+    <div class="atlas-aside-resizer-overlay" id="js-atlas-aside-resizer-overlay"></div>
 </div>

@@ -2,6 +2,7 @@
 
 (function() {
     const navigation = document.getElementById('js-atlas-navigation');
+    const navigationLinks = document.querySelectorAll('.js-atlas-nav-ln');
 
     function menuCollapse(ev) {
         if (!ev.target.classList.contains('_category')) {
@@ -17,19 +18,40 @@
     }
 
     function highlightCurrentPage() {
-        const location = window.location.href;
-        const currentFile = location.split('/').pop().replace('.html', '');
+        const currentFile = window.location.hash.replace(/#/, '').replace('.html', '');
         const linkCurrent = document.getElementById('nav-' + currentFile);
         if (!linkCurrent) {
             return;
         }
-        const linkPosition = linkCurrent.getBoundingClientRect().top;
-
+        navigationLinks.forEach(link => link.classList.remove('js-current-page'));
         linkCurrent.classList.add('js-current-page');
-        document.getElementById('js-atlas-aside-content').scrollTo(0, linkPosition - (window.innerHeight / 2));
     }
+
+    function setPage(target) {
+        const location = window.location;
+        document.getElementById('js-atlas-main').setAttribute('src', target);
+        document.getElementById('js-page-title').innerText = 'Atlas - ' + target;
+        location.hash = target;
+    }
+
+    function getPage(target) {
+        document.getElementById('js-atlas-main').setAttribute('src', target);
+    }
+
+    highlightCurrentPage();
 
     navigation.addEventListener('click', menuCollapse);
 
-    highlightCurrentPage();
+    navigation.addEventListener('click', function(event) {
+        if (event.target.classList.contains('_category')) {
+            return;
+        }
+        event.preventDefault();
+        setPage(event.target.getAttribute('href'));
+        highlightCurrentPage();
+    });
+
+    window.addEventListener('load', function() {
+        getPage(window.location.hash.replace(/#/, ''));
+    });
 }());

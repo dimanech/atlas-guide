@@ -154,6 +154,7 @@ function getBaseConfig(configRaw) {
             'component': '',
             'guide': '',
             'imports': '',
+            'about': '',
             'index': '',
             'insights': '',
             'sizes': ''
@@ -183,23 +184,18 @@ function getBaseConfig(configRaw) {
             return;
         }
 
-        atlasConfig.additionalPages = {};
+        atlasConfig.additionalPages = [];
 
         if (fs.existsSync(path.join(projectRoot, 'README.md'))) {
-            atlasConfig.additionalPages = {
-                'subPages':
-                    [
-                        {
-                            'id': 'index',
-                            'title': 'about',
-                            'src': path.join(projectRoot, 'README.md'),
-                            'target': path.join(atlasConfig.guideDest, '/index.html'),
-                            'template': atlasConfig.templates.index,
-                            'type': 'index',
-                            'subPages': []
-                        }
-                    ]
-            };
+            atlasConfig.additionalPages.push({
+                'id': 'about',
+                'title': 'about',
+                'src': path.join(projectRoot, 'README.md'),
+                'target': path.join(atlasConfig.guideDest, '/about.html'),
+                'template': atlasConfig.templates.about,
+                'type': 'about',
+                'subPages': []
+            });
         }
     }
 

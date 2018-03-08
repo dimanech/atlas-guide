@@ -1,0 +1,15 @@
+{{> header}}
+
+{{> toc}}
+
+<main class="atlas-index">
+    {{>welcome}}
+
+    <div class="atlas-index__about">
+        <section><!-- this is hacky, but we have sections in markdown, so we need to open and close it on wrapper -->
+            {{{content.documentation}}}
+        </section>
+    </div>
+</main>
+
+{{> footer}}

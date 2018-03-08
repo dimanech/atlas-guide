@@ -6,8 +6,8 @@
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	height: 100%;
+	max-width: 270px;
 	transform: translate3d(0, 0, 0);
-	//max-width: 270px;
 	z-index: 1;
 
 	&__header {

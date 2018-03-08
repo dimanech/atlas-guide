@@ -11,7 +11,7 @@ function getPartials() {
     const partialsMap = atlasConfig.getPartials().partials;
     let partials = {};
 
-    Object.keys(partialsMap).forEach(partial => partials[partial] = fs.readFileSync(partialsMap[partial], 'utf8'));
+    Object.keys(partialsMap).map(partial => partials[partial] = fs.readFileSync(partialsMap[partial], 'utf8'));
 
     return partials;
 }
@@ -24,7 +24,6 @@ const View = function(page) {
     };
     this.pageTitle = page.title;
     this.content = page.content;
-    this.subPages = page.subPages;
     this.type = page.type;
 };
 
@@ -47,7 +46,6 @@ function prepareView(config) {
     return new View({
         title: config.title,
         content: config.content,
-        subPages: config.subPages,
         type: config.type
     });
 }

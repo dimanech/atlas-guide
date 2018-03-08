@@ -1,0 +1,23 @@
+.atlas-aside-ruler {
+	background: $aside-selected;
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+
+	svg {
+		font-family: $font-mono-guide;
+		font-size: 0.8rem;
+		margin-top: -17px;
+		position: absolute;
+		right: 0;
+		top: 50%;
+
+		line {
+			stroke: hotpink;
+		}
+	}
+}
