@@ -1,4 +1,9 @@
 <div class="l-atlas-container__aside" id="js-guide-aside" role="contentinfo">
+    <script>
+        document.getElementById('js-guide-aside').style.width =
+            window.sessionStorage && (window.sessionStorage.getItem('asideWidth')) ?
+                window.sessionStorage.getItem('asideWidth') + 'px' : '';
+    </script>
     <div class="atlas-aside">
         <div class="atlas-aside__header">
             <div class="atlas-header">

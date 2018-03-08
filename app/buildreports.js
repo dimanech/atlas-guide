@@ -20,6 +20,7 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
     // Models
     const projectStat = require(path.resolve(__dirname, '../models/projectcssstat.js'))(
         projectName, cssSrc, excludedCssFiles);
+    const projectFileSizes = require(path.resolve(__dirname, '../models/projectfilesize.js'))(guideSrc);
 
     // View Models
     const statFileWeight = require(path.resolve(__dirname, '../viewmodels/statfileweight.js'));
@@ -34,7 +35,7 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
         'templateString': fs.readFileSync(templates.sizes, 'utf8'),
         'type': 'insights',
         'subPages': projectDocumentedTree.subPages,
-        'content': statFileWeight(guideSrc)
+        'content': statFileWeight(projectFileSizes)
     }, {
         'id': 'imports',
         'title': 'imports',

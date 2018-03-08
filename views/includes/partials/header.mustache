@@ -126,7 +126,10 @@
 </svg>
 <div class="l-atlas-container" id="js-guide-container">
     {{> aside}}
-    <main role="main" class="l-atlas-container__main">
+    <main role="main" class="l-atlas-container__main" id="js-guide-main">
+        <script>
+            document.getElementById('js-guide-main').style.marginLeft = window.sessionStorage && window.sessionStorage.getItem('asideWidth') ? window.sessionStorage.getItem('asideWidth') + 'px' : '';
+        </script>
         <div class="atlas-content">
             <div class="atlas-content__inner">
 

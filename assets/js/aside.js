@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+(function () {
     const container = document.getElementById('js-guide-container');
     const main = document.getElementsByClassName('l-atlas-container__main')[0];
     const aside = document.getElementsByClassName('l-atlas-container__aside')[0];
@@ -23,25 +23,49 @@
         resizeTo(event.pageX);
     }
 
+    function asideHide() {
+        container.classList.add('js-aside-panel-hidden');
+        resizeTo(0);
+    }
+
+    function asideShow() {
+        container.classList.remove('js-aside-panel-hidden');
+        resizeTo(270);
+    }
+
     function asideToggle(event) {
         event.preventDefault();
-
         if (container.classList.contains('js-aside-panel-hidden')) {
-            container.classList.remove('js-aside-panel-hidden');
-            resizeTo(270);
+            asideShow();
         } else {
-            container.classList.add('js-aside-panel-hidden');
-            resizeTo(0);
+            asideHide();
         }
     }
 
-    document.addEventListener('mousedown', function(event) {
+    // Emulate persistent state
+    function populateStorage() {
+        window.sessionStorage.setItem('asideWidth', aside.offsetWidth);
+    }
+
+    function setAsideState() {
+        const storedValue = window.sessionStorage.getItem('asideWidth');
+        const asideWidth = storedValue === null ? '270' : storedValue;
+
+        if (asideWidth < 10) {
+            asideHide();
+        }
+    }
+
+    setAsideState();
+
+    // Add event listeners
+    document.addEventListener('mousedown', event => {
         if (event.target === control) {
             document.addEventListener('mousemove', changeSize);
         }
     });
-    document.addEventListener('mouseup', function () {
-        document.removeEventListener('mousemove', changeSize);
-    });
+    document.addEventListener('mouseup', () => document.removeEventListener('mousemove', changeSize));
     control.addEventListener('dblclick', asideToggle);
+
+    window.addEventListener('beforeunload', populateStorage);
 }());
