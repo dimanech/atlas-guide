@@ -1,9 +1,9 @@
 'use strict';
 
 (function() {
-    const asidePanel = document.getElementById('js-guide-aside');
-    const searchField = document.getElementById('js-search');
-    const searchClearBtn = document.getElementById('js-search-clear');
+    const asidePanel = document.getElementById('js-atlas-aside');
+    const searchField = document.getElementById('js-atlas-search');
+    const searchClearBtn = document.getElementById('js-atlas-search-clear');
     const links = document.querySelectorAll('.js-atlas-nav-ln');
 
     const waiteForSearch = 'js-searching';

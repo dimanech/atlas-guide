@@ -11,7 +11,7 @@ function getPartials() {
     const partialsMap = atlasConfig.getPartials().partials;
     let partials = {};
 
-    Object.keys(partialsMap).map(partial => partials[partial] = fs.readFileSync(partialsMap[partial], 'utf8'));
+    Object.keys(partialsMap).forEach(partial => partials[partial] = fs.readFileSync(partialsMap[partial], 'utf8'));
 
     return partials;
 }

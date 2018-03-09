@@ -22,7 +22,6 @@ const path = require('path');
  */
 function makeProjectTree(atlasConfig) {
     let docSet = {
-        'title': '',
         'coverage': {
             'all': 0,
             'covered': 0
@@ -63,8 +62,8 @@ function makeProjectTree(atlasConfig) {
                 }
                 if (path.extname(name) === '.scss' && isDocumented(target) && !isExcludedFile(name)) {
                     docSet.coverage.covered++;
-                    const id = categoryName + '_' + path.basename(name, '.scss');
-                    const title = path.basename(name, '.scss').replace(/_/i, '');
+                    const id = categoryName + path.basename(name, '.scss');
+                    const title = path.basename(name, '.scss').replace(/^_/i, '');
                     config.push({
                         id: id,
                         title: title,

@@ -2,7 +2,9 @@
 
 # atlas-loader
 
-Used to hide content before it loaded
+Used to hide content before it loaded.
+
+It remove class from loader when DOMContentLoaded event fired. Example markup:
 
 ```html
 <div class="atlas-loader"></div>

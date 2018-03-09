@@ -1,6 +1,7 @@
 {{#subPages}}
     <div role="listitem" class="atlas-nav__item {{#type}}atlas-nav__item_{{type}}{{/type}}">
-        <a class="atlas-nav__ln {{#type}}_{{type}}{{/type}} js-atlas-nav-ln" {{#id}}href="{{id}}.html" id="nav-{{id}}"{{/id}}>
+        <a class="atlas-nav__ln {{#type}}_{{type}}{{/type}} js-atlas-nav-ln" {{#id}}href="{{id}}.html" id="nav-{{id}}"{{/id}}
+           data-name="{{title}}">
             {{#type}}<svg width="14" height="14" role="img"><use xlink:href="#icon-{{{type}}}"></use></svg>{{/type}}
             {{title}}
         </a>

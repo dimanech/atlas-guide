@@ -27,10 +27,10 @@
         linkCurrent.classList.add('js-current-page');
     }
 
-    function setPage(target) {
+    function setPage(target, name) {
         const location = window.location;
         document.getElementById('js-atlas-main').setAttribute('src', target);
-        document.getElementById('js-page-title').innerText = 'Atlas - ' + target;
+        document.getElementById('js-page-title').innerText = 'Atlas - ' + name;
         location.hash = target;
     }
 
@@ -43,11 +43,13 @@
     navigation.addEventListener('click', menuCollapse);
 
     navigation.addEventListener('click', function(event) {
-        if (event.target.classList.contains('_category')) {
+        const link = event.target;
+        const href = link.getAttribute('href');
+        if (href === null || link.classList.contains('_category')) {
             return;
         }
         event.preventDefault();
-        setPage(event.target.getAttribute('href'));
+        setPage(href, link.getAttribute('data-name'));
         highlightCurrentPage();
     });
 

@@ -1,0 +1,101 @@
+$bg: $color-yellow;
+$fg: white;
+$accent: $guide-color-text;
+
+.atlas-landing {
+	&__head {
+		align-items: center;
+		background: $bg;
+		margin: 0 -#{$space-md-guide};
+		padding: $space-md-guide;
+		padding-right: 0;
+		position: relative;
+	}
+
+	&__head-inner {}
+
+	&__content {
+		display: flex;
+		position: relative;
+	}
+
+	&__aside {
+		.atlas-toc {
+			height: 90vh;
+			position: sticky;
+			top: 0;
+		}
+	}
+}
+
+.atlas-welcome {
+	color: $fg;
+	display: flex;
+	font-family: $font-sans-guide;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	overflow: hidden;
+	position: relative;
+
+	&__column {
+		min-width: 33%;
+		position: relative;
+		z-index: 1;
+	}
+
+	&__title {
+		font-size: 6rem;
+		font-weight: normal;
+		hyphens: manual;
+		line-height: $space-md-guide * 4;
+		margin-bottom: $space-md-guide;
+
+		strong {
+			display: block;
+			font-weight: normal;
+		}
+	}
+
+	&__logo {
+		bottom: 0;
+		color: $accent;
+		left: 0;
+		position: absolute;
+		right: -50%;
+		top: 0;
+
+		svg {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+	}
+}
+
+.atlas-coverage {
+	border-top: 1px solid;
+	margin-top: $space-lg-guide;
+	padding-top: $space-md-guide;
+
+	&__digit {
+		font-size: 2rem;
+	}
+
+	&__line {
+		font-size: 1.2rem;
+		margin-bottom: $space-sm-guide;
+	}
+
+	&__graph {
+		display: block;
+		margin-bottom: $space-sm-guide;
+	}
+
+	&__all {
+		fill: $fg;
+	}
+
+	&__covered {
+		fill: $accent;
+	}
+}

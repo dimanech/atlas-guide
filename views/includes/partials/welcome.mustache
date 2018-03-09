@@ -1,1 +1,25 @@
+{{#content.componentStats}}
+    <div role="heading" class="atlas-welcome">
+        <div class="atlas-welcome__column">
+            <div role="heading" aria-level="1" class="atlas-welcome__title">
+                Wel&shy;come to <strong>{{projectName}}</strong> atlas
+            </div>
+            <div class="atlas-coverage">
+                {{#coverage}}
+                    <div class="atlas-coverage__line">
+                        <span class="atlas-coverage__digit">{{coveredPercent}}%</span> of project is covered
+                    </div>
+                    <svg class="atlas-coverage__graph" viewBox="0 0 {{graph.all}} 8">
+                        <rect class="atlas-coverage__all" width="{{graph.all}}" height="8" fill="#a7c6ed" rx="4" ry="4"></rect>
+                        <rect class="atlas-coverage__covered" width="{{graph.covered}}" height="8" fill="#307fe2" rx="4" ry="4"></rect>
+                    </svg>
+                    <div class="atlas-coverage__line">{{covered}} from {{all}} components</div>
+                {{/coverage}}
+            </div>
+        </div>
 
+        <div class="atlas-welcome__logo">
+            {{>logo}}
+        </div>
+    </div>
+{{/content.componentStats}}

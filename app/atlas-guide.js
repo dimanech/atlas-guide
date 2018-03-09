@@ -22,9 +22,9 @@ const componentStat = require(path.resolve(__dirname, '../models/componentstat.j
 
 const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'));
 const pageContent = require(path.join(__dirname, '../viewmodels/pagecontent.js'));
-const writePage = require(__dirname + '/utils/renderpage.js');
+const coverage = require(path.join(__dirname, '../viewmodels/coverage.js'));
 
-const componentPrefixes = atlasBase.componentPrefixes;
+const writePage = require(__dirname + '/utils/renderpage.js');
 
 // Copy internal assets to the components destinations
 if (atlasBase.copyInternalAssets) {
@@ -50,6 +50,29 @@ function getCachedTemplates(type, path) {
     return fs.readFileSync(path, 'utf8');
 }
 
+function prepareContent(component) {
+    const content = pageContent(component.src, {'title': component.title});
+    let stat;
+    if (component.type === 'component' || component.type === 'layout') {
+        stat = statistics(
+            componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
+            componentImports(component.src)
+        );
+    }
+    if (component.type === 'about') {
+        stat = {
+            'projectName': atlasConfig.getProjectInfo().projectInfo.name,
+            'coverage': coverage(projectTree.coverage)
+        };
+    }
+
+    return {
+        documentation: content.content,
+        toc: content.toc,
+        componentStats: stat
+    };
+}
+
 /**
  * Walk though documented files in project and generate particular page (if path specified) or full docset if no string
  * provided.
@@ -59,23 +82,6 @@ function getCachedTemplates(type, path) {
  */
 function makeComponent(url) {
     let docSet = [];
-
-    function prepareContent(component) {
-        const content = pageContent(component.src, {'title': component.title});
-        let stat;
-        if (component.type === 'component' || component.type === 'layout') {
-            stat = statistics(
-                componentStat.getStatFor(component.src, componentPrefixes),
-                componentImports(component.src)
-            );
-        }
-
-        return {
-            documentation: content.content,
-            toc: content.toc,
-            componentStats: stat
-        };
-    }
 
     function traverseDocumentedTree(components, targetPath) {
         components.forEach(component => {
@@ -104,13 +110,16 @@ function makeComponent(url) {
     }
     traverseDocumentedTree(projectTree.subPages, url);
 
-    docSet.push({
-        title: 'atlas',
-        target: path.join(atlasBase.guideDest, '/index.html'),
-        templateString: fs.readFileSync(atlasBase.templates.index, 'utf8'),
-        type: 'index',
-        content: projectTree
-    });
+    // build index on buildAll only
+    if (url === undefined) {
+        docSet.push({
+            title: 'atlas',
+            target: path.join(atlasBase.guideDest, '/index.html'),
+            templateString: fs.readFileSync(atlasBase.templates.index, 'utf8'),
+            type: 'index',
+            content: projectTree
+        });
+    }
 
     return Promise.all(docSet.map(writePage));
 }

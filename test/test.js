@@ -39,7 +39,7 @@ describe('Atlas', function() {
         });
 
         describe('Single component', function() {
-            const expectedFile = path.join(cwd, guideDest, 'atlas__component.html');
+            const expectedFile = path.join(cwd, guideDest, 'atlas_component.html');
 
             before(function(done) {
                 const atlas = require(cwd + '/app/atlas-guide');
@@ -62,16 +62,6 @@ describe('Atlas', function() {
                 const head = /project.css/.test(expectedFileContent);
                 const footer = /project.js/.test(expectedFileContent);
                 assert.strictEqual(footer && head, true, 'component file have overloaded template');
-            });
-
-            it('should contain another components in navigation', function() {
-                const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const categoryLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="category-guide.html"/
-                    .test(expectedFileContent);
-                const rootLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="atlas-guide.html"/
-                    .test(expectedFileContent);
-                assert.strictEqual(categoryLink && rootLink, true,
-                    'component contain another components in navigation');
             });
 
             it('should process all files when no exclusion is declared');
@@ -141,15 +131,16 @@ describe('Atlas', function() {
 
             it('reports should be written', function() {
                 const fileCount = fs.readdirSync(guideDest).length;
-                assert.strictEqual(fileCount, 8, 'folder contain needed files count');
+                assert.strictEqual(fileCount, 9, 'folder contain needed files count');
             });
             it('should not process excluded files', function() {
                 const actual = fs.readdirSync(guideDest);
                 const expected = [
+                    'about.html',
                     'atlas-guide.html',
-                    'atlas__component.html',
+                    'atlas_component.html',
                     'category-guide.html',
-                    'category__component.html',
+                    'category_component.html',
                     'imports.html',
                     'index.html',
                     'insights.html',
@@ -197,8 +188,16 @@ describe('Atlas', function() {
             });
             it('should have subcategories files', function() {
                 const guide = fs.existsSync(path.join(guideDest, 'category-guide.html'));
-                const component = fs.existsSync(path.join(guideDest, 'category__component.html'));
+                const component = fs.existsSync(path.join(guideDest, 'category_component.html'));
                 assert.strictEqual(guide && component, true, 'subcategory guide and component files exist');
+            });
+            it('index should contain another components in navigation', function() {
+                const index = fs.readFileSync(path.join(guideDest, 'index.html'));
+                const categoryLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="category-guide.html"/
+                    .test(index);
+                const rootLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="atlas-guide.html"/.test(index);
+                assert.strictEqual(categoryLink && rootLink, true,
+                    'component contain another components in navigation');
             });
             it('should have internal templates');
 
