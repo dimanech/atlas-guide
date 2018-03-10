@@ -39,7 +39,7 @@ describe('Atlas', function() {
         });
 
         describe('Single component', function() {
-            const expectedFile = path.join(cwd, guideDest, 'atlas_component.html');
+            const expectedFile = path.join(cwd, guideDest, 'component.html');
 
             before(function(done) {
                 const atlas = require(cwd + '/app/atlas-guide');
@@ -76,7 +76,7 @@ describe('Atlas', function() {
         });
 
         describe('Single guideline', function() {
-            const expectedFile = path.join(cwd, guideDest, 'atlas-guide.html');
+            const expectedFile = path.join(cwd, guideDest, 'doc-guide.html');
 
             before(function(done) {
                 const atlas = require(cwd + '/app/atlas-guide');
@@ -85,7 +85,7 @@ describe('Atlas', function() {
 
             it('only one file should be written', function() {
                 const actual = fs.readdirSync(guideDest);
-                const expected = ['atlas-guide.html'];
+                const expected = ['doc-guide.html'];
                 assert.deepEqual(actual, expected, 'folder contain other files');
             });
 
@@ -123,7 +123,7 @@ describe('Atlas', function() {
             });
         });
 
-        describe('All', function() {
+        describe.only('All', function() {
             before(function(done) {
                 const atlas = require(cwd + '/app/atlas-guide');
                 atlas.buildAll().then(() => done());
@@ -137,11 +137,11 @@ describe('Atlas', function() {
                 const actual = fs.readdirSync(guideDest);
                 const expected = [
                     'about.html',
-                    'atlas-guide.html',
-                    'atlas_component.html',
                     'bundle.html',
-                    'category-guide.html',
-                    'category_component.html',
+                    'category-component.html',
+                    'category-doc-guide.html',
+                    'component.html',
+                    'doc-guide.html',
                     'index.html',
                     'insights.html'
                 ];
@@ -186,15 +186,16 @@ describe('Atlas', function() {
                 assert.strictEqual(isContain, true, 'contain right data');
             });
             it('should have subcategories files', function() {
-                const guide = fs.existsSync(path.join(guideDest, 'category-guide.html'));
-                const component = fs.existsSync(path.join(guideDest, 'category_component.html'));
+                const guide = fs.existsSync(path.join(guideDest, 'category-doc-guide.html'));
+                const component = fs.existsSync(path.join(guideDest, 'category-component.html'));
                 assert.strictEqual(guide && component, true, 'subcategory guide and component files exist');
             });
             it('index should contain another components in navigation', function() {
                 const index = fs.readFileSync(path.join(guideDest, 'index.html'));
-                const categoryLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="category-guide.html"/
-                    .test(index);
-                const rootLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="atlas-guide.html"/.test(index);
+                const categoryLink =
+                    /class="atlas-nav__ln _guide js-atlas-nav-ln" href="category-doc-guide.html"/
+                        .test(index);
+                const rootLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="doc-guide.html"/.test(index);
                 assert.strictEqual(categoryLink && rootLink, true,
                     'component contain another components in navigation');
             });
