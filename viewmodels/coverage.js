@@ -1,6 +1,7 @@
 'use strict';
 
 const d3scale = require('d3-scale');
+const d3fmt = require('d3-format');
 
 module.exports = function(coverage) {
     const scale = d3scale.scaleLinear()
@@ -9,7 +10,7 @@ module.exports = function(coverage) {
     const coveredPercent = coverage.all / 100 * coverage.covered;
 
     return {
-        'coveredPercent': coveredPercent,
+        'coveredPercent': d3fmt.format('.1f')(coveredPercent),
         'all': coverage.all,
         'covered': coverage.covered,
         'graph': {
