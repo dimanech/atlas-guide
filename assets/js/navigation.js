@@ -59,10 +59,12 @@
     });
 
     window.addEventListener('load', function() {
-        getPage(window.location.hash.replace(/#/, ''));
+        if (window.location.hash !== '') {
+            getPage(window.location.hash.replace(/#/, ''));
+        }
     });
 
-    document.addEventListener('frameLoaded', function () {
+    document.addEventListener('frameLoaded', function() {
         body.classList.remove('js-loading-frame');
     });
 }());
