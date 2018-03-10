@@ -4,6 +4,7 @@
     const navigation = document.getElementById('js-atlas-navigation');
     const navigationLinks = document.querySelectorAll('.js-atlas-nav-ln');
     const body = document.body;
+    const isLocalFile = window.location.protocol === 'file:';
 
     function menuCollapse(ev) {
         if (!ev.target.classList.contains('_category')) {
@@ -52,14 +53,16 @@
         event.preventDefault();
         setPage(href, link.getAttribute('data-name'));
         highlightCurrentPage();
-        body.classList.add('js-loading-frame');
+        if (!isLocalFile) {
+            body.classList.add('js-loading-frame');
+        }
     });
 
     window.addEventListener('load', function() {
         getPage(window.location.hash.replace(/#/, ''));
     });
 
-    document.addEventListener('frameLoaded', function() {
+    document.addEventListener('frameLoaded', function () {
         body.classList.remove('js-loading-frame');
     });
 }());

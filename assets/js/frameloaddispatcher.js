@@ -1,7 +1,8 @@
 'use strict';
 (function () {
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log(parent.document)
-        return parent.document.dispatchEvent(new Event('frameLoaded'));
-    });
+    if (window.location.protocol !== 'file:') {
+        document.addEventListener('DOMContentLoaded', function () {
+            return parent.document.dispatchEvent(new Event('frameLoaded'));
+        });
+    }
 }());
