@@ -23,7 +23,7 @@ function ruleSetChart(dataArr) {
     const height = 64;
     const max = Math.max(...dataArr);
     const scaleX = d3scale.scaleLinear()
-        .domain([0, dataArr.length])
+        .domain([0, dataArr.length - 1])
         .range([0, width]);
 
     const scaleY = d3scale.scaleLinear()
