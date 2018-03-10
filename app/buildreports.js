@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 
-module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
+module.exports = function(atlasConfig, importsGraph) {
     // Utils
     const writePage = require(path.join(__dirname, 'utils/renderpage.js'));
 
@@ -29,28 +29,21 @@ module.exports = function(atlasConfig, projectDocumentedTree, importsGraph) {
 
     // Page configs
     const reportsPages = [{
-        'id': 'sizes',
-        'title': 'sizes',
-        'target': path.join(guideDest, '/sizes.html'),
-        'templateString': fs.readFileSync(templates.sizes, 'utf8'),
+        'id': 'bundle',
+        'title': 'bundle',
+        'target': path.join(guideDest, '/bundle.html'),
+        'templateString': fs.readFileSync(templates.bundle, 'utf8'),
         'type': 'insights',
-        'subPages': projectDocumentedTree.subPages,
-        'content': statFileWeight(projectFileSizes)
-    }, {
-        'id': 'imports',
-        'title': 'imports',
-        'target': path.join(guideDest, '/imports.html'),
-        'templateString': fs.readFileSync(templates.imports, 'utf8'),
-        'type': 'imports',
-        'subPages': projectDocumentedTree.subPages,
-        'content': statImports(importsGraph, excludedSassFiles)
+        'content': {
+            weight: statFileWeight(projectFileSizes),
+            imports: statImports(importsGraph, excludedSassFiles)
+        }
     }, {
         'id': 'insides',
         'title': 'insides',
         'target': path.join(guideDest, '/insights.html'),
         'templateString': fs.readFileSync(templates.insights, 'utf8'),
         'type': 'insights',
-        'subPages': projectDocumentedTree.subPages,
         'content': statProject(projectStat, projectName)
     }];
 

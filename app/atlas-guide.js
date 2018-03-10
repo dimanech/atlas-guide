@@ -129,7 +129,7 @@ module.exports = {
     'buildAll': function() {
         return Promise.all([
             makeComponent(),
-            require('./buildreports.js')(atlasConfig, projectTree, importsGraph)
+            require('./buildreports.js')(atlasConfig, importsGraph)
         ]);
     }
 };

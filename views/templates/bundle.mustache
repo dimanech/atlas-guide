@@ -1,0 +1,96 @@
+{{> header}}
+
+<link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-insights.css"/>
+
+<div class="atlas-stat-sizes-page-title">
+    <div class="atlas-component-type-ico">
+        <svg width="16" height="16" role="img">
+            <use xlink:href="#icon-bundle"></use>
+        </svg>
+        Bundle
+    </div>
+    <div class="atlas-section">
+        <h1 class="atlas atlas-title atlas-title_1">
+        <span class="atlas-title__text">
+            {{projectInfo.name}}
+        </span>
+        </h1>
+    </div>
+</div>
+
+<section class="atlas-stat-sheet">
+    <header class="atlas-stat-header">
+        <h1 class="atlas-stat-header__title">
+            Cross dependencies graph
+        </h1>
+    </header>
+
+    <svg id="js-cross-dependencies-graph" class="b-cross-dependencies-graph"></svg>
+
+    <div class="b-cross-dependencies-legend atlas atlas-p">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-about"></use>
+        </svg>
+        <p class="b-cross-dependencies-legend__caption">This graph shows cross components dependencies and help you run
+            project without unneeded relations and orphans.</p>
+        <p class="b-cross-dependencies-legend__example">For example, global components bundle should not have any
+            dependencies, since by the name it already included in all
+            areas. Also components that not included in any resulted CSS file probably redundant.</p>
+        <ul class="b-cross-dependencies-legend__list">
+            <li>
+                <svg width="4.5" height="4.5">
+                    <circle r="4.5" cx="4.5" cy="4.5" fill="#307fe2"></circle>
+                </svg>
+                <p> - standalone file</p>
+            </li>
+            <li>
+                <svg width="4.5" height="4.5">
+                    <circle r="2" cx="3" cy="4.5" fill="#307fe2"></circle>
+                </svg>
+                <p> - partial file</p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="atlas-stat-sheet">
+    <header class="atlas-stat-header">
+        <h1 class="atlas-stat-header__title">
+            Components sizes
+        </h1>
+    </header>
+    <ul class="atlas-stat-sizes-grid">
+        {{#content.weight}}
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="{{svg.radius}}" height="{{svg.radius}}">
+                        <rect width="{{svg.radius}}" height="{{svg.radius}}" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">{{view.size}}</p>
+                        <h2 class="atlas-stat-size-file__title">{{filename}}</h2>
+                    </figcaption>
+                </figure>
+            </li>
+        {{/content.weight}}
+    </ul>
+    <div class="b-cross-dependencies-legend atlas atlas-p">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-about"></use>
+        </svg>
+        <p class="b-cross-dependencies-legend__caption">
+            Note that this is approximation of size. Some components could contain includes that may change
+            size of compiled component dramatically.
+        </p>
+        <div class="b-cross-dependencies-legend__example">&nbsp;</div>
+        <div class="b-cross-dependencies-legend__list">&nbsp;</div>
+    </div>
+</section>
+
+<script>
+    window.importsData ={{{content.imports}}};
+</script>
+<script src="assets/js/d3.v4.min.js"></script>
+<script src="assets/js/d3importsgraph.js"></script>
+
+{{> footer}}

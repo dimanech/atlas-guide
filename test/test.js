@@ -131,7 +131,7 @@ describe('Atlas', function() {
 
             it('reports should be written', function() {
                 const fileCount = fs.readdirSync(guideDest).length;
-                assert.strictEqual(fileCount, 9, 'folder contain needed files count');
+                assert.strictEqual(fileCount, 8, 'folder contain needed files count');
             });
             it('should not process excluded files', function() {
                 const actual = fs.readdirSync(guideDest);
@@ -139,12 +139,11 @@ describe('Atlas', function() {
                     'about.html',
                     'atlas-guide.html',
                     'atlas_component.html',
+                    'bundle.html',
                     'category-guide.html',
                     'category_component.html',
-                    'imports.html',
                     'index.html',
-                    'insights.html',
-                    'sizes.html'
+                    'insights.html'
                 ];
                 assert.deepEqual(actual, expected, 'folder do not contain exclude files');
             });
@@ -174,14 +173,14 @@ describe('Atlas', function() {
                 const projectContaminatedStat = /atlas-guide/.test(fileContent);
                 assert.strictEqual(individualStat && projectContaminatedStat, true, 'contain right data');
             });
-            it('imports should be with data', function() {
-                const fileContent = fs.readFileSync(guideDest + 'imports.html', 'utf8');
+            it('bundle should be with imports', function() {
+                const fileContent = fs.readFileSync(guideDest + 'bundle.html', 'utf8');
                 const isContain = /"id":"css\/style.css","depth":1,"mass":0},{"id":"style","depth":1,"mass":2}/
                     .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
-            it('sizes should be with sizes chart', function() {
-                const fileContent = fs.readFileSync(guideDest + 'sizes.html', 'utf8');
+            it('bundle should be with sizes chart', function() {
+                const fileContent = fs.readFileSync(guideDest + 'bundle.html', 'utf8');
                 const isContain = /<p class="atlas-stat-size-file__size">70B<\/p>/
                     .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');

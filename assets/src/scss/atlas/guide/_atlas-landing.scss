@@ -44,11 +44,12 @@ $accent: $guide-color-text;
 	}
 
 	&__title {
-		font-size: 6rem;
+		font-size: 4rem;
 		font-weight: normal;
 		hyphens: manual;
-		line-height: $space-md-guide * 4;
+		line-height: $space-md-guide * 3;
 		margin-bottom: $space-md-guide;
+		text-align: right;
 
 		strong {
 			display: block;

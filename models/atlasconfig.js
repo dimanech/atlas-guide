@@ -153,11 +153,10 @@ function getBaseConfig(configRaw) {
         let templates = {
             'component': '',
             'guide': '',
-            'imports': '',
             'about': '',
             'index': '',
             'insights': '',
-            'sizes': ''
+            'bundle': ''
         };
 
         for (let template in templates) {

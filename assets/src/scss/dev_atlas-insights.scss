@@ -2,6 +2,12 @@
 
 @import "dev-atlas-settings";
 
+@import "atlas/frame/atlas-loader";
+
+@import "atlas/insights/b-cross-dependencies-graph";
+@import "atlas/insights/atlas-stat-sizes-grid";
+@import "atlas/insights/atlas-stat-size-file";
+
 @import "atlas/insights/atlas-stat-section";
 @import "atlas/insights/atlas-stat-list";
 @import "atlas/insights/atlas-stat-header";
@@ -13,5 +19,4 @@
 @import "atlas/insights/atlas-stat-info";
 @import "atlas/insights/atlas-stat-space";
 @import "atlas/insights/atlas-stat-font-scale";
-@import "atlas/frame/atlas-loader";
 @import "atlas/insights/atlas-stat-chart";

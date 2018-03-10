@@ -25,10 +25,10 @@
 
 .b-cross-dependencies-legend {
 	align-items: start;
-	border-top: 1px solid $guide-color-divider;
+	//border-top: 1px solid $guide-color-divider;
 	display: flex;
 	justify-content: space-between;
-	margin: $space-sm-guide 0 0;
+	margin: $space-sm-guide 0 $space-lg-guide;
 	max-width: none;
 	padding: $scale-sm-guide 0 0;
 

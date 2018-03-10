@@ -196,12 +196,12 @@ and partials.
     "excludedDirs": "dev_",
     "copyInternalAssets": true,
     "templates": {
+        "about": "",
+        "bundle": "",
         "component": "",
-        "docs": "",
-        "imports": "",
+        "guide": "",
         "index": "",
-        "insights": "",
-        "size": ""
+        "insights": ""
     },
     "includes": {
         "aside": "",
