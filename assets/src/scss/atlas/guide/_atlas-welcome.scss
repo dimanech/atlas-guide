@@ -1,0 +1,29 @@
+.atlas-welcome {
+	color: $fg;
+	display: flex;
+	font-family: $font-sans-guide;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	overflow: hidden;
+	position: relative;
+
+	&__column {
+		min-width: 33%;
+		position: relative;
+		z-index: 1;
+	}
+
+	&__title {
+		font-size: 4rem;
+		font-weight: normal;
+		hyphens: manual;
+		line-height: $space-md-guide * 3;
+		margin-bottom: $space-md-guide;
+		text-align: right;
+
+		strong {
+			display: block;
+			font-weight: normal;
+		}
+	}
+}
