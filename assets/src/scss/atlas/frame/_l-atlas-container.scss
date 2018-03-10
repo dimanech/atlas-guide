@@ -9,7 +9,7 @@
 	height: 100%;
 
 	&__aside {
-		box-shadow: 0 0 0 1px $aside-bd;
+		box-shadow: 1px 0 0 0 $aside-bd;
 		height: 100vh;
 		position: relative;
 		transition: width ease 0.2s;
