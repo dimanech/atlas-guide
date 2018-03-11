@@ -123,7 +123,7 @@ describe('Atlas', function() {
             });
         });
 
-        describe.only('All', function() {
+        describe('All', function() {
             before(function(done) {
                 const atlas = require(cwd + '/app/atlas-guide');
                 atlas.buildAll().then(() => done());
