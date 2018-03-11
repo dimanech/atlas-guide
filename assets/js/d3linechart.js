@@ -48,7 +48,7 @@
     LineChart.prototype.initChart = function() {
         const d3 = window.d3;
         const margin = {top: 20, right: 0, bottom: 10, left: 20};
-        const width = (document.querySelector('.atlas-stat-sheet').offsetWidth);
+        const width = document.querySelector('.atlas-stat-sheet').offsetWidth;
         const height = 400;
         const svg = d3.select(this.instance);
         const data = this.chartData;

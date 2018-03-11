@@ -2,13 +2,14 @@
 
 (function () {
     const d3 = window.d3;
-    const height = 2000;
-    const width = 2000;
+    const height = window.innerHeight;
+    const width = document.querySelector('.atlas-content').offsetWidth;
 
     const rawdata = window.importsPaths;
     const maxSize = d3.max(Object.keys(rawdata).map(d => rawdata[d].size));
 
     const z = d3.scaleOrdinal()
+        .domain([0, maxSize])
         .range(['#8bc34a', '#ffc107', '#307fe2']);
     const fileSize = d3.scaleLinear()
         .domain([0, maxSize])
@@ -19,12 +20,10 @@
     }
 
     function rotateText(d) {
-        if (d.children) {
+        if (d.depth === 0) {
             return 0;
         } else {
             return (d.x < Math.PI ? (d.x - Math.PI / 2) : (d.x + Math.PI / 2)) * (180 / Math.PI);
-            // return (d.x < Math.PI ? (d.x - Math.PI / 2) : (d.x + Math.PI / 2)) * (180 / Math.PI) / 10;
-            // return d.x < Math.PI ? (d.x - Math.PI / 2) * (90 / Math.PI) : (d.x + Math.PI / 2) * (180 / Math.PI);
         }
     }
 
@@ -54,15 +53,26 @@
         .separation((a, b) => (a.parent === b.parent ? 1 : 2) / a.depth)
         .size([2 * Math.PI, 500])(data);
 
-    // data.descendants().forEach(d => d.y = d.depth === 1 ? 200 : 200 + (d.depth * 150)); // normalize levels
-    data.descendants().forEach(d => d.y = 150 * d.depth); // normalize levels
+    data.descendants().forEach(d => {
+        let y;
+        if (d.depth === 1) {
+            y = 300;
+        } else if (d.depth === 0) {
+            y = 0;
+        } else {
+            y = 100 * d.depth + 300;
+        }
+        return d.y = y;
+    });
 
     const svg = d3.select('#js-graph-svg')
         .attr('width', width)
         .attr('height', height);
 
-    const inner = svg.append('g')
-        .attr('transform', 'translate(' + (width / 2 + 40) + ',' + (height / 2 + 90) + ')');
+    const wrapper = svg.append('g');
+
+    const inner = wrapper.append('g')
+        .attr('transform', 'translate(' + (width / 2 + 40) + ',' + (height / 2 + 40) + ') scale(0.5)');
 
     inner.selectAll('.link')
         .data(data.descendants().slice(1))
@@ -99,4 +109,18 @@
         .attr('text-anchor', d => d.x < Math.PI === !d.children ? 'start' : 'end')
         .attr('transform', d => 'rotate(' + rotateText(d) + ')')
         .text(d => d.id.substring(d.id.lastIndexOf('/') + 1));
+
+    function zoomed() {
+        wrapper.attr('transform', d3.event.transform);
+    }
+
+    svg.append('rect')
+        .attr('width', width)
+        .attr('height', height)
+        .style('fill', 'none')
+        .style('pointer-events', 'all')
+        .call(d3.zoom()
+            .scaleExtent([1 / 2, 4])
+            .on('zoom', zoomed))
+        .on('wheel.zoom', null);
 })();
