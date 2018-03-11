@@ -59,14 +59,35 @@
                 </section>
 
                 {{#sizes}}
+                    <h2 class="atlas-stat-title">Size</h2>
+
                     <section class="atlas-stat-section">
                         <h2 class="atlas-stat-section__title">Files size</h2>
                         {{{sizes}}}
                     </section>
                 {{/sizes}}
 
+                <h2 class="atlas-stat-title">Selectors and rules</h2>
+
+                {{#selectors}}
+                    <section class="atlas-stat-section">
+                        <h2 class="atlas-stat-section__title">Selectors used</h2>
+
+                        <ul class="atlas-stat-columns">
+                            {{#stat}}
+                                <li class="atlas-stat-columns__item">
+                                    <figure class="atlas-stat-digit">
+                                        <p class="atlas-stat-digit__data">{{count}}</p>
+                                        <figcaption class="atlas-stat-digit__caption">{{name}}</figcaption>
+                                    </figure>
+                                </li>
+                            {{/stat}}
+                        </ul>
+                    </section>
+                {{/selectors}}
+
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         Specificity Graph
                         <span class="atlas-stat-info">
                             <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
@@ -77,12 +98,12 @@
                                 and not scaled well during project lifetime
                             </span>
                         </span>
-                    </h2>
+                    </h3>
                     {{{specificityChart.chart}}}
 
                     <div class="atlas-stat-columns _selectors">
                         <section class="atlas-stat-columns__item">
-                            <h2 class="atlas-stat-columns__title">
+                            <h4 class="atlas-stat-columns__title">
                                 {{specificityTops.length}}
                                 {{#pluralize}}{{specificityTops.length}},Heavy selector,Heavy selectors{{/pluralize}}
                                 <span class="atlas-stat-info">
@@ -91,7 +112,7 @@
                                         This selectors should be simplified
                                     </span>
                                 </span>
-                            </h2>
+                            </h4>
                             {{#specificityTops.length}}
                             <div class="atlas-stat-scroll-view">
                                 <table class="atlas-stat-table">
@@ -122,7 +143,7 @@
                             {{/specificityTops.length}}
                         </section>
                         <section class="atlas-stat-columns__item">
-                            <h2 class="atlas-stat-columns__title">
+                            <h4 class="atlas-stat-columns__title">
                                 {{selectorsListTops.length}}
                                 {{#pluralize}}{{selectorsListTops.length}},Long selectors list,Long selectors lists{{/pluralize}}
                                 <span class="atlas-stat-info">
@@ -131,7 +152,7 @@
                                         This selectors is potential candidates for simple CSS class
                                     </span>
                                 </span>
-                            </h2>
+                            </h4>
                             {{#selectorsListTops.length}}
                             <div class="atlas-stat-scroll-view">
                                 <table class="atlas-stat-table">
@@ -165,7 +186,7 @@
                 </section>
 
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         Ruleset Size
                         <span class="atlas-stat-info">
                             <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
@@ -173,13 +194,13 @@
                                 This graph show you places with selectors that have 15 or more rules inside
                             </span>
                         </span>
-                    </h2>
+                    </h3>
                     <p class="atlas-stat-chart-caption">Number of declarations per ruleset</p>
                     {{{rulesizeChart.chart}}}
 
                     <div class="atlas-stat-columns _selectors">
                         <section class="atlas-stat-columns__item">
-                            <h2 class="atlas-stat-columns__title">
+                            <h4 class="atlas-stat-columns__title">
                                 {{rulesizeTops.heavy.length}}
                                 {{#pluralize}}{{rulesizeTops.heavy.length}},Heavy ruleset,Heavy rulesets{{/pluralize}}
                                 <span class="atlas-stat-info">
@@ -188,7 +209,7 @@
                                         This classes potentially could be changed to single global class
                                     </span>
                                 </span>
-                            </h2>
+                            </h4>
                             {{#rulesizeTops.heavy.length}}
                                 <div class="atlas-stat-scroll-view">
                                     <table class="atlas-stat-table">
@@ -219,7 +240,7 @@
                             {{/rulesizeTops.heavy.length}}
                         </section>
                         <section class="atlas-stat-columns__item">
-                            <h2 class="atlas-stat-columns__title">
+                            <h4 class="atlas-stat-columns__title">
                                 {{rulesizeTops.light.length}}
                                 {{#pluralize}}{{rulesizeTops.light.length}},Empty ruleset,Empty rulesets{{/pluralize}}
                                 <span class="atlas-stat-info">
@@ -228,7 +249,7 @@
                                         This selectors should be removed from project
                                     </span>
                                 </span>
-                            </h2>
+                            </h4>
                             {{#rulesizeTops.light.length}}
                                 <div class="atlas-stat-scroll-view">
                                     <table class="atlas-stat-table">
@@ -261,9 +282,89 @@
                     </div>
                 </section>
 
+                <div class="atlas-stat-columns _selectors">
+                    {{#selectors}}
+                    <div class="atlas-stat-columns__item">
+                        <h3 class="atlas-stat-section__title-sub">
+                            js- prefixed selectors
+                            <span class="atlas-stat-info">
+                                <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
+                                <span class="atlas-stat-info__popup">
+                                    This selectors should not be used for styling
+                                </span>
+                            </span>
+                        </h3>
+                        <ul class="atlas-stat-list">
+                            {{#jsPrefixedSelectors}}
+                                <li class="atlas-stat-list__item">
+                                    <p class="atlas-stat-item">{{.}}</p>
+                                </li>
+                            {{/jsPrefixedSelectors}}
+                        </ul>
+                    </div>
+                    <div class="atlas-stat-columns__item">
+                        <h3 class="atlas-stat-section__title-sub">
+                            Universal selectors
+                            <span class="atlas-stat-info">
+                                <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
+                                <span class="atlas-stat-info__popup">
+                                    Universal selectors highly could affect performance and encapsulation of components
+                                </span>
+                            </span>
+                        </h3>
+                        <ul class="atlas-stat-list">
+                            {{#universalSelectors}}
+                                <li class="atlas-stat-list__item">
+                                    <p class="atlas-stat-item">{{.}}</p>
+                                </li>
+                            {{/universalSelectors}}
+                        </ul>
+                    </div>
+                    <div class="atlas-stat-columns__item">
+                        <h3 class="atlas-stat-section__title-sub">
+                            Id selectors
+                            <span class="atlas-stat-info">
+                                <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
+                                <span class="atlas-stat-info__popup">
+                                    It is bad practice to use id as selector for specificity and reusability reasons.
+                                </span>
+                            </span>
+                        </h3>
+                        <ul class="atlas-stat-list">
+                            {{#idSelectors}}
+                                <li class="atlas-stat-list__item">
+                                    <p class="atlas-stat-item">{{.}}</p>
+                                </li>
+                            {{/idSelectors}}
+                        </ul>
+                    </div>
+                    {{/selectors}}
+                    <div class="atlas-stat-columns__item">
+                        <h3 class="atlas-stat-section__title-sub">
+                            {{importantRules.count}} Important rules
+                            <span class="atlas-stat-info">
+                                <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
+                                <span class="atlas-stat-info__popup">
+                                    Important rules could dramatically reduce project maintainability and scalability
+                                </span>
+                            </span>
+                        </h3>
+                        <ul class="atlas-stat-list">
+                            {{#importantRules.rules}}
+                                <li class="atlas-stat-list__item">
+                                    <p class="atlas-stat-item">{{property}}: {{value}}</p>
+                                </li>
+                            {{/importantRules.rules}}
+                        </ul>
+                    </div>
+                </div>
+
+
+                <h2 class="atlas-stat-title">Consistency</h2>
+
                 {{#uniquesChart.total}}
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         Total vs. Unique Declarations
                         <span class="atlas-stat-info">
                             <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
@@ -271,7 +372,7 @@
                                 This graph could show how effective is code organized and reused over styling properties
                             </span>
                         </span>
-                    </h2>
+                    </h3>
                     <p class="atlas-stat-chart-caption">{{uniquesChart.total}} total, {{uniquesChart.unique}} unique declarations</p>
                     <div class="atlas-stat-chart">
                         <div class="atlas-stat-chart__item">
@@ -303,10 +404,10 @@
                 {{/uniquesChart.total}}
 
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         {{uniques.color.length}}
                         {{#pluralize}}{{uniques.color.length}},Unique Color,Unique Colors{{/pluralize}}
-                    </h2>
+                    </h3>
                     {{#uniques.color.length}}
                     <ul class="atlas-stat-columns _condenced">
                         {{#uniques.color}}
@@ -322,10 +423,10 @@
                 </section>
 
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         {{uniques.backgroundColor.length}}
                         {{#pluralize}}{{uniques.backgroundColor.length}},Unique Background Color,Unique Background Colors{{/pluralize}}
-                    </h2>
+                    </h3>
                     {{#uniques.backgroundColor.length}}
                     <ul class="atlas-stat-columns _colors">
                         {{#uniques.backgroundColor}}
@@ -343,10 +444,10 @@
                 </section>
 
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         {{uniques.fontSize.length}}
                         {{#pluralize}}{{uniques.fontSize.length}},Unique Font Size,Unique Font Sizes{{/pluralize}}
-                    </h2>
+                    </h3>
                     {{#uniques.fontSize.length}}
                     <ul class="atlas-stat-font-scale">
                         {{#uniques.fontSizeSorted}}
@@ -364,10 +465,10 @@
                 </section>
 
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         {{uniques.fontFamily.length}}
                         {{#pluralize}}{{uniques.fontFamily.length}},Unique Font Family,Unique Font Families{{/pluralize}}
-                    </h2>
+                    </h3>
                     {{#uniques.fontFamily.length}}
                     <ol class="atlas-stat-columns _fonts">
                         {{#uniques.fontFamily}}
@@ -394,10 +495,10 @@
                 </section>
 
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         {{uniques.borderRadius.length}}
                         {{#pluralize}}{{uniques.borderRadius.length}},Unique Border Radius,Unique Border Radii{{/pluralize}}
-                    </h2>
+                    </h3>
                     <ul class="atlas-stat-list _indexes">
                         {{#uniques.borderRadius}}
                             <li class="atlas-stat-list__item">
@@ -408,10 +509,10 @@
                 </section>
 
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         {{uniques.zIndex.length}}
                         {{#pluralize}}{{uniques.zIndex.length}},Unique Z Index,Unique Z Indices{{/pluralize}}
-                    </h2>
+                    </h3>
                     <ul class="atlas-stat-list _indexes">
                         {{#uniques.zIndexSorted}}
                             <li class="atlas-stat-list__item">
@@ -423,7 +524,7 @@
 
                 {{#uniquesChart.total}}
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         Total vs. Unique Space/Metric Declarations
                         <span class="atlas-stat-info">
                             <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
@@ -431,7 +532,7 @@
                                 This graph could show how effective is code organized and reused over space and metric properties
                             </span>
                         </span>
-                    </h2>
+                    </h3>
                     <p class="atlas-stat-chart-caption">{{uniquesChart.total}} total, {{uniquesChart.unique}} unique declarations</p>
                     <div class="atlas-stat-chart">
                         <div class="atlas-stat-chart__item">
@@ -521,7 +622,7 @@
                 {{/uniquesChart.total}}
 
                 <section class="atlas-stat-section">
-                    <h2 class="atlas-stat-section__title">
+                    <h3 class="atlas-stat-section__title">
                         {{uniques.mediaQueries.length}}
                         {{#pluralize}}{{uniques.mediaQueries.length}},Media Query,Media Queries{{/pluralize}}
                         <span class="atlas-stat-info">
@@ -530,7 +631,7 @@
                                 Consistency of media queries utilization on the project
                             </span>
                         </span>
-                    </h2>
+                    </h3>
                     <ul class="atlas-stat-list">
                         {{#uniques.mediaQueries}}
                             <li class="atlas-stat-list__item">

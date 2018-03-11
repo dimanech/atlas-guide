@@ -2,6 +2,8 @@
 	color: $color-blue-guide;
 	font-family: $font-mono-guide;
 	font-size: 0.8rem;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
 	font-weight: bold;
 	line-height: 1.2;
 	list-style-type: disc;
