@@ -1,6 +1,6 @@
 {
     "guideSrc": "assets/src/scss/",
-    "guideDest": "atlas",
+    "guideDest": "./",
     "cssSrc": "assets/css/",
     "copyInternalAssets": false,
     "excludedSassFiles": "_dev-atlas-settings",
