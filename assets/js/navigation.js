@@ -61,6 +61,8 @@
     window.addEventListener('load', function() {
         if (window.location.hash !== '') {
             getPage(window.location.hash.replace(/#/, ''));
+        } else {
+            getPage('about.html');
         }
     });
 
