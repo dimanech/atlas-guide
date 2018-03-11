@@ -2,6 +2,7 @@
 
 (function () {
     const navigation = document.getElementById('js-atlas-navigation');
+    const navigationContent = document.getElementById('js-atlas-aside-content');
 
     function menuCollapse(ev) {
         if (!ev.target.classList.contains('_category')) {
@@ -23,13 +24,22 @@
         if (!linkCurrent) {
             return;
         }
-        const linkPosition = linkCurrent.getBoundingClientRect().top;
-
         linkCurrent.classList.add('js-current-page');
-        document.getElementById('js-atlas-aside-content').scrollTo(0, linkPosition - (window.innerHeight / 2));
+
+        const storedValue = window.sessionStorage.getItem('navigationScroll');
+        if (storedValue === null) {
+            const linkPosition = linkCurrent.getBoundingClientRect().top;
+            navigationContent.scrollTo(0, linkPosition - (window.innerHeight / 2));
+        }
+    }
+
+    function populateStorage() {
+        window.sessionStorage.setItem('navigationScroll', navigationContent.scrollTop);
     }
 
     navigation.addEventListener('click', menuCollapse);
+
+    window.addEventListener('beforeunload', populateStorage);
 
     highlightCurrentPage();
 }());
