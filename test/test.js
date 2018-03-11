@@ -39,7 +39,7 @@ describe('Atlas', function() {
         });
 
         describe('Single component', function() {
-            const expectedFile = path.join(cwd, guideDest, 'atlas__component.html');
+            const expectedFile = path.join(cwd, guideDest, 'component.html');
 
             before(function(done) {
                 const atlas = require(cwd + '/app/atlas-guide');
@@ -64,16 +64,6 @@ describe('Atlas', function() {
                 assert.strictEqual(footer && head, true, 'component file have overloaded template');
             });
 
-            it('should contain another components in navigation', function() {
-                const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const categoryLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="category-guide.html"/
-                    .test(expectedFileContent);
-                const rootLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="atlas-guide.html"/
-                    .test(expectedFileContent);
-                assert.strictEqual(categoryLink && rootLink, true,
-                    'component contain another components in navigation');
-            });
-
             it('should process all files when no exclusion is declared');
             it('should contain imports');
             it('should contain variables');
@@ -86,7 +76,7 @@ describe('Atlas', function() {
         });
 
         describe('Single guideline', function() {
-            const expectedFile = path.join(cwd, guideDest, 'atlas-guide.html');
+            const expectedFile = path.join(cwd, guideDest, 'doc-guide.html');
 
             before(function(done) {
                 const atlas = require(cwd + '/app/atlas-guide');
@@ -95,7 +85,7 @@ describe('Atlas', function() {
 
             it('only one file should be written', function() {
                 const actual = fs.readdirSync(guideDest);
-                const expected = ['atlas-guide.html'];
+                const expected = ['doc-guide.html'];
                 assert.deepEqual(actual, expected, 'folder contain other files');
             });
 
@@ -141,19 +131,18 @@ describe('Atlas', function() {
 
             it('reports should be written', function() {
                 const fileCount = fs.readdirSync(guideDest).length;
-                assert.strictEqual(fileCount, 8, 'folder contain needed files count');
+                assert.strictEqual(fileCount, 7, 'folder contain needed files count');
             });
             it('should not process excluded files', function() {
                 const actual = fs.readdirSync(guideDest);
                 const expected = [
-                    'atlas-guide.html',
-                    'atlas__component.html',
-                    'category-guide.html',
-                    'category__component.html',
-                    'imports.html',
+                    'bundle.html',
+                    'category-component.html',
+                    'category-doc-guide.html',
+                    'component.html',
+                    'doc-guide.html',
                     'index.html',
-                    'insights.html',
-                    'sizes.html'
+                    'insights.html'
                 ];
                 assert.deepEqual(actual, expected, 'folder do not contain exclude files');
             });
@@ -183,22 +172,31 @@ describe('Atlas', function() {
                 const projectContaminatedStat = /atlas-guide/.test(fileContent);
                 assert.strictEqual(individualStat && projectContaminatedStat, true, 'contain right data');
             });
-            it('imports should be with data', function() {
-                const fileContent = fs.readFileSync(guideDest + 'imports.html', 'utf8');
+            it('bundle should be with imports', function() {
+                const fileContent = fs.readFileSync(guideDest + 'bundle.html', 'utf8');
                 const isContain = /"id":"css\/style.css","depth":1,"mass":0},{"id":"style","depth":1,"mass":2}/
                     .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
-            it('sizes should be with sizes chart', function() {
-                const fileContent = fs.readFileSync(guideDest + 'sizes.html', 'utf8');
+            it('bundle should be with sizes chart', function() {
+                const fileContent = fs.readFileSync(guideDest + 'bundle.html', 'utf8');
                 const isContain = /<p class="atlas-stat-size-file__size">70B<\/p>/
                     .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
             it('should have subcategories files', function() {
-                const guide = fs.existsSync(path.join(guideDest, 'category-guide.html'));
-                const component = fs.existsSync(path.join(guideDest, 'category__component.html'));
+                const guide = fs.existsSync(path.join(guideDest, 'category-doc-guide.html'));
+                const component = fs.existsSync(path.join(guideDest, 'category-component.html'));
                 assert.strictEqual(guide && component, true, 'subcategory guide and component files exist');
+            });
+            it('index should contain another components in navigation', function() {
+                const index = fs.readFileSync(path.join(guideDest, 'index.html'));
+                const categoryLink =
+                    /class="atlas-nav__ln _guide js-atlas-nav-ln" href="category-doc-guide.html"/
+                        .test(index);
+                const rootLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="doc-guide.html"/.test(index);
+                assert.strictEqual(categoryLink && rootLink, true,
+                    'component contain another components in navigation');
             });
             it('should have internal templates');
 

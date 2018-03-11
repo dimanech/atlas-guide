@@ -22,19 +22,21 @@ const path = require('path');
  */
 function makeProjectTree(atlasConfig) {
     let docSet = {
-        'title': '',
         'coverage': {
             'all': 0,
             'covered': 0
         },
         'subPages': []
     };
+
     function isExcludedFile(name) {
         return atlasConfig.excludedSassFiles.test(name);
     }
+
     function isExcludedDirectory(name) {
         return atlasConfig.excludedDirs.test(name);
     }
+
     function isDocumented(filePath) {
         const file = fs.readFileSync(filePath, 'utf8');
         const docComment = /\/\*md(\r\n|\n)(((\r\n|\n)|.)*?)\*\//g;
@@ -52,7 +54,7 @@ function makeProjectTree(atlasConfig) {
     function findComponents(url, config, categoryName) {
         const dir = fs.readdirSync(url);
 
-        dir.forEach(res => {
+        dir.forEach(function(res) {
             let name = res;
             let target = path.join(url, name);
             let resource = fs.statSync(target);
@@ -63,8 +65,8 @@ function makeProjectTree(atlasConfig) {
                 }
                 if (path.extname(name) === '.scss' && isDocumented(target) && !isExcludedFile(name)) {
                     docSet.coverage.covered++;
-                    const id = categoryName + '_' + path.basename(name, '.scss');
-                    const title = path.basename(name, '.scss').replace(/_/i, '');
+                    const title = path.basename(name, '.scss').replace(/^_/i, '');
+                    const id = categoryName + title;
                     config.push({
                         id: id,
                         title: title,
@@ -76,7 +78,7 @@ function makeProjectTree(atlasConfig) {
                     });
                 }
                 if (path.extname(name) === '.md') {
-                    const id = categoryName + '-' + path.basename(name, '.md');
+                    const id = categoryName + 'doc-' + path.basename(name, '.md');
                     config.push({
                         id: id,
                         type: 'guide',
@@ -96,19 +98,20 @@ function makeProjectTree(atlasConfig) {
                 findComponents(
                     target,
                     config[config.length - 1].subPages,
-                    name
+                    categoryName + name + '-'
                 );
             }
         });
     }
+
     findComponents(
         atlasConfig.guideSrc,
         docSet.subPages,
-        'atlas'
+        ''
     );
 
-    if (atlasConfig.additionalPages.subPages !== undefined && atlasConfig.additionalPages.subPages.length) {
-        atlasConfig.additionalPages.subPages.forEach(item => docSet.subPages.push(item));
+    if (atlasConfig.additionalPages.length) {
+        atlasConfig.additionalPages.forEach(page => docSet.subPages.push(page));
     }
 
     return docSet;

@@ -62,7 +62,6 @@
         this.toggle.addEventListener('click', this.codeToggle.bind(this));
         this.editor.addEventListener('keyup', this.contentEdit.bind(this));
         window.addEventListener('resize', this.resize.bind(this));
-        document.addEventListener('resizeAside', this.resize.bind(this));
     };
 
     document.querySelectorAll('.js-playground').forEach(node => new Playground(node));

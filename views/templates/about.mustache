@@ -1,0 +1,22 @@
+{{> header}}
+
+<div class="atlas-landing">
+    <div class="atlas-landing__head">
+        <div class="atlas-landing__head-inner">
+            {{>welcome}}
+        </div>
+    </div>
+    <div class="atlas-landing__content">
+        <main class="atlas-landing__main">
+            <section>
+                <!-- this is hacky, but we have sections in markdown, so we need to open and close it on wrapper -->
+                {{{content.documentation}}}
+            </section>
+        </main>
+        <div class="atlas-landing__aside">
+            {{> toc}}
+        </div>
+    </div>
+</div>
+
+{{> footer}}

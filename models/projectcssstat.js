@@ -19,7 +19,10 @@ function getProjectStat(projectName, cssSrc, cssExcludedFiles) {
 
             projectCssStat.push({
                 'name': path.basename(fileName),
-                'stat': cssstat(fileContent)
+                'stat': cssstat(fileContent, {
+                    importantDeclarations: true,
+                    mediaQueries: false
+                })
             });
 
             // Prepare global project stat

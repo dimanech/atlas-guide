@@ -8,15 +8,11 @@
 	height: 100%;
 
 	&__aside {
-		//background-color: $aside-bg;
 		border-right: 1px solid $aside-bd;
 		bottom: 0;
 		left: 0;
-		//min-width: 200px;
 		position: fixed;
 		top: 0;
-		//transition: width ease 0.2s;
-		width: 270px;
 		z-index: 10;
 	}
 
@@ -42,15 +38,5 @@
 		.l-atlas-container__main {
 			margin-left: 5px;
 		}
-	}
-}
-
-.atlas-page_index {
-	.l-atlas-container__main {
-		margin-right: 270px;
-	}
-
-	.atlas-toc {
-		position: fixed;
 	}
 }

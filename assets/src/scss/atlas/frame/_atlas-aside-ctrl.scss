@@ -32,12 +32,25 @@
 
 	&:hover,
 	&:focus {
-		//background: rgba($aside-bd, 0.4);
 		color: $color-blue-guide;
 	}
 
 	.js-aside-panel-hidden & {
 		//cursor: e-resize; wait for implementation of drag
 		cursor: pointer;
+	}
+}
+
+.atlas-aside-resizer-overlay {
+	bottom: 0;
+	display: none;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 11;
+
+	&.js-dragging {
+		display: block;
 	}
 }

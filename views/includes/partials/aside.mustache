@@ -1,4 +1,9 @@
-<div class="l-atlas-container__aside" id="js-guide-aside" role="contentinfo">
+<div class="l-atlas-container__aside" id="js-atlas-aside" role="contentinfo">
+    <script>
+        document.getElementById('js-atlas-aside').style.width =
+            window.sessionStorage && (window.sessionStorage.getItem('asideWidth')) ?
+                window.sessionStorage.getItem('asideWidth') + 'px' : '';
+    </script>
     <div class="atlas-aside">
         <div class="atlas-aside__header">
             <div class="atlas-header">
@@ -10,8 +15,8 @@
                         <svg width="14" height="14" role="img">
                             <use xlink:href="#icon-filter"></use>
                         </svg>
-                        <input type="search" id="js-search" placeholder="Filter" />
-                        <button id="js-search-clear">✕</button>
+                        <input type="search" id="js-atlas-search" placeholder="Filter" />
+                        <button id="js-atlas-search-clear">✕</button>
                     </div>
                 </div>
             </div>
@@ -19,24 +24,17 @@
         <div class="atlas-aside__content" role="navigation" id="js-atlas-aside-content">
             <div class="atlas-nav" role="list" id="js-atlas-navigation">
                 {{> navigation}}
+
                 <div class="atlas-nav__item" role="listitem">
-                    <a class="atlas-nav__ln _imports js-atlas-nav-ln" href="imports.html" id="nav-imports">
-                        <svg width="14" height="14" role="img">
-                            <use xlink:href="#icon-counterparts"></use>
-                        </svg>
-                        Dependencies
-                    </a>
-                </div>
-                <div class="atlas-nav__item" role="listitem">
-                    <a class="atlas-nav__ln _sizes js-atlas-nav-ln" href="sizes.html" id="nav-sizes">
+                    <a class="atlas-nav__ln _bundle js-atlas-nav-ln" href="bundle.html" id="nav-bundle" data-name="bundle">
                         <svg width="14" height="14" role="img">
                             <use xlink:href="#icon-bundle"></use>
                         </svg>
-                        Sizes
+                        Bundle
                     </a>
                 </div>
                 <div class="atlas-nav__item" role="listitem">
-                    <a class="atlas-nav__ln _insights js-atlas-nav-ln" href="insights.html" id="nav-insights">
+                    <a class="atlas-nav__ln _insights js-atlas-nav-ln" href="insights.html" id="nav-insights" data-name="insights">
                         <svg width="14" height="14" role="img">
                             <use xlink:href="#icon-insights"></use>
                         </svg>
@@ -44,10 +42,16 @@
                     </a>
                 </div>
             </div>
+            <script>
+                const atlasContentPosition = window.sessionStorage && (window.sessionStorage.getItem('navigationScroll')) ?
+                    window.sessionStorage.getItem('navigationScroll') : '';
+                document.getElementById('js-atlas-aside-content').scrollTo(0, atlasContentPosition);
+            </script>
         </div>
         <div class="atlas-aside__footer">
             {{> copyright}}
         </div>
     </div>
-    <button class="atlas-aside-ctrl" id="js-aside-toggle"></button>
+    <button class="atlas-aside-ctrl" id="js-atlas-aside-resizer" title="Double click to toggle aside"></button>
+    <div class="atlas-aside-resizer-overlay" id="js-atlas-aside-resizer-overlay"></div>
 </div>

@@ -1,9 +1,9 @@
 'use strict';
 
 (function() {
-    const asidePanel = document.getElementById('js-guide-aside');
-    const searchField = document.getElementById('js-search');
-    const searchClearBtn = document.getElementById('js-search-clear');
+    const asidePanel = document.getElementById('js-atlas-aside');
+    const searchField = document.getElementById('js-atlas-search');
+    const searchClearBtn = document.getElementById('js-atlas-search-clear');
     const links = document.querySelectorAll('.js-atlas-nav-ln');
 
     const waiteForSearch = 'js-searching';
@@ -37,11 +37,8 @@
             const elementText = link.textContent;
 
             if (term.length && ~elementText.indexOf(term)) {
-                const asideContent = document.getElementById('js-atlas-aside-content');
-                if (asideContent.scrollTo() !== undefined) {
-                    asideContent.scrollTo(0, link);
-                }
                 asidePanel.classList.add(hasResults);
+                links[0].focus();
                 link.classList.add(isRelevant);
             } else {
                 link.classList.remove(isRelevant);

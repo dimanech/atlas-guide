@@ -2,7 +2,9 @@
 
 # atlas-loader
 
-Used to hide content before it loaded
+Used to hide content before it loaded.
+
+It remove class from loader when DOMContentLoaded event fired. Example markup:
 
 ```html
 <div class="atlas-loader"></div>
@@ -23,41 +25,23 @@ Used to hide content before it loaded
 */
 
 .atlas-loader {
-	align-items: center;
 	background: rgba(white, 0.96);
 	bottom: 0;
 	color: $color-blue-guide;
-	display: flex;
-	justify-content: center;
-	left: 270px;
-	position: fixed;
+	display: none;
+	left: 0;
+	position: absolute;
 	right: 0;
 	text-align: center;
 	top: 0;
-	z-index: 9;
-	//display: none;
+	z-index: 2;
 
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
 		background: rgba(white, 0.7);
 	}
 
-	svg {
-		animation: dasharray 3s infinite alternate-reverse;
-		height: 100px;
-		margin: -100px 0 0 -50px;
-		stroke-dasharray: 200 0;
-		stroke-dashoffset: 400;
-		width: 200px;
-	}
-
-	&.js-hide {
-		display: none;
-	}
-
-	@keyframes dasharray {
-		100% {
-			stroke-dasharray: 0 50;
-		}
+	.js-loading-frame & {
+		display: block;
 	}
 }
