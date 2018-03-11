@@ -13,6 +13,8 @@ and supportable from iteration to iteration.
 
 ![atlas-component](docs/screens/atlas-component.jpeg)
 
+See **live example** [here](https://dimanech.github.io/atlas-guide/)
+
 ## Features
 
 * blazing fast thanks to Mustache and Marked. It primary designed as development platform;
