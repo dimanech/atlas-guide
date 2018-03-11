@@ -91,8 +91,6 @@ function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
     const orderedPath = {};
     Object.keys(importsPaths).sort().forEach(key => orderedPath[key] = importsPaths[key]);
 
-    // fs.writeFileSync('importsResults.json', JSON.stringify(orderedPath, null, '\t'))
-
     return JSON.stringify(orderedPath);
 }
 

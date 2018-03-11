@@ -4,17 +4,17 @@ const fs = require('fs');
 const path = require('path');
 const d3fmt = require('d3-format');
 
+function getfileSizeWithoutComments(path) {
+    const fileString = fs.readFileSync(path, 'utf8');
+    const stripedFile = fileString.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
+
+    return Buffer.byteLength(stripedFile, 'utf8');
+}
+
 // This is approximation. We could not get real scss component size without compilation. Mind the case where component
 // will have only includes - the size would be minimal, but after compilation it could be huge.
 function prepareComponentsFileSizesStat(guideSrc) {
     let sizes = [];
-
-    function getfileSize(path) {
-        const fileString = fs.readFileSync(path, 'utf8');
-        const stripedFile = fileString.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
-
-        return Buffer.byteLength(stripedFile, 'utf8');
-    }
 
     function findComponents(url) {
         const dir = fs.readdirSync(url);
@@ -26,7 +26,7 @@ function prepareComponentsFileSizesStat(guideSrc) {
 
             if (stats.isFile()) {
                 if (path.extname(name) === '.scss') {
-                    const fileSize = getfileSize(target);
+                    const fileSize = getfileSizeWithoutComments(target);
                     sizes.push({
                         filename: path.basename(name),
                         size: fileSize,

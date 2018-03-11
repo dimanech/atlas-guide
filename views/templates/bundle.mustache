@@ -7,7 +7,7 @@
         <svg width="16" height="16" role="img">
             <use xlink:href="#icon-bundle"></use>
         </svg>
-        Bundle
+        Bundle structure & size
     </div>
     <div class="atlas-section">
         <h1 class="atlas atlas-title atlas-title_1">
@@ -17,6 +17,8 @@
         </h1>
     </div>
 </div>
+
+<svg id="js-graph-svg" class="atlas-stat-bundle"></svg>
 
 <section class="atlas-stat-sheet">
     <header class="atlas-stat-header">
@@ -89,8 +91,11 @@
 
 <script>
     window.importsData ={{{content.imports}}};
+    window.bundleTree ={{{content.tree}}};
 </script>
+
 <script src="assets/js/d3.v4.min.js"></script>
+<script src="assets/js/d3tree.js"></script>
 <script src="assets/js/d3importsgraph.js"></script>
 
 {{> footer}}

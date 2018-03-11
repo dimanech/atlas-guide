@@ -5,12 +5,12 @@
     const height = window.innerHeight;
     const width = document.querySelector('.atlas-content').offsetWidth;
 
-    const rawdata = window.importsPaths;
+    const rawdata = window.bundleTree;
     const maxSize = d3.max(Object.keys(rawdata).map(d => rawdata[d].size));
 
     const z = d3.scaleOrdinal()
         .domain([0, maxSize])
-        .range(['#8bc34a', '#ffc107', '#307fe2']);
+        .range(['#307fe2']);
     const fileSize = d3.scaleLinear()
         .domain([0, maxSize])
         .range([0, 150]);
@@ -77,7 +77,7 @@
     inner.selectAll('.link')
         .data(data.descendants().slice(1))
         .enter().append('path')
-        .attr('class', 'link')
+        .attr('class', 'atlas-link')
         .attr('fill', 'none')
         .attr('stroke', 'rgba(0, 0, 0, 0.5)')
         .attr('stroke-width', 0.5)
@@ -93,14 +93,14 @@
         .style('opacity', '0.5')
         .attr('r', d => markFileSize(d));
 
-    const node = inner.selectAll('.node')
+    const node = inner.selectAll('.atlas-node')
         .data(data.descendants())
         .enter().append('g')
         .attr('class', d => 'atlas-node' + (d.children ? ' _internal' : ' _leaf') + ' _' + d.depth) // but not 1 level
         .attr('transform', d => 'translate(' + radialPoint(d.x, d.y) + ')');
 
     node.append('circle')
-        .attr('fill', d => d.depth === 0 ? 'white' : 'black')
+        .attr('fill', d => d.depth === 0 ? 'white' : '#57595b')
         .attr('r', d => d.depth === 0 ? 110 : 2);
 
     node.append('text')

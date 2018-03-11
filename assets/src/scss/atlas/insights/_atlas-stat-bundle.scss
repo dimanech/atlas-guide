@@ -1,0 +1,40 @@
+.atlas-stat-bundle {
+	margin-left: -#{$space-md-guide};
+	margin-top: -150px;
+
+	.atlas-link {}
+
+	.atlas-node {
+		text {
+			fill: $guide-color-text;
+			font-family: $font-mono-guide;
+			font-size: 8px;
+		}
+
+		&._internal {
+		}
+
+		&._leaf {
+		}
+
+		&._0 {
+			text {
+				font-family: $font-sans-guide;
+				font-size: $scale-xl-guide;
+				font-weight: bold;
+				text-anchor: middle;
+			}
+		}
+
+		&._1 {
+			text {
+				font-family: $font-sans-guide;
+				font-size: $scale-md-guide;
+			}
+
+			circle {
+				r: 3px;
+			}
+		}
+	}
+}

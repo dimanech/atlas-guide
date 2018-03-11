@@ -1,5 +1,5 @@
 .atlas-aside {
-	background-color: rgba($aside-bg, 0.98);
+	background-color: $aside-bg;
 	bottom: 0;
 	display: flex;
 	flex-direction: column;
@@ -8,11 +8,6 @@
 	height: 100%;
 	transform: translate3d(0, 0, 0);
 	z-index: 1;
-
-	@supports (backdrop-filter: blur(10px)) {
-		backdrop-filter: saturate(180%) blur(10px);
-		background-color: rgba($aside-bg, 0.8);
-	}
 
 	&__header {
 		padding: 10px;
