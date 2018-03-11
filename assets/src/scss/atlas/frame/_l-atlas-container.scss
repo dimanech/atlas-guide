@@ -5,41 +5,38 @@
 */
 
 .l-atlas-container {
-	display: flex;
 	height: 100%;
 
 	&__aside {
-		box-shadow: 1px 0 0 0 $aside-bd;
-		height: 100vh;
-		position: relative;
-		transition: width ease 0.2s;
-		z-index: 3;
+		border-right: 1px solid $aside-bd;
+		bottom: 0;
+		left: 0;
+		position: fixed;
+		top: 0;
+		z-index: 10;
 	}
 
 	&__main {
-		background: white;
-		height: 100vh;
-		overflow: hidden;
+		background-color: white;
+		margin-left: 270px;
 		position: relative;
-		width: 100%;
 		z-index: 1;
-
-		iframe {
-			height: 100vh;
-			width: 100%;
-		}
 	}
 
 	&.js-aside-panel-hidden {
 		.l-atlas-container__aside {
-			min-width: 3px;
-			width: 3px;
+			min-width: 5px;
+			width: 5px;
 		}
 
 		.atlas-aside__header,
 		.atlas-aside__footer,
 		.atlas-aside__content {
 			display: none;
+		}
+
+		.l-atlas-container__main {
+			margin-left: 5px;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <div class="l-atlas-container__aside" id="js-atlas-aside" role="contentinfo">
     <script>
-        document.getElementById('js-atlas-aside').style.minWidth =
+        document.getElementById('js-atlas-aside').style.width =
             window.sessionStorage && (window.sessionStorage.getItem('asideWidth')) ?
                 window.sessionStorage.getItem('asideWidth') + 'px' : '';
     </script>
@@ -23,9 +23,7 @@
         </div>
         <div class="atlas-aside__content" role="navigation" id="js-atlas-aside-content">
             <div class="atlas-nav" role="list" id="js-atlas-navigation">
-                {{#content}}
-                    {{> navigation}}
-                {{/content}}
+                {{> navigation}}
 
                 <div class="atlas-nav__item" role="listitem">
                     <a class="atlas-nav__ln _bundle js-atlas-nav-ln" href="bundle.html" id="nav-bundle" data-name="bundle">

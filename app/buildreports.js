@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 
-module.exports = function(atlasConfig, importsGraph) {
+module.exports = function(atlasConfig, projectTree, importsGraph) {
     // Utils
     const writePage = require(path.join(__dirname, 'utils/renderpage.js'));
 
@@ -37,14 +37,16 @@ module.exports = function(atlasConfig, importsGraph) {
         'content': {
             weight: statFileWeight(projectFileSizes),
             imports: statImports(importsGraph, excludedSassFiles)
-        }
+        },
+        'subPages': projectTree.subPages
     }, {
-        'id': 'insides',
-        'title': 'insides',
+        'id': 'insights',
+        'title': 'insights',
         'target': path.join(guideDest, '/insights.html'),
         'templateString': fs.readFileSync(templates.insights, 'utf8'),
         'type': 'insights',
-        'content': statProject(projectStat, projectName)
+        'content': statProject(projectStat, projectName),
+        'subPages': projectTree.subPages
     }];
 
     return Promise.all(reportsPages.map(writePage));

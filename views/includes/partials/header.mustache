@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"/>
 
     <title>Atlas - {{pageTitle}}</title>
 
     <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-frame.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-prism.css"/>
 
     {{> assetshead}}
-
 </head>
 <body class="atlas-page atlas-page_{{type}}">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0"
@@ -106,14 +106,6 @@
         <path d="m11.292 9.9263v11.416"/>
         <path d="m6.7348 3.6402c3.2098 1.2404 6.375 2.705 9.562 4.0473"/>
     </symbol>
-    <symbol id="icon-counterparts" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"
-            stroke="currentColor"
-            fill="none" stroke-width="1">
-        <path d=" M 1 9 C 1 4.585 4.585 1 9 1 C 13.415 1 17 4.585 17 9 C 17 13.415 13.415 17 9 17 C 4.585 17 1 13.415 1 9 Z "
-            fill="none"/>
-        <path d=" M 7 15 C 7 10.585 10.585 7 15 7 C 19.415 7 23 10.585 23 15 C 23 19.415 19.415 23 15 23 C 10.585 23 7 19.415 7 15 Z "
-            fill="none"/>
-    </symbol>
     <linearGradient id="atlas-blue-gradient" x1="0" y1="0" x2="0" y2="100%">
         <stop stop-color="#a7c6ed" offset="60%"/>
         <stop stop-color="#ffffff" offset="100%"/>
@@ -124,7 +116,14 @@
         <stop stop-color="#2cbbfc" offset="100%"/>
     </linearGradient>
 </svg>
-
+<div class="l-atlas-container" id="js-atlas-container">
+    {{> aside}}
+    <main role="main" class="l-atlas-container__main" id="js-atlas-main">
+        <script>
+            document.getElementById('js-atlas-main').style.marginLeft =
+                window.sessionStorage && window.sessionStorage.getItem('asideWidth') ?
+                    window.sessionStorage.getItem('asideWidth') + 'px' : '';
+        </script>
         <div class="atlas-content">
             <div class="atlas-content__inner">
 

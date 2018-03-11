@@ -25,6 +25,7 @@ const View = function(page) {
     this.pageTitle = page.title;
     this.content = page.content;
     this.type = page.type;
+    this.subPages = page.subPages; // this could be cached
 };
 
 View.prototype.inline = () => {
@@ -46,7 +47,8 @@ function prepareView(config) {
     return new View({
         title: config.title,
         content: config.content,
-        type: config.type
+        type: config.type,
+        subPages: config.subPages
     });
 }
 

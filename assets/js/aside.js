@@ -1,13 +1,15 @@
 'use strict';
 
 (function () {
-    const container = document.getElementById('js-guide-container');
+    const container = document.getElementById('js-atlas-container');
     const aside = document.getElementById('js-atlas-aside');
+    const main = document.getElementById('js-atlas-main');
     const resizer = document.getElementById('js-atlas-aside-resizer');
     const resizerOverlay = document.getElementById('js-atlas-aside-resizer-overlay');
 
     function resizeTo(width) {
-        aside.style.minWidth = width + 'px';
+        aside.style.width = width + 'px';
+        main.style.marginLeft = width + 'px';
     }
 
     function changeSize(event) {
@@ -69,16 +71,4 @@
     resizer.addEventListener('dblclick', asideToggle);
 
     window.addEventListener('beforeunload', populateStorage);
-
-    function removeLiveReload() {
-        const scripts = document.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const liveReload = /livereload/.test(scripts[i].getAttribute('src'));
-            if (!liveReload) {
-                continue;
-            }
-            document.body.removeChild(scripts[i]);
-        }
-    }
-    removeLiveReload();
 }());

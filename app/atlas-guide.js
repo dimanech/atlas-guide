@@ -95,7 +95,8 @@ function makeComponent(url) {
                     target: component.target,
                     templateString: getCachedTemplates(component.type, component.template),
                     type: component.type,
-                    content: prepareContent(component)
+                    content: prepareContent(component),
+                    subPages: projectTree.subPages
                 });
 
                 if (!makeAllComponents) {
@@ -117,7 +118,8 @@ function makeComponent(url) {
             target: path.join(atlasBase.guideDest, '/index.html'),
             templateString: fs.readFileSync(atlasBase.templates.index, 'utf8'),
             type: 'index',
-            content: projectTree
+            content: projectTree,
+            subPages: projectTree.subPages
         });
     }
 
@@ -129,7 +131,7 @@ module.exports = {
     'buildAll': function() {
         return Promise.all([
             makeComponent(),
-            require('./buildreports.js')(atlasConfig, importsGraph)
+            require('./buildreports.js')(atlasConfig, projectTree, importsGraph)
         ]);
     }
 };
