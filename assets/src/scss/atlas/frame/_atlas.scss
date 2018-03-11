@@ -9,10 +9,6 @@
 	&-title {
 		display: block;
 
-		&:target {
-			animation: target-highlight 2s ease;
-		}
-
 		&_1,
 		&_2,
 		&_3 {
@@ -192,16 +188,6 @@
 	max-width: 800px;
 }
 
-@keyframes target-highlight {
-	0% {
-		background-color: $color-yellow;
-	}
-
-	100% {
-		background-color: transparent;
-	}
-}
-
 // Article Headline
 .atlas-content__inner {
 	.atlas-title_1 {
@@ -219,6 +205,11 @@
 	display: flex;
 	justify-content: space-between;
 	position: relative;
+
+	&__text {
+		position: relative;
+		z-index: 1;
+	}
 
 	&__anchor {
 		color: $color-grey80-guide;
@@ -250,6 +241,26 @@
 			color: $color-blue-guide;
 		}
 	}
+
+	&__highlight {
+		bottom: -5px;
+		left: -#{$space-md-guide};
+		pointer-events: none;
+		position: absolute;
+		right: -#{$space-md-guide};
+		top: -5px;
+		z-index: 0;
+	}
+}
+
+.atlas-anchor {
+	pointer-events: none;
+	position: absolute;
+	transform: translateY(-70px);
+}
+
+.atlas-anchor:target + .atlas-title .atlas-title__highlight {
+	animation: target-highlight 2s ease;
 }
 
 // Sticky headings logic
@@ -270,5 +281,15 @@
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
 		background: rgba(white, 0.7);
+	}
+}
+
+@keyframes target-highlight {
+	0% {
+		background-color: $color-yellow;
+	}
+
+	100% {
+		background-color: transparent;
 	}
 }
