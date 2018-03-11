@@ -19,6 +19,20 @@ function humanize(number) {
     }
 }
 
+function formatBytes(bytes) {
+    const fmt = d3fmt.format('.0f');
+
+    if (bytes < 1024) {
+        return fmt(bytes) + 'B';
+    } else if (bytes < 1024 * 1024) {
+        return fmt(bytes / 1024) + 'kB';
+    } else if (bytes < 1024 * 1024 * 1024) {
+        return fmt(bytes / 1024 / 1024) + 'MB';
+    } else {
+        return fmt(bytes / 1024 / 1024 / 1024) + 'GB';
+    }
+}
+
 function convertFontToAbsoluteUnits(value) {
     let raw = parseFloat(value);
 
@@ -408,7 +422,7 @@ function selectors(selectors) {
         if (/^\*|\*$/.test(selector)) {
             universalSelectors.push(selector);
         }
-        if (/js-/.test(selector)) {
+        if (/\.js-/.test(selector)) {
             jsPrefixedSelectors.push(selector);
         }
         if (/#/.test(selector)) {
@@ -454,11 +468,45 @@ function selectors(selectors) {
 }
 
 function importantRules(rules) {
+    // should be with selectors
     const isHaveRules = rules !== undefined;
     return {
         'count': isHaveRules ? rules.length : 0,
         'rules': isHaveRules ? rules : []
     };
+}
+
+function dataUri(background, backgroundImage, fontFaces) {
+    const props = [].concat(background).concat(backgroundImage).concat(fontFaces.src);
+    const dataUri = {
+        'total': {
+            raw: 0,
+            fmt: 0
+        },
+        'data': []
+        // nice to have selectors here
+    };
+
+    props.forEach(value => {
+        if (/data:/g.test(value)) {
+            const uriString = /\((.*?)\)/.exec(value)[1];
+            const size = Buffer.byteLength(uriString, 'utf8');
+            dataUri.data.push({
+                sizeRaw: size,
+                size: formatBytes(size),
+                type: /data:(.*?)\//.exec(uriString)[1],
+                typeRaw: /data:(.*?),/.exec(uriString)[1],
+                displayValue: /data:image/.test(uriString) ? uriString : ''
+            });
+        }
+    });
+
+    dataUri.data.sort((a, b) => b.sizeRaw - a.sizeRaw);
+
+    dataUri.data.forEach(item => dataUri.total.raw += item.sizeRaw);
+    dataUri.total.fmt = formatBytes(dataUri.total.raw);
+
+    return dataUri;
 }
 
 function statProject(stat) {
@@ -482,7 +530,11 @@ function statProject(stat) {
             rulesizeTops: ruleSizeStat(stats.rules.selectorRuleSizes),
             selectorsListTops: selectorsListTops(stats.selectors.selectorsLists),
             selectors: selectors(stats.selectors),
-            importantRules: importantRules(stats.declarations.important)
+            importantRules: importantRules(stats.declarations.important),
+            dataUri: dataUri(
+                stats.declarations.properties.background,
+                stats.declarations.properties['background-size'],
+                stats.fontFaces)
         });
     });
 

@@ -58,14 +58,56 @@
                     </ul>
                 </section>
 
-                {{#sizes}}
-                    <h2 class="atlas-stat-title">Size</h2>
+                <h2 class="atlas-stat-title">Size</h2>
 
+                {{#sizes}}
                     <section class="atlas-stat-section">
                         <h2 class="atlas-stat-section__title">Files size</h2>
                         {{{sizes}}}
                     </section>
                 {{/sizes}}
+
+                {{#dataUri}}
+                    <section class="atlas-stat-section">
+                        <h2 class="atlas-stat-section__title">
+                            Data URIs
+                            <span class="atlas-stat-info">
+                                <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
+                                <span class="atlas-stat-info__popup">
+                                    Data uri not best approach to serve data (especially in HTTP2).
+                                    It blows CSS, it hard to maintain and it has less decoding speed.
+                                </span>
+                            </span>
+                        </h2>
+
+                        <ul class="atlas-stat-columns">
+                            <li class="atlas-stat-columns__item">
+                                <figure class="atlas-stat-digit">
+                                    <p class="atlas-stat-digit__data">{{total.fmt}}</p>
+                                    <figcaption class="atlas-stat-digit__caption">Total</figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+
+                        <ul class="atlas-stat-columns _colors">
+                            {{#data}}
+                                <li class="atlas-stat-columns__item">
+                                    <figure class="atlas-stat-digit _color">
+                                        <div class="atlas-stat-digit__data"
+                                             style="width: 64px; height: 84px; text-align: center;
+                                                 {{#displayValue}}background:url({{displayValue}}) center center no-repeat; background-size: 100%;{{/displayValue}}">
+                                            {{^displayValue}}Aa{{/displayValue}}
+                                        </div>
+                                        <figcaption class="atlas-stat-digit__caption">
+                                            {{typeRaw}} <br/>
+                                            {{size}}
+                                        </figcaption>
+                                    </figure>
+                                </li>
+                            {{/data}}
+                        </ul>
+                    </section>
+                {{/dataUri}}
 
                 <h2 class="atlas-stat-title">Selectors and rules</h2>
 
