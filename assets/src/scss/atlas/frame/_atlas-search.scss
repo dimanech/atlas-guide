@@ -59,9 +59,12 @@
 		transition: transform ease 0.2s;
 		width: 14px;
 
-		&:hover,
-		&:focus {
+		&:hover {
 			background: darken($aside-bd, 40%);
+		}
+
+		&:focus {
+			background: $color-blue-guide;
 		}
 
 		&:active {
