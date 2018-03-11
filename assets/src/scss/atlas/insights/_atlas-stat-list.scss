@@ -16,4 +16,9 @@
 	&._tops {
 		font-size: 1rem;
 	}
+
+	&._scroll {
+		max-height: 50vh;
+		overflow: auto;
+	}
 }
