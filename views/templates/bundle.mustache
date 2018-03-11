@@ -17,8 +17,37 @@
         </h1>
     </div>
 </div>
+<section class="atlas-stat-sheet">
+    <svg id="js-graph-svg" class="atlas-stat-bundle" height="1000"></svg>
 
-<svg id="js-graph-svg" class="atlas-stat-bundle"></svg>
+    <div class="b-cross-dependencies-legend atlas atlas-p">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-about"></use>
+        </svg>
+        <p class="b-cross-dependencies-legend__example">
+            <strong>zoom</strong>: double click <br>
+            <strong>enlarge</strong>: <kbd>shift</kbd> + double click <br>
+            <strong>drag</strong>: click and move
+        </p>
+        <div class="b-cross-dependencies-legend__example"></div>
+        <div class="b-cross-dependencies-legend__list"></div>
+    </div>
+
+    <div class="atlas-stat-columns _imports">
+        {{#content.bundleImports}}
+            <div class="atlas-stat-columns__item">
+                <h3 class="atlas-stat-section__title-sub">{{name}}</h3>
+                <ol class="atlas-stat-list _imports">
+                    {{#imports}}
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">{{.}}</p>
+                        </li>
+                    {{/imports}}
+                </ol>
+            </div>
+        {{/content.bundleImports}}
+    </div>
+</section>
 
 <section class="atlas-stat-sheet">
     <header class="atlas-stat-header">
@@ -90,7 +119,7 @@
 </section>
 
 <script>
-    window.importsData ={{{content.imports}}};
+    window.importsData ={{{content.crossDeps}}};
     window.bundleTree ={{{content.tree}}};
 </script>
 

@@ -43,4 +43,13 @@
 			width: (100%/2);
 		}
 	}
+
+	&._imports {
+		margin-bottom: $space-md-guide;
+		margin-top: $space-lg-guide;
+
+		.atlas-stat-columns__item {
+			width: (100%/3);
+		}
+	}
 }

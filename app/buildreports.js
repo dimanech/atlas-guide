@@ -27,6 +27,7 @@ module.exports = function(atlasConfig, projectTree, importsGraph) {
     // View Models
     const statFileWeight = require(path.resolve(__dirname, '../viewmodels/statfileweight.js'));
     const statProject = require(path.resolve(__dirname, '../viewmodels/statproject.js'));
+    const statCrossDeps = require(path.resolve(__dirname, '../viewmodels/statcrossdeps.js'));
     const statImports = require(path.resolve(__dirname, '../viewmodels/statimports.js'));
 
     // Page configs
@@ -38,8 +39,9 @@ module.exports = function(atlasConfig, projectTree, importsGraph) {
         'type': 'insights',
         'content': {
             weight: statFileWeight(projectFileSizes),
-            imports: statImports(importsGraph, excludedSassFiles),
-            tree: bundle
+            crossDeps: statCrossDeps(importsGraph, excludedSassFiles),
+            tree: bundle,
+            bundleImports: statImports(importsGraph, excludedSassFiles)
         },
         'subPages': projectTree.subPages
     }, {

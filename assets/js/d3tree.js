@@ -2,7 +2,7 @@
 
 (function () {
     const d3 = window.d3;
-    const height = window.innerHeight;
+    const height = 1000;
     const width = document.querySelector('.atlas-content').offsetWidth;
 
     const rawdata = window.bundleTree;

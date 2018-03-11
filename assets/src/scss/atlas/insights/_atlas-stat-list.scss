@@ -6,8 +6,6 @@
 	-webkit-font-smoothing: antialiased;
 	font-weight: bold;
 	line-height: 1.2;
-	list-style-type: disc;
-	padding-left: 1rem;
 
 	p {
 		color: $guide-color-text;
@@ -21,4 +19,18 @@
 		max-height: 50vh;
 		overflow: auto;
 	}
+
+	&._imports {
+		font-weight: normal;
+	}
+}
+
+ul.atlas-stat-list {
+	list-style-type: disc;
+	padding-left: 1rem;
+}
+
+ol.atlas-stat-list {
+	list-style-type: decimal-leading-zero;
+	padding-left: 2rem;
 }
