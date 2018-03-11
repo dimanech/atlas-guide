@@ -131,12 +131,11 @@ describe('Atlas', function() {
 
             it('reports should be written', function() {
                 const fileCount = fs.readdirSync(guideDest).length;
-                assert.strictEqual(fileCount, 8, 'folder contain needed files count');
+                assert.strictEqual(fileCount, 7, 'folder contain needed files count');
             });
             it('should not process excluded files', function() {
                 const actual = fs.readdirSync(guideDest);
                 const expected = [
-                    'about.html',
                     'bundle.html',
                     'category-component.html',
                     'category-doc-guide.html',

@@ -154,7 +154,6 @@ function getBaseConfig(configRaw) {
             'component': '',
             'guide': '',
             'about': '',
-            'index': '',
             'insights': '',
             'bundle': ''
         };
@@ -187,10 +186,10 @@ function getBaseConfig(configRaw) {
 
         if (fs.existsSync(path.join(projectRoot, 'README.md'))) {
             atlasConfig.additionalPages.push({
-                'id': 'about',
+                'id': 'index',
                 'title': 'about',
                 'src': path.join(projectRoot, 'README.md'),
-                'target': path.join(atlasConfig.guideDest, '/about.html'),
+                'target': path.join(atlasConfig.guideDest, '/index.html'),
                 'template': atlasConfig.templates.about,
                 'type': 'about',
                 'subPages': []

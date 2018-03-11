@@ -200,7 +200,6 @@ and partials.
         "bundle": "",
         "component": "",
         "guide": "",
-        "index": "",
         "insights": ""
     },
     "includes": {

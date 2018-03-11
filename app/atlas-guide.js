@@ -111,18 +111,6 @@ function makeComponent(url) {
     }
     traverseDocumentedTree(projectTree.subPages, url);
 
-    // build index on buildAll only
-    if (url === undefined) {
-        docSet.push({
-            title: 'atlas',
-            target: path.join(atlasBase.guideDest, '/index.html'),
-            templateString: fs.readFileSync(atlasBase.templates.index, 'utf8'),
-            type: 'index',
-            content: projectTree,
-            subPages: projectTree.subPages
-        });
-    }
-
     return Promise.all(docSet.map(writePage));
 }
 
