@@ -7,8 +7,13 @@
 	font-weight: bold;
 	line-height: 1.2;
 
+	&__item {
+		display: list-item;
+	}
+
 	p {
 		color: $guide-color-text;
+		overflow: visible;
 	}
 
 	&._tops {

@@ -12,9 +12,16 @@
 		margin-bottom: $space-sm-guide;
 	}
 
-	&__graph {
-		display: block;
+	&__graph-container {
+		height: 8px;
 		margin-bottom: $space-sm-guide;
+		position: relative;
+		width: 100%;
+	}
+
+	&__graph {
+		position: absolute;
+		width: 100%;
 	}
 
 	&__all {
