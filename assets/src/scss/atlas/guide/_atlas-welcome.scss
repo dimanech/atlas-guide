@@ -1,6 +1,5 @@
 .atlas-welcome {
 	color: $fg;
-	display: flex;
 	font-family: $font-sans-guide;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -8,9 +7,9 @@
 	position: relative;
 
 	&__column {
+		display: inline-block;
 		min-width: 33%;
-		position: relative;
-		z-index: 1;
+		vertical-align: top;
 	}
 
 	&__title {

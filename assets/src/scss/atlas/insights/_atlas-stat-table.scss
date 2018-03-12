@@ -41,6 +41,8 @@
 		&._title {
 			border-right: 1px solid $guide-color-divider;
 			font-weight: bold;
+			min-width: 100px;
+			overflow: hidden;
 			padding-left: 0;
 			text-align: right;
 			width: 100px;

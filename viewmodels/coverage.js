@@ -7,7 +7,7 @@ module.exports = function(coverage) {
     const scale = d3scale.scaleLinear()
         .domain([0, coverage.all])
         .range([0, 500]);
-    const coveredPercent = coverage.all / 100 * coverage.covered;
+    const coveredPercent = coverage.covered / coverage.all * 100;
 
     return {
         'coveredPercent': d3fmt.format('.1f')(coveredPercent),
