@@ -118,7 +118,7 @@
             .attr('d', line);
 
         // Mark huge charts
-        if (data.length > 400) {
+        if (data.length > 600) {
             inner.select('.area-line').attr('class', 'area-line _huge');
             inner.select('.area').attr('class', 'area _huge');
         }

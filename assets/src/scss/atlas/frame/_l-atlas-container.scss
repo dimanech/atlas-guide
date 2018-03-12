@@ -8,13 +8,13 @@
 	height: 100%;
 
 	&__aside {
-		border-right: 1px solid $aside-bd;
 		bottom: 0;
+		box-shadow: 1px 0 0 0 $aside-bd;
 		left: 0;
 		position: fixed;
 		top: 0;
 		width: 270px;
-		z-index: 10;
+		z-index: 2;
 	}
 
 	&__main {
