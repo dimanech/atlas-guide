@@ -1,6 +1,6 @@
 .atlas-welcome {
 	color: $fg;
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	overflow: hidden;
@@ -16,8 +16,8 @@
 		font-size: 4rem;
 		font-weight: normal;
 		hyphens: manual;
-		line-height: $space-md-guide * 3;
-		margin-bottom: $space-md-guide;
+		line-height: $space-md-atlas * 3;
+		margin-bottom: $space-md-atlas;
 		text-align: right;
 
 		strong {

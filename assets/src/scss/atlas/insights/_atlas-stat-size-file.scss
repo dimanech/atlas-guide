@@ -1,10 +1,10 @@
 .atlas-stat-size-file {
-	border-bottom: 1px solid $color-blue92-guide;
-	font-family: $font-mono-guide;
-	font-size: $guide-mono-small;
+	border-bottom: 1px solid $color-blue79-atlas;
+	font-family: $font-mono-atlas;
+	font-size: $atlas-mono-small;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	line-height: $space-md-guide;
+	line-height: $space-md-atlas;
 	padding-top: 80px;
 	position: relative;
 
@@ -14,8 +14,8 @@
 		vertical-align: bottom;
 
 		rect {
-			fill: $color-blue92-guide;
-			stroke: $color-blue-guide;
+			fill: $color-blue79-atlas;
+			stroke: $color-blue-atlas;
 			stroke-width: 1;
 		}
 	}
@@ -31,7 +31,7 @@
 	}
 
 	&__size {
-		color: $color-blue-guide;
+		color: $color-blue-atlas;
 	}
 
 	&__title {

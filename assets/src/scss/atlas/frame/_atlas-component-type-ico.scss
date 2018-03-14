@@ -1,13 +1,13 @@
 .atlas-component-type-ico {
-	font-family: $font-sans-guide;
-	font-size: $scale-lg-guide;
-	line-height: $space-md-guide;
-	margin-bottom: -#{$space-md-guide};
-	padding-top: $space-md-guide;
+	font-family: $font-sans-atlas;
+	font-size: $scale-lg-atlas;
+	line-height: $space-md-atlas;
+	margin-bottom: -#{$space-md-atlas};
+	padding-top: $space-md-atlas;
 	text-transform: capitalize;
 
 	svg {
-		color: $color-blue-guide;
+		color: $color-blue-atlas;
 		height: 24px;
 		position: relative;
 		top: 4px;

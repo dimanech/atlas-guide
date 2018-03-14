@@ -1,39 +1,39 @@
 .b-cross-dependencies-graph {
-	color: $guide-color-text;
-	margin-top: -#{$space-md-guide};
+	color: $atlas-color-text;
+	margin-top: -#{$space-md-atlas};
 	user-select: none;
 
 	.link {
-		stroke: $color-blue-guide;
+		stroke: $color-blue-atlas;
 	}
 
 	.node__circle {
-		fill: $color-blue-guide;
+		fill: $color-blue-atlas;
 		stroke: white;
 	}
 
 	.node__text {
 		fill: currentColor;
-		font-family: $font-mono-guide;
-		font-size: $guide-mono-small;
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
 
 		&._partial {
-			fill: $color-blue-guide;
+			fill: $color-blue-atlas;
 		}
 	}
 }
 
 .b-cross-dependencies-legend {
 	align-items: start;
-	//border-top: 1px solid $guide-color-divider;
+	//border-top: 1px solid $atlas-color-divider;
 	display: flex;
 	justify-content: space-between;
-	margin: $space-sm-guide 0 $space-lg-guide;
+	margin: $space-sm-atlas 0 $space-lg-atlas;
 	max-width: none;
-	padding: $scale-sm-guide 0 0;
+	padding: $scale-sm-atlas 0 0;
 
 	> svg {
-		color: $color-blue-guide;
+		color: $color-blue-atlas;
 		height: 20px;
 		min-width: 50px;
 		width: 50px;
@@ -42,20 +42,20 @@
 	&__caption {
 		font-size: 1.2rem;
 		margin-bottom: 5px;
-		margin-right: $space-md-guide;
+		margin-right: $space-md-atlas;
 		width: 50%;
 	}
 
 	&__example {
 		font-size: 0.9rem;
-		margin-right: $space-md-guide;
+		margin-right: $space-md-atlas;
 		text-align: justify;
 		width: 50%;
 	}
 
 	&__list {
 		font-size: 0.9rem;
-		margin: 0 0 0 $space-md-guide;
+		margin: 0 0 0 $space-md-atlas;
 		min-width: 20%;
 		padding: 0;
 

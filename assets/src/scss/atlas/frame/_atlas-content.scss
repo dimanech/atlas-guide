@@ -1,8 +1,8 @@
 .atlas-content {
 	&__inner {
 		margin: 0 auto;
-		min-height: calc(100vh - #{$space-md-guide * 2});
-		padding: $space-md-guide;
+		min-height: calc(100vh - #{$space-md-atlas * 2});
+		padding: $space-md-atlas;
 		padding-top: 0;
 		position: relative;
 	}
