@@ -4,5 +4,15 @@
     "cssSrc": "assets/css/",
     "copyInternalAssets": false,
     "excludedSassFiles": "_dev-atlas-settings",
-    "componentPrefixes": ["atlas-", "l-"]
+    "componentPrefixes": ["atlas-", "l-"],
+    "projectConstants": {
+        "constantsSrc": "assets/src/scss/_dev-atlas-settings.scss",
+        "colorPrefix": "color",
+        "fontPrefix": "font",
+        "scalePrefix": "scale",
+        "spacePrefix": "space",
+        "motionPrefix": "motion",
+        "depthPrefix": "depth",
+        "breakpointPrefix": "break"
+    }
 }

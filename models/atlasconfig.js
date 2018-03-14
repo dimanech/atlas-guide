@@ -155,7 +155,8 @@ function getBaseConfig(configRaw) {
             'guide': '',
             'about': '',
             'insights': '',
-            'bundle': ''
+            'bundle': '',
+            'styleguide': ''
         };
 
         for (let template in templates) {
@@ -258,65 +259,53 @@ function getPartialsConfig(configRaw) {
 }
 
 function getDeclaredConstants(configRaw) {
-    let atlasConfig = {
-        'isCorrupted': false
-    };
     const config = getConfig(configRaw);
+    const constantsList = [
+        'colorPrefix',
+        'fontPrefix',
+        'scalePrefix',
+        'spacePrefix',
+        'motionPrefix',
+        'depthPrefix',
+        'breakpointPrefix'
+    ];
+    let projectConstants = {
+        'isDefined': false,
+        'constantsList': []
+    };
 
-    function getConstants() {
-        if (atlasConfig.isCorrupted) {
-            return;
-        }
-        const constantsList = [
-            'colorPrefix',
-            'fontPrefix',
-            'scalePrefix',
-            'spacePrefix',
-            'motionPrefix',
-            'depthPrefix',
-            'breakpointPrefix'
-        ];
-        let projectConstants = {
-            'isDefined': true
-        };
-
-        if (config.projectConstants !== undefined) {
-            const constantsSrc = path.join(projectRoot, config.projectConstants.constantsSrc);
-            // check if constantsSrc exist
-            if (fs.existsSync(constantsSrc)) {
-                projectConstants.constantsSrc = constantsSrc;
-            } else {
-                printMessage('warn', '"projectConstants" is declared, but constants file not found. ' +
-                    'Could not continue.');
-                projectConstants.isDefined = false;
-            }
+    if (config.projectConstants !== undefined) {
+        const constantsSrc = path.join(projectRoot, config.projectConstants.constantsSrc);
+        // check if constantsSrc exist
+        if (fs.existsSync(constantsSrc)) {
+            projectConstants.isDefined = true;
+            projectConstants.constantsSrc = constantsSrc;
         } else {
-            projectConstants.isDefined = false;
-            return;
+            printMessage('warn', '"projectConstants" is declared, but constants file not found. ' +
+                'Could not continue.');
         }
-
-        if (!projectConstants.isDefined) {
-            return atlasConfig.projectConstants = projectConstants;
-        }
-
-        projectConstants.constantsList = [];
-
-        constantsList.forEach(constant => {
-            if (constant === undefined) {
-                return;
-            }
-            projectConstants.constantsList.push({
-                'name': constant.replace(/Prefix/g, ''),
-                'regex': new RegExp('^\\$' + config.projectConstants[constant])
-            });
-        });
-
-        atlasConfig.projectConstants = projectConstants;
+    } else {
+        return;
     }
 
-    getConstants();
+    if (!projectConstants.isDefined) {
+        return projectConstants;
+    }
 
-    return atlasConfig;
+    constantsList.forEach(constant => {
+        if (constant === undefined) {
+            return;
+        }
+        const constantName = constant.replace(/Prefix/g, '');
+        const declaredConstant = config.projectConstants[constant];
+
+        return projectConstants.constantsList.push({
+            'name': constantName,
+            'regex': new RegExp(declaredConstant !== undefined ? '\\$' + declaredConstant : '.^')
+        });
+    });
+
+    return projectConstants;
 }
 
 function getProjectInfo(configRaw) {

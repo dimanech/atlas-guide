@@ -29,6 +29,7 @@
     "lodash.uniq": "^4.5.0",
     "marked": "^0.3.12",
     "mustache": "^2.3.0",
+    "node-sass": "^4.7.2",
     "postcss": "^6.0.17",
     "postcss-scss": "^1.0.3",
     "sass-graph": "^2.2.4"

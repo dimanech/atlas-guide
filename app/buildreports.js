@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 
-module.exports = function(atlasConfig, projectTree, importsGraph) {
+module.exports = function(atlasConfig, projectTree, importsGraph, projectConstants) {
     // Utils
     const writePage = require(path.join(__dirname, 'utils/renderpage.js'));
 
@@ -29,6 +29,7 @@ module.exports = function(atlasConfig, projectTree, importsGraph) {
     const statProject = require(path.resolve(__dirname, '../viewmodels/statproject.js'));
     const statCrossDeps = require(path.resolve(__dirname, '../viewmodels/statcrossdeps.js'));
     const statImports = require(path.resolve(__dirname, '../viewmodels/statimports.js'));
+    const styleguide = require(path.resolve(__dirname, '../viewmodels/styleguide.js'));
 
     // Page configs
     const reportsPages = [{
@@ -53,6 +54,18 @@ module.exports = function(atlasConfig, projectTree, importsGraph) {
         'content': statProject(projectStat, projectName),
         'subPages': projectTree.subPages
     }];
+
+    if (projectConstants !== undefined) {
+        reportsPages.push({
+            'id': 'styleguide',
+            'title': 'styleguide',
+            'target': path.join(guideDest, '/styleguide.html'),
+            'templateString': fs.readFileSync(templates.styleguide, 'utf8'),
+            'type': 'styleguide',
+            'content': styleguide(projectConstants),
+            'subPages': projectTree.subPages
+        });
+    }
 
     return Promise.all(reportsPages.map(writePage));
 };

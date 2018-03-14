@@ -1,0 +1,173 @@
+{{> header}}
+
+<link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-style.css"/>
+
+{{#content}}
+    {{#color.length}}
+    <section class="atlas-style-section">
+        <h2 class="atlas-style-section__title">Color palette</h2>
+        <ul class="atlas-style-columns _span6">
+            {{#color}}
+                <li class="atlas-style-columns__item">
+                    <figure class="atlas-style-palette">
+                        <svg class="atlas-style-palette__swatch" viewBox="0 0 64 84" width="64" height="84" preserveAspectRatio="none">
+                            <rect width="64" height="84" fill="{{value}}"/>
+                        </svg>
+                        <div class="atlas-style-palette__text" style="color:{{value}}">
+                            Aa
+                        </div>
+                        <figcaption class="atlas-style-palette__caption">{{name}}</figcaption>
+                    </figure>
+                </li>
+            {{/color}}
+        </ul>
+    </section>
+    {{/color.length}}
+
+    {{#space.length}}
+    <section class="atlas-style-section">
+        <h2 class="atlas-style-section__title">Spaces</h2>
+        <div class="atlas-style-space">
+        {{#space}}
+            <div class="atlas-style-space__item">
+                <div class="atlas-style-space__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed
+                    cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
+                    Praesent mauris.</div>
+                <div class="atlas-style-space__spacer" style="padding-bottom:{{value}}">
+                    <div class="atlas-style-space__name" style="line-height:{{value}}">
+                        {{name}}
+                    </div>
+                    <div class="atlas-style-space-ruler">
+                        <span style="line-height:{{value}}">{{value}}</span>
+                    </div>
+                </div>
+            </div>
+        {{/space}}
+        </div>
+        <div class="atlas-style-space _vertical">
+        {{#space}}
+            <div class="atlas-style-space__item">
+                <div class="atlas-style-space__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                    nec odio. Praesent libero. Sed
+                    cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
+                    Praesent mauris.
+                </div>
+                <div class="atlas-style-space__spacer" style="padding-right:{{value}}">
+                    <div class="atlas-style-space__name" style="line-height:{{value}}">
+                        {{name}}
+                    </div>
+                    <div class="atlas-style-space-ruler _bottom">
+                        <span>{{value}}</span>
+                    </div>
+                </div>
+            </div>
+        {{/space}}
+        </div>
+        <div class="atlas-style-columns _box">
+        {{#space}}
+            <div class="atlas-style-columns__item">
+                <div class="atlas-style-box" style="padding:{{value}}">
+                    <div class="atlas-style-box__inner">
+                        {{name}}
+                    </div>
+                </div>
+            </div>
+        {{/space}}
+        </div>
+    </section>
+    {{/space.length}}
+
+    {{#scale.length}}
+    <section class="atlas-style-section">
+        <h2 class="atlas-style-section__title">Scales</h2>
+        {{#scale}}
+        <figure class="atlas-style-scale">
+            <div class="atlas-style-scale__text" style="font-size:{{value}}"></div>
+            <figcaption class="atlas-style-scale__name">
+                {{name}} /{{value}}
+            </figcaption>
+        </figure>
+        {{/scale}}
+    </section>
+    {{/scale.length}}
+
+    {{#font.length}}
+    <section class="atlas-style-section">
+        <h2 class="atlas-style-section__title">Fonts</h2>
+        {{#font}}
+        <div class="atlas-style-font _{{name}}" style="font-family:{{value}}">
+            <div class="atlas-style-columns _span3">
+                <div class="atlas-style-columns__item _bottom">
+                    <div class="atlas-style-font__item _name">{{name}}</div>
+                </div>
+                <div class="atlas-style-columns__item _bottom">
+                    <div class="atlas-style-font__item _logo"></div>
+                </div>
+                <div class="atlas-style-columns__item _bottom">
+                    <div class="atlas-style-font__item _name">{{value}}</div>
+                </div>
+                <div class="atlas-style-columns__item">
+                    <div class="atlas-style-font__item _characters"></div>
+                    <div class="atlas-style-font__item _characters-capital"></div>
+                    <div class="atlas-style-font__item _digits"></div>
+                </div>
+                <div class="atlas-style-columns__item">
+                    <div class="atlas-style-font__item _pangram"></div>
+                </div>
+                <div class="atlas-style-columns__item">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        {{/font}}
+    </section>
+    {{/font.length}}
+
+    {{#breakpoint.length}}
+    <section class="atlas-style-section">
+        <h2 class="atlas-style-section__title">Breakpoints</h2>
+        <ul>
+        {{#breakpoint}}
+            <li>
+                {{name}}: {{value}}
+            </li>
+        {{/breakpoint}}
+        </ul>
+    </section>
+    {{/breakpoint.length}}
+
+    {{#depth.length}}
+    <section class="atlas-style-section">
+        <h2 class="atlas-style-section__title">Layering</h2>
+        <ul class="atlas-style-columns _span6">
+            {{#depth}}
+                <li class="atlas-style-columns__item">
+                    <div class="atlas-style-layer">
+                        <div class="atlas-style-layer__box" style="box-shadow:{{value}}">{{name}}</div>
+                    </div>
+                </li>
+                <li class="atlas-style-columns__item">&nbsp;</li>
+            {{/depth}}
+        </ul>
+    </section>
+    {{/depth.length}}
+
+    {{#motion.length}}
+        <section class="atlas-style-section">
+            <h2 class="atlas-style-section__title">Motion</h2>
+            {{#motion}}
+                <div class="atlas-style-motion">
+                    <div class="atlas-style-motion__caption">
+                        {{name}}
+                    </div>
+                    <div class="atlas-style-motion__frame">
+                        <div class="atlas-style-motion__ball" style="animation: atlas-transition-example {{value}} infinite;animation-duration: 3s;animation-direction: alternate;"></div>
+                    </div>
+                </div>
+            {{/motion}}
+        </section>
+    {{/motion.length}}
+
+{{/content}}
+
+{{> footer}}

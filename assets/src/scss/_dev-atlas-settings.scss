@@ -40,12 +40,28 @@ $space-xm-atlas: $size-line-atlas / 2 * 3; // 30px
 $space-lg-atlas: $size-line-atlas * 2; // 40px
 $space-xl-atlas: $size-line-atlas * 3; // 60px
 
+// Depth
+$depth--1: inset 0 3px 10px 1px rgba(black, 0.34);
+$depth-0: none;
+$depth-1: 0 3px 10px 1px rgba(black, 0.34);
+$depth-2: 0 9px 30px 3px rgba(black, 0.44);
+$depth-3: 0 30px 50px 5px rgba(black, 0.44);
+$depth-4: 0 45px 60px 6px rgba(black, 0.44);
+
+// Motion
+$motion-ease: cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s;
+$motion-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+$motion-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) 0.2s;
+$motion-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) 0.2s;
+
+// Breakpoints
+$break-xl: 1367px;
+$break-md: 1024px;
+$break-sm: 767px;
+
 // Applied colors
 $atlas-color-text: hsl(210, 2%, 35%);
 $atlas-color-divider: hsl(0, 1%, 70%);
 
 // Applied sizes
 $atlas-mono-small: 0.7rem;
-
-//$depth || $layer
-//$motion

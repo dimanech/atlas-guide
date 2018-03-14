@@ -1,0 +1,45 @@
+.atlas-style-motion {
+	display: flex;
+
+	&__caption {
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
+		line-height: $space-md-atlas;
+		min-width: 200px;
+		width: 200px;
+	}
+
+	&__frame {
+		height: $space-md-atlas;
+		position: relative;
+		width: 100%;
+	}
+
+	&__ball {
+		animation-play-state: paused !important; /* stylelint-disable-line */
+		background-color: $color-blue-atlas;
+		border-radius: 100%;
+		height: $space-md-atlas / 2;
+		left: 0;
+		position: absolute;
+		top: 0;
+		transform: translateY(50%);
+		width: $space-md-atlas / 2;
+
+		.atlas-style-motion:hover & {
+			animation-play-state: initial !important; /* stylelint-disable-line */
+		}
+	}
+}
+
+@at-root {
+	@keyframes atlas-transition-example {
+		0% {
+			left: 0;
+		}
+
+		100% {
+			left: 100%;
+		}
+	}
+}

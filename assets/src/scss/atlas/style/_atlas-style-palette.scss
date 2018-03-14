@@ -1,0 +1,17 @@
+.atlas-style-palette {
+	font-family: $font-sans-atlas;
+	text-align: center;
+
+	&__swatch {
+		width: 100%;
+	}
+
+	&__text {
+		font-size: 2rem;
+	}
+
+	&__caption {
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
+	}
+}

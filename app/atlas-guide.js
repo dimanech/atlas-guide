@@ -19,6 +19,7 @@ const deps = require(path.resolve(__dirname, '../models/projectimportsgraph.js')
 const importsGraph = deps.getImportsGraph(atlasConfig);
 const componentImports = (src) => deps.getFileImports(src, importsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
+const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(atlasConfig.getConstants());
 
 const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'));
 const pageContent = require(path.join(__dirname, '../viewmodels/pagecontent.js'));
@@ -119,7 +120,7 @@ module.exports = {
     'buildAll': function() {
         return Promise.all([
             makeComponent(),
-            require('./buildreports.js')(atlasConfig, projectTree, importsGraph)
+            require('./buildreports.js')(atlasConfig, projectTree, importsGraph, constants)
         ]);
     }
 };
