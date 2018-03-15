@@ -10,9 +10,10 @@ module.exports = function(constants) {
         'depth': constants.depth,
         'motion': constants.motion
     };
+    const removeUnits = val => val.replace(/[a-z]/g, '');
 
-    constantsList.scale.sort((a, b) => b.valueUnitless - a.valueUnitless);
-    constantsList.space.sort((a, b) => b.valueUnitless - a.valueUnitless);
+    constantsList.scale.sort((a, b) => removeUnits(b.value) - removeUnits(a.value));
+    constantsList.space.sort((a, b) => removeUnits(b.value) - removeUnits(a.value));
 
     return constantsList;
 };

@@ -430,6 +430,32 @@ describe('Atlas', function() {
             deleteRes(assetsDest);
         });
     });
+    describe('viewModels', function() {
+        describe('styleguide', function() {
+            const config = require(path.join(cwd, '/models/atlasconfig.js')).getBase({
+                'guideSrc': '/assets/src/scss/',
+                'guideDest': 'test/results',
+                'cssSrc': '/assets/css/',
+                'projectConstants': {
+                    'constantsSrc': '/test/fixtures/atlas/_excluded-settings.scss',
+                    'colorPrefix': 'color',
+                    'fontPrefix': 'font',
+                    'scalePrefix': 'scale',
+                    'spacePrefix': 'space',
+                    'motionPrefix': 'motion',
+                    'depthPrefix': 'depth',
+                    'breakpointPrefix': 'break'
+                }
+            });
+            const constants = require(path.join(cwd, '/models/projectconstants.js'))(config.constants);
+
+            it('return proper transformed model', function() {
+                const viewModel = require(path.join(cwd, '/viewmodels/styleguide.js'))(constants);
+                const expectedViewModel = require(path.join(cwd, '/test/fixtures/viewmodels/styleguide.json'));
+                assert.deepEqual(viewModel, expectedViewModel, 'proper view model for styleguide');
+            });
+        });
+    });
     describe('Component statistics', function() {
         describe('getStatFor', function() {
             it('should skip keyframes rules');

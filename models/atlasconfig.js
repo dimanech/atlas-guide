@@ -241,8 +241,8 @@ function getDeclaredConstants(configRaw) {
             projectConstants.isDefined = true;
             projectConstants.constantsSrc = constantsSrc;
         } else {
-            printMessage('warn', '"projectConstants" is declared, but constants file not found. ' +
-                'Could not continue.');
+            printMessage('warn', '"projectConstants" is declared, but constants file not found (' + constantsSrc +
+                '). Constants could not be fetched.');
         }
     } else {
         return projectConstants;

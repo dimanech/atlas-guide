@@ -63,8 +63,7 @@ function getProjectConstants(constConfig) {
                 const value = rule.nodes[0].value;
                 rawConstants[constant.name].push({
                     'name': rule.selector.replace(/\\/, ''),
-                    'value': value,
-                    'valueUnitless': value.replace(/[a-z]/g, '')
+                    'value': value
                 });
             }
         });
@@ -74,6 +73,6 @@ function getProjectConstants(constConfig) {
 }
 
 // fs.writeFileSync('const.json', JSON.stringify(
-//     getProjectConstants(require('./atlasconfig.js').getConstants().projectConstants), null, '\t'));
+//     getProjectConstants(require('./atlasconfig.js').getBase().constants), null, '\t'));
 
 module.exports = getProjectConstants;

@@ -1,0 +1,80 @@
+{
+    "color": [
+        {
+            "name": "$color-yellow-atlas",
+            "value": "#fae20f"
+        },
+        {
+            "name": "$color-green-atlas",
+            "value": "#98cb52"
+        }
+    ],
+    "font": [
+        {
+            "name": "$font-sans-atlas",
+            "value": "\"Arial\", sans-serif"
+        },
+        {
+            "name": "$font-mono-atlas",
+            "value": "\"DejaVu Sans Mono\", monospace"
+        }
+    ],
+    "scale": [
+        {
+            "name": "$scale-lg-atlas",
+            "value": "1.25rem"
+        },
+        {
+            "name": "$scale-md-atlas",
+            "value": "1rem"
+        },
+        {
+            "name": "$scale-sm-atlas",
+            "value": "0.8rem"
+        }
+    ],
+    "space": [
+        {
+            "name": "$space-md-atlas",
+            "value": "1.2rem"
+        },
+        {
+            "name": "$space-sm-atlas",
+            "value": "0.6rem"
+        },
+        {
+            "name": "$space-off-atlas",
+            "value": "0"
+        }
+    ],
+    "breakpoint": [
+        {
+            "name": "$break-xl",
+            "value": "1367px"
+        },
+        {
+            "name": "$break-md",
+            "value": "1024px"
+        },
+        {
+            "name": "$break-sm",
+            "value": "767px"
+        }
+    ],
+    "depth": [
+        {
+            "name": "$depth-1",
+            "value": "0 3px 10px 1px rgba(0, 0, 0, 0.34)"
+        },
+        {
+            "name": "$depth-2",
+            "value": "0 9px 30px 3px rgba(0, 0, 0, 0.44)"
+        }
+    ],
+    "motion": [
+        {
+            "name": "$motion-ease",
+            "value": "cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s"
+        }
+    ]
+}
