@@ -19,7 +19,7 @@ const deps = require(path.resolve(__dirname, '../models/projectimportsgraph.js')
 const importsGraph = deps.getImportsGraph(atlasConfig);
 const componentImports = (src) => deps.getFileImports(src, importsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
-const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(atlasConfig.getConstants());
+const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(atlasBase.constants);
 
 const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'));
 const pageContent = require(path.join(__dirname, '../viewmodels/pagecontent.js'));
@@ -62,7 +62,7 @@ function prepareContent(component) {
     }
     if (component.type === 'about') {
         stat = {
-            'projectName': atlasConfig.getProjectInfo().projectInfo.name,
+            'projectName': atlasConfig.getProjectInfo().name,
             'coverage': coverage(projectTree.coverage)
         };
     }

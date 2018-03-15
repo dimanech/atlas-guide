@@ -258,7 +258,17 @@ describe('Atlas', function() {
                         'guideDest': 'test/results',
                         'cssSrc': 'assets/css'
                     });
-                    assert.strictEqual(atlasConfig.isCorrupted, false, 'end slash not handled');
+                    const actualConfig = {
+                        'guideSrc': atlasConfig.guideSrc,
+                        'guideDest': atlasConfig.guideDest,
+                        'cssSrc': atlasConfig.cssSrc
+                    };
+                    const expectedConfig = {
+                        'guideSrc': path.join(cwd, 'assets/src/scss/'),
+                        'guideDest': path.join(cwd, 'test/results/'),
+                        'cssSrc': path.join(cwd, 'assets/css/')
+                    };
+                    assert.deepEqual(actualConfig, expectedConfig, 'end slash not handled');
                 });
             });
             context('but files not available', function() {

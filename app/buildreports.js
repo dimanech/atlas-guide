@@ -3,19 +3,20 @@
 const path = require('path');
 const fs = require('fs');
 
-module.exports = function(atlasConfig, projectTree, importsGraph, projectConstants) {
+module.exports = function(atlasConfig, projectTree, importsGraph) {
     // Utils
     const writePage = require(path.join(__dirname, 'utils/renderpage.js'));
 
     // Config
     const atlasBase = atlasConfig.getBase();
-    const projectName = atlasConfig.getProjectInfo().projectInfo.name;
+    const projectName = atlasConfig.getProjectInfo().name;
     const guideSrc = atlasBase.guideSrc;
     const guideDest = atlasBase.guideDest;
     const cssSrc = atlasBase.cssSrc;
     const templates = atlasBase.templates;
     const excludedCssFiles = atlasBase.excludedCssFiles;
     const excludedSassFiles = atlasBase.excludedSassFiles;
+    const projectConstants = atlasBase.constants;
 
     // Models
     const projectStat = require(path.resolve(__dirname, '../models/projectcssstat.js'))(
@@ -55,7 +56,7 @@ module.exports = function(atlasConfig, projectTree, importsGraph, projectConstan
         'subPages': projectTree.subPages
     }];
 
-    if (projectConstants !== undefined) {
+    if (projectConstants.isDefined) {
         reportsPages.push({
             'id': 'styleguide',
             'title': 'styleguide',
