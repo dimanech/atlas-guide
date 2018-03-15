@@ -205,59 +205,6 @@ function getBaseConfig(configRaw) {
     return atlasConfig;
 }
 
-function getPartialsConfig(configRaw) {
-    let atlasConfig = {
-        'isCorrupted': false
-    };
-    const config = getConfig(configRaw);
-
-    function getPartials() {
-        if (atlasConfig.isCorrupted) {
-            return;
-        }
-
-        const partialsConfig = config.partials;
-        const internalPartialsPath = '../views/includes/partials/';
-        let partials = {
-            'aside': '',
-            'assetsfooter': '',
-            'assetshead': '',
-            'componentstataside': '',
-            'componentstatfooter': '',
-            'componentstructure': '',
-            'copyright': '',
-            'footer': '',
-            'header': '',
-            'logo': '',
-            'navigation': '',
-            'toc': '',
-            'welcome': ''
-        };
-
-        for (let partial in partials) {
-            if (!partials.hasOwnProperty(partial)) {
-                continue;
-            }
-            if (partialsConfig !== undefined && partialsConfig.hasOwnProperty(partial)) {
-                if (fs.existsSync(path.join(projectRoot, partialsConfig[partial]))) {
-                    partials[partial] = path.join(projectRoot, partialsConfig[partial]);
-                    continue;
-                } else {
-                    printMessage('warn', '"' + partial + '" template is declared, but file not found. ' +
-                        'Internal partial used for this include.');
-                }
-            }
-            partials[partial] = path.join(__dirname, internalPartialsPath, partial + '.mustache');
-        }
-
-        return atlasConfig.partials = partials;
-    }
-
-    getPartials();
-
-    return atlasConfig;
-}
-
 function getDeclaredConstants(configRaw) {
     const config = getConfig(configRaw);
     const constantsList = [
@@ -274,7 +221,7 @@ function getDeclaredConstants(configRaw) {
         'constantsList': []
     };
 
-    if (config.projectConstants !== undefined) {
+    if (config.projectConstants !== undefined && config.projectConstants.constantsSrc !== undefined) {
         const constantsSrc = path.join(projectRoot, config.projectConstants.constantsSrc);
         // check if constantsSrc exist
         if (fs.existsSync(constantsSrc)) {
@@ -285,10 +232,6 @@ function getDeclaredConstants(configRaw) {
                 'Could not continue.');
         }
     } else {
-        return;
-    }
-
-    if (!projectConstants.isDefined) {
         return projectConstants;
     }
 
@@ -338,6 +281,59 @@ function getProjectInfo(configRaw) {
     }
 
     getProjectInfo();
+
+    return atlasConfig;
+}
+
+function getPartialsConfig(configRaw) {
+    let atlasConfig = {
+        'isCorrupted': false
+    };
+    const config = getConfig(configRaw);
+
+    function getPartials() {
+        if (atlasConfig.isCorrupted) {
+            return;
+        }
+
+        const partialsConfig = config.partials;
+        const internalPartialsPath = '../views/includes/partials/';
+        let partials = {
+            'aside': '',
+            'assetsfooter': '',
+            'assetshead': '',
+            'componentstataside': '',
+            'componentstatfooter': '',
+            'componentstructure': '',
+            'copyright': '',
+            'footer': '',
+            'header': '',
+            'logo': '',
+            'navigation': '',
+            'toc': '',
+            'welcome': ''
+        };
+
+        for (let partial in partials) {
+            if (!partials.hasOwnProperty(partial)) {
+                continue;
+            }
+            if (partialsConfig !== undefined && partialsConfig.hasOwnProperty(partial)) {
+                if (fs.existsSync(path.join(projectRoot, partialsConfig[partial]))) {
+                    partials[partial] = path.join(projectRoot, partialsConfig[partial]);
+                    continue;
+                } else {
+                    printMessage('warn', '"' + partial + '" template is declared, but file not found. ' +
+                        'Internal partial used for this include.');
+                }
+            }
+            partials[partial] = path.join(__dirname, internalPartialsPath, partial + '.mustache');
+        }
+
+        return atlasConfig.partials = partials;
+    }
+
+    getPartials();
 
     return atlasConfig;
 }
