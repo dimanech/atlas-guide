@@ -1,11 +1,11 @@
 .atlas-style-section {
 	color: $atlas-color-text;
-	margin: $space-xl-atlas 0;
+	margin: $space-md-atlas 0 $space-xl-atlas;
 	position: relative;
 
 	&__title {
 		font-family: $font-sans-atlas;
-		font-size: $scale-lg-atlas;
+		font-size: $scale-xl-atlas;
 		font-weight: bold;
 		letter-spacing: -0.04em;
 		margin-bottom: $space-lg-atlas;

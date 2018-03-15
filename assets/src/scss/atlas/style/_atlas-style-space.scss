@@ -38,13 +38,15 @@
 }
 
 .atlas-style-space-ruler {
-	border: 1px solid;
 	border-style: solid solid solid none;
+	border-width: 1px;
 	bottom: 0;
 	box-sizing: border-box;
 	color: deeppink;
+	font-family: $font-mono-atlas;
+	font-size: $atlas-mono-small;
 	margin-left: 5px;
-	padding-right: $space-sm-atlas;
+	padding-right: 5px;
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -74,11 +76,28 @@
 			top: 13px;
 		}
 	}
+
+	&._left {
+		border-style: solid none solid solid;
+		left: 60px;
+		right: initial;
+
+		span {
+			display: block;
+			position: absolute;
+			right: 15px;
+		}
+	}
+
+	&._middle {
+		right: 50%;
+	}
 }
 
 .atlas-style-box {
 	background-color: lighten($color-blue79-atlas, 15%);
 	box-sizing: border-box;
+	position: relative;
 
 	&__inner {
 		align-items: center;

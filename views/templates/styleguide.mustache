@@ -1,32 +1,47 @@
 {{> header}}
 
 <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-style.css"/>
+<div class="atlas-stat-sizes-page-title">
+    <div class="atlas-component-type-ico">
+        <svg width="16" height="16" role="img">
+            <use xlink:href="#icon-bundle"></use>
+        </svg>
+        Project constants
+    </div>
+    <div class="atlas-section">
+        <h1 class="atlas atlas-title atlas-title_1">
+        <span class="atlas-title__text">
+            {{projectInfo.name}}
+        </span>
+        </h1>
+    </div>
+</div>
 
 {{#content}}
     {{#color.length}}
     <section class="atlas-style-section">
-        <h2 class="atlas-style-section__title">Color palette</h2>
-        <ul class="atlas-style-columns _span6">
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Color palette</div>
+        <div role="list" class="atlas-style-columns _span6">
             {{#color}}
-                <li class="atlas-style-columns__item">
-                    <figure class="atlas-style-palette">
+                <div role="listitem" class="atlas-style-columns__item">
+                    <div class="atlas-style-palette">
                         <svg class="atlas-style-palette__swatch" viewBox="0 0 64 84" width="64" height="84" preserveAspectRatio="none">
-                            <rect width="64" height="84" fill="{{value}}"/>
+                            <rect width="64" height="84" fill="{{value}}"></rect>
                         </svg>
                         <div class="atlas-style-palette__text" style="color:{{value}}">
                             Aa
                         </div>
-                        <figcaption class="atlas-style-palette__caption">{{name}}</figcaption>
-                    </figure>
-                </li>
+                        <div class="atlas-style-palette__caption">{{name}}</div>
+                    </div>
+                </div>
             {{/color}}
-        </ul>
+        </div>
     </section>
     {{/color.length}}
 
     {{#space.length}}
     <section class="atlas-style-section">
-        <h2 class="atlas-style-section__title">Spaces</h2>
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Spaces</div>
         <div class="atlas-style-space">
         {{#space}}
             <div class="atlas-style-space__item">
@@ -70,6 +85,9 @@
                     <div class="atlas-style-box__inner">
                         {{name}}
                     </div>
+                    <div class="atlas-style-space-ruler _middle" style="height:{{value}};line-height:{{value}}">
+                        <span>{{value}}</span>
+                    </div>
                 </div>
             </div>
         {{/space}}
@@ -79,82 +97,77 @@
 
     {{#scale.length}}
     <section class="atlas-style-section">
-        <h2 class="atlas-style-section__title">Scales</h2>
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Scales</div>
         {{#scale}}
-        <figure class="atlas-style-scale">
-            <div class="atlas-style-scale__text" style="font-size:{{value}}"></div>
-            <figcaption class="atlas-style-scale__name">
-                {{name}} /{{value}}
-            </figcaption>
-        </figure>
+        <div class="atlas-style-scale">
+            <div class="atlas-style-scale__text" style="font-size:{{value}}">
+                <div class="atlas-style-space-ruler _left" style="line-height:{{value}}">
+                    <span>{{value}}</span>
+                </div>
+                <div class="atlas-style-scale__text-content"></div>
+            </div>
+            <div class="atlas-style-scale__name">
+                {{name}}
+            </div>
+        </div>
         {{/scale}}
     </section>
     {{/scale.length}}
 
     {{#font.length}}
     <section class="atlas-style-section">
-        <h2 class="atlas-style-section__title">Fonts</h2>
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Fonts</div>
+        <div class="atlas-style-columns _span3">
         {{#font}}
-        <div class="atlas-style-font _{{name}}" style="font-family:{{value}}">
-            <div class="atlas-style-columns _span3">
-                <div class="atlas-style-columns__item _bottom">
-                    <div class="atlas-style-font__item _name">{{name}}</div>
-                </div>
-                <div class="atlas-style-columns__item _bottom">
-                    <div class="atlas-style-font__item _logo"></div>
-                </div>
-                <div class="atlas-style-columns__item _bottom">
-                    <div class="atlas-style-font__item _name">{{value}}</div>
-                </div>
-                <div class="atlas-style-columns__item">
-                    <div class="atlas-style-font__item _characters"></div>
-                    <div class="atlas-style-font__item _characters-capital"></div>
-                    <div class="atlas-style-font__item _digits"></div>
-                </div>
-                <div class="atlas-style-columns__item">
-                    <div class="atlas-style-font__item _pangram"></div>
-                </div>
-                <div class="atlas-style-columns__item">
-                    &nbsp;
+            <div class="atlas-style-columns__item">
+                <div class="atlas-style-font _{{name}}" style="font-family:{{value}}">
+                    <div class="atlas-style-font__example _logo"></div>
+                    <div class="atlas-style-font__example _characters"></div>
+                    <div class="atlas-style-font__example _characters-capital"></div>
+                    <div class="atlas-style-font__example _digits"></div>
+                    <div class="atlas-style-font__caption">
+                        <div class="atlas-style-font__name">{{name}}</div>
+                        <div class="atlas-style-font__value">{{value}}</div>
+                    </div>
                 </div>
             </div>
-        </div>
         {{/font}}
+        </div>
     </section>
     {{/font.length}}
 
     {{#breakpoint.length}}
     <section class="atlas-style-section">
-        <h2 class="atlas-style-section__title">Breakpoints</h2>
-        <ul>
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Breakpoints</div>
+        <div role="list" class="atlas-style-breaks">
         {{#breakpoint}}
-            <li>
+            <div role="listitem" class="atlas-style-breaks__item">
                 {{name}}: {{value}}
-            </li>
+            </div>
         {{/breakpoint}}
-        </ul>
+        </div>
     </section>
     {{/breakpoint.length}}
 
     {{#depth.length}}
     <section class="atlas-style-section">
-        <h2 class="atlas-style-section__title">Layering</h2>
-        <ul class="atlas-style-columns _span6">
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Layering</div>
+        <div role="list" class="atlas-style-columns _span6">
             {{#depth}}
-                <li class="atlas-style-columns__item">
+                <div role="listitem" class="atlas-style-columns__item">
                     <div class="atlas-style-layer">
                         <div class="atlas-style-layer__box" style="box-shadow:{{value}}">{{name}}</div>
                     </div>
-                </li>
-                <li class="atlas-style-columns__item">&nbsp;</li>
+                </div>
+                <div role="listitem" class="atlas-style-columns__item">&nbsp;</div>
             {{/depth}}
-        </ul>
+        </div>
     </section>
     {{/depth.length}}
 
     {{#motion.length}}
         <section class="atlas-style-section">
-            <h2 class="atlas-style-section__title">Motion</h2>
+            <div role="heading" aria-level="2" class="atlas-style-section__title">Motion</div>
             {{#motion}}
                 <div class="atlas-style-motion">
                     <div class="atlas-style-motion__caption">

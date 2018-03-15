@@ -1,12 +1,19 @@
 .atlas-style-scale {
-	align-items: baseline;
+	align-items: center;
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 0.5em;
 	width: 100%;
 
 	&__text {
 		line-height: 1.2;
 		overflow: hidden;
+		position: relative;
+	}
+
+	&__text-content {
+		overflow: hidden;
+		text-indent: 70px;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		width: 100%;

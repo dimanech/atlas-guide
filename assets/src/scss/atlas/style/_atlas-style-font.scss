@@ -1,15 +1,26 @@
 .atlas-style-font {
-	width: 50%;
+	margin-right: $space-md-atlas;
 
-	&__item {
+	&__caption {
+		border-top: 1px solid $atlas-color-divider;
+		display: flex;
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
+		margin-top: $space-sm-atlas;
+		padding-top: $space-sm-atlas;
+	}
+
+	&__name {
 		margin-bottom: $space-sm-atlas;
-		margin-right: $space-md-atlas;
+		margin-right: $space-sm-atlas;
+		white-space: nowrap;
 
-		&._name {
-			font-family: $font-mono-atlas;
-			font-size: $atlas-mono-small;
+		&::after {
+			content: ":";
 		}
+	}
 
+	&__example {
 		&._logo {
 			font-size: 4rem;
 			line-height: 1;
@@ -19,17 +30,19 @@
 			}
 		}
 
-		&._padded {
-			height: 4rem;
-		}
-
 		&._characters {
+			overflow: hidden;
+			white-space: nowrap;
+
 			&::before {
 				content: "a b c d e f g h i j k l m n o p q r s t u v w x y z";
 			}
 		}
 
 		&._characters-capital {
+			overflow: hidden;
+			white-space: nowrap;
+
 			&::before {
 				content: "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
 			}
@@ -38,12 +51,6 @@
 		&._digits {
 			&::before {
 				content: "1 2 3 4 5 6 7 8 9 0";
-			}
-		}
-
-		&._pangram {
-			&::before {
-				content: "The quick brown fox jumps over the lazy dog";
 			}
 		}
 	}
