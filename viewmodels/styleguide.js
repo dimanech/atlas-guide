@@ -14,6 +14,9 @@ module.exports = function(constants) {
 
     constantsList.scale.sort((a, b) => removeUnits(b.value) - removeUnits(a.value));
     constantsList.space.sort((a, b) => removeUnits(b.value) - removeUnits(a.value));
+    constantsList.breakpoint.sort((a, b) => removeUnits(a.value) - removeUnits(b.value));
+
+    constantsList.breakpointGraph = JSON.stringify(constantsList.breakpoint.map(item => removeUnits(item.value)));
 
     return constantsList;
 };

@@ -1,6 +1,61 @@
 .atlas-style-breaks {
+	display: flex;
 	font-family: $font-mono-atlas;
 	font-size: $atlas-mono-small;
+	margin-bottom: $space-lg-atlas;
 
-	&__item {}
+	&__item {
+		align-items: center;
+		counter-increment: breaks;
+		display: flex;
+
+		&::before {
+			color: $color-blue-atlas;
+			content: counter(breaks);
+			display: inline-block;
+			font-family: $font-sans-atlas;
+			font-size: 2rem;
+			padding-right: $space-sm-atlas;
+		}
+	}
+
+	&__item-inner {
+		padding-right: $space-md-atlas;
+	}
+
+	&__name {}
+
+	&__value {}
+}
+
+.atlas-style-breaks-graph {
+	.atlas-tick-breaks {
+		line {
+			stroke: deeppink;
+			stroke-width: 2px;
+		}
+
+		text {
+			fill: deeppink;
+			font-family: $font-mono-atlas;
+			font-size: 11px;
+		}
+	}
+
+	.atlas-tick-lines {
+		line {
+			stroke: $color-grey80-atlas;
+		}
+	}
+
+	.atlas-tick-hints {
+		line {
+			stroke: $color-grey80-atlas;
+		}
+
+		text {
+			fill: $color-blue-atlas;
+			font-family: $font-mono-atlas;
+		}
+	}
 }

@@ -142,10 +142,17 @@
         <div role="list" class="atlas-style-breaks">
         {{#breakpoint}}
             <div role="listitem" class="atlas-style-breaks__item">
-                {{name}}: {{value}}
+                <div class="atlas-style-breaks__item-inner">
+                    <div class="atlas-style-breaks__name">{{name}}</div>
+                    <div class="atlas-style-breaks__value">{{value}}</div>
+                </div>
             </div>
         {{/breakpoint}}
         </div>
+        <svg id="js-atlas-breakpoints-graph" class="atlas-style-breaks-graph"></svg>
+        <script>
+            window.breakpointsGraph ={{{breakpointGraph}}};
+        </script>
     </section>
     {{/breakpoint.length}}
 
@@ -182,5 +189,8 @@
     {{/motion.length}}
 
 {{/content.documentation}}
+
+<script src="assets/js/d3.v4.min.js"></script>
+<script src="assets/js/d3breakpoints.js"></script>
 
 {{> footer}}
