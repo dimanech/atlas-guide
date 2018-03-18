@@ -27,15 +27,10 @@ function warnConstants(valuesList, constantsList) {
     let notDefined = [];
     let defined = [];
     let consider = [];
-    let all = 0;
-
-    if (valuesList.length === 0) {
-        return {};
-    }
 
     valuesList.forEach(value => {
-        all++;
         let isConstantFound = false;
+
         constantsList.forEach(constant => {
             if (isConstantFound) {
                 return;
@@ -61,13 +56,12 @@ function warnConstants(valuesList, constantsList) {
         'notDefined': {
             count: notDefined.length,
             values: notDefined
-        }, // bad
+        },
         'defined': {
             count: defined.length,
             values: defined
-        }, // good
-        'consider': consider, // 2rem could be changed to [$space-md](link to styleguide)
-        'percentage': defined.length / all * 100
+        },
+        'consider': consider // 2rem could be changed to [$space-md](link to styleguide)
     };
 }
 
@@ -109,12 +103,32 @@ function getConstantsStat(componentStat, projectConstants) {
     });
 
     constantsStat.forEach(item => {
-        item.stat = warnConstants(item.valuesList, item.constantsList);
+        if (item.constantsList.length !== 0) {
+            item.stat = warnConstants(item.valuesList, item.constantsList);
+        }
         delete item.valuesList;
         delete item.constantsList;
     });
 
     return constantsStat;
+}
+
+function prepareDisplayName(name, singular) {
+    let displayName;
+    switch (name) {
+        case 'fontFamily':
+            displayName = singular ? 'Font family' : 'Font families';
+            break;
+        case 'fontSize':
+            displayName = singular ? 'Font size' : 'Font sizes';
+            break;
+        case 'backgroundColor':
+            displayName = singular ? 'Background color' : 'Background colors';
+            break;
+        default:
+            displayName = singular ? name : name + 's';
+    }
+    return displayName;
 }
 
 function getStatistic(componentStat, componentImports, projectConstants) {
@@ -144,12 +158,12 @@ function getStatistic(componentStat, componentImports, projectConstants) {
         };
     });
 
-    componentProfile.forEach(stat => {
-        const rawStat = componentStat.stats[stat];
+    componentProfile.forEach(name => {
+        const rawStat = componentStat.stats[name];
         const rawStatLength = rawStat.length;
         viewModel.componentProfileDetails.push({
             total: rawStatLength,
-            name: rawStatLength === 1 ? stat : stat === 'fontFamily' ? 'fontFamilies' : stat + 's'
+            name: prepareDisplayName(name, rawStatLength === 1)
             // values: rawStat
         });
     });

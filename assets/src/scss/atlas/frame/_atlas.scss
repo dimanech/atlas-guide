@@ -142,7 +142,6 @@
 			background-color: lighten($color-grey95-atlas, 4%);
 			border: 1px solid $color-grey95-atlas;
 			border-radius: 5px;
-			font-size: 0.8rem;
 			overflow: auto;
 			padding: $space-sm-atlas;
 
@@ -174,7 +173,7 @@
 		border: 1px solid $color-grey90-atlas;
 		border-radius: 5px;
 		font-family: $font-mono-atlas;
-		font-size: 0.8rem;
+		font-size: 0.85em;
 		line-height: 1.2;
 		padding: 0.1em 0.3em;
 	}
@@ -281,6 +280,13 @@
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
 		background: rgba(white, 0.7);
+	}
+
+	.atlas-title__highlight {
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: 0;
 	}
 }
 

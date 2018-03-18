@@ -1,0 +1,18 @@
+.atlas-constant {
+	text-transform: none;
+
+	&__name {
+		color: $color-blue-atlas;
+		font-size: 2rem;
+		font-weight: normal;
+		text-transform: capitalize;
+	}
+
+	&__items {
+		display: block;
+	}
+
+	&__suggest {
+		font-size: 0.8rem;
+	}
+}

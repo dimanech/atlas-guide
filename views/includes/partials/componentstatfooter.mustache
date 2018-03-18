@@ -67,7 +67,7 @@
                         </figcaption>
                     </figure>
                 {{/vendorPrefix}}
-                {{#floats}}
+                {{#float}}
                     <figure class="atlas-info-digit">
                         <div class="atlas-info-digit__digit">
                             {{total}}
@@ -85,10 +85,10 @@
                             {{/values.length}}
                         </figcaption>
                     </figure>
-                {{/floats}}
+                {{/float}}
             </div>
         {{/stats}}
-            <div role="region" class="atlas-component-footer__section _last" aria-label="Component profile">
+            <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
                 <div class="atlas-info-list" role="list">
                 {{#componentProfileDetails}}
                     <div role="listitem" class="atlas-info-list__item">
@@ -101,14 +101,16 @@
             <div role="region" class="atlas-component-footer__section _last" aria-label="Constants used">
                 <div class="atlas-info-list" role="list">
                     {{#componentConstants}}
-                        <div role="listitem" class="atlas-info-list__item">
-                            <span class="atlas-info-list__total">{{name}}</span>
-                            <span class="atlas-info-list__name">{{stat.notDefined.count}}</span>
-                            <span class="atlas-info-list__name">{{stat.defined.count}}</span>
-                            {{#stat.consider}}
-                                <span class="atlas-info-list__name">Consider change {{from}} to {{to}}</span>
-                            {{/stat.consider}}
-                        </div>
+                        {{#stat}}
+                            <div role="listitem" class="atlas-info-list__item atlas-constant">
+                                <span class="atlas-constant__name">{{name}}</span>
+                                <span class="atlas-constant__items">{{notDefined.count}} not in use</span>
+                                <span class="atlas-constant__items">{{defined.count}} used</span>
+                                {{#consider}}
+                                    <span class="atlas-constant__suggest atlas">Consider change <code>{{from}}</code> to <code>{{to}}</code></span>
+                                {{/consider}}
+                            </div>
+                        {{/stat}}
                     {{/componentConstants}}
                 </div>
             </div>
