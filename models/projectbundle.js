@@ -26,7 +26,8 @@ function getResultedFileSize(name, pathToCSS) {
 }
 
 function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
-    const pathToSCSS = new RegExp(path.join(importsGraph.dir, '/'));
+    const sep = path.sep;
+    const pathToSCSS = new RegExp(path.join(importsGraph.dir, sep));
     let importsPaths = {};
     importsPaths[projectName] = {
         id: projectName,
@@ -34,7 +35,11 @@ function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
     };
 
     for (let prop in importsGraph.index) {
-        if (!importsGraph.index.hasOwnProperty(prop) || excludedSassFiles.test(prop)) {
+        if (
+            !importsGraph.index.hasOwnProperty(prop) ||
+            excludedSassFiles.test(prop) ||
+            !pathToSCSS.test(prop) // it is a bit tricky to handle sass additional imports path array
+        ) {
             continue;
         }
         const pathStr = prop.toString();
@@ -42,10 +47,10 @@ function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
         const isPartial = /^_/i.test(fileName);
         if (isPartial) {
             const importedBy = importsGraph.index[prop].importedBy;
-            const dest = pathStr.replace(pathToSCSS, '').replace(new RegExp(fileName), '').split('/');
+            const destList = pathStr.replace(pathToSCSS, '').replace(new RegExp(fileName), '').split(sep);
 
             importedBy.forEach(importedBy => {
-                // push resulted file
+                // push standalone resulted file
                 const importFile = importedBy.toString().replace(pathToSCSS, ''); // could be import to partial file
                 let cumulativePath = projectName + '/' + importFile;
 
@@ -57,9 +62,9 @@ function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
                 }
 
                 // push missing folders
-                for (let i = 0; i < dest.length - 1; i++) {
+                for (let i = 0; i < destList.length - 1; i++) {
                     // check atlas/ not added here
-                    cumulativePath = cumulativePath + '/' + dest[i];
+                    cumulativePath = cumulativePath + '/' + destList[i];
                     if (!importsPaths.hasOwnProperty(cumulativePath)) {
                         importsPaths[cumulativePath] = {
                             id: cumulativePath,
@@ -78,11 +83,11 @@ function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
                 }
             });
         } else {
-            const id = projectName + '/' + pathStr.replace(pathToSCSS, '');
-            if (!importsPaths.hasOwnProperty(id)) {
-                importsPaths[id] = {
-                    id: id,
-                    size: getResultedFileSize(id, pathToCSS)
+            const standaloneFile = projectName + '/' + pathStr.replace(pathToSCSS, '');
+            if (!importsPaths.hasOwnProperty(standaloneFile)) {
+                importsPaths[standaloneFile] = {
+                    id: standaloneFile,
+                    size: getResultedFileSize(standaloneFile, pathToCSS)
                 };
             }
         }
