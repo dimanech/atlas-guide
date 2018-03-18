@@ -154,8 +154,7 @@ function getOptionalBaseConfigs(config) {
     const scssAdditionalImports = config.scssAdditionalImportsArray;
     const copyInternalAssets = config.copyInternalAssets;
 
-    atlasConfig.scssAdditionalImportsArray =
-        scssAdditionalImports ? path.join(projectRoot, scssAdditionalImports) : [];
+    atlasConfig.scssAdditionalImportsArray = scssAdditionalImports ? scssAdditionalImports : [];
 
     atlasConfig.excludedDirs = new RegExp(config.excludedDirs || '.^', 'g');
     atlasConfig.excludedCssFiles = new RegExp(config.excludedCssFiles || '.^', 'g');
@@ -200,7 +199,7 @@ function getTemplates(config) {
     return templates;
 }
 
-function getAdditionalPages(templates, dest) {
+function getAdditionalPages(templates, dest, constants) {
     let additionalPages = [];
 
     if (fs.existsSync(path.join(projectRoot, 'README.md'))) {
@@ -211,6 +210,18 @@ function getAdditionalPages(templates, dest) {
             'target': path.join(dest, '/index.html'),
             'template': templates.about,
             'type': 'about',
+            'subPages': []
+        });
+    }
+
+    if (constants.isDefined) {
+        additionalPages.push({
+            'id': 'styleguide',
+            'title': 'styleguide',
+            'src': '',
+            'target': path.join(dest, '/styleguide.html'),
+            'template': templates.styleguide,
+            'type': 'styleguide',
             'subPages': []
         });
     }
@@ -275,8 +286,9 @@ function getBaseConfig(configRaw) {
     }
     const baseOptional = getOptionalBaseConfigs(config);
     const templates = {templates: getTemplates(config)};
-    const additionalPages = {additionalPages: getAdditionalPages(templates.templates, baseMandatory.guideDest)};
     const constants = {constants: getDeclaredConstants(config)};
+    const additionalPages = {additionalPages: getAdditionalPages(
+        templates.templates, baseMandatory.guideDest, constants.constants)};
 
     return Object.assign({}, baseMandatory, baseOptional, templates, additionalPages, constants);
 }

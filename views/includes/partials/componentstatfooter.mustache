@@ -98,6 +98,20 @@
                 {{/componentProfileDetails}}
                 </div>
             </div>
+            <div role="region" class="atlas-component-footer__section _last" aria-label="Constants used">
+                <div class="atlas-info-list" role="list">
+                    {{#componentConstants}}
+                        <div role="listitem" class="atlas-info-list__item">
+                            <span class="atlas-info-list__total">{{name}}</span>
+                            <span class="atlas-info-list__name">{{stat.notDefined.count}}</span>
+                            <span class="atlas-info-list__name">{{stat.defined.count}}</span>
+                            {{#stat.consider}}
+                                <span class="atlas-info-list__name">Consider change {{from}} to {{to}}</span>
+                            {{/stat.consider}}
+                        </div>
+                    {{/componentConstants}}
+                </div>
+            </div>
         </div>
 
         <div class="atlas-component-footer__item">

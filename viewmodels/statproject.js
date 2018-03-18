@@ -3,35 +3,10 @@
 const _uniq = require('lodash.uniq');
 const _camelCase = require('lodash.camelcase');
 const _size = require('lodash.size');
-const d3fmt = require('d3-format');
 const color = require('d3-color');
-
-function humanize(number) {
-    if (!number) {
-        return 0;
-    }
-    const length = number.toString().length;
-
-    if (length > 4) {
-        return d3fmt.format('.2s')(number);
-    } else {
-        return d3fmt.format(',')(number);
-    }
-}
-
-function formatBytes(bytes) {
-    const fmt = d3fmt.format('.0f');
-
-    if (bytes < 1024) {
-        return fmt(bytes) + 'B';
-    } else if (bytes < 1024 * 1024) {
-        return fmt(bytes / 1024) + 'kB';
-    } else if (bytes < 1024 * 1024 * 1024) {
-        return fmt(bytes / 1024 / 1024) + 'MB';
-    } else {
-        return fmt(bytes / 1024 / 1024 / 1024) + 'GB';
-    }
-}
+const format = require(__dirname + '/utils/format');
+const formatNumbers = format.numbers;
+const formatBytes = format.bytes;
 
 function convertFontToAbsoluteUnits(value) {
     let raw = parseFloat(value);
@@ -210,10 +185,10 @@ function totals(stats) {
     }
 
     return {
-        rules: humanize(stats.rules.total),
-        selectors: humanize(stats.selectors.total),
-        declarations: humanize(stats.declarations.total),
-        properties: humanize(_size(stats.declarations.properties))
+        rules: formatNumbers(stats.rules.total),
+        selectors: formatNumbers(stats.selectors.total),
+        declarations: formatNumbers(stats.declarations.total),
+        properties: formatNumbers(_size(stats.declarations.properties))
     };
 }
 
@@ -332,7 +307,7 @@ function specificityChart(stats) {
     return {
         'chart': renderLineChart(stats.selectors.getSpecificityValues()),
         'max': stats.selectors.specificity.max,
-        'average': humanize(stats.selectors.specificity.average)
+        'average': formatNumbers(stats.selectors.specificity.average)
     };
 }
 
@@ -357,7 +332,7 @@ function ruleSizeChart(stats) {
     return {
         'chart': renderLineChart(stats.rules.selectorRuleSizes),
         'max': stats.rules.size.max,
-        'average': humanize(stats.rules.size.average)
+        'average': formatNumbers(stats.rules.size.average)
     };
 }
 

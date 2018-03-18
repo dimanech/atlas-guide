@@ -455,6 +455,57 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel, 'proper view model for styleguide');
             });
         });
+        describe('statcomponent', function() {
+            it('return proper transformed model without defined constants', function () {
+                const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
+                const baseConfig = require(path.join(cwd, '/models/atlasconfig.js')).getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/'
+                });
+                const constants = require(path.join(cwd, '/models/projectconstants.js'))(baseConfig.constants);
+                const deps = require(path.join(cwd, '/models/projectimportsgraph.js'));
+                const importsGraph = deps.getImportsGraph(baseConfig);
+                const componentImports = deps.getFileImports(componentPath, importsGraph);
+                const componentStat = require(path.join(cwd, '/models/componentstat.js')).getStatFor(
+                    componentPath, baseConfig.componentPrefixes);
+
+                const viewModel = require(path.join(cwd, '/viewmodels/statcomponent.js'))(
+                    componentStat, componentImports, constants);
+                const expectedViewModel = require(path.join(cwd, '/test/fixtures/viewmodels/statcomponent.json'));
+                assert.deepEqual(viewModel, expectedViewModel);
+            });
+
+            it('return proper transformed model with defined constants', function () {
+                const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
+                const baseConfig = require(path.join(cwd, '/models/atlasconfig.js')).getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'projectConstants': {
+                        'constantsSrc': '/test/fixtures/atlas/_excluded-settings.scss',
+                        'colorPrefix': 'color',
+                        'fontPrefix': 'font',
+                        'scalePrefix': 'scale',
+                        'spacePrefix': 'space',
+                        'motionPrefix': 'motion',
+                        'depthPrefix': 'depth',
+                        'breakpointPrefix': 'break'
+                    }
+                });
+                const constants = require(path.join(cwd, '/models/projectconstants.js'))(baseConfig.constants);
+                const deps = require(path.join(cwd, '/models/projectimportsgraph.js'));
+                const importsGraph = deps.getImportsGraph(baseConfig);
+                const componentImports = deps.getFileImports(componentPath, importsGraph);
+                const componentStat = require(path.join(cwd, '/models/componentstat.js')).getStatFor(
+                    componentPath, baseConfig.componentPrefixes);
+
+                const viewModel = require(path.join(cwd, '/viewmodels/statcomponent.js'))(
+                    componentStat, componentImports, constants);
+                const expectedViewModel = require(path.join(cwd, '/test/fixtures/viewmodels/statcomponent-const.json'));
+                assert.deepEqual(viewModel, expectedViewModel);
+            });
+        });
     });
     describe('Component statistics', function() {
         describe('getStatFor', function() {
@@ -467,6 +518,53 @@ describe('Atlas', function() {
             it('should correct construct component selectors tree');
             it('should return only uniq spaces');
             it('should return only uniq scales');
+        });
+    });
+    describe('format', function() {
+        const format = require(cwd + '/viewmodels/utils/format');
+
+        describe('numbers', function() {
+            it('should return proper formatted numbers with 0', function() {
+                assert.strictEqual(format.numbers(0), 0);
+            });
+            it('should return proper formatted numbers more than 4', function() {
+                assert.strictEqual(format.numbers(500), '500');
+            });
+            it('should return proper formatted numbers less than 4', function() {
+                assert.strictEqual(format.numbers(3), '3');
+            });
+            it('should return proper formatted numbers with float point', function() {
+                assert.strictEqual(format.numbers(3.000000002), '3.0');
+            });
+            it('should return proper formatted numbers with float point', function() {
+                assert.strictEqual(format.numbers(0.6000000000000001), '600m');
+            });
+            it('should return proper formatted numbers with thousand numbers', function() {
+                assert.strictEqual(format.numbers(20000), '20k');
+            });
+            it('should return proper formatted numbers million numbers', function() {
+                assert.strictEqual(format.numbers(1000000), '1.0M');
+            });
+        });
+        describe('bytes', function() {
+            it('should return proper formatted bytes', function() {
+                assert.strictEqual(format.bytes(600), '600B');
+            });
+            it('should return proper formatted kilo bytes', function() {
+                assert.strictEqual(format.bytes(1000), '1000B');
+            });
+            it('should return proper formatted kilo bytes', function() {
+                assert.strictEqual(format.bytes(1128), '1kB');
+            });
+            it('should return proper formatted mega bytes', function() {
+                assert.strictEqual(format.bytes(1000000), '977kB');
+            });
+            it('should return proper formatted mega bytes', function() {
+                assert.strictEqual(format.bytes(1128000), '1MB');
+            });
+            it('should return proper formatted giga bytes', function() {
+                assert.strictEqual(format.bytes(1128000000), '1GB');
+            });
         });
     });
 });

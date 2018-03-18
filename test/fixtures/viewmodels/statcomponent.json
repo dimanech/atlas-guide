@@ -1,0 +1,128 @@
+{
+    "includes": [
+        "component()"
+    ],
+    "imports": [
+        "\"excluded-component\"",
+        "\"category/component\""
+    ],
+    "variables": [
+        {
+            "prop": "$local-const",
+            "value": "10px"
+        }
+    ],
+    "importedBy": [],
+    "mediaQuery": [
+        "all"
+    ],
+    "nodes": [
+        {
+            "node": ".class",
+            "type": "element",
+            "isBlock": true,
+            "nodes": [
+                {
+                    "node": "include component()",
+                    "type": "mixin",
+                    "isBlock": false,
+                    "nodes": []
+                },
+                {
+                    "node": "&__item-empty",
+                    "type": "element",
+                    "isBlock": true,
+                    "nodes": [
+                        {
+                            "node": "&:hover",
+                            "type": "modifier-implicit",
+                            "isBlock": true,
+                            "nodes": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "node": "media all",
+            "type": "condition",
+            "isBlock": true,
+            "nodes": [
+                {
+                    "node": "p",
+                    "type": "element",
+                    "isBlock": true,
+                    "nodes": []
+                },
+                {
+                    "node": "#main",
+                    "type": "element",
+                    "isBlock": true,
+                    "nodes": []
+                }
+            ]
+        }
+    ],
+    "totalDeclarations": "12",
+    "ruleSetsLine": "M0,25.6C0,25.6,31.27982481693114,60.43212691646128,48.33333333333333,64C63.68113768942627,67.21101185722894,81.31886231057375,58.90228890041416,96.66666666666666,51.2C113.72017518306883,42.64170421309432,127.94649148359781,16.367873083538708,145,12.799999999999997C160.34780435609295,9.588988142771052,177.5677830404369,19.430885137988,193.33333333333331,25.6C209.8224525760691,32.05224991782768,225.02597757623067,47.06517276152787,241.66666666666669,51.2C257.3097902713987,55.086955235093434,290,51.2,290,51.2",
+    "componentProfileDetails": [
+        {
+            "total": 3,
+            "name": "fontFamilies"
+        },
+        {
+            "total": 2,
+            "name": "fontSizes"
+        },
+        {
+            "total": 2,
+            "name": "backgroundColors"
+        },
+        {
+            "total": 1,
+            "name": "padding"
+        },
+        {
+            "total": 1,
+            "name": "width"
+        },
+        {
+            "total": 1,
+            "name": "height"
+        },
+        {
+            "total": 1,
+            "name": "margin"
+        },
+        {
+            "total": 1,
+            "name": "color"
+        },
+        {
+            "total": 0,
+            "name": "displays"
+        },
+        {
+            "total": 0,
+            "name": "positions"
+        }
+    ],
+    "stats": {
+        "important": {
+            "total": 1,
+            "values": [
+                {
+                    "prop": "padding"
+                }
+            ]
+        },
+        "vendorPrefix": {
+            "total": 0,
+            "values": []
+        },
+        "float": {
+            "total": 0,
+            "values": []
+        }
+    }
+}

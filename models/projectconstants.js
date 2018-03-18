@@ -29,22 +29,24 @@ function getConstantsList(url, constantsList) {
     };
 }
 
-function compileStyles(constants) {
+function compileStyles(constants, additionalSassImports) {
     const template = '{{>constants}} {{#content}} {{constNameSafe}} { color: {{constName}} } {{/content}}';
     const styles = sass.renderSync({
-        data: mustache.render(template, {content: constants.rawConstants}, {constants: constants.fileString})
+        data: mustache.render(template, {content: constants.rawConstants}, {constants: constants.fileString}),
+        includePaths: additionalSassImports,
+        outputStyle: 'compressed'
     });
     return styles.css.toString();
 }
 
-function getProjectConstants(constConfig) {
+function getProjectConstants(constConfig, additionalSassImports) {
     if (!constConfig.isDefined) {
         return undefined;
     }
     const constSrc = constConfig.constantsSrc;
     const constList = constConfig.constantsList;
 
-    const compiledConstants = compileStyles(getConstantsList(constSrc, constList));
+    const compiledConstants = compileStyles(getConstantsList(constSrc, constList), additionalSassImports);
     const fileAST = postcss().process(compiledConstants).root;
 
     let rawConstants = {
@@ -55,6 +57,7 @@ function getProjectConstants(constConfig) {
         'breakpoint': [],
         'depth': [],
         'motion': []
+        // 'zIndex': []
     };
 
     fileAST.walkRules(rule => {

@@ -1,22 +1,9 @@
 'use strict';
 
 const _uniq = require('lodash.uniq');
-const d3fmt = require('d3-format');
 const d3scale = require('d3-scale');
 const d3shape = require('d3-shape');
-
-function humanize(number) {
-    if (!number) {
-        return 0;
-    }
-    const length = number.toString().length;
-
-    if (length > 4) {
-        return d3fmt.format('.2s')(number);
-    } else {
-        return d3fmt.format(',')(number);
-    }
-}
+const formatNumbers = require(__dirname + '/utils/format').numbers;
 
 function ruleSetChart(dataArr) {
     const width = 290;
@@ -36,19 +23,115 @@ function ruleSetChart(dataArr) {
         .curve(d3shape.curveCatmullRom.alpha(0.5))(dataArr);
 }
 
-function getStatistic(componentStat, componentImports) {
+function warnConstants(valuesList, constantsList) {
+    let notDefined = [];
+    let defined = [];
+    let consider = [];
+    let all = 0;
+
+    if (valuesList.length === 0) {
+        return {};
+    }
+
+    valuesList.forEach(value => {
+        all++;
+        let isConstantFound = false;
+        constantsList.forEach(constant => {
+            if (isConstantFound) {
+                return;
+            }
+            if (value === constant.name) {
+                defined.push(value);
+                isConstantFound = true;
+            } else if (value === constant.value) {
+                defined.push(value);
+                consider.push({
+                    from: value,
+                    to: constant.name
+                });
+                isConstantFound = true;
+            }
+        });
+        if (!isConstantFound) {
+            notDefined.push(value);
+        }
+    });
+
+    return {
+        'notDefined': {
+            count: notDefined.length,
+            values: notDefined
+        }, // bad
+        'defined': {
+            count: defined.length,
+            values: defined
+        }, // good
+        'consider': consider, // 2rem could be changed to [$space-md](link to styleguide)
+        'percentage': defined.length / all * 100
+    };
+}
+
+function getConstantsStat(componentStat, projectConstants) {
+    const definedConstantsList = [];
+    const constantsMap = {
+        scale: ['fontSize'],
+        font: ['fontFamily'],
+        space: ['margin', 'padding'],
+        color: ['color', 'backgroundColor'],
+        depth: ['boxShadow']
+    };
+    let constantsStat = [];
+
+    // get defined constants
+    Object.keys(projectConstants).forEach(constant => {
+        if (constant.length > 0) {
+            return definedConstantsList.push(constant);
+        }
+    });
+
+    // map constants to css props
+    definedConstantsList.forEach(key => {
+        if (constantsMap[key] === undefined) {
+            return;
+        }
+        let values = [];
+
+        constantsMap[key].forEach(item => {
+            const stat = componentStat.stats[item];
+            return values.push(...stat);
+        });
+
+        constantsStat.push({
+            'name': key,
+            'valuesList': values,
+            'constantsList': projectConstants[key]
+        });
+    });
+
+    constantsStat.forEach(item => {
+        item.stat = warnConstants(item.valuesList, item.constantsList);
+        delete item.valuesList;
+        delete item.constantsList;
+    });
+
+    return constantsStat;
+}
+
+function getStatistic(componentStat, componentImports, projectConstants) {
     const componentProfile = [
         'padding', 'display', 'position', 'width', 'height',
-        'margin', 'scale', 'font', 'color', 'background'
+        'margin', 'fontSize', 'fontFamily', 'color', 'backgroundColor'
     ];
-    const stats = ['important', 'vendorPrefix', 'floats'];
+    const stats = ['important', 'vendorPrefix', 'float'];
+
     let viewModel = {
         includes: _uniq(componentStat.includes.sort()),
         imports: _uniq(componentStat.imports),
         variables: componentStat.variables,
         importedBy: componentImports.importedBy,
+        mediaQuery: _uniq(componentStat.mediaQuery),
         nodes: componentStat.componentStructure.nodes, // component structure recursion
-        totalDeclarations: humanize(componentStat.totalDeclarations),
+        totalDeclarations: formatNumbers(componentStat.totalDeclarations),
         ruleSetsLine: ruleSetChart(componentStat.ruleSets),
         componentProfileDetails: [],
         stats: {}
@@ -66,12 +149,25 @@ function getStatistic(componentStat, componentImports) {
         const rawStatLength = rawStat.length;
         viewModel.componentProfileDetails.push({
             total: rawStatLength,
-            name: rawStatLength === 1 ? stat : stat + 's',
-            values: rawStat
+            name: rawStatLength === 1 ? stat : stat === 'fontFamily' ? 'fontFamilies' : stat + 's'
+            // values: rawStat
         });
     });
 
     viewModel.componentProfileDetails.sort((a, b) => b.total - a.total);
+
+    if (projectConstants !== undefined) {
+        const componentConstants = getConstantsStat(componentStat, projectConstants);
+
+        componentConstants.push({
+            'name': 'breakpoint',
+            'stat': warnConstants(componentStat.mediaQuery, projectConstants.breakpoint)
+        });
+
+        viewModel.componentConstants = componentConstants;
+    }
+
+    // require('fs').writeFileSync('./componentStat.json', JSON.stringify(viewModel, null, '\t'))
 
     return viewModel;
 }
