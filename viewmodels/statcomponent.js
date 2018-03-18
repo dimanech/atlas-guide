@@ -27,15 +27,17 @@ function warnConstants(valuesList, constantsList) {
     let notDefined = [];
     let defined = [];
     let consider = [];
+    let all = 0;
 
     valuesList.forEach(value => {
         let isConstantFound = false;
+        all++;
 
         constantsList.forEach(constant => {
             if (isConstantFound) {
                 return;
             }
-            if (value === constant.name) {
+            if (value === constant.name) { // interpolation and operators could be used with variable
                 defined.push(value);
                 isConstantFound = true;
             } else if (value === constant.value) {
@@ -53,64 +55,39 @@ function warnConstants(valuesList, constantsList) {
     });
 
     return {
-        'notDefined': {
+        'notInConstants': {
             count: notDefined.length,
             values: notDefined
         },
-        'defined': {
-            count: defined.length,
-            values: defined
-        },
-        'consider': consider // 2rem could be changed to [$space-md](link to styleguide)
+        'allOk': all === defined.length,
+        'consider': consider
     };
 }
 
-function getConstantsStat(componentStat, projectConstants) {
-    const definedConstantsList = [];
+function getConstantsStat(name, valuesList, constants) {
     const constantsMap = {
         scale: ['fontSize'],
         font: ['fontFamily'],
         space: ['margin', 'padding'],
         color: ['color', 'backgroundColor'],
+        breakpoint: ['mediaQuery'],
         depth: ['boxShadow']
     };
-    let constantsStat = [];
+    let constantsList = [];
 
-    // get defined constants
-    Object.keys(projectConstants).forEach(constant => {
-        if (constant.length > 0) {
-            return definedConstantsList.push(constant);
-        }
-    });
-
-    // map constants to css props
-    definedConstantsList.forEach(key => {
-        if (constantsMap[key] === undefined) {
-            return;
-        }
-        let values = [];
-
-        constantsMap[key].forEach(item => {
-            const stat = componentStat.stats[item];
-            return values.push(...stat);
-        });
-
-        constantsStat.push({
-            'name': key,
-            'valuesList': values,
-            'constantsList': projectConstants[key]
+    Object.keys(constantsMap).forEach(key => {
+        constantsMap[key].forEach(prop => {
+            if (prop === name) {
+                constantsList = constants[key];
+            }
         });
     });
 
-    constantsStat.forEach(item => {
-        if (item.constantsList.length !== 0) {
-            item.stat = warnConstants(item.valuesList, item.constantsList);
-        }
-        delete item.valuesList;
-        delete item.constantsList;
-    });
-
-    return constantsStat;
+    if (constantsList.length > 0 && valuesList.length > 0) {
+        return warnConstants(valuesList, constantsList);
+    } else {
+        return undefined;
+    }
 }
 
 function prepareDisplayName(name, singular) {
@@ -123,7 +100,7 @@ function prepareDisplayName(name, singular) {
             displayName = singular ? 'Font size' : 'Font sizes';
             break;
         case 'backgroundColor':
-            displayName = singular ? 'Background color' : 'Background colors';
+            displayName = singular ? 'Background' : 'Backgrounds';
             break;
         default:
             displayName = singular ? name : name + 's';
@@ -134,7 +111,8 @@ function prepareDisplayName(name, singular) {
 function getStatistic(componentStat, componentImports, projectConstants) {
     const componentProfile = [
         'padding', 'display', 'position', 'width', 'height',
-        'margin', 'fontSize', 'fontFamily', 'color', 'backgroundColor'
+        'margin', 'fontSize', 'fontFamily', 'color', 'backgroundColor',
+        'mediaQuery', 'boxShadow' // add missing constants props
     ];
     const stats = ['important', 'vendorPrefix', 'float'];
 
@@ -143,7 +121,6 @@ function getStatistic(componentStat, componentImports, projectConstants) {
         imports: _uniq(componentStat.imports),
         variables: componentStat.variables,
         importedBy: componentImports.importedBy,
-        mediaQuery: _uniq(componentStat.mediaQuery),
         nodes: componentStat.componentStructure.nodes, // component structure recursion
         totalDeclarations: formatNumbers(componentStat.totalDeclarations),
         ruleSetsLine: ruleSetChart(componentStat.ruleSets),
@@ -159,29 +136,22 @@ function getStatistic(componentStat, componentImports, projectConstants) {
     });
 
     componentProfile.forEach(name => {
-        const rawStat = componentStat.stats[name];
+        const rawStat = name !== 'mediaQuery' ? componentStat.stats[name] : _uniq(componentStat.mediaQuery);
         const rawStatLength = rawStat.length;
-        viewModel.componentProfileDetails.push({
+        let result = {
             total: rawStatLength,
             name: prepareDisplayName(name, rawStatLength === 1)
-            // values: rawStat
-        });
+        };
+        if (projectConstants !== undefined) {
+            const constStat = getConstantsStat(name, rawStat, projectConstants);
+            if (constStat !== undefined) {
+                result.consistancy = constStat;
+            }
+        }
+        viewModel.componentProfileDetails.push(result);
     });
 
     viewModel.componentProfileDetails.sort((a, b) => b.total - a.total);
-
-    if (projectConstants !== undefined) {
-        const componentConstants = getConstantsStat(componentStat, projectConstants);
-
-        componentConstants.push({
-            'name': 'breakpoint',
-            'stat': warnConstants(componentStat.mediaQuery, projectConstants.breakpoint)
-        });
-
-        viewModel.componentConstants = componentConstants;
-    }
-
-    // require('fs').writeFileSync('./componentStat.json', JSON.stringify(viewModel, null, '\t'))
 
     return viewModel;
 }

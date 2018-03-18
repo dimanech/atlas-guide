@@ -16,14 +16,13 @@
 	}
 
 	&__section {
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		display: flex;
 		margin: 0;
 		padding: $space-md-atlas 0 0;
 		position: relative;
 
-		&._last {
-			border: none;
+		& + & {
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
 		}
 	}
 }

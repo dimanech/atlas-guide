@@ -13,9 +13,6 @@
         }
     ],
     "importedBy": [],
-    "mediaQuery": [
-        "all"
-    ],
     "nodes": [
         {
             "node": ".class",
@@ -68,19 +65,15 @@
     "componentProfileDetails": [
         {
             "total": 3,
-            "name": "fontFamilies"
+            "name": "Font families"
         },
         {
             "total": 2,
-            "name": "fontSizes"
+            "name": "Font sizes"
         },
         {
             "total": 2,
-            "name": "backgroundColors"
-        },
-        {
-            "total": 1,
-            "name": "padding"
+            "name": "Backgrounds"
         },
         {
             "total": 1,
@@ -96,6 +89,14 @@
         },
         {
             "total": 1,
+            "name": "padding"
+        },
+        {
+            "total": 1,
+            "name": "mediaQuery"
+        },
+        {
+            "total": 1,
             "name": "color"
         },
         {
@@ -105,6 +106,10 @@
         {
             "total": 0,
             "name": "positions"
+        },
+        {
+            "total": 0,
+            "name": "boxShadows"
         }
     ],
     "stats": {

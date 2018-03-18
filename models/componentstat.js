@@ -211,12 +211,12 @@ function getDeclsStats(fileAST) {
         if (/^margin/.test(decl.prop)) {
             const metricList = decl.value.split(' ');
             // declared spaces stat could be here
-            metricList.forEach(value => stats.padding.push(value));
+            metricList.forEach(value => stats.margin.push(value));
         }
 
         if (/^padding/.test(decl.prop)) {
             const metricList = decl.value.split(' ');
-            metricList.forEach(value => stats.margin.push(value));
+            metricList.forEach(value => stats.padding.push(value));
         }
 
         if (decl.prop === 'position') {

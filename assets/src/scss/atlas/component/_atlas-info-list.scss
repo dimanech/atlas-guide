@@ -17,7 +17,10 @@
 		color: $color-blue-atlas;
 		font-size: 2rem;
 		font-weight: normal;
+		padding-right: $space-sm-atlas / 2;
 	}
 
-	&__name {}
+	&__name {
+		padding-right: $space-sm-atlas;
+	}
 }

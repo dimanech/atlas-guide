@@ -41,6 +41,12 @@ It remove class from loader when DOMContentLoaded event fired. Example markup:
 		background: rgba(white, 0.7);
 	}
 
+	@media braille {
+		// Only for test reason
+		color: #594199;
+		margin: 0;
+	}
+
 	.js-loading-frame & {
 		display: block;
 	}

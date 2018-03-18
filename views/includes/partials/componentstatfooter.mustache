@@ -94,24 +94,39 @@
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">{{total}}</span>
                         <span class="atlas-info-list__name">{{name}}</span>
-                    </div>
-                {{/componentProfileDetails}}
-                </div>
-            </div>
-            <div role="region" class="atlas-component-footer__section _last" aria-label="Constants used">
-                <div class="atlas-info-list" role="list">
-                    {{#componentConstants}}
-                        {{#stat}}
-                            <div role="listitem" class="atlas-info-list__item atlas-constant">
-                                <span class="atlas-constant__name">{{name}}</span>
-                                <span class="atlas-constant__items">{{notDefined.count}} not in use</span>
-                                <span class="atlas-constant__items">{{defined.count}} used</span>
+                        {{#consistancy}}
+                            <div class="atlas-constant">
+                                {{#allOk}}
+                                    <div class="atlas-constant__items _success">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-good"></use>
+                                        </svg>
+                                        Passed
+                                    </div>
+                                {{/allOk}}
+                                {{#notInConstants.count}}
+                                    <div class="atlas-constant__items _error">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-bad"></use>
+                                        </svg>
+                                        {{notInConstants.count}}
+                                        {{#pluralize}}{{notInConstants.count}},fix,fixes{{/pluralize}} required
+                                    </div>
+                                    <div class="atlas-constant__list atlas">
+                                        {{#notInConstants.values}}
+                                            <code>{{.}}</code>&ensp;
+                                        {{/notInConstants.values}}
+                                    </div>
+                                {{/notInConstants.count}}
                                 {{#consider}}
-                                    <span class="atlas-constant__suggest atlas">Consider change <code>{{from}}</code> to <code>{{to}}</code></span>
+                                    <div class="atlas-constant__list _warn atlas">
+                                        <code>{{from}}</code> could be changed to <code>{{to}}</code>
+                                    </div>
                                 {{/consider}}
                             </div>
-                        {{/stat}}
-                    {{/componentConstants}}
+                        {{/consistancy}}
+                    </div>
+                {{/componentProfileDetails}}
                 </div>
             </div>
         </div>

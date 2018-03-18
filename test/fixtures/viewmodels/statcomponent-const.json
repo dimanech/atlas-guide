@@ -13,9 +13,6 @@
         }
     ],
     "importedBy": [],
-    "mediaQuery": [
-        "all"
-    ],
     "nodes": [
         {
             "node": ".class",
@@ -68,19 +65,49 @@
     "componentProfileDetails": [
         {
             "total": 3,
-            "name": "fontFamilies"
+            "name": "Font families",
+            "consistancy": {
+                "notInConstants": {
+                    "count": 3,
+                    "values": [
+                        "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+                        "serif",
+                        "sans"
+                    ]
+                },
+                "allOk": false,
+                "consider": []
+            }
         },
         {
             "total": 2,
-            "name": "fontSizes"
+            "name": "Font sizes",
+            "consistancy": {
+                "notInConstants": {
+                    "count": 2,
+                    "values": [
+                        "20px",
+                        "20px"
+                    ]
+                },
+                "allOk": false,
+                "consider": []
+            }
         },
         {
             "total": 2,
-            "name": "backgroundColors"
-        },
-        {
-            "total": 1,
-            "name": "padding"
+            "name": "Backgrounds",
+            "consistancy": {
+                "notInConstants": {
+                    "count": 2,
+                    "values": [
+                        "green",
+                        "orange"
+                    ]
+                },
+                "allOk": false,
+                "consider": []
+            }
         },
         {
             "total": 1,
@@ -92,11 +119,62 @@
         },
         {
             "total": 1,
-            "name": "margin"
+            "name": "margin",
+            "consistancy": {
+                "notInConstants": {
+                    "count": 1,
+                    "values": [
+                        "$local-const"
+                    ]
+                },
+                "allOk": false,
+                "consider": []
+            }
         },
         {
             "total": 1,
-            "name": "color"
+            "name": "padding",
+            "consistancy": {
+                "notInConstants": {
+                    "count": 0,
+                    "values": []
+                },
+                "allOk": true,
+                "consider": [
+                    {
+                        "from": "0",
+                        "to": "$space-off-atlas"
+                    }
+                ]
+            }
+        },
+        {
+            "total": 1,
+            "name": "mediaQuery",
+            "consistancy": {
+                "notInConstants": {
+                    "count": 1,
+                    "values": [
+                        "all"
+                    ]
+                },
+                "allOk": false,
+                "consider": []
+            }
+        },
+        {
+            "total": 1,
+            "name": "color",
+            "consistancy": {
+                "notInConstants": {
+                    "count": 1,
+                    "values": [
+                        "red"
+                    ]
+                },
+                "allOk": false,
+                "consider": []
+            }
         },
         {
             "total": 0,
@@ -105,6 +183,10 @@
         {
             "total": 0,
             "name": "positions"
+        },
+        {
+            "total": 0,
+            "name": "boxShadows"
         }
     ],
     "stats": {
@@ -124,108 +206,5 @@
             "total": 0,
             "values": []
         }
-    },
-    "componentConstants": [
-        {
-            "name": "color",
-            "stat": {
-                "notDefined": {
-                    "count": 3,
-                    "values": [
-                        "red",
-                        "green",
-                        "orange"
-                    ]
-                },
-                "defined": {
-                    "count": 0,
-                    "values": []
-                },
-                "consider": [],
-                "percentage": 0
-            }
-        },
-        {
-            "name": "font",
-            "stat": {
-                "notDefined": {
-                    "count": 3,
-                    "values": [
-                        "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
-                        "serif",
-                        "sans"
-                    ]
-                },
-                "defined": {
-                    "count": 0,
-                    "values": []
-                },
-                "consider": [],
-                "percentage": 0
-            }
-        },
-        {
-            "name": "scale",
-            "stat": {
-                "notDefined": {
-                    "count": 2,
-                    "values": [
-                        "20px",
-                        "20px"
-                    ]
-                },
-                "defined": {
-                    "count": 0,
-                    "values": []
-                },
-                "consider": [],
-                "percentage": 0
-            }
-        },
-        {
-            "name": "space",
-            "stat": {
-                "notDefined": {
-                    "count": 1,
-                    "values": [
-                        "$local-const"
-                    ]
-                },
-                "defined": {
-                    "count": 1,
-                    "values": [
-                        "0"
-                    ]
-                },
-                "consider": [
-                    {
-                        "from": "0",
-                        "to": "$space-off-atlas"
-                    }
-                ],
-                "percentage": 50
-            }
-        },
-        {
-            "name": "depth",
-            "stat": {}
-        },
-        {
-            "name": "breakpoint",
-            "stat": {
-                "notDefined": {
-                    "count": 1,
-                    "values": [
-                        "all"
-                    ]
-                },
-                "defined": {
-                    "count": 0,
-                    "values": []
-                },
-                "consider": [],
-                "percentage": 0
-            }
-        }
-    ]
+    }
 }

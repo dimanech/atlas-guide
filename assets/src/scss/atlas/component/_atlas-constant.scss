@@ -1,18 +1,31 @@
 .atlas-constant {
+	font-size: 0.8rem;
+	font-weight: normal;
 	text-transform: none;
-
-	&__name {
-		color: $color-blue-atlas;
-		font-size: 2rem;
-		font-weight: normal;
-		text-transform: capitalize;
-	}
 
 	&__items {
 		display: block;
+		font-weight: normal;
+		margin-bottom: $space-sm-atlas / 2;
+
+		svg {
+			margin-bottom: -2px;
+			width: 14px;
+		}
+
+		&._success {
+			color: $color-green-atlas;
+		}
+
+		&._error {
+			color: $color-coral-atlas;
+		}
 	}
 
-	&__suggest {
+	&__list {
+		display: block;
 		font-size: 0.8rem;
+		font-weight: normal;
+		margin-bottom: $space-sm-atlas / 2;
 	}
 }
