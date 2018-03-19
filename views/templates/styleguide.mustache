@@ -1,0 +1,196 @@
+{{> header}}
+
+<link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-style.css"/>
+<div class="atlas-stat-sizes-page-title">
+    <div class="atlas-component-type-ico">
+        <svg width="16" height="16" role="img">
+            <use xlink:href="#icon-styleguide"></use>
+        </svg>
+        Declared project constants
+    </div>
+    <div class="atlas-section">
+        <h1 class="atlas atlas-title atlas-title_1">
+        <span class="atlas-title__text">
+            {{projectInfo.name}}
+        </span>
+        </h1>
+    </div>
+</div>
+
+{{#content.documentation}}
+    {{#color.length}}
+    <section class="atlas-style-section">
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Color palette</div>
+        <div role="list" class="atlas-style-columns _span6">
+            {{#color}}
+                <div role="listitem" class="atlas-style-columns__item">
+                    <div class="atlas-style-palette">
+                        <svg class="atlas-style-palette__swatch" viewBox="0 0 64 84" width="64" height="84" preserveAspectRatio="none">
+                            <rect width="64" height="84" fill="{{value}}"></rect>
+                        </svg>
+                        <div class="atlas-style-palette__text" style="color:{{value}}">
+                            Aa
+                        </div>
+                        <div class="atlas-style-palette__caption">{{name}}</div>
+                    </div>
+                </div>
+            {{/color}}
+        </div>
+    </section>
+    {{/color.length}}
+
+    {{#space.length}}
+    <section class="atlas-style-section">
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Spaces</div>
+        <div class="atlas-style-space">
+        {{#space}}
+            <div class="atlas-style-space__item">
+                <div class="atlas-style-space__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed
+                    cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
+                    Praesent mauris.</div>
+                <div class="atlas-style-space__spacer" style="padding-bottom:{{value}}">
+                    <div class="atlas-style-space__name" style="line-height:{{value}}">
+                        {{name}}
+                    </div>
+                    <div class="atlas-style-space-ruler">
+                        <span style="line-height:{{value}}">{{value}}</span>
+                    </div>
+                </div>
+            </div>
+        {{/space}}
+        </div>
+        <div class="atlas-style-space _vertical">
+        {{#space}}
+            <div class="atlas-style-space__item">
+                <div class="atlas-style-space__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                    nec odio. Praesent libero. Sed
+                    cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
+                    Praesent mauris.
+                </div>
+                <div class="atlas-style-space__spacer" style="padding-right:{{value}}">
+                    <div class="atlas-style-space__name" style="line-height:{{value}}">
+                        {{name}}
+                    </div>
+                    <div class="atlas-style-space-ruler _bottom">
+                        <span>{{value}}</span>
+                    </div>
+                </div>
+            </div>
+        {{/space}}
+        </div>
+        <div class="atlas-style-columns _box">
+        {{#space}}
+            <div class="atlas-style-columns__item">
+                <div class="atlas-style-box" style="padding:{{value}}">
+                    <div class="atlas-style-box__inner">
+                        {{name}}
+                    </div>
+                    <div class="atlas-style-space-ruler _middle" style="height:{{value}};line-height:{{value}}">
+                        <span>{{value}}</span>
+                    </div>
+                </div>
+            </div>
+        {{/space}}
+        </div>
+    </section>
+    {{/space.length}}
+
+    {{#scale.length}}
+    <section class="atlas-style-section">
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Scales</div>
+        {{#scale}}
+        <div class="atlas-style-scale">
+            <div class="atlas-style-scale__text" style="font-size:{{value}}">
+                <div class="atlas-style-space-ruler _left" style="line-height:{{value}}">
+                    <span>{{value}}</span>
+                </div>
+                <div class="atlas-style-scale__text-content"></div>
+            </div>
+            <div class="atlas-style-scale__name">
+                {{name}}
+            </div>
+        </div>
+        {{/scale}}
+    </section>
+    {{/scale.length}}
+
+    {{#font.length}}
+    <section class="atlas-style-section">
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Fonts</div>
+        <div class="atlas-style-columns _span3">
+        {{#font}}
+            <div class="atlas-style-columns__item">
+                <div class="atlas-style-font _{{name}}" style="font-family:{{value}}">
+                    <div class="atlas-style-font__example _logo"></div>
+                    <div class="atlas-style-font__example _characters"></div>
+                    <div class="atlas-style-font__example _characters-capital"></div>
+                    <div class="atlas-style-font__example _digits"></div>
+                    <div class="atlas-style-font__caption">
+                        <div class="atlas-style-font__name">{{name}}</div>
+                        <div class="atlas-style-font__value">{{value}}</div>
+                    </div>
+                </div>
+            </div>
+        {{/font}}
+        </div>
+    </section>
+    {{/font.length}}
+
+    {{#breakpoint.length}}
+    <section class="atlas-style-section">
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Breakpoints</div>
+        <div role="list" class="atlas-style-breaks">
+        {{#breakpoint}}
+            <div role="listitem" class="atlas-style-breaks__item">
+                <div class="atlas-style-breaks__item-inner">
+                    <div class="atlas-style-breaks__name">{{name}}</div>
+                    <div class="atlas-style-breaks__value">{{value}}</div>
+                </div>
+            </div>
+        {{/breakpoint}}
+        </div>
+        <svg id="js-atlas-breakpoints-graph" class="atlas-style-breaks-graph"></svg>
+        <script>
+            window.breakpointsGraph ={{{breakpointGraph}}};
+        </script>
+    </section>
+    {{/breakpoint.length}}
+
+    {{#depth.length}}
+    <section class="atlas-style-section">
+        <div role="heading" aria-level="2" class="atlas-style-section__title">Layering</div>
+        <div role="list" class="atlas-style-columns _span6">
+            {{#depth}}
+                <div role="listitem" class="atlas-style-columns__item">
+                    <div class="atlas-style-layer">
+                        <div class="atlas-style-layer__box" style="box-shadow:{{value}}">{{name}}</div>
+                    </div>
+                </div>
+                <div role="listitem" class="atlas-style-columns__item">&nbsp;</div>
+            {{/depth}}
+        </div>
+    </section>
+    {{/depth.length}}
+
+    {{#motion.length}}
+        <section class="atlas-style-section">
+            <div role="heading" aria-level="2" class="atlas-style-section__title">Motion</div>
+            {{#motion}}
+                <div class="atlas-style-motion">
+                    <div class="atlas-style-motion__caption">
+                        {{name}}
+                    </div>
+                    <div class="atlas-style-motion__frame">
+                        <div class="atlas-style-motion__ball" style="animation: atlas-transition-example {{value}} infinite;animation-duration: 3s;animation-direction: alternate;"></div>
+                    </div>
+                </div>
+            {{/motion}}
+        </section>
+    {{/motion.length}}
+
+{{/content.documentation}}
+
+<script src="assets/js/d3.v4.min.js"></script>
+<script src="assets/js/d3breakpoints.js"></script>
+
+{{> footer}}

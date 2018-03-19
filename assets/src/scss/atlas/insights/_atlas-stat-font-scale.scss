@@ -2,7 +2,7 @@
 	align-items: flex-end;
 	display: flex;
 	flex-wrap: wrap;
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	line-height: 1.2;
 
 	&__item {
@@ -18,8 +18,8 @@
 	}
 
 	&__size {
-		font-family: $font-mono-guide;
-		font-size: $guide-mono-small;
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
 		font-weight: bold;
 		margin-top: 10px;
 		max-width: 90px;

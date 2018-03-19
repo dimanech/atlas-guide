@@ -3,15 +3,9 @@
 const path = require('path');
 const sassGraph = require('sass-graph');
 
-function getImportsGraph(atlasConfig) {
-    const config = atlasConfig.getBase();
-
-    const sassSrcPath = config.scssSrc;
-    const sassSrcExternalImportsPath = config.scssAdditionalImportsArray;
-
-    // const fs = require('fs');
-    // fs.writeFileSync('./imports2.json',
-    // JSON.stringify(sassGraph.parseDir(sassSrcPath, {loadPaths: sassSrcExternalImportsPath}), null, '\t'));
+function getImportsGraph(atlasBaseConfig) {
+    const sassSrcPath = atlasBaseConfig.scssSrc;
+    const sassSrcExternalImportsPath = atlasBaseConfig.scssAdditionalImportsArray;
 
     return sassGraph.parseDir(sassSrcPath, {loadPaths: sassSrcExternalImportsPath});
 }

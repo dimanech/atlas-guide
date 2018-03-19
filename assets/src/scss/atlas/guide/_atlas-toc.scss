@@ -3,17 +3,17 @@
 	background-size: 1px 100%;
 	bottom: 0;
 	float: right;
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	font-size: 12px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	margin-left: $space-md-guide;
+	margin-left: $space-md-atlas;
 	overflow: auto;
 	-webkit-overscroll-behavior: contain;
 	-ms-scroll-chaining: none;
 	overscroll-behavior: contain; /* stylelint-disable-line */
-	padding-left: $space-md-guide;
-	padding-top: $space-sm-guide;
+	padding-left: $space-md-atlas;
+	padding-top: $space-sm-atlas;
 	position: relative;
 	right: 0;
 	top: 0;
@@ -25,7 +25,7 @@
 	}
 
 	&__ln {
-		color: $color-blue-guide;
+		color: $color-blue-atlas;
 		display: block;
 		overflow: hidden;
 		text-decoration: underline;
@@ -34,11 +34,11 @@
 
 		&:hover,
 		&:focus {
-			color: darken($color-blue-guide, 15%);
+			color: darken($color-blue-atlas, 15%);
 		}
 
 		&:active {
-			color: $color-yellow;
+			color: $color-yellow-atlas;
 		}
 
 		&_1 {

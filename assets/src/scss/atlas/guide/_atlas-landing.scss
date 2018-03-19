@@ -1,13 +1,13 @@
-$bg: $color-yellow;
+$bg: $color-yellow-atlas;
 $fg: white;
-$accent: $guide-color-text;
+$accent: $atlas-color-text;
 
 .atlas-landing {
 	&__head {
 		align-items: center;
 		background: $bg;
-		margin: 0 -#{$space-md-guide};
-		padding: $space-md-guide;
+		margin: 0 -#{$space-md-atlas};
+		padding: $space-md-atlas;
 		padding-right: 0;
 		position: relative;
 	}

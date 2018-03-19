@@ -1,7 +1,7 @@
 .atlas {
 	all: initial;
-	color: $guide-color-text;
-	font-family: $font-sans-guide;
+	color: $atlas-color-text;
+	font-family: $font-sans-atlas;
 	font-size: 15px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -12,8 +12,8 @@
 		&_1,
 		&_2,
 		&_3 {
-			margin-bottom: $space-md-guide;
-			margin-top: $space-lg-guide;
+			margin-bottom: $space-md-atlas;
+			margin-top: $space-lg-atlas;
 		}
 
 		&_1,
@@ -24,55 +24,55 @@
 		&_6 {
 			font-weight: bold;
 			letter-spacing: -0.03em;
-			margin-bottom: $space-md-guide;
+			margin-bottom: $space-md-atlas;
 		}
 
 		&_1 {
-			font-size: $scale-xxl-guide;
+			font-size: $scale-xxl-atlas;
 			font-weight: bold;
 			letter-spacing: -0.04em;
 			line-height: 2.75rem;
-			margin-top: $space-md-guide;
+			margin-top: $space-md-atlas;
 			padding-top: 1rem;
 		}
 
 		&_2 {
-			font-size: $scale-xl-guide;
-			line-height: $space-lg-guide;
+			font-size: $scale-xl-atlas;
+			line-height: $space-lg-atlas;
 		}
 
 		&_3 {
-			font-size: $scale-lg-guide;
-			line-height: $space-md-guide;
+			font-size: $scale-lg-atlas;
+			line-height: $space-md-atlas;
 		}
 
 		&_4 {
-			font-size: $scale-md-guide;
+			font-size: $scale-md-atlas;
 			font-weight: bold;
-			line-height: $space-md-guide;
+			line-height: $space-md-atlas;
 			text-transform: uppercase;
 		}
 
 		&_5 {
-			font-size: $scale-sm-guide;
+			font-size: $scale-sm-atlas;
 			font-weight: bold;
-			line-height: $space-md-guide;
+			line-height: $space-md-atlas;
 			text-transform: uppercase;
 		}
 
 		&_6 {
-			font-size: $scale-sm-guide;
-			line-height: $space-md-guide;
+			font-size: $scale-sm-atlas;
+			line-height: $space-md-atlas;
 		}
 	}
 
 	&-p {
 		display: block;
-		margin: 0 0 $space-md-guide;
+		margin: 0 0 $space-md-atlas;
 		padding: 0;
 
 		a {
-			color: $color-blue-guide;
+			color: $color-blue-atlas;
 			text-decoration: underline;
 			word-break: break-word;
 		}
@@ -85,17 +85,17 @@
 	&-hr {
 		border: none;
 		border-top: 1px solid;
-		color: $color-grey80-guide;
-		margin: $space-lg-guide auto;
+		color: $color-grey80-atlas;
+		margin: $space-lg-atlas auto;
 	}
 
 	&-ol,
 	&-ul {
 		display: block;
 		list-style: disc;
-		margin-bottom: $space-md-guide;
-		margin-top: $space-md-guide;
-		padding-left: $space-md-guide;
+		margin-bottom: $space-md-atlas;
+		margin-top: $space-md-atlas;
+		padding-left: $space-md-atlas;
 	}
 
 	&-ol {
@@ -105,22 +105,22 @@
 	&-table {
 		border-collapse: collapse;
 		display: table;
-		margin-bottom: $space-md-guide;
+		margin-bottom: $space-md-atlas;
 
 		th,
 		td {
-			padding: #{$space-sm-guide / 2} $space-sm-guide #{$space-sm-guide / 2} 0;
+			padding: #{$space-sm-atlas / 2} $space-sm-atlas #{$space-sm-atlas / 2} 0;
 		}
 
 		th {
-			border-bottom: 2px solid $guide-color-divider;
+			border-bottom: 2px solid $atlas-color-divider;
 			font-weight: bold;
 		}
 	}
 
 	&-code {
 		display: block;
-		font-family: $font-mono-guide;
+		font-family: $font-mono-atlas;
 		font-weight: 400;
 		line-height: 1.5;
 		position: relative;
@@ -139,12 +139,11 @@
 		}
 
 		pre {
-			background-color: lighten($color-grey95-guide, 4%);
-			border: 1px solid $color-grey95-guide;
+			background-color: lighten($color-grey95-atlas, 4%);
+			border: 1px solid $color-grey95-atlas;
 			border-radius: 5px;
-			font-size: 0.8rem;
 			overflow: auto;
-			padding: $space-sm-guide;
+			padding: $space-sm-atlas;
 
 			code {
 				background: transparent;
@@ -156,25 +155,25 @@
 
 		&[class*="_bad"] {
 			pre {
-				background-color: lighten($color-coral, 30%);
-				border-color: lighten($color-coral, 16%);
+				background-color: lighten($color-coral-atlas, 30%);
+				border-color: lighten($color-coral-atlas, 16%);
 			}
 		}
 
 		&[class*="_good"] {
 			pre {
-				background-color: lighten($color-green, 40%);
-				border-color: lighten($color-green, 16%);
+				background-color: lighten($color-green-atlas, 40%);
+				border-color: lighten($color-green-atlas, 16%);
 			}
 		}
 	}
 
 	code {
-		background-color: lighten($color-grey90-guide, 5%);
-		border: 1px solid $color-grey90-guide;
+		background-color: lighten($color-grey90-atlas, 5%);
+		border: 1px solid $color-grey90-atlas;
 		border-radius: 5px;
-		font-family: $font-mono-guide;
-		font-size: 0.8rem;
+		font-family: $font-mono-atlas;
+		font-size: 0.85em;
 		line-height: 1.2;
 		padding: 0.1em 0.3em;
 	}
@@ -192,9 +191,9 @@
 .atlas-content__inner {
 	.atlas-title_1 {
 		+ .atlas-p {
-			font-size: $scale-lg-guide;
+			font-size: $scale-lg-atlas;
 			line-height: 1.2;
-			margin-bottom: $space-lg-guide;
+			margin-bottom: $space-lg-atlas;
 		}
 	}
 }
@@ -212,9 +211,9 @@
 	}
 
 	&__anchor {
-		color: $color-grey80-guide;
-		font-size: $scale-lg-guide;
-		padding-left: $space-md-guide;
+		color: $color-grey80-atlas;
+		font-size: $scale-lg-atlas;
+		padding-left: $space-md-atlas;
 
 		&::after {
 			background: linear-gradient(to left, rgba(black, 0.1), rgba(black, 0)) no-repeat right bottom;
@@ -230,7 +229,7 @@
 
 		&:hover,
 		&:focus {
-			color: $color-grey60-guide;
+			color: $color-grey60-atlas;
 
 			&::after {
 				width: 100%;
@@ -238,16 +237,16 @@
 		}
 
 		&:active {
-			color: $color-blue-guide;
+			color: $color-blue-atlas;
 		}
 	}
 
 	&__highlight {
 		bottom: -5px;
-		left: -#{$space-md-guide};
+		left: -#{$space-md-atlas};
 		pointer-events: none;
 		position: absolute;
-		right: -#{$space-md-guide};
+		right: -#{$space-md-atlas};
 		top: -5px;
 		z-index: 0;
 	}
@@ -272,8 +271,8 @@
 .atlas-title_2 { /* stylelint-disable-line */
 	background: rgba(white, 0.9);
 	border-bottom: 1px solid rgba(black, 0.1);
-	margin: 0 -#{$space-md-guide} $space-lg-guide;
-	padding: $space-sm-guide $space-md-guide;
+	margin: 0 -#{$space-md-atlas} $space-lg-atlas;
+	padding: $space-sm-atlas $space-md-atlas;
 	position: sticky;
 	top: -1px; // compensate composition positioning bug
 	z-index: 5;
@@ -282,11 +281,18 @@
 		backdrop-filter: saturate(180%) blur(10px);
 		background: rgba(white, 0.7);
 	}
+
+	.atlas-title__highlight {
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: 0;
+	}
 }
 
 @keyframes target-highlight {
 	0% {
-		background-color: $color-yellow;
+		background-color: $color-yellow-atlas;
 	}
 
 	100% {

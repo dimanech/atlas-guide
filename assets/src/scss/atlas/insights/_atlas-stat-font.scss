@@ -40,11 +40,11 @@
 	}
 
 	&__name {
-		border-top: 1px solid $guide-color-divider;
-		font-family: $font-mono-guide;
-		font-size: $guide-mono-small;
+		border-top: 1px solid $atlas-color-divider;
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
 		font-weight: bold;
-		margin-top: $space-sm-guide;
-		padding-top: $space-sm-guide;
+		margin-top: $space-sm-atlas;
+		padding-top: $space-sm-atlas;
 	}
 }

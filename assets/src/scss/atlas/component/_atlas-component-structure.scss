@@ -1,22 +1,22 @@
 .atlas-component-structure {
-	margin-top: $space-lg-guide;
+	margin-top: $space-lg-atlas;
 
 	&__title {
-		font-size: $scale-lg-guide;
+		font-size: $scale-lg-atlas;
 		font-weight: bold;
-		line-height: $space-md-guide;
-		margin-bottom: $space-md-guide;
+		line-height: $space-md-atlas;
+		margin-bottom: $space-md-atlas;
 	}
 
 	&__nodes {
 		background: linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)) no-repeat;
 		background-position: 26px 0;
 		background-size: 1px 100%;
-		font-family: $font-mono-guide;
+		font-family: $font-mono-atlas;
 		font-size: 0.8rem;
 		list-style: none;
 		padding-bottom: 5px;
-		padding-left: $space-md-guide;
+		padding-left: $space-md-atlas;
 		position: relative;
 
 		&::after {
@@ -51,7 +51,7 @@
 		border-radius: 3px;
 		color: white;
 		display: inline-block;
-		font-family: $font-sans-guide;
+		font-family: $font-sans-atlas;
 		font-size: 10px;
 		font-weight: bold;
 		height: 13px;

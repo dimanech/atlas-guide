@@ -6,7 +6,7 @@
 		background: transparent;
 		border: 1px solid $aside-bd;
 		border-radius: 5px;
-		font-family: $font-sans-guide;
+		font-family: $font-sans-atlas;
 		font-size: 13px;
 		height: 25px;
 		line-height: 25px;
@@ -30,7 +30,7 @@
 	}
 
 	svg {
-		color: $guide-color-text;
+		color: $atlas-color-text;
 		height: 16px;
 		left: 6px;
 		position: absolute;
@@ -38,7 +38,7 @@
 		width: 16px;
 
 		.js-found & {
-			color: $color-blue-guide;
+			color: $color-blue-atlas;
 		}
 	}
 
@@ -47,7 +47,7 @@
 		border: none;
 		border-radius: 50%;
 		color: white;
-		font-family: $font-sans-guide;
+		font-family: $font-sans-atlas;
 		font-size: 8px;
 		height: 14px;
 		outline: none;
@@ -64,7 +64,7 @@
 		}
 
 		&:focus {
-			background: $color-blue-guide;
+			background: $color-blue-atlas;
 		}
 
 		&:active {

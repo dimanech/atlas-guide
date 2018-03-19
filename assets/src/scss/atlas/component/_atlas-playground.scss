@@ -2,18 +2,18 @@
 	clear: both;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	margin: 0 -#{$space-sm-guide} $space-md-guide;
-	padding: 0 $space-sm-guide $space-sm-guide;
+	margin: 0 -#{$space-sm-atlas} $space-md-atlas;
+	padding: 0 $space-sm-atlas $space-sm-atlas;
 	position: relative;
 
 	&__summary {
 		align-items: center;
 		background: transparent;
 		border: none;
-		color: $color-grey80-guide;
+		color: $color-grey80-atlas;
 		cursor: pointer;
 		display: flex;
-		font-family: $font-mono-guide;
+		font-family: $font-mono-atlas;
 		justify-content: space-between;
 		outline: none;
 		overflow: hidden;
@@ -27,7 +27,7 @@
 		}
 
 		&::after {
-			background-color: lighten($color-grey90-guide, 10%);
+			background-color: lighten($color-grey90-atlas, 10%);
 			border-radius: 5px;
 			bottom: 0;
 			content: "";
@@ -40,10 +40,10 @@
 
 		&:hover,
 		&:focus {
-			color: $guide-color-text;
+			color: $atlas-color-text;
 
 			&::after {
-				background-color: $color-grey95-guide;
+				background-color: $color-grey95-atlas;
 			}
 		}
 
@@ -68,7 +68,7 @@
 		}
 
 		&-text {
-			font-size: $guide-mono-small;
+			font-size: $atlas-mono-small;
 			line-height: 25px;
 			pointer-events: none;
 			position: relative;
@@ -111,24 +111,24 @@
 			background-color: transparent;
 			max-height: 40vh;
 			overflow: auto;
-			padding: $space-sm-guide;
+			padding: $space-sm-atlas;
 			padding-top: 0;
 		}
 
 		code {
 			color: whitesmoke;
-			font-family: $font-mono-guide;
-			font-size: 13px;
+			font-family: $font-mono-atlas;
+			font-size: 12.75px;
 			line-height: 1.2;
 			outline: none;
 		}
 	}
 
 	&__example {
-		background-color: $color-white-guide;
-		border: 1px solid $color-grey90-guide;
+		background-color: $color-white-atlas;
+		border: 1px solid $color-grey90-atlas;
 		border-radius: 3px;
-		padding: $space-sm-guide;
+		padding: $space-sm-atlas;
 		position: relative;
 		z-index: 1;
 	}
@@ -137,14 +137,14 @@
 		background-color: rgba(black, 0.5);
 		border-radius: 5px;
 		color: white;
-		font-family: $font-mono-guide;
+		font-family: $font-mono-atlas;
 		font-size: 1.2rem;
 		font-style: normal;
 		left: 50%;
 		line-height: 20px;
 		min-width: 20px;
 		opacity: 0;
-		padding: $space-md-guide;
+		padding: $space-md-atlas;
 		pointer-events: none;
 		position: absolute;
 		text-align: center;
@@ -173,7 +173,7 @@
 // Blueprint
 
 @mixin blueprint() {
-	background-color: $guide-color-text;
+	background-color: $atlas-color-text;
 	background-image:
 		linear-gradient(0deg, transparent 7px, hsla(205, 65, 80%, 0.25) 7px),
 		linear-gradient(90deg, transparent 7px, hsla(205, 65, 80%, 0.25) 7px);

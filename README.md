@@ -187,10 +187,10 @@ and partials.
 
 ```json
 {
-    "guideSrc": "assets/src/scss/components/",
-    "guideDest": "guide/",
-    "cssSrc": "assets/css/",
-    "scssSrc": "assets/src/scss/",
+    "guideSrc": "path/to/components/directory/",
+    "guideDest": "path/where/atlas/will/be/placed/",
+    "cssSrc": "path/to/css/",
+    "scssSrc": "path/to/scss/",
     "scssAdditionalImportsArray": "",
     "componentPrefixes": ["b-", "l-"],
     "excludedCssFiles": "dev_",
@@ -202,7 +202,8 @@ and partials.
         "bundle": "",
         "component": "",
         "guide": "",
-        "insights": ""
+        "insights": "",
+        "styleguide": ""
     },
     "includes": {
         "aside": "",
@@ -218,6 +219,16 @@ and partials.
         "navigation": "",
         "toc": "",
         "welcome": ""
+    },
+    "projectConstants": {
+        "constantsSrc": "path/to/project-settings.scss",
+        "colorPrefix": "color",
+        "fontPrefix": "font",
+        "scalePrefix": "scale",
+        "spacePrefix": "space",
+        "motionPrefix": "motion",
+        "depthPrefix": "depth",
+        "breakpointPrefix": "break"
     }
 }
 ```

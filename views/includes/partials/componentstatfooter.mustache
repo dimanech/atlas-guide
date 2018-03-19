@@ -67,7 +67,7 @@
                         </figcaption>
                     </figure>
                 {{/vendorPrefix}}
-                {{#floats}}
+                {{#float}}
                     <figure class="atlas-info-digit">
                         <div class="atlas-info-digit__digit">
                             {{total}}
@@ -79,21 +79,53 @@
                             {{#values.length}}
                                 <div role="list" class="atlas-info-digit__popup">
                                     {{#values}}
-                                        <div role="listitem" class="atlas-info-digit__item">{{value}}</div>
+                                        <div role="listitem" class="atlas-info-digit__item">{{.}}</div>
                                     {{/values}}
                                 </div>
                             {{/values.length}}
                         </figcaption>
                     </figure>
-                {{/floats}}
+                {{/float}}
             </div>
         {{/stats}}
-            <div role="region" class="atlas-component-footer__section _last" aria-label="Component profile">
+            <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
                 <div class="atlas-info-list" role="list">
                 {{#componentProfileDetails}}
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">{{total}}</span>
                         <span class="atlas-info-list__name">{{name}}</span>
+                        {{#consistancy}}
+                            <div class="atlas-constant">
+                                {{#allOk}}
+                                    <div class="atlas-constant__items _success">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-good"></use>
+                                        </svg>
+                                        Passed
+                                    </div>
+                                {{/allOk}}
+                                {{#notInConstants.count}}
+                                    <div class="atlas-constant__items _error">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-bad"></use>
+                                        </svg>
+                                        {{notInConstants.count}}
+                                        {{#pluralize}}{{notInConstants.count}},fix,fixes{{/pluralize}} required
+                                    </div>
+                                    <div class="atlas-constant__list atlas">
+                                        {{#notInConstants.values}}
+                                            <code>{{.}}</code>&ensp;
+                                        {{/notInConstants.values}}
+                                    </div>
+                                {{/notInConstants.count}}
+                                {{#consider}}
+                                    <div class="atlas-constant__list _warn atlas">
+                                        {{#count}}<span class="atlas-constant__counter">+{{count}}</span>{{/count}}
+                                        <code>{{from}}</code> could be changed to <code>{{to}}</code>
+                                    </div>
+                                {{/consider}}
+                            </div>
+                        {{/consistancy}}
                     </div>
                 {{/componentProfileDetails}}
                 </div>

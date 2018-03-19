@@ -1,0 +1,113 @@
+.atlas-style-space {
+	margin: $space-lg-atlas 0;
+
+	&__text {
+		background-color: $color-blue79-atlas;
+		color: $color-blue79-atlas;
+	}
+
+	&__name {
+		left: 0;
+		position: absolute;
+		right: 0;
+		text-align: center;
+	}
+
+	&__spacer {
+		background-color: lighten($color-blue79-atlas, 15%);
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
+		position: relative;
+		text-align: center;
+	}
+
+	&._vertical {
+		display: flex;
+
+		.atlas-style-space__item {
+			display: flex;
+			text-align: justify;
+		}
+
+		.atlas-style-space__name {
+			padding-left: $space-sm-atlas;
+			transform: rotate(90deg);
+			white-space: nowrap;
+		}
+	}
+}
+
+.atlas-style-space-ruler {
+	border-style: solid solid solid none;
+	border-width: 1px;
+	bottom: 0;
+	box-sizing: border-box;
+	color: deeppink;
+	font-family: $font-mono-atlas;
+	font-size: $atlas-mono-small;
+	margin-left: 5px;
+	padding-right: 5px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 0;
+
+	span {
+		display: block;
+		position: absolute;
+		right: 13px;
+	}
+
+	&._bottom {
+		border-style: none solid solid;
+		height: 5px;
+		left: 0;
+		margin: 0;
+		padding: 0;
+		right: 0;
+		top: initial;
+		width: 100%;
+
+		span {
+			display: block;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 13px;
+		}
+	}
+
+	&._left {
+		border-style: solid none solid solid;
+		left: 60px;
+		right: initial;
+
+		span {
+			display: block;
+			position: absolute;
+			right: 15px;
+		}
+	}
+
+	&._middle {
+		right: 50%;
+	}
+}
+
+.atlas-style-box {
+	background-color: lighten($color-blue79-atlas, 15%);
+	box-sizing: border-box;
+	position: relative;
+
+	&__inner {
+		align-items: center;
+		background-color: white;
+		box-sizing: border-box;
+		display: flex;
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
+		height: 100px;
+		text-align: center;
+		width: 100px;
+	}
+}

@@ -1,0 +1,47 @@
+.atlas-constant {
+	font-size: 0.8rem;
+	font-weight: normal;
+	text-transform: none;
+
+	&__items {
+		display: block;
+		font-weight: normal;
+		margin-bottom: $space-sm-atlas / 2;
+
+		svg {
+			margin-bottom: -2px;
+			width: 14px;
+		}
+
+		&._success {
+			color: $color-green-atlas;
+		}
+
+		&._error {
+			color: $color-coral-atlas;
+		}
+	}
+
+	&__list {
+		display: block;
+		font-size: 0.8rem;
+		font-weight: normal;
+		margin-bottom: $space-sm-atlas / 2;
+		position: relative;
+	}
+
+	&__counter {
+		background: $color-coral-atlas;
+		border-radius: 10px;
+		color: white;
+		font-size: 8px;
+		font-weight: bold;
+		height: 10px;
+		left: -5px;
+		letter-spacing: -0.5px;
+		line-height: 10px;
+		position: absolute;
+		top: -5px;
+		width: 10px;
+	}
+}

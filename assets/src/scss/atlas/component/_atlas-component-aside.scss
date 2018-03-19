@@ -2,18 +2,18 @@
 	background: linear-gradient(to top, rgba(black, 0), rgba(black, 0.1)) no-repeat;
 	background-size: 1px 100%;
 	float: right;
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	font-size: 13px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	margin-left: $space-md-guide;
-	padding-left: $space-md-guide;
+	margin-left: $space-md-atlas;
+	padding-left: $space-md-atlas;
 	position: relative;
 	width: 250px;
 	z-index: 1;
 
 	&__section {
-		margin: $space-md-guide 0;
+		margin: $space-md-atlas 0;
 	}
 
 	&__title {
@@ -24,14 +24,14 @@
 	&__list {}
 
 	&__list-item {
-		font-family: $font-mono-guide;
-		font-size: $guide-mono-small;
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 
 		svg {
-			color: $color-blue-guide;
+			color: $color-blue-atlas;
 			position: relative;
 			top: 2px;
 			vertical-align: text-bottom;
