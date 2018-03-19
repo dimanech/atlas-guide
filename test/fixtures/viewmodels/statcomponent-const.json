@@ -142,6 +142,7 @@
                 "allOk": true,
                 "consider": [
                     {
+                        "count": 0,
                         "from": "0",
                         "to": "$space-off-atlas"
                     }
