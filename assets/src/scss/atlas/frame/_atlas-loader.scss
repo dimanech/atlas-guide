@@ -42,7 +42,7 @@ It remove class from loader when DOMContentLoaded event fired. Example markup:
 	}
 
 	@media braille {
-		// Only for test reason
+		// Only for test reason this media group not support this props
 		color: #594199;
 		margin: 0;
 	}

@@ -37,17 +37,36 @@ function warnConstants(valuesList, constantsList) {
             if (isConstantFound) {
                 return;
             }
-            if (value === constant.name) { // interpolation and operators could be used with variable
+            if (new RegExp('\\' + constant.name + '|auto|inherit|initial').test(value)) {
+                // interpolation and operators could be used with variable
                 defined.push(value);
-                isConstantFound = true;
-            } else if (value === constant.value) {
-                defined.push(value);
-                consider.push({
-                    from: value,
-                    to: constant.name
-                });
                 isConstantFound = true;
             }
+            if (value === constant.value) {
+                defined.push(value);
+                isConstantFound = true;
+                let alreadyExist = false;
+                consider.forEach(warn => {
+                    if (warn.from === value && warn.to === constant.name) {
+                        warn.count++;
+                        alreadyExist = true;
+                    }
+                });
+                if (!alreadyExist) {
+                    consider.push({
+                        from: value,
+                        to: constant.name,
+                        count: 0
+                    });
+                }
+            }
+            // if (/\$/.test(value)) {// if var used should be warn
+            //     defined.push(value);
+            //     warn.push({
+            //         from: value
+            //     });
+            //     isConstantFound = true;
+            // }
         });
         if (!isConstantFound) {
             notDefined.push(value);

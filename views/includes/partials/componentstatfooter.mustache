@@ -79,7 +79,7 @@
                             {{#values.length}}
                                 <div role="list" class="atlas-info-digit__popup">
                                     {{#values}}
-                                        <div role="listitem" class="atlas-info-digit__item">{{value}}</div>
+                                        <div role="listitem" class="atlas-info-digit__item">{{.}}</div>
                                     {{/values}}
                                 </div>
                             {{/values.length}}
@@ -120,6 +120,7 @@
                                 {{/notInConstants.count}}
                                 {{#consider}}
                                     <div class="atlas-constant__list _warn atlas">
+                                        {{#count}}<span class="atlas-constant__counter">+{{count}}</span>{{/count}}
                                         <code>{{from}}</code> could be changed to <code>{{to}}</code>
                                     </div>
                                 {{/consider}}
