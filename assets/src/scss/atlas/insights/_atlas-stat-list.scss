@@ -1,6 +1,6 @@
 .atlas-stat-list {
-	color: $color-blue-guide;
-	font-family: $font-mono-guide;
+	color: $color-blue-atlas;
+	font-family: $font-mono-atlas;
 	font-size: 0.8rem;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -12,7 +12,7 @@
 	}
 
 	p {
-		color: $guide-color-text;
+		color: $atlas-color-text;
 		overflow: visible;
 	}
 

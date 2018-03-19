@@ -27,7 +27,7 @@ It remove class from loader when DOMContentLoaded event fired. Example markup:
 .atlas-loader {
 	background: rgba(white, 0.96);
 	bottom: 0;
-	color: $color-blue-guide;
+	color: $color-blue-atlas;
 	display: none;
 	left: 0;
 	position: absolute;
@@ -39,6 +39,12 @@ It remove class from loader when DOMContentLoaded event fired. Example markup:
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
 		background: rgba(white, 0.7);
+	}
+
+	@media braille {
+		// Only for test reason this media group not support this props
+		color: #594199;
+		margin: 0;
 	}
 
 	.js-loading-frame & {

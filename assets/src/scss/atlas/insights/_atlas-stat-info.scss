@@ -1,5 +1,5 @@
 .atlas-stat-info {
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	font-size: 0.8rem;
 	font-weight: normal;
 	letter-spacing: 0;
@@ -13,19 +13,19 @@
 	}
 
 	svg {
-		color: $color-blue-guide;
+		color: $color-blue-atlas;
 		cursor: help;
 	}
 
 	&__popup {
 		background: rgba(white, 0.9);
 		border: 1px solid #e0e0e0;
-		border-left: 7px solid $color-blue-guide;
+		border-left: 7px solid $color-blue-atlas;
 		border-radius: 5px;
 		box-shadow: 0 0 20px -4px rgba(black, 0.3);
 		display: none;
 		left: 20px;
-		padding: $space-sm-guide;
+		padding: $space-sm-atlas;
 		position: absolute;
 		top: -10px;
 		width: 300px;
@@ -33,7 +33,7 @@
 
 		&::before {
 			border-bottom: 7px solid transparent;
-			border-right: 7px solid $color-blue-guide;
+			border-right: 7px solid $color-blue-atlas;
 			border-top: 7px solid transparent;
 			content: "";
 			display: block;

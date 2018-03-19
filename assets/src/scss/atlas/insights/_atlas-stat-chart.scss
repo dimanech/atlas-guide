@@ -1,6 +1,6 @@
 .atlas-stat-chart {
 	display: flex;
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	font-weight: bold;
 	text-align: center;
 
@@ -10,40 +10,40 @@
 	}
 
 	&__legend {
-		margin-top: $space-md-guide;
+		margin-top: $space-md-atlas;
 	}
 
 	&__stat {
-		margin-top: $space-xm-guide;
+		margin-top: $space-xm-atlas;
 		text-align: left;
 	}
 
 	.atlas-stat-list {
-		font-size: $guide-mono-small;
+		font-size: $atlas-mono-small;
 		list-style: none;
 		padding-left: 40px;
 	}
 }
 
 .atlas-stat-chart-caption {
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	font-size: 0.8rem;
 	font-weight: bold;
-	margin: $space-sm-guide 0;
+	margin: $space-sm-atlas 0;
 }
 
 .atlas-stat-page {
 	.bar {
-		fill: $color-blue92-guide;
+		fill: $color-blue79-atlas;
 	}
 
 	.bar-caption {
-		fill: $guide-color-text;
+		fill: $atlas-color-text;
 		font-size: 0.8rem;
 	}
 
 	.bar-caption-bottom {
-		fill: $guide-color-text;
+		fill: $atlas-color-text;
 		font-size: 0.8rem;
 	}
 
@@ -52,12 +52,12 @@
 		stroke: none;
 
 		&._huge {
-			fill: $color-blue92-guide;
+			fill: $color-blue79-atlas;
 		}
 	}
 
 	.area-line {
-		stroke: $color-blue-guide;
+		stroke: $color-blue-atlas;
 
 		&._huge {
 			stroke: none;
@@ -65,7 +65,7 @@
 	}
 
 	.tick {
-		font-family: $font-mono-guide;
+		font-family: $font-mono-atlas;
 
 		line {
 			stroke: rgba(black, 0.1);
@@ -85,30 +85,30 @@
 	}
 
 	.focus {
-		color: $guide-color-text;
+		color: $atlas-color-text;
 		fill: black;
-		font-family: $font-mono-guide;
+		font-family: $font-mono-atlas;
 
 		circle {
 			fill: white;
-			stroke: $color-blue-guide;
+			stroke: $color-blue-atlas;
 			stroke-width: 1px;
 		}
 
 		text {
-			font-size: $guide-mono-small;
+			font-size: $atlas-mono-small;
 		}
 	}
 
 	.js-bar-chart,
 	.js-line-chart {
 		width: 100%;
-		//margin: 0 -#{$space-md-guide} 0 0;
+		//margin: 0 -#{$space-md-atlas} 0 0;
 	}
 
 	.atlas-stat-chart__legend {
-		color: $guide-color-text;
-		font-family: $font-sans-guide;
+		color: $atlas-color-text;
+		font-family: $font-sans-atlas;
 		font-size: 0.6rem;
 	}
 }

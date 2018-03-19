@@ -1,7 +1,7 @@
 .atlas-coverage {
 	border-top: 1px solid;
-	margin-top: $space-lg-guide;
-	padding-top: $space-md-guide;
+	margin-top: $space-lg-atlas;
+	padding-top: $space-md-atlas;
 
 	&__digit {
 		font-size: 2rem;
@@ -9,12 +9,12 @@
 
 	&__line {
 		font-size: 1.2rem;
-		margin-bottom: $space-sm-guide;
+		margin-bottom: $space-sm-atlas;
 	}
 
 	&__graph-container {
 		height: 8px;
-		margin-bottom: $space-sm-guide;
+		margin-bottom: $space-sm-atlas;
 		position: relative;
 		width: 100%;
 	}

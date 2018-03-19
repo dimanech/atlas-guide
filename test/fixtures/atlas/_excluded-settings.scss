@@ -1,0 +1,31 @@
+// Palette
+$color-yellow-atlas: #fae20f;
+$color-green-atlas: #98cb52;
+
+// Fonts
+$font-sans-atlas: "Arial", sans-serif;
+$font-mono-atlas: "DejaVu Sans Mono", monospace;
+
+// Scales
+$scale-sm-atlas: 0.8rem;
+$scale-md-atlas: 1rem;
+$scale-lg-atlas: 1.25rem;
+
+$size-line-atlas: 1.2rem;
+
+// Spaces
+$space-off-atlas: 0;
+$space-sm-atlas: $size-line-atlas / 2; // 10px
+$space-md-atlas: $size-line-atlas; // 20px
+
+// Depth
+$depth-1: 0 3px 10px 1px rgba(black, 0.34);
+$depth-2: 0 9px 30px 3px rgba(black, 0.44);
+
+// Motion
+$motion-ease: cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s;
+
+// Breakpoints
+$break-xl: 1367px;
+$break-md: 1024px;
+$break-sm: 767px;

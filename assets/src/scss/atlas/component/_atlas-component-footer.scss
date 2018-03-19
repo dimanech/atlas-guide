@@ -3,27 +3,26 @@
 	clear: both;
 	display: flex;
 	float: none;
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	font-size: 15px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	justify-content: space-between;
-	margin: $space-lg-guide -#{$space-md-guide} -#{$space-md-guide};
+	margin: $space-lg-atlas -#{$space-md-atlas} -#{$space-md-atlas};
 
 	&__item {
-		padding: $space-md-guide;
+		padding: $space-md-atlas;
 		width: 50%;
 	}
 
 	&__section {
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		display: flex;
 		margin: 0;
-		padding: $space-md-guide 0 0;
+		padding: $space-md-atlas 0 0;
 		position: relative;
 
-		&._last {
-			border: none;
+		& + & {
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
 		}
 	}
 }

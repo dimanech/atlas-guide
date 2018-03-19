@@ -1,9 +1,9 @@
 .atlas-nav { // atlas-outline-view
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	font-size: 13px;
 	line-height: 1.2;
 	list-style: none;
-	padding-bottom: $space-md-guide;
+	padding-bottom: $space-md-atlas;
 	text-transform: capitalize;
 
 	&__item {
@@ -33,7 +33,7 @@
 		}
 
 		&:active {
-			color: $color-blue-guide;
+			color: $color-blue-atlas;
 		}
 
 		&.js-current-page {
@@ -83,7 +83,7 @@
 		> .atlas-nav__ln {
 			background: $aside-bg;
 			display: block;
-			padding: $space-sm-guide $space-md-guide;
+			padding: $space-sm-atlas $space-md-atlas;
 			position: sticky;
 			top: 0;
 			z-index: 1;
@@ -95,28 +95,28 @@
 				bottom: 0;
 				content: "";
 				height: 1px;
-				left: $space-md-guide;
+				left: $space-md-atlas;
 				position: absolute;
-				right: $space-md-guide;
+				right: $space-md-atlas;
 			}
 		}
 
 		.atlas-nav__item {
 			> .atlas-nav__ln {
-				padding-left: ($space-md-guide * 2);
-				padding-right: ($space-md-guide * 2);
+				padding-left: ($space-md-atlas * 2);
+				padding-right: ($space-md-atlas * 2);
 			}
 
 			.atlas-nav__item {
 				> .atlas-nav__ln {
-					padding-left: ($space-md-guide * 3);
-					padding-right: ($space-md-guide * 3);
+					padding-left: ($space-md-atlas * 3);
+					padding-right: ($space-md-atlas * 3);
 				}
 
 				.atlas-nav__item {
 					> .atlas-nav__ln {
-						padding-left: ($space-md-guide * 4);
-						padding-right: ($space-md-guide * 4);
+						padding-left: ($space-md-atlas * 4);
+						padding-right: ($space-md-atlas * 4);
 					}
 				}
 			}
@@ -143,7 +143,7 @@
 
 .js-searching {
 	.atlas-nav__ln {
-		color: lighten($guide-color-text, 40%);
+		color: lighten($atlas-color-text, 40%);
 		cursor: default;
 		pointer-events: none;
 	}
@@ -151,14 +151,14 @@
 
 .js-found {
 	.atlas-nav__ln {
-		color: lighten($guide-color-text, 40%);
+		color: lighten($atlas-color-text, 40%);
 		cursor: default;
 		display: none;
 		pointer-events: none;
 	}
 
 	.atlas-nav__ln.js-relevant {
-		color: $guide-color-text;
+		color: $atlas-color-text;
 		cursor: pointer;
 		display: block;
 		pointer-events: initial;
@@ -169,7 +169,7 @@
 		}
 
 		&:active {
-			color: $color-blue-guide;
+			color: $color-blue-atlas;
 		}
 	}
 

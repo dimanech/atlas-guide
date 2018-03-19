@@ -1,51 +1,67 @@
-// Palette - brand-supporting-functional(red, blue, green, yellow)
-$color-grey60-guide: hsl(0, 0%, 60%);
-$color-grey80-guide: hsl(0, 0%, 80%);
-$color-grey90-guide: hsl(0, 0%, 90%);
-$color-grey95-guide: hsl(0, 0%, 95%);
-$color-white-guide: hsl(0, 0%, 100%);
+// Palette
+$color-grey60-atlas: hsl(0, 0%, 60%);
+$color-grey80-atlas: hsl(0, 0%, 80%);
+$color-grey90-atlas: hsl(0, 0%, 90%);
+$color-grey95-atlas: hsl(0, 0%, 95%);
+$color-white-atlas: hsl(0, 0%, 100%);
 
-$color-blue-guide: #307fe2;
-$color-blue92-guide: #a7c6ed;
+$color-blue-atlas: hsl(213, 75%, 54%);
+$color-blue79-atlas: hsl(213, 66%, 79%);
 
-$color-violet: #594199;
-$color-fuchsia: #bc1f8c;
-$color-coral: #f15d5c;
-$color-yellow: #fae20f;
-$color-green: #98cb52;
-$color-aqua: #46c2c7;
+$color-violet-atlas: #594199;
+$color-fuchsia-atlas: #bc1f8c;
+$color-coral-atlas: #f15d5c;
+$color-yellow-atlas: #fae20f;
+$color-green-atlas: #98cb52;
+$color-aqua-atlas: #46c2c7;
 
-// Font families
-$font-sans-guide: "Arial", "FreeSans", sans-serif;
-$font-mono-guide: "DejaVu Sans Mono", "SFMono-Regular", "Menlo", "Consolas", "Lucida Console", monospace;
+// Fonts
+$font-sans-atlas: "Arial", "FreeSans", sans-serif;
+$font-mono-atlas: "DejaVu Sans Mono", "SFMono-Regular", "Menlo", "Consolas", "Lucida Console", monospace;
 
 // Sizes
-$size-font-guide: 1rem; // 16px
-$size-line-guide: $size-font-guide * 1.25; // 20px
+$size-font-atlas: 1rem; // 16px
+$size-line-atlas: $size-font-atlas * 1.25; // 20px
 
 // Scales
-$scale-off-guide: 0;
-$scale-sm-guide: 0.8rem;
-$scale-md-guide: 1rem;
-$scale-lg-guide: 1.25rem;
-$scale-xl-guide: 1.563rem;
-$scale-xxl-guide: 2.441rem;
-$scale-xxxl-guide: 3.051rem;
+$scale-off-atlas: 0;
+$scale-sm-atlas: 0.8rem;
+$scale-md-atlas: 1rem;
+$scale-lg-atlas: 1.25rem;
+$scale-xl-atlas: 1.563rem;
+$scale-xxl-atlas: 2.441rem;
+$scale-xxxl-atlas: 3.051rem;
 
 // Spaces
-$space-off-guide: 0;
-$space-sm-guide: $size-line-guide / 2; // 10px
-$space-md-guide: $size-line-guide; // 20px
-$space-xm-guide: $size-line-guide / 2 * 3; // 30px
-$space-lg-guide: $size-line-guide * 2; // 40px
-$space-xl-guide: $size-line-guide * 3; // 60px
+$space-off-atlas: 0;
+$space-sm-atlas: $size-line-atlas / 2; // 10px
+$space-md-atlas: $size-line-atlas; // 20px
+$space-xm-atlas: $size-line-atlas / 2 * 3; // 30px
+$space-lg-atlas: $size-line-atlas * 2; // 40px
+$space-xl-atlas: $size-line-atlas * 3; // 60px
+
+// Depth
+$depth--1: inset 0 3px 10px 1px rgba(black, 0.34);
+$depth-0: none;
+$depth-1: 0 3px 10px 1px rgba(black, 0.34);
+$depth-2: 0 9px 30px 3px rgba(black, 0.44);
+$depth-3: 0 30px 50px 5px rgba(black, 0.44);
+$depth-4: 0 45px 60px 6px rgba(black, 0.44);
+
+// Motion
+$motion-ease: cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s;
+$motion-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+$motion-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) 0.2s;
+$motion-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) 0.2s;
+
+// Breakpoints
+$break-xl: 1367px;
+$break-md: 1024px;
+$break-sm: 767px;
 
 // Applied colors
-$guide-color-text: hsl(210, 2%, 35%);
-$guide-color-divider: hsl(0, 1%, 70%);
+$atlas-color-text: hsl(210, 2%, 35%);
+$atlas-color-divider: hsl(0, 1%, 70%);
 
 // Applied sizes
-$guide-mono-small: 0.7rem;
-
-//$depth || $layer
-//$motion
+$atlas-mono-small: 0.7rem;

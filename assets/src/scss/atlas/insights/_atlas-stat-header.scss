@@ -2,15 +2,15 @@
 	align-items: stretch;
 	background: rgba(white, 0.9);
 	border-bottom: 1px solid rgba(black, 0.1);
-	color: $guide-color-text;
+	color: $atlas-color-text;
 	display: flex;
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	font-size: 2rem;
 	font-weight: bold;
 	letter-spacing: -0.06em;
 	line-height: 1.2;
-	margin: 0 -#{$space-md-guide} $space-lg-guide;
-	padding: $space-sm-guide $space-md-guide;
+	margin: 0 -#{$space-md-atlas} $space-lg-atlas;
+	padding: $space-sm-atlas $space-md-atlas;
 	position: sticky;
 	top: -1px; // compensate composition positioning bug
 	z-index: 5;

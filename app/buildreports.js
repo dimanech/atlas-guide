@@ -9,7 +9,7 @@ module.exports = function(atlasConfig, projectTree, importsGraph) {
 
     // Config
     const atlasBase = atlasConfig.getBase();
-    const projectName = atlasConfig.getProjectInfo().projectInfo.name;
+    const projectName = atlasConfig.getProjectInfo().name;
     const guideSrc = atlasBase.guideSrc;
     const guideDest = atlasBase.guideDest;
     const cssSrc = atlasBase.cssSrc;

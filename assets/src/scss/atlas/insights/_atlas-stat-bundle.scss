@@ -1,13 +1,13 @@
 .atlas-stat-bundle {
-	margin-left: -#{$space-md-guide};
+	margin-left: -#{$space-md-atlas};
 	margin-top: -150px;
 
 	.atlas-link {}
 
 	.atlas-node {
 		text {
-			fill: $guide-color-text;
-			font-family: $font-mono-guide;
+			fill: $atlas-color-text;
+			font-family: $font-mono-atlas;
 			font-size: 8px;
 		}
 
@@ -19,8 +19,8 @@
 
 		&._0 {
 			text {
-				font-family: $font-sans-guide;
-				font-size: $scale-xl-guide;
+				font-family: $font-sans-atlas;
+				font-size: $scale-xl-atlas;
 				font-weight: bold;
 				text-anchor: middle;
 			}
@@ -28,8 +28,8 @@
 
 		&._1 {
 			text {
-				font-family: $font-sans-guide;
-				font-size: $scale-md-guide;
+				font-family: $font-sans-atlas;
+				font-size: $scale-md-atlas;
 			}
 
 			circle {

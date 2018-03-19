@@ -16,13 +16,16 @@ if (atlasBase.isCorrupted) {
 
 const projectTree = require(path.resolve(__dirname, '../models/projectdocumentedtree.js'))(atlasBase);
 const deps = require(path.resolve(__dirname, '../models/projectimportsgraph.js'));
-const importsGraph = deps.getImportsGraph(atlasConfig);
+const importsGraph = deps.getImportsGraph(atlasBase);
 const componentImports = (src) => deps.getFileImports(src, importsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
+const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(
+    atlasBase.constants, atlasBase.scssAdditionalImportsArray);
 
 const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'));
 const pageContent = require(path.join(__dirname, '../viewmodels/pagecontent.js'));
 const coverage = require(path.join(__dirname, '../viewmodels/coverage.js'));
+const styleguide = require(path.resolve(__dirname, '../viewmodels/styleguide.js'));
 
 const writePage = require(__dirname + '/utils/renderpage.js');
 
@@ -51,24 +54,35 @@ function getCachedTemplates(type, path) {
 }
 
 function prepareContent(component) {
-    const content = pageContent(component.src, {'title': component.title});
+    let content;
+    let toc;
     let stat;
+
+    if (component.src !== '') {
+        const page = pageContent(component.src, {'title': component.title});
+        content = page.content;
+        toc = page.toc;
+    }
+    if (component.type === 'styleguide') {
+        content = styleguide(constants);
+    }
     if (component.type === 'component' || component.type === 'layout') {
         stat = statistics(
             componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
-            componentImports(component.src)
+            componentImports(component.src),
+            constants
         );
     }
     if (component.type === 'about') {
         stat = {
-            'projectName': atlasConfig.getProjectInfo().projectInfo.name,
+            'projectName': atlasConfig.getProjectInfo().name,
             'coverage': coverage(projectTree.coverage)
         };
     }
 
     return {
-        documentation: content.content,
-        toc: content.toc,
+        documentation: content,
+        toc: toc,
         componentStats: stat
     };
 }

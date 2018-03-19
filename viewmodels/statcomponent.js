@@ -1,22 +1,9 @@
 'use strict';
 
 const _uniq = require('lodash.uniq');
-const d3fmt = require('d3-format');
 const d3scale = require('d3-scale');
 const d3shape = require('d3-shape');
-
-function humanize(number) {
-    if (!number) {
-        return 0;
-    }
-    const length = number.toString().length;
-
-    if (length > 4) {
-        return d3fmt.format('.2s')(number);
-    } else {
-        return d3fmt.format(',')(number);
-    }
-}
+const formatNumbers = require(__dirname + '/utils/format').numbers;
 
 function ruleSetChart(dataArr) {
     const width = 290;
@@ -36,19 +23,125 @@ function ruleSetChart(dataArr) {
         .curve(d3shape.curveCatmullRom.alpha(0.5))(dataArr);
 }
 
-function getStatistic(componentStat, componentImports) {
+function warnConstants(valuesList, constantsList) {
+    let notDefined = [];
+    let defined = [];
+    let consider = [];
+    let all = 0;
+
+    valuesList.forEach(value => {
+        let isConstantFound = false;
+        all++;
+
+        constantsList.forEach(constant => {
+            if (isConstantFound) {
+                return;
+            }
+            if (new RegExp('\\' + constant.name + '|auto|inherit|initial').test(value)) {
+                // interpolation and operators could be used with variable
+                defined.push(value);
+                isConstantFound = true;
+            }
+            if (value === constant.value) {
+                defined.push(value);
+                isConstantFound = true;
+                let alreadyExist = false;
+                consider.forEach(warn => {
+                    if (warn.from === value && warn.to === constant.name) {
+                        warn.count++;
+                        alreadyExist = true;
+                    }
+                });
+                if (!alreadyExist) {
+                    consider.push({
+                        from: value,
+                        to: constant.name,
+                        count: 0
+                    });
+                }
+            }
+            // if (/\$/.test(value)) {// if var used should be warn
+            //     defined.push(value);
+            //     warn.push({
+            //         from: value
+            //     });
+            //     isConstantFound = true;
+            // }
+        });
+        if (!isConstantFound) {
+            notDefined.push(value);
+        }
+    });
+
+    return {
+        'notInConstants': {
+            count: notDefined.length,
+            values: notDefined
+        },
+        'allOk': all === defined.length,
+        'consider': consider
+    };
+}
+
+function getConstantsStat(name, valuesList, constants) {
+    const constantsMap = {
+        scale: ['fontSize'],
+        font: ['fontFamily'],
+        space: ['margin', 'padding'],
+        color: ['color', 'backgroundColor'],
+        breakpoint: ['mediaQuery'],
+        depth: ['boxShadow']
+    };
+    let constantsList = [];
+
+    Object.keys(constantsMap).forEach(key => {
+        constantsMap[key].forEach(prop => {
+            if (prop === name) {
+                constantsList = constants[key];
+            }
+        });
+    });
+
+    if (constantsList.length > 0 && valuesList.length > 0) {
+        return warnConstants(valuesList, constantsList);
+    } else {
+        return undefined;
+    }
+}
+
+function prepareDisplayName(name, singular) {
+    let displayName;
+    switch (name) {
+        case 'fontFamily':
+            displayName = singular ? 'Font family' : 'Font families';
+            break;
+        case 'fontSize':
+            displayName = singular ? 'Font size' : 'Font sizes';
+            break;
+        case 'backgroundColor':
+            displayName = singular ? 'Background' : 'Backgrounds';
+            break;
+        default:
+            displayName = singular ? name : name + 's';
+    }
+    return displayName;
+}
+
+function getStatistic(componentStat, componentImports, projectConstants) {
     const componentProfile = [
         'padding', 'display', 'position', 'width', 'height',
-        'margin', 'scale', 'font', 'color', 'background'
+        'margin', 'fontSize', 'fontFamily', 'color', 'backgroundColor',
+        'mediaQuery', 'boxShadow' // add missing constants props
     ];
-    const stats = ['important', 'vendorPrefix', 'floats'];
+    const stats = ['important', 'vendorPrefix', 'float'];
+
     let viewModel = {
         includes: _uniq(componentStat.includes.sort()),
         imports: _uniq(componentStat.imports),
         variables: componentStat.variables,
         importedBy: componentImports.importedBy,
         nodes: componentStat.componentStructure.nodes, // component structure recursion
-        totalDeclarations: humanize(componentStat.totalDeclarations),
+        totalDeclarations: formatNumbers(componentStat.totalDeclarations),
         ruleSetsLine: ruleSetChart(componentStat.ruleSets),
         componentProfileDetails: [],
         stats: {}
@@ -61,14 +154,20 @@ function getStatistic(componentStat, componentImports) {
         };
     });
 
-    componentProfile.forEach(stat => {
-        const rawStat = componentStat.stats[stat];
+    componentProfile.forEach(name => {
+        const rawStat = name !== 'mediaQuery' ? componentStat.stats[name] : _uniq(componentStat.mediaQuery);
         const rawStatLength = rawStat.length;
-        viewModel.componentProfileDetails.push({
+        let result = {
             total: rawStatLength,
-            name: rawStatLength === 1 ? stat : stat + 's',
-            values: rawStat
-        });
+            name: prepareDisplayName(name, rawStatLength === 1)
+        };
+        if (projectConstants !== undefined) {
+            const constStat = getConstantsStat(name, rawStat, projectConstants);
+            if (constStat !== undefined) {
+                result.consistancy = constStat;
+            }
+        }
+        viewModel.componentProfileDetails.push(result);
     });
 
     viewModel.componentProfileDetails.sort((a, b) => b.total - a.total);

@@ -1,19 +1,19 @@
 .atlas-stat-columns {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0 -#{$space-md-guide};
+	margin: 0 -#{$space-md-atlas};
 
 	&__item {
 		box-sizing: border-box;
-		padding: $space-md-guide;
+		padding: $space-md-atlas;
 	}
 
 	&__title {
-		font-family: $font-sans-guide;
-		font-size: $scale-xl-guide;
+		font-family: $font-sans-atlas;
+		font-size: $scale-xl-atlas;
 		font-weight: bold;
 		letter-spacing: -0.04em;
-		margin-bottom: $space-lg-guide;
+		margin-bottom: $space-lg-atlas;
 	}
 
 	&._condenced {
@@ -27,7 +27,7 @@
 
 		.atlas-stat-columns__item {
 			overflow: hidden;
-			padding: 0 0 $space-md-guide;
+			padding: 0 0 $space-md-atlas;
 			width: (100%/10);
 		}
 	}
@@ -45,8 +45,8 @@
 	}
 
 	&._imports {
-		margin-bottom: $space-md-guide;
-		margin-top: $space-lg-guide;
+		margin-bottom: $space-md-atlas;
+		margin-top: $space-lg-atlas;
 
 		.atlas-stat-columns__item {
 			width: (100%/3);

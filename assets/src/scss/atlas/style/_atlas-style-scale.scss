@@ -1,0 +1,33 @@
+.atlas-style-scale {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 0.5em;
+	width: 100%;
+
+	&__text {
+		line-height: 1.2;
+		overflow: hidden;
+		position: relative;
+	}
+
+	&__text-content {
+		overflow: hidden;
+		text-indent: 70px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 100%;
+
+		&::after {
+			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.";
+		}
+	}
+
+	&__name {
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
+		min-width: 200px;
+		padding-left: $space-md-atlas;
+		width: 200px;
+	}
+}

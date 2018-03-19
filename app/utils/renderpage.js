@@ -5,10 +5,10 @@ const path = require('path');
 const mustache = require('mustache');
 
 const atlasConfig = require(path.join(__dirname, '../../models/atlasconfig.js'));
-const projectInfo = atlasConfig.getProjectInfo().projectInfo;
+const projectInfo = atlasConfig.getProjectInfo();
 
 function getPartials() {
-    const partialsMap = atlasConfig.getPartials().partials;
+    const partialsMap = atlasConfig.getPartials();
     let partials = {};
 
     Object.keys(partialsMap).forEach(partial => partials[partial] = fs.readFileSync(partialsMap[partial], 'utf8'));

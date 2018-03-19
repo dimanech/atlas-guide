@@ -113,126 +113,128 @@ function getRuleSets(fileAST) {
     return ruleSets;
 }
 
-function getStatistic(file) {
-    const fileAST = postcss().process(file, {parser: postscss}).root;
-
-    let rawStat = {
+function getAtRules(fileAST) {
+    let atRules = {
         includes: [],
         imports: [],
-        variables: [],
-        componentStructure: getComponentStructure(fileAST),
-        totalDeclarations: 0,
-        ruleSets: getRuleSets(fileAST),
-        stats: {
-            'scale': [],
-            'font': [],
-            'margin': [],
-            'padding': [],
-            'color': [],
-            'background': [],
-            'important': [],
-            'width': [],
-            'height': [],
-            'mediaQuery': [],
-            'vendorPrefix': [],
-            'zIndex': [],
-            'position': [],
-            'floats': [],
-            'display': []
-        }
+        mediaQuery: []
     };
 
-    fileAST.walkAtRules(atrule => { // getAtRules
+    fileAST.walkAtRules(atrule => {
         if (atrule.name === 'include') {
-            rawStat.includes.push(atrule.params);
+            atRules.includes.push(atrule.params);
         }
 
         if (atrule.name === 'import') {
-            rawStat.imports.push(atrule.params);
+            atRules.imports.push(atrule.params);
         }
 
         if (atrule.name === 'media') {
-            rawStat.stats.mediaQuery.push(atrule.params);
+            atRules.mediaQuery.push(atrule.params);
         }
     });
 
-    fileAST.walkDecls(decl => { // getDeclsStats
+    return atRules;
+}
+
+function getDeclsStats(fileAST) {
+    let stats = {
+        'fontSize': [],
+        'fontFamily': [],
+        'margin': [],
+        'padding': [],
+        'color': [],
+        'backgroundColor': [],
+        'important': [],
+        'width': [],
+        'height': [],
+        'vendorPrefix': [],
+        'zIndex': [],
+        'position': [],
+        'float': [],
+        'display': [],
+        'boxShadow': []
+    };
+    let totalDeclarations = 0;
+    let variables = [];
+
+    fileAST.walkDecls(decl => {
         if (decl.parent.selector !== undefined && /^\d/.test(decl.parent.selector)) {
             // ignore animation declaration blocks
             return;
         }
 
-        rawStat.totalDeclarations++;
+        totalDeclarations++;
 
         // Health
 
         if (decl.important) {
-            rawStat.stats.important.push({
+            stats.important.push({
                 prop: decl.prop
             });
         }
 
         if (/^-/.test(decl.prop)) {
-            rawStat.stats.vendorPrefix.push({
+            stats.vendorPrefix.push({
                 prop: decl.prop,
                 value: decl.value
             });
         }
 
         if (decl.prop === 'float') {
-            rawStat.stats.floats.push(decl.value);
+            stats['float'].push(decl.value);
         }
 
         // Useful
 
         if (/(^\$|^--)/.test(decl.prop)) {
-            rawStat.variables.push({
+            variables.push({
                 prop: decl.prop,
                 value: decl.value
             });
         }
 
         if (decl.prop === 'z-index') {
-            rawStat.stats.zIndex.push(decl.value);
+            stats.zIndex.push(decl.value);
         }
 
         // Profile
 
         if (decl.prop === 'width') {
-            rawStat.stats.width.push(decl.value);
+            stats.width.push(decl.value);
         }
 
         if (decl.prop === 'height') {
-            rawStat.stats.height.push(decl.value);
+            stats.height.push(decl.value);
         }
 
         if (/^margin/.test(decl.prop)) {
             const metricList = decl.value.split(' ');
             // declared spaces stat could be here
-            metricList.forEach(value => rawStat.stats.padding.push(value));
+            metricList.forEach(value => stats.margin.push(value));
         }
 
         if (/^padding/.test(decl.prop)) {
             const metricList = decl.value.split(' ');
-            metricList.forEach(value => rawStat.stats.margin.push(value));
+            metricList.forEach(value => stats.padding.push(value));
         }
 
         if (decl.prop === 'position') {
-            rawStat.stats.position.push(decl.value);
+            stats.position.push(decl.value);
         }
 
         if (decl.prop === 'display') { // positioning display. Probability of block, i-b usage in components?
             if (/(flex|grid)/.test(decl.value)) {
-                rawStat.stats.display.push(decl.value);
+                stats.display.push(decl.value);
             }
         }
 
         if (decl.prop === 'color') {
-            rawStat.stats.color.push(decl.value); // size + value if vars is used
+            stats.color.push(decl.value); // size + value if vars is used
         }
 
         if (decl.prop === 'background-color') {
-            rawStat.stats.background.push(decl.value);
+            stats.backgroundColor.push(decl.value);
         }
 
         if (decl.prop === 'background') {
@@ -240,17 +242,17 @@ function getStatistic(file) {
             const layerProps = finalLayer.pop().split(' ');
             layerProps.forEach(prop => {
                 if (color.hsl(prop).displayable() || /(^\$|^--)/.test(prop)) {
-                    rawStat.stats.background.push(prop);
+                    stats.backgroundColor.push(prop);
                 }
             });
         }
 
         if (decl.prop === 'font-family') {
-            rawStat.stats.font.push(decl.value);
+            stats.fontFamily.push(decl.value);
         }
 
         if (decl.prop === 'font-size') {
-            rawStat.stats.scale.push(decl.value); // size + value if vars is used
+            stats.fontSize.push(decl.value);
         }
 
         if (decl.prop === 'font') {
@@ -260,12 +262,37 @@ function getStatistic(file) {
                 .split(' ');
             const fontFamily = declList.pop(); // mandatory. always last in list
             const fontSize = declList.pop().split('/'); // mandatory. before family. optional list
-            rawStat.stats.scale.push(fontSize[0]);
-            rawStat.stats.font.push(fontFamily);
+            stats.fontSize.push(fontSize[0]);
+            stats.fontFamily.push(fontFamily);
+        }
+
+        if (decl.prop === 'box-shadow') {
+            stats.boxShadow.push(decl.value);
         }
     });
 
-    return rawStat;
+    return {
+        stats: stats,
+        totalDeclarations: totalDeclarations,
+        variables: variables
+    };
+}
+
+function getStatistic(file) {
+    const fileAST = postcss().process(file, {parser: postscss}).root;
+    const stats = getDeclsStats(fileAST);
+    const atRules = getAtRules(fileAST);
+
+    return {
+        includes: atRules.includes,
+        imports: atRules.imports,
+        mediaQuery: atRules.mediaQuery,
+        variables: stats.variables,
+        componentStructure: getComponentStructure(fileAST),
+        totalDeclarations: stats.totalDeclarations,
+        ruleSets: getRuleSets(fileAST),
+        stats: stats.stats
+    };
 }
 
 function getStatFor(url, componentPrefix) {

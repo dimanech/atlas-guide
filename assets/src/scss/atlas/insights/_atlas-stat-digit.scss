@@ -1,12 +1,12 @@
 .atlas-stat-digit {
-	font-family: $font-sans-guide;
+	font-family: $font-sans-atlas;
 	font-size: 4rem;
 	font-weight: bold;
 	line-height: 1;
 	min-width: 190px;
 
 	&__data {
-		color: $color-blue-guide;
+		color: $color-blue-atlas;
 		letter-spacing: -0.06em;
 	}
 
@@ -38,8 +38,8 @@
 		}
 
 		.atlas-stat-digit__caption {
-			font-family: $font-mono-guide;
-			font-size: $guide-mono-small;
+			font-family: $font-mono-atlas;
+			font-size: $atlas-mono-small;
 			text-transform: none;
 			word-wrap: break-word;
 		}
