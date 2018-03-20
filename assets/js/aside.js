@@ -44,10 +44,13 @@
 
     // Store aside state
     function populateStorage() {
-        window.sessionStorage.setItem('asideWidth', aside.offsetWidth);
+        window.sessionStorage && window.sessionStorage.setItem('asideWidth', aside.offsetWidth);
     }
 
     function setAsideState() {
+        if (window.sessionStorage) {
+            return;
+        }
         const storedValue = window.sessionStorage.getItem('asideWidth');
         const asideWidth = storedValue === null ? '270' : storedValue;
 

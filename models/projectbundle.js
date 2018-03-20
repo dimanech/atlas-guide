@@ -27,7 +27,7 @@ function getResultedFileSize(name, pathToCSS) {
 
 function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
     const sep = path.sep;
-    const pathToSCSS = new RegExp(path.join(importsGraph.dir, sep));
+    const pathToSCSS = importsGraph.dir;
     let importsPaths = {};
     importsPaths[projectName] = {
         id: projectName,
@@ -38,7 +38,11 @@ function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
         if (
             !importsGraph.index.hasOwnProperty(prop) ||
             excludedSassFiles.test(prop) ||
-            !pathToSCSS.test(prop) // it is a bit tricky to handle sass additional imports path array
+            // avoid to include additional imported sass component from graph
+            // we use relative path to find if component path outside of project
+            // we do this to avoid regexp with win paths
+            // this could be buggy
+            /^\.\./.test(path.relative(pathToSCSS, prop))
         ) {
             continue;
         }
@@ -47,11 +51,11 @@ function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
         const isPartial = /^_/i.test(fileName);
         if (isPartial) {
             const importedBy = importsGraph.index[prop].importedBy;
-            const destList = pathStr.replace(pathToSCSS, '').replace(new RegExp(fileName), '').split(sep);
+            const destList = path.relative(pathToSCSS, pathStr).replace(new RegExp(fileName), '').split(sep);
 
             importedBy.forEach(importedBy => {
                 // push standalone resulted file
-                const importFile = importedBy.toString().replace(pathToSCSS, ''); // could be import to partial file
+                const importFile = path.relative(pathToSCSS, importedBy.toString()); // could be import to partial file
                 let cumulativePath = projectName + '/' + importFile;
 
                 if (!importsPaths.hasOwnProperty(cumulativePath)) {
@@ -83,7 +87,7 @@ function getImports(importsGraph, projectName, pathToCSS, excludedSassFiles) {
                 }
             });
         } else {
-            const standaloneFile = projectName + '/' + pathStr.replace(pathToSCSS, '');
+            const standaloneFile = projectName + '/' + path.relative(pathToSCSS, pathStr);
             if (!importsPaths.hasOwnProperty(standaloneFile)) {
                 importsPaths[standaloneFile] = {
                     id: standaloneFile,
