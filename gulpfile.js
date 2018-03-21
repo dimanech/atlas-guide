@@ -67,7 +67,7 @@ const createImportsGraph = () => {
  * Configurable Sass compilation
  * @param {Object} config
  */
-const sassCompile = (config) => {
+const sassCompile = config => {
     const sass = require('gulp-sass');
     const postcss = require('gulp-postcss');
     const autoprefixer = require('autoprefixer');
@@ -122,6 +122,7 @@ const getResultedFilesList = changedFile => {
     if (!path.basename(changedFile).match(/^_/)) {
         // Return early if changed file not partial file
         pathsArray.push(changedFile);
+        generateFilePath = [changedFile];
         // Rebuild imports graph
         createImportsGraph();
         return pathsArray;
