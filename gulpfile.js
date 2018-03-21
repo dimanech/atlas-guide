@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const gulp = require('gulp');
 const connect = require('gulp-connect');
 
@@ -111,35 +112,32 @@ const sassCompile = config => {
  * includes changed file.
  */
 const getResultedFilesList = changedFile => {
-    const path = require('path');
-    let pathsArray = [];
-
     // Ensure that changed file is Sass file
     if (path.extname(changedFile) !== '.scss') {
         return [];
     }
 
+    let resultedFilesPath = []; // used for compilation
+    let resultedCSSPaths = []; // used for reload
+    const getResultedCSSPath = path => path
+        .replace(pathConfig.ui.core.sass.src, pathConfig.ui.core.sass.dest)
+        .replace('.scss', '.css');
+
     if (!path.basename(changedFile).match(/^_/)) {
-        // Return early if changed file not partial file
-        pathsArray.push(changedFile);
-        generateFilePath = [changedFile];
-        // Rebuild imports graph
-        createImportsGraph();
-        return pathsArray;
+        resultedFilesPath.push(changedFile);
+        resultedCSSPaths = [getResultedCSSPath(changedFile)];
+        createImportsGraph(); // Rebuild imports graph
+    } else {
+        importsGraph.visitAncestors(changedFile, parent => {
+            if (!path.basename(parent).match(/^_/)) {
+                resultedFilesPath.push(parent);
+                resultedCSSPaths.push(getResultedCSSPath(parent));
+            }
+        });
     }
 
-    importsGraph.visitAncestors(changedFile, parent => {
-        if (!path.basename(parent).match(/^_/)) {
-            pathsArray.push(parent);
-            generateFilePath = [
-                parent
-                    .replace(pathConfig.ui.core.sass.src, pathConfig.ui.core.sass.dest)
-                    .replace('.scss', '.css')
-            ];
-        }
-    });
-
-    return pathsArray;
+    generateFilePath = resultedCSSPaths; // side effects is bad, find better solution
+    return resultedFilesPath;
 };
 
 // Compile all Sass files
@@ -173,7 +171,7 @@ gulp.task('styles:watch', () => {
 
 // Reload the CSS links right after 'styles:compile:incremental' task is returned
 gulp.task('devServ:reload:styles', ['styles:compile:incremental'], () => {
-    return gulp.src(generateFilePath[0]) // css only reload
+    return gulp.src(generateFilePath) // css only reload
         .pipe(connect.reload());
 });
 
