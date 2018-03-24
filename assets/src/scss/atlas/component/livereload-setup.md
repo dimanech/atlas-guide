@@ -382,22 +382,20 @@ The idea is instead of site resource use local resource trigger reload as always
 
 Just add to your templates:
 
-```php
-<?php
-if ($useLocal) {
+```html
+<?php if ($useLocal): ?>
     <link rel="stylesheet" type="text/css" href="https://127.0.0.1:5000/style.css" />
-}
-?>
+<?php else: ?>
+    <link rel="stylesheet" type="text/css" href="path/to/style.css" />
+<?php endif; ?>
 ```
 
 and in footer
 
-```php
-<?php
-if ($useLocal) {
+```html
+<?php if ($useLocal): ?>
     <script src="https://127.0.0.1:9000/livereload.js"></script>
-}
-?>
+<?php endif; ?>
 ```
 
 Than you could set using local resource innsted of site resource by http parameter or cookie.
