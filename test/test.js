@@ -7,9 +7,11 @@ const cwd = process.cwd();
 
 describe('Atlas', function() {
     let initialConfig = '';
+
     before(function() {
         return initialConfig = fs.readFileSync('.atlasrc.json');
     });
+
     after(function() {
         fs.writeFileSync('.atlasrc.json', initialConfig, 'utf8');
     });
@@ -212,7 +214,6 @@ describe('Atlas', function() {
             fs.writeFileSync(path.join(cwd, guideDest, '.gitkeep'), '', 'utf8');
         });
     });
-
     describe('Config', function() {
         const config = require(cwd + '/models/atlasconfig.js');
 
@@ -385,52 +386,7 @@ describe('Atlas', function() {
             });
         });
     });
-    describe('copyassets()', function() {
-        const copyAssets = require(cwd + '/app/utils/copyassets.js');
-        const assetsDest = path.join(cwd, '/test/results/');
-        const assetsSrc = path.join(cwd, '/test/fixtures/assets/');
-
-        before(function() {
-            copyAssets(assetsSrc, assetsDest);
-        });
-
-        it('should create missing folders', function() {
-            const assetsDir = fs.existsSync(path.join(assetsDest, '/assets'));
-            assert.strictEqual(assetsDir, true, 'assets directory is created');
-        });
-        it('should copy files', function() {
-            const style = fs.existsSync(path.join(assetsDest, '/assets/css/style.css'));
-            const script = fs.existsSync(path.join(assetsDest, '/assets/my js/bundle.js'));
-            assert.strictEqual(style && script, true, 'needed files is copied');
-        });
-        it('should not copy "src" folder', function() {
-            const assetsSourceFiles = fs.existsSync(path.join(assetsDest, '/assets/src'));
-            assert.strictEqual(assetsSourceFiles, false, '"src" folder not copied');
-        });
-        it('should not copy "map" files', function() {
-            const styleMap = fs.existsSync(path.join(assetsDest, '/assets/css/style.css.map'));
-            assert.strictEqual(styleMap, false, 'map file not copied');
-        });
-
-        after(function() {
-            function deleteRes(res) {
-                fs.readdirSync(res).forEach(item => {
-                    const source = path.join(res, item);
-                    if (fs.statSync(source).isFile()) {
-                        if (item === '.gitkeep') {
-                            return;
-                        }
-                        fs.unlinkSync(source);
-                    } else {
-                        deleteRes(source);
-                        fs.rmdirSync(source);
-                    }
-                });
-            }
-            deleteRes(assetsDest);
-        });
-    });
-    describe('models', function() {
+    describe('Models', function() {
         describe('styleguide', function() {
             const config = require(cwd + '/models/atlasconfig.js').getBase({
                 'guideSrc': '/assets/src/scss/',
@@ -557,7 +513,7 @@ describe('Atlas', function() {
             it('should return only uniq scales');
         });
     });
-    describe('format', function() {
+    describe('format()', function() {
         const format = require(cwd + '/viewmodels/utils/format');
 
         describe('numbers', function() {
@@ -602,6 +558,61 @@ describe('Atlas', function() {
             it('should return proper formatted giga bytes', function() {
                 assert.strictEqual(format.bytes(1128000000), '1GB');
             });
+        });
+    });
+    describe('copyassets()', function () {
+        const copyAssets = require(cwd + '/app/utils/copyassets.js');
+        const assetsDest = path.join(cwd, '/test/results/');
+        const assetsSrc = path.join(cwd, '/test/fixtures/assets/');
+
+        before(function () {
+            copyAssets(assetsSrc, assetsDest);
+        });
+
+        it('should create missing folders', function () {
+            const assetsDir = fs.existsSync(path.join(assetsDest, '/assets'));
+            assert.strictEqual(assetsDir, true, 'assets directory is created');
+        });
+        it('should not recreate existed folders', function () {
+            copyAssets(assetsSrc, assetsDest);
+            const assetsDir = fs.existsSync(path.join(assetsDest, '/assets'));
+            assert.strictEqual(assetsDir, true, 'assets directory is created');
+        });
+        it('should copy files', function () {
+            const style = fs.existsSync(path.join(assetsDest, '/assets/css/style.css'));
+            const script = fs.existsSync(path.join(assetsDest, '/assets/my js/bundle.js'));
+            assert.strictEqual(style && script, true, 'needed files is copied');
+        });
+        it('should not copy "src" folder', function () {
+            const assetsSourceFiles = fs.existsSync(path.join(assetsDest, '/assets/src'));
+            assert.strictEqual(assetsSourceFiles, false, '"src" folder not copied');
+        });
+        it('should not copy "map" files', function () {
+            const styleMap = fs.existsSync(path.join(assetsDest, '/assets/css/style.css.map'));
+            assert.strictEqual(styleMap, false, 'map file not copied');
+        });
+        it('should not copy hidden files', function () {
+            const hiddenFile = fs.existsSync(path.join(assetsDest, '/assets/css/.geetkeep'));
+            assert.strictEqual(hiddenFile, false);
+        });
+
+        after(function () {
+            function deleteRes(res) {
+                fs.readdirSync(res).forEach(item => {
+                    const source = path.join(res, item);
+                    if (fs.statSync(source).isFile()) {
+                        if (item === '.gitkeep') {
+                            return;
+                        }
+                        fs.unlinkSync(source);
+                    } else {
+                        deleteRes(source);
+                        fs.rmdirSync(source);
+                    }
+                });
+            }
+
+            deleteRes(assetsDest);
         });
     });
 });
