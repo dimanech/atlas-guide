@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"/>
+
+    <title>Atlas - b-atlas-component</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-frame.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-prism.css"/>
+
+<!--
+    This is internal asset assetshead.mustache
+    To replace it with project CSS imports add to config
+    "partials": {
+      "assetshead": "path/to/file.mustache"
+    }
+-->
+</head>
+<body class="atlas-page atlas-page_component">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0"
+     style="position:absolute;">
+    <symbol id="icon-code-example" viewBox="0 0 24 24">
+        <path
+            d="M14.304 19.302a.989.989 0 0 0 0 1.407 1.009 1.009 0 0 0 1.418 0l2.955-2.93c.43-.426.43-1.111.009-1.539l-2.974-2.949a1.009 1.009 0 0 0-1.418 0 .989.989 0 0 0 0 1.407l2.327 2.307-2.317 2.297zM9.707 4.698a.988.988 0 0 0 0-1.407 1.01 1.01 0 0 0-1.418 0l-2.966 2.94a1.09 1.09 0 0 0 0 1.548l2.956 2.93a1.01 1.01 0 0 0 1.418 0 .988.988 0 0 0 0-1.407L7.38 7.005l2.327-2.307zm-3 14.009l12-12a1 1 0 1 0-1.414-1.414l-12 12a1 1 0 0 0 1.414 1.414z"
+            fill="currentColor" role="presentation"></path>
+    </symbol>
+    <symbol id="icon-component" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="none" fill-rule="evenodd" stroke-width="1">
+            <rect x="4.2352" y="9.2457" width="15.53" height="9.5086"></rect>
+            <rect x="13.286" y="5.8617" width="4.3489" height="3.1265"></rect>
+            <rect x="6.2226" y="5.9173" width="4.3096" height="3.3029"></rect>
+        </g>
+    </symbol>
+    <symbol id="icon-container" viewBox="0 0 24 24">
+        <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="4.5595" width="18" height="16.44" rx="2" ry="1.8267"></rect>
+            <line x1="3" x2="21" y1="10.119" y2="10.119"></line>
+            <line x1="9" x2="9" y1="20.296" y2="10.857"></line>
+        </g>
+    </symbol>
+    <symbol id="icon-guide" viewBox="0 0 297.001 297.001">
+        <path fill="currentColor"
+              d="M287.034,60.873l-20.819-0.001V39.321c0-4.934-3.61-9.126-8.49-9.856c-0.852-0.128-21.134-3.074-45.557,1.37c-27.227,4.954-48.941,17.171-63.668,35.64c-14.728-18.469-36.442-30.686-63.668-35.64c-24.424-4.443-44.706-1.498-45.557-1.37c-4.88,0.731-8.49,4.923-8.49,9.856v21.551H9.966C4.463,60.872,0,65.335,0,70.839v187.805c0,3.227,1.562,6.254,4.193,8.124s6.004,2.35,9.051,1.288c0.748-0.259,75.431-25.747,131.12-0.345c2.628,1.199,5.645,1.199,8.273,0c55.533-25.33,130.376,0.088,131.12,0.345c1.068,0.372,2.174,0.555,3.276,0.555c2.043,0,4.065-0.628,5.775-1.842c2.631-1.87,4.193-4.897,4.193-8.124V70.84C297,65.336,292.538,60.873,287.034,60.873z M19.933,245.309V80.805h10.852v132.726c0,2.896,1.267,5.646,3.458,7.539c2.191,1.893,5.105,2.742,7.969,2.319c0.55-0.08,43.846-6.024,75.478,15.679C78.725,232.405,39.727,240.112,19.933,245.309z M138.534,230.08c-13.932-12.588-32.079-21.1-53.702-25.034c-10.406-1.894-20.06-2.446-27.78-2.446c-2.292,0-4.414,0.049-6.333,0.126V48.473h-0.001c19.155-0.864,65.752,1.184,87.816,38.587V230.08z M158.466,87.061c21.985-37.243,68.655-39.384,87.816-38.563v154.228c-8.383-0.338-20.62-0.136-34.114,2.32c-21.623,3.934-39.77,12.445-53.702,25.034V87.061z M179.277,239.074c31.636-21.716,74.955-15.766,75.495-15.686c2.871,0.431,5.783-0.413,7.981-2.305c2.198-1.894,3.462-4.65,3.462-7.552V80.806h10.852v164.503C257.267,240.11,218.253,232.4,179.277,239.074z"></path>
+    </symbol>
+    <symbol id="icon-ln" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="none" fill-rule="evenodd" stroke-width="2">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-insights" viewBox="0 0 1000 1000">
+        <g fill="currentColor" transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+            <path
+                d="M8734.9,3367.3c-408.6-152.6-750-284.5-757.7-294.8c-10.4-7.8,82.8-100.9,204.3-204.3c191.4-165.5,217.2-196.5,188.8-235.3c-18.1-23.3-594.8-687.9-1282.7-1476.7L5835.8-276.7L5096.2,72.5c-406,191.4-809.5,380.2-897.4,419L4041,563.9L2494.5-1259.4L950.6-3085.2l72.4-59.5c41.4-33.6,118.9-93.1,175.8-131.9l98.3-69.8l49.1,56.9C1666.9-2891.2,4149.6,25.9,4165.2,25.9c12.9,0,408.6-181,879.3-403.4c473.3-219.8,868.9-403.5,879.3-406c10.3-2.6,625.8,687.9,1368.1,1533.6c742.2,845.7,1370.7,1562,1396.5,1587.9c46.5,49.1,51.7,44,258.6-137.1c116.4-103.4,219.8-181,227.6-173.3c31,33.6,356.9,1618.9,331,1616.3C9490.1,3641.4,9143.5,3517.3,8734.9,3367.3z"></path>
+            <path
+                d="M800.6,214.7C451.4-188.7,146.3-545.6,123-576.6c-41.4-56.9-38.8-62.1,108.6-181c85.3-67.2,162.9-121.6,175.9-121.6c18.1,0,677.6,755.2,1065.5,1220.7c36.2,44,72.4,25.9,594.8-318.1c305.2-201.7,569-369.8,584.5-377.6c12.9-5.1,87.9,62.1,162.9,150l134.5,160.3l-667.2,439.7c-367.2,240.5-708.6,465.5-757.7,496.5l-90.5,56.9L800.6,214.7z"></path>
+            <path
+                d="M9097-330.9c-411.2-165.5-744.8-310.3-744.8-318.1s98.3-93.1,219.8-188.8c121.6-95.7,219.8-183.6,219.8-191.4c0-15.5-887.1-1125-1383.6-1730.1l-108.6-134.5l-1600.8,1050C4819.5-1267.1,4085-791.3,4069.5-783.5c-23.3,7.8-305.2-302.6-287.1-318.1c147.4-108.6,3553.4-2319.8,3579.2-2322.4c20.7,0,421.5,465.5,894.8,1042.2c473.3,576.7,871.5,1050,884.5,1055.1c15.5,2.6,118.9-67.2,232.8-160.3c113.8-93.1,212.1-168.1,219.8-168.1c10.4,0,77.6,351.7,155.2,783.6c75,429.3,142.2,796.6,150,814.6c5.2,15.5-5.2,31-23.3,28.5C9854.7-28.4,9505.6-165.4,9097-330.9z"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-about" viewBox="0 0 496.304 496.303">
+        <path fill="currentColor"
+              d="M248.146,0C111.314,0,0,111.321,0,248.152c0,136.829,111.314,248.151,248.146,248.151c136.835,0,248.158-111.322,248.158-248.151C496.304,111.321,384.98,0,248.146,0zM248.146,472.093c-123.473,0-223.935-100.459-223.935-223.941c0-123.479,100.462-223.941,223.935-223.941c123.488,0,223.947,100.462,223.947,223.941C472.093,371.634,371.634,472.093,248.146,472.093zM319.536,383.42v32.852c0,1.383-1.123,2.494-2.482,2.494H196.45c-1.374,0-2.482-1.117-2.482-2.494V383.42c0-1.372,1.114-2.482,2.482-2.482h34.744V205.831h-35.101c-1.375,0-2.468-1.111-2.468-2.474v-33.6c0-1.38,1.1-2.479,2.468-2.479h82.293c1.371,0,2.482,1.105,2.482,2.479v211.181h36.186C318.413,380.938,319.536,382.048,319.536,383.42zM209.93,105.927c0-20.895,16.929-37.829,37.829-37.829c20.886,0,37.826,16.935,37.826,37.829s-16.94,37.829-37.826,37.829C226.853,143.756,209.93,126.822,209.93,105.927z"></path>
+    </symbol>
+    <symbol id="icon-category" viewBox="0 0 779.652 779.652">
+        <path fill="currentColor"
+              d="M679.503,349.728L151.09,9.181C119.742-7.703,83.832-5.951,83.832,54.688v670.58c0,55.408,38.525,64.17,67.258,45.506l528.442-340.547C701.255,407.975,701.255,371.953,679.503,349.728z"></path>
+    </symbol>
+    <symbol id="icon-in" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="currentColor" stroke-width="1">
+            <path
+                d="M 7 12 C 7 8.137 10.137 5 14 5 C 17.863 5 21 8.137 21 12 C 21 15.863 17.863 19 14 19 C 10.137 19 7 15.863 7 12 Z "
+                fill="none"></path>
+            <line x1="3" y1="12" x2="14" y2="12"></line>
+            <path d="M 11.75 14.5 L 16.75 12 L 11.75 9.5 Z" stroke="none"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-out" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="currentColor" stroke-width="1">
+            <path
+                d="M 7 12 C 7 8.137 10.137 5 14 5 C 17.863 5 21 8.137 21 12 C 21 15.863 17.863 19 14 19 C 10.137 19 7 15.863 7 12 Z "
+                fill="none"></path>
+            <line x1="3" y1="12" x2="14" y2="12"></line>
+            <path d="M 5.25 9.5 L 0.25 12 L 5.25 14.5 Z" stroke="none"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-filter" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="currentColor" stroke-width="1">
+            <path
+                d="M 2 12 C 2 6.481 6.481 2 12 2 C 17.519 2 22 6.481 22 12 C 22 17.519 17.519 22 12 22 C 6.481 22 2 17.519 2 12 Z "
+                fill="none"></path>
+            <line x1="7" y1="10" x2="17" y2="10"></line>
+            <line x1="9" y1="13" x2="15" y2="13"></line>
+            <line x1="11.5" y1="16" x2="12.5" y2="16"></line>
+        </g>
+    </symbol>
+    <symbol id="icon-variable" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="currentColor" stroke-width="1">
+            <path d="m5 12c0-3.863 3.137-7 7-7 3.863 0 7 3.137 7 7 0 3.863-3.137 7-7 7-3.863 0-7-3.137-7-7z"
+                  fill="none"></path>
+            <text x="7.332202" y="15.761719" stroke="none">&gt;</text>
+        </g>
+    </symbol>
+    <symbol id="icon-styleguide" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="white" stroke-width="1">
+            <path d="M 19.998 18.399 L 20.028 20.398 C 20.036 20.95 19.594 21.405 19.042 21.413 L 4.044 21.633 C 3.492 21.641 3.038 21.2 3.029 20.648 L 3 18.648 C 2.992 18.096 3.433 17.642 3.985 17.633 L 18.984 17.413 C 19.536 17.405 19.99 17.847 19.998 18.399 Z"></path>
+            <path d="M 17.717 10.681 L 18.746 12.396 C 19.031 12.869 18.877 13.484 18.404 13.768 L 5.544 21.49 C 5.071 21.775 4.456 21.621 4.172 21.148 L 3.143 19.433 C 2.859 18.96 3.012 18.345 3.485 18.061 L 16.345 10.339 C 16.818 10.055 17.433 10.208 17.717 10.681 Z"></path>
+            <path d="M 11.52 5.734 L 13.259 6.723 C 13.739 6.995 13.907 7.606 13.634 8.086 L 6.223 21.127 C 5.95 21.607 5.339 21.775 4.859 21.502 L 3.12 20.514 C 2.64 20.242 2.472 19.631 2.745 19.151 L 10.157 6.11 C 10.429 5.63 11.04 5.462 11.52 5.734 Z"></path>
+            <path d="M 4 4.633 L 6 4.633 C 6.552 4.633 7 5.081 7 5.633 L 7 20.633 C 7 21.185 6.552 21.633 6 21.633 L 4 21.633 C 3.448 21.633 3 21.185 3 20.633 L 3 5.633 C 3 5.081 3.448 4.633 4 4.633 Z"></path>
+            <path d=" M 4.409 20.01 C 4.409 19.734 4.634 19.51 4.909 19.51 C 5.185 19.51 5.409 19.734 5.409 20.01 C 5.409 20.286 5.185 20.51 4.909 20.51 C 4.634 20.51 4.409 20.286 4.409 20.01 Z "
+                  fill="rgb(0,0,0)"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-good" viewBox="0 0 1000 1000">
+        <g stroke="none" fill="currentColor" stroke-width="1">
+            <path d="M959.4,469.4c-16.9,0-30.6,13.7-30.6,30.6c0,236.4-192.3,428.7-428.7,428.7S71.3,736.4,71.3,500C71.3,263.6,263.6,71.3,500,71.3c93.7,0,182.7,29.7,257.4,85.8c13.5,10.2,32.7,7.4,42.9-6.1c10.2-13.5,7.4-32.7-6.1-42.8C708.8,43.9,607.1,10,500,10C229.8,10,10,229.8,10,500c0,270.2,219.8,490,490,490s490-219.8,490-490C990,483.1,976.3,469.4,959.4,469.4z"></path>
+            <path d="M215.4,447.7c-12-12-31.3-12-43.3,0c-12,12-12,31.3,0,43.3l245,245c6,6,13.8,9,21.7,9c7.8,0,15.7-3,21.7-9L981,215.4c12-12,12-31.3,0-43.3c-12-12-31.3-12-43.3,0l-499,499L215.4,447.7z"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-bad" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="none" stroke-width="1.5">
+            <ellipse cx="12.074" cy="12.081" rx="11.354" ry="11.38" fill="none"></ellipse>
+            <path d="m6.7772 17.223 10.446-10.446" stroke-linecap="round"></path>
+            <path d="m17.322 17.122-10.644-10.243" stroke-linecap="round"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-bundle" viewBox="0 0 24 24">
+        <g stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" fill="none" stroke-width="1">
+            <path d="m1.7236 5.7036v12.021l9.568 3.9775 9.6122-3.9775v-12.021l-9.6122 4.2227z"></path>
+            <path d="m1.7236 5.7036 9.568-3.8007 9.6122 3.8007"></path>
+            <path d="m11.292 9.9263v11.416"></path>
+            <path d="m6.7348 3.6402c3.2098 1.2404 6.375 2.705 9.562 4.0473"></path>
+        </g>
+    </symbol>
+    <linearGradient id="atlas-blue-gradient" x1="0" y1="0" x2="0" y2="100%">
+        <stop stop-color="#a7c6ed" offset="60%"></stop>
+        <stop stop-color="#ffffff" offset="100%"></stop>
+    </linearGradient>
+    <linearGradient id="atlas-graph-gradient" x1="0" y1="0" x2="100%" y2="0">
+        <stop stop-color="#df4242" offset="0%"></stop>
+        <stop stop-color="#7d61ec" offset="50%"></stop>
+        <stop stop-color="#2cbbfc" offset="100%"></stop>
+    </linearGradient>
+</svg>
+<div class="l-atlas-container" id="js-atlas-container">
+<div class="l-atlas-container__aside" id="js-atlas-aside" role="contentinfo">
+    <script>
+        document.getElementById('js-atlas-aside').style.width =
+            window.sessionStorage && (window.sessionStorage.getItem('asideWidth')) ?
+                window.sessionStorage.getItem('asideWidth') + 'px' : '';
+    </script>
+    <div class="atlas-aside">
+        <div class="atlas-aside__header">
+            <div class="atlas-header">
+                <div class="atlas-header__logo" role="banner">
+<svg width="60" height="30" version="1.1" viewBox="0 0 98.599998 52.414875" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="currentColor" transform="translate(0 -.00024594)">
+        <path d="m30.933 5.5253l2.0368-4.8711"/>
+        <path d="m11.6 51.761l1.4749-3.5272"/>
+        <path d="m35.931 42.833c-3.7397 3.0367-8.5656 4.8672-13.831 4.8672-11.866 0-21.5-9.296-21.5-20.745 0-11.45 9.634-20.746 21.5-20.746 9.1935 0 17.047 5.5801 20.118 13.419"/>
+    </g>
+    <g aria-label="Atlas" fill="currentColor">
+        <path d="m27.194 33.712-2.472 5.952h-1.224l7.224-17.28h0.672l7.248 17.28h-1.296l-2.472-5.952zm3.792-9.408q-0.024 0.024-0.096 0.288-0.336 1.032-0.648 1.752l-2.64 6.384h6.864l-2.64-6.36q-0.84-1.824-0.84-2.064z"/>
+        <path d="m43.028 25.072h-5.28v-0.984h11.64v0.984h-5.28v14.592h-1.08z"/>
+        <path d="m52.666 39.664v-15.576h1.104v14.568h7.152v1.008z"/>
+        <path d="m64.965 34.264-2.232 5.4h-1.128l6.528-15.672h0.648l6.576 15.672h-1.224l-2.256-5.4zm3.432-8.496q-0.36 1.08-0.648 1.8l-2.4 5.76h6.144l-2.376-5.736q-0.552-1.344-0.72-1.824z"/>
+        <path d="m81.685 24.76q-1.296 0-2.112 0.624t-0.816 1.752q0 1.296 1.08 2.328 0.768 0.744 1.968 1.584 1.224 0.816 1.68 1.176t1.104 0.984q1.176 1.176 1.176 2.712 0 1.992-1.344 3.024-1.32 1.008-3.72 1.008-2.376 0-3.984-1.248l0.576-0.84q1.632 1.104 3.456 1.104t2.832-0.768q1.032-0.768 1.032-2.16 0-1.2-1.032-2.208-0.72-0.72-1.944-1.56-1.2-0.84-1.68-1.2-0.48-0.384-1.128-1.008-1.224-1.224-1.224-2.832t1.128-2.52q1.152-0.912 3.168-0.912t3.624 0.792l-0.408 0.888q-1.488-0.72-3.432-0.72z"/>
+    </g>
+</svg>
+                </div>
+                <div class="atlas-header__search">
+                    <div class="atlas-search" role="search">
+                        <svg width="14" height="14" role="img">
+                            <use xlink:href="#icon-filter"></use>
+                        </svg>
+                        <input type="search" id="js-atlas-search" placeholder="Filter" />
+                        <button id="js-atlas-search-clear">✕</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="atlas-aside__content" role="navigation" id="js-atlas-aside-content">
+            <div class="atlas-nav" role="list" id="js-atlas-navigation">
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="atlas">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            atlas
+        </a>
+            <div role="list" class="atlas-nav__sub-nav">
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="component">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            component
+        </a>
+            <div role="list" class="atlas-nav__sub-nav">
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_guide">
+        <a class="atlas-nav__ln _guide js-atlas-nav-ln" href="atlas-component-doc-livereload-setup.html" id="nav-atlas-component-doc-livereload-setup"
+           data-name="livereload-setup">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-guide"></use></svg>
+            livereload-setup
+        </a>
+    </div>
+            </div>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="frame">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            frame
+        </a>
+            <div role="list" class="atlas-nav__sub-nav">
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_component">
+        <a class="atlas-nav__ln _component js-atlas-nav-ln" href="atlas-frame-b-atlas-component.html" id="nav-atlas-frame-b-atlas-component"
+           data-name="b-atlas-component">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-component"></use></svg>
+            b-atlas-component
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_container">
+        <a class="atlas-nav__ln _container js-atlas-nav-ln" href="atlas-frame-l-atlas-container.html" id="nav-atlas-frame-l-atlas-container"
+           data-name="l-atlas-container">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-container"></use></svg>
+            l-atlas-container
+        </a>
+    </div>
+            </div>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="global">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            global
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="guide">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            guide
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="insights">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            insights
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="style">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            style
+        </a>
+    </div>
+            </div>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_about">
+        <a class="atlas-nav__ln _about js-atlas-nav-ln" href="index.html" id="nav-index"
+           data-name="about">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
+            about
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_styleguide">
+        <a class="atlas-nav__ln _styleguide js-atlas-nav-ln" href="styleguide.html" id="nav-styleguide"
+           data-name="styleguide">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-styleguide"></use></svg>
+            styleguide
+        </a>
+    </div>
+
+                <div class="atlas-nav__item" role="listitem">
+                    <a class="atlas-nav__ln _bundle js-atlas-nav-ln" href="bundle.html" id="nav-bundle" data-name="bundle">
+                        <svg width="14" height="14" role="img">
+                            <use xlink:href="#icon-bundle"></use>
+                        </svg>
+                        Bundle
+                    </a>
+                </div>
+                <div class="atlas-nav__item" role="listitem">
+                    <a class="atlas-nav__ln _insights js-atlas-nav-ln" href="insights.html" id="nav-insights" data-name="insights">
+                        <svg width="14" height="14" role="img">
+                            <use xlink:href="#icon-insights"></use>
+                        </svg>
+                        Insights
+                    </a>
+                </div>
+            </div>
+            <script>
+                const atlasContentPosition = window.sessionStorage && (window.sessionStorage.getItem('navigationScroll')) ?
+                    window.sessionStorage.getItem('navigationScroll') : '';
+                document.getElementById('js-atlas-aside-content').scrollTo(0, atlasContentPosition);
+            </script>
+        </div>
+        <div class="atlas-aside__footer">
+<p class="atlas-footer-copyright">
+    &copy; 2018
+    atlas-guide
+    0.6.2
+</p>
+        </div>
+    </div>
+    <button class="atlas-aside-ctrl" id="js-atlas-aside-resizer" title="Double click to toggle aside"></button>
+    <div class="atlas-aside-resizer-overlay" id="js-atlas-aside-resizer-overlay"></div>
+</div>
+    <main role="main" class="l-atlas-container__main" id="js-atlas-main">
+        <script>
+            document.getElementById('js-atlas-main').style.marginLeft =
+                window.sessionStorage && window.sessionStorage.getItem('asideWidth') ?
+                    window.sessionStorage.getItem('asideWidth') + 'px' : '';
+        </script>
+        <div class="atlas-content">
+            <div class="atlas-content__inner">
+
+
+    <div role="complementary" class="atlas-component-aside">
+        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-included-in">
+            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-included-in">
+                Included in:
+            </div>
+            <div role="list" class="atlas-component-aside__list">
+            </div>
+        </div>
+        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-depends-from">
+            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-depends-from">
+                Depends from:
+            </div>
+            <div role="list" class="atlas-component-aside__list">
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="16" height="16">
+                            <use xlink:href="#icon-component"></use>
+                        </svg>
+                        component()
+                    </div>
+            </div>
+        </div>
+        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-local-vars">
+            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-local-vars">
+                Local variables:
+            </div>
+            <div role="list" class="atlas-component-aside__list">
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="16" height="16">
+                            <use xlink:href="#icon-variable"></use>
+                        </svg>
+                        $local-var: 10px
+                    </div>
+            </div>
+        </div>
+        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-local-imports">
+            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-local-imports">
+                Local imports:
+            </div>
+            <div role="list" class="atlas-component-aside__list">
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="16" height="16">
+                            <use xlink:href="#icon-in"></use>
+                        </svg>
+                        &quot;some-component-1&quot;
+                    </div>
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="16" height="16">
+                            <use xlink:href="#icon-in"></use>
+                        </svg>
+                        &quot;some-component-2&quot;
+                    </div>
+            </div>
+        </div>
+    </div>
+
+<div class="atlas-component-type-ico">
+    <svg width="16" height="16" role="img">
+        <use xlink:href="#icon-component"></use>
+    </svg>
+    component
+</div>
+
+<section><!-- this is hacky, but we have sections in markdown, so we need to open and close it on wrapper -->
+    </section>
+    <section class="atlas-section">
+<span class="atlas-anchor" id="h1-b-loader"></span>
+<h1 class="atlas atlas-title atlas-title_1">
+    <span class="atlas-title__text">
+        b-loader
+    </span>
+    <a class="atlas-title__anchor" href="#h1-b-loader" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h1>
+<p class="atlas atlas-p">This is example of component documentation. The first paragraph become the preamble for page.
+Try to provide that main idea of component in this lines.</p>
+<p class="atlas atlas-p">Component page unlike regular guideline page consists of:</p>
+<ul class="atlas atlas-ul">
+	<li>aside with includes, included in, local variables and imports stat</li>
+<li>playground</li>
+<li>footer with statistic and component structure</li>
+
+</ul>
+    </section>
+    <section class="atlas-section">
+<span class="atlas-anchor" id="h2-playground"></span>
+<h2 class="atlas atlas-title atlas-title_2">
+    <span class="atlas-title__text">
+        Playground
+    </span>
+    <a class="atlas-title__anchor" href="#h2-playground" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h2>
+<p class="atlas atlas-p">This is example of rendered component. Use <code>html_example</code> code &quot;fence&quot; to create playground.
+Click on border of this box to expand the playground.</p>
+<figure class="atlas-playground atlas-playground_html js-playground">
+    <figcaption>
+        <button class="atlas-playground__summary" aria-controls="b-atlas-component-code-0" title="Expand html example">
+           <span class="atlas-playground__summary-text">
+               b-atlas-component-code-0
+           </span>
+            <svg class="atlas-playground__summary-ico" width="24" height="24" role="img">
+                <use xlink:href="#icon-code-example"></use>
+            </svg>
+        </button>
+        <div class="atlas-playground__details" id="b-atlas-component-code-0" aria-hidden="true">
+<pre><code class="language-html" contenteditable="true">&lt;h1 class&#x3D;&quot;atlas atlas-title atlas-title_1&quot; id&#x3D;&quot;h1-b-loader&quot;&gt;
+    &lt;span class&#x3D;&quot;atlas-title__text&quot;&gt;
+        Just dummy example
+    &lt;&#x2F;span&gt;
+    &lt;a class&#x3D;&quot;atlas-title__anchor&quot; href&#x3D;&quot;#h1-b-loader&quot; title&#x3D;&quot;Copy link to this title&quot;&gt;
+        &lt;svg width&#x3D;&quot;14&quot; height&#x3D;&quot;14&quot; role&#x3D;&quot;img&quot;&gt;
+            &lt;use xmlns:xlink&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;1999&#x2F;xlink&quot; xlink:href&#x3D;&quot;#icon-ln&quot;&gt;&lt;&#x2F;use&gt;
+        &lt;&#x2F;svg&gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;</code></pre>
+        </div>
+    </figcaption>
+    <div class="atlas-playground__example">
+        <div class="atlas-playground-test-frame js-playground__example-rubicon">
+<h1 class="atlas atlas-title atlas-title_1" id="h1-b-loader">
+    <span class="atlas-title__text">
+        Just dummy example
+    </span>
+    <a class="atlas-title__anchor" href="#h1-b-loader" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+</h1>
+        </div>
+    </div>
+    <span role="region" aria-live="polite" class="atlas-playground__notifier js-playground__notifier"></span>
+</figure>
+<p class="atlas atlas-p">Code in playground is live-editable. So any changes like another text, tags or classes could be previewed in real time.
+And if needed copied and pasted to content assets or so.</p>
+<p class="atlas atlas-p">Playground also show area width on page resize so you get precise information of actual example width.</p>
+    </section>
+    <section class="atlas-section">
+<span class="atlas-anchor" id="h2-regular-code-blocks"></span>
+<h2 class="atlas atlas-title atlas-title_2">
+    <span class="atlas-title__text">
+        Regular code blocks
+    </span>
+    <a class="atlas-title__anchor" href="#h2-regular-code-blocks" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h2>
+<p class="atlas atlas-p">Also any <code>css</code>, <code>html</code> or <code>js</code> code could be added to description.</p>
+<div class="atlas atlas-code html">
+<pre><code class="language-html">&lt;div class&#x3D;&quot;atlas-loader&quot;&gt;&lt;&#x2F;div&gt;</code></pre>
+</div>
+<p class="atlas atlas-p">For regular code blocks we have styles for &quot;do&quot;-&quot;not do&quot; blocks:</p>
+<div class="atlas atlas-code html_bad">
+<pre><code class="language-html">&lt;i class&#x3D;&quot;atlas-loader&quot;&gt;Example of code &quot;fences&quot; usage&lt;&#x2F;i&gt;</code></pre>
+</div>
+<p class="atlas atlas-p">Use <code>div</code> HTML-element so page will be better gziped:</p>
+<div class="atlas atlas-code html_good">
+<pre><code class="language-html">&lt;div class&#x3D;&quot;atlas-loader&quot;&gt;&lt;&#x2F;div&gt;</code></pre>
+</div>
+    </section>
+    <section class="atlas-section">
+<span class="atlas-anchor" id="h2-use-styles-that-not-included-in-project-css"></span>
+<h2 class="atlas atlas-title atlas-title_2">
+    <span class="atlas-title__text">
+        Use styles that not included in project css
+    </span>
+    <a class="atlas-title__anchor" href="#h2-use-styles-that-not-included-in-project-css" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h2>
+<p class="atlas atlas-p">To use styles that needed only for this component you have 2 options:</p>
+<ol class="atlas atlas-ol">
+	<li>define it in separate file that used only in atlas</li>
+<li>add <code>style</code> tag inside component documentation comment</li>
+
+</ol>
+<figure class="atlas-playground atlas-playground_html js-playground">
+    <figcaption>
+        <button class="atlas-playground__summary" aria-controls="b-atlas-component-code-4" title="Expand html example">
+           <span class="atlas-playground__summary-text">
+               b-atlas-component-code-4
+           </span>
+            <svg class="atlas-playground__summary-ico" width="24" height="24" role="img">
+                <use xlink:href="#icon-code-example"></use>
+            </svg>
+        </button>
+        <div class="atlas-playground__details" id="b-atlas-component-code-4" aria-hidden="true">
+<pre><code class="language-html" contenteditable="true">&lt;svg id&#x3D;&quot;animated-logo&quot; width&#x3D;&quot;60&quot; height&#x3D;&quot;30&quot; version&#x3D;&quot;1.1&quot; viewBox&#x3D;&quot;0 0 98.599998 52.414875&quot; xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot;&gt;
+    &lt;g fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; transform&#x3D;&quot;translate(0 -.00024594)&quot;&gt;
+        &lt;path d&#x3D;&quot;m30.933 5.5253l2.0368-4.8711&quot;&#x2F;&gt;
+        &lt;path d&#x3D;&quot;m11.6 51.761l1.4749-3.5272&quot;&#x2F;&gt;
+        &lt;path d&#x3D;&quot;m35.931 42.833c-3.7397 3.0367-8.5656 4.8672-13.831 4.8672-11.866 0-21.5-9.296-21.5-20.745 0-11.45 9.634-20.746 21.5-20.746 9.1935 0 17.047 5.5801 20.118 13.419&quot;&#x2F;&gt;
+    &lt;&#x2F;g&gt;
+    &lt;g aria-label&#x3D;&quot;Atlas&quot; fill&#x3D;&quot;currentColor&quot;&gt;
+        &lt;path d&#x3D;&quot;m27.194 33.712-2.472 5.952h-1.224l7.224-17.28h0.672l7.248 17.28h-1.296l-2.472-5.952zm3.792-9.408q-0.024 0.024-0.096 0.288-0.336 1.032-0.648 1.752l-2.64 6.384h6.864l-2.64-6.36q-0.84-1.824-0.84-2.064z&quot;&#x2F;&gt;
+        &lt;path d&#x3D;&quot;m43.028 25.072h-5.28v-0.984h11.64v0.984h-5.28v14.592h-1.08z&quot;&#x2F;&gt;
+        &lt;path d&#x3D;&quot;m52.666 39.664v-15.576h1.104v14.568h7.152v1.008z&quot;&#x2F;&gt;
+        &lt;path d&#x3D;&quot;m64.965 34.264-2.232 5.4h-1.128l6.528-15.672h0.648l6.576 15.672h-1.224l-2.256-5.4zm3.432-8.496q-0.36 1.08-0.648 1.8l-2.4 5.76h6.144l-2.376-5.736q-0.552-1.344-0.72-1.824z&quot;&#x2F;&gt;
+        &lt;path d&#x3D;&quot;m81.685 24.76q-1.296 0-2.112 0.624t-0.816 1.752q0 1.296 1.08 2.328 0.768 0.744 1.968 1.584 1.224 0.816 1.68 1.176t1.104 0.984q1.176 1.176 1.176 2.712 0 1.992-1.344 3.024-1.32 1.008-3.72 1.008-2.376 0-3.984-1.248l0.576-0.84q1.632 1.104 3.456 1.104t2.832-0.768q1.032-0.768 1.032-2.16 0-1.2-1.032-2.208-0.72-0.72-1.944-1.56-1.2-0.84-1.68-1.2-0.48-0.384-1.128-1.008-1.224-1.224-1.224-2.832t1.128-2.52q1.152-0.912 3.168-0.912t3.624 0.792l-0.408 0.888q-1.488-0.72-3.432-0.72z&quot;&#x2F;&gt;
+    &lt;&#x2F;g&gt;
+&lt;&#x2F;svg&gt;</code></pre>
+        </div>
+    </figcaption>
+    <div class="atlas-playground__example">
+        <div class="atlas-playground-test-frame js-playground__example-rubicon">
+<svg id="animated-logo" width="60" height="30" version="1.1" viewBox="0 0 98.599998 52.414875" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="currentColor" transform="translate(0 -.00024594)">
+        <path d="m30.933 5.5253l2.0368-4.8711"/>
+        <path d="m11.6 51.761l1.4749-3.5272"/>
+        <path d="m35.931 42.833c-3.7397 3.0367-8.5656 4.8672-13.831 4.8672-11.866 0-21.5-9.296-21.5-20.745 0-11.45 9.634-20.746 21.5-20.746 9.1935 0 17.047 5.5801 20.118 13.419"/>
+    </g>
+    <g aria-label="Atlas" fill="currentColor">
+        <path d="m27.194 33.712-2.472 5.952h-1.224l7.224-17.28h0.672l7.248 17.28h-1.296l-2.472-5.952zm3.792-9.408q-0.024 0.024-0.096 0.288-0.336 1.032-0.648 1.752l-2.64 6.384h6.864l-2.64-6.36q-0.84-1.824-0.84-2.064z"/>
+        <path d="m43.028 25.072h-5.28v-0.984h11.64v0.984h-5.28v14.592h-1.08z"/>
+        <path d="m52.666 39.664v-15.576h1.104v14.568h7.152v1.008z"/>
+        <path d="m64.965 34.264-2.232 5.4h-1.128l6.528-15.672h0.648l6.576 15.672h-1.224l-2.256-5.4zm3.432-8.496q-0.36 1.08-0.648 1.8l-2.4 5.76h6.144l-2.376-5.736q-0.552-1.344-0.72-1.824z"/>
+        <path d="m81.685 24.76q-1.296 0-2.112 0.624t-0.816 1.752q0 1.296 1.08 2.328 0.768 0.744 1.968 1.584 1.224 0.816 1.68 1.176t1.104 0.984q1.176 1.176 1.176 2.712 0 1.992-1.344 3.024-1.32 1.008-3.72 1.008-2.376 0-3.984-1.248l0.576-0.84q1.632 1.104 3.456 1.104t2.832-0.768q1.032-0.768 1.032-2.16 0-1.2-1.032-2.208-0.72-0.72-1.944-1.56-1.2-0.84-1.68-1.2-0.48-0.384-1.128-1.008-1.224-1.224-1.224-2.832t1.128-2.52q1.152-0.912 3.168-0.912t3.624 0.792l-0.408 0.888q-1.488-0.72-3.432-0.72z"/>
+    </g>
+</svg>
+        </div>
+    </div>
+    <span role="region" aria-live="polite" class="atlas-playground__notifier js-playground__notifier"></span>
+</figure>
+<p class="atlas atlas-p">See the <code>b-atlas-component.scss</code> source for example.</p>
+<style>
+#animated-logo {
+    animation: dasharray 3s infinite alternate-reverse;
+    color: #3281e2;
+    height: 100px;
+    stroke-dasharray: 200 0;
+    stroke-dashoffset: 400;
+    width: 200px;
+}
+
+@keyframes dasharray {
+    100% {
+        stroke-dasharray: 0 50;
+    }
+}
+</style>
+
+    </section>
+    <section class="atlas-section">
+<span class="atlas-anchor" id="h2-component-footer"></span>
+<h2 class="atlas atlas-title atlas-title_2">
+    <span class="atlas-title__text">
+        Component footer
+    </span>
+    <a class="atlas-title__anchor" href="#h2-component-footer" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h2>
+<p class="atlas atlas-p">In footer you get the information about:</p>
+<ul class="atlas atlas-ul">
+	<li>Total declarations in component</li>
+<li>Declaration size graph. Normal component have most of declaration in the beginning and very few at the end.
+If not component probably have deviated modifications.</li>
+<li>Component structure that get you the idea of component organization without opening source file.</li>
+<li>Possible bad practices count. Right now it Important, Vendor prefixes and floats. Hover on it to get additional info.</li>
+<li>And basic properties count that sorted from most used to less used.
+This properties can provide you the idea about component profile.
+Container type of component should not have any styling properties, but only the metric and layouting.</li>
+<li>If constants is declared than messages about constants consistency is showed.</li>
+
+</ul>
+
+</section>
+
+    <div role="complementary" class="atlas-component-footer">
+        <div class="atlas-component-footer__item">
+            <div role="region" class="atlas-component-footer__section" aria-label="Ruleset sizes">
+                <figure class="atlas-info-digit _primary">
+                    <div class="atlas-info-digit__digit">
+                        12
+                    </div>
+                    <figcaption class="atlas-info-digit__details">
+                        <div role="heading" aria-level="3" class="atlas-info-digit__title">
+                            Total declarations
+                        </div>
+                    </figcaption>
+                </figure>
+                <svg width="300" height="80" viewBox="0 0 300 80" class="atlas-info-digit atlas-sparkline" aria-labelledby="component-graph-title">
+                    <title id="component-graph-title">Declaration sets size through the file</title>
+                    <defs>
+                        <filter id="blur-filter" x="0" y="0">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+                        </filter>
+                    </defs>
+                    <g class="atlas-sparkline__line">
+                        <path d="M0,25.6C0,25.6,37.84084622961452,60.25240174297837,58,64C76.62818253643218,67.46298982587098,96.97174877091362,57.43056297973619,116,51.2C135.6589755828931,44.762914215727825,154.66666666666666,25.599999999999998,174,25.6C193.33333333333334,25.599999999999998,212.21702072831366,47.02824670931192,232,51.2C250.92197507998,55.19018826851835,290,51.2,290,51.2" stroke="currentColor" fill="none"/>
+                        <g class="atlas-sparkline__shadow">
+                            <path d="M0,25.6C0,25.6,37.84084622961452,60.25240174297837,58,64C76.62818253643218,67.46298982587098,96.97174877091362,57.43056297973619,116,51.2C135.6589755828931,44.762914215727825,154.66666666666666,25.599999999999998,174,25.6C193.33333333333334,25.599999999999998,212.21702072831366,47.02824670931192,232,51.2C250.92197507998,55.19018826851835,290,51.2,290,51.2" stroke="currentColor" fill="none" filter="url(#blur-filter)"/>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div role="region" class="atlas-component-footer__section" aria-label="Health check">
+                    <figure class="atlas-info-digit">
+                        <div class="atlas-info-digit__digit">
+                            1
+                        </div>
+                        <figcaption class="atlas-info-digit__details">
+                            <div role="heading" aria-level="3" class="atlas-info-digit__title">
+                                Important<br>declaration
+                            </div>
+                            <div role="list" class="atlas-info-digit__popup">
+                                    <div role="listitem" class="atlas-info-digit__item">padding</div>
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <figure class="atlas-info-digit">
+                        <div class="atlas-info-digit__digit">
+                            0
+                        </div>
+                        <figcaption class="atlas-info-digit__details">
+                            <div role="heading" aria-level="3" class="atlas-info-digit__title">
+                                Vendor<br>prefixes
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <figure class="atlas-info-digit">
+                        <div class="atlas-info-digit__digit">
+                            0
+                        </div>
+                        <figcaption class="atlas-info-digit__details">
+                            <div role="heading" aria-level="3" class="atlas-info-digit__title">
+                                Floats<br>declared
+                            </div>
+                        </figcaption>
+                    </figure>
+            </div>
+            <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
+                <div class="atlas-info-list" role="list">
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">3</span>
+                        <span class="atlas-info-list__name">Font families</span>
+                            <div class="atlas-constant">
+                                    <div class="atlas-constant__items _error">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-bad"></use>
+                                        </svg>
+                                        3
+                                        fixes required
+                                    </div>
+                                    <div class="atlas-constant__list atlas">
+                                            <code>Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif</code>&ensp;
+                                            <code>serif</code>&ensp;
+                                            <code>sans</code>&ensp;
+                                    </div>
+                            </div>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">2</span>
+                        <span class="atlas-info-list__name">Font sizes</span>
+                            <div class="atlas-constant">
+                                    <div class="atlas-constant__items _error">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-bad"></use>
+                                        </svg>
+                                        2
+                                        fixes required
+                                    </div>
+                                    <div class="atlas-constant__list atlas">
+                                            <code>20px</code>&ensp;
+                                            <code>20px</code>&ensp;
+                                    </div>
+                            </div>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">2</span>
+                        <span class="atlas-info-list__name">Backgrounds</span>
+                            <div class="atlas-constant">
+                                    <div class="atlas-constant__items _error">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-bad"></use>
+                                        </svg>
+                                        2
+                                        fixes required
+                                    </div>
+                                    <div class="atlas-constant__list atlas">
+                                            <code>green</code>&ensp;
+                                            <code>orange</code>&ensp;
+                                    </div>
+                            </div>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">width</span>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">height</span>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">margin</span>
+                            <div class="atlas-constant">
+                                    <div class="atlas-constant__items _error">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-bad"></use>
+                                        </svg>
+                                        1
+                                        fix required
+                                    </div>
+                                    <div class="atlas-constant__list atlas">
+                                            <code>$local-var</code>&ensp;
+                                    </div>
+                            </div>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">padding</span>
+                            <div class="atlas-constant">
+                                    <div class="atlas-constant__items _success">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-good"></use>
+                                        </svg>
+                                        Passed
+                                    </div>
+                                    <div class="atlas-constant__list _warn atlas">
+                                        
+                                        <code>1.25rem</code> could be changed to <code>$space-md-atlas</code>
+                                    </div>
+                            </div>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">mediaQuery</span>
+                            <div class="atlas-constant">
+                                    <div class="atlas-constant__items _error">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-bad"></use>
+                                        </svg>
+                                        1
+                                        fix required
+                                    </div>
+                                    <div class="atlas-constant__list atlas">
+                                            <code>all</code>&ensp;
+                                    </div>
+                            </div>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">color</span>
+                            <div class="atlas-constant">
+                                    <div class="atlas-constant__items _error">
+                                        <svg role="img" width="16" height="16">
+                                            <use xlink:href="#icon-bad"></use>
+                                        </svg>
+                                        1
+                                        fix required
+                                    </div>
+                                    <div class="atlas-constant__list atlas">
+                                            <code>red</code>&ensp;
+                                    </div>
+                            </div>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">0</span>
+                        <span class="atlas-info-list__name">displays</span>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">0</span>
+                        <span class="atlas-info-list__name">positions</span>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">0</span>
+                        <span class="atlas-info-list__name">boxShadows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="atlas-component-footer__item">
+            <div role="region" class="atlas-component-structure" aria-labelledby="atlas-component-structure">
+                <div role="heading" aria-level="3" class="atlas-component-structure__title" id="atlas-component-structure">
+                    Component structure
+                </div>
+                <div class="atlas-component-structure__nodes" role="list">
+    <div role="listitem" class="atlas-component-structure__node">
+        <div class="atlas-component-structure__selector" title="element">
+            <span class="atlas-component-structure__type atlas-component-structure__type_element"></span>
+            <span class="atlas-component-structure__name">.class</span> {...}
+        </div>
+            <div role="list" class="atlas-component-structure__nodes">
+    <div role="listitem" class="atlas-component-structure__node">
+        <div class="atlas-component-structure__selector" title="mixin">
+            <span class="atlas-component-structure__type atlas-component-structure__type_mixin"></span>
+            <span class="atlas-component-structure__name">include component()</span>;
+        </div>
+    </div>
+    <div role="listitem" class="atlas-component-structure__node">
+        <div class="atlas-component-structure__selector" title="condition">
+            <span class="atlas-component-structure__type atlas-component-structure__type_condition"></span>
+            <span class="atlas-component-structure__name">media all</span> {...}
+        </div>
+    </div>
+    <div role="listitem" class="atlas-component-structure__node">
+        <div class="atlas-component-structure__selector" title="element">
+            <span class="atlas-component-structure__type atlas-component-structure__type_element"></span>
+            <span class="atlas-component-structure__name">&amp;__item-empty</span> {...}
+        </div>
+            <div role="list" class="atlas-component-structure__nodes">
+    <div role="listitem" class="atlas-component-structure__node">
+        <div class="atlas-component-structure__selector" title="modifier-implicit">
+            <span class="atlas-component-structure__type atlas-component-structure__type_modifier-implicit"></span>
+            <span class="atlas-component-structure__name">&amp;:hover</span> {...}
+        </div>
+    </div>
+            </div>
+    </div>
+    <div role="listitem" class="atlas-component-structure__node">
+        <div class="atlas-component-structure__selector" title="modifier-adjacent">
+            <span class="atlas-component-structure__type atlas-component-structure__type_modifier-adjacent"></span>
+            <span class="atlas-component-structure__name">&amp;._mod</span> {...}
+        </div>
+    </div>
+            </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="assets/js/navigation.js"></script>
+<script src="assets/js/search.js" async defer></script>
+<script src="assets/js/aside.js" async defer></script>
+<script src="assets/js/prism.min.js" async></script>
+<script src="assets/js/playground.js" async defer></script>
+
+<!--
+    This is internal asset assetsfooter.mustache
+    To replace it with project JS imports add to config
+    "partials": {
+      "assetsfooter": "path/to/file.mustache"
+    }
+-->
+
+</body>
+</html>
