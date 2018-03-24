@@ -47,11 +47,12 @@ function getMdFromComment(filePath) {
     const file = fs.readFileSync(filePath, 'utf8');
     const docComment = /\/\*md(\r\n|\n)(((\r\n|\n)|.)*?)\*\//g; // prefix should be moved to config
     const match = docComment.exec(file);
+    const colorizeYellow = str => '\x1b[33m' + str + '\x1b[0m';
 
     if (match !== null) {
         return match[2];
     } else {
-        console.error('[Atlas]: Content for import not found in ' + filePath);
+        console.warn(colorizeYellow('Warn: ') + 'Atlas: Content for import not found in ' + filePath);
         return '';
     }
 }
@@ -102,6 +103,11 @@ function mdImport(fileURL, options) {
     } else {
         content = marked(getMdFromComment(fileURL));
     }
+
+    fs.writeFileSync('pagecontent.json', JSON.stringify({
+        content: content,
+        toc: toc
+    }), null, '\t');
 
     return {
         content: content,

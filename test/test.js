@@ -214,7 +214,7 @@ describe('Atlas', function() {
     });
 
     describe('Config', function() {
-        const config = require(path.resolve(__dirname, '../models/atlasconfig.js'));
+        const config = require(cwd + '/models/atlasconfig.js');
 
         context('when config not defined', function() {
             it('should fall if config is not defined in package.json', function() {
@@ -386,7 +386,7 @@ describe('Atlas', function() {
         });
     });
     describe('copyassets()', function() {
-        const copyAssets = require(path.resolve(__dirname, '../app/utils/copyassets.js'));
+        const copyAssets = require(cwd + '/app/utils/copyassets.js');
         const assetsDest = path.join(cwd, '/test/results/');
         const assetsSrc = path.join(cwd, '/test/fixtures/assets/');
 
@@ -432,7 +432,7 @@ describe('Atlas', function() {
     });
     describe('viewModels', function() {
         describe('styleguide', function() {
-            const config = require(path.join(cwd, '/models/atlasconfig.js')).getBase({
+            const config = require(cwd + '/models/atlasconfig.js').getBase({
                 'guideSrc': '/assets/src/scss/',
                 'guideDest': 'test/results',
                 'cssSrc': '/assets/css/',
@@ -447,38 +447,38 @@ describe('Atlas', function() {
                     'breakpointPrefix': 'break'
                 }
             });
-            const constants = require(path.join(cwd, '/models/projectconstants.js'))(config.constants);
+            const constants = require(cwd + '/models/projectconstants.js')(config.constants);
 
             it('return proper transformed model', function() {
-                const viewModel = require(path.join(cwd, '/viewmodels/styleguide.js'))(constants);
-                const expectedViewModel = require(path.join(cwd, '/test/fixtures/viewmodels/styleguide.json'));
+                const viewModel = require(cwd + '/viewmodels/styleguide.js')(constants);
+                const expectedViewModel = require(cwd + '/test/fixtures/viewmodels/styleguide.json');
                 assert.deepEqual(viewModel, expectedViewModel, 'proper view model for styleguide');
             });
         });
         describe('statcomponent', function() {
             it('return proper transformed model without defined constants', function () {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
-                const baseConfig = require(path.join(cwd, '/models/atlasconfig.js')).getBase({
+                const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/'
                 });
-                const constants = require(path.join(cwd, '/models/projectconstants.js'))(baseConfig.constants);
-                const deps = require(path.join(cwd, '/models/projectimportsgraph.js'));
+                const constants = require(cwd + '/models/projectconstants.js')(baseConfig.constants);
+                const deps = require(cwd + '/models/projectimportsgraph.js');
                 const importsGraph = deps.getImportsGraph(baseConfig);
                 const componentImports = deps.getFileImports(componentPath, importsGraph);
-                const componentStat = require(path.join(cwd, '/models/componentstat.js')).getStatFor(
+                const componentStat = require(cwd + '/models/componentstat.js').getStatFor(
                     componentPath, baseConfig.componentPrefixes);
 
-                const viewModel = require(path.join(cwd, '/viewmodels/statcomponent.js'))(
+                const viewModel = require(cwd + '/viewmodels/statcomponent.js')(
                     componentStat, componentImports, constants);
-                const expectedViewModel = require(path.join(cwd, '/test/fixtures/viewmodels/statcomponent.json'));
+                const expectedViewModel = require(cwd + '/test/fixtures/viewmodels/statcomponent.json');
                 assert.deepEqual(viewModel, expectedViewModel);
             });
 
             it('return proper transformed model with defined constants', function () {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
-                const baseConfig = require(path.join(cwd, '/models/atlasconfig.js')).getBase({
+                const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/',
@@ -493,16 +493,16 @@ describe('Atlas', function() {
                         'breakpointPrefix': 'break'
                     }
                 });
-                const constants = require(path.join(cwd, '/models/projectconstants.js'))(baseConfig.constants);
-                const deps = require(path.join(cwd, '/models/projectimportsgraph.js'));
+                const constants = require(cwd + '/models/projectconstants.js')(baseConfig.constants);
+                const deps = require(cwd + '/models/projectimportsgraph.js');
                 const importsGraph = deps.getImportsGraph(baseConfig);
                 const componentImports = deps.getFileImports(componentPath, importsGraph);
-                const componentStat = require(path.join(cwd, '/models/componentstat.js')).getStatFor(
+                const componentStat = require(cwd + '/models/componentstat.js').getStatFor(
                     componentPath, baseConfig.componentPrefixes);
 
-                const viewModel = require(path.join(cwd, '/viewmodels/statcomponent.js'))(
+                const viewModel = require(cwd + '/viewmodels/statcomponent.js')(
                     componentStat, componentImports, constants);
-                const expectedViewModel = require(path.join(cwd, '/test/fixtures/viewmodels/statcomponent-const.json'));
+                const expectedViewModel = require(cwd + '/test/fixtures/viewmodels/statcomponent-const.json');
                 assert.deepEqual(viewModel, expectedViewModel);
             });
         });
@@ -519,6 +519,20 @@ describe('Atlas', function() {
             it('should return only uniq spaces');
             it('should return only uniq scales');
         });
+    });
+    describe('pagecontent', function () {
+        const pageContent = require(cwd + '/viewmodels/pagecontent');
+
+        it('should return comment content if path is right', function () {
+            const result = pageContent('test/fixtures/atlas/_component.scss');
+            const expectedResult = require(cwd + '/test/fixtures/viewmodels/pagecontent.json');
+            assert.deepEqual(result, expectedResult);
+        });
+        it('should falls if no comment in file', function () {
+            const result = pageContent('test/fixtures/atlas/_component-undocumented.scss');
+            assert.deepEqual(result, {content: '', toc: []});
+        });
+        it('should falls if wrong path to file');
     });
     describe('format', function() {
         const format = require(cwd + '/viewmodels/utils/format');
