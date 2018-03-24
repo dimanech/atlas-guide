@@ -386,6 +386,8 @@ Just add to your templates:
 <?php
 if ($useLocal) {
     <link rel="stylesheet" type="text/css" href="https://127.0.0.1:5000/style.css" />
+} else {
+    <link rel="stylesheet" type="text/css" href="path/to/style.css" />
 }
 ?>
 ```
