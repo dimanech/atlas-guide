@@ -104,11 +104,6 @@ function mdImport(fileURL, options) {
         content = marked(getMdFromComment(fileURL));
     }
 
-    fs.writeFileSync('pagecontent.json', JSON.stringify({
-        content: content,
-        toc: toc
-    }), null, '\t');
-
     return {
         content: content,
         toc: toc

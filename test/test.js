@@ -430,7 +430,7 @@ describe('Atlas', function() {
             deleteRes(assetsDest);
         });
     });
-    describe('viewModels', function() {
+    describe('models', function() {
         describe('styleguide', function() {
             const config = require(cwd + '/models/atlasconfig.js').getBase({
                 'guideSrc': '/assets/src/scss/',
@@ -506,6 +506,43 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel);
             });
         });
+        describe('pagecontent', function () {
+            const pageContent = require(cwd + '/viewmodels/pagecontent');
+
+            it('should return comment content if path is right', function () {
+                const result = pageContent('test/fixtures/atlas/_component.scss');
+                const expectedResult = require(cwd + '/test/fixtures/viewmodels/pagecontent.json');
+                assert.deepEqual(result, expectedResult);
+            });
+            it('should falls if no comment in file', function () {
+                const result = pageContent('test/fixtures/atlas/_component-undocumented.scss');
+                assert.deepEqual(result, {content: '', toc: []});
+            });
+            it('should falls if wrong path to file');
+        });
+        describe('statproject', function () {
+            let projectStat;
+
+            before(function () {
+                const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/'
+                });
+                const projectName = 'atlas-guide';
+                const cssSrc = baseConfig.cssSrc;
+                const excludedCssFiles = baseConfig.excludedCssFiles;
+                projectStat = require(cwd + '/models/projectcssstat.js')(projectName, cssSrc, excludedCssFiles);
+            });
+
+            it('should return proper view model', function () {
+                const statProject = require(cwd + '/viewmodels/statproject.js');
+                const projectName = 'atlas-guide';
+                const viewModel = statProject(projectStat, projectName);
+                const expectedViewModel = require(cwd + '/test/fixtures/viewmodels/statproject.json');
+                assert.deepEqual(viewModel, expectedViewModel);
+            });
+        });
     });
     describe('Component statistics', function() {
         describe('getStatFor', function() {
@@ -519,20 +556,6 @@ describe('Atlas', function() {
             it('should return only uniq spaces');
             it('should return only uniq scales');
         });
-    });
-    describe('pagecontent', function () {
-        const pageContent = require(cwd + '/viewmodels/pagecontent');
-
-        it('should return comment content if path is right', function () {
-            const result = pageContent('test/fixtures/atlas/_component.scss');
-            const expectedResult = require(cwd + '/test/fixtures/viewmodels/pagecontent.json');
-            assert.deepEqual(result, expectedResult);
-        });
-        it('should falls if no comment in file', function () {
-            const result = pageContent('test/fixtures/atlas/_component-undocumented.scss');
-            assert.deepEqual(result, {content: '', toc: []});
-        });
-        it('should falls if wrong path to file');
     });
     describe('format', function() {
         const format = require(cwd + '/viewmodels/utils/format');
