@@ -909,20 +909,18 @@ gulp.task(&#39;dev:atlas&#39;, [&#39;devServ:up&#39;, &#39;styles:compile:all&#3
 <p class="atlas atlas-p">To use livereload on &quot;remote&quot; or sandbox instance you could use the described setup without any changes. 
 The idea is instead of site resource use local resource trigger reload as always.</p>
 <p class="atlas atlas-p">Just add to your templates:</p>
-<div class="atlas atlas-code php">
-<pre><code class="language-php">&lt;?php
-if ($useLocal) {
+<div class="atlas atlas-code html">
+<pre><code class="language-html">&lt;?php if ($useLocal): ?&gt;
     &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;https:&#x2F;&#x2F;127.0.0.1:5000&#x2F;style.css&quot; &#x2F;&gt;
-}
-?&gt;</code></pre>
+&lt;?php else: ?&gt;
+    &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;path&#x2F;to&#x2F;style.css&quot; &#x2F;&gt;
+&lt;?php endif; ?&gt;</code></pre>
 </div>
 <p class="atlas atlas-p">and in footer</p>
-<div class="atlas atlas-code php">
-<pre><code class="language-php">&lt;?php
-if ($useLocal) {
+<div class="atlas atlas-code html">
+<pre><code class="language-html">&lt;?php if ($useLocal): ?&gt;
     &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;127.0.0.1:9000&#x2F;livereload.js&quot;&gt;&lt;&#x2F;script&gt;
-}
-?&gt;</code></pre>
+&lt;?php endif; ?&gt;</code></pre>
 </div>
 <p class="atlas atlas-p">Than you could set using local resource innsted of site resource by http parameter or cookie.</p>
 <hr class="atlas atlas-hr" />
