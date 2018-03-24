@@ -2,6 +2,57 @@
 
 # l-atlas-container
 
+This is example of documentation for container component. `l-atlas-container` used as frame holder for main atlas page.
+
+It consist with 2 elements:
+
+```
+l-atlas-container
+	__aside
+	__main
+```
+
+Aside has fixed positioning so the scroll view of main container create application like experience of 2 scroll views.
+
+```html_example
+<div style="transform: translate3d(0,0,0)"><!-- need this to hold pos:fixed -->
+
+<div class="l-atlas-container">
+	<div class="l-atlas-container__aside">
+		Aside
+	</div>
+	<div class="l-atlas-container__main">
+		Content
+	</div>
+</div>
+
+</div>
+```
+
+## Modifications
+
+### `js-aside-panel-hidden`
+
+We have only one modification for this component – `js-aside-panel-hidden`. This class called when aside is hidden.
+And used for hide parts of aside for this case.
+
+```html_example
+<div style="transform: translate3d(0,0,0)"><!-- need this to hold pos:fixed -->
+
+<div class="l-atlas-container js-aside-panel-hidden">
+	<div class="l-atlas-container__aside">
+		<div class="atlas-aside__header">
+			Aside
+		</div>
+	</div>
+	<div class="l-atlas-container__main">
+		Content
+	</div>
+</div>
+
+</div>
+```
+
 */
 
 .l-atlas-container {
@@ -28,12 +79,6 @@
 		.l-atlas-container__aside {
 			min-width: 5px;
 			width: 5px;
-		}
-
-		.atlas-aside__header,
-		.atlas-aside__footer,
-		.atlas-aside__content {
-			display: none;
 		}
 
 		.l-atlas-container__main {
