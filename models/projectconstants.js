@@ -33,8 +33,7 @@ function compileStyles(constants, additionalSassImports) {
     const template = '{{>constants}} {{#content}} {{constNameSafe}} { color: {{constName}} } {{/content}}';
     const styles = sass.renderSync({
         data: mustache.render(template, {content: constants.rawConstants}, {constants: constants.fileString}),
-        includePaths: additionalSassImports,
-        outputStyle: 'compressed'
+        includePaths: additionalSassImports
     });
     return styles.css.toString();
 }

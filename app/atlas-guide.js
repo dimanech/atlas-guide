@@ -47,7 +47,7 @@ function getCachedTemplates(type, path) {
     if (type === 'guide') {
         return cachedTemplates.guide;
     }
-    if (type === 'component' || type === 'layout') {
+    if (type === 'component' || type === 'container') {
         return cachedTemplates.component;
     }
     return fs.readFileSync(path, 'utf8');
@@ -66,7 +66,7 @@ function prepareContent(component) {
     if (component.type === 'styleguide') {
         content = styleguide(constants);
     }
-    if (component.type === 'component' || component.type === 'layout') {
+    if (component.type === 'component' || component.type === 'container') {
         stat = statistics(
             componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
             componentImports(component.src),
