@@ -24,7 +24,6 @@ $size-font-atlas: 1rem; // 16px
 $size-line-atlas: $size-font-atlas * 1.25; // 20px
 
 // Scales
-$scale-off-atlas: 0;
 $scale-sm-atlas: 0.8rem;
 $scale-md-atlas: 1rem;
 $scale-lg-atlas: 1.25rem;
@@ -33,7 +32,6 @@ $scale-xxl-atlas: 2.441rem;
 $scale-xxxl-atlas: 3.051rem;
 
 // Spaces
-$space-off-atlas: 0;
 $space-sm-atlas: $size-line-atlas / 2; // 10px
 $space-md-atlas: $size-line-atlas; // 20px
 $space-xm-atlas: $size-line-atlas / 2 * 3; // 30px

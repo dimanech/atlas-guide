@@ -6,7 +6,7 @@ const path = require('path');
 /**
  * @typedef {Object} atlasComponentObject
  * @property {string} title - title of resource [category|component|guide]
- * @property {string} type - type of resource [category|guide|component|layout]
+ * @property {string} type - type of resource [category|guide|component|container]
  * @property {string} [src] - source file of resource
  * @property {string} [target] - path to generated component html
  * @property {string} [template] - template type that used for html
@@ -70,7 +70,7 @@ function makeProjectTree(atlasConfig) {
                     config.push({
                         id: id,
                         title: title,
-                        type: /^l-/i.test(title) ? 'layout' : 'component',
+                        type: /^l-/i.test(title) ? 'container' : 'component',
                         src: target,
                         target: atlasConfig.guideDest + id + '.html',
                         template: atlasConfig.templates.component,

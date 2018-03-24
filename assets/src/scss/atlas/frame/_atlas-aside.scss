@@ -39,3 +39,12 @@
 		}
 	}
 }
+
+// hide this elements when aside is hidden
+.js-aside-panel-hidden {
+	.atlas-aside__header,
+	.atlas-aside__footer,
+	.atlas-aside__content {
+		display: none;
+	}
+}

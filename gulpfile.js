@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const gulp = require('gulp');
 const connect = require('gulp-connect');
 
@@ -67,7 +68,7 @@ const createImportsGraph = () => {
  * Configurable Sass compilation
  * @param {Object} config
  */
-const sassCompile = (config) => {
+const sassCompile = config => {
     const sass = require('gulp-sass');
     const postcss = require('gulp-postcss');
     const autoprefixer = require('autoprefixer');
@@ -111,34 +112,32 @@ const sassCompile = (config) => {
  * includes changed file.
  */
 const getResultedFilesList = changedFile => {
-    const path = require('path');
-    let pathsArray = [];
-
     // Ensure that changed file is Sass file
     if (path.extname(changedFile) !== '.scss') {
         return [];
     }
 
+    let resultedFilesPath = []; // used for compilation
+    let resultedCSSPaths = []; // used for reload
+    const getResultedCSSPath = path => path
+        .replace(pathConfig.ui.core.sass.src, pathConfig.ui.core.sass.dest)
+        .replace('.scss', '.css');
+
     if (!path.basename(changedFile).match(/^_/)) {
-        // Return early if changed file not partial file
-        pathsArray.push(changedFile);
-        // Rebuild imports graph
-        createImportsGraph();
-        return pathsArray;
+        resultedFilesPath.push(changedFile);
+        resultedCSSPaths = [getResultedCSSPath(changedFile)];
+        createImportsGraph(); // Rebuild imports graph
+    } else {
+        importsGraph.visitAncestors(changedFile, parent => {
+            if (!path.basename(parent).match(/^_/)) {
+                resultedFilesPath.push(parent);
+                resultedCSSPaths.push(getResultedCSSPath(parent));
+            }
+        });
     }
 
-    importsGraph.visitAncestors(changedFile, parent => {
-        if (!path.basename(parent).match(/^_/)) {
-            pathsArray.push(parent);
-            generateFilePath = [
-                parent
-                    .replace(pathConfig.ui.core.sass.src, pathConfig.ui.core.sass.dest)
-                    .replace('.scss', '.css')
-            ];
-        }
-    });
-
-    return pathsArray;
+    generateFilePath = resultedCSSPaths; // side effects is bad, find better solution
+    return resultedFilesPath;
 };
 
 // Compile all Sass files
@@ -171,24 +170,24 @@ gulp.task('styles:watch', () => {
 });
 
 // Reload the CSS links right after 'styles:compile:incremental' task is returned
-gulp.task('devServ:reload:styles', ['styles:compile:incremental'], () => {
-    return gulp.src(generateFilePath[0]) // css only reload
-        .pipe(connect.reload());
-});
+gulp.task('devServ:reload:styles', ['styles:compile:incremental'], () =>
+    gulp.src(generateFilePath) // css only reload
+        .pipe(connect.reload()));
 
 /*
  * Guide generation
  */
+const atlas = require('./app/atlas-guide.js');
 
-// Compile all guide pages
-gulp.task('atlas:compile', () => {
-    return require('./app/atlas-guide.js').buildAll(); // if installed it should be require('atlas-guide').makeGuide();
-});
+// Compile all components pages
+// if installed it should be require('atlas-guide').buildAll();
+gulp.task('atlas:compile', () => atlas.build());
 
 // Compile particular page from the guide
-gulp.task('atlas:compile:incremental', ['styles:compile:incremental'], () => {
-    return require('./app/atlas-guide.js').build(changedFilePath);
-});
+gulp.task('atlas:compile:incremental', ['styles:compile:incremental'], () => atlas.build(changedFilePath));
+
+// if installed it should be require('atlas-guide').buildAll();
+gulp.task('atlas:compile:all', () => atlas.buildAll());
 
 // Compile Guide and watch changes
 gulp.task('atlas:watch', () => {
@@ -202,15 +201,15 @@ gulp.task('atlas:watch', () => {
 });
 
 // Reload the page right after 'atlas:compile:incremental' task is returned
-gulp.task('devServ:reload:guide', ['atlas:compile:incremental'], () => {
-    return gulp.src(pathConfig.ui.guide.resources + '*.html') // full page reload
-        .pipe(connect.reload());
-});
+gulp.task('devServ:reload:guide', ['atlas:compile:incremental'], () =>
+    gulp.src(pathConfig.ui.guide.resources + '*.html') // full page reload
+        .pipe(connect.reload()));
 
 /*
  * Complex tasks
  */
 gulp.task('default', '');
 gulp.task('dev', ['devServ:up', 'styles:compile:all', 'styles:watch']);
-gulp.task('dev:atlas', ['devServ:up', 'styles:compile:all', 'atlas:compile', 'atlas:watch']);
+// change to atlas:compile for regular projects, for our cases we compile all atlas in dev workflow
+gulp.task('dev:atlas', ['devServ:up', 'styles:compile:all', 'atlas:compile:all', 'atlas:watch']);
 gulp.task('build', ['styles:compile:all', 'atlas:compile']);

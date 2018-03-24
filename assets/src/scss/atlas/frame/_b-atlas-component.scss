@@ -1,0 +1,155 @@
+/*md
+
+# b-loader
+
+This is example of component documentation. The first paragraph become the preamble for page.
+Try to provide that main idea of component in this lines.
+
+Component page unlike regular guideline page consists of:
+
+* aside with includes, included in, local variables and imports stat
+* playground
+* footer with statistic and component structure
+
+## Playground
+
+This is example of rendered component. Use `html_example` code "fence" to create playground.
+Click on border of this box to expand the playground.
+
+```html_example
+<h1 class="atlas atlas-title atlas-title_1" id="h1-b-loader">
+    <span class="atlas-title__text">
+        Just dummy example
+    </span>
+    <a class="atlas-title__anchor" href="#h1-b-loader" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+</h1>
+```
+
+Code in playground is live-editable. So any changes like another text, tags or classes could be previewed in real time.
+And if needed copied and pasted to content assets or so.
+
+Playground also show area width on page resize so you get precise information of actual example width.
+
+## Regular code blocks
+
+Also any `css`, `html` or `js` code could be added to description.
+
+```html
+<div class="atlas-loader"></div>
+```
+
+For regular code blocks we have styles for "do"-"not do" blocks:
+
+```html_bad
+<i class="atlas-loader">Example of code "fences" usage</i>
+```
+
+Use `div` HTML-element so page will be better gziped:
+
+```html_good
+<div class="atlas-loader"></div>
+```
+
+## Use styles that not included in project css
+
+To use styles that needed only for this component you have 2 options:
+
+1. define it in separate file that used only in atlas
+2. add `style` tag inside component documentation comment
+
+```html_example
+<svg id="animated-logo" width="60" height="30" version="1.1" viewBox="0 0 98.599998 52.414875" xmlns="http://www.w3.org/2000/svg">
+	<g fill="none" stroke="currentColor" transform="translate(0 -.00024594)">
+		<path d="m30.933 5.5253l2.0368-4.8711"/>
+		<path d="m11.6 51.761l1.4749-3.5272"/>
+		<path d="m35.931 42.833c-3.7397 3.0367-8.5656 4.8672-13.831 4.8672-11.866 0-21.5-9.296-21.5-20.745 0-11.45 9.634-20.746 21.5-20.746 9.1935 0 17.047 5.5801 20.118 13.419"/>
+	</g>
+	<g aria-label="Atlas" fill="currentColor">
+		<path d="m27.194 33.712-2.472 5.952h-1.224l7.224-17.28h0.672l7.248 17.28h-1.296l-2.472-5.952zm3.792-9.408q-0.024 0.024-0.096 0.288-0.336 1.032-0.648 1.752l-2.64 6.384h6.864l-2.64-6.36q-0.84-1.824-0.84-2.064z"/>
+		<path d="m43.028 25.072h-5.28v-0.984h11.64v0.984h-5.28v14.592h-1.08z"/>
+		<path d="m52.666 39.664v-15.576h1.104v14.568h7.152v1.008z"/>
+		<path d="m64.965 34.264-2.232 5.4h-1.128l6.528-15.672h0.648l6.576 15.672h-1.224l-2.256-5.4zm3.432-8.496q-0.36 1.08-0.648 1.8l-2.4 5.76h6.144l-2.376-5.736q-0.552-1.344-0.72-1.824z"/>
+		<path d="m81.685 24.76q-1.296 0-2.112 0.624t-0.816 1.752q0 1.296 1.08 2.328 0.768 0.744 1.968 1.584 1.224 0.816 1.68 1.176t1.104 0.984q1.176 1.176 1.176 2.712 0 1.992-1.344 3.024-1.32 1.008-3.72 1.008-2.376 0-3.984-1.248l0.576-0.84q1.632 1.104 3.456 1.104t2.832-0.768q1.032-0.768 1.032-2.16 0-1.2-1.032-2.208-0.72-0.72-1.944-1.56-1.2-0.84-1.68-1.2-0.48-0.384-1.128-1.008-1.224-1.224-1.224-2.832t1.128-2.52q1.152-0.912 3.168-0.912t3.624 0.792l-0.408 0.888q-1.488-0.72-3.432-0.72z"/>
+	</g>
+</svg>
+```
+
+See the `b-atlas-component.scss` source for example.
+
+<style>
+#animated-logo {
+	animation: dasharray 3s infinite alternate-reverse;
+	color: #3281e2;
+	height: 100px;
+	stroke-dasharray: 200 0;
+	stroke-dashoffset: 400;
+	width: 200px;
+}
+
+@keyframes dasharray {
+	100% {
+		stroke-dasharray: 0 50;
+	}
+}
+</style>
+
+## Component footer
+
+In footer you get the information about:
+
+* Total declarations in component
+* Declaration size graph. Normal component have most of declaration in the beginning and very few at the end.
+If not component probably have deviated modifications.
+* Component structure that get you the idea of component organization without opening source file.
+* Possible bad practices count. Right now it Important, Vendor prefixes and floats. Hover on it to get additional info.
+* And basic properties count that sorted from most used to less used.
+This properties can provide you the idea about component profile.
+Container type of component should not have any styling properties, but only the metric and layouting.
+* If constants is declared than messages about constants consistency is showed.
+
+*/
+
+@import "some-component-1";
+@import "some-component-2";
+
+$local-var: 10px;
+
+.class {
+	@include component();
+	background-color: green;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; /* stylelint-disable-line */
+	margin: $local-var;
+
+	@media all {
+		background: center center orange no-repeat;
+		color: red;
+		font: normal 20px / 1.2 serif; /* stylelint-disable-line */
+		padding: 1.25rem !important; /* stylelint-disable-line */
+	}
+
+	&__item-empty {
+		&:hover {
+			outline: none;
+		}
+	}
+
+	&._mod {
+		font: normal 20px sans; /* stylelint-disable-line */
+		height: 100px;
+		width: 100px;
+	}
+}
+
+@keyframes animationName {
+	0% {
+		width: 0;
+	}
+
+	100% {
+		width: 100px;
+	}
+}

@@ -26,10 +26,10 @@
         }
         linkCurrent.classList.add('js-current-page');
 
-        const storedValue = window.sessionStorage.getItem('navigationScroll');
+        const storedValue = window.sessionStorage ? window.sessionStorage.getItem('navigationScroll') : null;
         if (storedValue === null) {
             const linkPosition = linkCurrent.getBoundingClientRect().top;
-            navigationContent.scrollTo(0, linkPosition - (window.innerHeight / 2));
+            navigationContent.scrollTo && navigationContent.scrollTo(0, linkPosition - (window.innerHeight / 2));
         }
     }
 
