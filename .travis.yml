@@ -18,12 +18,17 @@ branches:
 cache:
   directories: node_modules
 
+before_install:
+  - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest'
+  - npm install -g greenkeeper-lockfile@1
+
 install: npm install
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+  - greenkeeper-lockfile-update
 
 script:
   - npm run lint
@@ -31,5 +36,6 @@ script:
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - greenkeeper-lockfile-upload
 
 after_success: npm run coverage
