@@ -21,9 +21,9 @@ const componentImports = (src) => deps.getFileImports(src, importsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
 const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(
     atlasBase.constants, atlasBase.scssAdditionalImportsArray);
+const pageContent = require(path.join(__dirname, '../models/pagecontent.js'));
 
 const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'));
-const pageContent = require(path.join(__dirname, '../viewmodels/pagecontent.js'));
 const coverage = require(path.join(__dirname, '../viewmodels/coverage.js'));
 const styleguide = require(path.resolve(__dirname, '../viewmodels/styleguide.js'));
 

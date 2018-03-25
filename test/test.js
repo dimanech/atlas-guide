@@ -53,6 +53,11 @@ describe('Atlas', function() {
                 assert.strictEqual(generatedFile, true, 'component file exist');
             });
 
+            it('only one file should be written', function() {
+                const actualFiles = fs.readdirSync(guideDest);
+                assert.deepEqual(actualFiles, ['component.html']);
+            });
+
             it('should be with content', function() {
                 const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
                 const result = /h1-b-component-test/.test(expectedFileContent);
@@ -67,10 +72,6 @@ describe('Atlas', function() {
             });
 
             it('should process all files when no exclusion is declared');
-            it('should contain imports');
-            it('should contain variables');
-            it('should contain imported by');
-            it('should contain component structure');
 
             after(function() {
                 fs.unlinkSync(expectedFile);
@@ -88,7 +89,7 @@ describe('Atlas', function() {
             it('only one file should be written', function() {
                 const actual = fs.readdirSync(guideDest);
                 const expected = ['doc-guide.html'];
-                assert.deepEqual(actual, expected, 'folder contain other files');
+                assert.deepEqual(actual, expected);
             });
 
             it('should be written', function() {
@@ -122,6 +123,25 @@ describe('Atlas', function() {
 
             after(function() {
                 fs.unlinkSync(expectedFile);
+            });
+        });
+
+        describe('Components pages', function() {
+            before(function (done) {
+                const atlas = require(cwd + '/app/atlas-guide');
+                atlas.build().then(() => done());
+            });
+
+            it('should generate all components pages', function() {
+                const actualFiles = fs.readdirSync(guideDest);
+                const expected = [
+                    'category-component.html',
+                    'category-doc-guide.html',
+                    'component.html',
+                    'doc-guide.html',
+                    'index.html'
+                ];
+                assert.deepEqual(actualFiles, expected);
             });
         });
 
@@ -412,7 +432,7 @@ describe('Atlas', function() {
             });
         });
         describe('statcomponent', function() {
-            it('return proper transformed model without defined constants', function () {
+            it('return proper transformed model without defined constants', function() {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
                     'guideSrc': '/assets/src/scss/',
@@ -432,7 +452,7 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel);
             });
 
-            it('return proper transformed model with defined constants', function () {
+            it('return proper transformed model with defined constants', function() {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
                     'guideSrc': '/assets/src/scss/',
@@ -462,24 +482,24 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel);
             });
         });
-        describe('pagecontent', function () {
-            const pageContent = require(cwd + '/viewmodels/pagecontent');
+        describe('pagecontent', function() {
+            const pageContent = require(cwd + '/models/pagecontent');
 
-            it('should return comment content if path is right', function () {
+            it('should return comment content if path is right', function() {
                 const result = pageContent('test/fixtures/atlas/_component.scss');
                 const expectedResult = require(cwd + '/test/fixtures/viewmodels/pagecontent.json');
                 assert.deepEqual(result, expectedResult);
             });
-            it('should falls if no comment in file', function () {
+            it('should falls if no comment in file', function() {
                 const result = pageContent('test/fixtures/atlas/_component-undocumented.scss');
                 assert.deepEqual(result, {content: '', toc: []});
             });
             it('should falls if wrong path to file');
         });
-        describe('statproject', function () {
+        describe('statproject', function() {
             let projectStat;
 
-            before(function () {
+            before(function() {
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
@@ -491,7 +511,7 @@ describe('Atlas', function() {
                 projectStat = require(cwd + '/models/projectcssstat.js')(projectName, cssSrc, excludedCssFiles);
             });
 
-            it('should return proper view model', function () {
+            it('should return proper view model', function() {
                 const statProject = require(cwd + '/viewmodels/statproject.js');
                 const projectName = 'atlas-guide';
                 const viewModel = statProject(projectStat, projectName);
@@ -515,7 +535,6 @@ describe('Atlas', function() {
     });
     describe('format()', function() {
         const format = require(cwd + '/viewmodels/utils/format');
-
         describe('numbers', function() {
             it('should return proper formatted numbers with 0', function() {
                 assert.strictEqual(format.numbers(0), 0);
@@ -560,43 +579,43 @@ describe('Atlas', function() {
             });
         });
     });
-    describe('copyassets()', function () {
+    describe('copyassets()', function() {
         const copyAssets = require(cwd + '/app/utils/copyassets.js');
         const assetsDest = path.join(cwd, '/test/results/');
         const assetsSrc = path.join(cwd, '/test/fixtures/assets/');
 
-        before(function () {
+        before(function() {
             copyAssets(assetsSrc, assetsDest);
         });
 
-        it('should create missing folders', function () {
+        it('should create missing folders', function() {
             const assetsDir = fs.existsSync(path.join(assetsDest, '/assets'));
             assert.strictEqual(assetsDir, true, 'assets directory is created');
         });
-        it('should not recreate existed folders', function () {
+        it('should not recreate existed folders', function() {
             copyAssets(assetsSrc, assetsDest);
             const assetsDir = fs.existsSync(path.join(assetsDest, '/assets'));
             assert.strictEqual(assetsDir, true, 'assets directory is created');
         });
-        it('should copy files', function () {
+        it('should copy files', function() {
             const style = fs.existsSync(path.join(assetsDest, '/assets/css/style.css'));
             const script = fs.existsSync(path.join(assetsDest, '/assets/my js/bundle.js'));
             assert.strictEqual(style && script, true, 'needed files is copied');
         });
-        it('should not copy "src" folder', function () {
+        it('should not copy "src" folder', function() {
             const assetsSourceFiles = fs.existsSync(path.join(assetsDest, '/assets/src'));
             assert.strictEqual(assetsSourceFiles, false, '"src" folder not copied');
         });
-        it('should not copy "map" files', function () {
+        it('should not copy "map" files', function() {
             const styleMap = fs.existsSync(path.join(assetsDest, '/assets/css/style.css.map'));
             assert.strictEqual(styleMap, false, 'map file not copied');
         });
-        it('should not copy hidden files', function () {
+        it('should not copy hidden files', function() {
             const hiddenFile = fs.existsSync(path.join(assetsDest, '/assets/css/.geetkeep'));
             assert.strictEqual(hiddenFile, false);
         });
 
-        after(function () {
+        after(function() {
             function deleteRes(res) {
                 fs.readdirSync(res).forEach(item => {
                     const source = path.join(res, item);
@@ -613,6 +632,32 @@ describe('Atlas', function() {
             }
 
             deleteRes(assetsDest);
+        });
+    });
+    describe('inline()', function() {
+        const inline = require(cwd + '/app/utils/templateHelpers/inline.js');
+        it('should return right inlining if path is exist', function() {
+            const result = inline('test/fixtures/assets/src/style.scss', text => text);
+            const expectedResult = `body {
+	margin: 0;
+}
+`;
+            assert.strictEqual(result, expectedResult);
+        });
+        it('should return message and not fall if path not exist', function() {
+            const result = inline('inexistent.scss', text => text);
+            assert.strictEqual(result, undefined);
+        });
+    });
+    describe('pluralize()', function() {
+        const pluralize = require(cwd + '/app/utils/templateHelpers/pluralize.js');
+        it('should return proper value if plural', function() {
+            const result = pluralize('0,singular,plural', text => text);
+            assert.strictEqual(result, 'plural');
+        });
+        it('should return proper value if singular', function() {
+            const result = pluralize('1,singular,plural', text => text);
+            assert.strictEqual(result, 'singular');
         });
     });
 });
