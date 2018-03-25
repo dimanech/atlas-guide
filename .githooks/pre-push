@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$(pwd)/.githooks/run-hooks pre-push-test.js
