@@ -23,6 +23,10 @@ Some description
 
 $local-const: 10px;
 
+%some {
+	margin: 0;
+}
+
 .class {
 	@include component();
 	background-color: green;
@@ -34,6 +38,51 @@ $local-const: 10px;
 			outline: none;
 		}
 	}
+
+	a {
+		align-items: center;
+		display: flex;
+
+		&::before {
+			content: "some";
+			display: block;
+		}
+	}
+
+	&_mod-2 {
+		float: left;
+	}
+
+	&.modifier-adjacent {
+		-webkit-appearance: none;
+	}
+
+	.js-test & {
+		overflow: hidden;
+	}
+}
+
+.class_mod {
+	position: relative;
+	z-index: 3;
+
+	&:hover,
+	&:focus {
+		outline: auto;
+	}
+}
+
+.b-test {
+	@extend %some;
+	box-shadow: $depth-2;
+	color: $color-yellow-atlas;
+	font-size: inherit;
+}
+
+.l-test {
+	color: #98cb52;
+	display: grid;
+	font-family: $font-sans-atlas;
 }
 
 @media all {
@@ -41,12 +90,14 @@ $local-const: 10px;
 		background: center center orange no-repeat;
 		color: red;
 		font: normal 20px / 1.2 serif; /* stylelint-disable-line */
+		margin: $space-sm-atlas;
 		padding: 0 !important; /* stylelint-disable-line */
 	}
 
 	#main { /* stylelint-disable-line */
 		font: normal 20px sans; /* stylelint-disable-line */
 		height: 100px;
+		padding: 1.2rem;
 		width: 100px;
 	}
 }

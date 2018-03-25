@@ -13,9 +13,6 @@ function printMessage(type, message) {
             console.warn(colorizeYellow('Warn: ') + 'Atlas: ' + message);
             break;
         }
-        default: {
-            console.log('Atlas: ' + message);
-        }
     }
 }
 

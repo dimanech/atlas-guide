@@ -71,32 +71,45 @@
 			top: -3px;
 		}
 
+		$component: #e56daa;
+		$element: #6d7ce5;
+		$modifier: #2196f3;
+		$media: #c6ae9f;
+
 		&_mixin {
-			background-color: #b9adad;
+			background-color: lighten($media, 20%);
 
 			&::before {
-				content: "↵"; // change me to svg
+				content: "↙"; // change me to svg
 			}
 		}
 
 		&_condition {
-			background-color: lighten(#c6ae9f, 17%);
+			background-color: lighten($media, 10%);
 
 			&::before {
 				content: "?";
 			}
 		}
 
-		&_component {
-			background-color: #6d7ce5;
+		&_extend {
+			background-color: $media;
 
 			&::before {
-				content: "b";
+				content: "↗";
+			}
+		}
+
+		&_component {
+			background-color: $component;
+
+			&::before {
+				content: "c";
 			}
 		}
 
 		&_modifier {
-			background-color: #e56daa;
+			background-color: $modifier;
 
 			&::before {
 				content: "m";
@@ -104,7 +117,7 @@
 		}
 
 		&_modifier-adjacent {
-			background-color: darken(#e56daa, 5%);
+			background-color: darken($modifier, 5%);
 
 			&::before {
 				content: "ma";
@@ -112,7 +125,7 @@
 		}
 
 		&_modifier-implicit {
-			background-color: lighten(#e56daa, 10%);
+			background-color: lighten($modifier, 10%);
 
 			&::before {
 				content: "mi";
@@ -120,7 +133,7 @@
 		}
 
 		&_modifier-context {
-			background-color: darken(#e56daa, 10%);
+			background-color: darken($modifier, 10%);
 
 			&::before {
 				content: "mc";
@@ -128,7 +141,7 @@
 		}
 
 		&_element {
-			background-color: #2196f3;
+			background-color: $element;
 
 			&::before {
 				content: "e";
@@ -136,7 +149,7 @@
 		}
 
 		&_element-implicit {
-			background-color: lighten(#2196f3, 10%);
+			background-color: lighten($element, 10%);
 
 			&::before {
 				content: "ei";

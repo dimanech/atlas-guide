@@ -171,7 +171,7 @@ describe('Atlas', function() {
             it('insights should be with data', function() {
                 const fileContent = fs.readFileSync(guideDest + 'insights.html', 'utf8');
                 const isContain =
-                    /data-chart='\[{"name":"style.css","raw":388,"zipped":263,"view":{"raw":"388B","zipped":"263B"}}]'/
+                    /data-chart='\[{"name":"stat-test.css","raw":7500,"zipped":5238,"view":{"raw":"7kB","zipped":/
                         .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
@@ -188,7 +188,7 @@ describe('Atlas', function() {
                     .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
-            it('insights should be individual and global stat', function() {
+            it('insights should be with individual and global stat', function() {
                 const fileContent = fs.readFileSync(guideDest + 'insights.html', 'utf8');
                 const individualStat = /style.css/.test(fileContent);
                 const projectContaminatedStat = /atlas-guide/.test(fileContent);
@@ -236,6 +236,13 @@ describe('Atlas', function() {
     });
     describe('Config', function() {
         const config = require(cwd + '/models/atlasconfig.js');
+
+        before(function() {
+            const config = path.join(cwd, '.atlasrc.json');
+            if (fs.existsSync(config)) {
+                fs.unlinkSync(config);
+            }
+        });
 
         context('when config not defined', function() {
             it('should fall if config is not defined in package.json', function() {
@@ -409,9 +416,9 @@ describe('Atlas', function() {
     describe('Models', function() {
         describe('styleguide', function() {
             const config = require(cwd + '/models/atlasconfig.js').getBase({
-                'guideSrc': '/assets/src/scss/',
-                'guideDest': 'test/results',
-                'cssSrc': '/assets/css/',
+                'guideSrc': 'test/fixtures/atlas/',
+                'guideDest': 'test/results/',
+                'cssSrc': 'test/fixtures/atlas/css/',
                 'projectConstants': {
                     'constantsSrc': '/test/fixtures/atlas/_excluded-settings.scss',
                     'colorPrefix': 'color',
@@ -435,9 +442,9 @@ describe('Atlas', function() {
             it('return proper transformed model without defined constants', function() {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
-                    'guideSrc': '/assets/src/scss/',
-                    'guideDest': 'test/results',
-                    'cssSrc': '/assets/css/'
+                    'guideSrc': 'test/fixtures/atlas/',
+                    'guideDest': 'test/results/',
+                    'cssSrc': 'test/fixtures/atlas/css/'
                 });
                 const constants = require(cwd + '/models/projectconstants.js')(baseConfig.constants);
                 const deps = require(cwd + '/models/projectimportsgraph.js');
@@ -455,9 +462,9 @@ describe('Atlas', function() {
             it('return proper transformed model with defined constants', function() {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
-                    'guideSrc': '/assets/src/scss/',
-                    'guideDest': 'test/results',
-                    'cssSrc': '/assets/css/',
+                    'guideSrc': 'test/fixtures/atlas/',
+                    'guideDest': 'test/results/',
+                    'cssSrc': 'test/fixtures/atlas/css/',
                     'projectConstants': {
                         'constantsSrc': '/test/fixtures/atlas/_excluded-settings.scss',
                         'colorPrefix': 'color',
@@ -475,7 +482,6 @@ describe('Atlas', function() {
                 const componentImports = deps.getFileImports(componentPath, importsGraph);
                 const componentStat = require(cwd + '/models/componentstat.js').getStatFor(
                     componentPath, baseConfig.componentPrefixes);
-
                 const viewModel = require(cwd + '/viewmodels/statcomponent.js')(
                     componentStat, componentImports, constants);
                 const expectedViewModel = require(cwd + '/test/fixtures/viewmodels/statcomponent-const.json');
@@ -501,9 +507,9 @@ describe('Atlas', function() {
 
             before(function() {
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
-                    'guideSrc': '/assets/src/scss/',
-                    'guideDest': 'test/results',
-                    'cssSrc': '/assets/css/'
+                    'guideSrc': 'test/fixtures/atlas/',
+                    'guideDest': 'test/results/',
+                    'cssSrc': 'test/fixtures/atlas/css/'
                 });
                 const projectName = 'atlas-guide';
                 const cssSrc = baseConfig.cssSrc;
