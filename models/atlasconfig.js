@@ -4,24 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const projectRoot = process.cwd();
 
-function printMessage(type, message) {
-    const colorizeYellow = str => '\x1b[33m' + str + '\x1b[0m';
-    const colorizeRed = str => '\x1b[31m' + str + '\x1b[0m';
-
-    switch (type) {
-        case 'error': {
-            console.error(colorizeRed('Error: ') + 'Atlas: ' + message);
-            break;
-        }
-        case 'warn': {
-            console.warn(colorizeYellow('Warn: ') + 'Atlas: ' + message);
-            break;
-        }
-        default: {
-            console.log('Atlas: ' + message);
-        }
-    }
-}
+const printMessage = require('./utils/printmessage');
 
 function getComponentsPrefix(config) {
     const prefixes = config.componentPrefixes;
@@ -39,6 +22,19 @@ function getComponentsPrefix(config) {
     }
 
     return new RegExp(prefixExp);
+}
+
+function isPathConfigured(config, name) {
+    if (!config) {
+        printMessage('error', '"' + name + '" not defined. This config is required.');
+        return true;
+    } else if (!fs.existsSync(path.join(projectRoot, config))) {
+        printMessage('error', '"' + name + '" (' + config + ') in config unavailable or unreadable. ' +
+            'Please check this path in config.');
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function fillTemplatesConfig(templatesConfig, internalTemplatesPath, name) {
@@ -88,10 +84,8 @@ function getProjectInfo(configRaw) {
     const pkg = require(path.join(projectRoot, 'package.json'));
     let projectName = 'atlas';
 
-    if (config.projectInfo !== undefined) {
-        if (config.projectInfo.name) {
-            projectName = config.projectInfo.name;
-        }
+    if (config.projectInfo !== undefined && config.projectInfo.name) {
+        projectName = config.projectInfo.name;
     } else {
         if (!pkg.name) {
             printMessage('warn', 'Neither "projectName" in atlas, nor "name" in package.json is declared. ' +
@@ -109,47 +103,13 @@ function getProjectInfo(configRaw) {
 
 function getMandatoryBaseConfig(config) {
     let atlasConfig = {};
-
-    if (!config.guideSrc) {
-        printMessage('error', '"guideSrc" not defined. This config is required.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
+    if (isPathConfigured(config.guideSrc, 'guideSrc') ||
+        isPathConfigured(config.guideDest, 'guideDest') ||
+        isPathConfigured(config.cssSrc, 'cssSrc')) {
+        return { isCorrupted: true }; // return with corrupted config if we don't have crucial fields
     }
 
-    if (!fs.existsSync(path.join(projectRoot, config.guideSrc))) {
-        printMessage('error', '"guideSrc" (' + config.guideSrc + ') in config unavailable or unreadable. ' +
-            'Please check this path in config.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    if (!config.guideDest) {
-        printMessage('error', '"guideDest" not defined. This config is required.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    if (!fs.existsSync(path.join(projectRoot, config.guideDest))) {
-        printMessage('error', '"guideDest" directory (' + config.guideDest + ') unavailable or unreadable. ' +
-            'Please check this path in config.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    if (!config.cssSrc) {
-        printMessage('error', '"cssSrc" not defined. This config is required.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    if (!fs.existsSync(path.join(projectRoot, config.cssSrc))) {
-        printMessage('error', '"cssSrc" directory (' + config.cssSrc + ') in config unavailable or ' +
-            'unreadable. Please check this path in config.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    // Mandatory configs
+    // Process mandatory configs
     atlasConfig.guideSrc = path.join(projectRoot, config.guideSrc, '/');
     atlasConfig.guideDest = path.join(projectRoot, config.guideDest, '/');
     atlasConfig.cssSrc = path.join(projectRoot, config.cssSrc, '/');
@@ -228,13 +188,7 @@ function getAdditionalPages(templates, dest, constants) {
 function getDeclaredConstants(configRaw) {
     const config = getConfig(configRaw);
     const constantsList = [
-        'colorPrefix',
-        'fontPrefix',
-        'scalePrefix',
-        'spacePrefix',
-        'motionPrefix',
-        'depthPrefix',
-        'breakpointPrefix'
+        'colorPrefix', 'fontPrefix', 'scalePrefix', 'spacePrefix', 'motionPrefix', 'depthPrefix', 'breakpointPrefix'
     ];
     let projectConstants = {
         'isDefined': false,
