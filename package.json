@@ -65,7 +65,7 @@
     "atlas-guide": "bin/atlas-guide.js"
   },
   "scripts": {
-    "lint": "eslint **/*.js && stylelint **/*.scss",
+    "lint": "eslint **/*.js && stylelint assets/**/*.scss",
     "test": "nyc mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build": "gulp build",
