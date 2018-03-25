@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
-@import "dev-atlas-settings";
+@import "dev-atlas-definitions";
 
 $aside-bg: #f6f6f6;
 $aside-bd: #e0e0e0;
 $aside-selected: #e2e2e2;
 
-@import "atlas/global/global-normalization";
-@import "atlas/frame/l-atlas-container";
-@import "atlas/frame/atlas-search";
-@import "atlas/frame/atlas-aside-ctrl";
-@import "atlas/frame/atlas-header";
-@import "atlas/frame/atlas-aside";
-@import "atlas/frame/atlas-nav";
-@import "atlas/frame/atlas-footer-copyright";
-@import "atlas/frame/atlas-loader";
+@import "bindings/global/global-normalization";
+@import "bindings/frame/l-atlas-container";
+@import "bindings/frame/atlas-search";
+@import "bindings/frame/atlas-aside-ctrl";
+@import "bindings/frame/atlas-header";
+@import "bindings/frame/atlas-aside";
+@import "bindings/frame/atlas-nav";
+@import "bindings/frame/atlas-footer-copyright";
+@import "bindings/frame/atlas-loader";

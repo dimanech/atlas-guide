@@ -26,13 +26,7 @@
 		width: 100%;
 
 		svg.atlas-stat-digit__data {
-			$color: #f1f1f1;
-			$size: 12px;
-			background-image:
-				linear-gradient(45deg, $color 25%, transparent 25%, transparent 75%, $color 75%, $color),
-				linear-gradient(45deg, $color 25%, transparent 25%, transparent 75%, $color 75%, $color);
-			background-position: 0 0, $size/2 $size/2;
-			background-size: $size $size;
+			@include chessboard();
 			height: 200%;
 			width: 100%;
 		}
@@ -42,6 +36,25 @@
 			font-size: $atlas-mono-small;
 			text-transform: none;
 			word-wrap: break-word;
+		}
+	}
+
+	&._uri {
+		.atlas-stat-digit__data {
+			padding-bottom: 100%;
+			position: relative;
+
+			&._display {
+				@include chessboard();
+			}
+
+			div {
+				align-items: center;
+				display: flex;
+				height: 100%;
+				position: absolute;
+				width: 100%;
+			}
 		}
 	}
 }

@@ -3,7 +3,7 @@
     "guideDest": "atlas",
     "cssSrc": "assets/css/",
     "copyInternalAssets": false,
-    "excludedSassFiles": "_dev-atlas-settings",
+    "excludedSassFiles": "_dev-atlas-settings|_dev-atlas-definitions",
     "componentPrefixes": ["atlas-", "l-"],
     "projectConstants": {
         "constantsSrc": "assets/src/scss/_dev-atlas-settings.scss",

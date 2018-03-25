@@ -92,11 +92,11 @@
                         <ul class="atlas-stat-columns _colors">
                             {{#data}}
                                 <li class="atlas-stat-columns__item">
-                                    <figure class="atlas-stat-digit _color">
-                                        <div class="atlas-stat-digit__data"
-                                             style="width: 64px; height: 84px; text-align: center;
-                                                 {{#displayValue}}background:url({{displayValue}}) center center no-repeat; background-size: 100%;{{/displayValue}}">
-                                            {{^displayValue}}Aa{{/displayValue}}
+                                    <figure class="atlas-stat-digit _color _uri">
+                                        <div class="atlas-stat-digit__data {{#displayValue}}_display{{/displayValue}}">
+                                            <div {{#displayValue}}style="background:url({{displayValue}}) center center no-repeat; background-size: 100%;"{{/displayValue}}>
+                                                {{^displayValue}}Aa{{/displayValue}}
+                                            </div>
                                         </div>
                                         <figcaption class="atlas-stat-digit__caption">
                                             {{typeRaw}} <br/>

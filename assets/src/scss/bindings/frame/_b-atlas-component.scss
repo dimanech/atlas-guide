@@ -1,6 +1,6 @@
 /*md
 
-# b-loader
+# b-atlas-component
 
 This is example of component documentation. The first paragraph become the preamble for page.
 Try to provide that main idea of component in this lines.
@@ -118,7 +118,7 @@ Container type of component should not have any styling properties, but only the
 
 $local-var: 10px;
 
-.class {
+.atlas-component {
 	@include component();
 	background-color: green;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; /* stylelint-disable-line */
