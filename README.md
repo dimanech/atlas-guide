@@ -10,9 +10,6 @@
 Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive 
 styles monitoring and Sass components reports.
 
-Comes without any guarantee, but with analytics and beautiful data visualization to keep you project clean 
-and supportable from iteration to iteration.
-
 It is opinionated because it is probably impossible to cover all cases in CSS/Sass.
 
 [Live example](https://dimanech.github.io/atlas-guide/)
@@ -125,7 +122,7 @@ Atlas search configuration in this order:
 
 ### `.atlasrc.json`
 
-By default atlas search for configuration in `.atlasrc.json` file in root of the project.
+By default atlas search for configuration in `.atlasrc.json` file in the root of the project.
 
 Minimal configuration:
 
