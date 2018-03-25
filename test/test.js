@@ -194,10 +194,18 @@ describe('Atlas', function() {
                 const projectContaminatedStat = /atlas-guide/.test(fileContent);
                 assert.strictEqual(individualStat && projectContaminatedStat, true, 'contain right data');
             });
-            it('bundle should be with imports', function() {
+            it('bundle should be with imports graph', function() {
                 const fileContent = fs.readFileSync(guideDest + 'bundle.html', 'utf8');
-                const isContain = /"id":"css\/style.css","depth":1,"mass":0},{"id":"style","depth":1,"mass":2}/
-                    .test(fileContent);
+                const isContain =
+                    /window.bundleTree ={"atlas-guide":{"id":"atlas-guide","size":0},"atlas-guide/
+                        .test(fileContent);
+                assert.strictEqual(isContain, true, 'contain right data');
+            });
+            it('bundle should be with cross deps graph', function() {
+                const fileContent = fs.readFileSync(guideDest + 'bundle.html', 'utf8');
+                const isContain =
+                    /window.importsData ={"nodes":\[{"id":"_component-undocumented","depth":0,"mass":0},{"id":/
+                        .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
             it('bundle should be with sizes chart', function() {
