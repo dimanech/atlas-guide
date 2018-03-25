@@ -41,6 +41,29 @@ function getComponentsPrefix(config) {
     return new RegExp(prefixExp);
 }
 
+function fillTemplatesConfig(templatesConfig, internalTemplatesPath, name) {
+    let templates = {};
+
+    fs.readdirSync(path.join(__dirname, internalTemplatesPath))
+        .forEach(item => templates[path.basename(item, '.mustache')] = '');
+
+    Object.keys(templates).forEach(template => {
+        if (templatesConfig !== undefined && templatesConfig.hasOwnProperty(template)) {
+            const templatePath = path.join(projectRoot, templatesConfig[template]);
+            if (fs.existsSync(templatePath)) {
+                templates[template] = templatePath;
+                return;
+            } else {
+                printMessage('warn', '"' + template + '" ' + name + ' is declared, but file not found. ' +
+                    'Internal partial used for this include.');
+            }
+        }
+        templates[template] = path.join(__dirname, internalTemplatesPath, template + '.mustache');
+    });
+
+    return templates;
+}
+
 function getConfig(configSrc) {
     const pkg = require(path.join(projectRoot, 'package.json'));
 
@@ -169,34 +192,7 @@ function getOptionalBaseConfigs(config) {
 }
 
 function getTemplates(config) {
-    const templatesConfig = config.templates;
-    const internalTemplatesPath = '../views/templates/';
-    let templates = {
-        'component': '',
-        'guide': '',
-        'about': '',
-        'insights': '',
-        'bundle': '',
-        'styleguide': ''
-    };
-
-    for (let template in templates) {
-        if (!templates.hasOwnProperty(template)) {
-            continue;
-        }
-        if (templatesConfig !== undefined && templatesConfig.hasOwnProperty(template)) {
-            if (fs.existsSync(path.join(projectRoot, templatesConfig[template]))) {
-                templates[template] = path.join(projectRoot, templatesConfig[template]);
-                continue;
-            } else {
-                printMessage('warn', '"' + template + '" template is declared, but file not found. ' +
-                    'Internal partial used for this include.');
-            }
-        }
-        templates[template] = path.join(__dirname, internalTemplatesPath, template + '.mustache');
-    }
-
-    return templates;
+    return fillTemplatesConfig(config.templates, '../views/templates/', 'template');
 }
 
 function getAdditionalPages(templates, dest, constants) {
@@ -295,40 +291,9 @@ function getBaseConfig(configRaw) {
 
 function getPartialsConfig(configRaw) {
     const config = getConfig(configRaw);
+    let partials = fillTemplatesConfig(config.partials, '../views/includes/partials/', 'partial');
 
-    const partialsConfig = config.partials;
-    const internalPartialsPath = '../views/includes/partials/';
-    let partials = {
-        'aside': '',
-        'assetsfooter': '',
-        'assetshead': '',
-        'componentstataside': '',
-        'componentstatfooter': '',
-        'componentstructure': '',
-        'copyright': '',
-        'footer': '',
-        'header': '',
-        'logo': '',
-        'navigation': '',
-        'toc': '',
-        'welcome': ''
-    };
-
-    for (let partial in partials) {
-        if (!partials.hasOwnProperty(partial)) {
-            continue;
-        }
-        if (partialsConfig !== undefined && partialsConfig.hasOwnProperty(partial)) {
-            if (fs.existsSync(path.join(projectRoot, partialsConfig[partial]))) {
-                partials[partial] = path.join(projectRoot, partialsConfig[partial]);
-                continue;
-            } else {
-                printMessage('warn', '"' + partial + '" template is declared, but file not found. ' +
-                    'Internal partial used for this include.');
-            }
-        }
-        partials[partial] = path.join(__dirname, internalPartialsPath, partial + '.mustache');
-    }
+    Object.keys(partials).forEach(partial => partials[partial] = fs.readFileSync(partials[partial], 'utf8'));
 
     return partials;
 }

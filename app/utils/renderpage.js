@@ -6,29 +6,20 @@ const mustache = require('mustache');
 
 const atlasConfig = require(path.join(__dirname, '../../models/atlasconfig.js'));
 const projectInfo = atlasConfig.getProjectInfo();
-
-function getPartials() {
-    const partialsMap = atlasConfig.getPartials();
-    let partials = {};
-
-    Object.keys(partialsMap).forEach(partial => partials[partial] = fs.readFileSync(partialsMap[partial], 'utf8'));
-
-    return partials;
-}
-const partials = getPartials();
+const partials = atlasConfig.getPartials();
 
 const inline = require('./templateHelpers/inline');
 const pluralize = require('./templateHelpers/pluralize');
 
 const View = function(page) {
-    this.projectInfo = {
+    this.projectInfo = { // could be cached
         'name': projectInfo.name,
         'version': projectInfo.version
     };
     this.pageTitle = page.title;
     this.content = page.content;
     this.type = page.type;
-    this.subPages = page.subPages; // this could be cached
+    this.subPages = page.subPages; // could be cached
 };
 
 View.prototype.inline = () => (text, render) => inline(text, render);
