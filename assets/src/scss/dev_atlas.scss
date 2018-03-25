@@ -1,23 +1,23 @@
 @charset "UTF-8";
 
-@import "dev-atlas-settings";
+@import "dev-atlas-definitions";
 
-@import "atlas/global/global-normalization";
+@import "bindings/global/global-normalization";
 
-@import "atlas/frame/atlas-content";
-@import "atlas/frame/atlas";
-@import "atlas/frame/atlas-component-type-ico";
+@import "bindings/frame/atlas-content";
+@import "bindings/frame/atlas";
+@import "bindings/frame/atlas-component-type-ico";
 
-@import "atlas/guide/atlas-toc";
-@import "atlas/guide/atlas-landing";
-@import "atlas/guide/atlas-welcome";
-@import "atlas/guide/atlas-coverage";
+@import "bindings/guide/atlas-toc";
+@import "bindings/guide/atlas-landing";
+@import "bindings/guide/atlas-welcome";
+@import "bindings/guide/atlas-coverage";
 
-@import "atlas/component/atlas-playground";
-@import "atlas/component/atlas-component-aside";
-@import "atlas/component/atlas-info-digit";
-@import "atlas/component/atlas-component-footer";
-@import "atlas/component/atlas-sparkline";
-@import "atlas/component/atlas-info-list";
-@import "atlas/component/atlas-constant";
-@import "atlas/component/atlas-component-structure";
+@import "bindings/component/atlas-playground";
+@import "bindings/component/atlas-component-aside";
+@import "bindings/component/atlas-info-digit";
+@import "bindings/component/atlas-component-footer";
+@import "bindings/component/atlas-sparkline";
+@import "bindings/component/atlas-info-list";
+@import "bindings/component/atlas-constant";
+@import "bindings/component/atlas-component-structure";

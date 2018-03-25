@@ -80,7 +80,11 @@
 			background-color: lighten($media, 20%);
 
 			&::before {
-				content: "↙"; // change me to svg
+				// added as example of data uri
+				background: url("data:image/svg+xml,%3Csvg fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' version='1.1' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='20.575' x2='3.2214' y1='3.4248' y2='20.779' stroke-width='3.0678'/%3E%3Cpolyline transform='matrix%281.0846 1.0846 -1.0846 1.0846 11.898 -13.929%29' points='18 14 12 20 6 14'/%3E%3C/svg%3E%0A") center center no-repeat;
+				background-size: 80%;
+				color: transparent;
+				content: "↙";
 			}
 		}
 
@@ -96,6 +100,9 @@
 			background-color: $media;
 
 			&::before {
+				background: url("data:image/svg+xml,%3Csvg fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' version='1.1' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='3.2214' x2='20.575' y1='20.779' y2='3.4248' stroke-width='3.0678'/%3E%3Cpolyline transform='matrix%28-1.0846 -1.0846 1.0846 -1.0846 11.898 38.132%29' points='18 14 12 20 6 14'/%3E%3C/svg%3E%0A") center center no-repeat;
+				background-size: 80%;
+				color: transparent;
 				content: "↗";
 			}
 		}

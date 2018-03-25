@@ -1,29 +1,4 @@
-.b-cross-dependencies-graph {
-	color: $atlas-color-text;
-	margin-top: -#{$space-md-atlas};
-	user-select: none;
-
-	.link {
-		stroke: $color-blue-atlas;
-	}
-
-	.node__circle {
-		fill: $color-blue-atlas;
-		stroke: white;
-	}
-
-	.node__text {
-		fill: currentColor;
-		font-family: $font-mono-atlas;
-		font-size: $atlas-mono-small;
-
-		&._partial {
-			fill: $color-blue-atlas;
-		}
-	}
-}
-
-.b-cross-dependencies-legend {
+.atlas-cross-dependencies-legend {
 	align-items: start;
 	//border-top: 1px solid $atlas-color-divider;
 	display: flex;

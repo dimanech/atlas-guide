@@ -1,0 +1,20 @@
+environment:
+  YARN_IGNORE_ENGINES: true
+
+  matrix:
+    - nodejs_version: "9"
+    - nodejs_version: "8"
+    # - nodejs_version: "6" do not get any idea why tests falls only on win on node 6
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+
+test_script:
+  - npm test
+
+cache:
+ - node_modules
+
+build: off
+deploy: off
