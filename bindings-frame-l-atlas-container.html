@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width"/>
     <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"/>
 
-    <title>Atlas - b-atlas-component</title>
+    <title>Atlas - l-atlas-container</title>
 
     <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-frame.css"/>
@@ -19,7 +19,7 @@
     }
 -->
 </head>
-<body class="atlas-page atlas-page_component">
+<body class="atlas-page atlas-page_container">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0"
      style="position:absolute;">
     <symbol id="icon-code-example" viewBox="0 0 24 24">
@@ -186,9 +186,9 @@
             <div class="atlas-nav" role="list" id="js-atlas-navigation">
     <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
         <a class="atlas-nav__ln _category js-atlas-nav-ln" 
-           data-name="atlas">
+           data-name="bindings">
             <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
-            atlas
+            bindings
         </a>
             <div role="list" class="atlas-nav__sub-nav">
     <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
@@ -199,7 +199,7 @@
         </a>
             <div role="list" class="atlas-nav__sub-nav">
     <div role="listitem" class="atlas-nav__item atlas-nav__item_guide">
-        <a class="atlas-nav__ln _guide js-atlas-nav-ln" href="atlas-component-doc-livereload-setup.html" id="nav-atlas-component-doc-livereload-setup"
+        <a class="atlas-nav__ln _guide js-atlas-nav-ln" href="bindings-component-doc-livereload-setup.html" id="nav-bindings-component-doc-livereload-setup"
            data-name="livereload-setup">
             <svg width="14" height="14" role="img"><use xlink:href="#icon-guide"></use></svg>
             livereload-setup
@@ -215,14 +215,14 @@
         </a>
             <div role="list" class="atlas-nav__sub-nav">
     <div role="listitem" class="atlas-nav__item atlas-nav__item_component">
-        <a class="atlas-nav__ln _component js-atlas-nav-ln" href="atlas-frame-b-atlas-component.html" id="nav-atlas-frame-b-atlas-component"
+        <a class="atlas-nav__ln _component js-atlas-nav-ln" href="bindings-frame-b-atlas-component.html" id="nav-bindings-frame-b-atlas-component"
            data-name="b-atlas-component">
             <svg width="14" height="14" role="img"><use xlink:href="#icon-component"></use></svg>
             b-atlas-component
         </a>
     </div>
     <div role="listitem" class="atlas-nav__item atlas-nav__item_container">
-        <a class="atlas-nav__ln _container js-atlas-nav-ln" href="atlas-frame-l-atlas-container.html" id="nav-atlas-frame-l-atlas-container"
+        <a class="atlas-nav__ln _container js-atlas-nav-ln" href="bindings-frame-l-atlas-container.html" id="nav-bindings-frame-l-atlas-container"
            data-name="l-atlas-container">
             <svg width="14" height="14" role="img"><use xlink:href="#icon-container"></use></svg>
             l-atlas-container
@@ -259,6 +259,13 @@
         </a>
     </div>
             </div>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="defintions">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            defintions
+        </a>
     </div>
     <div role="listitem" class="atlas-nav__item atlas-nav__item_about">
         <a class="atlas-nav__ln _about js-atlas-nav-ln" href="index.html" id="nav-index"
@@ -302,7 +309,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    0.6.3
+    0.6.4
 </p>
         </div>
     </div>
@@ -325,50 +332,11 @@
                 Included in:
             </div>
             <div role="list" class="atlas-component-aside__list">
-            </div>
-        </div>
-        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-depends-from">
-            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-depends-from">
-                Depends from:
-            </div>
-            <div role="list" class="atlas-component-aside__list">
                     <div role="listitem" class="atlas-component-aside__list-item">
                         <svg role="img" width="16" height="16">
-                            <use xlink:href="#icon-component"></use>
+                            <use xlink:href="#icon-out"></use>
                         </svg>
-                        component()
-                    </div>
-            </div>
-        </div>
-        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-local-vars">
-            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-local-vars">
-                Local variables:
-            </div>
-            <div role="list" class="atlas-component-aside__list">
-                    <div role="listitem" class="atlas-component-aside__list-item">
-                        <svg role="img" width="16" height="16">
-                            <use xlink:href="#icon-variable"></use>
-                        </svg>
-                        $local-var: 10px
-                    </div>
-            </div>
-        </div>
-        <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-local-imports">
-            <div role="heading" aria-level="3" class="atlas-component-aside__title" id="atlas-component-local-imports">
-                Local imports:
-            </div>
-            <div role="list" class="atlas-component-aside__list">
-                    <div role="listitem" class="atlas-component-aside__list-item">
-                        <svg role="img" width="16" height="16">
-                            <use xlink:href="#icon-in"></use>
-                        </svg>
-                        &quot;some-component-1&quot;
-                    </div>
-                    <div role="listitem" class="atlas-component-aside__list-item">
-                        <svg role="img" width="16" height="16">
-                            <use xlink:href="#icon-in"></use>
-                        </svg>
-                        &quot;some-component-2&quot;
+                        dev_atlas-frame.scss
                     </div>
             </div>
         </div>
@@ -376,231 +344,152 @@
 
 <div class="atlas-component-type-ico">
     <svg width="16" height="16" role="img">
-        <use xlink:href="#icon-component"></use>
+        <use xlink:href="#icon-container"></use>
     </svg>
-    component
+    container
 </div>
 
 <section><!-- this is hacky, but we have sections in markdown, so we need to open and close it on wrapper -->
     </section>
     <section class="atlas-section">
-<span class="atlas-anchor" id="h1-b-loader"></span>
+<span class="atlas-anchor" id="h1-l-atlas-container"></span>
 <h1 class="atlas atlas-title atlas-title_1">
     <span class="atlas-title__text">
-        b-loader
+        l-atlas-container
     </span>
-    <a class="atlas-title__anchor" href="#h1-b-loader" title="Copy link to this title">
+    <a class="atlas-title__anchor" href="#h1-l-atlas-container" title="Copy link to this title">
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-ln"></use>
         </svg>
     </a>
     <span class="atlas-title__highlight"></span>
 </h1>
-<p class="atlas atlas-p">This is example of component documentation. The first paragraph become the preamble for page.
-Try to provide that main idea of component in this lines.</p>
-<p class="atlas atlas-p">Component page unlike regular guideline page consists of:</p>
-<ul class="atlas atlas-ul">
-	<li>aside with includes, included in, local variables and imports stat</li>
-<li>playground</li>
-<li>footer with statistic and component structure</li>
-
-</ul>
-    </section>
-    <section class="atlas-section">
-<span class="atlas-anchor" id="h2-playground"></span>
-<h2 class="atlas atlas-title atlas-title_2">
-    <span class="atlas-title__text">
-        Playground
-    </span>
-    <a class="atlas-title__anchor" href="#h2-playground" title="Copy link to this title">
-        <svg width="14" height="14" role="img">
-            <use xlink:href="#icon-ln"></use>
-        </svg>
-    </a>
-    <span class="atlas-title__highlight"></span>
-</h2>
-<p class="atlas atlas-p">This is example of rendered component. Use <code>html_example</code> code &quot;fence&quot; to create playground.
-Click on border of this box to expand the playground.</p>
+<p class="atlas atlas-p">This is example of documentation for container component. <code>l-atlas-container</code> used as frame holder for main atlas page.</p>
+<p class="atlas atlas-p">It consist with 2 elements:</p>
+<div class="atlas atlas-code ">
+<pre><code class="language-">l-atlas-container
+    __aside
+    __main</code></pre>
+</div>
+<p class="atlas atlas-p">Aside has fixed positioning so the scroll view of main container create application like experience of 2 scroll views.</p>
 <figure class="atlas-playground atlas-playground_html js-playground">
     <figcaption>
-        <button class="atlas-playground__summary" aria-controls="b-atlas-component-code-0" title="Expand html example">
+        <button class="atlas-playground__summary" aria-controls="l-atlas-container-code-1" title="Expand html example">
            <span class="atlas-playground__summary-text">
-               b-atlas-component-code-0
+               l-atlas-container-code-1
            </span>
             <svg class="atlas-playground__summary-ico" width="24" height="24" role="img">
                 <use xlink:href="#icon-code-example"></use>
             </svg>
         </button>
-        <div class="atlas-playground__details" id="b-atlas-component-code-0" aria-hidden="true">
-<pre><code class="language-html" contenteditable="true">&lt;h1 class&#x3D;&quot;atlas atlas-title atlas-title_1&quot; id&#x3D;&quot;h1-b-loader&quot;&gt;
-    &lt;span class&#x3D;&quot;atlas-title__text&quot;&gt;
-        Just dummy example
-    &lt;&#x2F;span&gt;
-    &lt;a class&#x3D;&quot;atlas-title__anchor&quot; href&#x3D;&quot;#h1-b-loader&quot; title&#x3D;&quot;Copy link to this title&quot;&gt;
-        &lt;svg width&#x3D;&quot;14&quot; height&#x3D;&quot;14&quot; role&#x3D;&quot;img&quot;&gt;
-            &lt;use xmlns:xlink&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;1999&#x2F;xlink&quot; xlink:href&#x3D;&quot;#icon-ln&quot;&gt;&lt;&#x2F;use&gt;
-        &lt;&#x2F;svg&gt;
-    &lt;&#x2F;a&gt;
-&lt;&#x2F;h1&gt;</code></pre>
+        <div class="atlas-playground__details" id="l-atlas-container-code-1" aria-hidden="true">
+<pre><code class="language-html" contenteditable="true">&lt;div style&#x3D;&quot;transform: translate3d(0,0,0)&quot;&gt;&lt;!-- need this to hold pos:fixed --&gt;
+
+&lt;div class&#x3D;&quot;l-atlas-container&quot;&gt;
+    &lt;div class&#x3D;&quot;l-atlas-container__aside&quot;&gt;
+        Aside
+    &lt;&#x2F;div&gt;
+    &lt;div class&#x3D;&quot;l-atlas-container__main&quot;&gt;
+        Content
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+
+&lt;&#x2F;div&gt;</code></pre>
         </div>
     </figcaption>
     <div class="atlas-playground__example">
         <div class="atlas-playground-test-frame js-playground__example-rubicon">
-<h1 class="atlas atlas-title atlas-title_1" id="h1-b-loader">
-    <span class="atlas-title__text">
-        Just dummy example
-    </span>
-    <a class="atlas-title__anchor" href="#h1-b-loader" title="Copy link to this title">
-        <svg width="14" height="14" role="img">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-ln"></use>
-        </svg>
-    </a>
-</h1>
+<div style="transform: translate3d(0,0,0)"><!-- need this to hold pos:fixed -->
+
+<div class="l-atlas-container">
+    <div class="l-atlas-container__aside">
+        Aside
+    </div>
+    <div class="l-atlas-container__main">
+        Content
+    </div>
+</div>
+
+</div>
         </div>
     </div>
     <span role="region" aria-live="polite" class="atlas-playground__notifier js-playground__notifier"></span>
 </figure>
-<p class="atlas atlas-p">Code in playground is live-editable. So any changes like another text, tags or classes could be previewed in real time.
-And if needed copied and pasted to content assets or so.</p>
-<p class="atlas atlas-p">Playground also show area width on page resize so you get precise information of actual example width.</p>
     </section>
     <section class="atlas-section">
-<span class="atlas-anchor" id="h2-regular-code-blocks"></span>
+<span class="atlas-anchor" id="h2-modifications"></span>
 <h2 class="atlas atlas-title atlas-title_2">
     <span class="atlas-title__text">
-        Regular code blocks
+        Modifications
     </span>
-    <a class="atlas-title__anchor" href="#h2-regular-code-blocks" title="Copy link to this title">
+    <a class="atlas-title__anchor" href="#h2-modifications" title="Copy link to this title">
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-ln"></use>
         </svg>
     </a>
     <span class="atlas-title__highlight"></span>
 </h2>
-<p class="atlas atlas-p">Also any <code>css</code>, <code>html</code> or <code>js</code> code could be added to description.</p>
-<div class="atlas atlas-code html">
-<pre><code class="language-html">&lt;div class&#x3D;&quot;atlas-loader&quot;&gt;&lt;&#x2F;div&gt;</code></pre>
-</div>
-<p class="atlas atlas-p">For regular code blocks we have styles for &quot;do&quot;-&quot;not do&quot; blocks:</p>
-<div class="atlas atlas-code html_bad">
-<pre><code class="language-html">&lt;i class&#x3D;&quot;atlas-loader&quot;&gt;Example of code &quot;fences&quot; usage&lt;&#x2F;i&gt;</code></pre>
-</div>
-<p class="atlas atlas-p">Use <code>div</code> HTML-element so page will be better gziped:</p>
-<div class="atlas atlas-code html_good">
-<pre><code class="language-html">&lt;div class&#x3D;&quot;atlas-loader&quot;&gt;&lt;&#x2F;div&gt;</code></pre>
-</div>
-    </section>
-    <section class="atlas-section">
-<span class="atlas-anchor" id="h2-use-styles-that-not-included-in-project-css"></span>
-<h2 class="atlas atlas-title atlas-title_2">
+<span class="atlas-anchor" id="h3--code-js-aside-panel-hidden-code-"></span>
+<h3 class="atlas atlas-title atlas-title_3">
     <span class="atlas-title__text">
-        Use styles that not included in project css
+        <code>js-aside-panel-hidden</code>
     </span>
-    <a class="atlas-title__anchor" href="#h2-use-styles-that-not-included-in-project-css" title="Copy link to this title">
+    <a class="atlas-title__anchor" href="#h3--code-js-aside-panel-hidden-code-" title="Copy link to this title">
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-ln"></use>
         </svg>
     </a>
     <span class="atlas-title__highlight"></span>
-</h2>
-<p class="atlas atlas-p">To use styles that needed only for this component you have 2 options:</p>
-<ol class="atlas atlas-ol">
-	<li>define it in separate file that used only in atlas</li>
-<li>add <code>style</code> tag inside component documentation comment</li>
-
-</ol>
+</h3>
+<p class="atlas atlas-p">We have only one modification for this component – <code>js-aside-panel-hidden</code>. This class called when aside is hidden.
+And used for hide parts of aside for this case.</p>
 <figure class="atlas-playground atlas-playground_html js-playground">
     <figcaption>
-        <button class="atlas-playground__summary" aria-controls="b-atlas-component-code-4" title="Expand html example">
+        <button class="atlas-playground__summary" aria-controls="l-atlas-container-code-2" title="Expand html example">
            <span class="atlas-playground__summary-text">
-               b-atlas-component-code-4
+               l-atlas-container-code-2
            </span>
             <svg class="atlas-playground__summary-ico" width="24" height="24" role="img">
                 <use xlink:href="#icon-code-example"></use>
             </svg>
         </button>
-        <div class="atlas-playground__details" id="b-atlas-component-code-4" aria-hidden="true">
-<pre><code class="language-html" contenteditable="true">&lt;svg id&#x3D;&quot;animated-logo&quot; width&#x3D;&quot;60&quot; height&#x3D;&quot;30&quot; version&#x3D;&quot;1.1&quot; viewBox&#x3D;&quot;0 0 98.599998 52.414875&quot; xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot;&gt;
-    &lt;g fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; transform&#x3D;&quot;translate(0 -.00024594)&quot;&gt;
-        &lt;path d&#x3D;&quot;m30.933 5.5253l2.0368-4.8711&quot;&#x2F;&gt;
-        &lt;path d&#x3D;&quot;m11.6 51.761l1.4749-3.5272&quot;&#x2F;&gt;
-        &lt;path d&#x3D;&quot;m35.931 42.833c-3.7397 3.0367-8.5656 4.8672-13.831 4.8672-11.866 0-21.5-9.296-21.5-20.745 0-11.45 9.634-20.746 21.5-20.746 9.1935 0 17.047 5.5801 20.118 13.419&quot;&#x2F;&gt;
-    &lt;&#x2F;g&gt;
-    &lt;g aria-label&#x3D;&quot;Atlas&quot; fill&#x3D;&quot;currentColor&quot;&gt;
-        &lt;path d&#x3D;&quot;m27.194 33.712-2.472 5.952h-1.224l7.224-17.28h0.672l7.248 17.28h-1.296l-2.472-5.952zm3.792-9.408q-0.024 0.024-0.096 0.288-0.336 1.032-0.648 1.752l-2.64 6.384h6.864l-2.64-6.36q-0.84-1.824-0.84-2.064z&quot;&#x2F;&gt;
-        &lt;path d&#x3D;&quot;m43.028 25.072h-5.28v-0.984h11.64v0.984h-5.28v14.592h-1.08z&quot;&#x2F;&gt;
-        &lt;path d&#x3D;&quot;m52.666 39.664v-15.576h1.104v14.568h7.152v1.008z&quot;&#x2F;&gt;
-        &lt;path d&#x3D;&quot;m64.965 34.264-2.232 5.4h-1.128l6.528-15.672h0.648l6.576 15.672h-1.224l-2.256-5.4zm3.432-8.496q-0.36 1.08-0.648 1.8l-2.4 5.76h6.144l-2.376-5.736q-0.552-1.344-0.72-1.824z&quot;&#x2F;&gt;
-        &lt;path d&#x3D;&quot;m81.685 24.76q-1.296 0-2.112 0.624t-0.816 1.752q0 1.296 1.08 2.328 0.768 0.744 1.968 1.584 1.224 0.816 1.68 1.176t1.104 0.984q1.176 1.176 1.176 2.712 0 1.992-1.344 3.024-1.32 1.008-3.72 1.008-2.376 0-3.984-1.248l0.576-0.84q1.632 1.104 3.456 1.104t2.832-0.768q1.032-0.768 1.032-2.16 0-1.2-1.032-2.208-0.72-0.72-1.944-1.56-1.2-0.84-1.68-1.2-0.48-0.384-1.128-1.008-1.224-1.224-1.224-2.832t1.128-2.52q1.152-0.912 3.168-0.912t3.624 0.792l-0.408 0.888q-1.488-0.72-3.432-0.72z&quot;&#x2F;&gt;
-    &lt;&#x2F;g&gt;
-&lt;&#x2F;svg&gt;</code></pre>
+        <div class="atlas-playground__details" id="l-atlas-container-code-2" aria-hidden="true">
+<pre><code class="language-html" contenteditable="true">&lt;div style&#x3D;&quot;transform: translate3d(0,0,0)&quot;&gt;&lt;!-- need this to hold pos:fixed --&gt;
+
+&lt;div class&#x3D;&quot;l-atlas-container js-aside-panel-hidden&quot;&gt;
+    &lt;div class&#x3D;&quot;l-atlas-container__aside&quot;&gt;
+        &lt;div class&#x3D;&quot;atlas-aside__header&quot;&gt;
+            Aside
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+    &lt;div class&#x3D;&quot;l-atlas-container__main&quot;&gt;
+        Content
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+
+&lt;&#x2F;div&gt;</code></pre>
         </div>
     </figcaption>
     <div class="atlas-playground__example">
         <div class="atlas-playground-test-frame js-playground__example-rubicon">
-<svg id="animated-logo" width="60" height="30" version="1.1" viewBox="0 0 98.599998 52.414875" xmlns="http://www.w3.org/2000/svg">
-    <g fill="none" stroke="currentColor" transform="translate(0 -.00024594)">
-        <path d="m30.933 5.5253l2.0368-4.8711"/>
-        <path d="m11.6 51.761l1.4749-3.5272"/>
-        <path d="m35.931 42.833c-3.7397 3.0367-8.5656 4.8672-13.831 4.8672-11.866 0-21.5-9.296-21.5-20.745 0-11.45 9.634-20.746 21.5-20.746 9.1935 0 17.047 5.5801 20.118 13.419"/>
-    </g>
-    <g aria-label="Atlas" fill="currentColor">
-        <path d="m27.194 33.712-2.472 5.952h-1.224l7.224-17.28h0.672l7.248 17.28h-1.296l-2.472-5.952zm3.792-9.408q-0.024 0.024-0.096 0.288-0.336 1.032-0.648 1.752l-2.64 6.384h6.864l-2.64-6.36q-0.84-1.824-0.84-2.064z"/>
-        <path d="m43.028 25.072h-5.28v-0.984h11.64v0.984h-5.28v14.592h-1.08z"/>
-        <path d="m52.666 39.664v-15.576h1.104v14.568h7.152v1.008z"/>
-        <path d="m64.965 34.264-2.232 5.4h-1.128l6.528-15.672h0.648l6.576 15.672h-1.224l-2.256-5.4zm3.432-8.496q-0.36 1.08-0.648 1.8l-2.4 5.76h6.144l-2.376-5.736q-0.552-1.344-0.72-1.824z"/>
-        <path d="m81.685 24.76q-1.296 0-2.112 0.624t-0.816 1.752q0 1.296 1.08 2.328 0.768 0.744 1.968 1.584 1.224 0.816 1.68 1.176t1.104 0.984q1.176 1.176 1.176 2.712 0 1.992-1.344 3.024-1.32 1.008-3.72 1.008-2.376 0-3.984-1.248l0.576-0.84q1.632 1.104 3.456 1.104t2.832-0.768q1.032-0.768 1.032-2.16 0-1.2-1.032-2.208-0.72-0.72-1.944-1.56-1.2-0.84-1.68-1.2-0.48-0.384-1.128-1.008-1.224-1.224-1.224-2.832t1.128-2.52q1.152-0.912 3.168-0.912t3.624 0.792l-0.408 0.888q-1.488-0.72-3.432-0.72z"/>
-    </g>
-</svg>
+<div style="transform: translate3d(0,0,0)"><!-- need this to hold pos:fixed -->
+
+<div class="l-atlas-container js-aside-panel-hidden">
+    <div class="l-atlas-container__aside">
+        <div class="atlas-aside__header">
+            Aside
+        </div>
+    </div>
+    <div class="l-atlas-container__main">
+        Content
+    </div>
+</div>
+
+</div>
         </div>
     </div>
     <span role="region" aria-live="polite" class="atlas-playground__notifier js-playground__notifier"></span>
 </figure>
-<p class="atlas atlas-p">See the <code>b-atlas-component.scss</code> source for example.</p>
-<style>
-#animated-logo {
-    animation: dasharray 3s infinite alternate-reverse;
-    color: #3281e2;
-    height: 100px;
-    stroke-dasharray: 200 0;
-    stroke-dashoffset: 400;
-    width: 200px;
-}
-
-@keyframes dasharray {
-    100% {
-        stroke-dasharray: 0 50;
-    }
-}
-</style>
-
-    </section>
-    <section class="atlas-section">
-<span class="atlas-anchor" id="h2-component-footer"></span>
-<h2 class="atlas atlas-title atlas-title_2">
-    <span class="atlas-title__text">
-        Component footer
-    </span>
-    <a class="atlas-title__anchor" href="#h2-component-footer" title="Copy link to this title">
-        <svg width="14" height="14" role="img">
-            <use xlink:href="#icon-ln"></use>
-        </svg>
-    </a>
-    <span class="atlas-title__highlight"></span>
-</h2>
-<p class="atlas atlas-p">In footer you get the information about:</p>
-<ul class="atlas atlas-ul">
-	<li>Total declarations in component</li>
-<li>Declaration size graph. Normal component have most of declaration in the beginning and very few at the end.
-If not component probably have deviated modifications.</li>
-<li>Component structure that get you the idea of component organization without opening source file.</li>
-<li>Possible bad practices count. Right now it Important, Vendor prefixes and floats. Hover on it to get additional info.</li>
-<li>And basic properties count that sorted from most used to less used.
-This properties can provide you the idea about component profile.
-Container type of component should not have any styling properties, but only the metric and layouting.</li>
-<li>If constants is declared than messages about constants consistency is showed.</li>
-
-</ul>
 
 </section>
 
@@ -609,7 +498,7 @@ Container type of component should not have any styling properties, but only the
             <div role="region" class="atlas-component-footer__section" aria-label="Ruleset sizes">
                 <figure class="atlas-info-digit _primary">
                     <div class="atlas-info-digit__digit">
-                        12
+                        15
                     </div>
                     <figcaption class="atlas-info-digit__details">
                         <div role="heading" aria-level="3" class="atlas-info-digit__title">
@@ -625,9 +514,9 @@ Container type of component should not have any styling properties, but only the
                         </filter>
                     </defs>
                     <g class="atlas-sparkline__line">
-                        <path d="M0,25.6C0,25.6,37.84084622961452,60.25240174297837,58,64C76.62818253643218,67.46298982587098,96.97174877091362,57.43056297973619,116,51.2C135.6589755828931,44.762914215727825,154.66666666666666,25.599999999999998,174,25.6C193.33333333333334,25.599999999999998,212.21702072831366,47.02824670931192,232,51.2C250.92197507998,55.19018826851835,290,51.2,290,51.2" stroke="currentColor" fill="none"/>
+                        <path d="M0,54.85714285714286C0,54.85714285714286,37.48936933970039,3.266009813505277,58,0C76.38718620068349,-2.9278831825692775,96.97734889143176,16.983117526909275,116,27.42857142857143C135.66536408124801,38.226942948803746,154.05103064924262,61.420657863231455,174,64C192.78730869894355,66.42914288510967,212.49397868367262,47.17075137693655,232,45.714285714285715C251.16660284745151,44.28316357695821,290,54.85714285714286,290,54.85714285714286" stroke="currentColor" fill="none"/>
                         <g class="atlas-sparkline__shadow">
-                            <path d="M0,25.6C0,25.6,37.84084622961452,60.25240174297837,58,64C76.62818253643218,67.46298982587098,96.97174877091362,57.43056297973619,116,51.2C135.6589755828931,44.762914215727825,154.66666666666666,25.599999999999998,174,25.6C193.33333333333334,25.599999999999998,212.21702072831366,47.02824670931192,232,51.2C250.92197507998,55.19018826851835,290,51.2,290,51.2" stroke="currentColor" fill="none" filter="url(#blur-filter)"/>
+                            <path d="M0,54.85714285714286C0,54.85714285714286,37.48936933970039,3.266009813505277,58,0C76.38718620068349,-2.9278831825692775,96.97734889143176,16.983117526909275,116,27.42857142857143C135.66536408124801,38.226942948803746,154.05103064924262,61.420657863231455,174,64C192.78730869894355,66.42914288510967,212.49397868367262,47.17075137693655,232,45.714285714285715C251.16660284745151,44.28316357695821,290,54.85714285714286,290,54.85714285714286" stroke="currentColor" fill="none" filter="url(#blur-filter)"/>
                         </g>
                     </g>
                 </svg>
@@ -635,14 +524,11 @@ Container type of component should not have any styling properties, but only the
             <div role="region" class="atlas-component-footer__section" aria-label="Health check">
                     <figure class="atlas-info-digit">
                         <div class="atlas-info-digit__digit">
-                            1
+                            0
                         </div>
                         <figcaption class="atlas-info-digit__details">
                             <div role="heading" aria-level="3" class="atlas-info-digit__title">
-                                Important<br>declaration
-                            </div>
-                            <div role="list" class="atlas-info-digit__popup">
-                                    <div role="listitem" class="atlas-info-digit__item">padding</div>
+                                Important<br>declarations
                             </div>
                         </figcaption>
                     </figure>
@@ -670,26 +556,16 @@ Container type of component should not have any styling properties, but only the
             <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
                 <div class="atlas-info-list" role="list">
                     <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">3</span>
-                        <span class="atlas-info-list__name">Font families</span>
-                            <div class="atlas-constant">
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        3
-                                        fixes required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                            <code>Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif</code>&ensp;
-                                            <code>serif</code>&ensp;
-                                            <code>sans</code>&ensp;
-                                    </div>
-                            </div>
+                        <span class="atlas-info-list__total">2</span>
+                        <span class="atlas-info-list__name">positions</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">2</span>
-                        <span class="atlas-info-list__name">Font sizes</span>
+                        <span class="atlas-info-list__name">widths</span>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">2</span>
+                        <span class="atlas-info-list__name">margins</span>
                             <div class="atlas-constant">
                                     <div class="atlas-constant__items _error">
                                         <svg role="img" width="16" height="16">
@@ -699,39 +575,14 @@ Container type of component should not have any styling properties, but only the
                                         fixes required
                                     </div>
                                     <div class="atlas-constant__list atlas">
-                                            <code>20px</code>&ensp;
-                                            <code>20px</code>&ensp;
-                                    </div>
-                            </div>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">2</span>
-                        <span class="atlas-info-list__name">Backgrounds</span>
-                            <div class="atlas-constant">
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        2
-                                        fixes required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                            <code>green</code>&ensp;
-                                            <code>orange</code>&ensp;
+                                            <code>270px</code>&ensp;
+                                            <code>5px</code>&ensp;
                                     </div>
                             </div>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">width</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">height</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">margin</span>
+                        <span class="atlas-info-list__name">boxShadow</span>
                             <div class="atlas-constant">
                                     <div class="atlas-constant__items _error">
                                         <svg role="img" width="16" height="16">
@@ -741,13 +592,17 @@ Container type of component should not have any styling properties, but only the
                                         fix required
                                     </div>
                                     <div class="atlas-constant__list atlas">
-                                            <code>$local-var</code>&ensp;
+                                            <code>1px 0 0 0 $aside-bd</code>&ensp;
                                     </div>
                             </div>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">padding</span>
+                        <span class="atlas-info-list__name">height</span>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">Background</span>
                             <div class="atlas-constant">
                                     <div class="atlas-constant__items _success">
                                         <svg role="img" width="16" height="16">
@@ -757,39 +612,7 @@ Container type of component should not have any styling properties, but only the
                                     </div>
                                     <div class="atlas-constant__list _warn atlas">
                                         
-                                        <code>1.25rem</code> could be changed to <code>$space-md-atlas</code>
-                                    </div>
-                            </div>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">mediaQuery</span>
-                            <div class="atlas-constant">
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        1
-                                        fix required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                            <code>all</code>&ensp;
-                                    </div>
-                            </div>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">color</span>
-                            <div class="atlas-constant">
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        1
-                                        fix required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                            <code>red</code>&ensp;
+                                        <code>white</code> could be changed to <code>$color-white-atlas</code>
                                     </div>
                             </div>
                     </div>
@@ -799,11 +622,23 @@ Container type of component should not have any styling properties, but only the
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">0</span>
-                        <span class="atlas-info-list__name">positions</span>
+                        <span class="atlas-info-list__name">Font families</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">0</span>
-                        <span class="atlas-info-list__name">boxShadows</span>
+                        <span class="atlas-info-list__name">colors</span>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">0</span>
+                        <span class="atlas-info-list__name">paddings</span>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">0</span>
+                        <span class="atlas-info-list__name">mediaQuerys</span>
+                    </div>
+                    <div role="listitem" class="atlas-info-list__item">
+                        <span class="atlas-info-list__total">0</span>
+                        <span class="atlas-info-list__name">Font sizes</span>
                     </div>
                 </div>
             </div>
@@ -816,42 +651,42 @@ Container type of component should not have any styling properties, but only the
                 </div>
                 <div class="atlas-component-structure__nodes" role="list">
     <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="element">
-            <span class="atlas-component-structure__type atlas-component-structure__type_element"></span>
-            <span class="atlas-component-structure__name">.class</span> {...}
+        <div class="atlas-component-structure__selector" title="component">
+            <span class="atlas-component-structure__type atlas-component-structure__type_component"></span>
+            <span class="atlas-component-structure__name">.l-atlas-container</span> {...}
         </div>
             <div role="list" class="atlas-component-structure__nodes">
     <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="mixin">
-            <span class="atlas-component-structure__type atlas-component-structure__type_mixin"></span>
-            <span class="atlas-component-structure__name">include component()</span>;
-        </div>
-    </div>
-    <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="condition">
-            <span class="atlas-component-structure__type atlas-component-structure__type_condition"></span>
-            <span class="atlas-component-structure__name">media all</span> {...}
+        <div class="atlas-component-structure__selector" title="element">
+            <span class="atlas-component-structure__type atlas-component-structure__type_element"></span>
+            <span class="atlas-component-structure__name">&amp;__aside</span> {...}
         </div>
     </div>
     <div role="listitem" class="atlas-component-structure__node">
         <div class="atlas-component-structure__selector" title="element">
             <span class="atlas-component-structure__type atlas-component-structure__type_element"></span>
-            <span class="atlas-component-structure__name">&amp;__item-empty</span> {...}
+            <span class="atlas-component-structure__name">&amp;__main</span> {...}
         </div>
-            <div role="list" class="atlas-component-structure__nodes">
-    <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="modifier-implicit">
-            <span class="atlas-component-structure__type atlas-component-structure__type_modifier-implicit"></span>
-            <span class="atlas-component-structure__name">&amp;:hover</span> {...}
-        </div>
-    </div>
-            </div>
     </div>
     <div role="listitem" class="atlas-component-structure__node">
         <div class="atlas-component-structure__selector" title="modifier-adjacent">
             <span class="atlas-component-structure__type atlas-component-structure__type_modifier-adjacent"></span>
-            <span class="atlas-component-structure__name">&amp;._mod</span> {...}
+            <span class="atlas-component-structure__name">&amp;.js-aside-panel-hidden</span> {...}
         </div>
+            <div role="list" class="atlas-component-structure__nodes">
+    <div role="listitem" class="atlas-component-structure__node">
+        <div class="atlas-component-structure__selector" title="element">
+            <span class="atlas-component-structure__type atlas-component-structure__type_element"></span>
+            <span class="atlas-component-structure__name">.l-atlas-container__aside</span> {...}
+        </div>
+    </div>
+    <div role="listitem" class="atlas-component-structure__node">
+        <div class="atlas-component-structure__selector" title="element">
+            <span class="atlas-component-structure__type atlas-component-structure__type_element"></span>
+            <span class="atlas-component-structure__name">.l-atlas-container__main</span> {...}
+        </div>
+    </div>
+            </div>
     </div>
             </div>
     </div>
