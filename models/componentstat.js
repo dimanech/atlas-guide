@@ -5,57 +5,57 @@ const path = require('path');
 
 const color = require('d3-color');
 const postcss = require('postcss');
-const postscss = require('postcss-scss');
+const scss = require('postcss-scss');
 
 let componentPrefixRegExp;
 // check invalid scss handling
 
 function guessType(name) {
-    // parse prefix
-    if (/^include/.test(name)) {
-        return 'mixin';
+    let type;
+    switch (true) {
+        // parse prefix
+        case /^include/.test(name):
+            type = 'mixin';
+            break;
+        case /^extend/.test(name):
+            type = 'extend';
+            break;
+        case /(^media)|(^supports)|(^if)/.test(name):
+            type = 'condition';
+            break;
+        case /^&\./.test(name):
+            type = 'modifier-adjacent';
+            break;
+        // parse suffixes
+        case /([a-z&\d]_[a-z\d-]*$)|(--.*$)/.test(name): // move to config
+            type = 'modifier';
+            break;
+        case /[a-z&\d]__[a-z\d]*$/.test(name):
+            type = 'element';
+            break;
+        case /::.*$/.test(name):
+            type = 'element-implicit';
+            break;
+        case /:.*$/.test(name):
+            type = 'modifier-implicit';
+            break;
+        case /[a-z\d] &/.test(name):
+            type = 'modifier-context';
+            break;
+        // parse prefix again
+        case componentPrefixRegExp.test(name):
+            // if no prefix defined we should mark first level selectors as component.
+            // isRootImmediateChild arg could be used
+            type = 'component';
+            break;
+        default:
+            type = 'element';
+            break;
     }
-
-    if (/(^media)|(^supports)|(^if)/.test(name)) {
-        return 'condition';
-    }
-
-    // parse suffixes
-    if (/([a-z]_[a-z\d]*$)|(--.*$)/.test(name)) {
-        return 'modifier';
-    }
-
-    if (/__.*$/.test(name)) {
-        return 'element';
-    }
-
-    if (/::.*$/.test(name)) {
-        return 'element-implicit';
-    }
-
-    if (/:.*$/.test(name)) {
-        return 'modifier-implicit';
-    }
-
-    // parse prefix again
-    if (/ &/.test(name)) {
-        return 'modifier-context';
-    }
-
-    if (/^&/.test(name)) {
-        return 'modifier-adjacent';
-    }
-
-    if (componentPrefixRegExp.test(name)) {
-        // if no prefix defined we should mark first level selectors as component.
-        // isRootImmediateChild arg could be used
-        return 'component';
-    }
-
     // implement me - orphan element (element from another component or element without root)
     // context modification from another component - this should be warn
-
-    return 'element';
+    // ".b-promo-box_top .b-promo-box__content" should be modifier
+    return type;
 }
 
 function getComponentStructure(fileAST) {
@@ -279,7 +279,7 @@ function getDeclsStats(fileAST) {
 }
 
 function getStatistic(file) {
-    const fileAST = postcss().process(file, {parser: postscss}).root;
+    const fileAST = postcss().process(file, {parser: scss}).root;
     const stats = getDeclsStats(fileAST);
     const atRules = getAtRules(fileAST);
 

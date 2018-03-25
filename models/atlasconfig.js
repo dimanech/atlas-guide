@@ -4,24 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const projectRoot = process.cwd();
 
-function printMessage(type, message) {
-    const colorizeYellow = str => '\x1b[33m' + str + '\x1b[0m';
-    const colorizeRed = str => '\x1b[31m' + str + '\x1b[0m';
-
-    switch (type) {
-        case 'error': {
-            console.error(colorizeRed('Error: ') + 'Atlas: ' + message);
-            break;
-        }
-        case 'warn': {
-            console.warn(colorizeYellow('Warn: ') + 'Atlas: ' + message);
-            break;
-        }
-        default: {
-            console.log('Atlas: ' + message);
-        }
-    }
-}
+const printMessage = require('./utils/printmessage');
 
 function getComponentsPrefix(config) {
     const prefixes = config.componentPrefixes;
@@ -39,6 +22,42 @@ function getComponentsPrefix(config) {
     }
 
     return new RegExp(prefixExp);
+}
+
+function isPathConfigured(config, name) {
+    if (!config) {
+        printMessage('error', '"' + name + '" not defined. This config is required.');
+        return true;
+    } else if (!fs.existsSync(path.join(projectRoot, config))) {
+        printMessage('error', '"' + name + '" (' + config + ') in config unavailable or unreadable. ' +
+            'Please check this path in config.');
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function fillTemplatesConfig(templatesConfig, internalTemplatesPath, name) {
+    let templates = {};
+
+    fs.readdirSync(path.join(__dirname, internalTemplatesPath))
+        .forEach(item => templates[path.basename(item, '.mustache')] = '');
+
+    Object.keys(templates).forEach(template => {
+        if (templatesConfig !== undefined && templatesConfig.hasOwnProperty(template)) {
+            const templatePath = path.join(projectRoot, templatesConfig[template]);
+            if (fs.existsSync(templatePath)) {
+                templates[template] = templatePath;
+                return;
+            } else {
+                printMessage('warn', '"' + template + '" ' + name + ' is declared, but file not found. ' +
+                    'Internal partial used for this include.');
+            }
+        }
+        templates[template] = path.join(__dirname, internalTemplatesPath, template + '.mustache');
+    });
+
+    return templates;
 }
 
 function getConfig(configSrc) {
@@ -65,10 +84,8 @@ function getProjectInfo(configRaw) {
     const pkg = require(path.join(projectRoot, 'package.json'));
     let projectName = 'atlas';
 
-    if (config.projectInfo !== undefined) {
-        if (config.projectInfo.name) {
-            projectName = config.projectInfo.name;
-        }
+    if (config.projectInfo !== undefined && config.projectInfo.name) {
+        projectName = config.projectInfo.name;
     } else {
         if (!pkg.name) {
             printMessage('warn', 'Neither "projectName" in atlas, nor "name" in package.json is declared. ' +
@@ -86,47 +103,13 @@ function getProjectInfo(configRaw) {
 
 function getMandatoryBaseConfig(config) {
     let atlasConfig = {};
-
-    if (!config.guideSrc) {
-        printMessage('error', '"guideSrc" not defined. This config is required.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
+    if (isPathConfigured(config.guideSrc, 'guideSrc') ||
+        isPathConfigured(config.guideDest, 'guideDest') ||
+        isPathConfigured(config.cssSrc, 'cssSrc')) {
+        return { isCorrupted: true }; // return with corrupted config if we don't have crucial fields
     }
 
-    if (!fs.existsSync(path.join(projectRoot, config.guideSrc))) {
-        printMessage('error', '"guideSrc" (' + config.guideSrc + ') in config unavailable or unreadable. ' +
-            'Please check this path in config.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    if (!config.guideDest) {
-        printMessage('error', '"guideDest" not defined. This config is required.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    if (!fs.existsSync(path.join(projectRoot, config.guideDest))) {
-        printMessage('error', '"guideDest" directory (' + config.guideDest + ') unavailable or unreadable. ' +
-            'Please check this path in config.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    if (!config.cssSrc) {
-        printMessage('error', '"cssSrc" not defined. This config is required.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    if (!fs.existsSync(path.join(projectRoot, config.cssSrc))) {
-        printMessage('error', '"cssSrc" directory (' + config.cssSrc + ') in config unavailable or ' +
-            'unreadable. Please check this path in config.');
-        atlasConfig.isCorrupted = true;
-        return atlasConfig;
-    }
-
-    // Mandatory configs
+    // Process mandatory configs
     atlasConfig.guideSrc = path.join(projectRoot, config.guideSrc, '/');
     atlasConfig.guideDest = path.join(projectRoot, config.guideDest, '/');
     atlasConfig.cssSrc = path.join(projectRoot, config.cssSrc, '/');
@@ -169,34 +152,7 @@ function getOptionalBaseConfigs(config) {
 }
 
 function getTemplates(config) {
-    const templatesConfig = config.templates;
-    const internalTemplatesPath = '../views/templates/';
-    let templates = {
-        'component': '',
-        'guide': '',
-        'about': '',
-        'insights': '',
-        'bundle': '',
-        'styleguide': ''
-    };
-
-    for (let template in templates) {
-        if (!templates.hasOwnProperty(template)) {
-            continue;
-        }
-        if (templatesConfig !== undefined && templatesConfig.hasOwnProperty(template)) {
-            if (fs.existsSync(path.join(projectRoot, templatesConfig[template]))) {
-                templates[template] = path.join(projectRoot, templatesConfig[template]);
-                continue;
-            } else {
-                printMessage('warn', '"' + template + '" template is declared, but file not found. ' +
-                    'Internal partial used for this include.');
-            }
-        }
-        templates[template] = path.join(__dirname, internalTemplatesPath, template + '.mustache');
-    }
-
-    return templates;
+    return fillTemplatesConfig(config.templates, '../views/templates/', 'template');
 }
 
 function getAdditionalPages(templates, dest, constants) {
@@ -232,13 +188,7 @@ function getAdditionalPages(templates, dest, constants) {
 function getDeclaredConstants(configRaw) {
     const config = getConfig(configRaw);
     const constantsList = [
-        'colorPrefix',
-        'fontPrefix',
-        'scalePrefix',
-        'spacePrefix',
-        'motionPrefix',
-        'depthPrefix',
-        'breakpointPrefix'
+        'colorPrefix', 'fontPrefix', 'scalePrefix', 'spacePrefix', 'motionPrefix', 'depthPrefix', 'breakpointPrefix'
     ];
     let projectConstants = {
         'isDefined': false,
@@ -295,40 +245,9 @@ function getBaseConfig(configRaw) {
 
 function getPartialsConfig(configRaw) {
     const config = getConfig(configRaw);
+    let partials = fillTemplatesConfig(config.partials, '../views/includes/partials/', 'partial');
 
-    const partialsConfig = config.partials;
-    const internalPartialsPath = '../views/includes/partials/';
-    let partials = {
-        'aside': '',
-        'assetsfooter': '',
-        'assetshead': '',
-        'componentstataside': '',
-        'componentstatfooter': '',
-        'componentstructure': '',
-        'copyright': '',
-        'footer': '',
-        'header': '',
-        'logo': '',
-        'navigation': '',
-        'toc': '',
-        'welcome': ''
-    };
-
-    for (let partial in partials) {
-        if (!partials.hasOwnProperty(partial)) {
-            continue;
-        }
-        if (partialsConfig !== undefined && partialsConfig.hasOwnProperty(partial)) {
-            if (fs.existsSync(path.join(projectRoot, partialsConfig[partial]))) {
-                partials[partial] = path.join(projectRoot, partialsConfig[partial]);
-                continue;
-            } else {
-                printMessage('warn', '"' + partial + '" template is declared, but file not found. ' +
-                    'Internal partial used for this include.');
-            }
-        }
-        partials[partial] = path.join(__dirname, internalPartialsPath, partial + '.mustache');
-    }
+    Object.keys(partials).forEach(partial => partials[partial] = fs.readFileSync(partials[partial], 'utf8'));
 
     return partials;
 }

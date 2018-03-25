@@ -6,42 +6,24 @@ const mustache = require('mustache');
 
 const atlasConfig = require(path.join(__dirname, '../../models/atlasconfig.js'));
 const projectInfo = atlasConfig.getProjectInfo();
+const partials = atlasConfig.getPartials();
 
-function getPartials() {
-    const partialsMap = atlasConfig.getPartials();
-    let partials = {};
-
-    Object.keys(partialsMap).forEach(partial => partials[partial] = fs.readFileSync(partialsMap[partial], 'utf8'));
-
-    return partials;
-}
-const partials = getPartials();
+const inline = require('./templateHelpers/inline');
+const pluralize = require('./templateHelpers/pluralize');
 
 const View = function(page) {
-    this.projectInfo = {
+    this.projectInfo = { // could be cached
         'name': projectInfo.name,
         'version': projectInfo.version
     };
     this.pageTitle = page.title;
     this.content = page.content;
     this.type = page.type;
-    this.subPages = page.subPages; // this could be cached
+    this.subPages = page.subPages; // could be cached
 };
 
-View.prototype.inline = () => {
-    return function(text, render) {
-        return fs.readFileSync(path.resolve(process.cwd(), render(text)), 'utf8');
-    };
-};
-
-View.prototype.pluralize = () => {
-    return function(text, render) {
-        const args = render(text).split(',');
-        const singular = args[1];
-        const plural = args[2];
-        return parseFloat(args[0]) === 1 ? singular : plural;
-    };
-};
+View.prototype.inline = () => (text, render) => inline(text, render);
+View.prototype.pluralize = () => (text, render) => pluralize(text, render);
 
 function prepareView(config) {
     return new View({
@@ -53,7 +35,7 @@ function prepareView(config) {
 }
 
 /**
- * Prepare data and write file to the destination.
+ * Prepare data and write file to destination.
  * @private
  * @param {object} config - config object with templates and data
  * @return {Promise<string>}
