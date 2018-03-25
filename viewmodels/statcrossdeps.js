@@ -2,51 +2,36 @@
 
 const path = require('path');
 
+let pathToSCSS;
+let excludedFilesRegexp;
+const isPartial = fileName => /^_/i.test(fileName);
+const isExcludedFile = file => excludedFilesRegexp.test(file);
+const getReducedPath = str => str.replace(pathToSCSS, '').replace(/(^\/)|(\\)/, '').replace(/\.scss/, '');
+
 function prepareImportsData(importsGraph, excludesRegexp) {
-    const pathToSCSS = new RegExp(path.resolve(importsGraph.dir).replace(/\\/g, '\\\\'));
-
-    function isExcludedFile(file) {
-        return excludesRegexp.test(file);
-    }
-
-    function getReducedPath(str) {
-        return str.replace(pathToSCSS, '')
-            .replace(/(^\/)|(\\)/, '')
-            .replace(/\.scss/, '');
-    }
+    pathToSCSS = new RegExp(path.resolve(importsGraph.dir).replace(/\\/g, '\\\\'));
+    excludedFilesRegexp = excludesRegexp;
 
     let importsPaths = {
         'nodes': [],
         'links': []
     };
 
-    for (let prop in importsGraph.index) {
-        if (!importsGraph.index.hasOwnProperty(prop)) {
-            continue;
-        }
-        const pathStr = prop.toString();
-        const fileName = path.basename(pathStr, '.scss');
-
+    Object.keys(importsGraph.index).forEach(prop => {
+        const fileName = path.basename(prop.toString(), '.scss');
         if (isExcludedFile(fileName)) {
-            continue;
+            return;
         }
-        const isPartial = fileName => /^_/i.test(fileName);
 
-        if (!isPartial(path.basename(pathStr, '.scss'))) {
-            importsPaths.nodes.push({
-                'id': getReducedPath(prop),
-                'depth': 1,
-                'mass': importsGraph.index[prop].imports.length
-            });
-        } else {
+        if (isPartial(fileName)) {
             const importedBy = importsGraph.index[prop].importedBy;
             let weight = 0;
 
-            for (let i = 0; i < importedBy.length; i++) {
-                if (!isPartial(path.basename(importedBy[i], '.scss'))) { // eslint-disable-line max-depth
+            importedBy.forEach(source => {
+                if (!isPartial(path.basename(source, '.scss'))) {
                     weight = weight + 1;
                 }
-            }
+            });
 
             if (weight > 1) {
                 importsPaths.nodes.push({
@@ -54,13 +39,12 @@ function prepareImportsData(importsGraph, excludesRegexp) {
                     'depth': 2,
                     'mass': 1
                 });
-
-                for (let i = 0; i < importedBy.length; i++) { // eslint-disable-line max-depth
+                importedBy.forEach(source => {
                     importsPaths.links.push({
                         source: getReducedPath(prop),
-                        target: getReducedPath(importedBy[i])
+                        target: getReducedPath(source)
                     });
-                }
+                });
             } else if (importedBy.length === 0) {
                 importsPaths.nodes.push({
                     'id': getReducedPath(prop),
@@ -68,8 +52,14 @@ function prepareImportsData(importsGraph, excludesRegexp) {
                     'mass': 0
                 });
             }
+        } else {
+            importsPaths.nodes.push({
+                'id': getReducedPath(prop),
+                'depth': 1,
+                'mass': importsGraph.index[prop].imports.length
+            });
         }
-    }
+    });
 
     return JSON.stringify(importsPaths);
 }
