@@ -9,6 +9,7 @@ const errorMsg = "[GUARD]: Some js files are invalid. Please fix errors and try 
 
 if (files) {
     exec(path.join(nodeBin, 'eslint --quiet') + ' ' + files, (error, stdout, stderr) => {
+        console.log('[GUARD]: Lint JS...');
         if (stdout) {
             console.error(errorMsg);
             console.error(stdout);

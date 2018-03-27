@@ -14,6 +14,7 @@ const errorMsg = "[GUARD]: Some scss files are invalid. Please fix errors and tr
 
 if (files) {
     exec(path.join(nodeBin, 'stylelint') + ' ' + files, (error, stdout, stderr) => {
+        console.log('[GUARD]: Lint SCSS...');
         if (stdout) {
             console.error(errorMsg);
             console.error(stdout);

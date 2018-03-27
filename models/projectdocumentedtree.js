@@ -3,6 +3,38 @@
 const fs = require('fs');
 const path = require('path');
 
+let excludedSassFiles;
+let excludedDirs;
+let guideDest;
+let templates;
+
+function isDocumented(filePath) {
+    const file = fs.readFileSync(filePath, 'utf8');
+    const docComment = /\/\*md(\r\n|\n)(((\r\n|\n)|.)*?)\*\//g;
+
+    return docComment.exec(file);
+}
+
+function isExcludedFile(name) {
+    return excludedSassFiles.test(name);
+}
+
+function isExcludedDirectory(name) {
+    return excludedDirs.test(name);
+}
+
+function pageConfig(id, title, target, isDocs) {
+    return {
+        id: id,
+        title: title,
+        type: isDocs ? 'guide' : /^l-/i.test(title) ? 'container' : 'component',
+        src: target,
+        target: guideDest + id + '.html',
+        template: isDocs ? templates.docs : templates.component,
+        subPages: []
+    };
+}
+
 /**
  * @typedef {Object} atlasComponentObject
  * @property {string} title - title of resource [category|component|guide]
@@ -21,6 +53,11 @@ const path = require('path');
  * @return {atlasComponentObject} tree of nodes
  */
 function makeProjectTree(atlasConfig) {
+    excludedSassFiles = atlasConfig.excludedSassFiles;
+    excludedDirs = atlasConfig.excludedDirs;
+    guideDest = atlasConfig.guideDest;
+    templates = atlasConfig.templates;
+
     let docSet = {
         'coverage': {
             'all': 0,
@@ -28,21 +65,6 @@ function makeProjectTree(atlasConfig) {
         },
         'subPages': []
     };
-
-    function isExcludedFile(name) {
-        return atlasConfig.excludedSassFiles.test(name);
-    }
-
-    function isExcludedDirectory(name) {
-        return atlasConfig.excludedDirs.test(name);
-    }
-
-    function isDocumented(filePath) {
-        const file = fs.readFileSync(filePath, 'utf8');
-        const docComment = /\/\*md(\r\n|\n)(((\r\n|\n)|.)*?)\*\//g;
-
-        return docComment.exec(file);
-    }
 
     /**
      * Traverse directories and generate components config
@@ -60,34 +82,20 @@ function makeProjectTree(atlasConfig) {
             let resource = fs.statSync(target);
 
             if (resource.isFile()) {
-                if (path.extname(name) === '.scss') {
+                const isSass = path.extname(name) === '.scss';
+                if (isSass) {
                     docSet.coverage.all++;
                 }
-                if (path.extname(name) === '.scss' && isDocumented(target) && !isExcludedFile(name)) {
+                if (isSass && isDocumented(target) && !isExcludedFile(name)) {
                     docSet.coverage.covered++;
                     const title = path.basename(name, '.scss').replace(/^_/i, '');
                     const id = categoryName + title;
-                    config.push({
-                        id: id,
-                        title: title,
-                        type: /^l-/i.test(title) ? 'container' : 'component',
-                        src: target,
-                        target: atlasConfig.guideDest + id + '.html',
-                        template: atlasConfig.templates.component,
-                        subPages: []
-                    });
+                    config.push(pageConfig(id, title, target, false));
                 }
                 if (path.extname(name) === '.md') {
+                    const title = path.basename(name, '.md');
                     const id = categoryName + 'doc-' + path.basename(name, '.md');
-                    config.push({
-                        id: id,
-                        type: 'guide',
-                        title: path.basename(name, '.md'),
-                        src: target,
-                        target: atlasConfig.guideDest + id + '.html',
-                        template: atlasConfig.templates.docs,
-                        subPages: []
-                    });
+                    config.push(pageConfig(id, title, target, true));
                 }
             } else if (resource.isDirectory() && !isExcludedDirectory(name)) {
                 config.push({
@@ -95,20 +103,12 @@ function makeProjectTree(atlasConfig) {
                     type: 'category',
                     subPages: []
                 });
-                findComponents(
-                    target,
-                    config[config.length - 1].subPages,
-                    categoryName + name + '-'
-                );
+                findComponents(target, config[config.length - 1].subPages, categoryName + name + '-');
             }
         });
     }
 
-    findComponents(
-        atlasConfig.guideSrc,
-        docSet.subPages,
-        ''
-    );
+    findComponents(atlasConfig.guideSrc, docSet.subPages, '');
 
     if (atlasConfig.additionalPages.length) {
         atlasConfig.additionalPages.forEach(page => docSet.subPages.push(page));
