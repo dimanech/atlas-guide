@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"/>
+
+    <title>Atlas - bundle</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-frame.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-prism.css"/>
+
+<!--
+    This is internal asset assetshead.mustache
+    To replace it with project CSS imports add to config
+    "partials": {
+      "assetshead": "path/to/file.mustache"
+    }
+-->
+</head>
+<body class="atlas-page atlas-page_insights">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0"
+     style="position:absolute;">
+    <symbol id="icon-code-example" viewBox="0 0 24 24">
+        <path
+            d="M14.304 19.302a.989.989 0 0 0 0 1.407 1.009 1.009 0 0 0 1.418 0l2.955-2.93c.43-.426.43-1.111.009-1.539l-2.974-2.949a1.009 1.009 0 0 0-1.418 0 .989.989 0 0 0 0 1.407l2.327 2.307-2.317 2.297zM9.707 4.698a.988.988 0 0 0 0-1.407 1.01 1.01 0 0 0-1.418 0l-2.966 2.94a1.09 1.09 0 0 0 0 1.548l2.956 2.93a1.01 1.01 0 0 0 1.418 0 .988.988 0 0 0 0-1.407L7.38 7.005l2.327-2.307zm-3 14.009l12-12a1 1 0 1 0-1.414-1.414l-12 12a1 1 0 0 0 1.414 1.414z"
+            fill="currentColor" role="presentation"></path>
+    </symbol>
+    <symbol id="icon-component" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="none" fill-rule="evenodd" stroke-width="1">
+            <rect x="4.2352" y="9.2457" width="15.53" height="9.5086"></rect>
+            <rect x="13.286" y="5.8617" width="4.3489" height="3.1265"></rect>
+            <rect x="6.2226" y="5.9173" width="4.3096" height="3.3029"></rect>
+        </g>
+    </symbol>
+    <symbol id="icon-container" viewBox="0 0 24 24">
+        <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="4.5595" width="18" height="16.44" rx="2" ry="1.8267"></rect>
+            <line x1="3" x2="21" y1="10.119" y2="10.119"></line>
+            <line x1="9" x2="9" y1="20.296" y2="10.857"></line>
+        </g>
+    </symbol>
+    <symbol id="icon-guide" viewBox="0 0 297.001 297.001">
+        <path fill="currentColor"
+              d="M287.034,60.873l-20.819-0.001V39.321c0-4.934-3.61-9.126-8.49-9.856c-0.852-0.128-21.134-3.074-45.557,1.37c-27.227,4.954-48.941,17.171-63.668,35.64c-14.728-18.469-36.442-30.686-63.668-35.64c-24.424-4.443-44.706-1.498-45.557-1.37c-4.88,0.731-8.49,4.923-8.49,9.856v21.551H9.966C4.463,60.872,0,65.335,0,70.839v187.805c0,3.227,1.562,6.254,4.193,8.124s6.004,2.35,9.051,1.288c0.748-0.259,75.431-25.747,131.12-0.345c2.628,1.199,5.645,1.199,8.273,0c55.533-25.33,130.376,0.088,131.12,0.345c1.068,0.372,2.174,0.555,3.276,0.555c2.043,0,4.065-0.628,5.775-1.842c2.631-1.87,4.193-4.897,4.193-8.124V70.84C297,65.336,292.538,60.873,287.034,60.873z M19.933,245.309V80.805h10.852v132.726c0,2.896,1.267,5.646,3.458,7.539c2.191,1.893,5.105,2.742,7.969,2.319c0.55-0.08,43.846-6.024,75.478,15.679C78.725,232.405,39.727,240.112,19.933,245.309z M138.534,230.08c-13.932-12.588-32.079-21.1-53.702-25.034c-10.406-1.894-20.06-2.446-27.78-2.446c-2.292,0-4.414,0.049-6.333,0.126V48.473h-0.001c19.155-0.864,65.752,1.184,87.816,38.587V230.08z M158.466,87.061c21.985-37.243,68.655-39.384,87.816-38.563v154.228c-8.383-0.338-20.62-0.136-34.114,2.32c-21.623,3.934-39.77,12.445-53.702,25.034V87.061z M179.277,239.074c31.636-21.716,74.955-15.766,75.495-15.686c2.871,0.431,5.783-0.413,7.981-2.305c2.198-1.894,3.462-4.65,3.462-7.552V80.806h10.852v164.503C257.267,240.11,218.253,232.4,179.277,239.074z"></path>
+    </symbol>
+    <symbol id="icon-ln" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="none" fill-rule="evenodd" stroke-width="2">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-insights" viewBox="0 0 1000 1000">
+        <g fill="currentColor" transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+            <path
+                d="M8734.9,3367.3c-408.6-152.6-750-284.5-757.7-294.8c-10.4-7.8,82.8-100.9,204.3-204.3c191.4-165.5,217.2-196.5,188.8-235.3c-18.1-23.3-594.8-687.9-1282.7-1476.7L5835.8-276.7L5096.2,72.5c-406,191.4-809.5,380.2-897.4,419L4041,563.9L2494.5-1259.4L950.6-3085.2l72.4-59.5c41.4-33.6,118.9-93.1,175.8-131.9l98.3-69.8l49.1,56.9C1666.9-2891.2,4149.6,25.9,4165.2,25.9c12.9,0,408.6-181,879.3-403.4c473.3-219.8,868.9-403.5,879.3-406c10.3-2.6,625.8,687.9,1368.1,1533.6c742.2,845.7,1370.7,1562,1396.5,1587.9c46.5,49.1,51.7,44,258.6-137.1c116.4-103.4,219.8-181,227.6-173.3c31,33.6,356.9,1618.9,331,1616.3C9490.1,3641.4,9143.5,3517.3,8734.9,3367.3z"></path>
+            <path
+                d="M800.6,214.7C451.4-188.7,146.3-545.6,123-576.6c-41.4-56.9-38.8-62.1,108.6-181c85.3-67.2,162.9-121.6,175.9-121.6c18.1,0,677.6,755.2,1065.5,1220.7c36.2,44,72.4,25.9,594.8-318.1c305.2-201.7,569-369.8,584.5-377.6c12.9-5.1,87.9,62.1,162.9,150l134.5,160.3l-667.2,439.7c-367.2,240.5-708.6,465.5-757.7,496.5l-90.5,56.9L800.6,214.7z"></path>
+            <path
+                d="M9097-330.9c-411.2-165.5-744.8-310.3-744.8-318.1s98.3-93.1,219.8-188.8c121.6-95.7,219.8-183.6,219.8-191.4c0-15.5-887.1-1125-1383.6-1730.1l-108.6-134.5l-1600.8,1050C4819.5-1267.1,4085-791.3,4069.5-783.5c-23.3,7.8-305.2-302.6-287.1-318.1c147.4-108.6,3553.4-2319.8,3579.2-2322.4c20.7,0,421.5,465.5,894.8,1042.2c473.3,576.7,871.5,1050,884.5,1055.1c15.5,2.6,118.9-67.2,232.8-160.3c113.8-93.1,212.1-168.1,219.8-168.1c10.4,0,77.6,351.7,155.2,783.6c75,429.3,142.2,796.6,150,814.6c5.2,15.5-5.2,31-23.3,28.5C9854.7-28.4,9505.6-165.4,9097-330.9z"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-about" viewBox="0 0 496.304 496.303">
+        <path fill="currentColor"
+              d="M248.146,0C111.314,0,0,111.321,0,248.152c0,136.829,111.314,248.151,248.146,248.151c136.835,0,248.158-111.322,248.158-248.151C496.304,111.321,384.98,0,248.146,0zM248.146,472.093c-123.473,0-223.935-100.459-223.935-223.941c0-123.479,100.462-223.941,223.935-223.941c123.488,0,223.947,100.462,223.947,223.941C472.093,371.634,371.634,472.093,248.146,472.093zM319.536,383.42v32.852c0,1.383-1.123,2.494-2.482,2.494H196.45c-1.374,0-2.482-1.117-2.482-2.494V383.42c0-1.372,1.114-2.482,2.482-2.482h34.744V205.831h-35.101c-1.375,0-2.468-1.111-2.468-2.474v-33.6c0-1.38,1.1-2.479,2.468-2.479h82.293c1.371,0,2.482,1.105,2.482,2.479v211.181h36.186C318.413,380.938,319.536,382.048,319.536,383.42zM209.93,105.927c0-20.895,16.929-37.829,37.829-37.829c20.886,0,37.826,16.935,37.826,37.829s-16.94,37.829-37.826,37.829C226.853,143.756,209.93,126.822,209.93,105.927z"></path>
+    </symbol>
+    <symbol id="icon-category" viewBox="0 0 779.652 779.652">
+        <path fill="currentColor"
+              d="M679.503,349.728L151.09,9.181C119.742-7.703,83.832-5.951,83.832,54.688v670.58c0,55.408,38.525,64.17,67.258,45.506l528.442-340.547C701.255,407.975,701.255,371.953,679.503,349.728z"></path>
+    </symbol>
+    <symbol id="icon-in" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="currentColor" stroke-width="1">
+            <path
+                d="M 7 12 C 7 8.137 10.137 5 14 5 C 17.863 5 21 8.137 21 12 C 21 15.863 17.863 19 14 19 C 10.137 19 7 15.863 7 12 Z "
+                fill="none"></path>
+            <line x1="3" y1="12" x2="14" y2="12"></line>
+            <path d="M 11.75 14.5 L 16.75 12 L 11.75 9.5 Z" stroke="none"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-out" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="currentColor" stroke-width="1">
+            <path
+                d="M 7 12 C 7 8.137 10.137 5 14 5 C 17.863 5 21 8.137 21 12 C 21 15.863 17.863 19 14 19 C 10.137 19 7 15.863 7 12 Z "
+                fill="none"></path>
+            <line x1="3" y1="12" x2="14" y2="12"></line>
+            <path d="M 5.25 9.5 L 0.25 12 L 5.25 14.5 Z" stroke="none"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-filter" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="currentColor" stroke-width="1">
+            <path
+                d="M 2 12 C 2 6.481 6.481 2 12 2 C 17.519 2 22 6.481 22 12 C 22 17.519 17.519 22 12 22 C 6.481 22 2 17.519 2 12 Z "
+                fill="none"></path>
+            <line x1="7" y1="10" x2="17" y2="10"></line>
+            <line x1="9" y1="13" x2="15" y2="13"></line>
+            <line x1="11.5" y1="16" x2="12.5" y2="16"></line>
+        </g>
+    </symbol>
+    <symbol id="icon-variable" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="currentColor" stroke-width="1">
+            <path d="m5 12c0-3.863 3.137-7 7-7 3.863 0 7 3.137 7 7 0 3.863-3.137 7-7 7-3.863 0-7-3.137-7-7z"
+                  fill="none"></path>
+            <text x="7.332202" y="15.761719" stroke="none">&gt;</text>
+        </g>
+    </symbol>
+    <symbol id="icon-styleguide" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="white" stroke-width="1">
+            <path d="M 19.998 18.399 L 20.028 20.398 C 20.036 20.95 19.594 21.405 19.042 21.413 L 4.044 21.633 C 3.492 21.641 3.038 21.2 3.029 20.648 L 3 18.648 C 2.992 18.096 3.433 17.642 3.985 17.633 L 18.984 17.413 C 19.536 17.405 19.99 17.847 19.998 18.399 Z"></path>
+            <path d="M 17.717 10.681 L 18.746 12.396 C 19.031 12.869 18.877 13.484 18.404 13.768 L 5.544 21.49 C 5.071 21.775 4.456 21.621 4.172 21.148 L 3.143 19.433 C 2.859 18.96 3.012 18.345 3.485 18.061 L 16.345 10.339 C 16.818 10.055 17.433 10.208 17.717 10.681 Z"></path>
+            <path d="M 11.52 5.734 L 13.259 6.723 C 13.739 6.995 13.907 7.606 13.634 8.086 L 6.223 21.127 C 5.95 21.607 5.339 21.775 4.859 21.502 L 3.12 20.514 C 2.64 20.242 2.472 19.631 2.745 19.151 L 10.157 6.11 C 10.429 5.63 11.04 5.462 11.52 5.734 Z"></path>
+            <path d="M 4 4.633 L 6 4.633 C 6.552 4.633 7 5.081 7 5.633 L 7 20.633 C 7 21.185 6.552 21.633 6 21.633 L 4 21.633 C 3.448 21.633 3 21.185 3 20.633 L 3 5.633 C 3 5.081 3.448 4.633 4 4.633 Z"></path>
+            <path d=" M 4.409 20.01 C 4.409 19.734 4.634 19.51 4.909 19.51 C 5.185 19.51 5.409 19.734 5.409 20.01 C 5.409 20.286 5.185 20.51 4.909 20.51 C 4.634 20.51 4.409 20.286 4.409 20.01 Z "
+                  fill="rgb(0,0,0)"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-good" viewBox="0 0 1000 1000">
+        <g stroke="none" fill="currentColor" stroke-width="1">
+            <path d="M959.4,469.4c-16.9,0-30.6,13.7-30.6,30.6c0,236.4-192.3,428.7-428.7,428.7S71.3,736.4,71.3,500C71.3,263.6,263.6,71.3,500,71.3c93.7,0,182.7,29.7,257.4,85.8c13.5,10.2,32.7,7.4,42.9-6.1c10.2-13.5,7.4-32.7-6.1-42.8C708.8,43.9,607.1,10,500,10C229.8,10,10,229.8,10,500c0,270.2,219.8,490,490,490s490-219.8,490-490C990,483.1,976.3,469.4,959.4,469.4z"></path>
+            <path d="M215.4,447.7c-12-12-31.3-12-43.3,0c-12,12-12,31.3,0,43.3l245,245c6,6,13.8,9,21.7,9c7.8,0,15.7-3,21.7-9L981,215.4c12-12,12-31.3,0-43.3c-12-12-31.3-12-43.3,0l-499,499L215.4,447.7z"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-bad" viewBox="0 0 24 24">
+        <g stroke="currentColor" fill="none" stroke-width="1.5">
+            <ellipse cx="12.074" cy="12.081" rx="11.354" ry="11.38" fill="none"></ellipse>
+            <path d="m6.7772 17.223 10.446-10.446" stroke-linecap="round"></path>
+            <path d="m17.322 17.122-10.644-10.243" stroke-linecap="round"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-bundle" viewBox="0 0 24 24">
+        <g stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" fill="none" stroke-width="1">
+            <path d="m1.7236 5.7036v12.021l9.568 3.9775 9.6122-3.9775v-12.021l-9.6122 4.2227z"></path>
+            <path d="m1.7236 5.7036 9.568-3.8007 9.6122 3.8007"></path>
+            <path d="m11.292 9.9263v11.416"></path>
+            <path d="m6.7348 3.6402c3.2098 1.2404 6.375 2.705 9.562 4.0473"></path>
+        </g>
+    </symbol>
+    <linearGradient id="atlas-blue-gradient" x1="0" y1="0" x2="0" y2="100%">
+        <stop stop-color="#a7c6ed" offset="60%"></stop>
+        <stop stop-color="#ffffff" offset="100%"></stop>
+    </linearGradient>
+    <linearGradient id="atlas-graph-gradient" x1="0" y1="0" x2="100%" y2="0">
+        <stop stop-color="#df4242" offset="0%"></stop>
+        <stop stop-color="#7d61ec" offset="50%"></stop>
+        <stop stop-color="#2cbbfc" offset="100%"></stop>
+    </linearGradient>
+</svg>
+<div class="l-atlas-container" id="js-atlas-container">
+<div class="l-atlas-container__aside" id="js-atlas-aside" role="contentinfo">
+    <script>
+        document.getElementById('js-atlas-aside').style.width =
+            window.sessionStorage && (window.sessionStorage.getItem('asideWidth')) ?
+                window.sessionStorage.getItem('asideWidth') + 'px' : '';
+    </script>
+    <div class="atlas-aside">
+        <div class="atlas-aside__header">
+            <div class="atlas-header">
+                <div class="atlas-header__logo" role="banner">
+<svg width="60" height="30" version="1.1" viewBox="0 0 98.599998 52.414875" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="currentColor" transform="translate(0 -.00024594)">
+        <path d="m30.933 5.5253l2.0368-4.8711"/>
+        <path d="m11.6 51.761l1.4749-3.5272"/>
+        <path d="m35.931 42.833c-3.7397 3.0367-8.5656 4.8672-13.831 4.8672-11.866 0-21.5-9.296-21.5-20.745 0-11.45 9.634-20.746 21.5-20.746 9.1935 0 17.047 5.5801 20.118 13.419"/>
+    </g>
+    <g aria-label="Atlas" fill="currentColor">
+        <path d="m27.194 33.712-2.472 5.952h-1.224l7.224-17.28h0.672l7.248 17.28h-1.296l-2.472-5.952zm3.792-9.408q-0.024 0.024-0.096 0.288-0.336 1.032-0.648 1.752l-2.64 6.384h6.864l-2.64-6.36q-0.84-1.824-0.84-2.064z"/>
+        <path d="m43.028 25.072h-5.28v-0.984h11.64v0.984h-5.28v14.592h-1.08z"/>
+        <path d="m52.666 39.664v-15.576h1.104v14.568h7.152v1.008z"/>
+        <path d="m64.965 34.264-2.232 5.4h-1.128l6.528-15.672h0.648l6.576 15.672h-1.224l-2.256-5.4zm3.432-8.496q-0.36 1.08-0.648 1.8l-2.4 5.76h6.144l-2.376-5.736q-0.552-1.344-0.72-1.824z"/>
+        <path d="m81.685 24.76q-1.296 0-2.112 0.624t-0.816 1.752q0 1.296 1.08 2.328 0.768 0.744 1.968 1.584 1.224 0.816 1.68 1.176t1.104 0.984q1.176 1.176 1.176 2.712 0 1.992-1.344 3.024-1.32 1.008-3.72 1.008-2.376 0-3.984-1.248l0.576-0.84q1.632 1.104 3.456 1.104t2.832-0.768q1.032-0.768 1.032-2.16 0-1.2-1.032-2.208-0.72-0.72-1.944-1.56-1.2-0.84-1.68-1.2-0.48-0.384-1.128-1.008-1.224-1.224-1.224-2.832t1.128-2.52q1.152-0.912 3.168-0.912t3.624 0.792l-0.408 0.888q-1.488-0.72-3.432-0.72z"/>
+    </g>
+</svg>
+                </div>
+                <div class="atlas-header__search">
+                    <div class="atlas-search" role="search">
+                        <svg width="14" height="14" role="img">
+                            <use xlink:href="#icon-filter"></use>
+                        </svg>
+                        <input type="search" id="js-atlas-search" placeholder="Filter" />
+                        <button id="js-atlas-search-clear">✕</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="atlas-aside__content" role="navigation" id="js-atlas-aside-content">
+            <div class="atlas-nav" role="list" id="js-atlas-navigation">
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="bindings">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            bindings
+        </a>
+            <div role="list" class="atlas-nav__sub-nav">
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="component">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            component
+        </a>
+            <div role="list" class="atlas-nav__sub-nav">
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_guide">
+        <a class="atlas-nav__ln _guide js-atlas-nav-ln" href="bindings-component-doc-livereload-setup.html" id="nav-bindings-component-doc-livereload-setup"
+           data-name="livereload-setup">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-guide"></use></svg>
+            livereload-setup
+        </a>
+    </div>
+            </div>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="frame">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            frame
+        </a>
+            <div role="list" class="atlas-nav__sub-nav">
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_component">
+        <a class="atlas-nav__ln _component js-atlas-nav-ln" href="bindings-frame-b-atlas-component.html" id="nav-bindings-frame-b-atlas-component"
+           data-name="b-atlas-component">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-component"></use></svg>
+            b-atlas-component
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_container">
+        <a class="atlas-nav__ln _container js-atlas-nav-ln" href="bindings-frame-l-atlas-container.html" id="nav-bindings-frame-l-atlas-container"
+           data-name="l-atlas-container">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-container"></use></svg>
+            l-atlas-container
+        </a>
+    </div>
+            </div>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="global">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            global
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="guide">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            guide
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="insights">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            insights
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="style">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            style
+        </a>
+    </div>
+            </div>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
+        <a class="atlas-nav__ln _category js-atlas-nav-ln" 
+           data-name="defintions">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
+            defintions
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_about">
+        <a class="atlas-nav__ln _about js-atlas-nav-ln" href="index.html" id="nav-index"
+           data-name="about">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
+            about
+        </a>
+    </div>
+    <div role="listitem" class="atlas-nav__item atlas-nav__item_styleguide">
+        <a class="atlas-nav__ln _styleguide js-atlas-nav-ln" href="styleguide.html" id="nav-styleguide"
+           data-name="styleguide">
+            <svg width="14" height="14" role="img"><use xlink:href="#icon-styleguide"></use></svg>
+            styleguide
+        </a>
+    </div>
+
+                <div class="atlas-nav__item" role="listitem">
+                    <a class="atlas-nav__ln _bundle js-atlas-nav-ln" href="bundle.html" id="nav-bundle" data-name="bundle">
+                        <svg width="14" height="14" role="img">
+                            <use xlink:href="#icon-bundle"></use>
+                        </svg>
+                        Bundle
+                    </a>
+                </div>
+                <div class="atlas-nav__item" role="listitem">
+                    <a class="atlas-nav__ln _insights js-atlas-nav-ln" href="insights.html" id="nav-insights" data-name="insights">
+                        <svg width="14" height="14" role="img">
+                            <use xlink:href="#icon-insights"></use>
+                        </svg>
+                        Insights
+                    </a>
+                </div>
+            </div>
+            <script>
+                const atlasContentPosition = window.sessionStorage && (window.sessionStorage.getItem('navigationScroll')) ?
+                    window.sessionStorage.getItem('navigationScroll') : '';
+                document.getElementById('js-atlas-aside-content').scrollTo(0, atlasContentPosition);
+            </script>
+        </div>
+        <div class="atlas-aside__footer">
+<p class="atlas-footer-copyright">
+    &copy; 2018
+    atlas-guide
+    0.6.4
+</p>
+        </div>
+    </div>
+    <button class="atlas-aside-ctrl" id="js-atlas-aside-resizer" title="Double click to toggle aside"></button>
+    <div class="atlas-aside-resizer-overlay" id="js-atlas-aside-resizer-overlay"></div>
+</div>
+    <main role="main" class="l-atlas-container__main" id="js-atlas-main">
+        <script>
+            document.getElementById('js-atlas-main').style.marginLeft =
+                window.sessionStorage && window.sessionStorage.getItem('asideWidth') ?
+                    window.sessionStorage.getItem('asideWidth') + 'px' : '';
+        </script>
+        <div class="atlas-content">
+            <div class="atlas-content__inner">
+
+
+<link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-insights.css"/>
+
+<div class="atlas-stat-sizes-page-title">
+    <div class="atlas-component-type-ico">
+        <svg width="16" height="16" role="img">
+            <use xlink:href="#icon-bundle"></use>
+        </svg>
+        Bundle structure & size
+    </div>
+    <div class="atlas-section">
+        <h1 class="atlas atlas-title atlas-title_1">
+        <span class="atlas-title__text">
+            atlas-guide
+        </span>
+        </h1>
+    </div>
+</div>
+<section class="atlas-stat-sheet">
+    <svg id="js-graph-svg" class="atlas-stat-bundle" height="1000"></svg>
+
+    <div class="atlas-cross-dependencies-legend atlas atlas-p">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-about"></use>
+        </svg>
+        <p class="atlas-cross-dependencies-legend__example">
+            <strong>zoom</strong>: double click <br>
+            <strong>enlarge</strong>: <kbd>shift</kbd> + double click <br>
+            <strong>drag</strong>: click and move
+        </p>
+        <div class="atlas-cross-dependencies-legend__example"></div>
+        <div class="atlas-cross-dependencies-legend__list"></div>
+    </div>
+
+    <div class="atlas-stat-columns _imports">
+            <div class="atlas-stat-columns__item">
+                <h3 class="atlas-stat-section__title-sub">dev_atlas-insights.scss</h3>
+                <ol class="atlas-stat-list _imports">
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_dev-atlas-definitions.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-cross-dependencies-graph.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-cross-dependencies-legend.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-sizes-grid.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-size-file.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-section.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-title.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-list.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-header.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-columns.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-digit.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-font.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-item.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-table.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-info.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-space.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-font-scale.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-chart.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-stat-bundle.scss</p>
+                        </li>
+                </ol>
+            </div>
+            <div class="atlas-stat-columns__item">
+                <h3 class="atlas-stat-section__title-sub">dev_atlas.scss</h3>
+                <ol class="atlas-stat-list _imports">
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_dev-atlas-definitions.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_global-normalization.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-content.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-component-type-ico.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-toc.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-landing.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-welcome.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-coverage.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-playground.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-component-aside.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-info-digit.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-component-footer.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-sparkline.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-info-list.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-constant.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-component-structure.scss</p>
+                        </li>
+                </ol>
+            </div>
+            <div class="atlas-stat-columns__item">
+                <h3 class="atlas-stat-section__title-sub">dev_atlas-frame.scss</h3>
+                <ol class="atlas-stat-list _imports">
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_dev-atlas-definitions.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_global-normalization.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_l-atlas-container.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-search.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-aside-ctrl.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-header.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-aside.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-nav.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-footer-copyright.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-loader.scss</p>
+                        </li>
+                </ol>
+            </div>
+            <div class="atlas-stat-columns__item">
+                <h3 class="atlas-stat-section__title-sub">dev_atlas-style.scss</h3>
+                <ol class="atlas-stat-list _imports">
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_dev-atlas-definitions.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-style-section.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-style-columns.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-style-palette.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-style-scale.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-style-font.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-style-layer.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-style-motion.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-style-space.scss</p>
+                        </li>
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_atlas-style-breaks.scss</p>
+                        </li>
+                </ol>
+            </div>
+            <div class="atlas-stat-columns__item">
+                <h3 class="atlas-stat-section__title-sub">dev_atlas-prism.scss</h3>
+                <ol class="atlas-stat-list _imports">
+                        <li class="atlas-stat-list__item">
+                            <p class="atlas-stat-item">_dev-atlas-settings.scss</p>
+                        </li>
+                </ol>
+            </div>
+    </div>
+</section>
+
+<section class="atlas-stat-sheet">
+    <header class="atlas-stat-header">
+        <h1 class="atlas-stat-header__title">
+            cross dependencies
+        </h1>
+    </header>
+
+    <svg id="js-cross-dependencies-graph" class="atlas-cross-dependencies-graph"></svg>
+
+    <div class="atlas-cross-dependencies-legend atlas atlas-p">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-about"></use>
+        </svg>
+        <p class="atlas-cross-dependencies-legend__caption">This graph shows cross components dependencies and help you run
+            project without unneeded relations and orphans.</p>
+        <p class="atlas-cross-dependencies-legend__example">For example, global components bundle should not have any
+            dependencies, since by the name it already included in all
+            areas. Also components that not included in any resulted CSS file probably redundant.</p>
+        <ul class="atlas-cross-dependencies-legend__list">
+            <li>
+                <svg width="4.5" height="4.5">
+                    <circle r="4.5" cx="4.5" cy="4.5" fill="#307fe2"></circle>
+                </svg>
+                <p> - standalone file</p>
+            </li>
+            <li>
+                <svg width="4.5" height="4.5">
+                    <circle r="2" cx="3" cy="4.5" fill="#307fe2"></circle>
+                </svg>
+                <p> - partial file</p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="atlas-stat-sheet">
+    <header class="atlas-stat-header">
+        <h1 class="atlas-stat-header__title">
+            components sizes
+        </h1>
+    </header>
+    <ul class="atlas-stat-sizes-grid">
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="200" height="200">
+                        <rect width="200" height="200" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">5.0kB</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="142.5858585858586" height="142.5858585858586">
+                        <rect width="142.5858585858586" height="142.5858585858586" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">3.5kB</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-playground.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="138.50505050505052" height="138.50505050505052">
+                        <rect width="138.50505050505052" height="138.50505050505052" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">3.4kB</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-component-structure.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="113.8989898989899" height="113.8989898989899">
+                        <rect width="113.8989898989899" height="113.8989898989899" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">2.8kB</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-nav.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="74.94949494949495" height="74.94949494949495">
+                        <rect width="74.94949494949495" height="74.94949494949495" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">1.9kB</p>
+                        <h2 class="atlas-stat-size-file__title">dev_atlas-prism.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="72" height="72">
+                        <rect width="72" height="72" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">1.8kB</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-style-space.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="68.44444444444444" height="68.44444444444444">
+                        <rect width="68.44444444444444" height="68.44444444444444" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">1.7kB</p>
+                        <h2 class="atlas-stat-size-file__title">_dev-atlas-settings.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="61.45454545454545" height="61.45454545454545">
+                        <rect width="61.45454545454545" height="61.45454545454545" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">1.5kB</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-chart.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="48.8080808080808" height="48.8080808080808">
+                        <rect width="48.8080808080808" height="48.8080808080808" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">1.2kB</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-search.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="47.75757575757576" height="47.75757575757576">
+                        <rect width="47.75757575757576" height="47.75757575757576" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">1.2kB</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-info-digit.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="45.494949494949495" height="45.494949494949495">
+                        <rect width="45.494949494949495" height="45.494949494949495" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">1.1kB</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-toc.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="37.45454545454546" height="37.45454545454546">
+                        <rect width="37.45454545454546" height="37.45454545454546" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">930B</p>
+                        <h2 class="atlas-stat-size-file__title">dev_atlas-insights.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="36.72727272727273" height="36.72727272727273">
+                        <rect width="36.72727272727273" height="36.72727272727273" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">910B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-style-breaks.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="35.95959595959596" height="35.95959595959596">
+                        <rect width="35.95959595959596" height="35.95959595959596" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">890B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-style-font.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="35.67676767676768" height="35.67676767676768">
+                        <rect width="35.67676767676768" height="35.67676767676768" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">880B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-digit.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="35.39393939393939" height="35.39393939393939">
+                        <rect width="35.39393939393939" height="35.39393939393939" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">880B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-table.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="34.58585858585859" height="34.58585858585859">
+                        <rect width="34.58585858585859" height="34.58585858585859" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">860B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-aside.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="33.77777777777778" height="33.77777777777778">
+                        <rect width="33.77777777777778" height="33.77777777777778" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">840B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-info.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="33.01010101010101" height="33.01010101010101">
+                        <rect width="33.01010101010101" height="33.01010101010101" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">820B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-columns.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="31.717171717171716" height="31.717171717171716">
+                        <rect width="31.717171717171716" height="31.717171717171716" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">790B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-component-aside.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="31.353535353535356" height="31.353535353535356">
+                        <rect width="31.353535353535356" height="31.353535353535356" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">780B</p>
+                        <h2 class="atlas-stat-size-file__title">dev_atlas.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="30.666666666666664" height="30.666666666666664">
+                        <rect width="30.666666666666664" height="30.666666666666664" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">760B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-aside-ctrl.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="30.464646464646467" height="30.464646464646467">
+                        <rect width="30.464646464646467" height="30.464646464646467" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">750B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-font.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="29.61616161616162" height="29.61616161616162">
+                        <rect width="29.61616161616162" height="29.61616161616162" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">730B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-style-scale.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="29.292929292929294" height="29.292929292929294">
+                        <rect width="29.292929292929294" height="29.292929292929294" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">730B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-constant.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="28.96969696969697" height="28.96969696969697">
+                        <rect width="28.96969696969697" height="28.96969696969697" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">720B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-style-motion.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="28.929292929292927" height="28.929292929292927">
+                        <rect width="28.929292929292927" height="28.929292929292927" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">720B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-size-file.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="28.040404040404038" height="28.040404040404038">
+                        <rect width="28.040404040404038" height="28.040404040404038" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">690B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-cross-dependencies-legend.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="26.505050505050505" height="26.505050505050505">
+                        <rect width="26.505050505050505" height="26.505050505050505" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">660B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-header.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="23.95959595959596" height="23.95959595959596">
+                        <rect width="23.95959595959596" height="23.95959595959596" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">590B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-list.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="23.595959595959595" height="23.595959595959595">
+                        <rect width="23.595959595959595" height="23.595959595959595" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">580B</p>
+                        <h2 class="atlas-stat-size-file__title">_b-atlas-component.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="22.424242424242426" height="22.424242424242426">
+                        <rect width="22.424242424242426" height="22.424242424242426" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">560B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-font-scale.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="21.6969696969697" height="21.6969696969697">
+                        <rect width="21.6969696969697" height="21.6969696969697" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">540B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-component-footer.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="20.88888888888889" height="20.88888888888889">
+                        <rect width="20.88888888888889" height="20.88888888888889" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">520B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-bundle.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="20" height="20">
+                        <rect width="20" height="20" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">500B</p>
+                        <h2 class="atlas-stat-size-file__title">dev_atlas-frame.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="19.757575757575758" height="19.757575757575758">
+                        <rect width="19.757575757575758" height="19.757575757575758" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">490B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-welcome.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="18.424242424242422" height="18.424242424242422">
+                        <rect width="18.424242424242422" height="18.424242424242422" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">460B</p>
+                        <h2 class="atlas-stat-size-file__title">dev_atlas-style.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="17.656565656565657" height="17.656565656565657">
+                        <rect width="17.656565656565657" height="17.656565656565657" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">440B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-coverage.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="17.575757575757574" height="17.575757575757574">
+                        <rect width="17.575757575757574" height="17.575757575757574" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">440B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-landing.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="17.292929292929294" height="17.292929292929294">
+                        <rect width="17.292929292929294" height="17.292929292929294" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">430B</p>
+                        <h2 class="atlas-stat-size-file__title">_l-atlas-container.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="17.01010101010101" height="17.01010101010101">
+                        <rect width="17.01010101010101" height="17.01010101010101" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">420B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-section.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="16.88888888888889" height="16.88888888888889">
+                        <rect width="16.88888888888889" height="16.88888888888889" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">420B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-info-list.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="16.525252525252526" height="16.525252525252526">
+                        <rect width="16.525252525252526" height="16.525252525252526" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">410B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-style-columns.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="16.444444444444446" height="16.444444444444446">
+                        <rect width="16.444444444444446" height="16.444444444444446" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">410B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-loader.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="15.313131313131311" height="15.313131313131311">
+                        <rect width="15.313131313131311" height="15.313131313131311" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">380B</p>
+                        <h2 class="atlas-stat-size-file__title">_chessboard.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="15.272727272727273" height="15.272727272727273">
+                        <rect width="15.272727272727273" height="15.272727272727273" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">380B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-cross-dependencies-graph.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="14.222222222222221" height="14.222222222222221">
+                        <rect width="14.222222222222221" height="14.222222222222221" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">350B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-sparkline.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="13.696969696969695" height="13.696969696969695">
+                        <rect width="13.696969696969695" height="13.696969696969695" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">340B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-space.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="13.050505050505052" height="13.050505050505052">
+                        <rect width="13.050505050505052" height="13.050505050505052" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">320B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-component-type-ico.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="12.2020202020202" height="12.2020202020202">
+                        <rect width="12.2020202020202" height="12.2020202020202" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">300B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-style-layer.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="11.232323232323232" height="11.232323232323232">
+                        <rect width="11.232323232323232" height="11.232323232323232" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">280B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-style-section.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="9.737373737373737" height="9.737373737373737">
+                        <rect width="9.737373737373737" height="9.737373737373737" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">240B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-sizes-grid.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="9.171717171717171" height="9.171717171717171">
+                        <rect width="9.171717171717171" height="9.171717171717171" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">230B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-style-palette.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="7.757575757575758" height="7.757575757575758">
+                        <rect width="7.757575757575758" height="7.757575757575758" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">190B</p>
+                        <h2 class="atlas-stat-size-file__title">_global-normalization.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="6.9898989898989905" height="6.9898989898989905">
+                        <rect width="6.9898989898989905" height="6.9898989898989905" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">170B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-footer-copyright.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="6.94949494949495" height="6.94949494949495">
+                        <rect width="6.94949494949495" height="6.94949494949495" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">170B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-content.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="6.383838383838383" height="6.383838383838383">
+                        <rect width="6.383838383838383" height="6.383838383838383" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">160B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-title.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="6.0606060606060606" height="6.0606060606060606">
+                        <rect width="6.0606060606060606" height="6.0606060606060606" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">150B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-header.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="3.2323232323232323" height="3.2323232323232323">
+                        <rect width="3.2323232323232323" height="3.2323232323232323" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">80B</p>
+                        <h2 class="atlas-stat-size-file__title">_atlas-stat-item.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="atlas-stat-size-file">
+                    <svg width="2.5858585858585856" height="2.5858585858585856">
+                        <rect width="2.5858585858585856" height="2.5858585858585856" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <p class="atlas-stat-size-file__size">64B</p>
+                        <h2 class="atlas-stat-size-file__title">_dev-atlas-definitions.scss</h2>
+                    </figcaption>
+                </figure>
+            </li>
+    </ul>
+    <div class="atlas-cross-dependencies-legend atlas atlas-p">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-about"></use>
+        </svg>
+        <p class="atlas-cross-dependencies-legend__example">
+            Note that this is approximation of size. Some components could contain includes that may change
+            size of compiled component dramatically.
+        </p>
+        <div class="atlas-cross-dependencies-legend__example">&nbsp;</div>
+        <div class="atlas-cross-dependencies-legend__list">&nbsp;</div>
+    </div>
+</section>
+
+<script>
+    window.importsData ={"nodes":[{"id":"bindings/frame/_b-atlas-component","depth":0,"mass":0},{"id":"bindings/global/_global-normalization","depth":2,"mass":1},{"id":"dev_atlas-frame","depth":1,"mass":10},{"id":"dev_atlas-insights","depth":1,"mass":19},{"id":"dev_atlas-prism","depth":1,"mass":1},{"id":"dev_atlas-style","depth":1,"mass":10},{"id":"dev_atlas","depth":1,"mass":17}],"links":[{"source":"bindings/global/_global-normalization","target":"dev_atlas-frame"},{"source":"bindings/global/_global-normalization","target":"dev_atlas"}]};
+    window.bundleTree ={"atlas-guide":{"id":"atlas-guide","size":0},"atlas-guide/_dev-atlas-definitions.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss","size":0},"atlas-guide/_dev-atlas-definitions.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss","size":1694},"atlas-guide/_dev-atlas-definitions.scss/defintions":{"id":"atlas-guide/_dev-atlas-definitions.scss/defintions","size":0},"atlas-guide/_dev-atlas-definitions.scss/defintions/_chessboard.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss/defintions","size":379},"atlas-guide/dev_atlas-frame.scss":{"id":"atlas-guide/dev_atlas-frame.scss","size":6427},"atlas-guide/dev_atlas-frame.scss/bindings":{"id":"atlas-guide/dev_atlas-frame.scss/bindings","size":0},"atlas-guide/dev_atlas-frame.scss/bindings/frame":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":0},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside-ctrl.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":759},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":856},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-footer-copyright.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":173},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-header.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":150},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-loader.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":407},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-nav.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":2819},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-search.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":1208},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_l-atlas-container.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":428},"atlas-guide/dev_atlas-frame.scss/bindings/global":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/global","size":0},"atlas-guide/dev_atlas-frame.scss/bindings/global/_global-normalization.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/global","size":192},"atlas-guide/dev_atlas-insights.scss":{"id":"atlas-guide/dev_atlas-insights.scss","size":11931},"atlas-guide/dev_atlas-insights.scss/bindings":{"id":"atlas-guide/dev_atlas-insights.scss/bindings","size":0},"atlas-guide/dev_atlas-insights.scss/bindings/insights":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":0},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-graph.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":378},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-legend.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":694},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-bundle.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":517},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-chart.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":1521},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-columns.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":817},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-digit.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":883},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font-scale.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":555},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":754},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-header.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":656},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-info.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":836},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-item.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":80},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-list.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":593},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-section.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":421},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-size-file.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":716},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-sizes-grid.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":241},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-space.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":339},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-table.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":876},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-title.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":158},"atlas-guide/dev_atlas-prism.scss":{"id":"atlas-guide/dev_atlas-prism.scss","size":2450},"atlas-guide/dev_atlas-prism.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/dev_atlas-prism.scss","size":1694},"atlas-guide/dev_atlas-style.scss":{"id":"atlas-guide/dev_atlas-style.scss","size":6844},"atlas-guide/dev_atlas-style.scss/bindings":{"id":"atlas-guide/dev_atlas-style.scss/bindings","size":0},"atlas-guide/dev_atlas-style.scss/bindings/style":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":0},"atlas-guide/dev_atlas-style.scss/bindings/style/_atlas-style-breaks.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":909},"atlas-guide/dev_atlas-style.scss/bindings/style/_atlas-style-columns.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":409},"atlas-guide/dev_atlas-style.scss/bindings/style/_atlas-style-font.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":890},"atlas-guide/dev_atlas-style.scss/bindings/style/_atlas-style-layer.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":302},"atlas-guide/dev_atlas-style.scss/bindings/style/_atlas-style-motion.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":717},"atlas-guide/dev_atlas-style.scss/bindings/style/_atlas-style-palette.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":227},"atlas-guide/dev_atlas-style.scss/bindings/style/_atlas-style-scale.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":733},"atlas-guide/dev_atlas-style.scss/bindings/style/_atlas-style-section.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":278},"atlas-guide/dev_atlas-style.scss/bindings/style/_atlas-style-space.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/style","size":1782},"atlas-guide/dev_atlas.scss":{"id":"atlas-guide/dev_atlas.scss","size":17816},"atlas-guide/dev_atlas.scss/bindings":{"id":"atlas-guide/dev_atlas.scss/bindings","size":0},"atlas-guide/dev_atlas.scss/bindings/component":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":0},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-aside.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":785},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-footer.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":537},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-structure.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":3428},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-constant.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":725},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-digit.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":1182},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-list.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":418},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-playground.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":3529},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-sparkline.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":352},"atlas-guide/dev_atlas.scss/bindings/frame":{"id":"atlas-guide/dev_atlas.scss/bindings/frame","size":0},"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-component-type-ico.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/frame","size":323},"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-content.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/frame","size":172},"atlas-guide/dev_atlas.scss/bindings/frame/_atlas.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/frame","size":4950},"atlas-guide/dev_atlas.scss/bindings/global":{"id":"atlas-guide/dev_atlas.scss/bindings/global","size":0},"atlas-guide/dev_atlas.scss/bindings/global/_global-normalization.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/global","size":192},"atlas-guide/dev_atlas.scss/bindings/guide":{"id":"atlas-guide/dev_atlas.scss/bindings/guide","size":0},"atlas-guide/dev_atlas.scss/bindings/guide/_atlas-coverage.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guide","size":437},"atlas-guide/dev_atlas.scss/bindings/guide/_atlas-landing.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guide","size":435},"atlas-guide/dev_atlas.scss/bindings/guide/_atlas-toc.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guide","size":1126},"atlas-guide/dev_atlas.scss/bindings/guide/_atlas-welcome.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guide","size":489}};
+</script>
+
+<script src="assets/js/d3.v4.min.js"></script>
+<script src="assets/js/d3tree.js"></script>
+<script src="assets/js/d3importsgraph.js"></script>
+
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="assets/js/navigation.js"></script>
+<script src="assets/js/search.js" async defer></script>
+<script src="assets/js/aside.js" async defer></script>
+<script src="assets/js/prism.min.js" async></script>
+<script src="assets/js/playground.js" async defer></script>
+
+<!--
+    This is internal asset assetsfooter.mustache
+    To replace it with project JS imports add to config
+    "partials": {
+      "assetsfooter": "path/to/file.mustache"
+    }
+-->
+
+</body>
+</html>
