@@ -139,6 +139,34 @@ function getAtRules(fileAST) {
     return atRules;
 }
 
+function getFontStat(value) {
+    const declList = value
+        .replace(/ ,/g, ',')
+        .replace(/ \/ ?/g, '/')
+        .split(' ');
+    const fontFamily = declList.pop(); // mandatory. always last in list
+    const fontSize = declList.pop().split('/'); // mandatory. before family. optional list
+
+    return {
+        fontSize: fontSize[0],
+        fontFamily: fontFamily
+    };
+}
+
+function getBackgroundStat(value) {
+    const finalLayer = value.split(',');
+    const layerPropsList = finalLayer.pop().split(' ');
+    let backgroundColors = [];
+
+    layerPropsList.forEach(prop => {
+        if (color.hsl(prop).displayable() || /(^\$|^--)/.test(prop)) {
+            return backgroundColors.push(prop);
+        }
+    });
+
+    return backgroundColors;
+}
+
 function getDeclarationsStats(fileAST) {
     let stats = {
         'fontSize': [],
@@ -160,7 +188,7 @@ function getDeclarationsStats(fileAST) {
     let totalDeclarations = 0;
     let variables = [];
 
-    fileAST.walkDecls(decl => {
+    fileAST.walkDecls(function(decl) {
         if (decl.parent.selector !== undefined && /^\d/.test(decl.parent.selector)) {
             // ignore animation declaration blocks
             return;
@@ -213,41 +241,29 @@ function getDeclarationsStats(fileAST) {
 
         // Profile
 
-        if (/^margin/.test(decl.prop)) {
-            const metricList = decl.value.split(' ');
-            metricList.forEach(value => stats.margin.push(value));
-        }
+        ['margin', 'padding'].forEach(item => {
+            const regexp = new RegExp('^' + item);
+            // we need to cover several cases here - margin, margin-top, margin-start, etc.
+            if (regexp.test(decl.prop)) {
+                const metricList = decl.value.split(' ');
+                metricList.forEach(value => stats[item].push(value));
+            }
+        });
 
-        if (/^padding/.test(decl.prop)) {
-            const metricList = decl.value.split(' ');
-            metricList.forEach(value => stats.padding.push(value));
-        }
-
-        if (decl.prop === 'display') { // positioning display. Probability of block, i-b usage in components?
+        if (decl.prop === 'display') { // only layout display. Check probability of block, i-b usage in components?
             if (/(flex|grid)/.test(decl.value)) {
                 stats.display.push(decl.value);
             }
         }
 
         if (decl.prop === 'background') {
-            const finalLayer = decl.value.split(',');
-            const layerProps = finalLayer.pop().split(' ');
-            layerProps.forEach(prop => {
-                if (color.hsl(prop).displayable() || /(^\$|^--)/.test(prop)) {
-                    stats.backgroundColor.push(prop);
-                }
-            });
+            stats.backgroundColor.concat(getBackgroundStat(decl.value));
         }
 
         if (decl.prop === 'font') {
-            const declList = decl.value
-                .replace(/ ,/g, ',')
-                .replace(/ \/ ?/g, '/')
-                .split(' ');
-            const fontFamily = declList.pop(); // mandatory. always last in list
-            const fontSize = declList.pop().split('/'); // mandatory. before family. optional list
-            stats.fontSize.push(fontSize[0]);
-            stats.fontFamily.push(fontFamily);
+            const fontStat = getFontStat(decl.value);
+            stats.fontSize.push(fontStat.fontSize);
+            stats.fontFamily.push(fontStat.fontFamily);
         }
     });
 

@@ -164,7 +164,7 @@ function getStatistic(componentStat, componentImports, projectConstants) {
         if (projectConstants !== undefined) {
             const constStat = getConstantsStat(name, rawStat, projectConstants);
             if (constStat !== undefined) {
-                result.consistancy = constStat;
+                result.consistency = constStat;
             }
         }
         viewModel.componentProfileDetails.push(result);
