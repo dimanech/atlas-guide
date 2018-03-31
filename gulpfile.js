@@ -26,7 +26,7 @@ const pathConfig = {
  * Local server for static assets with live reload
  */
 
-gulp.task('devServ:up', () => {
+gulp.task('server:up', () => {
     const cors = (req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
@@ -58,11 +58,10 @@ let changedFilePath = '';
 let generateFilePath = [];
 let importsGraph;
 
-const createImportsGraph = () => {
-    importsGraph = require('sass-graph').parseDir(pathConfig.ui.core.sass.src, {
-        loadPaths: [pathConfig.ui.lib.resources]
-    });
-};
+const createImportsGraph = () => importsGraph = require('sass-graph').parseDir(
+    pathConfig.ui.core.sass.src,
+    { loadPaths: [pathConfig.ui.lib.resources] }
+);
 
 /**
  * Configurable Sass compilation
@@ -141,36 +140,30 @@ const getResultedFilesList = changedFile => {
 };
 
 // Compile all Sass files
-gulp.task('styles:compile:all', () => {
-    return sassCompile({
-        source: pathConfig.ui.core.sass.src + '*.scss',
-        dest: pathConfig.ui.core.sass.dest,
-        alsoSearchIn: [pathConfig.ui.lib.resources]
-    });
-});
+gulp.task('styles:compile:all', () => sassCompile({
+    source: pathConfig.ui.core.sass.src + '*.scss',
+    dest: pathConfig.ui.core.sass.dest,
+    alsoSearchIn: [pathConfig.ui.lib.resources]
+}));
 
 // Compile only particular Sass file that has import of changed file
-gulp.task('styles:compile:incremental', () => {
-    return sassCompile({
-        source: getResultedFilesList(changedFilePath),
-        dest: pathConfig.ui.core.sass.dest,
-        alsoSearchIn: [pathConfig.ui.lib.resources]
-    });
-});
+gulp.task('styles:compile:incremental', () => sassCompile({
+    source: getResultedFilesList(changedFilePath),
+    dest: pathConfig.ui.core.sass.dest,
+    alsoSearchIn: [pathConfig.ui.lib.resources]
+}));
 
 // Compile all Sass files and watch for changes
 gulp.task('styles:watch', () => {
     createImportsGraph();
     gulp.watch(
         pathConfig.ui.core.sass.src + '**/*.scss',
-        ['devServ:reload:styles']
-    ).on('change', event => {
-        changedFilePath = event.path;
-    });
+        ['server:reload:styles']
+    ).on('change', event => changedFilePath = event.path);
 });
 
 // Reload the CSS links right after 'styles:compile:incremental' task is returned
-gulp.task('devServ:reload:styles', ['styles:compile:incremental'], () =>
+gulp.task('server:reload:styles', ['styles:compile:incremental'], () =>
     gulp.src(generateFilePath) // css only reload
         .pipe(connect.reload()));
 
@@ -194,14 +187,12 @@ gulp.task('atlas:watch', () => {
     createImportsGraph();
     gulp.watch(
         [pathConfig.ui.core.sass.src + '**/*.scss', pathConfig.ui.core.sass.src + '**/*.md'],
-        ['devServ:reload:guide']
-    ).on('change', event => {
-        changedFilePath = event.path;
-    });
+        ['server:reload:guide']
+    ).on('change', event => changedFilePath = event.path);
 });
 
 // Reload the page right after 'atlas:compile:incremental' task is returned
-gulp.task('devServ:reload:guide', ['atlas:compile:incremental'], () =>
+gulp.task('server:reload:guide', ['atlas:compile:incremental'], () =>
     gulp.src(pathConfig.ui.guide.resources + '*.html') // full page reload
         .pipe(connect.reload()));
 
@@ -209,7 +200,7 @@ gulp.task('devServ:reload:guide', ['atlas:compile:incremental'], () =>
  * Complex tasks
  */
 gulp.task('default', '');
-gulp.task('dev', ['devServ:up', 'styles:compile:all', 'styles:watch']);
+gulp.task('dev', ['server:up', 'styles:compile:all', 'styles:watch']);
 // change to atlas:compile for regular projects, for our cases we compile all atlas in dev workflow
-gulp.task('dev:atlas', ['devServ:up', 'styles:compile:all', 'atlas:compile:all', 'atlas:watch']);
-gulp.task('build', ['styles:compile:all', 'atlas:compile']);
+gulp.task('dev:atlas', ['server:up', 'styles:compile:all', 'atlas:compile:all', 'atlas:watch']);
+gulp.task('build', ['styles:compile:all', 'atlas:compile:all']);
