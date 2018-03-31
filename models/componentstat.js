@@ -167,6 +167,17 @@ function getBackgroundStat(value) {
     return backgroundColors;
 }
 
+function getMetricStat(item, decl) {
+    const regexp = new RegExp('^' + item); // we need to cover several cases - margin, margin-top, margin-start, etc.
+    let stat = [];
+    if (regexp.test(decl.prop)) {
+        const metricList = decl.value.split(' ');
+        metricList.forEach(value => stat.push(value));
+    }
+
+    return stat;
+}
+
 function getPropsStat(decl, stats, variables) {
     [
         // health
@@ -196,7 +207,7 @@ function getPropsStat(decl, stats, variables) {
         });
     }
 
-    if (/^-/.test(decl.prop)) {
+    if (/^-/.test(decl.prop) || /^-/.test(decl.value)) {
         stats.vendorPrefix.push({
             prop: decl.prop,
             value: decl.value
@@ -214,14 +225,7 @@ function getPropsStat(decl, stats, variables) {
 
     // Profile
 
-    ['margin', 'padding'].forEach(item => {
-        const regexp = new RegExp('^' + item);
-        // we need to cover several cases here - margin, margin-top, margin-start, etc.
-        if (regexp.test(decl.prop)) {
-            const metricList = decl.value.split(' ');
-            metricList.forEach(value => stats[item].push(value));
-        }
-    });
+    ['margin', 'padding'].forEach(item => stats[item].concat(getMetricStat(item, decl)));
 
     if (decl.prop === 'display') { // only layout display. Check probability of block, i-b usage in components?
         if (/(flex|grid)/.test(decl.value)) {
