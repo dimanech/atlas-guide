@@ -446,8 +446,54 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel, 'proper view model for styleguide');
             });
         });
+        describe('projectimportsgraph', function() {
+            const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+                'guideSrc': 'test/fixtures/atlas/',
+                'guideDest': 'test/results/',
+                'cssSrc': 'test/fixtures/atlas/css/'
+            });
+            const graph = require(cwd + '/models/projectimportsgraph.js');
+            const importGraph = graph.getImportsGraph(baseConfig);
+
+            describe('getImportsGraph', function() {
+                it('should return right import graph without additional imports', function() {
+                    const model = importGraph;
+                    assert.strictEqual(Object.keys(model.index).length, 9);
+                });
+            });
+
+            describe('getFileImports', function() {
+                it('should return empty model if no file info in imports graph', function() {
+                    const expected = {
+                        imports: [],
+                        importedBy: []
+                    };
+                    const model = graph.getFileImports('path/to/file.scss', importGraph);
+                    assert.deepEqual(model, expected);
+                });
+                it('should return empty model if no imports info for file in imports graph', function() {
+                    const expected = {
+                        imports: [],
+                        importedBy: []
+                    };
+                    const model = graph.getFileImports(
+                        cwd + 'test/fixtures/atlas/_component-undocumented.scss',
+                        importGraph
+                    );
+                    assert.deepEqual(model, expected);
+                });
+                it('should return proper model if file exist in imports graph', function() {
+                    const expected = {
+                        'imports': ['excluded-component.scss', '_component.scss'],
+                        'importedBy': ['style.scss']
+                    };
+                    const model = graph.getFileImports('test/fixtures/atlas/_component.scss', importGraph);
+                    assert.deepEqual(model, expected);
+                });
+            });
+        });
         describe('statcomponent', function() {
-            it('return proper transformed model without defined constants', function() {
+            it('should return proper transformed model without defined constants', function() {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
                     'guideSrc': 'test/fixtures/atlas/',
@@ -467,7 +513,7 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel);
             });
 
-            it('return proper transformed model with defined constants', function() {
+            it('should return proper transformed model with defined constants', function() {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
                     'guideSrc': 'test/fixtures/atlas/',

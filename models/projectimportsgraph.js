@@ -20,11 +20,11 @@ function getFileImports(relativeUrl, importsGraph) {
         };
     }
 
-    function getFileNamesOnly(paths) {
+    function getFileNamesOnly(pathsList) {
         let normalizedPaths = [];
 
-        if (paths) {
-            paths.forEach(absPath => normalizedPaths.push(path.basename(absPath)));
+        if (pathsList.length) {
+            pathsList.forEach(absPath => normalizedPaths.push(path.basename(absPath)));
         }
 
         return normalizedPaths;
