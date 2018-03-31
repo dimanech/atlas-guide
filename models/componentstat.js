@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 const color = require('d3-color');
+const _camelCase = require('lodash.camelcase');
+
 const postcss = require('postcss');
 const scss = require('postcss-scss');
 
@@ -137,7 +139,7 @@ function getAtRules(fileAST) {
     return atRules;
 }
 
-function getDeclsStats(fileAST) {
+function getDeclarationsStats(fileAST) {
     let stats = {
         'fontSize': [],
         'fontFamily': [],
@@ -166,6 +168,25 @@ function getDeclsStats(fileAST) {
 
         totalDeclarations++;
 
+        [// health
+            'float',
+            // useful
+            'z-index',
+            // component profile
+            'width',
+            'height',
+            'position',
+            'color',
+            'background-color',
+            'font-family',
+            'font-size',
+            'box-shadow'
+        ].forEach(prop => {
+            if (decl.prop === prop.toString()) {
+                stats[_camelCase(prop)].push(decl.value);
+            }
+        });
+
         // Health
 
         if (decl.important) {
@@ -181,10 +202,6 @@ function getDeclsStats(fileAST) {
             });
         }
 
-        if (decl.prop === 'float') {
-            stats['float'].push(decl.value);
-        }
-
         // Useful
 
         if (/(^\$|^--)/.test(decl.prop)) {
@@ -194,23 +211,10 @@ function getDeclsStats(fileAST) {
             });
         }
 
-        if (decl.prop === 'z-index') {
-            stats.zIndex.push(decl.value);
-        }
-
         // Profile
-
-        if (decl.prop === 'width') {
-            stats.width.push(decl.value);
-        }
-
-        if (decl.prop === 'height') {
-            stats.height.push(decl.value);
-        }
 
         if (/^margin/.test(decl.prop)) {
             const metricList = decl.value.split(' ');
-            // declared spaces stat could be here
             metricList.forEach(value => stats.margin.push(value));
         }
 
@@ -219,22 +223,10 @@ function getDeclsStats(fileAST) {
             metricList.forEach(value => stats.padding.push(value));
         }
 
-        if (decl.prop === 'position') {
-            stats.position.push(decl.value);
-        }
-
         if (decl.prop === 'display') { // positioning display. Probability of block, i-b usage in components?
             if (/(flex|grid)/.test(decl.value)) {
                 stats.display.push(decl.value);
             }
-        }
-
-        if (decl.prop === 'color') {
-            stats.color.push(decl.value); // size + value if vars is used
-        }
-
-        if (decl.prop === 'background-color') {
-            stats.backgroundColor.push(decl.value);
         }
 
         if (decl.prop === 'background') {
@@ -247,14 +239,6 @@ function getDeclsStats(fileAST) {
             });
         }
 
-        if (decl.prop === 'font-family') {
-            stats.fontFamily.push(decl.value);
-        }
-
-        if (decl.prop === 'font-size') {
-            stats.fontSize.push(decl.value);
-        }
-
         if (decl.prop === 'font') {
             const declList = decl.value
                 .replace(/ ,/g, ',')
@@ -264,10 +248,6 @@ function getDeclsStats(fileAST) {
             const fontSize = declList.pop().split('/'); // mandatory. before family. optional list
             stats.fontSize.push(fontSize[0]);
             stats.fontFamily.push(fontFamily);
-        }
-
-        if (decl.prop === 'box-shadow') {
-            stats.boxShadow.push(decl.value);
         }
     });
 
@@ -280,7 +260,7 @@ function getDeclsStats(fileAST) {
 
 function getStatistic(file) {
     const fileAST = postcss().process(file, {parser: scss}).root;
-    const stats = getDeclsStats(fileAST);
+    const stats = getDeclarationsStats(fileAST);
     const atRules = getAtRules(fileAST);
 
     return {

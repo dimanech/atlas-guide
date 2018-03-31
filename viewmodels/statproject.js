@@ -90,33 +90,20 @@ function sortSizes(size) {
     if (!size) {
         return false;
     }
-    const sortBy = function (a, b) {
-        const c = a.abs;
-        const d = b.abs;
-        if (c > d) {
-            return -1;
-        } else {
-            return 1;
-        }
-    };
-    let sorted = [];
+    let result = [];
+    const sortBy = (a, b) => a.abs > b.abs ? -1 : 1;
 
     size.forEach(item => {
         const abs = convertFontToAbsoluteUnits(item);
-        sorted.push({
+        return result.push({
             orig: item,
             abs: abs,
-            // TODO: refactor me
             isNegative: Math.sign(abs) === -1,
             normalized: Math.abs(abs)
         });
     });
 
-    if (!sorted) {
-        return false;
-    }
-
-    return sorted.sort(sortBy);
+    return result.sort(sortBy);
 }
 
 function sortNumbers(zIndices) {

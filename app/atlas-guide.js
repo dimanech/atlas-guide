@@ -17,7 +17,7 @@ if (atlasBase.isCorrupted) {
 const projectTree = require(path.resolve(__dirname, '../models/projectdocumentedtree.js'))(atlasBase);
 const deps = require(path.resolve(__dirname, '../models/projectimportsgraph.js'));
 const importsGraph = deps.getImportsGraph(atlasBase);
-const componentImports = (src) => deps.getFileImports(src, importsGraph);
+const componentImports = src => deps.getFileImports(src, importsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
 const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(
     atlasBase.constants, atlasBase.scssAdditionalImportsArray);
@@ -55,13 +55,13 @@ function getCachedTemplates(type, path) {
 
 function prepareContent(component) {
     let content;
-    let toc;
+    let tableOfContent;
     let stat;
 
     if (component.src !== '') {
         const page = pageContent(component.src, {'title': component.title});
         content = page.content;
-        toc = page.toc;
+        tableOfContent = page.toc;
     }
     if (component.type === 'styleguide') {
         content = styleguide(constants);
@@ -82,13 +82,13 @@ function prepareContent(component) {
 
     return {
         documentation: content,
-        toc: toc,
+        toc: tableOfContent,
         componentStats: stat
     };
 }
 
 /**
- * Walk though documented files in project and generate particular page (if path specified) or full docset if no string
+ * Walk though documented files in project and generate particular page (if path specified) or full docset if no path
  * provided.
  * @public
  * @param {string} [url] - path to file. If no string provided or function is passed this build all components
