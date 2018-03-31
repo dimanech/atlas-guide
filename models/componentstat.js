@@ -167,6 +167,79 @@ function getBackgroundStat(value) {
     return backgroundColors;
 }
 
+function getPropsStat(decl, stats, variables) {
+    [
+        // health
+        'float',
+        // useful
+        'z-index',
+        // component profile
+        'width',
+        'height',
+        'position',
+        'color',
+        'background-color',
+        'font-family',
+        'font-size',
+        'box-shadow'
+    ].forEach(prop => {
+        if (decl.prop === prop.toString()) {
+            stats[_camelCase(prop)].push(decl.value);
+        }
+    });
+
+    // Health
+
+    if (decl.important) {
+        stats.important.push({
+            prop: decl.prop
+        });
+    }
+
+    if (/^-/.test(decl.prop)) {
+        stats.vendorPrefix.push({
+            prop: decl.prop,
+            value: decl.value
+        });
+    }
+
+    // Useful
+
+    if (/(^\$|^--)/.test(decl.prop)) {
+        variables.push({
+            prop: decl.prop,
+            value: decl.value
+        });
+    }
+
+    // Profile
+
+    ['margin', 'padding'].forEach(item => {
+        const regexp = new RegExp('^' + item);
+        // we need to cover several cases here - margin, margin-top, margin-start, etc.
+        if (regexp.test(decl.prop)) {
+            const metricList = decl.value.split(' ');
+            metricList.forEach(value => stats[item].push(value));
+        }
+    });
+
+    if (decl.prop === 'display') { // only layout display. Check probability of block, i-b usage in components?
+        if (/(flex|grid)/.test(decl.value)) {
+            stats.display.push(decl.value);
+        }
+    }
+
+    if (decl.prop === 'background') {
+        stats.backgroundColor.concat(getBackgroundStat(decl.value));
+    }
+
+    if (decl.prop === 'font') {
+        const fontStat = getFontStat(decl.value);
+        stats.fontSize.push(fontStat.fontSize);
+        stats.fontFamily.push(fontStat.fontFamily);
+    }
+}
+
 function getDeclarationsStats(fileAST) {
     let stats = {
         'fontSize': [],
@@ -195,76 +268,7 @@ function getDeclarationsStats(fileAST) {
         }
 
         totalDeclarations++;
-
-        [// health
-            'float',
-            // useful
-            'z-index',
-            // component profile
-            'width',
-            'height',
-            'position',
-            'color',
-            'background-color',
-            'font-family',
-            'font-size',
-            'box-shadow'
-        ].forEach(prop => {
-            if (decl.prop === prop.toString()) {
-                stats[_camelCase(prop)].push(decl.value);
-            }
-        });
-
-        // Health
-
-        if (decl.important) {
-            stats.important.push({
-                prop: decl.prop
-            });
-        }
-
-        if (/^-/.test(decl.prop)) {
-            stats.vendorPrefix.push({
-                prop: decl.prop,
-                value: decl.value
-            });
-        }
-
-        // Useful
-
-        if (/(^\$|^--)/.test(decl.prop)) {
-            variables.push({
-                prop: decl.prop,
-                value: decl.value
-            });
-        }
-
-        // Profile
-
-        ['margin', 'padding'].forEach(item => {
-            const regexp = new RegExp('^' + item);
-            // we need to cover several cases here - margin, margin-top, margin-start, etc.
-            if (regexp.test(decl.prop)) {
-                const metricList = decl.value.split(' ');
-                metricList.forEach(value => stats[item].push(value));
-            }
-        });
-
-        if (decl.prop === 'display') { // only layout display. Check probability of block, i-b usage in components?
-            if (/(flex|grid)/.test(decl.value)) {
-                stats.display.push(decl.value);
-            }
-        }
-
-        if (decl.prop === 'background') {
-            stats.backgroundColor.concat(getBackgroundStat(decl.value));
-        }
-
-        if (decl.prop === 'font') {
-            const fontStat = getFontStat(decl.value);
-            stats.fontSize.push(fontStat.fontSize);
-            stats.fontFamily.push(fontStat.fontFamily);
-        }
+        getPropsStat(decl, stats, variables);
     });
 
     return {
