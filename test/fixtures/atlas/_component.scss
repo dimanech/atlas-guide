@@ -55,7 +55,7 @@ $local-const: 10px;
 
 	&.modifier-adjacent {
 		-webkit-appearance: none;
-		//background-image: -webkit-linear-gradient(top, #D7D 0%, #068 100%); /* stylelint-disable-line */
+		background-image: -webkit-linear-gradient(top, #D7D 0%, #068 100%); /* stylelint-disable-line */
 	}
 
 	.js-test & {
