@@ -5,6 +5,7 @@ const path = require('path');
 
 let projectName;
 let pathToCSS;
+let pathToSCSS;
 
 function getfileSize(string) {
     return Buffer.byteLength(string, 'utf8');
@@ -28,36 +29,35 @@ function getResultedFileSize(name) {
     return getfileSize(fileString);
 }
 
-function recreatePathTreeForPartial(importsPaths, importFile, fileName, size, destinationList) {
+function getDestinationList(pathStr, fileName) {
+    const sep = path.sep;
+    return path.relative(pathToSCSS, pathStr)
+        .replace(new RegExp(sep + fileName), '').split(sep);
+}
+
+function recreatePathTreeForPartial(importsPaths, importFile, fileName, partialFileSize, destinationList) {
     let cumulativePath = projectName + '/' + importFile;
+    const pushNode = size => {
+        if (!importsPaths.hasOwnProperty(cumulativePath)) {
+            return importsPaths[cumulativePath] = {
+                id: cumulativePath,
+                size: size
+            };
+        }
+    };
 
     // push standalone resulted file
-    if (!importsPaths.hasOwnProperty(cumulativePath)) {
-        importsPaths[cumulativePath] = {
-            id: cumulativePath,
-            size: getResultedFileSize(importFile)
-        };
-    }
+    pushNode(getResultedFileSize(importFile));
 
     // push all missing mediate folders
     destinationList.forEach(item => {
         cumulativePath = cumulativePath + '/' + item;
-        if (!importsPaths.hasOwnProperty(cumulativePath)) {
-            return importsPaths[cumulativePath] = {
-                id: cumulativePath,
-                size: 0
-            };
-        }
+        pushNode(0);
     });
 
     // push partial file
-    const partial = cumulativePath + '/' + fileName;
-    if (!importsPaths.hasOwnProperty(partial)) {
-        importsPaths[partial] = {
-            id: cumulativePath,
-            size: size
-        };
-    }
+    cumulativePath = cumulativePath + '/' + fileName;
+    pushNode(partialFileSize);
 }
 
 function recreatePathTreeForStandalone(importsPaths, standaloneFile) {
@@ -72,8 +72,8 @@ function recreatePathTreeForStandalone(importsPaths, standaloneFile) {
 function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSassFiles) {
     projectName = projectNamePassed;
     pathToCSS = pathToCSSPassed;
+    pathToSCSS = importsGraph.dir;
 
-    const pathToSCSS = importsGraph.dir;
     let importsPaths = {};
     importsPaths[projectName] = {
         id: projectName,
@@ -95,10 +95,10 @@ function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSa
         const pathStr = file.toString();
         const fileName = path.basename(pathStr);
         const isPartial = /^_/i.test(fileName);
+
         if (isPartial) {
             const importedBy = importsGraph.index[file].importedBy;
-            const destinationList = path.relative(pathToSCSS, pathStr)
-                .replace(new RegExp(fileName), '').split(path.sep);
+            const destinationList = getDestinationList(pathStr, fileName);
             const partialFileSize = getfileSizeWithoutComments(file);
 
             importedBy.forEach(importedBy => {

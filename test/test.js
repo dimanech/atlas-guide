@@ -210,9 +210,9 @@ describe('Atlas', function() {
             });
             it('bundle should be with sizes chart', function() {
                 const fileContent = fs.readFileSync(guideDest + 'bundle.html', 'utf8');
-                const isContain = /<p class="atlas-stat-size-file__size">70B<\/p>/
-                    .test(fileContent);
-                assert.strictEqual(isContain, true, 'contain right data');
+                const isContain1 = /<div class="atlas-stat-size-file__size">70B<\/div>/.test(fileContent);
+                const isContain2 = /<div class="atlas-stat-size-file__size">200B<\/div>/.test(fileContent);
+                assert.strictEqual(isContain1 && isContain2, true, 'contain right data');
             });
             it('should have subcategories files', function() {
                 const guide = fs.existsSync(path.join(guideDest, 'category-doc-guide.html'));
@@ -231,9 +231,9 @@ describe('Atlas', function() {
             it('should have internal templates');
 
             after(function() {
-                fs.readdirSync(guideDest).forEach(item => {
-                    fs.unlinkSync(path.join(cwd, guideDest, item));
-                });
+                // fs.readdirSync(guideDest).forEach(item => {
+                //     fs.unlinkSync(path.join(cwd, guideDest, item));
+                // });
             });
         });
 
