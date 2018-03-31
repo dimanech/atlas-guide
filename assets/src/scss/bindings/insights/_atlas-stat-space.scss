@@ -1,4 +1,7 @@
 .atlas-stat-space {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+
 	&__item {
 		display: flex;
 		margin-bottom: 2px;
@@ -11,8 +14,8 @@
 
 	&__caption {
 		font-family: $font-mono-atlas;
-		font-size: 0.7rem;
-		font-weight: bold;
+		font-size: $atlas-mono-small;
+		font-weight: normal;
 		padding-right: 5px;
 		position: relative;
 		text-align: right;

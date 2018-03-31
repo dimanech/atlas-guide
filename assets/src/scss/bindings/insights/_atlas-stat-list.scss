@@ -1,17 +1,20 @@
 .atlas-stat-list {
+	all: initial;
 	color: $color-blue-atlas;
+	display: block;
 	font-family: $font-mono-atlas;
 	font-size: 0.8rem;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	font-weight: bold;
 	line-height: 1.2;
+	list-style-type: disc;
+	padding: 0 $space-md-atlas;
 
 	&__item {
 		display: list-item;
 	}
 
-	p {
+	.atlas-stat-item {
 		color: $atlas-color-text;
 		overflow: visible;
 	}
@@ -26,16 +29,7 @@
 	}
 
 	&._imports {
-		font-weight: normal;
+		list-style-type: decimal-leading-zero;
+		padding-left: 2rem;
 	}
-}
-
-ul.atlas-stat-list {
-	list-style-type: disc;
-	padding-left: 1rem;
-}
-
-ol.atlas-stat-list {
-	list-style-type: decimal-leading-zero;
-	padding-left: 2rem;
 }

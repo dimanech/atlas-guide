@@ -9,6 +9,9 @@
 	}
 
 	&__title {
+		all: initial;
+		color: $atlas-color-text;
+		display: block;
 		font-family: $font-sans-atlas;
 		font-size: $scale-xl-atlas;
 		font-weight: bold;

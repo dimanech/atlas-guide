@@ -1,4 +1,7 @@
 .atlas-stat-title {
+	all: initial;
+	color: $atlas-color-text;
+	display: block;
 	font-family: $font-sans-atlas;
 	font-size: $scale-xxl-atlas;
 	font-weight: bold;

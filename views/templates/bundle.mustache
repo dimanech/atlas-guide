@@ -10,11 +10,11 @@
         Bundle structure & size
     </div>
     <div class="atlas-section">
-        <h1 class="atlas atlas-title atlas-title_1">
-        <span class="atlas-title__text">
-            {{projectInfo.name}}
-        </span>
-        </h1>
+        <div role="heading" aria-level="1" class="atlas atlas-title atlas-title_1">
+            <span class="atlas-title__text">
+                {{projectInfo.name}}
+            </span>
+        </div>
     </div>
 </div>
 <section class="atlas-stat-sheet">
@@ -24,11 +24,11 @@
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-about"></use>
         </svg>
-        <p class="atlas-cross-dependencies-legend__example">
+        <div class="atlas-cross-dependencies-legend__example">
             <strong>zoom</strong>: double click <br>
             <strong>enlarge</strong>: <kbd>shift</kbd> + double click <br>
             <strong>drag</strong>: click and move
-        </p>
+        </div>
         <div class="atlas-cross-dependencies-legend__example"></div>
         <div class="atlas-cross-dependencies-legend__list"></div>
     </div>
@@ -36,14 +36,14 @@
     <div class="atlas-stat-columns _imports">
         {{#content.bundleImports}}
             <div class="atlas-stat-columns__item">
-                <h3 class="atlas-stat-section__title-sub">{{name}}</h3>
-                <ol class="atlas-stat-list _imports">
+                <div role="heading" aria-level="3" class="atlas-stat-section__title-sub">{{name}}</div>
+                <div role="list" class="atlas-stat-list _imports">
                     {{#imports}}
-                        <li class="atlas-stat-list__item">
-                            <p class="atlas-stat-item">{{.}}</p>
-                        </li>
+                        <div role="listitem" class="atlas-stat-list__item">
+                            <div class="atlas-stat-item">{{.}}</div>
+                        </div>
                     {{/imports}}
-                </ol>
+                </div>
             </div>
         {{/content.bundleImports}}
     </div>
@@ -51,9 +51,9 @@
 
 <section class="atlas-stat-sheet">
     <header class="atlas-stat-header">
-        <h1 class="atlas-stat-header__title">
+        <div role="heading" aria-level="1" class="atlas-stat-header__title">
             cross dependencies
-        </h1>
+        </div>
     </header>
 
     <svg id="js-cross-dependencies-graph" class="atlas-cross-dependencies-graph"></svg>
@@ -62,57 +62,57 @@
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-about"></use>
         </svg>
-        <p class="atlas-cross-dependencies-legend__caption">This graph shows cross components dependencies and help you run
-            project without unneeded relations and orphans.</p>
-        <p class="atlas-cross-dependencies-legend__example">For example, global components bundle should not have any
+        <div class="atlas-cross-dependencies-legend__caption">This graph shows cross components dependencies and help you run
+            project without unneeded relations and orphans.</div>
+        <dvi class="atlas-cross-dependencies-legend__example">For example, global components bundle should not have any
             dependencies, since by the name it already included in all
-            areas. Also components that not included in any resulted CSS file probably redundant.</p>
-        <ul class="atlas-cross-dependencies-legend__list">
-            <li>
+            areas. Also components that not included in any resulted CSS file probably redundant.</dvi>
+        <div role="list" class="atlas-cross-dependencies-legend__list">
+            <div role="listitem">
                 <svg width="4.5" height="4.5">
                     <circle r="4.5" cx="4.5" cy="4.5" fill="#307fe2"></circle>
                 </svg>
-                <p> - standalone file</p>
-            </li>
-            <li>
+                <div class="atlas-cross-dependencies-legend__p"> - standalone file</div>
+            </div>
+            <div role="listitem">
                 <svg width="4.5" height="4.5">
                     <circle r="2" cx="3" cy="4.5" fill="#307fe2"></circle>
                 </svg>
-                <p> - partial file</p>
-            </li>
-        </ul>
+                <div class="atlas-cross-dependencies-legend__p"> - partial file</div>
+            </div>
+        </div>
     </div>
 </section>
 
 <section class="atlas-stat-sheet">
     <header class="atlas-stat-header">
-        <h1 class="atlas-stat-header__title">
+        <div role="heading" aria-level="1" class="atlas-stat-header__title">
             components sizes
-        </h1>
+        </div>
     </header>
-    <ul class="atlas-stat-sizes-grid">
+    <div role="list" class="atlas-stat-sizes-grid">
         {{#content.weight}}
-            <li>
+            <div role="listitem">
                 <figure class="atlas-stat-size-file">
                     <svg width="{{svg.radius}}" height="{{svg.radius}}">
                         <rect width="{{svg.radius}}" height="{{svg.radius}}" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
-                        <p class="atlas-stat-size-file__size">{{view.size}}</p>
-                        <h2 class="atlas-stat-size-file__title">{{filename}}</h2>
+                        <div class="atlas-stat-size-file__size">{{view.size}}</div>
+                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">{{filename}}</div>
                     </figcaption>
                 </figure>
-            </li>
+            </div>
         {{/content.weight}}
-    </ul>
+    </div>
     <div class="atlas-cross-dependencies-legend atlas atlas-p">
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-about"></use>
         </svg>
-        <p class="atlas-cross-dependencies-legend__example">
+        <div class="atlas-cross-dependencies-legend__example">
             Note that this is approximation of size. Some components could contain includes that may change
             size of compiled component dramatically.
-        </p>
+        </div>
         <div class="atlas-cross-dependencies-legend__example">&nbsp;</div>
         <div class="atlas-cross-dependencies-legend__list">&nbsp;</div>
     </div>

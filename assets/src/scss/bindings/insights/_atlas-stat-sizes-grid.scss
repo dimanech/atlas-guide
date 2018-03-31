@@ -2,7 +2,7 @@
 	display: block;
 	margin-top: -80px;
 
-	li {
+	> div {
 		display: inline-block;
 		padding: $space-sm-atlas;
 		vertical-align: bottom;
