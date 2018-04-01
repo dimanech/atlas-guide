@@ -1,5 +1,8 @@
 .atlas-stat-size-file {
+	all: initial;
 	border-bottom: 1px solid $color-blue79-atlas;
+	color: $atlas-color-text;
+	display: block;
 	font-family: $font-mono-atlas;
 	font-size: $atlas-mono-small;
 	-moz-osx-font-smoothing: grayscale;
@@ -16,7 +19,7 @@
 		rect {
 			fill: $color-blue79-atlas;
 			stroke: $color-blue-atlas;
-			stroke-width: 1;
+			stroke-width: 1px;
 		}
 	}
 

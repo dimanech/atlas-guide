@@ -43,38 +43,87 @@ describe('Atlas', function() {
         describe('Single component', function() {
             const expectedFile = path.join(cwd, guideDest, 'component.html');
 
-            before(function(done) {
-                const atlas = require(cwd + '/app/atlas-guide');
-                atlas.build(path.join(cwd, '/test/fixtures/atlas/_component.scss')).then(() => done());
+            describe('Existed absolute path', function() {
+                before(function(done) {
+                    const atlas = require(cwd + '/app/atlas-guide');
+                    atlas.build(path.join(cwd, '/test/fixtures/atlas/_component.scss')).then(() => done()); // eslint-disable-line
+                });
+
+                after(function() {
+                    fs.unlinkSync(expectedFile);
+                });
+
+                it('should be written', function() {
+                    const generatedFile = fs.existsSync(expectedFile);
+                    assert.strictEqual(generatedFile, true, 'component file exist');
+                });
+
+                it('only one file should be written', function() {
+                    const actualFiles = fs.readdirSync(guideDest);
+                    assert.deepEqual(actualFiles, ['component.html']);
+                });
+
+                it('should be with content', function() {
+                    const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
+                    const result = /h1-b-component-test/.test(expectedFileContent);
+                    assert.strictEqual(result, true, 'component file have expected content');
+                });
+
+                it('should have overloaded partials', function() {
+                    const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
+                    const head = /project.css/.test(expectedFileContent);
+                    const footer = /project.js/.test(expectedFileContent);
+                    assert.strictEqual(footer && head, true, 'component file have overloaded template');
+                });
             });
 
-            it('should be written', function() {
-                const generatedFile = fs.existsSync(expectedFile);
-                assert.strictEqual(generatedFile, true, 'component file exist');
+            describe('Existed relative path', function() {
+                before(function(done) {
+                    const atlas = require(cwd + '/app/atlas-guide');
+                    atlas.build('./test/fixtures/atlas/_component.scss').then(() => done()); // eslint-disable-line
+                });
+
+                after(function() {
+                    fs.unlinkSync(expectedFile);
+                });
+
+                it('should be written', function() {
+                    const generatedFile = fs.existsSync(expectedFile);
+                    assert.strictEqual(generatedFile, true, 'component file exist');
+                });
+
+                it('should be with content', function() {
+                    const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
+                    const result = /h1-b-component-test/.test(expectedFileContent);
+                    assert.strictEqual(result, true, 'component file have expected content');
+                });
             });
 
-            it('only one file should be written', function() {
-                const actualFiles = fs.readdirSync(guideDest);
-                assert.deepEqual(actualFiles, ['component.html']);
-            });
-
-            it('should be with content', function() {
-                const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const result = /h1-b-component-test/.test(expectedFileContent);
-                assert.strictEqual(result, true, 'component file have expected content');
-            });
-
-            it('should have overloaded partials', function() {
-                const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const head = /project.css/.test(expectedFileContent);
-                const footer = /project.js/.test(expectedFileContent);
-                assert.strictEqual(footer && head, true, 'component file have overloaded template');
-            });
-
-            it('should process all files when no exclusion is declared');
-
-            after(function() {
-                fs.unlinkSync(expectedFile);
+            describe('Wrong path', function() {
+                it('should not trow an error on unexisted file with relative path', function(done) {
+                    try {
+                        const atlas = require(cwd + '/app/atlas-guide');
+                        atlas.build('./test/fixtures/atlas_component.scss').then(() => done()); // eslint-disable-line
+                    } catch (e) {
+                        done('failed');
+                    }
+                });
+                it('should not trow an error on unexisted file with absolute path', function(done) {
+                    try {
+                        const atlas = require(cwd + '/app/atlas-guide');
+                        atlas.build(path.join(cwd, '/test/fixtures/atlas/_some.scss')).then(() => done()); // eslint-disable-line
+                    } catch (e) {
+                        done('failed');
+                    }
+                });
+                it('should not trow an error on directory path', function(done) {
+                    try {
+                        const atlas = require(cwd + '/app/atlas-guide');
+                        atlas.build('./test/fixtures/atlas/').then(() => done()); // eslint-disable-line
+                    } catch (e) {
+                        done('failed');
+                    }
+                });
             });
         });
 
@@ -168,6 +217,7 @@ describe('Atlas', function() {
                 ];
                 assert.deepEqual(actual, expected, 'folder do not contain exclude files');
             });
+            it('should process all files when no exclusion is declared');
             it('insights should be with data', function() {
                 const fileContent = fs.readFileSync(guideDest + 'insights.html', 'utf8');
                 const isContain =
@@ -210,9 +260,9 @@ describe('Atlas', function() {
             });
             it('bundle should be with sizes chart', function() {
                 const fileContent = fs.readFileSync(guideDest + 'bundle.html', 'utf8');
-                const isContain = /<p class="atlas-stat-size-file__size">70B<\/p>/
-                    .test(fileContent);
-                assert.strictEqual(isContain, true, 'contain right data');
+                const isContain1 = /<div class="atlas-stat-size-file__size">70B<\/div>/.test(fileContent);
+                const isContain2 = /<div class="atlas-stat-size-file__size">200B<\/div>/.test(fileContent);
+                assert.strictEqual(isContain1 && isContain2, true, 'contain right data');
             });
             it('should have subcategories files', function() {
                 const guide = fs.existsSync(path.join(guideDest, 'category-doc-guide.html'));
@@ -446,8 +496,54 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel, 'proper view model for styleguide');
             });
         });
+        describe('projectimportsgraph', function() {
+            const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+                'guideSrc': 'test/fixtures/atlas/',
+                'guideDest': 'test/results/',
+                'cssSrc': 'test/fixtures/atlas/css/'
+            });
+            const graph = require(cwd + '/models/projectimportsgraph.js');
+            const importGraph = graph.getImportsGraph(baseConfig);
+
+            describe('getImportsGraph', function() {
+                it('should return right import graph without additional imports', function() {
+                    const model = importGraph;
+                    assert.strictEqual(Object.keys(model.index).length, 9);
+                });
+            });
+
+            describe('getFileImports', function() {
+                it('should return empty model if no file info in imports graph', function() {
+                    const expected = {
+                        imports: [],
+                        importedBy: []
+                    };
+                    const model = graph.getFileImports('path/to/file.scss', importGraph);
+                    assert.deepEqual(model, expected);
+                });
+                it('should return empty model if no imports info for file in imports graph', function() {
+                    const expected = {
+                        imports: [],
+                        importedBy: []
+                    };
+                    const model = graph.getFileImports(
+                        cwd + 'test/fixtures/atlas/_component-undocumented.scss',
+                        importGraph
+                    );
+                    assert.deepEqual(model, expected);
+                });
+                it('should return proper model if file exist in imports graph', function() {
+                    const expected = {
+                        'imports': ['excluded-component.scss', '_component.scss'],
+                        'importedBy': ['style.scss']
+                    };
+                    const model = graph.getFileImports('test/fixtures/atlas/_component.scss', importGraph);
+                    assert.deepEqual(model, expected);
+                });
+            });
+        });
         describe('statcomponent', function() {
-            it('return proper transformed model without defined constants', function() {
+            it('should return proper transformed model without defined constants', function() {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
                     'guideSrc': 'test/fixtures/atlas/',
@@ -467,7 +563,7 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel);
             });
 
-            it('return proper transformed model with defined constants', function() {
+            it('should return proper transformed model with defined constants', function() {
                 const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
                 const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
                     'guideSrc': 'test/fixtures/atlas/',

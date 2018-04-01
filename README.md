@@ -7,10 +7,11 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/dimanech/atlas-guide.svg)](https://greenkeeper.io/)
 [![npm version](https://badge.fury.io/js/atlas-guide.svg)](https://badge.fury.io/js/atlas-guide)
 
-Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive 
+Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive
 styles monitoring and Sass components reports.
 
 It is opinionated because it is probably impossible to cover all cases in CSS/Sass.
+It designed primarily as "Styleguide driven development" tool with focus on split files approach and incapsulated components.
 
 [Live example](https://dimanech.github.io/atlas-guide/)
 
@@ -100,9 +101,9 @@ See example guideline page or this repo gulp to get the idea how live reload and
 
 ```js
 const atlas = require('atlas-guide');
-atlas.build(); // build all guide files without reports. Return promise.
-atlas.build('path/to/changed/file.scss'); // compile only particular file, if it marked as documented in project tree
-atlas.buildAll(); // compile all guide and reports. Return promise.
+atlas.build().then(...); // build all guide files without reports. Return promise.
+atlas.build('/absolute/path/to/changed/file.scss').then(...); // compile only particular file, if it marked as documented in project tree
+atlas.buildAll().then(...); // compile all guide and reports. Return promise.
 ```
 
 Use `atlas.build()` for incremental development builds, where it is not required to have extensive heavy-weight statistic.
@@ -112,7 +113,7 @@ Use `atlas.build()` for incremental development builds, where it is not required
 ```shell
 Usage: atlas-guide [option]
 
-Options:            
+Options:
   --build                    build all atlas pages
   -v, --version              print Atlas-guide version
   --help                     print this message
@@ -122,7 +123,7 @@ Options:
 
 Atlas search configuration in this order:
 
-1. `.atlasrc.json` in project root 
+1. `.atlasrc.json` in project root
 2. `atlasConfig` field in `package.json`
 
 ### `.atlasrc.json`
@@ -141,7 +142,7 @@ Minimal configuration:
 
 ### `atlasConfig` in `package.json`
 
-If you project stores all configurations in `package.json` you probably want to store atlas configuration here also. 
+If you project stores all configurations in `package.json` you probably want to store atlas configuration here also.
 To do that add `atlasConfig` field to your `package.json`.
 
 Note: if you have both `.atlasrc.json` and `package.json` -- `.atlasrc.json` will be used.
@@ -162,7 +163,7 @@ Minimal configuration:
 
 ### Templates overwrites
 
-As the next step you, probably, want to add your project CSS and JS to render components examples properly. 
+As the next step you, probably, want to add your project CSS and JS to render components examples properly.
 To make this happen you need to add `partials` to the config, with paths to the templates in your project space:
 
 ```json
@@ -190,7 +191,7 @@ To make this happen you need to add `partials` to the config, with paths to the 
 Note, that paths should be related to generated HTML, no matter where templates are stored. This is simple include that
 will be incorporated into resulted html.
 
-All templates and partials in Atlas could be overwritten. Please see this repo views folder to get list of all templates 
+All templates and partials in Atlas could be overwritten. Please see this repo views folder to get list of all templates
 and partials.
 
 ### All available configuration options
@@ -248,9 +249,9 @@ Proper path to root scss files needed to generate dependencies graph.
 
 ## Usage
 
-Atlas like Vim consists of two functions - beeping and corrupting files. But with minor difference. 
-It generate guide and generate reports. You need to document code to make it "beeping" and provide config to make it 
-generate files. 
+Atlas like Vim consists of two functions - beeping and corrupting files. But with minor difference.
+It generate guide and generate reports. You need to document code to make it "beeping" and provide config to make it
+generate files.
 
 In this section we need to cover 2 topics - documenting and reports configuration.
 
@@ -268,7 +269,7 @@ Add this comment to the scss file and it file appears as component page.
  */
 ```
 
-Inside this comment regular markdown syntax would used, so any valid markdown will work here. 
+Inside this comment regular markdown syntax would used, so any valid markdown will work here.
 
 ```scss
 /*md
@@ -298,10 +299,10 @@ Note: Please avoid some tricky markdown construction, because `marked` super fas
 
 #### Component example
 
-Atlas extends markdown code block "fences" notation with custom type (just like Hologram) -- `html_example`. 
+Atlas extends markdown code block "fences" notation with custom type (just like Hologram) -- `html_example`.
 That render component playground instead of code-example. This keeps documentation compatible with regular markdown.
 
-To create component example you need to add code-block with `html_example`: 
+To create component example you need to add code-block with `html_example`:
 
 ```scss
 /*md
@@ -366,10 +367,10 @@ Regular development flow could be organized like this – build all guide pages 
 
 ```js
 const atlas = require('atlas-guide');
-atlas.build(); // build all guide files without reports
+atlas.build().then(...); // build all guide files without reports
 
 // watch for changes, get changed file path and build needed page:
-atlas.build('path/to/changed/file.scss'); // compile only this file if was documented on module import
+atlas.build('/absolute/path/to/changed/file.scss').then(...); // compile only this file if was documented on module import
 ```
 
 ##### Gulp example
@@ -383,14 +384,14 @@ or in JS:
 
 ```js
 const atlas = require('atlas-guide');
-atlas.buildAll(); // compile all components, guidelines and reports
+atlas.buildAll().then(...); // compile all components, guidelines and reports
 ```
 
 ### Setup constants
 
 In case when project constants is set upped Atlas could generate project styleguide page and show some info about constant usage in components pages.
 
-This set up could be a tricky part, because it required full sass compilation and has some limitations. 
+This set up could be a tricky part, because it required full sass compilation and has some limitations.
 
 First you need to use constants in simple form. Ex:
 

@@ -21,7 +21,13 @@
 	}
 
 	&__title {
+		all: initial;
+		color: $atlas-color-text;
+		display: block;
+		font-family: $font-sans-atlas;
+		font-size: 2rem;
 		font-weight: bold;
+		letter-spacing: -0.04em;
 		margin-right: auto;
 		max-width: 80%;
 	}

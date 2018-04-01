@@ -13,8 +13,8 @@ const files = execSync('git diff --cached --name-only --diff-filter=ACMR -- *.sc
 const errorMsg = "[GUARD]: Some scss files are invalid. Please fix errors and try committing again";
 
 if (files) {
+    console.log('[GUARD]: Lint SCSS...');
     exec(path.join(nodeBin, 'stylelint') + ' ' + files, (error, stdout, stderr) => {
-        console.log('[GUARD]: Lint SCSS...');
         if (stdout) {
             console.error(errorMsg);
             console.error(stdout);

@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 const color = require('d3-color');
+const _camelCase = require('lodash.camelcase');
+
 const postcss = require('postcss');
 const scss = require('postcss-scss');
 
@@ -137,7 +139,112 @@ function getAtRules(fileAST) {
     return atRules;
 }
 
-function getDeclsStats(fileAST) {
+function getFontStat(value) {
+    const declList = value
+        .replace(/ ,/g, ',')
+        .replace(/ \/ ?/g, '/')
+        .split(' ');
+    const fontFamily = declList.pop(); // mandatory. always last in list
+    const fontSize = declList.pop().split('/'); // mandatory. before family. optional list
+
+    return {
+        fontSize: fontSize[0],
+        fontFamily: fontFamily
+    };
+}
+
+function getBackgroundStat(value) {
+    const finalLayer = value.split(',');
+    const layerPropsList = finalLayer.pop().split(' ');
+    let backgroundColors = [];
+
+    layerPropsList.forEach(prop => {
+        if (color.hsl(prop).displayable() || /(^\$|^--)/.test(prop)) {
+            return backgroundColors.push(prop);
+        }
+    });
+
+    return backgroundColors;
+}
+
+function getMetricStat(item, decl) {
+    const regexp = new RegExp('^' + item); // we need to cover several cases - margin, margin-top, margin-start, etc.
+    let stat = [];
+    if (regexp.test(decl.prop)) {
+        const metricList = decl.value.split(' ');
+        metricList.forEach(value => stat.push(value));
+    }
+
+    return stat;
+}
+
+function getPropsStat(decl, stats, variables) {
+    [
+        // health
+        'float',
+        // useful
+        'z-index',
+        // component profile
+        'width',
+        'height',
+        'position',
+        'color',
+        'background-color',
+        'font-family',
+        'font-size',
+        'box-shadow'
+    ].forEach(prop => {
+        if (decl.prop === prop.toString()) {
+            stats[_camelCase(prop)].push(decl.value);
+        }
+    });
+
+    // Health
+
+    if (decl.important) {
+        stats.important.push({
+            prop: decl.prop
+        });
+    }
+
+    if (/^-/.test(decl.prop) || /^-/.test(decl.value)) {
+        stats.vendorPrefix.push({
+            prop: decl.prop,
+            value: decl.value
+        });
+    }
+
+    // Useful
+
+    if (/(^\$|^--)/.test(decl.prop)) {
+        variables.push({
+            prop: decl.prop,
+            value: decl.value
+        });
+    }
+
+    // Profile
+
+    ['margin', 'padding'].forEach(item => stats[item].concat(getMetricStat(item, decl)));
+
+    if (decl.prop === 'display') { // only layout display. Check probability of block, i-b usage in components?
+        if (/(flex|grid)/.test(decl.value)) {
+            stats.display.push(decl.value);
+        }
+    }
+
+    if (decl.prop === 'background') {
+        stats.backgroundColor.concat(getBackgroundStat(decl.value));
+    }
+
+    if (decl.prop === 'font') {
+        const fontStat = getFontStat(decl.value);
+        stats.fontSize.push(fontStat.fontSize);
+        stats.fontFamily.push(fontStat.fontFamily);
+    }
+}
+
+function getDeclarationsStats(fileAST) {
     let stats = {
         'fontSize': [],
         'fontFamily': [],
@@ -158,117 +265,14 @@ function getDeclsStats(fileAST) {
     let totalDeclarations = 0;
     let variables = [];
 
-    fileAST.walkDecls(decl => {
+    fileAST.walkDecls(function(decl) {
         if (decl.parent.selector !== undefined && /^\d/.test(decl.parent.selector)) {
             // ignore animation declaration blocks
             return;
         }
 
         totalDeclarations++;
-
-        // Health
-
-        if (decl.important) {
-            stats.important.push({
-                prop: decl.prop
-            });
-        }
-
-        if (/^-/.test(decl.prop)) {
-            stats.vendorPrefix.push({
-                prop: decl.prop,
-                value: decl.value
-            });
-        }
-
-        if (decl.prop === 'float') {
-            stats['float'].push(decl.value);
-        }
-
-        // Useful
-
-        if (/(^\$|^--)/.test(decl.prop)) {
-            variables.push({
-                prop: decl.prop,
-                value: decl.value
-            });
-        }
-
-        if (decl.prop === 'z-index') {
-            stats.zIndex.push(decl.value);
-        }
-
-        // Profile
-
-        if (decl.prop === 'width') {
-            stats.width.push(decl.value);
-        }
-
-        if (decl.prop === 'height') {
-            stats.height.push(decl.value);
-        }
-
-        if (/^margin/.test(decl.prop)) {
-            const metricList = decl.value.split(' ');
-            // declared spaces stat could be here
-            metricList.forEach(value => stats.margin.push(value));
-        }
-
-        if (/^padding/.test(decl.prop)) {
-            const metricList = decl.value.split(' ');
-            metricList.forEach(value => stats.padding.push(value));
-        }
-
-        if (decl.prop === 'position') {
-            stats.position.push(decl.value);
-        }
-
-        if (decl.prop === 'display') { // positioning display. Probability of block, i-b usage in components?
-            if (/(flex|grid)/.test(decl.value)) {
-                stats.display.push(decl.value);
-            }
-        }
-
-        if (decl.prop === 'color') {
-            stats.color.push(decl.value); // size + value if vars is used
-        }
-
-        if (decl.prop === 'background-color') {
-            stats.backgroundColor.push(decl.value);
-        }
-
-        if (decl.prop === 'background') {
-            const finalLayer = decl.value.split(',');
-            const layerProps = finalLayer.pop().split(' ');
-            layerProps.forEach(prop => {
-                if (color.hsl(prop).displayable() || /(^\$|^--)/.test(prop)) {
-                    stats.backgroundColor.push(prop);
-                }
-            });
-        }
-
-        if (decl.prop === 'font-family') {
-            stats.fontFamily.push(decl.value);
-        }
-
-        if (decl.prop === 'font-size') {
-            stats.fontSize.push(decl.value);
-        }
-
-        if (decl.prop === 'font') {
-            const declList = decl.value
-                .replace(/ ,/g, ',')
-                .replace(/ \/ ?/g, '/')
-                .split(' ');
-            const fontFamily = declList.pop(); // mandatory. always last in list
-            const fontSize = declList.pop().split('/'); // mandatory. before family. optional list
-            stats.fontSize.push(fontSize[0]);
-            stats.fontFamily.push(fontFamily);
-        }
-
-        if (decl.prop === 'box-shadow') {
-            stats.boxShadow.push(decl.value);
-        }
+        getPropsStat(decl, stats, variables);
     });
 
     return {
@@ -280,7 +284,7 @@ function getDeclsStats(fileAST) {
 
 function getStatistic(file) {
     const fileAST = postcss().process(file, {parser: scss}).root;
-    const stats = getDeclsStats(fileAST);
+    const stats = getDeclarationsStats(fileAST);
     const atRules = getAtRules(fileAST);
 
     return {

@@ -1,21 +1,26 @@
 .atlas-stat-section {
+	all: initial;
 	color: $atlas-color-text;
 	margin: $space-xl-atlas 0;
 	position: relative;
 
-	&__title {
+	&__title,
+	&__title-sub {
+		all: initial;
+		color: $atlas-color-text;
+		display: block;
 		font-family: $font-sans-atlas;
-		font-size: $scale-xl-atlas;
 		font-weight: bold;
 		letter-spacing: -0.04em;
-		margin-bottom: $space-lg-atlas;
+	}
+
+	&__title {
+		font-size: $scale-xl-atlas;
+		margin: $space-lg-atlas 0 $space-md-atlas;
 	}
 
 	&__title-sub {
-		font-family: $font-sans-atlas;
 		font-size: $scale-lg-atlas;
-		font-weight: bold;
-		letter-spacing: -0.04em;
 		margin: $space-sm-atlas 0;
 	}
 }

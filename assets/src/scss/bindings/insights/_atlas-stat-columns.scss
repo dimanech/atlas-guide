@@ -1,14 +1,22 @@
 .atlas-stat-columns {
+	all: unset;
 	display: flex;
 	flex-wrap: wrap;
+	list-style: none;
 	margin: 0 -#{$space-md-atlas};
 
 	&__item {
+		all: unset;
 		box-sizing: border-box;
+		display: block;
 		padding: $space-md-atlas;
+		width: (100%/4);
 	}
 
 	&__title {
+		all: initial;
+		color: $atlas-color-text;
+		display: block;
 		font-family: $font-sans-atlas;
 		font-size: $scale-xl-atlas;
 		font-weight: bold;
