@@ -249,9 +249,9 @@
     </div>
     <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
         <a class="atlas-nav__ln _category js-atlas-nav-ln" 
-           data-name="guide">
+           data-name="guideline">
             <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
-            guide
+            guideline
         </a>
     </div>
     <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
@@ -263,9 +263,9 @@
     </div>
     <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
         <a class="atlas-nav__ln _category js-atlas-nav-ln" 
-           data-name="style">
+           data-name="styleguide">
             <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
-            style
+            styleguide
         </a>
     </div>
             </div>
@@ -319,7 +319,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    0.6.4
+    0.6.5
 </p>
         </div>
     </div>
@@ -434,7 +434,7 @@
     </a>
     <span class="atlas-title__highlight"></span>
 </h1>
-<p class="atlas atlas-p">Since Atlas is static page generator it is not provide any functionality for serving, livereloading and development setup. 
+<p class="atlas atlas-p">Since Atlas is static page generator it is not provide any functionality for serving, livereloading and development setup.
 It is not depends from project infrastructure.</p>
 <p class="atlas atlas-p">This page is also example of how regular markdown files will be used to create guideline page.</p>
     </section>
@@ -518,7 +518,7 @@ gulp.task(&#39;dev:guide&#39;, [&#39;styles:compile:all&#39;, &#39;atlas:compile
     <span class="atlas-title__highlight"></span>
 </h3>
 <p class="atlas atlas-p">You probably don&#39;t need reports and all global statistic on daily work. By this reasons this tasks is moved to separate functions.</p>
-<p class="atlas atlas-p">To build all pages and statistics you could use several way - npm scripts, regular js and task runners. 
+<p class="atlas atlas-p">To build all pages and statistics you could use several way - npm scripts, regular js and task runners.
 We show most simple way, by using CLI.</p>
 <span class="atlas-anchor" id="h4-cli"></span>
 <h4 class="atlas atlas-title atlas-title_4">
@@ -551,7 +551,7 @@ We show most simple way, by using CLI.</p>
     </a>
     <span class="atlas-title__highlight"></span>
 </h4>
-<p class="atlas atlas-p">But if you use it with deploy you probably need to build all scss before build atlas. 
+<p class="atlas atlas-p">But if you use it with deploy you probably need to build all scss before build atlas.
 This could be simple achieved with gulp:</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">gulp.task(&#39;atlas:compile:all&#39;, () &#x3D;&gt; {
@@ -582,7 +582,7 @@ gulp.task(&#39;build&#39;, [&#39;styles:compile:all&#39;, &#39;atlas:compile:all
     <span class="atlas-title__highlight"></span>
 </h2>
 <p class="atlas atlas-p">The first and the most problem that you faced when you start to work with many components that bundled to many separate files is that it is not trivial compile only changed files.</p>
-<p class="atlas atlas-p">Naive approach to pass all scss files overload the whole system and decrease development flow performance. 
+<p class="atlas atlas-p">Naive approach to pass all scss files overload the whole system and decrease development flow performance.
 All unneeded files are compiled, uploaded and reloaded on each single file change.</p>
 <p class="atlas atlas-p">This is not trivial to guess relation of sass files. Nor sass, neither node wrapper not provide any info about imports path.
 So for this case we need to build custom imports graph from our project. Lucky we have tool called <code>sass-graph</code> that could use to get this graph.</p>
@@ -639,7 +639,7 @@ const getResultedFilesList &#x3D; changedFile &#x3D;&gt; {
         resultedFilesPath.push(changedFile);
         createImportsGraph(); &#x2F;&#x2F; Rebuild imports graph since standalone files could contain new imports after change
     } else {
-        importsGraph.visitAncestors(changedFile, parent &#x3D;&gt; { &#x2F;&#x2F; get all files that have imports of changed file 
+        importsGraph.visitAncestors(changedFile, parent &#x3D;&gt; { &#x2F;&#x2F; get all files that have imports of changed file
             if (!path.basename(parent).match(&#x2F;^_&#x2F;)) {
                 resultedFilesPath.push(parent);
             }
@@ -715,7 +715,7 @@ const sassCompile &#x3D; config &#x3D;&gt; {
             loadMaps: true,
             largeFile: true
         }))
-        .pipe(sass({ &#x2F;&#x2F; this config match rust sass implementation 
+        .pipe(sass({ &#x2F;&#x2F; this config match rust sass implementation
             includePaths: config.alsoSearchIn,
             sourceMap: false,
             outputStyle: &#39;compressed&#39;,
@@ -747,7 +747,7 @@ const sassCompile &#x3D; config &#x3D;&gt; {
     </a>
     <span class="atlas-title__highlight"></span>
 </h3>
-<p class="atlas atlas-p">And the gulp tasks that glue all together. 
+<p class="atlas atlas-p">And the gulp tasks that glue all together.
 For this we use approach with global vars that store state that is conceptually not a part of gulp approach, but it is most simple solution.</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">let changedFilePath &#x3D; &#39;&#39;;
@@ -809,7 +809,7 @@ gulp.task(&#39;styles:watch&#39;, () &#x3D;&gt; {
     </a>
     <span class="atlas-title__highlight"></span>
 </h3>
-<p class="atlas atlas-p">First of all you need to setup local server and serve all your project static resources. 
+<p class="atlas atlas-p">First of all you need to setup local server and serve all your project static resources.
 We serve both Atlas and project assets (so we could use livereload on live project with few simple steps):</p>
 <div class="atlas atlas-code ">
 <pre><code class="language-">root: [
@@ -817,7 +817,7 @@ We serve both Atlas and project assets (so we could use livereload on live proje
     pathConfig.ui.guide.resources
 ],</code></pre>
 </div>
-<p class="atlas atlas-p">Than you need to workaround for CORS and https (that probably used on your project). </p>
+<p class="atlas atlas-p">Than you need to workaround for CORS and https (that probably used on your project).</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">gulp.task(&#39;devServ:up&#39;, () &#x3D;&gt; {
     const cors &#x3D; (req, res, next) &#x3D;&gt; {
@@ -867,7 +867,7 @@ We serve both Atlas and project assets (so we could use livereload on live proje
         .pipe(connect.reload());
 });</code></pre>
 </div>
-<p class="atlas atlas-p">Depending of what resource is passed to the stream the whole html or single scss will be reloaded. 
+<p class="atlas atlas-p">Depending of what resource is passed to the stream the whole html or single scss will be reloaded.
 You need to count this to organize proper flow.</p>
 <span class="atlas-anchor" id="h3-tasks-sequences-in-gulp"></span>
 <h3 class="atlas atlas-title atlas-title_3">
@@ -923,7 +923,7 @@ gulp.task(&#39;dev:atlas&#39;, [&#39;devServ:up&#39;, &#39;styles:compile:all&#3
     </a>
     <span class="atlas-title__highlight"></span>
 </h3>
-<p class="atlas atlas-p">To use livereload on &quot;remote&quot; or sandbox instance you could use the described setup without any changes. 
+<p class="atlas atlas-p">To use livereload on &quot;remote&quot; or sandbox instance you could use the described setup without any changes.
 The idea is instead of site resource use local resource trigger reload as always.</p>
 <p class="atlas atlas-p">Just add to your templates:</p>
 <div class="atlas atlas-code html">
@@ -942,6 +942,7 @@ The idea is instead of site resource use local resource trigger reload as always
 <p class="atlas atlas-p">Than you could set using local resource innsted of site resource by http parameter or cookie.</p>
 <hr class="atlas atlas-hr" />
 <p class="atlas atlas-p">Please see this project gulp file to get the idea how live reload and incremental scss compilation could be organized.</p>
+<p class="atlas atlas-p"><code>gulp3</code> example could be found in 84fb58a</p>
 
 </section>
 

@@ -249,9 +249,9 @@
     </div>
     <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
         <a class="atlas-nav__ln _category js-atlas-nav-ln" 
-           data-name="guide">
+           data-name="guideline">
             <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
-            guide
+            guideline
         </a>
     </div>
     <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
@@ -263,9 +263,9 @@
     </div>
     <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
         <a class="atlas-nav__ln _category js-atlas-nav-ln" 
-           data-name="style">
+           data-name="styleguide">
             <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
-            style
+            styleguide
         </a>
     </div>
             </div>
@@ -319,7 +319,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    0.6.4
+    0.6.5
 </p>
         </div>
     </div>
@@ -384,9 +384,10 @@
 <a href="https://ci.appveyor.com/project/dimanech/atlas-guide/branch/master"><img src="https://ci.appveyor.com/api/projects/status/xiaw6yi35d527i67/branch/master?svg=true" alt="Win build status"></a>
 <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/dimanech/atlas-guide.svg" alt="Greenkeeper badge"></a>
 <a href="https://badge.fury.io/js/atlas-guide"><img src="https://badge.fury.io/js/atlas-guide.svg" alt="npm version"></a></p>
-<p class="atlas atlas-p">Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive 
+<p class="atlas atlas-p">Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive
 styles monitoring and Sass components reports.</p>
-<p class="atlas atlas-p">It is opinionated because it is probably impossible to cover all cases in CSS/Sass.</p>
+<p class="atlas atlas-p">It is opinionated because it is probably impossible to cover all cases in CSS/Sass.
+It designed primarily as &quot;Styleguide driven development&quot; tool with focus on split files approach and incapsulated components.</p>
 <p class="atlas atlas-p"><a href="https://dimanech.github.io/atlas-guide/">Live example</a></p>
 <p class="atlas atlas-p"><img src="docs/screens/atlas-component.jpeg" alt="atlas-component"></p>
     </section>
@@ -542,9 +543,9 @@ styles monitoring and Sass components reports.</p>
 </h3>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;);
-atlas.build(); &#x2F;&#x2F; build all guide files without reports. Return promise.
-atlas.build(&#39;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;); &#x2F;&#x2F; compile only particular file, if it marked as documented in project tree
-atlas.buildAll(); &#x2F;&#x2F; compile all guide and reports. Return promise.</code></pre>
+atlas.build().then(...); &#x2F;&#x2F; build all guide files without reports. Return promise.
+atlas.build(&#39;&#x2F;absolute&#x2F;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;).then(...); &#x2F;&#x2F; compile only particular file, if it marked as documented in project tree
+atlas.buildAll().then(...); &#x2F;&#x2F; compile all guide and reports. Return promise.</code></pre>
 </div>
 <p class="atlas atlas-p">Use <code>atlas.build()</code> for incremental development builds, where it is not required to have extensive heavy-weight statistic.</p>
 <span class="atlas-anchor" id="h3-cli"></span>
@@ -562,7 +563,7 @@ atlas.buildAll(); &#x2F;&#x2F; compile all guide and reports. Return promise.</c
 <div class="atlas atlas-code shell">
 <pre><code class="language-shell">Usage: atlas-guide [option]
 
-Options:            
+Options:
   --build                    build all atlas pages
   -v, --version              print Atlas-guide version
   --help                     print this message</code></pre>
@@ -583,7 +584,7 @@ Options:
 </h2>
 <p class="atlas atlas-p">Atlas search configuration in this order:</p>
 <ol class="atlas atlas-ol">
-	<li><code>.atlasrc.json</code> in project root </li>
+	<li><code>.atlasrc.json</code> in project root</li>
 <li><code>atlasConfig</code> field in <code>package.json</code></li>
 
 </ol>
@@ -620,7 +621,7 @@ Options:
     </a>
     <span class="atlas-title__highlight"></span>
 </h3>
-<p class="atlas atlas-p">If you project stores all configurations in <code>package.json</code> you probably want to store atlas configuration here also. 
+<p class="atlas atlas-p">If you project stores all configurations in <code>package.json</code> you probably want to store atlas configuration here also.
 To do that add <code>atlasConfig</code> field to your <code>package.json</code>.</p>
 <p class="atlas atlas-p">Note: if you have both <code>.atlasrc.json</code> and <code>package.json</code> -- <code>.atlasrc.json</code> will be used.</p>
 <p class="atlas atlas-p">Minimal configuration:</p>
@@ -647,7 +648,7 @@ To do that add <code>atlasConfig</code> field to your <code>package.json</code>.
     </a>
     <span class="atlas-title__highlight"></span>
 </h3>
-<p class="atlas atlas-p">As the next step you, probably, want to add your project CSS and JS to render components examples properly. 
+<p class="atlas atlas-p">As the next step you, probably, want to add your project CSS and JS to render components examples properly.
 To make this happen you need to add <code>partials</code> to the config, with paths to the templates in your project space:</p>
 <div class="atlas atlas-code json">
 <pre><code class="language-json">{
@@ -668,7 +669,7 @@ To make this happen you need to add <code>partials</code> to the config, with pa
 </div>
 <p class="atlas atlas-p">Note, that paths should be related to generated HTML, no matter where templates are stored. This is simple include that
 will be incorporated into resulted html.</p>
-<p class="atlas atlas-p">All templates and partials in Atlas could be overwritten. Please see this repo views folder to get list of all templates 
+<p class="atlas atlas-p">All templates and partials in Atlas could be overwritten. Please see this repo views folder to get list of all templates
 and partials.</p>
 <span class="atlas-anchor" id="h3-all-available-configuration-options"></span>
 <h3 class="atlas atlas-title atlas-title_3">
@@ -745,9 +746,9 @@ Proper path to root scss files needed to generate dependencies graph.</p>
     </a>
     <span class="atlas-title__highlight"></span>
 </h2>
-<p class="atlas atlas-p">Atlas like Vim consists of two functions - beeping and corrupting files. But with minor difference. 
-It generate guide and generate reports. You need to document code to make it &quot;beeping&quot; and provide config to make it 
-generate files. </p>
+<p class="atlas atlas-p">Atlas like Vim consists of two functions - beeping and corrupting files. But with minor difference.
+It generate guide and generate reports. You need to document code to make it &quot;beeping&quot; and provide config to make it
+generate files.</p>
 <p class="atlas atlas-p">In this section we need to cover 2 topics - documenting and reports configuration.</p>
 <span class="atlas-anchor" id="h3-documenting-code"></span>
 <h3 class="atlas atlas-title atlas-title_3">
@@ -781,7 +782,7 @@ generate files. </p>
 
  *&#x2F;</code></pre>
 </div>
-<p class="atlas atlas-p">Inside this comment regular markdown syntax would used, so any valid markdown will work here. </p>
+<p class="atlas atlas-p">Inside this comment regular markdown syntax would used, so any valid markdown will work here.</p>
 <div class="atlas atlas-code scss">
 <pre><code class="language-scss">&#x2F;*md
 
@@ -818,9 +819,9 @@ etc.
     </a>
     <span class="atlas-title__highlight"></span>
 </h4>
-<p class="atlas atlas-p">Atlas extends markdown code block &quot;fences&quot; notation with custom type (just like Hologram) -- <code>html_example</code>. 
+<p class="atlas atlas-p">Atlas extends markdown code block &quot;fences&quot; notation with custom type (just like Hologram) -- <code>html_example</code>.
 That render component playground instead of code-example. This keeps documentation compatible with regular markdown.</p>
-<p class="atlas atlas-p">To create component example you need to add code-block with <code>html_example</code>: </p>
+<p class="atlas atlas-p">To create component example you need to add code-block with <code>html_example</code>:</p>
 <div class="atlas atlas-code scss">
 <pre><code class="language-scss">&#x2F;*md
 
@@ -924,10 +925,10 @@ use it to style code by your needs. Atlas by default style 2 class <code>*_bad</
 <p class="atlas atlas-p">Regular development flow could be organized like this – build all guide pages on start and incrementally rebuild pages on file changes:</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;);
-atlas.build(); &#x2F;&#x2F; build all guide files without reports
+atlas.build().then(...); &#x2F;&#x2F; build all guide files without reports
 
 &#x2F;&#x2F; watch for changes, get changed file path and build needed page:
-atlas.build(&#39;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;); &#x2F;&#x2F; compile only this file if was documented on module import</code></pre>
+atlas.build(&#39;&#x2F;absolute&#x2F;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;).then(...); &#x2F;&#x2F; compile only this file if was documented on module import</code></pre>
 </div>
 <span class="atlas-anchor" id="h5-gulp-example"></span>
 <h5 class="atlas atlas-title atlas-title_5">
@@ -958,7 +959,7 @@ atlas.build(&#39;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;); &#x2F;&#x2F; co
 or in JS:</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;);
-atlas.buildAll(); &#x2F;&#x2F; compile all components, guidelines and reports</code></pre>
+atlas.buildAll().then(...); &#x2F;&#x2F; compile all components, guidelines and reports</code></pre>
 </div>
 <span class="atlas-anchor" id="h3-setup-constants"></span>
 <h3 class="atlas atlas-title atlas-title_3">
@@ -973,7 +974,7 @@ atlas.buildAll(); &#x2F;&#x2F; compile all components, guidelines and reports</c
     <span class="atlas-title__highlight"></span>
 </h3>
 <p class="atlas atlas-p">In case when project constants is set upped Atlas could generate project styleguide page and show some info about constant usage in components pages.</p>
-<p class="atlas atlas-p">This set up could be a tricky part, because it required full sass compilation and has some limitations. </p>
+<p class="atlas atlas-p">This set up could be a tricky part, because it required full sass compilation and has some limitations.</p>
 <p class="atlas atlas-p">First you need to use constants in simple form. Ex:</p>
 <div class="atlas atlas-code scss">
 <pre><code class="language-scss">$color-violet: #594199;
