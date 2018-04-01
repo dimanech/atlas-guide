@@ -404,4 +404,4 @@ Than you could set using local resource innsted of site resource by http paramet
 
 Please see this project gulp file to get the idea how live reload and incremental scss compilation could be organized.
 
-`gulp3` example could be found in 84fb58a
+`gulp3` example could be found in [84fb58a](https://github.com/dimanech/atlas-guide/blob/84fb58a48d1ce78aa978ece46e96b8da6a3fcd57/gulpfile.js)

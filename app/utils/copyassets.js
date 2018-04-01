@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const excludedDir = 'src';
 
 /**
  * Copy internal assets to specified Atlas destination directory, so they will be available in generated static files.
@@ -28,7 +29,7 @@ function copyAssetsFiles(assetsRoot, assetsSrc, assetsDest) {
             );
         }
         if (resource.isDirectory()) {
-            if (name === 'src') {
+            if (name === excludedDir) {
                 return;
             }
             const directory = path.join(assetsDest, assetRelSrc);
