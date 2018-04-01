@@ -8,8 +8,8 @@ const files = execSync('git diff --cached --name-only --diff-filter=ACMR -- **/*
 const errorMsg = "[GUARD]: Some js files are invalid. Please fix errors and try committing again";
 
 if (files) {
+    console.log('[GUARD]: Lint JS...');
     exec(path.join(nodeBin, 'eslint --quiet') + ' ' + files, (error, stdout, stderr) => {
-        console.log('[GUARD]: Lint JS...');
         if (stdout) {
             console.error(errorMsg);
             console.error(stdout);
