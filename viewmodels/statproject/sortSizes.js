@@ -1,5 +1,30 @@
 'use strict';
 
+function unitesFromKeywords(keyword) {
+    switch (keyword) {
+        case 'inherit':
+            return 16;
+        case 'xx-small':
+            return 9;
+        case 'x-small':
+            return 10;
+        case 'small':
+            return 13;
+        case 'medium':
+            return 16;
+        case 'large':
+            return 18;
+        case 'larger':
+            return 19;
+        case 'x-large':
+            return 24;
+        case 'xx-large':
+            return 32;
+        default:
+            return 0;
+    }
+}
+
 function convertFontToAbsoluteUnits(value) {
     let raw = parseFloat(value);
 
@@ -17,28 +42,7 @@ function convertFontToAbsoluteUnits(value) {
         return raw * 0.16;
     }
 
-    switch (value) {
-        case 'inherit':
-            return 16;
-        case 'xx-small':
-            return 9;
-        case 'x-small':
-            return 10;
-        case 'small':
-            return 13;
-        case 'medium':
-            return 16;
-        case 'large':
-            return 18;
-        case 'x-large':
-            return 24;
-        case 'xx-large':
-            return 32;
-        case 'larger':
-            return 19;
-        default:
-            return 0;
-    }
+    return unitesFromKeywords(value);
 }
 
 function sortSizes(size) {

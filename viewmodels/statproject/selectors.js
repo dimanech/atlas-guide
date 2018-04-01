@@ -1,6 +1,6 @@
 'use strict';
 
-function selectors(selectors) {
+function selectors(selectors) { // TODO: 25 lines
     let universalSelectors = [];
     let jsPrefixedSelectors = [];
     let idSelectors = [];
