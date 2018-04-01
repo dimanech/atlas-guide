@@ -7,6 +7,18 @@
 	max-width: none;
 	padding: $scale-sm-atlas 0 0;
 
+	kbd {
+		background-color: #f3f3f0;
+		border: 1px solid $atlas-color-divider;
+		border-radius: 3px;
+		box-shadow: 1px 2px 0 darken($atlas-color-divider, 20%);
+		font-family: $font-mono-atlas;
+		font-size: $atlas-mono-small;
+		font-weight: bold;
+		margin: 3px;
+		padding: 0 3px;
+	}
+
 	> svg {
 		color: $color-blue-atlas;
 		height: 20px;

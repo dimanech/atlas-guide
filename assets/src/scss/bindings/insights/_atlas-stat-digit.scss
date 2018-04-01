@@ -1,4 +1,5 @@
 .atlas-stat-digit {
+	all: unset;
 	font-family: $font-sans-atlas;
 	font-size: 4rem;
 	font-weight: bold;
@@ -6,13 +7,18 @@
 	min-width: 190px;
 
 	&__data {
+		all: unset;
 		color: $color-blue-atlas;
+		display: block;
 		letter-spacing: -0.06em;
 	}
 
 	&__caption {
+		all: unset;
+		display: block;
 		font-size: 1rem;
 		line-height: 1.2;
+		padding: 0;
 		text-transform: capitalize;
 	}
 
@@ -27,15 +33,17 @@
 
 		svg.atlas-stat-digit__data {
 			@include chessboard();
-			height: 200%;
 			width: 100%;
 		}
 
 		.atlas-stat-digit__caption {
 			font-family: $font-mono-atlas;
 			font-size: $atlas-mono-small;
+			margin-right: 4px;
+			overflow: hidden;
+			padding-top: $space-sm-atlas;
+			text-overflow: ellipsis;
 			text-transform: none;
-			word-wrap: break-word;
 		}
 	}
 

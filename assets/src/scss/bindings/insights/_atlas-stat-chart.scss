@@ -13,8 +13,12 @@
 		margin-top: $space-md-atlas;
 	}
 
+	&__bean-name {
+		margin-top: $space-sm-atlas;
+	}
+
 	&__stat {
-		margin-top: $space-xm-atlas;
+		margin-top: $space-md-atlas;
 		text-align: left;
 	}
 
@@ -26,6 +30,7 @@
 }
 
 .atlas-stat-chart-caption {
+	all: unset;
 	font-family: $font-sans-atlas;
 	font-size: 0.8rem;
 	font-weight: bold;
