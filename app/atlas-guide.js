@@ -2,6 +2,7 @@
 
 const path = require('path');
 const fs = require('fs');
+const cwd = process.cwd();
 
 // Get basic models
 const atlasConfig = require(path.resolve(__dirname, '../models/atlasconfig.js'));
@@ -37,6 +38,15 @@ if (atlasBase.copyInternalAssets) {
     copyInternalAssets(assetsSrc, guideDest);
 }
 
+// Normalize path argument
+function normalizePath(url) {
+    if (url !== undefined) {
+        return path.isAbsolute(url) ? url : path.join(cwd, url);
+    } else {
+        return url;
+    }
+}
+
 // Cache basic templates
 const cachedTemplates = {
     'component': fs.readFileSync(atlasBase.templates.component, 'utf8'),
@@ -53,6 +63,7 @@ function getCachedTemplates(type, path) {
     return fs.readFileSync(path, 'utf8');
 }
 
+// Prepare content
 function prepareContent(component) {
     let content;
     let tableOfContent;
@@ -95,12 +106,13 @@ function prepareContent(component) {
  * @return {Promise<string>}
  */
 function makeComponent(url) {
+    const source = normalizePath(url);
     let docSet = [];
 
-    function traverseDocumentedTree(components, targetPath) {
+    function traverseDocumentedTree(components, sourcePath) {
         components.forEach(component => {
-            const makeAllComponents = targetPath === undefined;
-            const isFileInConfig = makeAllComponents ? true : targetPath === component.src;
+            const isMakeAllComponents = sourcePath === undefined;
+            const isFileInConfig = isMakeAllComponents ? true : sourcePath === component.src;
             const isFile = component.target;
 
             if (isFile && isFileInConfig) {
@@ -113,17 +125,17 @@ function makeComponent(url) {
                     subPages: projectTree.subPages
                 });
 
-                if (!makeAllComponents) {
+                if (!isMakeAllComponents) {
                     return;
                 }
             }
 
             if (component.subPages.length) {
-                traverseDocumentedTree(component.subPages, targetPath);
+                traverseDocumentedTree(component.subPages, sourcePath);
             }
         });
     }
-    traverseDocumentedTree(projectTree.subPages, url);
+    traverseDocumentedTree(projectTree.subPages, source);
 
     return Promise.all(docSet.map(writePage));
 }

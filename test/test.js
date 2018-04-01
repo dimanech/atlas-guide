@@ -43,38 +43,87 @@ describe('Atlas', function() {
         describe('Single component', function() {
             const expectedFile = path.join(cwd, guideDest, 'component.html');
 
-            before(function(done) {
-                const atlas = require(cwd + '/app/atlas-guide');
-                atlas.build(path.join(cwd, '/test/fixtures/atlas/_component.scss')).then(() => done());
+            describe('Existed absolute path', function() {
+                before(function(done) {
+                    const atlas = require(cwd + '/app/atlas-guide');
+                    atlas.build(path.join(cwd, '/test/fixtures/atlas/_component.scss')).then(() => done()); // eslint-disable-line
+                });
+
+                after(function() {
+                    fs.unlinkSync(expectedFile);
+                });
+
+                it('should be written', function() {
+                    const generatedFile = fs.existsSync(expectedFile);
+                    assert.strictEqual(generatedFile, true, 'component file exist');
+                });
+
+                it('only one file should be written', function() {
+                    const actualFiles = fs.readdirSync(guideDest);
+                    assert.deepEqual(actualFiles, ['component.html']);
+                });
+
+                it('should be with content', function() {
+                    const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
+                    const result = /h1-b-component-test/.test(expectedFileContent);
+                    assert.strictEqual(result, true, 'component file have expected content');
+                });
+
+                it('should have overloaded partials', function() {
+                    const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
+                    const head = /project.css/.test(expectedFileContent);
+                    const footer = /project.js/.test(expectedFileContent);
+                    assert.strictEqual(footer && head, true, 'component file have overloaded template');
+                });
             });
 
-            it('should be written', function() {
-                const generatedFile = fs.existsSync(expectedFile);
-                assert.strictEqual(generatedFile, true, 'component file exist');
+            describe('Existed relative path', function() {
+                before(function(done) {
+                    const atlas = require(cwd + '/app/atlas-guide');
+                    atlas.build('./test/fixtures/atlas/_component.scss').then(() => done()); // eslint-disable-line
+                });
+
+                after(function() {
+                    fs.unlinkSync(expectedFile);
+                });
+
+                it('should be written', function() {
+                    const generatedFile = fs.existsSync(expectedFile);
+                    assert.strictEqual(generatedFile, true, 'component file exist');
+                });
+
+                it('should be with content', function() {
+                    const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
+                    const result = /h1-b-component-test/.test(expectedFileContent);
+                    assert.strictEqual(result, true, 'component file have expected content');
+                });
             });
 
-            it('only one file should be written', function() {
-                const actualFiles = fs.readdirSync(guideDest);
-                assert.deepEqual(actualFiles, ['component.html']);
-            });
-
-            it('should be with content', function() {
-                const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const result = /h1-b-component-test/.test(expectedFileContent);
-                assert.strictEqual(result, true, 'component file have expected content');
-            });
-
-            it('should have overloaded partials', function() {
-                const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const head = /project.css/.test(expectedFileContent);
-                const footer = /project.js/.test(expectedFileContent);
-                assert.strictEqual(footer && head, true, 'component file have overloaded template');
-            });
-
-            it('should process all files when no exclusion is declared');
-
-            after(function() {
-                fs.unlinkSync(expectedFile);
+            describe('Wrong path', function() {
+                it('should not trow an error on unexisted file with relative path', function(done) {
+                    try {
+                        const atlas = require(cwd + '/app/atlas-guide');
+                        atlas.build('./test/fixtures/atlas_component.scss').then(() => done()); // eslint-disable-line
+                    } catch (e) {
+                        done('failed');
+                    }
+                });
+                it('should not trow an error on unexisted file with absolute path', function(done) {
+                    try {
+                        const atlas = require(cwd + '/app/atlas-guide');
+                        atlas.build(path.join(cwd, '/test/fixtures/atlas/_some.scss')).then(() => done()); // eslint-disable-line
+                    } catch (e) {
+                        done('failed');
+                    }
+                });
+                it('should not trow an error on directory path', function(done) {
+                    try {
+                        const atlas = require(cwd + '/app/atlas-guide');
+                        atlas.build('./test/fixtures/atlas/').then(() => done()); // eslint-disable-line
+                    } catch (e) {
+                        done('failed');
+                    }
+                });
             });
         });
 
@@ -168,6 +217,7 @@ describe('Atlas', function() {
                 ];
                 assert.deepEqual(actual, expected, 'folder do not contain exclude files');
             });
+            it('should process all files when no exclusion is declared');
             it('insights should be with data', function() {
                 const fileContent = fs.readFileSync(guideDest + 'insights.html', 'utf8');
                 const isContain =
@@ -231,9 +281,9 @@ describe('Atlas', function() {
             it('should have internal templates');
 
             after(function() {
-                // fs.readdirSync(guideDest).forEach(item => {
-                //     fs.unlinkSync(path.join(cwd, guideDest, item));
-                // });
+                fs.readdirSync(guideDest).forEach(item => {
+                    fs.unlinkSync(path.join(cwd, guideDest, item));
+                });
             });
         });
 

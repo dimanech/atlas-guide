@@ -1,6 +1,6 @@
 # Set up compilation and live reload
 
-Since Atlas is static page generator it is not provide any functionality for serving, livereloading and development setup. 
+Since Atlas is static page generator it is not provide any functionality for serving, livereloading and development setup.
 It is not depends from project infrastructure.
 
 This page is also example of how regular markdown files will be used to create guideline page.
@@ -57,7 +57,7 @@ No need to say that for some cases this workflow could be organized even aggress
 
 You probably don't need reports and all global statistic on daily work. By this reasons this tasks is moved to separate functions.
 
-To build all pages and statistics you could use several way - npm scripts, regular js and task runners. 
+To build all pages and statistics you could use several way - npm scripts, regular js and task runners.
 We show most simple way, by using CLI.
 
 #### CLI
@@ -72,7 +72,7 @@ We show most simple way, by using CLI.
 
 #### Gulp
 
-But if you use it with deploy you probably need to build all scss before build atlas. 
+But if you use it with deploy you probably need to build all scss before build atlas.
 This could be simple achieved with gulp:
 
 ```js
@@ -96,7 +96,7 @@ so npm scripts could be changed to this:
 
 The first and the most problem that you faced when you start to work with many components that bundled to many separate files is that it is not trivial compile only changed files.
 
-Naive approach to pass all scss files overload the whole system and decrease development flow performance. 
+Naive approach to pass all scss files overload the whole system and decrease development flow performance.
 All unneeded files are compiled, uploaded and reloaded on each single file change.
 
 This is not trivial to guess relation of sass files. Nor sass, neither node wrapper not provide any info about imports path.
@@ -138,7 +138,7 @@ const getResultedFilesList = changedFile => {
         resultedFilesPath.push(changedFile);
         createImportsGraph(); // Rebuild imports graph since standalone files could contain new imports after change
     } else {
-        importsGraph.visitAncestors(changedFile, parent => { // get all files that have imports of changed file 
+        importsGraph.visitAncestors(changedFile, parent => { // get all files that have imports of changed file
             if (!path.basename(parent).match(/^_/)) {
                 resultedFilesPath.push(parent);
             }
@@ -208,7 +208,7 @@ const sassCompile = config => {
             loadMaps: true,
             largeFile: true
         }))
-        .pipe(sass({ // this config match rust sass implementation 
+        .pipe(sass({ // this config match rust sass implementation
             includePaths: config.alsoSearchIn,
             sourceMap: false,
             outputStyle: 'compressed',
@@ -231,7 +231,7 @@ const sassCompile = config => {
 
 ### Gulp setup
 
-And the gulp tasks that glue all together. 
+And the gulp tasks that glue all together.
 For this we use approach with global vars that store state that is conceptually not a part of gulp approach, but it is most simple solution.
 
 ```js
@@ -274,7 +274,7 @@ Live reload could be easely setup with gulp and connect. All you need is one sin
 
 ### Setup local server
 
-First of all you need to setup local server and serve all your project static resources. 
+First of all you need to setup local server and serve all your project static resources.
 We serve both Atlas and project assets (so we could use livereload on live project with few simple steps):
 
 ```
@@ -284,7 +284,7 @@ root: [
 ],
 ```
 
-Than you need to workaround for CORS and https (that probably used on your project). 
+Than you need to workaround for CORS and https (that probably used on your project).
 
 ```js
 gulp.task('devServ:up', () => {
@@ -330,7 +330,7 @@ gulp.task('devServ:reload:styles', ['styles:compile:incremental'], function () {
 });
 ```
 
-Depending of what resource is passed to the stream the whole html or single scss will be reloaded. 
+Depending of what resource is passed to the stream the whole html or single scss will be reloaded.
 You need to count this to organize proper flow.
 
 ### Tasks sequences in gulp
@@ -377,7 +377,7 @@ gulp.task('dev:atlas', ['devServ:up', 'styles:compile:all', 'atlas:compile:all',
 
 ### Setup livereload on production site
 
-To use livereload on "remote" or sandbox instance you could use the described setup without any changes. 
+To use livereload on "remote" or sandbox instance you could use the described setup without any changes.
 The idea is instead of site resource use local resource trigger reload as always.
 
 Just add to your templates:
@@ -403,3 +403,5 @@ Than you could set using local resource innsted of site resource by http paramet
 ***
 
 Please see this project gulp file to get the idea how live reload and incremental scss compilation could be organized.
+
+`gulp3` example could be found in 84fb58a
