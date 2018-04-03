@@ -51,7 +51,7 @@ function writeGuidePage(config) {
             ),
             error => {
                 if (error) {
-                    reject(error);
+                    reject(error); // cover me
                 } else {
                     resolve('Page saved');
                 }
