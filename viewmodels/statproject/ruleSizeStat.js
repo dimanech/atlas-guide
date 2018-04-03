@@ -1,28 +1,27 @@
 'use strict';
 
-function ruleSizeStat(array) {
-    if (!array) {
+function ruleSizeStat(selectorsList) {
+    if (!selectorsList) {
         return false;
     }
 
-    let selectorsList = array;
     let rulesetStat = {
         heavy: [],
         light: []
     };
 
     selectorsList.forEach(item => {
-        if (parseFloat(item.declarations) > 15) {
+        if (item.declarations > 15) {
             rulesetStat.heavy.push(item);
         }
 
-        if (parseFloat(item.declarations) < 2) {
+        if (item.declarations <= 1) {
             rulesetStat.light.push(item);
         }
     });
 
-    Object.keys(rulesetStat).forEach(key =>
-        rulesetStat[key].sort((a, b) => parseFloat(b.declarations) - parseFloat(a.declarations)));
+    Object.keys(rulesetStat).forEach(key => rulesetStat[key].sort(
+        (a, b) => b.declarations - a.declarations));
 
     return rulesetStat;
 }

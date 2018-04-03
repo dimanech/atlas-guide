@@ -74,7 +74,4 @@ function getProjectConstants(constConfig, additionalSassImports) {
     return rawConstants;
 }
 
-// fs.writeFileSync('const.json', JSON.stringify(
-//     getProjectConstants(require('./atlasconfig.js').getBase().constants), null, '\t'));
-
 module.exports = getProjectConstants;

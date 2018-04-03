@@ -775,7 +775,7 @@ describe('Atlas', function() {
                 const data = [{selector: '.light', declarations: 1},
                     {selector: '.heavy', declarations: 16},
                     {selector: '.regular', declarations: 2}];
-                const result = ruleSizeStat(data).light[0].declarations;
+                const result = ruleSizeStat(data).light.length;
                 assert.strictEqual(result, 1);
             });
             it('should return sorted values', function() {
@@ -913,4 +913,5 @@ describe('Atlas', function() {
         });
     });
 });
+// fs.writeFileSync('statproject.json', JSON.stringify(viewModel), null, '\t');
 
