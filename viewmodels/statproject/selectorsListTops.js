@@ -6,7 +6,7 @@ function selectorsListTops(array) {
 
     selectorsList.forEach(list => {
         const selectorsArrayLength = list.split(/,/).length;
-        if (parseFloat(selectorsArrayLength) > 3) {
+        if (selectorsArrayLength > 3) {
             longestSelectors.push({
                 selector: list.replace(/,/g, ',<br>'),
                 selectors: selectorsArrayLength
@@ -14,7 +14,7 @@ function selectorsListTops(array) {
         }
     });
 
-    longestSelectors.sort((a, b) => parseFloat(b.selectors) - parseFloat(a.selectors));
+    longestSelectors.sort((a, b) => b.selectors - a.selectors);
 
     return longestSelectors;
 }

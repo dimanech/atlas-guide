@@ -1,6 +1,6 @@
 'use strict';
 
-function unitesFromKeywords(keyword) {
+function getUnitFromKeywords(keyword) {
     switch (keyword) {
         case 'inherit':
             return 16;
@@ -26,23 +26,23 @@ function unitesFromKeywords(keyword) {
 }
 
 function convertFontToAbsoluteUnits(value) {
-    let raw = parseFloat(value);
+    const rawValue = parseFloat(value);
 
     if (typeof value !== 'string') {
         value = value.toString();
     }
 
     if (value.match(/px$/)) {
-        return raw;
+        return rawValue;
     }
     if (value.match(/em$/)) {
-        return raw * 16;
+        return rawValue * 16;
     }
     if (value.match(/%$/)) {
-        return raw * 0.16;
+        return rawValue * 0.16;
     }
 
-    return unitesFromKeywords(value);
+    return getUnitFromKeywords(value);
 }
 
 function sortSizes(size) {

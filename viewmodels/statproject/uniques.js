@@ -5,7 +5,6 @@ const _camelCase = require('lodash.camelcase');
 
 const sortFontFamilies = require('./sortFontFamilies');
 const sortSizes = require('./sortSizes');
-const sortNumbers = require('./sortNumbers');
 const sortColors = require('./sortColors');
 const parseSpaces = require('./parseSpaces');
 
@@ -26,7 +25,7 @@ function uniques(stats) {
     uniques.fontSize = _uniq(stats.declarations.getAllFontSizes());
     uniques.fontFamily = sortFontFamilies(stats.declarations.getAllFontFamilies());
     uniques.fontSizeSorted = sortSizes(uniques.fontSize);
-    uniques.zIndexSorted = sortNumbers(uniques.zIndex);
+    uniques.zIndexSorted = uniques.zIndex.sort((a, b) => a - b);
     uniques.mediaQueries = _uniq(stats.mediaQueries.values);
     uniques.margin = sortSizes(parseSpaces(stats.declarations.properties.margin));
     uniques.padding = sortSizes(parseSpaces(stats.declarations.properties.padding));

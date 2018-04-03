@@ -630,19 +630,6 @@ describe('Atlas', function() {
             });
         });
     });
-    describe('Component statistics', function() {
-        describe('getStatFor', function() {
-            it('should skip keyframes rules');
-            it('should correct calculate includes');
-            it('should correct calculate imports');
-            it('should correct calculate variables');
-            it('should correct calculate imported by');
-            it('should correct calculate total declarations');
-            it('should correct construct component selectors tree');
-            it('should return only uniq spaces');
-            it('should return only uniq scales');
-        });
-    });
     describe('format()', function() {
         const format = require(cwd + '/viewmodels/utils/format');
         describe('numbers', function() {
@@ -768,6 +755,161 @@ describe('Atlas', function() {
         it('should return proper value if singular', function() {
             const result = pluralize('1,singular,plural', text => text);
             assert.strictEqual(result, 'singular');
+        });
+    });
+    describe('statproject', function() {
+        describe('ruleSizeStat', function() {
+            const ruleSizeStat = require(cwd + '/viewmodels/statproject/ruleSizeStat');
+            it('should return false if we do not have stat', function() {
+                const result = ruleSizeStat();
+                assert.strictEqual(result, false);
+            });
+            it('should push to heavy rule sets if values more than 15', function() {
+                const data = [{selector: '.light', declarations: 1},
+                    {selector: '.heavy', declarations: 16},
+                    {selector: '.regular', declarations: 2}];
+                const result = ruleSizeStat(data).heavy[0].declarations;
+                assert.strictEqual(result, 16);
+            });
+            it('should push to light rule sets if values less than 2', function() {
+                const data = [{selector: '.light', declarations: 1},
+                    {selector: '.heavy', declarations: 16},
+                    {selector: '.regular', declarations: 2}];
+                const result = ruleSizeStat(data).light[0].declarations;
+                assert.strictEqual(result, 1);
+            });
+            it('should return sorted values', function() {
+                const data = [{selector: '.heavy', declarations: 20},
+                    {selector: '.heavy-1', declarations: 17},
+                    {selector: '.heavy-2', declarations: 18}];
+                const result = ruleSizeStat(data);
+                assert.deepEqual(result, {
+                    heavy: [
+                        {selector: '.heavy', declarations: 20},
+                        {selector: '.heavy-2', declarations: 18},
+                        {selector: '.heavy-1', declarations: 17}],
+                    light: []
+                });
+            });
+        });
+        describe('selectorsListTops', function() {
+            const selectorsListTops = require(cwd + '/viewmodels/statproject/selectorsListTops');
+            it('should push to list if selectors length more than 3', function() {
+                const data = [
+                    'article,aside,footer,header,nav,section',
+                    'figcaption,figure,main',
+                    'b,strong'
+                ];
+                const result = selectorsListTops(data).length;
+                assert.strictEqual(result, 1);
+            });
+            it('should not push to list if selectors length less than 3', function() {
+                const data = [
+                    'figcaption,figure,main',
+                    'b,strong',
+                    '.some'
+                ];
+                const result = selectorsListTops(data).length;
+                assert.strictEqual(result, 0);
+            });
+            it('should return sorted values', function() {
+                const data = [
+                    'b,strong,.some,.some:hover',
+                    'article,aside,footer,header,nav,section',
+                    'figcaption,figure,main,header,a'
+                ];
+                const result = selectorsListTops(data);
+                const expectedResult = [{
+                    'selector': 'article,<br>aside,<br>footer,<br>header,<br>nav,<br>section',
+                    'selectors': 6
+                }, {
+                    'selector': 'figcaption,<br>figure,<br>main,<br>header,<br>a',
+                    'selectors': 5
+                }, {
+                    'selector': 'b,<br>strong,<br>.some,<br>.some:hover',
+                    'selectors': 4
+                }
+                ];
+                assert.deepEqual(result, expectedResult);
+            });
+        });
+        describe('totals', function() {
+            const totals = require(cwd + '/viewmodels/statproject/totals');
+            it('should return false if we do not have stat', function() {
+                const result = totals();
+                assert.strictEqual(result, false);
+            });
+        });
+        describe('uniques', function() {
+            const uniques = require(cwd + '/viewmodels/statproject/uniques');
+            it('should return false if we do not have stat', function() {
+                const result = uniques();
+                assert.strictEqual(result, false);
+            });
+        });
+        describe('parseSpaces', function() {
+            const parseSpaces = require(cwd + '/viewmodels/statproject/parseSpaces');
+            it('should return false if we do not have stat', function() {
+                const result = parseSpaces();
+                assert.strictEqual(result, false);
+            });
+            it('should not split values list if it contain calc function', function() {
+                const data = [
+                    'calc(100px + 2em) 20px',
+                    '30px 20px',
+                    '0'
+                ];
+                const result = parseSpaces(data);
+                const expectedResult = ['calc(100px + 2em) 20px', '30px', '20px', '0'];
+                assert.deepEqual(result, expectedResult);
+            });
+            it('should return only uniq values', function() {
+                const data = ['20px', '20px', '20px', '0'];
+                const result = parseSpaces(data);
+                assert.deepEqual(result, ['20px', '0']);
+            });
+        });
+        describe('sortSizes', function() {
+            const sortSizes = require(cwd + '/viewmodels/statproject/sortSizes');
+            it('should return false if we do not have stat', function() {
+                const result = sortSizes();
+                assert.strictEqual(result, false);
+            });
+            it('should proper process int', function() {
+                const data = [0];
+                const result = sortSizes(data);
+                const expectedResult = [{
+                    orig: '0',
+                    abs: 0,
+                    isNegative: false,
+                    normalized: 0
+                }];
+                assert.deepEqual(result, expectedResult);
+            });
+            it('should proper process strings', function() {
+                const data = ['-20px'];
+                const result = sortSizes(data);
+                const expectedResult = [{
+                    orig: '-20px',
+                    abs: -20,
+                    isNegative: true,
+                    normalized: 20
+                }];
+                assert.deepEqual(result, expectedResult);
+            });
+        });
+    });
+    describe('Component statistics', function() {
+        describe('getStatFor', function() {
+            it('should skip keyframes rules');
+            it('should correct calculate includes');
+            it('should correct calculate imports');
+            it('should correct calculate variables');
+            it('should correct calculate imported by');
+            it('should correct calculate total declarations');
+            it('should correct construct component selectors tree');
+            it('should return only uniq spaces');
+            it('should return only uniq scales');
         });
     });
 });

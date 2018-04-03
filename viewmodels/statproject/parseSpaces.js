@@ -13,9 +13,7 @@ function parseSpaces(spacesArray) {
         if (/calc/ig.test(declarationVal)) {
             return allMargins.push(declarationVal);
         }
-        declarationVal.trim().split(/\s/).forEach(function(value) {
-            allMargins.push(value);
-        });
+        declarationVal.trim().split(/\s/).forEach(value => allMargins.push(value));
     });
 
     return _uniq(allMargins);

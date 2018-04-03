@@ -16,7 +16,7 @@ function ruleSizeStat(array) {
             rulesetStat.heavy.push(item);
         }
 
-        if (parseFloat(item.declarations) < 1) {
+        if (parseFloat(item.declarations) < 2) {
             rulesetStat.light.push(item);
         }
     });
