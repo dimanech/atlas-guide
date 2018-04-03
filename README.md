@@ -14,6 +14,7 @@ It is opinionated because it is probably impossible to cover all cases in CSS/Sa
 It designed primarily as "Styleguide driven development" tool with focus on split files approach and incapsulated components.
 
 [Live example](https://dimanech.github.io/atlas-guide/)
+[Video example](https://youtu.be/Vohb_Xl6S54)
 
 ![atlas-component](docs/screens/atlas-component.jpeg)
 
