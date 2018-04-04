@@ -24,6 +24,7 @@
     }
 
     function asideHide() {
+        console.log('here')
         container.classList.add('js-aside-panel-hidden');
         resizeTo(0);
     }
@@ -48,7 +49,7 @@
     }
 
     function setAsideState() {
-        if (window.sessionStorage) {
+        if (!window.sessionStorage) {
             return;
         }
         const storedValue = window.sessionStorage.getItem('asideWidth');
