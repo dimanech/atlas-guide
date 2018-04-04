@@ -2,7 +2,7 @@
   "name": "atlas-guide",
   "version": "0.6.7",
   "license": "MIT",
-  "description": "Atlas living style guide & pattern library static site generator with extensive CSS monitoring and components info",
+  "description": "Atlas is living style-guides & pattern library static site generator with extensive CSS monitoring and components info that could be used virtually with any scss/css project",
   "keywords": [
     "styleguide",
     "styleguide-css",
@@ -16,7 +16,7 @@
     "aigis"
   ],
   "engines": {
-    "node": ">=6.1",
+    "node": ">=8",
     "npm": ">=5.4"
   },
   "dependencies": {
@@ -76,5 +76,5 @@
     "type": "git",
     "url": "git@github.com:dimanech/atlas-guide.git"
   },
-  "author": "Dima Nechepurenko"
+  "author": "Nechepurenko D."
 }
