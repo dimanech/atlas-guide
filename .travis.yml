@@ -35,7 +35,8 @@ script:
   - npm run test
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - greenkeeper-lockfile-upload
 
-after_success: npm run coverage
+after_success:
+  - npm run coverage
+  - ./cc-test-reporter after-build --debug --exit-code $TRAVIS_TEST_RESULT
