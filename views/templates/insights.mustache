@@ -74,8 +74,8 @@
                             <span class="atlas-stat-info">
                                 <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                 <span class="atlas-stat-info__popup">
-                                    Data uri not best approach to serve data (especially in HTTP2).
-                                    It blows CSS, it hard to maintain and it has less decoding speed.
+                                    Data uri not the best approach to serve data (especially in HTTP2).
+                                    It blows CSS, hard to maintain and it comes with less decoding speed.
                                 </span>
                             </span>
                         </h2>
@@ -94,7 +94,7 @@
                                 <li class="atlas-stat-columns__item">
                                     <figure class="atlas-stat-digit _color _uri">
                                         <div class="atlas-stat-digit__data {{#displayValue}}_display{{/displayValue}}">
-                                            <div {{#displayValue}}style="background:url({{displayValue}}) center center no-repeat; background-size: 100%;"{{/displayValue}}>
+                                            <div {{#displayValue}}style="background:url({{displayValue}}) center center no-repeat;"{{/displayValue}}>
                                                 {{^displayValue}}Aa{{/displayValue}}
                                             </div>
                                         </div>
@@ -135,9 +135,9 @@
                             <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                             <span class="atlas-stat-info__popup">
                                 This is zones that
-                                could be hard to overwrite and work with,
-                                zones that could escalate specificity
-                                and not scaled well during project lifetime
+                                could be hard to overwrite and work with.
+                                Zones that could escalate specificity
+                                and not scaled well during project lifetime.
                             </span>
                         </span>
                     </h3>
@@ -283,8 +283,8 @@
                         </section>
                         <section class="atlas-stat-columns__item">
                             <h4 class="atlas-stat-columns__title">
-                                {{rulesizeTops.light.length}}
-                                {{#pluralize}}{{rulesizeTops.light.length}},Empty ruleset,Empty rulesets{{/pluralize}}
+                                {{rulesizeTops.empty.length}}
+                                {{#pluralize}}{{rulesizeTops.empty.length}},Empty ruleset,Empty rulesets{{/pluralize}}
                                 <span class="atlas-stat-info">
                                     <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                     <span class="atlas-stat-info__popup">
@@ -292,7 +292,7 @@
                                     </span>
                                 </span>
                             </h4>
-                            {{#rulesizeTops.light.length}}
+                            {{#rulesizeTops.empty.length}}
                                 <div class="atlas-stat-scroll-view">
                                     <table class="atlas-stat-table">
                                         <thead class="atlas-stat-table__head">
@@ -306,7 +306,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="atlas-stat-table__body">
-                                            {{#rulesizeTops.light}}
+                                            {{#rulesizeTops.empty}}
                                                 <tr class="atlas-stat-table__item">
                                                     <th class="atlas-stat-table__cell _title ">
                                                         {{declarations}}
@@ -315,11 +315,11 @@
                                                         {{selector}}
                                                     </td>
                                                 </tr>
-                                            {{/rulesizeTops.light}}
+                                            {{/rulesizeTops.empty}}
                                         </tbody>
                                     </table>
                                 </div>
-                            {{/rulesizeTops.light.length}}
+                            {{/rulesizeTops.empty.length}}
                         </section>
                     </div>
                 </section>
@@ -350,7 +350,7 @@
                             <span class="atlas-stat-info">
                                 <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                 <span class="atlas-stat-info__popup">
-                                    Universal selectors highly could affect performance and encapsulation of components
+                                    Universal selectors could affect performance and encapsulation of components
                                 </span>
                             </span>
                         </h3>
@@ -368,7 +368,7 @@
                             <span class="atlas-stat-info">
                                 <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                 <span class="atlas-stat-info__popup">
-                                    It is bad practice to use id as selector for specificity and reusability reasons.
+                                    It is bad practice to use IDs as selectors for specificity and reusability reasons.
                                 </span>
                             </span>
                         </h3>
@@ -411,7 +411,7 @@
                         <span class="atlas-stat-info">
                             <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                             <span class="atlas-stat-info__popup">
-                                This graph could show how effective is code organized and reused over styling properties
+                                This graph could show how effective code organized and reused over styling properties
                             </span>
                         </span>
                     </h3>
@@ -571,7 +571,7 @@
                         <span class="atlas-stat-info">
                             <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                             <span class="atlas-stat-info__popup">
-                                This graph could show how effective is code organized and reused over space and metric properties
+                                This graph could show how effective code organized and reused over space and metric properties
                             </span>
                         </span>
                     </h3>

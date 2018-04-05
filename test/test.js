@@ -765,17 +765,17 @@ describe('Atlas', function() {
                 assert.strictEqual(result, false);
             });
             it('should push to heavy rule sets if values more than 15', function() {
-                const data = [{selector: '.light', declarations: 1},
+                const data = [{selector: '.empty', declarations: 0},
                     {selector: '.heavy', declarations: 16},
                     {selector: '.regular', declarations: 2}];
                 const result = ruleSizeStat(data).heavy[0].declarations;
                 assert.strictEqual(result, 16);
             });
-            it('should push to light rule sets if values less than 2', function() {
-                const data = [{selector: '.light', declarations: 1},
+            it('should push to empty rule sets if values less than 1', function() {
+                const data = [{selector: '.empty', declarations: 0},
                     {selector: '.heavy', declarations: 16},
                     {selector: '.regular', declarations: 2}];
-                const result = ruleSizeStat(data).light.length;
+                const result = ruleSizeStat(data).empty.length;
                 assert.strictEqual(result, 1);
             });
             it('should return sorted values', function() {
@@ -788,7 +788,7 @@ describe('Atlas', function() {
                         {selector: '.heavy', declarations: 20},
                         {selector: '.heavy-2', declarations: 18},
                         {selector: '.heavy-1', declarations: 17}],
-                    light: []
+                    empty: []
                 });
             });
         });

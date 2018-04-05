@@ -7,7 +7,7 @@ function ruleSizeStat(selectorsList) {
 
     let rulesetStat = {
         heavy: [],
-        light: []
+        empty: []
     };
 
     selectorsList.forEach(item => {
@@ -15,8 +15,8 @@ function ruleSizeStat(selectorsList) {
             rulesetStat.heavy.push(item);
         }
 
-        if (item.declarations <= 1) {
-            rulesetStat.light.push(item);
+        if (item.declarations < 1) {
+            rulesetStat.empty.push(item);
         }
     });
 
