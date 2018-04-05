@@ -68,7 +68,7 @@
   "scripts": {
     "lint": "eslint **/*.js && stylelint assets/**/*.scss",
     "test": "nyc mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc report --reporter=lcov --reporter=text-lcov | coveralls",
     "build": "gulp build",
     "copyhooks": "node .githooks/copy-hooks.js"
   },
