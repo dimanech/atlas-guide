@@ -14,13 +14,13 @@
 			content: counter(breaks);
 			display: inline-block;
 			font-family: $font-sans-atlas;
-			font-size: 2rem;
+			font-size: 2.2rem;
 			padding-right: $space-sm-atlas;
 		}
 	}
 
 	&__item-inner {
-		padding-right: $space-md-atlas;
+		padding-right: $space-lg-atlas;
 	}
 
 	&__name {}
