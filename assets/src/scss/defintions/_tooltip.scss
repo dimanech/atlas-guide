@@ -1,0 +1,36 @@
+@mixin tooltip(
+	$__elem: "__root",
+	$_state: "",
+	$orientation: left,
+	$position: bottom
+) {
+	@if ($__elem == "__root") {
+		@if ($_state == "stale") {
+			background: rgba(white, 0.97);
+			border: 1px solid #e0e0e0;
+			border-left: 7px solid $color-blue-atlas;
+			border-radius: 4px;
+			#{$position}: 7px;
+			box-shadow: 0 0 20px -4px rgba(black, 0.3);
+			display: none;
+			#{$orientation}: 70%;
+			min-width: 150px;
+			padding: $space-sm-atlas;
+			position: absolute;
+			z-index: 10;
+		} @else if($_state == "activated") {
+			display: block;
+		}
+	} @else if($__elem == "__arrow") {
+		border-bottom: 7px solid transparent;
+		border-right: 7px solid $color-blue-atlas;
+		border-top: 7px solid transparent;
+		bottom: $space-sm-atlas;
+		content: "";
+		display: block;
+		height: 0;
+		left: -13px;
+		position: absolute;
+		width: 0;
+	}
+}
