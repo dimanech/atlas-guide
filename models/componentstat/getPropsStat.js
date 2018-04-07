@@ -34,7 +34,7 @@ function getPropsStat(decl, stats, variables) {
         });
     }
 
-    if (/^-/.test(decl.prop) || /^-/.test(decl.value)) {
+    if (/^-/.test(decl.prop) || /^-[\D]/.test(decl.value)) {
         stats.vendorPrefix.push({
             prop: decl.prop,
             value: decl.value

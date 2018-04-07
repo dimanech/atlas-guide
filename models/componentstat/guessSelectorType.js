@@ -47,6 +47,8 @@ function guessSelectorType(name, componentPrefixRegExp) {
     // ".b-promo-box_top .b-promo-box__content" should be modifier
     // complex selectors:
     // context. if base selector === context component analize additional selectors
+    // selectors list - ?
+    // context modifier - if context not component name => real context
     return type;
 }
 
