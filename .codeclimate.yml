@@ -3,9 +3,12 @@ engines:
     enabled: true
   eslint:
     enabled: true
+checks:
+  method-lines:
+    config:
+      threshold: 35
 exclude_paths:
 - "node_modules"
 - "test"
 - ".githooks"
 - "assets/js"
-- "assets/css"
