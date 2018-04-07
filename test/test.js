@@ -636,6 +636,26 @@ describe('Atlas', function() {
                 assert.strictEqual(result, undefined);
             });
         });
+        describe('statimports', function() {
+            const statimports = require(cwd + '/viewmodels/statimports.js');
+            const importsGraph = {
+                index: {
+                    '/path/to/some.scss': {
+                        imports: ['/path/foo.scss', '/path/bar.scss']
+                    }
+                }
+            };
+
+            it('should not process excluded files', function() {
+                const result = statimports(importsGraph, new RegExp('some'));
+                assert.strictEqual(result.length, 0);
+            });
+            it('should return proper imports for standalone files', function() {
+                const result = statimports(importsGraph, new RegExp('foo'));
+                const expected = [{name: 'some.scss', imports: ['foo.scss', 'bar.scss']}];
+                assert.deepEqual(result, expected);
+            });
+        });
     });
     describe('format()', function() {
         const format = require(cwd + '/viewmodels/utils/format');
