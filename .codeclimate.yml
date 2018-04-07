@@ -6,7 +6,7 @@ engines:
 checks:
   method-lines:
     config:
-      threshold: 30
+      threshold: 35
 exclude_paths:
 - "node_modules"
 - "test"
