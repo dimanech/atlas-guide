@@ -21,13 +21,13 @@ It designed primarily as "Styleguide driven development" tool with focus on spli
 ## Features
 
 * blazing fast thanks to Mustache and Marked. It primary designed as development platform;
-* supports incremental builds, so only changed page could be rebuild;
+* supports incremental builds, so only changed pages could be updated;
 * could be setup with live reload and used as standalone development platform;
 * small dependencies (Mustache, Marked, PostCSS, CSSStats, ImportsGraph, D3 and Lodash parts);
-* extremely flexible. All internal templates and styles could be overwritten on project level;
+* all internal templates and styles could be overwritten on project level;
 * could be used as simple guide docs;
 * Hologram compatible (without front matter section);
-* web standard compatible - if needed all docs sources could be parsed as standard markdown and compiled to standard HTML. No incompatible syntax is used.
+* standards compatible. If needed all docs sources could be parsed as standard markdown and compiled to standard HTML. No incompatible syntax is used.
 
 ### Components library
 
