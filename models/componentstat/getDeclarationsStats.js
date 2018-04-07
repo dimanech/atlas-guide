@@ -33,14 +33,6 @@ function getDeclarationsStats(fileAST) {
         getPropsStat(decl, stats, variables);
     });
 
-
-
-
-
-
-
-
-
     return {
         stats: stats,
         totalDeclarations: totalDeclarations,
