@@ -1,25 +1,33 @@
 'use strict';
 
-function selectors(selectors) { // TODO: 25 lines
-    let universalSelectors = [];
-    let jsPrefixedSelectors = [];
-    let idSelectors = [];
-    let attributeSelectors = 0;
+function getAdditionalStat(selectors) {
+    let stat = {
+        universalSelectors: [],
+        jsPrefixedSelectors: [],
+        idSelectors: [],
+        attributeSelectors: 0
+    };
 
     selectors.values.forEach(selector => {
         if (/^\*|\*$/.test(selector)) {
-            universalSelectors.push(selector);
+            stat.universalSelectors.push(selector);
         }
         if (/\.js-/.test(selector)) {
-            jsPrefixedSelectors.push(selector);
+            stat.jsPrefixedSelectors.push(selector);
         }
         if (/#/.test(selector)) {
-            idSelectors.push(selector);
+            stat.idSelectors.push(selector);
         }
         if (/\[/.test(selector)) {
-            attributeSelectors++;
+            stat.attributeSelectors++;
         }
     });
+
+    return stat;
+}
+
+function selectors(selectors) {
+    const additionalStat = getAdditionalStat(selectors);
 
     const selectorsStat = [{
         'name': 'Id',
@@ -38,20 +46,20 @@ function selectors(selectors) { // TODO: 25 lines
         'count': selectors.type
     }, {
         'name': 'Attribute',
-        'count': attributeSelectors
+        'count': additionalStat.attributeSelectors
     }, {
         'name': 'Universal',
-        'count': universalSelectors.length
+        'count': additionalStat.universalSelectors.length
     }, {
         'name': 'js- prefixed',
-        'count': jsPrefixedSelectors.length
+        'count': additionalStat.jsPrefixedSelectors.length
     }];
 
     return {
         stat: selectorsStat.sort((a, b) => b.count - a.count),
-        jsPrefixedSelectors: jsPrefixedSelectors,
-        universalSelectors: universalSelectors,
-        idSelectors: idSelectors
+        jsPrefixedSelectors: additionalStat.jsPrefixedSelectors,
+        universalSelectors: additionalStat.universalSelectors,
+        idSelectors: additionalStat.idSelectors
     };
 }
 
