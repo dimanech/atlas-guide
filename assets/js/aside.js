@@ -24,7 +24,6 @@
     }
 
     function asideHide() {
-        console.log('here')
         container.classList.add('js-aside-panel-hidden');
         resizeTo(0);
     }
