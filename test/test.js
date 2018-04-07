@@ -899,17 +899,64 @@ describe('Atlas', function() {
             });
         });
     });
-    describe('Component statistics', function() {
-        describe('getStatFor', function() {
-            it('should skip keyframes rules');
-            it('should correct calculate includes');
-            it('should correct calculate imports');
-            it('should correct calculate variables');
-            it('should correct calculate imported by');
-            it('should correct calculate total declarations');
-            it('should correct construct component selectors tree');
-            it('should return only uniq spaces');
-            it('should return only uniq scales');
+    describe('componentstat', function() {
+        describe('guessType', function() {
+            const guessType = require(cwd + '/models/componentstat/guessSelectorType');
+            const componentPrefixRegExp = new RegExp('^.atlas-|^.l-');
+
+            describe('single selector', function() {
+                const tests = [
+                    {
+                        type: 'component',
+                        selectors: ['.atlas-component', '.l-component']
+                    }, {
+                        type: 'element',
+                        selectors: ['strong', '.atlas-component__element', '&__element']
+                    }, {
+                        type: 'element-implicit',
+                        selectors: ['.selector::before', '&::after']
+                    }, {
+                        type: 'modifier',
+                        selectors: [
+                            '.atlas-component_mod',
+                            '.atlas-component--mod',
+                            '&_m-mod',
+                            '&--mod',
+                            '.atlas-component__element_mod',
+                            '.atlas-component__element--mod'
+                        ]
+                    }, {
+                        type: 'modifier-adjacent',
+                        selectors: ['&.m-mod', '&.atlas-component'] // should not be modifier is the same component used
+                    }, {
+                        type: 'modifier-implicit',
+                        selectors: ['.selector:hover', '&:hover']
+                    }, {
+                        type: 'modifier-context',
+                        selectors: ['.selector &', '.atlas-component &']
+                    }, {
+                        type: 'mixin',
+                        selectors: ['include']
+                    }, {
+                        type: 'extend',
+                        selectors: ['extend']
+                    }, {
+                        type: 'condition',
+                        selectors: ['media', 'supports', 'if']
+                    }
+                ];
+                const getResult = selector => guessType(selector, componentPrefixRegExp);
+
+                tests.forEach(function(test) {
+                    it('should return `' + test.type + '` type', function() {
+                        test.selectors.forEach(function(selector) { // eslint-disable-line
+                            return assert.equal(getResult(selector), test.type);
+                        });
+                    });
+                });
+            });
+
+            describe('changed selectors', function() {});
         });
     });
 });
