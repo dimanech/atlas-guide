@@ -20,7 +20,7 @@ function guessSelectorType(name, componentPrefixRegExp) {
         case /([a-z&\d]_[a-z\d-]*$)|(--.*$)/.test(name): // move to config
             type = 'modifier';
             break;
-        case /[a-z&\d]__[a-z\d]*$/.test(name):
+        case /[a-z&\d]__[a-z\d-]*$/.test(name):
             type = 'element';
             break;
         case /::.*$/.test(name):

@@ -938,7 +938,13 @@ describe('Atlas', function() {
                         selectors: ['.atlas-component', '.l-component']
                     }, {
                         type: 'element',
-                        selectors: ['strong', '.atlas-component__element', '&__element']
+                        selectors: [
+                            'strong',
+                            '.atlas-component__element',
+                            '.atlas-component__element-name',
+                            '.atlas-component__element-name-2',
+                            '&__element'
+                        ]
                     }, {
                         type: 'element-implicit',
                         selectors: ['.selector::before', '&::after']
