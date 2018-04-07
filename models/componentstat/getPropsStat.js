@@ -7,11 +7,11 @@ const getMetricStat = require('./getMetricStat');
 
 function getPropsStat(decl, stats, variables) {
     [
-        // health
+        // Health
         'float',
-        // useful
+        // Useful
         'z-index',
-        // component profile
+        // Component profile
         'width',
         'height',
         'position',
