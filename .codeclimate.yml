@@ -6,9 +6,10 @@ engines:
 checks:
   method-lines:
     config:
-      threshold: 35
+      threshold: 30
 exclude_paths:
 - "node_modules"
 - "test"
 - ".githooks"
 - "assets/js"
+- "assets/css"
