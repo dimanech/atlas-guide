@@ -52,7 +52,12 @@ function getPropsStat(decl, stats, variables) {
 
     // Profile
 
-    ['margin', 'padding'].forEach(item => stats[item].concat(getMetricStat(item, decl)));
+    ['margin', 'padding'].forEach(item => {
+        const stat = getMetricStat(item, decl);
+        if (stat !== null) {
+            stats[item] = stats[item].concat(stat);
+        }
+    });
 
     if (decl.prop === 'display') { // only layout display. Check probability of block, i-b usage in components?
         if (/(flex|grid)/.test(decl.value)) {
@@ -61,7 +66,7 @@ function getPropsStat(decl, stats, variables) {
     }
 
     if (decl.prop === 'background') {
-        stats.backgroundColor.concat(getBackgroundStat(decl.value));
+        stats.backgroundColor = stats.backgroundColor.concat(getBackgroundStat(decl.value));
     }
 
     if (decl.prop === 'font') {
