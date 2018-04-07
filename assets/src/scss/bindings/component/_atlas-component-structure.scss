@@ -1,4 +1,5 @@
 .atlas-component-structure {
+	margin-bottom: $space-lg-atlas;
 	margin-top: $space-lg-atlas;
 
 	&__title {
@@ -49,65 +50,74 @@
 	&__type {
 		background: grey;
 		border-radius: 3px;
+		box-shadow: 0 2px 3px rgba(black, 0.1);
 		color: white;
 		display: inline-block;
 		font-family: $font-sans-atlas;
-		font-size: 10px;
+		font-size: 11px;
 		font-weight: bold;
-		height: 13px;
-		line-height: 13px;
+		height: 15px;
+		line-height: 14px;
 		position: relative;
 		text-align: center;
+		text-shadow: 0 0 1px rgba(black, 0.5);
 		top: -1px;
-		width: 13px;
+		width: 15px;
 
-		&::after {
-			border: 3px solid #fafafa;
-			bottom: -3px;
-			content: "";
-			left: -3px;
-			position: absolute;
-			right: -3px;
-			top: -3px;
-		}
+		//&::after {
+		//	border: 3px solid #fafafa;
+		//	bottom: -3px;
+		//	content: "";
+		//	left: -3px;
+		//	position: absolute;
+		//	right: -3px;
+		//	top: -3px;
+		//}
 
 		$component: #e56daa;
 		$element: #6d7ce5;
 		$modifier: #2196f3;
-		$media: #c6ae9f;
+		$media: white;
 
-		&_mixin {
-			background-color: lighten($media, 20%);
+		&._mixin {
+			background-color: $media;
+			color: $atlas-color-text;
+			text-shadow: none;
 
 			&::before {
 				// added as example of data uri
-				background: url("data:image/svg+xml,%3Csvg fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' version='1.1' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='20.575' x2='3.2214' y1='3.4248' y2='20.779' stroke-width='3.0678'/%3E%3Cpolyline transform='matrix%281.0846 1.0846 -1.0846 1.0846 11.898 -13.929%29' points='18 14 12 20 6 14'/%3E%3C/svg%3E%0A") center center no-repeat;
+				background: url("data:image/svg+xml,%3Csvg fill='none' stroke='#{$atlas-color-text}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' version='1.1' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='20.575' x2='3.2214' y1='3.4248' y2='20.779' stroke-width='3.0678'/%3E%3Cpolyline transform='matrix%281.0846 1.0846 -1.0846 1.0846 11.898 -13.929%29' points='18 14 12 20 6 14'/%3E%3C/svg%3E%0A") center center no-repeat;
 				background-size: 80%;
 				color: transparent;
 				content: "↙";
 			}
 		}
 
-		&_condition {
-			background-color: lighten($media, 10%);
+		&._condition {
+			background-color: $media;
+			color: $atlas-color-text;
+			text-shadow: none;
 
 			&::before {
 				content: "?";
 			}
 		}
 
-		&_extend {
+		&._extend {
 			background-color: $media;
+			color: $atlas-color-text;
+			text-shadow: none;
 
 			&::before {
-				background: url("data:image/svg+xml,%3Csvg fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' version='1.1' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='3.2214' x2='20.575' y1='20.779' y2='3.4248' stroke-width='3.0678'/%3E%3Cpolyline transform='matrix%28-1.0846 -1.0846 1.0846 -1.0846 11.898 38.132%29' points='18 14 12 20 6 14'/%3E%3C/svg%3E%0A") center center no-repeat;
+				// added as example of data uri
+				background: url("data:image/svg+xml,%3Csvg fill='none' stroke='#{$atlas-color-text}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' version='1.1' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='3.2214' x2='20.575' y1='20.779' y2='3.4248' stroke-width='3.0678'/%3E%3Cpolyline transform='matrix%28-1.0846 -1.0846 1.0846 -1.0846 11.898 38.132%29' points='18 14 12 20 6 14'/%3E%3C/svg%3E%0A") center center no-repeat;
 				background-size: 80%;
 				color: transparent;
 				content: "↗";
 			}
 		}
 
-		&_component {
+		&._component {
 			background-color: $component;
 
 			&::before {
@@ -115,7 +125,7 @@
 			}
 		}
 
-		&_modifier {
+		&._modifier {
 			background-color: $modifier;
 
 			&::before {
@@ -123,7 +133,7 @@
 			}
 		}
 
-		&_modifier-adjacent {
+		&._modifier-adjacent {
 			background-color: darken($modifier, 5%);
 
 			&::before {
@@ -131,7 +141,7 @@
 			}
 		}
 
-		&_modifier-implicit {
+		&._modifier-implicit {
 			background-color: lighten($modifier, 10%);
 
 			&::before {
@@ -139,7 +149,7 @@
 			}
 		}
 
-		&_modifier-context {
+		&._modifier-context {
 			background-color: darken($modifier, 10%);
 
 			&::before {
@@ -147,7 +157,7 @@
 			}
 		}
 
-		&_element {
+		&._element {
 			background-color: $element;
 
 			&::before {
@@ -155,7 +165,7 @@
 			}
 		}
 
-		&_element-implicit {
+		&._element-implicit {
 			background-color: lighten($element, 10%);
 
 			&::before {
@@ -166,5 +176,9 @@
 
 	&__name {
 		//white-space: pre;
+	}
+
+	&__brackets {
+		color: rgba(0, 0, 0, 0.3);
 	}
 }
