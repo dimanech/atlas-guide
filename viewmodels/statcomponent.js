@@ -121,6 +121,12 @@ function prepareDisplayName(name, singular) {
         case 'backgroundColor':
             displayName = singular ? 'Background' : 'Backgrounds';
             break;
+        case 'mediaQuery':
+            displayName = singular ? 'Media query' : 'Media queries';
+            break;
+        case 'boxShadow':
+            displayName = 'Box shadow';
+            break;
         default:
             displayName = singular ? name : name + 's';
     }
