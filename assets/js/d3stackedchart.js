@@ -12,7 +12,7 @@
         const data = JSON.parse(this.instance.querySelector('defs').getAttribute('data-chart'));
         data.sort((a, b) => b.zipped - a.zipped);
 
-        return this.chartData = data;
+        this.chartData = data;
     };
 
     StackedChart.prototype.initChart = function() {

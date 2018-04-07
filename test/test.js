@@ -9,7 +9,7 @@ describe('Atlas', function() {
     let initialConfig = '';
 
     before(function() {
-        return initialConfig = fs.readFileSync('.atlasrc.json');
+        initialConfig = fs.readFileSync('.atlasrc.json');
     });
 
     after(function() {

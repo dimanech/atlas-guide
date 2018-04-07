@@ -15,7 +15,9 @@ function getComponentsPrefix(config) {
     }
 
     if (Array.isArray(prefixes)) {
-        prefixes.forEach(prefix => prefixExp += `^.${prefix}|`); // could be id or class
+        prefixes.forEach(function (prefix) { // could be id or class
+            prefixExp += `^.${prefix}|`;
+        });
         prefixExp = prefixExp.replace(/\|$/g, '');
     } else {
         prefixExp = '^.b-|^.l-';
@@ -40,8 +42,9 @@ function isPathConfigured(config, name) {
 function fillTemplatesConfig(templatesConfig, internalTemplatesPath, name) {
     let templates = {};
 
-    fs.readdirSync(path.join(__dirname, internalTemplatesPath))
-        .forEach(item => templates[path.basename(item, '.mustache')] = '');
+    fs.readdirSync(path.join(__dirname, internalTemplatesPath)).forEach(function(item) {
+        templates[path.basename(item, '.mustache')] = '';
+    });
 
     Object.keys(templates).forEach(template => {
         if (templatesConfig !== undefined && templatesConfig.hasOwnProperty(template)) {
@@ -134,15 +137,13 @@ function getOptionalBaseConfigs(config) {
     let atlasConfig = {};
 
     // Optional configs
-    const scssAdditionalImports = config.scssAdditionalImportsArray;
-    const copyInternalAssets = config.copyInternalAssets;
-
-    atlasConfig.scssAdditionalImportsArray = scssAdditionalImports ? scssAdditionalImports : [];
+    atlasConfig.scssAdditionalImportsArray = config.scssAdditionalImportsArray || [];
 
     atlasConfig.excludedDirs = new RegExp(config.excludedDirs || '.^', 'g');
     atlasConfig.excludedCssFiles = new RegExp(config.excludedCssFiles || '.^', 'g');
     atlasConfig.excludedSassFiles = new RegExp(config.excludedSassFiles || '.^', 'g');
 
+    const copyInternalAssets = config.copyInternalAssets;
     atlasConfig.copyInternalAssets = copyInternalAssets !== undefined ? copyInternalAssets : true;
     atlasConfig.internalAssetsPath = path.join(__dirname, '../assets');
 
@@ -247,7 +248,9 @@ function getPartialsConfig(configRaw) {
     const config = getConfig(configRaw);
     let partials = fillTemplatesConfig(config.partials, '../views/includes/partials/', 'partial');
 
-    Object.keys(partials).forEach(partial => partials[partial] = fs.readFileSync(partials[partial], 'utf8'));
+    Object.keys(partials).forEach(function (partial) {
+        partials[partial] = fs.readFileSync(partials[partial], 'utf8');
+    });
 
     return partials;
 }

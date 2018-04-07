@@ -39,7 +39,7 @@ function recreatePathTreeForPartial(importsPaths, importFile, fileName, partialF
     let cumulativePath = projectName + '/' + importFile;
     const pushNode = size => {
         if (!importsPaths.hasOwnProperty(cumulativePath)) {
-            return importsPaths[cumulativePath] = {
+            importsPaths[cumulativePath] = {
                 id: cumulativePath,
                 size: size
             };
@@ -102,7 +102,7 @@ function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSa
             const partialFileSize = getfileSizeWithoutComments(file);
 
             importedBy.forEach(importedBy => {
-                const importFile = path.relative(pathToSCSS, importedBy.toString()); //NB: could be import to partial
+                const importFile = path.relative(pathToSCSS, importedBy.toString()); // NB: could be import to partial
                 recreatePathTreeForPartial(importsPaths, importFile, fileName, partialFileSize, destinationList);
             });
         } else {
@@ -112,7 +112,9 @@ function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSa
     }
 
     const orderedPath = {};
-    Object.keys(importsPaths).sort().forEach(key => orderedPath[key] = importsPaths[key]);
+    Object.keys(importsPaths).sort().forEach(function (key) {
+        orderedPath[key] = importsPaths[key];
+    });
 
     return JSON.stringify(orderedPath);
 }

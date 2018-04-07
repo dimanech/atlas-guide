@@ -12,7 +12,6 @@ if (atlasBase.isCorrupted) {
         'build': () => {},
         'buildAll': () => {}
     };
-    return;
 }
 
 const projectTree = require(path.resolve(__dirname, '../models/projectdocumentedtree.js'))(atlasBase);

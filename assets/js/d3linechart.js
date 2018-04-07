@@ -42,7 +42,7 @@
             console.log(e);
         }
 
-        return this.chartData = data;
+        this.chartData = data;
     };
 
     LineChart.prototype.initChart = function() {
