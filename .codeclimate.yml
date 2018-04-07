@@ -7,10 +7,6 @@ checks:
   method-lines:
     config:
       threshold: 35
-ratings:
-  paths:
-    - "**.css"
-    - "**.js"
 exclude_paths:
 - "node_modules"
 - "test"
