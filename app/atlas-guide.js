@@ -74,21 +74,24 @@ function prepareContent(component) {
         content = page.content;
         tableOfContent = page.toc;
     }
-    if (component.type === 'styleguide') {
-        content = styleguide(constants);
-    }
-    if (component.type === 'component' || component.type === 'container') {
-        stat = statistics(
-            componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
-            componentImports(component.src),
-            constants
-        );
-    }
-    if (component.type === 'about') {
-        stat = {
-            'projectName': atlasConfig.getProjectInfo().name,
-            'coverage': coverage(projectTree.coverage)
-        };
+    switch (component.type) {
+        case 'styleguide':
+            content = styleguide(constants);
+            break;
+        case 'component':
+        case 'container':
+            stat = statistics(
+                componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
+                componentImports(component.src),
+                constants
+            );
+            break;
+        case 'about':
+            stat = {
+                'projectName': atlasConfig.getProjectInfo().name,
+                'coverage': coverage(projectTree.coverage)
+            };
+            break;
     }
 
     return {
