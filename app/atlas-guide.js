@@ -28,7 +28,7 @@ const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'
 const coverage = require(path.join(__dirname, '../viewmodels/coverage.js'));
 const styleguide = require(path.resolve(__dirname, '../viewmodels/styleguide.js'));
 
-const writePage = require(__dirname + '/utils/renderpage.js');
+const writePage = require(__dirname + '/utils/writepage.js');
 
 // Copy internal assets to the components destinations
 if (atlasBase.copyInternalAssets) {

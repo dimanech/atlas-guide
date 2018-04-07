@@ -5,7 +5,7 @@ const fs = require('fs');
 
 module.exports = function(atlasConfig, projectTree, importsGraph) {
     // Utils
-    const writePage = require(path.join(__dirname, 'utils/renderpage.js'));
+    const writePage = require(path.join(__dirname, 'utils/writepage.js'));
 
     // Config
     const atlasBase = atlasConfig.getBase();
