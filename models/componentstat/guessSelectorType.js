@@ -45,6 +45,8 @@ function guessSelectorType(name, componentPrefixRegExp) {
     // implement me - orphan element (element from another component or element without root)
     // context modification from another component - this should be warn
     // ".b-promo-box_top .b-promo-box__content" should be modifier
+    // complex selectors:
+    // context. if base selector === context component analize additional selectors
     return type;
 }
 

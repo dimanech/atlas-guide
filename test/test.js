@@ -629,6 +629,13 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel);
             });
         });
+        describe('componentstat', function() {
+            const componentstat = require(cwd + '/models/componentstat.js');
+            it('should return nothing if file not scss', function() {
+                const result = componentstat.getStatFor('/path/to/file.md', 'some');
+                assert.strictEqual(result, undefined);
+            });
+        });
     });
     describe('format()', function() {
         const format = require(cwd + '/viewmodels/utils/format');
