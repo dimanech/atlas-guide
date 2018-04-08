@@ -270,7 +270,7 @@
 }
 
 .atlas-title_2 { /* stylelint-disable-line */
-	background: rgba(white, 0.9);
+	background: rgba($color-white-atlas, 0.9);
 	border-bottom: 1px solid rgba(black, 0.1);
 	margin: 0 -#{$space-md-atlas} $space-lg-atlas;
 	padding: $space-sm-atlas $space-md-atlas;
@@ -280,7 +280,7 @@
 
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
-		background: rgba(white, 0.7);
+		background: rgba($color-white-atlas, 0.7);
 	}
 
 	.atlas-title__highlight {

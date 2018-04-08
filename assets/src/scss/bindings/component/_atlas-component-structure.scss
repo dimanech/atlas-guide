@@ -3,6 +3,7 @@
 	margin-top: $space-lg-atlas;
 
 	&__title {
+		display: none;
 		font-size: $scale-lg-atlas;
 		font-weight: bold;
 		line-height: $space-md-atlas;
@@ -51,7 +52,8 @@
 		background: grey;
 		border-radius: 3px;
 		box-shadow: 0 2px 3px rgba(black, 0.1);
-		color: white;
+		color: $color-white-atlas;
+		cursor: help;
 		display: inline-block;
 		font-family: $font-sans-atlas;
 		font-size: 11px;
@@ -134,7 +136,7 @@
 		}
 
 		&._modifier-adjacent {
-			background-color: darken($modifier, 5%);
+			background-color: darken($modifier, 10%);
 
 			&::before {
 				content: "ma";

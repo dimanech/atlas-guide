@@ -1,6 +1,6 @@
 .atlas-stat-header {
 	align-items: stretch;
-	background: rgba(white, 0.9);
+	background: rgba($color-white-atlas, 0.9);
 	border-bottom: 1px solid rgba(black, 0.1);
 	color: $atlas-color-text;
 	display: flex;
@@ -17,7 +17,7 @@
 
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
-		background: rgba(white, 0.7);
+		background: rgba($color-white-atlas, 0.7);
 	}
 
 	&__title {
