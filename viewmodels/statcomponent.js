@@ -24,39 +24,43 @@ function ruleSetChart(dataArr) {
 }
 
 function warnConstants(valuesList, constantsList) {
-    let notDefined = [];
-    let defined = [];
-    let consider = [];
+    let notUsed = [];
+    let notUsedCount = 0;
+    let used = [];
+    let couldBeChanged = [];
     let all = 0;
 
     valuesList.forEach(value => {
-        let isConstantFound = false;
+        let isConstantAlreadyFound = false;
         all++;
 
         constantsList.forEach(constant => {
-            if (isConstantFound) {
+            if (isConstantAlreadyFound) {
                 return;
             }
+            // push defined and used constant
+            // interpolation and operators could be used with variable so we need a regexp for this
             if (new RegExp('\\' + constant.name + '|auto|inherit|initial').test(value)) {
-                // interpolation and operators could be used with variable
-                defined.push(value);
-                isConstantFound = true;
+                used.push(value);
+                isConstantAlreadyFound = true;
             }
+            // push suggestion that could be changed
             if (value === constant.value) {
-                defined.push(value);
-                isConstantFound = true;
+                used.push(value);
+                isConstantAlreadyFound = true;
+
                 let alreadyExist = false;
-                consider.forEach(warn => {
+                couldBeChanged.forEach(warn => {
                     if (warn.from === value && warn.to === constant.name) {
                         warn.count++;
                         alreadyExist = true;
                     }
                 });
                 if (!alreadyExist) {
-                    consider.push({
+                    couldBeChanged.push({
                         from: value,
                         to: constant.name,
-                        count: 0
+                        count: 1
                     });
                 }
             }
@@ -68,18 +72,33 @@ function warnConstants(valuesList, constantsList) {
             //     isConstantFound = true;
             // }
         });
-        if (!isConstantFound) {
-            notDefined.push(value);
+        if (!isConstantAlreadyFound) {
+            let alreadyExist = false;
+
+            notUsed.forEach(error => {
+                if (error.value === value) {
+                    error.count++;
+                    notUsedCount++;
+                    alreadyExist = true;
+                }
+            });
+            if (!alreadyExist) {
+                notUsed.push({
+                    value: value,
+                    count: 1
+                });
+                notUsedCount++;
+            }
         }
     });
 
     return {
         'notInConstants': {
-            count: notDefined.length,
-            values: notDefined
+            count: notUsedCount,
+            values: notUsed
         },
-        'allOk': all === defined.length,
-        'consider': consider
+        'allOk': all === used.length,
+        'consider': couldBeChanged
     };
 }
 
@@ -136,8 +155,11 @@ function prepareDisplayName(name, singular) {
 function getStatistic(componentStat, componentImports, projectConstants) {
     const componentProfile = [
         'padding', 'display', 'position', 'width', 'height',
-        'margin', 'fontSize', 'fontFamily', 'color', 'backgroundColor',
-        'mediaQuery', 'boxShadow' // add missing constants props
+        'margin', 'fontSize', 'fontFamily', 'color', 'backgroundColor'
+    ];
+    const constants = [
+        'padding', 'margin', 'fontSize', 'fontFamily', 'color', 'backgroundColor',
+        'mediaQuery'
     ];
     const stats = ['important', 'vendorPrefix', 'float'];
 
@@ -150,6 +172,7 @@ function getStatistic(componentStat, componentImports, projectConstants) {
         totalDeclarations: formatNumbers(componentStat.totalDeclarations),
         ruleSetsLine: ruleSetChart(componentStat.ruleSets),
         componentProfileDetails: [],
+        usedConstants: [],
         stats: {}
     };
 
@@ -161,20 +184,26 @@ function getStatistic(componentStat, componentImports, projectConstants) {
     });
 
     componentProfile.forEach(name => {
-        const rawStat = name !== 'mediaQuery' ? componentStat.stats[name] : _uniq(componentStat.mediaQuery);
+        const rawStat = componentStat.stats[name];
         const rawStatLength = rawStat.length;
-        let result = {
+        viewModel.componentProfileDetails.push({
             total: rawStatLength,
             name: prepareDisplayName(name, rawStatLength === 1)
-        };
-        if (projectConstants !== undefined) {
+        });
+    });
+
+    if (projectConstants !== undefined) {
+        constants.forEach(name => {
+            const rawStat = name !== 'mediaQuery' ? componentStat.stats[name] : _uniq(componentStat.mediaQuery);
             const constStat = getConstantsStat(name, rawStat, projectConstants);
             if (constStat !== undefined) {
-                result.consistency = constStat;
+                viewModel.usedConstants.push({
+                    consistency: constStat,
+                    name: name
+                });
             }
-        }
-        viewModel.componentProfileDetails.push(result);
-    });
+        });
+    }
 
     viewModel.componentProfileDetails.sort((a, b) => b.total - a.total);
 
