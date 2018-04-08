@@ -992,6 +992,62 @@ describe('Atlas', function() {
             describe('changed selectors', function() {});
         });
     });
+    describe('statcomponent', function() {
+        describe('prepareDisplayName', function() {
+            const ruleSizeStat = require(cwd + '/viewmodels/statcomponent/prepareDisplayName');
+
+            it('should return proper display names for "fontFamily"', function() {
+                assert.strictEqual(ruleSizeStat('fontFamily', true), 'Font family');
+                assert.strictEqual(ruleSizeStat('fontFamily', false), 'Font families');
+            });
+            it('should return proper display names for "fontSize"', function() {
+                assert.strictEqual(ruleSizeStat('fontSize', true), 'Font size');
+                assert.strictEqual(ruleSizeStat('fontSize', false), 'Font sizes');
+            });
+            it('should return proper display names for "backgroundColor"', function() {
+                assert.strictEqual(ruleSizeStat('backgroundColor', true), 'Background');
+                assert.strictEqual(ruleSizeStat('backgroundColor', false), 'Backgrounds');
+            });
+            it('should return proper display names for "mediaQuery"', function() {
+                assert.strictEqual(ruleSizeStat('mediaQuery', true), 'Media query');
+                assert.strictEqual(ruleSizeStat('mediaQuery', false), 'Media queries');
+            });
+            it('should return proper display names for "boxShadow"', function() {
+                assert.strictEqual(ruleSizeStat('boxShadow', true), 'Box shadow');
+                assert.strictEqual(ruleSizeStat('boxShadow', false), 'Box shadow');
+            });
+        });
+        describe('getComponentStat', function() {
+            const getConstantsStat = require(cwd + '/viewmodels/statcomponent/getConstantsStat');
+            let valueList = ['0', '0.6rem', '0.6rem'];
+            let constants = {
+                'space': [
+                    {'name': '$space-off-atlas', 'value': '0'},
+                    {'name': '$space-sm-atlas', 'value': '0.6rem'},
+                    {'name': '$space-md-atlas', 'value': '1.2rem'}
+                ]
+            };
+
+            it('should return counter for suggest right props', function() {
+                const expectedResult = {notInConstants: {count: 0, values: []},
+                    allOk: true,
+                    consider: [
+                        {from: '0', to: '$space-off-atlas', count: 1},
+                        {from: '0.6rem', to: '$space-sm-atlas', count: 2}
+                    ]};
+                assert.deepEqual(getConstantsStat('padding', valueList, constants), expectedResult);
+            });
+            it('should return undefined in case of empty values list', function() {
+                valueList = [];
+                const expectedResult = undefined;
+                assert.deepEqual(getConstantsStat('padding', valueList, constants), expectedResult);
+            });
+            it('should return undefined in case of prop not much constants map', function() {
+                const expectedResult = undefined;
+                assert.deepEqual(getConstantsStat('overflow', valueList, constants), expectedResult);
+            });
+        });
+    });
 });
 // fs.writeFileSync('statproject.json', JSON.stringify(viewModel), null, '\t');
 
