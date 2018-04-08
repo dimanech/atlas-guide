@@ -1,6 +1,6 @@
 'use strict';
 
-function getFontStat(value) {
+function getFont(value) {
     const declList = value
         .replace(/ ,/g, ',')
         .replace(/ \/ ?/g, '/')
@@ -14,4 +14,4 @@ function getFontStat(value) {
     };
 }
 
-module.exports = getFontStat;
+module.exports = getFont;

@@ -1,6 +1,6 @@
 'use strict';
 
-const guessType = require('./guessSelectorType');
+const guessType = require('./utils/guessSelectorType');
 
 function getComponentStructure(fileAST, componentPrefixRegExp) {
     const componentPrefix = componentPrefixRegExp;

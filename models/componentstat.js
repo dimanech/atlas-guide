@@ -9,12 +9,12 @@ const scss = require('postcss-scss');
 const getComponentStructure = require('./componentstat/getComponentStructure');
 const getAtRules = require('./componentstat/getAtRules');
 const getRuleSets = require('./componentstat/getRuleSets');
-const getDeclarationsStats = require('./componentstat/getDeclarationsStats');
+const getPropertiesStats = require('./componentstat/getPropertiesStats');
 
 function getStatistic(file, componentPrefix) {
     const fileAST = postcss().process(file, {parser: scss}).root;
     const componentPrefixRegExp = componentPrefix;
-    const stats = getDeclarationsStats(fileAST);
+    const stats = getPropertiesStats(fileAST);
     const atRules = getAtRules(fileAST);
 
     return {

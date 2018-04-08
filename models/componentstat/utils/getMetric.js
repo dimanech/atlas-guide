@@ -1,6 +1,6 @@
 'use strict';
 
-function getMetricStat(item, decl) {
+function getMetric(item, decl) {
     const regexp = new RegExp('^' + item); // we need to cover several cases - margin, margin-top, margin-start, etc.
 
     if (regexp.test(decl.prop)) {
@@ -13,4 +13,4 @@ function getMetricStat(item, decl) {
     }
 }
 
-module.exports = getMetricStat;
+module.exports = getMetric;

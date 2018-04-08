@@ -2,7 +2,7 @@
 
 const color = require('d3-color');
 
-function getBackgroundStat(value) {
+function getBackgroundColor(value) {
     const finalLayer = value.split(',');
     const layerPropsList = finalLayer.pop().split(' ');
     let backgroundColors = [];
@@ -16,4 +16,4 @@ function getBackgroundStat(value) {
     return backgroundColors;
 }
 
-module.exports = getBackgroundStat;
+module.exports = getBackgroundColor;

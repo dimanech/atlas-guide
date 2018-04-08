@@ -928,7 +928,7 @@ describe('Atlas', function() {
     });
     describe('componentstat', function() {
         describe('guessType', function() {
-            const guessType = require(cwd + '/models/componentstat/guessSelectorType');
+            const guessType = require(cwd + '/models/componentstat/utils/guessSelectorType');
             const componentPrefixRegExp = new RegExp('^.atlas-|^.l-');
 
             describe('single selector', function() {
