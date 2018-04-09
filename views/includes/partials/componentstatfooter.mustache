@@ -14,16 +14,11 @@
                 </figure>
                 <svg width="300" height="80" viewBox="0 0 300 80" class="atlas-info-digit atlas-sparkline" aria-labelledby="component-graph-title">
                     <title id="component-graph-title">Declaration sets size through the file</title>
-                    <defs>
-                        <filter id="blur-filter" x="0" y="0">
-                            <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
-                        </filter>
-                    </defs>
                     <g class="atlas-sparkline__line">
-                        <path d="{{ruleSetsLine}}" stroke="currentColor" fill="none"/>
                         <g class="atlas-sparkline__shadow">
                             <path d="{{ruleSetsLine}}" stroke="currentColor" fill="none" filter="url(#blur-filter)"/>
                         </g>
+                        <path d="{{ruleSetsLine}}" stroke="currentColor" fill="none"/>
                     </g>
                 </svg>
             </div>
@@ -90,12 +85,12 @@
         {{/stats}}
             <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
                 <div role="list" class="atlas-info-list">
-                {{#componentProfileDetails}}
+                {{#mostProps}}
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">{{total}}</span>
                         <span class="atlas-info-list__name">{{name}}</span>
                     </div>
-                {{/componentProfileDetails}}
+                {{/mostProps}}
                 </div>
             </div>
             {{#usedConstants.length}}
@@ -115,7 +110,7 @@
                                             <svg role="img" width="16" height="16">
                                                 <use xlink:href="#icon-good"></use>
                                             </svg>
-                                            Passed
+                                            Consistent
                                         </span>
                                     {{/allOk}}
                                     {{#notInConstants.count}}
@@ -125,14 +120,28 @@
                                         </div>
                                         {{#notInConstants.values}}
                                             <div role="listitem" class="atlas-constant__list">
-                                                <span class="atlas-constant__counter _{{count}} _error">{{count}}</span>
+                                                <span class="atlas-constant__counter _{{count}} _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        {{count}}
+                                                    </span>
+                                                </span>
                                                 <code>{{value}}</code>&ensp;
                                             </div>
                                         {{/notInConstants.values}}
                                     {{/notInConstants.count}}
                                     {{#consider}}
                                         <div role="listitem" class="atlas-constant__list">
-                                            <span class="atlas-constant__counter _{{count}} _warn">{{count}}</span>
+                                            <span class="atlas-constant__counter _{{count}} _warn">
+                                                <svg role="img" width="16" height="16">
+                                                    <use xlink:href="#icon-triangle"></use>
+                                                </svg>
+                                                <span class="atlas-constant__counter-digit">
+                                                    {{count}}
+                                                </span>
+                                            </span>
                                             <code>{{from}}</code> could be changed to <code>{{to}}</code>
                                         </div>
                                     {{/consider}}

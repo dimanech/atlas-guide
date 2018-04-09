@@ -26,7 +26,7 @@
 		display: block;
 		font-size: 0.8rem;
 		font-weight: normal;
-		margin-bottom: $space-sm-atlas / 2;
+		line-height: 1.6;
 
 		svg {
 			margin-bottom: -3px;
@@ -46,16 +46,13 @@
 		display: block;
 		font-size: 0.8rem;
 		font-weight: normal;
-		margin-bottom: $space-sm-atlas / 2;
+		margin: ($space-sm-atlas / 2) 0;
 		padding-left: 16px;
 		position: relative;
 	}
 
 	&__counter {
 		$size: 12px;
-		border-radius: 10px;
-		color: $color-white-atlas;
-		content: "";
 		display: inline-block;
 		font-size: 10px;
 		font-weight: bold;
@@ -64,19 +61,40 @@
 		line-height: $size;
 		position: absolute;
 		text-align: center;
+		text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
 		top: 2px;
 		width: $size;
 
-		&._1 {
-			color: transparent;
+		svg {
+			left: -2px;
+			position: absolute;
+			top: -2px;
+		}
+
+		&-digit {
+			position: relative;
+			z-index: 1;
 		}
 
 		&._warn {
-			background-color: $color-yellow-atlas;
+			color: $color-white-atlas;
+
+			svg {
+				color: $color-yellow-atlas;
+			}
 		}
 
 		&._error {
-			background-color: $color-coral-atlas;
+			color: $color-white-atlas;
+
+			svg {
+				color: $color-coral-atlas;
+			}
+		}
+
+		&._1 {
+			color: transparent;
+			text-shadow: none;
 		}
 	}
 
