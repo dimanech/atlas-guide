@@ -102,6 +102,8 @@ const sassCompile = config => {
         })
     ];
 
+    console.log(`[COMPILE:] \x1b[35m${config.source}\x1b[0m`);
+
     return gulp.src(config.source, {allowEmpty: true})
         .pipe(sourcemaps.init({
             loadMaps: true,
