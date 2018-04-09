@@ -11,10 +11,7 @@ function getPropsStat(decl, stats) {
         'float',
         // Useful
         'z-index',
-        // Component profile
-        'width',
-        'height',
-        'position',
+        // Constants
         'color',
         'background-color',
         'font-family',
@@ -41,7 +38,7 @@ function getPropsStat(decl, stats) {
         });
     }
 
-    // Profile
+    // Constants
 
     ['margin', 'padding'].forEach(item => {
         const stat = getMetric(item, decl);
@@ -49,12 +46,6 @@ function getPropsStat(decl, stats) {
             stats[item] = stats[item].concat(stat);
         }
     });
-
-    if (decl.prop === 'display') { // only layout display. Check probability of block, i-b usage in components?
-        if (/(flex|grid)/.test(decl.value)) {
-            stats.display.push(decl.value);
-        }
-    }
 
     if (decl.prop === 'background') {
         stats.backgroundColor = stats.backgroundColor.concat(getBackgroundColor(decl.value));
@@ -85,13 +76,9 @@ function getPropertiesStats(fileAST) {
         'color': [],
         'backgroundColor': [],
         'important': [],
-        'width': [],
-        'height': [],
         'vendorPrefix': [],
         'zIndex': [],
-        'position': [],
         'float': [],
-        'display': [],
         'boxShadow': []
     };
     let totalDeclarations = 0;

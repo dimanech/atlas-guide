@@ -10,6 +10,7 @@ const getComponentStructure = require('./componentstat/getComponentStructure');
 const getAtRules = require('./componentstat/getAtRules');
 const getRuleSets = require('./componentstat/getRuleSets');
 const getPropertiesStats = require('./componentstat/getPropertiesStats');
+const getTopMostProperties = require('./componentstat/getTopMostProperties');
 
 function getStatistic(file, componentPrefix) {
     const fileAST = postcss().process(file, {parser: scss}).root;
@@ -25,7 +26,8 @@ function getStatistic(file, componentPrefix) {
         componentStructure: getComponentStructure(fileAST, componentPrefixRegExp),
         totalDeclarations: stats.totalDeclarations,
         ruleSets: getRuleSets(fileAST),
-        stats: stats.stats
+        stats: stats.stats,
+        mostProps: getTopMostProperties(fileAST)
     };
 }
 

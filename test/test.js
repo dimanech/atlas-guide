@@ -1018,7 +1018,7 @@ describe('Atlas', function() {
             });
         });
         describe('getComponentStat', function() {
-            const getConstantsStat = require(cwd + '/viewmodels/statcomponent/getConstantsStat');
+            const getConstantsStat = require(cwd + '/viewmodels/statcomponent/getConstantsUsage');
             let valueList = ['0', '0.6rem', '0.6rem'];
             let constants = {
                 'space': [

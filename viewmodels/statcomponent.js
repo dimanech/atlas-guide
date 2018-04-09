@@ -3,16 +3,17 @@
 const _uniq = require('lodash.uniq');
 const formatNumbers = require(__dirname + '/utils/format').numbers;
 
-const getConstantsStat = require('./statcomponent/getConstantsStat');
+const getConstantsUsage = require('./statcomponent/getConstantsUsage');
 const ruleSetChart = require('./statcomponent/ruleSetChart');
-const prepareDisplayName = require('./statcomponent/prepareDisplayName');
 
 function getStatistic(componentStat, componentImports, projectConstants) {
-    const componentProfile = [
-        'padding', 'display', 'position', 'width', 'height',
-        'margin', 'fontSize', 'fontFamily', 'color', 'backgroundColor'
+    const constants = [
+        'margin', 'padding',
+        'fontSize',
+        'fontFamily',
+        'color', 'backgroundColor',
+        'mediaQuery'
     ];
-    const constants = ['padding', 'margin', 'fontSize', 'fontFamily', 'color', 'backgroundColor', 'mediaQuery'];
     const stats = ['important', 'vendorPrefix', 'float'];
 
     let viewModel = {
@@ -23,9 +24,9 @@ function getStatistic(componentStat, componentImports, projectConstants) {
         nodes: componentStat.componentStructure.nodes, // component structure recursion
         totalDeclarations: formatNumbers(componentStat.totalDeclarations),
         ruleSetsLine: ruleSetChart(componentStat.ruleSets),
-        componentProfileDetails: [],
         usedConstants: [],
-        stats: {}
+        stats: {},
+        mostProps: componentStat.mostProps
     };
 
     stats.forEach(stat => {
@@ -35,19 +36,10 @@ function getStatistic(componentStat, componentImports, projectConstants) {
         };
     });
 
-    componentProfile.forEach(name => {
-        const rawStat = componentStat.stats[name];
-        const rawStatLength = rawStat.length;
-        viewModel.componentProfileDetails.push({
-            total: rawStatLength,
-            name: prepareDisplayName(name, rawStatLength === 1)
-        });
-    });
-
     if (projectConstants !== undefined) {
         constants.forEach(name => {
             const rawStat = name !== 'mediaQuery' ? componentStat.stats[name] : _uniq(componentStat.mediaQuery);
-            const constStat = getConstantsStat(name, rawStat, projectConstants);
+            const constStat = getConstantsUsage(name, rawStat, projectConstants);
             if (constStat !== undefined) {
                 viewModel.usedConstants.push({
                     consistency: constStat,
@@ -56,8 +48,6 @@ function getStatistic(componentStat, componentImports, projectConstants) {
             }
         });
     }
-
-    viewModel.componentProfileDetails.sort((a, b) => b.total - a.total);
 
     return viewModel;
 }

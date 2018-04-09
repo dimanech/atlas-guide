@@ -79,7 +79,7 @@ function warnConstants(valuesList, constantsList) {
     };
 }
 
-function getConstantsStat(name, valuesList, constants) {
+function getConstantsUsage(name, valuesList, constants) {
     const constantsMap = {
         scale: ['fontSize'],
         font: ['fontFamily'],
@@ -105,4 +105,4 @@ function getConstantsStat(name, valuesList, constants) {
     }
 }
 
-module.exports = getConstantsStat;
+module.exports = getConstantsUsage;
