@@ -31,7 +31,21 @@
 </head>
 <body class="atlas-page atlas-page_about">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0"
-     style="position:absolute;">
+     style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="atlas-blue-gradient" x1="0" y1="0" x2="0" y2="100%">
+            <stop stop-color="#a7c6ed" offset="60%"></stop>
+            <stop stop-color="#ffffff" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient id="atlas-graph-gradient" x1="0" y1="0" x2="100%" y2="0">
+            <stop stop-color="#df4242" offset="0%"></stop>
+            <stop stop-color="#7d61ec" offset="50%"></stop>
+            <stop stop-color="#2cbbfc" offset="100%"></stop>
+        </linearGradient>
+        <filter id="blur-filter" x="0" y="0">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+        </filter>
+    </defs>
     <symbol id="icon-code-example" viewBox="0 0 24 24">
         <path
             d="M14.304 19.302a.989.989 0 0 0 0 1.407 1.009 1.009 0 0 0 1.418 0l2.955-2.93c.43-.426.43-1.111.009-1.539l-2.974-2.949a1.009 1.009 0 0 0-1.418 0 .989.989 0 0 0 0 1.407l2.327 2.307-2.317 2.297zM9.707 4.698a.988.988 0 0 0 0-1.407 1.01 1.01 0 0 0-1.418 0l-2.966 2.94a1.09 1.09 0 0 0 0 1.548l2.956 2.93a1.01 1.01 0 0 0 1.418 0 .988.988 0 0 0 0-1.407L7.38 7.005l2.327-2.307zm-3 14.009l12-12a1 1 0 1 0-1.414-1.414l-12 12a1 1 0 0 0 1.414 1.414z"
@@ -124,19 +138,6 @@
                   fill="rgb(0,0,0)"></path>
         </g>
     </symbol>
-    <symbol id="icon-good" viewBox="0 0 1000 1000">
-        <g stroke="none" fill="currentColor" stroke-width="1">
-            <path d="M959.4,469.4c-16.9,0-30.6,13.7-30.6,30.6c0,236.4-192.3,428.7-428.7,428.7S71.3,736.4,71.3,500C71.3,263.6,263.6,71.3,500,71.3c93.7,0,182.7,29.7,257.4,85.8c13.5,10.2,32.7,7.4,42.9-6.1c10.2-13.5,7.4-32.7-6.1-42.8C708.8,43.9,607.1,10,500,10C229.8,10,10,229.8,10,500c0,270.2,219.8,490,490,490s490-219.8,490-490C990,483.1,976.3,469.4,959.4,469.4z"></path>
-            <path d="M215.4,447.7c-12-12-31.3-12-43.3,0c-12,12-12,31.3,0,43.3l245,245c6,6,13.8,9,21.7,9c7.8,0,15.7-3,21.7-9L981,215.4c12-12,12-31.3,0-43.3c-12-12-31.3-12-43.3,0l-499,499L215.4,447.7z"></path>
-        </g>
-    </symbol>
-    <symbol id="icon-bad" viewBox="0 0 24 24">
-        <g stroke="currentColor" fill="none" stroke-width="1.5">
-            <ellipse cx="12.074" cy="12.081" rx="11.354" ry="11.38" fill="none"></ellipse>
-            <path d="m6.7772 17.223 10.446-10.446" stroke-linecap="round"></path>
-            <path d="m17.322 17.122-10.644-10.243" stroke-linecap="round"></path>
-        </g>
-    </symbol>
     <symbol id="icon-bundle" viewBox="0 0 24 24">
         <g stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" fill="none" stroke-width="1">
             <path d="m1.7236 5.7036v12.021l9.568 3.9775 9.6122-3.9775v-12.021l-9.6122 4.2227z"></path>
@@ -145,15 +146,25 @@
             <path d="m6.7348 3.6402c3.2098 1.2404 6.375 2.705 9.562 4.0473"></path>
         </g>
     </symbol>
-    <linearGradient id="atlas-blue-gradient" x1="0" y1="0" x2="0" y2="100%">
-        <stop stop-color="#a7c6ed" offset="60%"></stop>
-        <stop stop-color="#ffffff" offset="100%"></stop>
-    </linearGradient>
-    <linearGradient id="atlas-graph-gradient" x1="0" y1="0" x2="100%" y2="0">
-        <stop stop-color="#df4242" offset="0%"></stop>
-        <stop stop-color="#7d61ec" offset="50%"></stop>
-        <stop stop-color="#2cbbfc" offset="100%"></stop>
-    </linearGradient>
+    <symbol id="icon-good" viewBox="0 0 1000 1000">
+        <g stroke="none" fill="currentColor" stroke-width="1">
+            <path d="M959.4,469.4c-16.9,0-30.6,13.7-30.6,30.6c0,236.4-192.3,428.7-428.7,428.7S71.3,736.4,71.3,500C71.3,263.6,263.6,71.3,500,71.3c93.7,0,182.7,29.7,257.4,85.8c13.5,10.2,32.7,7.4,42.9-6.1c10.2-13.5,7.4-32.7-6.1-42.8C708.8,43.9,607.1,10,500,10C229.8,10,10,229.8,10,500c0,270.2,219.8,490,490,490s490-219.8,490-490C990,483.1,976.3,469.4,959.4,469.4z"></path>
+            <path d="M215.4,447.7c-12-12-31.3-12-43.3,0c-12,12-12,31.3,0,43.3l245,245c6,6,13.8,9,21.7,9c7.8,0,15.7-3,21.7-9L981,215.4c12-12,12-31.3,0-43.3c-12-12-31.3-12-43.3,0l-499,499L215.4,447.7z"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-bad" viewBox="0 0 24 24">
+        <g stroke="#f15d5c" fill="none" stroke-width="1.5">
+            <ellipse cx="12.074" cy="12.081" rx="11.354" ry="11.38" fill="none"></ellipse>
+            <path d="m6.7772 17.223 10.446-10.446" stroke-linecap="round"></path>
+            <path d="m17.322 17.122-10.644-10.243" stroke-linecap="round"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-triangle" viewBox="0 0 24 24">
+        <path fill="currentColor" d=" M 13.64 1.686 L 17.705 8.947 L 21.769 16.208 C 22.599 17.69 21.894 18.893 20.195 18.893 L 12.136 18.893 L 4.078 18.893 C 2.379 18.893 1.674 17.69 2.503 16.208 L 6.568 8.947 L 10.633 1.686 C 11.463 0.203 12.81 0.203 13.64 1.686 Z "></path>
+    </symbol>
+    <symbol id="icon-circle" viewBox="0 0 24 24">
+        <circle fill="currentColor" cx="12" cy="12" r="9"></circle>
+    </symbol>
 </svg>
 <div class="l-atlas-container" id="js-atlas-container">
 <div class="l-atlas-container__aside" id="js-atlas-aside" role="contentinfo">
@@ -319,7 +330,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    0.6.8
+    0.7.0
 </p>
         </div>
     </div>
@@ -378,7 +389,7 @@
     </a>
     <span class="atlas-title__highlight"></span>
 </h1>
-<p class="atlas atlas-p"><a href="https://coveralls.io/github/dimanech/atlas-guide?branch=master"><img src="https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master&amp;service" alt="Coverage Status"></a>
+<p class="atlas atlas-p"><a href="https://coveralls.io/github/dimanech/atlas-guide?branch=master"><img src="https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master&amp;servic" alt="Coverage Status"></a>
 <a href="https://codeclimate.com/github/dimanech/atlas-guide/maintainability"><img src="https://api.codeclimate.com/v1/badges/f37cf365f3315cfc287c/maintainability" alt="Maintainability"></a>
 <a href="https://travis-ci.org/dimanech/atlas-guide/"><img src="https://travis-ci.org/dimanech/atlas-guide.svg?branch=master" alt="Linux build status"></a>
 <a href="https://ci.appveyor.com/project/dimanech/atlas-guide/branch/master"><img src="https://ci.appveyor.com/api/projects/status/xiaw6yi35d527i67/branch/master?svg=true" alt="Win build status"></a>
@@ -407,13 +418,14 @@ It designed primarily as &quot;Styleguide driven development&quot; tool with foc
 </h2>
 <ul class="atlas atlas-ul">
 	<li>blazing fast thanks to Mustache and Marked. It primary designed as development platform;</li>
-<li>supports incremental builds, so only changed page could be rebuild;</li>
-<li>could be setup with live reload and used as standalone development platform;</li>
-<li>small dependencies (Mustache, Marked, PostCSS, CSSStats, ImportsGraph, D3 and Lodash parts);</li>
-<li>extremely flexible. All internal templates and styles could be overwritten on project level;</li>
-<li>could be used as simple guide docs;</li>
+<li>supports incremental builds, so only changed pages could be updated;</li>
+<li>could be setup with live reload or &quot;hot&quot; reload;</li>
+<li>small list of dependencies (Mustache, Marked, PostCSS, CSSStats, ImportsGraph, D3 and Lodash parts);</li>
+<li>all internal templates and styles could be overwritten on project level;</li>
+<li>could be used as simple guide docs generator;</li>
 <li>Hologram compatible (without front matter section);</li>
-<li>web standard compatible - if needed all docs sources could be parsed as standard markdown and compiled to standard HTML. No incompatible syntax is used.</li>
+<li>standards compatible. If needed all docs sources could be parsed as standard markdown and compiled to standard HTML
+to be used in different tool like Dash or other platforms. No incompatible syntax or constructions is used.</li>
 
 </ul>
 <span class="atlas-anchor" id="h3-components-library"></span>
@@ -435,15 +447,15 @@ It designed primarily as &quot;Styleguide driven development&quot; tool with foc
 <li>navigation tree copy project tree, to ease of orientation and handling huge components library;</li>
 <li>components tree filtering and folding;</li>
 <li>component statistic:<ul class="atlas atlas-ul">
-	<li>component local variables, internal and external dependencies;</li>
-<li>component raw structure;</li>
-<li>component health check;</li>
-<li>component profile;</li>
+	<li>local variables, internal and external dependencies;</li>
+<li>raw reduced structure;</li>
+<li>health check;</li>
+<li>profile;</li>
 <li>compatibility with declared constants (if they declared);</li>
 
 </ul>
 </li>
-<li>autogenerated styleguide based on project constants.</li>
+<li>autogenerated Styleguide page based on project constants.</li>
 
 </ul>
 <span class="atlas-anchor" id="h3-guide"></span>
@@ -460,10 +472,9 @@ It designed primarily as &quot;Styleguide driven development&quot; tool with foc
 </h3>
 <p class="atlas atlas-p">Support regular markdown files in components folders and process it as guideline pages.</p>
 <ul class="atlas atlas-ul">
-	<li>markdown support</li>
-<li>table of contents for guidelines pages</li>
-<li>permalinks to sections</li>
-<li>do/not-do colorized examples</li>
+	<li>markdown support;</li>
+<li>table of contents and permalinks to sections;</li>
+<li>do/not-do colorized examples.</li>
 
 </ul>
 <span class="atlas-anchor" id="h3-reports"></span>
@@ -479,15 +490,30 @@ It designed primarily as &quot;Styleguide driven development&quot; tool with foc
     <span class="atlas-title__highlight"></span>
 </h3>
 <ul class="atlas atlas-ul">
-	<li>imports graph</li>
-<li>cross components dependencies graph</li>
-<li>project statistical reports<ul class="atlas atlas-ul">
-	<li>basic statistics</li>
-<li>file sizes comparison</li>
-<li>data uri size and used data stat</li>
-<li>specificity graph and heaviest, longest selectors list</li>
-<li>ruleset size and heaviest, empty rulesets list</li>
-<li>total vs uniq declaration of style and metric properties</li>
+	<li>imports graph;</li>
+<li>cross components dependencies graph;</li>
+<li>sass components files sizes;</li>
+<li>project statistical reports:<ul class="atlas atlas-ul">
+	<li>basic statistics;</li>
+<li>size:<ul class="atlas atlas-ul">
+	<li>file sizes comparison with raw and gzip;</li>
+<li>data uri size and used data;</li>
+
+</ul>
+</li>
+<li>selectors and rules:<ul class="atlas atlas-ul">
+	<li>specificity graph and heaviest, longest selectors list;</li>
+<li>rule set size and heaviest, empty rule sets list;</li>
+<li><code>js-</code> prefixed selectors, universal selectors, id selectors and important rules lists;</li>
+
+</ul>
+</li>
+<li>project consistency:<ul class="atlas atlas-ul">
+	<li>total vs unique declaration of style and metric properties;</li>
+<li>unique media queries used.</li>
+
+</ul>
+</li>
 
 </ul>
 </li>
@@ -507,18 +533,42 @@ It designed primarily as &quot;Styleguide driven development&quot; tool with foc
     </a>
     <span class="atlas-title__highlight"></span>
 </h2>
+<span class="atlas-anchor" id="h3-installing"></span>
+<h3 class="atlas atlas-title atlas-title_3">
+    <span class="atlas-title__text">
+        Installing
+    </span>
+    <a class="atlas-title__anchor" href="#h3-installing" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h3>
 <div class="atlas atlas-code ">
 <pre><code class="language-">npm install atlas-guide</code></pre>
 </div>
+<span class="atlas-anchor" id="h3-configuring"></span>
+<h3 class="atlas atlas-title atlas-title_3">
+    <span class="atlas-title__text">
+        Configuring
+    </span>
+    <a class="atlas-title__anchor" href="#h3-configuring" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h3>
 <p class="atlas atlas-p"><code>.atlasrc.json</code>:</p>
 <div class="atlas atlas-code json">
 <pre><code class="language-json">{
-    &quot;guideSrc&quot;: &quot;assets&#x2F;scss&#x2F;&quot;,
-    &quot;guideDest&quot;: &quot;guide&#x2F;&quot;,
-    &quot;cssSrc&quot;: &quot;assets&#x2F;css&#x2F;&quot;
+    &quot;guideSrc&quot;: &quot;path&#x2F;to&#x2F;scss&#x2F;&quot;,
+    &quot;guideDest&quot;: &quot;path&#x2F;to&#x2F;guide&#x2F;&quot;,
+    &quot;cssSrc&quot;: &quot;path&#x2F;to&#x2F;css&#x2F;&quot;
 }</code></pre>
 </div>
-<p class="atlas atlas-p">Then in package.json</p>
+<p class="atlas atlas-p">Then in <code>package.json</code></p>
 <div class="atlas atlas-code json">
 <pre><code class="language-json">{
   &quot;scripts&quot;: {
@@ -526,6 +576,49 @@ It designed primarily as &quot;Styleguide driven development&quot; tool with foc
   }
 }</code></pre>
 </div>
+<span class="atlas-anchor" id="h3-writing-documentation"></span>
+<h3 class="atlas atlas-title atlas-title_3">
+    <span class="atlas-title__text">
+        Writing documentation
+    </span>
+    <a class="atlas-title__anchor" href="#h3-writing-documentation" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h3>
+<p class="atlas atlas-p">In <code>path/to/scss/style.scss</code>:</p>
+<div class="atlas atlas-code scss">
+<pre><code class="language-scss">&#x2F;*md
+
+# Component name
+
+Component description.
+
+Component example (Add one more backtick to make this example works):
+
+&#x60;&#x60;html_example
+&lt;h1&gt;Some&lt;&#x2F;h1&gt;
+&#x60;&#x60;
+*&#x2F;
+
+.regular-scss-here {
+    margin: 0;
+}</code></pre>
+</div>
+<span class="atlas-anchor" id="h3-building-atlas"></span>
+<h3 class="atlas atlas-title atlas-title_3">
+    <span class="atlas-title__text">
+        Building Atlas
+    </span>
+    <a class="atlas-title__anchor" href="#h3-building-atlas" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h3>
 <div class="atlas atlas-code ">
 <pre><code class="language-">npm run build-atlas</code></pre>
 </div>
@@ -544,9 +637,9 @@ It designed primarily as &quot;Styleguide driven development&quot; tool with foc
 </h3>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;);
-atlas.build().then(...); &#x2F;&#x2F; build all guide files without reports. Return promise.
+atlas.build().then(...); &#x2F;&#x2F; build all guide files without reports. Returns promise.
 atlas.build(&#39;&#x2F;absolute&#x2F;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;).then(...); &#x2F;&#x2F; compile only particular file, if it marked as documented in project tree
-atlas.buildAll().then(...); &#x2F;&#x2F; compile all guide and reports. Return promise.</code></pre>
+atlas.buildAll().then(...); &#x2F;&#x2F; compile all guide and reports. Returns promise.</code></pre>
 </div>
 <p class="atlas atlas-p">Use <code>atlas.build()</code> for incremental development builds, where it is not required to have extensive heavy-weight statistic.</p>
 <span class="atlas-anchor" id="h3-cli"></span>
@@ -832,6 +925,18 @@ That render component playground instead of code-example. This keeps documentati
 
 *&#x2F;</code></pre>
 </div>
+<span class="atlas-anchor" id="h4-regular-code-blocks"></span>
+<h4 class="atlas atlas-title atlas-title_4">
+    <span class="atlas-title__text">
+        Regular code blocks
+    </span>
+    <a class="atlas-title__anchor" href="#h4-regular-code-blocks" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h4>
 <p class="atlas atlas-p">Simple <code>html</code>, <code>scss</code>, <code>css</code> &quot;fences&quot; become regular code-block:</p>
 <div class="atlas atlas-code scss">
 <pre><code class="language-scss">&#x2F;*md
@@ -846,19 +951,6 @@ That render component playground instead of code-example. This keeps documentati
 
 *&#x2F;</code></pre>
 </div>
-<span class="atlas-anchor" id="h4-guideline-documentation-page"></span>
-<h4 class="atlas atlas-title atlas-title_4">
-    <span class="atlas-title__text">
-        Guideline/Documentation page
-    </span>
-    <a class="atlas-title__anchor" href="#h4-guideline-documentation-page" title="Copy link to this title">
-        <svg width="14" height="14" role="img">
-            <use xlink:href="#icon-ln"></use>
-        </svg>
-    </a>
-    <span class="atlas-title__highlight"></span>
-</h4>
-<p class="atlas atlas-p">Simply put regular markdown file to components tree and they automatically become part of atlas.</p>
 <span class="atlas-anchor" id="h4-styling-code-quot-fences-quot-"></span>
 <h4 class="atlas atlas-title atlas-title_4">
     <span class="atlas-title__text">
@@ -899,6 +991,19 @@ use it to style code by your needs. Atlas by default style 2 class <code>*_bad</
 <pre><code class="language-html">{{#inline}}assets&#x2F;src&#x2F;images&#x2F;icons.svg{{&#x2F;inline}}</code></pre>
 </div>
 <p class="atlas atlas-p">This helper use path to file from your project root. Virtually any file could be inlined.</p>
+<span class="atlas-anchor" id="h3-guideline-documentation-page"></span>
+<h3 class="atlas atlas-title atlas-title_3">
+    <span class="atlas-title__text">
+        Guideline/Documentation page
+    </span>
+    <a class="atlas-title__anchor" href="#h3-guideline-documentation-page" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h3>
+<p class="atlas atlas-p">Simply put regular markdown file to components tree and they automatically become part of the atlas.</p>
 <span class="atlas-anchor" id="h3-build-guide-and-reports"></span>
 <h3 class="atlas atlas-title atlas-title_3">
     <span class="atlas-title__text">
@@ -962,19 +1067,32 @@ or in JS:</p>
 <pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;);
 atlas.buildAll().then(...); &#x2F;&#x2F; compile all components, guidelines and reports</code></pre>
 </div>
-<span class="atlas-anchor" id="h3-setup-constants"></span>
+<span class="atlas-anchor" id="h3-autogenerated-styleguide-based-on-project-constants"></span>
 <h3 class="atlas atlas-title atlas-title_3">
     <span class="atlas-title__text">
-        Setup constants
+        Autogenerated styleguide based on project constants
     </span>
-    <a class="atlas-title__anchor" href="#h3-setup-constants" title="Copy link to this title">
+    <a class="atlas-title__anchor" href="#h3-autogenerated-styleguide-based-on-project-constants" title="Copy link to this title">
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-ln"></use>
         </svg>
     </a>
     <span class="atlas-title__highlight"></span>
 </h3>
-<p class="atlas atlas-p">In case when project constants is set upped Atlas could generate project styleguide page and show some info about constant usage in components pages.</p>
+<p class="atlas atlas-p">Atlas could automatically generate (styleguide page)[<a href="https://dimanech.github.io/atlas-guide/styleguide.html]">https://dimanech.github.io/atlas-guide/styleguide.html]</a> and warn if this constants not used in (component statistic)[<a href="https://dimanech.github.io/atlas-guide/bindings-frame-b-atlas-component.html#h2-component-footer]">https://dimanech.github.io/atlas-guide/bindings-frame-b-atlas-component.html#h2-component-footer]</a>
+if project constants is setup.</p>
+<span class="atlas-anchor" id="h4-setup-constants"></span>
+<h4 class="atlas atlas-title atlas-title_4">
+    <span class="atlas-title__text">
+        Setup constants
+    </span>
+    <a class="atlas-title__anchor" href="#h4-setup-constants" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h4>
 <p class="atlas atlas-p">This set up could be a tricky part, because it required full sass compilation and has some limitations.</p>
 <p class="atlas atlas-p">First you need to use constants in simple form. Ex:</p>
 <div class="atlas atlas-code scss">
@@ -1079,6 +1197,26 @@ $scale-md: 1rem;</code></pre>
             </a>
         </div>
         <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-installing">
+                Installing
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-configuring">
+                Configuring
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-writing-documentation">
+                Writing documentation
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-building-atlas">
+                Building Atlas
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
             <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-api">
                 API
             </a>
@@ -1134,8 +1272,8 @@ $scale-md: 1rem;</code></pre>
             </a>
         </div>
         <div class="atlas-toc__item" role="listitem">
-            <a class="atlas-toc__ln atlas-toc__ln_4" href="#h4-guideline-documentation-page">
-                Guideline/Documentation page
+            <a class="atlas-toc__ln atlas-toc__ln_4" href="#h4-regular-code-blocks">
+                Regular code blocks
             </a>
         </div>
         <div class="atlas-toc__item" role="listitem">
@@ -1146,6 +1284,11 @@ $scale-md: 1rem;</code></pre>
         <div class="atlas-toc__item" role="listitem">
             <a class="atlas-toc__ln atlas-toc__ln_4" href="#h4-template-helpers">
                 Template helpers
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-guideline-documentation-page">
+                Guideline/Documentation page
             </a>
         </div>
         <div class="atlas-toc__item" role="listitem">
@@ -1169,7 +1312,12 @@ $scale-md: 1rem;</code></pre>
             </a>
         </div>
         <div class="atlas-toc__item" role="listitem">
-            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-setup-constants">
+            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-autogenerated-styleguide-based-on-project-constants">
+                Autogenerated styleguide based on project constants
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_4" href="#h4-setup-constants">
                 Setup constants
             </a>
         </div>

@@ -31,7 +31,21 @@
 </head>
 <body class="atlas-page atlas-page_component">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0"
-     style="position:absolute;">
+     style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="atlas-blue-gradient" x1="0" y1="0" x2="0" y2="100%">
+            <stop stop-color="#a7c6ed" offset="60%"></stop>
+            <stop stop-color="#ffffff" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient id="atlas-graph-gradient" x1="0" y1="0" x2="100%" y2="0">
+            <stop stop-color="#df4242" offset="0%"></stop>
+            <stop stop-color="#7d61ec" offset="50%"></stop>
+            <stop stop-color="#2cbbfc" offset="100%"></stop>
+        </linearGradient>
+        <filter id="blur-filter" x="0" y="0">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+        </filter>
+    </defs>
     <symbol id="icon-code-example" viewBox="0 0 24 24">
         <path
             d="M14.304 19.302a.989.989 0 0 0 0 1.407 1.009 1.009 0 0 0 1.418 0l2.955-2.93c.43-.426.43-1.111.009-1.539l-2.974-2.949a1.009 1.009 0 0 0-1.418 0 .989.989 0 0 0 0 1.407l2.327 2.307-2.317 2.297zM9.707 4.698a.988.988 0 0 0 0-1.407 1.01 1.01 0 0 0-1.418 0l-2.966 2.94a1.09 1.09 0 0 0 0 1.548l2.956 2.93a1.01 1.01 0 0 0 1.418 0 .988.988 0 0 0 0-1.407L7.38 7.005l2.327-2.307zm-3 14.009l12-12a1 1 0 1 0-1.414-1.414l-12 12a1 1 0 0 0 1.414 1.414z"
@@ -124,19 +138,6 @@
                   fill="rgb(0,0,0)"></path>
         </g>
     </symbol>
-    <symbol id="icon-good" viewBox="0 0 1000 1000">
-        <g stroke="none" fill="currentColor" stroke-width="1">
-            <path d="M959.4,469.4c-16.9,0-30.6,13.7-30.6,30.6c0,236.4-192.3,428.7-428.7,428.7S71.3,736.4,71.3,500C71.3,263.6,263.6,71.3,500,71.3c93.7,0,182.7,29.7,257.4,85.8c13.5,10.2,32.7,7.4,42.9-6.1c10.2-13.5,7.4-32.7-6.1-42.8C708.8,43.9,607.1,10,500,10C229.8,10,10,229.8,10,500c0,270.2,219.8,490,490,490s490-219.8,490-490C990,483.1,976.3,469.4,959.4,469.4z"></path>
-            <path d="M215.4,447.7c-12-12-31.3-12-43.3,0c-12,12-12,31.3,0,43.3l245,245c6,6,13.8,9,21.7,9c7.8,0,15.7-3,21.7-9L981,215.4c12-12,12-31.3,0-43.3c-12-12-31.3-12-43.3,0l-499,499L215.4,447.7z"></path>
-        </g>
-    </symbol>
-    <symbol id="icon-bad" viewBox="0 0 24 24">
-        <g stroke="currentColor" fill="none" stroke-width="1.5">
-            <ellipse cx="12.074" cy="12.081" rx="11.354" ry="11.38" fill="none"></ellipse>
-            <path d="m6.7772 17.223 10.446-10.446" stroke-linecap="round"></path>
-            <path d="m17.322 17.122-10.644-10.243" stroke-linecap="round"></path>
-        </g>
-    </symbol>
     <symbol id="icon-bundle" viewBox="0 0 24 24">
         <g stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" fill="none" stroke-width="1">
             <path d="m1.7236 5.7036v12.021l9.568 3.9775 9.6122-3.9775v-12.021l-9.6122 4.2227z"></path>
@@ -145,15 +146,25 @@
             <path d="m6.7348 3.6402c3.2098 1.2404 6.375 2.705 9.562 4.0473"></path>
         </g>
     </symbol>
-    <linearGradient id="atlas-blue-gradient" x1="0" y1="0" x2="0" y2="100%">
-        <stop stop-color="#a7c6ed" offset="60%"></stop>
-        <stop stop-color="#ffffff" offset="100%"></stop>
-    </linearGradient>
-    <linearGradient id="atlas-graph-gradient" x1="0" y1="0" x2="100%" y2="0">
-        <stop stop-color="#df4242" offset="0%"></stop>
-        <stop stop-color="#7d61ec" offset="50%"></stop>
-        <stop stop-color="#2cbbfc" offset="100%"></stop>
-    </linearGradient>
+    <symbol id="icon-good" viewBox="0 0 1000 1000">
+        <g stroke="none" fill="currentColor" stroke-width="1">
+            <path d="M959.4,469.4c-16.9,0-30.6,13.7-30.6,30.6c0,236.4-192.3,428.7-428.7,428.7S71.3,736.4,71.3,500C71.3,263.6,263.6,71.3,500,71.3c93.7,0,182.7,29.7,257.4,85.8c13.5,10.2,32.7,7.4,42.9-6.1c10.2-13.5,7.4-32.7-6.1-42.8C708.8,43.9,607.1,10,500,10C229.8,10,10,229.8,10,500c0,270.2,219.8,490,490,490s490-219.8,490-490C990,483.1,976.3,469.4,959.4,469.4z"></path>
+            <path d="M215.4,447.7c-12-12-31.3-12-43.3,0c-12,12-12,31.3,0,43.3l245,245c6,6,13.8,9,21.7,9c7.8,0,15.7-3,21.7-9L981,215.4c12-12,12-31.3,0-43.3c-12-12-31.3-12-43.3,0l-499,499L215.4,447.7z"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-bad" viewBox="0 0 24 24">
+        <g stroke="#f15d5c" fill="none" stroke-width="1.5">
+            <ellipse cx="12.074" cy="12.081" rx="11.354" ry="11.38" fill="none"></ellipse>
+            <path d="m6.7772 17.223 10.446-10.446" stroke-linecap="round"></path>
+            <path d="m17.322 17.122-10.644-10.243" stroke-linecap="round"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-triangle" viewBox="0 0 24 24">
+        <path fill="currentColor" d=" M 13.64 1.686 L 17.705 8.947 L 21.769 16.208 C 22.599 17.69 21.894 18.893 20.195 18.893 L 12.136 18.893 L 4.078 18.893 C 2.379 18.893 1.674 17.69 2.503 16.208 L 6.568 8.947 L 10.633 1.686 C 11.463 0.203 12.81 0.203 13.64 1.686 Z "></path>
+    </symbol>
+    <symbol id="icon-circle" viewBox="0 0 24 24">
+        <circle fill="currentColor" cx="12" cy="12" r="9"></circle>
+    </symbol>
 </svg>
 <div class="l-atlas-container" id="js-atlas-container">
 <div class="l-atlas-container__aside" id="js-atlas-aside" role="contentinfo">
@@ -319,7 +330,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    0.6.8
+    0.7.0
 </p>
         </div>
     </div>
@@ -342,6 +353,12 @@
                 Included in:
             </div>
             <div role="list" class="atlas-component-aside__list">
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="12" height="12" style="top:-1px">
+                            <use xlink:href="#icon-bad"></use>
+                        </svg>
+                        Not included in any file!
+                    </div>
             </div>
         </div>
         <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-depends-from">
@@ -636,16 +653,11 @@ Container type of component should not have any styling properties, but only the
                 </figure>
                 <svg width="300" height="80" viewBox="0 0 300 80" class="atlas-info-digit atlas-sparkline" aria-labelledby="component-graph-title">
                     <title id="component-graph-title">Declaration sets size through the file</title>
-                    <defs>
-                        <filter id="blur-filter" x="0" y="0">
-                            <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
-                        </filter>
-                    </defs>
                     <g class="atlas-sparkline__line">
-                        <path d="M0,25.6C0,25.6,37.84084622961452,60.25240174297837,58,64C76.62818253643218,67.46298982587098,96.97174877091362,57.43056297973619,116,51.2C135.6589755828931,44.762914215727825,154.66666666666666,25.599999999999998,174,25.6C193.33333333333334,25.599999999999998,212.21702072831366,47.02824670931192,232,51.2C250.92197507998,55.19018826851835,290,51.2,290,51.2" stroke="currentColor" fill="none"/>
                         <g class="atlas-sparkline__shadow">
                             <path d="M0,25.6C0,25.6,37.84084622961452,60.25240174297837,58,64C76.62818253643218,67.46298982587098,96.97174877091362,57.43056297973619,116,51.2C135.6589755828931,44.762914215727825,154.66666666666666,25.599999999999998,174,25.6C193.33333333333334,25.599999999999998,212.21702072831366,47.02824670931192,232,51.2C250.92197507998,55.19018826851835,290,51.2,290,51.2" stroke="currentColor" fill="none" filter="url(#blur-filter)"/>
                         </g>
+                        <path d="M0,25.6C0,25.6,37.84084622961452,60.25240174297837,58,64C76.62818253643218,67.46298982587098,96.97174877091362,57.43056297973619,116,51.2C135.6589755828931,44.762914215727825,154.66666666666666,25.599999999999998,174,25.6C193.33333333333334,25.599999999999998,212.21702072831366,47.02824670931192,232,51.2C250.92197507998,55.19018826851835,290,51.2,290,51.2" stroke="currentColor" fill="none"/>
                     </g>
                 </svg>
             </div>
@@ -685,120 +697,252 @@ Container type of component should not have any styling properties, but only the
                     </figure>
             </div>
             <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
-                <div class="atlas-info-list" role="list">
+                <div role="list" class="atlas-info-list">
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">3</span>
-                        <span class="atlas-info-list__name">Font families</span>
-                            <div class="atlas-constant">
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        3
-                                        fixes required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                            <code>Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif</code>&ensp;
-                                            <code>serif</code>&ensp;
-                                            <code>sans</code>&ensp;
-                                    </div>
-                            </div>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">2</span>
-                        <span class="atlas-info-list__name">Font sizes</span>
-                            <div class="atlas-constant">
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        2
-                                        fixes required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                            <code>20px</code>&ensp;
-                                            <code>20px</code>&ensp;
-                                    </div>
-                            </div>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
                         <span class="atlas-info-list__name">width</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">height</span>
+                        <span class="atlas-info-list__total">2</span>
+                        <span class="atlas-info-list__name">font</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">color</span>
-                            <div class="atlas-constant">
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        1
-                                        fix required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                            <code>red</code>&ensp;
-                                    </div>
-                            </div>
+                        <span class="atlas-info-list__name">font-family</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">Background</span>
-                            <div class="atlas-constant">
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        1
-                                        fix required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                            <code>green</code>&ensp;
-                                    </div>
-                            </div>
+                        <span class="atlas-info-list__name">margin</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">mediaQuery</span>
-                            <div class="atlas-constant">
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        1
-                                        fix required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                            <code>all</code>&ensp;
-                                    </div>
-                            </div>
+                        <span class="atlas-info-list__name">background</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">0</span>
-                        <span class="atlas-info-list__name">paddings</span>
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">background-color</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">0</span>
-                        <span class="atlas-info-list__name">positions</span>
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">$local-var</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">0</span>
-                        <span class="atlas-info-list__name">margins</span>
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">padding</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">0</span>
-                        <span class="atlas-info-list__name">displays</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">0</span>
-                        <span class="atlas-info-list__name">boxShadows</span>
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">outline</span>
                     </div>
                 </div>
             </div>
+                <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
+                    <div role="list" class="atlas-constant">
+                            <div role="listitem" class="atlas-constant__item">
+                                <div class="atlas-constant__caption">
+                                    <div class="atlas-constant__name">
+                                        margin
+                                    </div>
+                                </div>
+                                <div role="list" class="atlas-constant__details">
+                                        <div class="atlas-constant__status _error">
+                                            1
+                                            issue
+                                        </div>
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _1 _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        1
+                                                    </span>
+                                                </span>
+                                                <code>$local-var</code>&ensp;
+                                            </div>
+                                </div>
+                            </div>
+                            <div role="listitem" class="atlas-constant__item">
+                                <div class="atlas-constant__caption">
+                                    <div class="atlas-constant__name">
+                                        padding
+                                    </div>
+                                </div>
+                                <div role="list" class="atlas-constant__details">
+                                        <span class="atlas-constant__status _success">
+                                            <svg role="img" width="16" height="16">
+                                                <use xlink:href="#icon-good"></use>
+                                            </svg>
+                                            Consistent
+                                        </span>
+                                        <div role="listitem" class="atlas-constant__list">
+                                            <span class="atlas-constant__counter _1 _warn">
+                                                <svg role="img" width="16" height="16">
+                                                    <use xlink:href="#icon-triangle"></use>
+                                                </svg>
+                                                <span class="atlas-constant__counter-digit">
+                                                    1
+                                                </span>
+                                            </span>
+                                            <code>1.25rem</code> could be changed to <code>$space-md-atlas</code>
+                                        </div>
+                                </div>
+                            </div>
+                            <div role="listitem" class="atlas-constant__item">
+                                <div class="atlas-constant__caption">
+                                    <div class="atlas-constant__name">
+                                        fontSize
+                                    </div>
+                                </div>
+                                <div role="list" class="atlas-constant__details">
+                                        <div class="atlas-constant__status _error">
+                                            2
+                                            issues
+                                        </div>
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _2 _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        2
+                                                    </span>
+                                                </span>
+                                                <code>20px</code>&ensp;
+                                            </div>
+                                </div>
+                            </div>
+                            <div role="listitem" class="atlas-constant__item">
+                                <div class="atlas-constant__caption">
+                                    <div class="atlas-constant__name">
+                                        fontFamily
+                                    </div>
+                                </div>
+                                <div role="list" class="atlas-constant__details">
+                                        <div class="atlas-constant__status _error">
+                                            3
+                                            issues
+                                        </div>
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _1 _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        1
+                                                    </span>
+                                                </span>
+                                                <code>Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif</code>&ensp;
+                                            </div>
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _1 _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        1
+                                                    </span>
+                                                </span>
+                                                <code>serif</code>&ensp;
+                                            </div>
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _1 _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        1
+                                                    </span>
+                                                </span>
+                                                <code>sans</code>&ensp;
+                                            </div>
+                                </div>
+                            </div>
+                            <div role="listitem" class="atlas-constant__item">
+                                <div class="atlas-constant__caption">
+                                    <div class="atlas-constant__name">
+                                        color
+                                    </div>
+                                </div>
+                                <div role="list" class="atlas-constant__details">
+                                        <div class="atlas-constant__status _error">
+                                            1
+                                            issue
+                                        </div>
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _1 _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        1
+                                                    </span>
+                                                </span>
+                                                <code>red</code>&ensp;
+                                            </div>
+                                </div>
+                            </div>
+                            <div role="listitem" class="atlas-constant__item">
+                                <div class="atlas-constant__caption">
+                                    <div class="atlas-constant__name">
+                                        backgroundColor
+                                    </div>
+                                </div>
+                                <div role="list" class="atlas-constant__details">
+                                        <div class="atlas-constant__status _error">
+                                            2
+                                            issues
+                                        </div>
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _1 _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        1
+                                                    </span>
+                                                </span>
+                                                <code>green</code>&ensp;
+                                            </div>
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _1 _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        1
+                                                    </span>
+                                                </span>
+                                                <code>orange</code>&ensp;
+                                            </div>
+                                </div>
+                            </div>
+                            <div role="listitem" class="atlas-constant__item">
+                                <div class="atlas-constant__caption">
+                                    <div class="atlas-constant__name">
+                                        mediaQuery
+                                    </div>
+                                </div>
+                                <div role="list" class="atlas-constant__details">
+                                        <div class="atlas-constant__status _error">
+                                            1
+                                            issue
+                                        </div>
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _1 _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        1
+                                                    </span>
+                                                </span>
+                                                <code>all</code>&ensp;
+                                            </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
         </div>
 
         <div class="atlas-component-footer__item">
@@ -808,41 +952,41 @@ Container type of component should not have any styling properties, but only the
                 </div>
                 <div class="atlas-component-structure__nodes" role="list">
     <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="component">
-            <span class="atlas-component-structure__type atlas-component-structure__type_component"></span>
-            <span class="atlas-component-structure__name">.atlas-component</span> {...}
+        <div class="atlas-component-structure__selector">
+            <span class="atlas-component-structure__type _component" title="component"></span>
+            <span class="atlas-component-structure__name">.atlas-component</span><span class="atlas-component-structure__brackets"> {...}</span>
         </div>
             <div role="list" class="atlas-component-structure__nodes">
     <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="mixin">
-            <span class="atlas-component-structure__type atlas-component-structure__type_mixin"></span>
-            <span class="atlas-component-structure__name">include component()</span>;
+        <div class="atlas-component-structure__selector">
+            <span class="atlas-component-structure__type _mixin" title="mixin"></span>
+            <span class="atlas-component-structure__name">include component()</span><span class="atlas-component-structure__brackets">;</span>
         </div>
     </div>
     <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="condition">
-            <span class="atlas-component-structure__type atlas-component-structure__type_condition"></span>
-            <span class="atlas-component-structure__name">media all</span> {...}
+        <div class="atlas-component-structure__selector">
+            <span class="atlas-component-structure__type _condition" title="condition"></span>
+            <span class="atlas-component-structure__name">media all</span><span class="atlas-component-structure__brackets"> {...}</span>
         </div>
     </div>
     <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="element">
-            <span class="atlas-component-structure__type atlas-component-structure__type_element"></span>
-            <span class="atlas-component-structure__name">&amp;__item-empty</span> {...}
+        <div class="atlas-component-structure__selector">
+            <span class="atlas-component-structure__type _element" title="element"></span>
+            <span class="atlas-component-structure__name">&amp;__item-empty</span><span class="atlas-component-structure__brackets"> {...}</span>
         </div>
             <div role="list" class="atlas-component-structure__nodes">
     <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="modifier-implicit">
-            <span class="atlas-component-structure__type atlas-component-structure__type_modifier-implicit"></span>
-            <span class="atlas-component-structure__name">&amp;:hover</span> {...}
+        <div class="atlas-component-structure__selector">
+            <span class="atlas-component-structure__type _modifier-implicit" title="modifier-implicit"></span>
+            <span class="atlas-component-structure__name">&amp;:hover</span><span class="atlas-component-structure__brackets"> {...}</span>
         </div>
     </div>
             </div>
     </div>
     <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="modifier-adjacent">
-            <span class="atlas-component-structure__type atlas-component-structure__type_modifier-adjacent"></span>
-            <span class="atlas-component-structure__name">&amp;._mod</span> {...}
+        <div class="atlas-component-structure__selector">
+            <span class="atlas-component-structure__type _modifier-adjacent" title="modifier-adjacent"></span>
+            <span class="atlas-component-structure__name">&amp;._mod</span><span class="atlas-component-structure__brackets"> {...}</span>
         </div>
     </div>
             </div>

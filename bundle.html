@@ -31,7 +31,21 @@
 </head>
 <body class="atlas-page atlas-page_insights">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0"
-     style="position:absolute;">
+     style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="atlas-blue-gradient" x1="0" y1="0" x2="0" y2="100%">
+            <stop stop-color="#a7c6ed" offset="60%"></stop>
+            <stop stop-color="#ffffff" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient id="atlas-graph-gradient" x1="0" y1="0" x2="100%" y2="0">
+            <stop stop-color="#df4242" offset="0%"></stop>
+            <stop stop-color="#7d61ec" offset="50%"></stop>
+            <stop stop-color="#2cbbfc" offset="100%"></stop>
+        </linearGradient>
+        <filter id="blur-filter" x="0" y="0">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+        </filter>
+    </defs>
     <symbol id="icon-code-example" viewBox="0 0 24 24">
         <path
             d="M14.304 19.302a.989.989 0 0 0 0 1.407 1.009 1.009 0 0 0 1.418 0l2.955-2.93c.43-.426.43-1.111.009-1.539l-2.974-2.949a1.009 1.009 0 0 0-1.418 0 .989.989 0 0 0 0 1.407l2.327 2.307-2.317 2.297zM9.707 4.698a.988.988 0 0 0 0-1.407 1.01 1.01 0 0 0-1.418 0l-2.966 2.94a1.09 1.09 0 0 0 0 1.548l2.956 2.93a1.01 1.01 0 0 0 1.418 0 .988.988 0 0 0 0-1.407L7.38 7.005l2.327-2.307zm-3 14.009l12-12a1 1 0 1 0-1.414-1.414l-12 12a1 1 0 0 0 1.414 1.414z"
@@ -124,19 +138,6 @@
                   fill="rgb(0,0,0)"></path>
         </g>
     </symbol>
-    <symbol id="icon-good" viewBox="0 0 1000 1000">
-        <g stroke="none" fill="currentColor" stroke-width="1">
-            <path d="M959.4,469.4c-16.9,0-30.6,13.7-30.6,30.6c0,236.4-192.3,428.7-428.7,428.7S71.3,736.4,71.3,500C71.3,263.6,263.6,71.3,500,71.3c93.7,0,182.7,29.7,257.4,85.8c13.5,10.2,32.7,7.4,42.9-6.1c10.2-13.5,7.4-32.7-6.1-42.8C708.8,43.9,607.1,10,500,10C229.8,10,10,229.8,10,500c0,270.2,219.8,490,490,490s490-219.8,490-490C990,483.1,976.3,469.4,959.4,469.4z"></path>
-            <path d="M215.4,447.7c-12-12-31.3-12-43.3,0c-12,12-12,31.3,0,43.3l245,245c6,6,13.8,9,21.7,9c7.8,0,15.7-3,21.7-9L981,215.4c12-12,12-31.3,0-43.3c-12-12-31.3-12-43.3,0l-499,499L215.4,447.7z"></path>
-        </g>
-    </symbol>
-    <symbol id="icon-bad" viewBox="0 0 24 24">
-        <g stroke="currentColor" fill="none" stroke-width="1.5">
-            <ellipse cx="12.074" cy="12.081" rx="11.354" ry="11.38" fill="none"></ellipse>
-            <path d="m6.7772 17.223 10.446-10.446" stroke-linecap="round"></path>
-            <path d="m17.322 17.122-10.644-10.243" stroke-linecap="round"></path>
-        </g>
-    </symbol>
     <symbol id="icon-bundle" viewBox="0 0 24 24">
         <g stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" fill="none" stroke-width="1">
             <path d="m1.7236 5.7036v12.021l9.568 3.9775 9.6122-3.9775v-12.021l-9.6122 4.2227z"></path>
@@ -145,15 +146,25 @@
             <path d="m6.7348 3.6402c3.2098 1.2404 6.375 2.705 9.562 4.0473"></path>
         </g>
     </symbol>
-    <linearGradient id="atlas-blue-gradient" x1="0" y1="0" x2="0" y2="100%">
-        <stop stop-color="#a7c6ed" offset="60%"></stop>
-        <stop stop-color="#ffffff" offset="100%"></stop>
-    </linearGradient>
-    <linearGradient id="atlas-graph-gradient" x1="0" y1="0" x2="100%" y2="0">
-        <stop stop-color="#df4242" offset="0%"></stop>
-        <stop stop-color="#7d61ec" offset="50%"></stop>
-        <stop stop-color="#2cbbfc" offset="100%"></stop>
-    </linearGradient>
+    <symbol id="icon-good" viewBox="0 0 1000 1000">
+        <g stroke="none" fill="currentColor" stroke-width="1">
+            <path d="M959.4,469.4c-16.9,0-30.6,13.7-30.6,30.6c0,236.4-192.3,428.7-428.7,428.7S71.3,736.4,71.3,500C71.3,263.6,263.6,71.3,500,71.3c93.7,0,182.7,29.7,257.4,85.8c13.5,10.2,32.7,7.4,42.9-6.1c10.2-13.5,7.4-32.7-6.1-42.8C708.8,43.9,607.1,10,500,10C229.8,10,10,229.8,10,500c0,270.2,219.8,490,490,490s490-219.8,490-490C990,483.1,976.3,469.4,959.4,469.4z"></path>
+            <path d="M215.4,447.7c-12-12-31.3-12-43.3,0c-12,12-12,31.3,0,43.3l245,245c6,6,13.8,9,21.7,9c7.8,0,15.7-3,21.7-9L981,215.4c12-12,12-31.3,0-43.3c-12-12-31.3-12-43.3,0l-499,499L215.4,447.7z"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-bad" viewBox="0 0 24 24">
+        <g stroke="#f15d5c" fill="none" stroke-width="1.5">
+            <ellipse cx="12.074" cy="12.081" rx="11.354" ry="11.38" fill="none"></ellipse>
+            <path d="m6.7772 17.223 10.446-10.446" stroke-linecap="round"></path>
+            <path d="m17.322 17.122-10.644-10.243" stroke-linecap="round"></path>
+        </g>
+    </symbol>
+    <symbol id="icon-triangle" viewBox="0 0 24 24">
+        <path fill="currentColor" d=" M 13.64 1.686 L 17.705 8.947 L 21.769 16.208 C 22.599 17.69 21.894 18.893 20.195 18.893 L 12.136 18.893 L 4.078 18.893 C 2.379 18.893 1.674 17.69 2.503 16.208 L 6.568 8.947 L 10.633 1.686 C 11.463 0.203 12.81 0.203 13.64 1.686 Z "></path>
+    </symbol>
+    <symbol id="icon-circle" viewBox="0 0 24 24">
+        <circle fill="currentColor" cx="12" cy="12" r="9"></circle>
+    </symbol>
 </svg>
 <div class="l-atlas-container" id="js-atlas-container">
 <div class="l-atlas-container__aside" id="js-atlas-aside" role="contentinfo">
@@ -319,7 +330,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    0.6.8
+    0.7.0
 </p>
         </div>
     </div>
@@ -572,7 +583,7 @@
 <section class="atlas-stat-sheet">
     <header class="atlas-stat-header">
         <div role="heading" aria-level="1" class="atlas-stat-header__title">
-            cross dependencies
+            Cross dependencies
         </div>
     </header>
 
@@ -607,7 +618,7 @@
 <section class="atlas-stat-sheet">
     <header class="atlas-stat-header">
         <div role="heading" aria-level="1" class="atlas-stat-header__title">
-            components sizes
+            Components sizes
         </div>
     </header>
     <div role="list" class="atlas-stat-sizes-grid">
@@ -624,30 +635,30 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="142.5858585858586" height="142.5858585858586">
-                        <rect width="142.5858585858586" height="142.5858585858586" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="148.15112540192925" height="148.15112540192925">
+                        <rect width="148.15112540192925" height="148.15112540192925" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">3.5kB</div>
-                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-playground.scss</div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div role="listitem">
-                <figure class="atlas-stat-size-file">
-                    <svg width="138.50505050505052" height="138.50505050505052">
-                        <rect width="138.50505050505052" height="138.50505050505052" x="0" y="0" fill="currentColor"></rect>
-                    </svg>
-                    <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">3.4kB</div>
+                        <div class="atlas-stat-size-file__size">3.7kB</div>
                         <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-component-structure.scss</div>
                     </figcaption>
                 </figure>
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="113.8989898989899" height="113.8989898989899">
-                        <rect width="113.8989898989899" height="113.8989898989899" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="143.40836012861737" height="143.40836012861737">
+                        <rect width="143.40836012861737" height="143.40836012861737" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <div class="atlas-stat-size-file__size">3.6kB</div>
+                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-playground.scss</div>
+                    </figcaption>
+                </figure>
+            </div>
+            <div role="listitem">
+                <figure class="atlas-stat-size-file">
+                    <svg width="113.30385852090032" height="113.30385852090032">
+                        <rect width="113.30385852090032" height="113.30385852090032" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">2.8kB</div>
@@ -657,8 +668,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="74.94949494949495" height="74.94949494949495">
-                        <rect width="74.94949494949495" height="74.94949494949495" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="74.55787781350483" height="74.55787781350483">
+                        <rect width="74.55787781350483" height="74.55787781350483" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">1.9kB</div>
@@ -668,8 +679,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="71.51515151515152" height="71.51515151515152">
-                        <rect width="71.51515151515152" height="71.51515151515152" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="71.66398713826366" height="71.66398713826366">
+                        <rect width="71.66398713826366" height="71.66398713826366" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">1.8kB</div>
@@ -679,8 +690,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="68.44444444444444" height="68.44444444444444">
-                        <rect width="68.44444444444444" height="68.44444444444444" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="68.08681672025723" height="68.08681672025723">
+                        <rect width="68.08681672025723" height="68.08681672025723" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">1.7kB</div>
@@ -690,8 +701,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="64.04040404040404" height="64.04040404040404">
-                        <rect width="64.04040404040404" height="64.04040404040404" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="64.22829581993568" height="64.22829581993568">
+                        <rect width="64.22829581993568" height="64.22829581993568" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">1.6kB</div>
@@ -701,8 +712,19 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="48.8080808080808" height="48.8080808080808">
-                        <rect width="48.8080808080808" height="48.8080808080808" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="55.9887459807074" height="55.9887459807074">
+                        <rect width="55.9887459807074" height="55.9887459807074" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <div class="atlas-stat-size-file__size">1.4kB</div>
+                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-constant.scss</div>
+                    </figcaption>
+                </figure>
+            </div>
+            <div role="listitem">
+                <figure class="atlas-stat-size-file">
+                    <svg width="49.07556270096463" height="49.07556270096463">
+                        <rect width="49.07556270096463" height="49.07556270096463" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">1.2kB</div>
@@ -712,8 +734,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="45.494949494949495" height="45.494949494949495">
-                        <rect width="45.494949494949495" height="45.494949494949495" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="45.77974276527331" height="45.77974276527331">
+                        <rect width="45.77974276527331" height="45.77974276527331" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">1.1kB</div>
@@ -723,8 +745,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="41.81818181818181" height="41.81818181818181">
-                        <rect width="41.81818181818181" height="41.81818181818181" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="41.59967845659164" height="41.59967845659164">
+                        <rect width="41.59967845659164" height="41.59967845659164" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">1.0kB</div>
@@ -734,8 +756,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="39.43434343434343" height="39.43434343434343">
-                        <rect width="39.43434343434343" height="39.43434343434343" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="39.228295819935695" height="39.228295819935695">
+                        <rect width="39.228295819935695" height="39.228295819935695" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">980B</div>
@@ -745,8 +767,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="38.86868686868687" height="38.86868686868687">
-                        <rect width="38.86868686868687" height="38.86868686868687" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="38.66559485530547" height="38.66559485530547">
+                        <rect width="38.66559485530547" height="38.66559485530547" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">960B</div>
@@ -756,8 +778,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="37.45454545454546" height="37.45454545454546">
-                        <rect width="37.45454545454546" height="37.45454545454546" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="37.258842443729904" height="37.258842443729904">
+                        <rect width="37.258842443729904" height="37.258842443729904" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">930B</div>
@@ -767,8 +789,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="36.80808080808081" height="36.80808080808081">
-                        <rect width="36.80808080808081" height="36.80808080808081" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="36.61575562700964" height="36.61575562700964">
+                        <rect width="36.61575562700964" height="36.61575562700964" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">910B</div>
@@ -778,8 +800,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="35.95959595959596" height="35.95959595959596">
-                        <rect width="35.95959595959596" height="35.95959595959596" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="35.771704180064305" height="35.771704180064305">
+                        <rect width="35.771704180064305" height="35.771704180064305" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">890B</div>
@@ -789,8 +811,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="35.39393939393939" height="35.39393939393939">
-                        <rect width="35.39393939393939" height="35.39393939393939" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="35.20900321543408" height="35.20900321543408">
+                        <rect width="35.20900321543408" height="35.20900321543408" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">880B</div>
@@ -800,41 +822,41 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="34.58585858585859" height="34.58585858585859">
-                        <rect width="34.58585858585859" height="34.58585858585859" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="34.92765273311897" height="34.92765273311897">
+                        <rect width="34.92765273311897" height="34.92765273311897" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">860B</div>
+                        <div class="atlas-stat-size-file__size">870B</div>
                         <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-aside.scss</div>
                     </figcaption>
                 </figure>
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="33.61616161616162" height="33.61616161616162">
-                        <rect width="33.61616161616162" height="33.61616161616162" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="33.963022508038584" height="33.963022508038584">
+                        <rect width="33.963022508038584" height="33.963022508038584" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">830B</div>
+                        <div class="atlas-stat-size-file__size">850B</div>
                         <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_tooltip.scss</div>
                     </figcaption>
                 </figure>
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="32.2020202020202" height="32.2020202020202">
-                        <rect width="32.2020202020202" height="32.2020202020202" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="33.07877813504823" height="33.07877813504823">
+                        <rect width="33.07877813504823" height="33.07877813504823" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">800B</div>
+                        <div class="atlas-stat-size-file__size">820B</div>
                         <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-stat-header.scss</div>
                     </figcaption>
                 </figure>
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="32" height="32">
-                        <rect width="32" height="32" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="31.832797427652732" height="31.832797427652732">
+                        <rect width="31.832797427652732" height="31.832797427652732" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">790B</div>
@@ -844,8 +866,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="31.717171717171716" height="31.717171717171716">
-                        <rect width="31.717171717171716" height="31.717171717171716" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="31.55144694533762" height="31.55144694533762">
+                        <rect width="31.55144694533762" height="31.55144694533762" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">790B</div>
@@ -855,8 +877,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="31.393939393939398" height="31.393939393939398">
-                        <rect width="31.393939393939398" height="31.393939393939398" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="31.229903536977492" height="31.229903536977492">
+                        <rect width="31.229903536977492" height="31.229903536977492" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">780B</div>
@@ -866,8 +888,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="30.666666666666664" height="30.666666666666664">
-                        <rect width="30.666666666666664" height="30.666666666666664" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="30.5064308681672" height="30.5064308681672">
+                        <rect width="30.5064308681672" height="30.5064308681672" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">760B</div>
@@ -877,8 +899,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="30.464646464646467" height="30.464646464646467">
-                        <rect width="30.464646464646467" height="30.464646464646467" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="30.305466237942124" height="30.305466237942124">
+                        <rect width="30.305466237942124" height="30.305466237942124" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">750B</div>
@@ -888,8 +910,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="29.61616161616162" height="29.61616161616162">
-                        <rect width="29.61616161616162" height="29.61616161616162" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="29.461414790996788" height="29.461414790996788">
+                        <rect width="29.461414790996788" height="29.461414790996788" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">730B</div>
@@ -899,19 +921,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="29.292929292929294" height="29.292929292929294">
-                        <rect width="29.292929292929294" height="29.292929292929294" x="0" y="0" fill="currentColor"></rect>
-                    </svg>
-                    <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">730B</div>
-                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-constant.scss</div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div role="listitem">
-                <figure class="atlas-stat-size-file">
-                    <svg width="28.96969696969697" height="28.96969696969697">
-                        <rect width="28.96969696969697" height="28.96969696969697" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="28.818327974276524" height="28.818327974276524">
+                        <rect width="28.818327974276524" height="28.818327974276524" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">720B</div>
@@ -921,8 +932,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="28.84848484848485" height="28.84848484848485">
-                        <rect width="28.84848484848485" height="28.84848484848485" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="28.69774919614148" height="28.69774919614148">
+                        <rect width="28.69774919614148" height="28.69774919614148" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">710B</div>
@@ -932,8 +943,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="23.717171717171716" height="23.717171717171716">
-                        <rect width="23.717171717171716" height="23.717171717171716" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="23.593247588424436" height="23.593247588424436">
+                        <rect width="23.593247588424436" height="23.593247588424436" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">590B</div>
@@ -943,8 +954,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="23.595959595959595" height="23.595959595959595">
-                        <rect width="23.595959595959595" height="23.595959595959595" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="23.47266881028939" height="23.47266881028939">
+                        <rect width="23.47266881028939" height="23.47266881028939" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">580B</div>
@@ -954,8 +965,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="22.424242424242426" height="22.424242424242426">
-                        <rect width="22.424242424242426" height="22.424242424242426" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="22.30707395498392" height="22.30707395498392">
+                        <rect width="22.30707395498392" height="22.30707395498392" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">560B</div>
@@ -965,8 +976,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="21.6969696969697" height="21.6969696969697">
-                        <rect width="21.6969696969697" height="21.6969696969697" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="21.583601286173636" height="21.583601286173636">
+                        <rect width="21.583601286173636" height="21.583601286173636" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">540B</div>
@@ -976,8 +987,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="20.88888888888889" height="20.88888888888889">
-                        <rect width="20.88888888888889" height="20.88888888888889" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="20.779742765273312" height="20.779742765273312">
+                        <rect width="20.779742765273312" height="20.779742765273312" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">520B</div>
@@ -987,8 +998,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="20.686868686868685" height="20.686868686868685">
-                        <rect width="20.686868686868685" height="20.686868686868685" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="20.578778135048232" height="20.578778135048232">
+                        <rect width="20.578778135048232" height="20.578778135048232" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">510B</div>
@@ -998,8 +1009,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="20.242424242424242" height="20.242424242424242">
-                        <rect width="20.242424242424242" height="20.242424242424242" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="20.136655948553052" height="20.136655948553052">
+                        <rect width="20.136655948553052" height="20.136655948553052" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">500B</div>
@@ -1009,8 +1020,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="20" height="20">
-                        <rect width="20" height="20" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="19.89549839228296" height="19.89549839228296">
+                        <rect width="19.89549839228296" height="19.89549839228296" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">500B</div>
@@ -1020,8 +1031,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="19.757575757575758" height="19.757575757575758">
-                        <rect width="19.757575757575758" height="19.757575757575758" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="19.654340836012864" height="19.654340836012864">
+                        <rect width="19.654340836012864" height="19.654340836012864" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">490B</div>
@@ -1031,8 +1042,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="18.545454545454547" height="18.545454545454547">
-                        <rect width="18.545454545454547" height="18.545454545454547" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="18.44855305466238" height="18.44855305466238">
+                        <rect width="18.44855305466238" height="18.44855305466238" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">460B</div>
@@ -1042,8 +1053,30 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="17.656565656565657" height="17.656565656565657">
-                        <rect width="17.656565656565657" height="17.656565656565657" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="18.006430868167204" height="18.006430868167204">
+                        <rect width="18.006430868167204" height="18.006430868167204" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <div class="atlas-stat-size-file__size">450B</div>
+                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-landing.scss</div>
+                    </figcaption>
+                </figure>
+            </div>
+            <div role="listitem">
+                <figure class="atlas-stat-size-file">
+                    <svg width="17.725080385852092" height="17.725080385852092">
+                        <rect width="17.725080385852092" height="17.725080385852092" x="0" y="0" fill="currentColor"></rect>
+                    </svg>
+                    <figcaption class="atlas-stat-size-file__caption">
+                        <div class="atlas-stat-size-file__size">440B</div>
+                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_l-atlas-container.scss</div>
+                    </figcaption>
+                </figure>
+            </div>
+            <div role="listitem">
+                <figure class="atlas-stat-size-file">
+                    <svg width="17.564308681672024" height="17.564308681672024">
+                        <rect width="17.564308681672024" height="17.564308681672024" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">440B</div>
@@ -1053,19 +1086,19 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="17.575757575757574" height="17.575757575757574">
-                        <rect width="17.575757575757574" height="17.575757575757574" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="17.403536977491964" height="17.403536977491964">
+                        <rect width="17.403536977491964" height="17.403536977491964" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">440B</div>
-                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-landing.scss</div>
+                        <div class="atlas-stat-size-file__size">430B</div>
+                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-loader.scss</div>
                     </figcaption>
                 </figure>
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="17.292929292929294" height="17.292929292929294">
-                        <rect width="17.292929292929294" height="17.292929292929294" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="17.20257234726688" height="17.20257234726688">
+                        <rect width="17.20257234726688" height="17.20257234726688" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">430B</div>
@@ -1075,19 +1108,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="17.292929292929294" height="17.292929292929294">
-                        <rect width="17.292929292929294" height="17.292929292929294" x="0" y="0" fill="currentColor"></rect>
-                    </svg>
-                    <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">430B</div>
-                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_l-atlas-container.scss</div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div role="listitem">
-                <figure class="atlas-stat-size-file">
-                    <svg width="16.88888888888889" height="16.88888888888889">
-                        <rect width="16.88888888888889" height="16.88888888888889" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="16.80064308681672" height="16.80064308681672">
+                        <rect width="16.80064308681672" height="16.80064308681672" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">420B</div>
@@ -1097,8 +1119,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="16.525252525252526" height="16.525252525252526">
-                        <rect width="16.525252525252526" height="16.525252525252526" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="16.438906752411576" height="16.438906752411576">
+                        <rect width="16.438906752411576" height="16.438906752411576" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">410B</div>
@@ -1108,19 +1130,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="16.444444444444446" height="16.444444444444446">
-                        <rect width="16.444444444444446" height="16.444444444444446" x="0" y="0" fill="currentColor"></rect>
-                    </svg>
-                    <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">410B</div>
-                        <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-loader.scss</div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div role="listitem">
-                <figure class="atlas-stat-size-file">
-                    <svg width="15.313131313131311" height="15.313131313131311">
-                        <rect width="15.313131313131311" height="15.313131313131311" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="15.233118971061094" height="15.233118971061094">
+                        <rect width="15.233118971061094" height="15.233118971061094" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">380B</div>
@@ -1130,8 +1141,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="15.272727272727273" height="15.272727272727273">
-                        <rect width="15.272727272727273" height="15.272727272727273" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="15.192926045016078" height="15.192926045016078">
+                        <rect width="15.192926045016078" height="15.192926045016078" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">380B</div>
@@ -1141,8 +1152,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="14.222222222222221" height="14.222222222222221">
-                        <rect width="14.222222222222221" height="14.222222222222221" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="14.14790996784566" height="14.14790996784566">
+                        <rect width="14.14790996784566" height="14.14790996784566" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">350B</div>
@@ -1152,8 +1163,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="13.050505050505052" height="13.050505050505052">
-                        <rect width="13.050505050505052" height="13.050505050505052" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="12.982315112540194" height="12.982315112540194">
+                        <rect width="12.982315112540194" height="12.982315112540194" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">320B</div>
@@ -1163,8 +1174,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="12.2020202020202" height="12.2020202020202">
-                        <rect width="12.2020202020202" height="12.2020202020202" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="12.138263665594854" height="12.138263665594854">
+                        <rect width="12.138263665594854" height="12.138263665594854" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">300B</div>
@@ -1174,8 +1185,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="11.232323232323232" height="11.232323232323232">
-                        <rect width="11.232323232323232" height="11.232323232323232" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="11.173633440514468" height="11.173633440514468">
+                        <rect width="11.173633440514468" height="11.173633440514468" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">280B</div>
@@ -1185,8 +1196,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="9.858585858585858" height="9.858585858585858">
-                        <rect width="9.858585858585858" height="9.858585858585858" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="9.807073954983924" height="9.807073954983924">
+                        <rect width="9.807073954983924" height="9.807073954983924" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">240B</div>
@@ -1196,8 +1207,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="9.171717171717171" height="9.171717171717171">
-                        <rect width="9.171717171717171" height="9.171717171717171" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="9.12379421221865" height="9.12379421221865">
+                        <rect width="9.12379421221865" height="9.12379421221865" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">230B</div>
@@ -1207,8 +1218,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="8.686868686868687" height="8.686868686868687">
-                        <rect width="8.686868686868687" height="8.686868686868687" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="8.641479099678456" height="8.641479099678456">
+                        <rect width="8.641479099678456" height="8.641479099678456" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">220B</div>
@@ -1218,19 +1229,19 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="8.282828282828284" height="8.282828282828284">
-                        <rect width="8.282828282828284" height="8.282828282828284" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="8.159163987138264" height="8.159163987138264">
+                        <rect width="8.159163987138264" height="8.159163987138264" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
-                        <div class="atlas-stat-size-file__size">210B</div>
+                        <div class="atlas-stat-size-file__size">200B</div>
                         <div role="heading" aria-level="2" class="atlas-stat-size-file__title">_atlas-footer-copyright.scss</div>
                     </figcaption>
                 </figure>
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="7.757575757575758" height="7.757575757575758">
-                        <rect width="7.757575757575758" height="7.757575757575758" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="7.717041800643088" height="7.717041800643088">
+                        <rect width="7.717041800643088" height="7.717041800643088" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">190B</div>
@@ -1240,8 +1251,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="6.94949494949495" height="6.94949494949495">
-                        <rect width="6.94949494949495" height="6.94949494949495" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="6.913183279742766" height="6.913183279742766">
+                        <rect width="6.913183279742766" height="6.913183279742766" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">170B</div>
@@ -1251,8 +1262,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="6.0606060606060606" height="6.0606060606060606">
-                        <rect width="6.0606060606060606" height="6.0606060606060606" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="6.028938906752412" height="6.028938906752412">
+                        <rect width="6.028938906752412" height="6.028938906752412" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">150B</div>
@@ -1262,8 +1273,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="3.797979797979798" height="3.797979797979798">
-                        <rect width="3.797979797979798" height="3.797979797979798" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="3.778135048231511" height="3.778135048231511">
+                        <rect width="3.778135048231511" height="3.778135048231511" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">94B</div>
@@ -1273,8 +1284,8 @@
             </div>
             <div role="listitem">
                 <figure class="atlas-stat-size-file">
-                    <svg width="3.2323232323232323" height="3.2323232323232323">
-                        <rect width="3.2323232323232323" height="3.2323232323232323" x="0" y="0" fill="currentColor"></rect>
+                    <svg width="3.215434083601286" height="3.215434083601286">
+                        <rect width="3.215434083601286" height="3.215434083601286" x="0" y="0" fill="currentColor"></rect>
                     </svg>
                     <figcaption class="atlas-stat-size-file__caption">
                         <div class="atlas-stat-size-file__size">80B</div>
@@ -1298,7 +1309,7 @@
 
 <script>
     window.importsData ={"nodes":[{"id":"bindings/frame/_b-atlas-component","depth":0,"mass":0},{"id":"bindings/global/_global-normalization","depth":2,"mass":1},{"id":"dev_atlas-frame","depth":1,"mass":10},{"id":"dev_atlas-insights","depth":1,"mass":19},{"id":"dev_atlas-prism","depth":1,"mass":1},{"id":"dev_atlas-style","depth":1,"mass":10},{"id":"dev_atlas","depth":1,"mass":17}],"links":[{"source":"bindings/global/_global-normalization","target":"dev_atlas-frame"},{"source":"bindings/global/_global-normalization","target":"dev_atlas"}]};
-    window.bundleTree ={"atlas-guide":{"id":"atlas-guide","size":0},"atlas-guide/_dev-atlas-definitions.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss","size":0},"atlas-guide/_dev-atlas-definitions.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss/_dev-atlas-settings.scss","size":0},"atlas-guide/_dev-atlas-definitions.scss/_dev-atlas-settings.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss/_dev-atlas-settings.scss/_dev-atlas-settings.scss","size":1694},"atlas-guide/_dev-atlas-definitions.scss/defintions":{"id":"atlas-guide/_dev-atlas-definitions.scss/defintions","size":0},"atlas-guide/_dev-atlas-definitions.scss/defintions/_chessboard.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss/defintions/_chessboard.scss","size":379},"atlas-guide/_dev-atlas-definitions.scss/defintions/_tooltip.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss/defintions/_tooltip.scss","size":832},"atlas-guide/dev_atlas-frame.scss":{"id":"atlas-guide/dev_atlas-frame.scss","size":6453},"atlas-guide/dev_atlas-frame.scss/bindings":{"id":"atlas-guide/dev_atlas-frame.scss/bindings","size":0},"atlas-guide/dev_atlas-frame.scss/bindings/frame":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":0},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside-ctrl.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside-ctrl.scss","size":759},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside.scss","size":856},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-footer-copyright.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-footer-copyright.scss","size":205},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-header.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-header.scss","size":150},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-loader.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-loader.scss","size":407},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-nav.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-nav.scss","size":2819},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-search.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-search.scss","size":1208},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_l-atlas-container.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_l-atlas-container.scss","size":428},"atlas-guide/dev_atlas-frame.scss/bindings/global":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/global","size":0},"atlas-guide/dev_atlas-frame.scss/bindings/global/_global-normalization.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/global/_global-normalization.scss","size":192},"atlas-guide/dev_atlas-insights.scss":{"id":"atlas-guide/dev_atlas-insights.scss","size":12878},"atlas-guide/dev_atlas-insights.scss/bindings":{"id":"atlas-guide/dev_atlas-insights.scss/bindings","size":0},"atlas-guide/dev_atlas-insights.scss/bindings/insights":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":0},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-graph.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-graph.scss","size":378},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-legend.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-legend.scss","size":976},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-bundle.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-bundle.scss","size":517},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-chart.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-chart.scss","size":1585},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-columns.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-columns.scss","size":962},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-digit.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-digit.scss","size":1035},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font-scale.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font-scale.scss","size":555},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font.scss","size":754},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-header.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-header.scss","size":797},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-info.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-info.scss","size":512},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-item.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-item.scss","size":80},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-list.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-list.scss","size":587},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-section.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-section.scss","size":459},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-size-file.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-size-file.scss","size":777},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-sizes-grid.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-sizes-grid.scss","size":244},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-space.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-space.scss","size":428},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-table.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-table.scss","size":876},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-title.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-title.scss","size":215},"atlas-guide/dev_atlas-prism.scss":{"id":"atlas-guide/dev_atlas-prism.scss","size":2450},"atlas-guide/dev_atlas-prism.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/dev_atlas-prism.scss/_dev-atlas-settings.scss","size":0},"atlas-guide/dev_atlas-prism.scss/_dev-atlas-settings.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/dev_atlas-prism.scss/_dev-atlas-settings.scss/_dev-atlas-settings.scss","size":1694},"atlas-guide/dev_atlas-style.scss":{"id":"atlas-guide/dev_atlas-style.scss","size":6838},"atlas-guide/dev_atlas-style.scss/bindings":{"id":"atlas-guide/dev_atlas-style.scss/bindings","size":0},"atlas-guide/dev_atlas-style.scss/bindings/styleguide":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide","size":0},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-breaks.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-breaks.scss","size":911},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-columns.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-columns.scss","size":409},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-font.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-font.scss","size":890},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-layer.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-layer.scss","size":302},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-motion.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-motion.scss","size":717},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-palette.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-palette.scss","size":227},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-scale.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-scale.scss","size":733},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-section.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-section.scss","size":278},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-space.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-space.scss","size":1770},"atlas-guide/dev_atlas.scss":{"id":"atlas-guide/dev_atlas.scss","size":17818},"atlas-guide/dev_atlas.scss/bindings":{"id":"atlas-guide/dev_atlas.scss/bindings","size":0},"atlas-guide/dev_atlas.scss/bindings/component":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":0},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-aside.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-aside.scss","size":785},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-footer.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-footer.scss","size":537},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-structure.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-structure.scss","size":3428},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-constant.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-constant.scss","size":725},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-digit.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-digit.scss","size":714},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-list.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-list.scss","size":418},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-playground.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-playground.scss","size":3529},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-sparkline.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-sparkline.scss","size":352},"atlas-guide/dev_atlas.scss/bindings/frame":{"id":"atlas-guide/dev_atlas.scss/bindings/frame","size":0},"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-component-type-ico.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-component-type-ico.scss","size":323},"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-content.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-content.scss","size":172},"atlas-guide/dev_atlas.scss/bindings/frame/_atlas.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/frame/_atlas.scss","size":4950},"atlas-guide/dev_atlas.scss/bindings/global":{"id":"atlas-guide/dev_atlas.scss/bindings/global","size":0},"atlas-guide/dev_atlas.scss/bindings/global/_global-normalization.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/global/_global-normalization.scss","size":192},"atlas-guide/dev_atlas.scss/bindings/guideline":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline","size":0},"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-coverage.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-coverage.scss","size":437},"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-landing.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-landing.scss","size":435},"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-toc.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-toc.scss","size":1126},"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-welcome.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-welcome.scss","size":489}};
+    window.bundleTree ={"atlas-guide":{"id":"atlas-guide","size":0},"atlas-guide/_dev-atlas-definitions.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss","size":0},"atlas-guide/_dev-atlas-definitions.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss/_dev-atlas-settings.scss","size":0},"atlas-guide/_dev-atlas-definitions.scss/_dev-atlas-settings.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss/_dev-atlas-settings.scss/_dev-atlas-settings.scss","size":1694},"atlas-guide/_dev-atlas-definitions.scss/defintions":{"id":"atlas-guide/_dev-atlas-definitions.scss/defintions","size":0},"atlas-guide/_dev-atlas-definitions.scss/defintions/_chessboard.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss/defintions/_chessboard.scss","size":379},"atlas-guide/_dev-atlas-definitions.scss/defintions/_tooltip.scss":{"id":"atlas-guide/_dev-atlas-definitions.scss/defintions/_tooltip.scss","size":845},"atlas-guide/dev_atlas-frame.scss":{"id":"atlas-guide/dev_atlas-frame.scss","size":6449},"atlas-guide/dev_atlas-frame.scss/bindings":{"id":"atlas-guide/dev_atlas-frame.scss/bindings","size":0},"atlas-guide/dev_atlas-frame.scss/bindings/frame":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame","size":0},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside-ctrl.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside-ctrl.scss","size":759},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-aside.scss","size":869},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-footer-copyright.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-footer-copyright.scss","size":203},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-header.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-header.scss","size":150},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-loader.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-loader.scss","size":433},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-nav.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-nav.scss","size":2819},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-search.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_atlas-search.scss","size":1221},"atlas-guide/dev_atlas-frame.scss/bindings/frame/_l-atlas-container.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/frame/_l-atlas-container.scss","size":441},"atlas-guide/dev_atlas-frame.scss/bindings/global":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/global","size":0},"atlas-guide/dev_atlas-frame.scss/bindings/global/_global-normalization.scss":{"id":"atlas-guide/dev_atlas-frame.scss/bindings/global/_global-normalization.scss","size":192},"atlas-guide/dev_atlas-insights.scss":{"id":"atlas-guide/dev_atlas-insights.scss","size":12877},"atlas-guide/dev_atlas-insights.scss/bindings":{"id":"atlas-guide/dev_atlas-insights.scss/bindings","size":0},"atlas-guide/dev_atlas-insights.scss/bindings/insights":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights","size":0},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-graph.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-graph.scss","size":378},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-legend.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-cross-dependencies-legend.scss","size":976},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-bundle.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-bundle.scss","size":517},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-chart.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-chart.scss","size":1598},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-columns.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-columns.scss","size":962},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-digit.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-digit.scss","size":1035},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font-scale.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font-scale.scss","size":555},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-font.scss","size":754},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-header.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-header.scss","size":823},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-info.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-info.scss","size":512},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-item.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-item.scss","size":80},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-list.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-list.scss","size":587},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-section.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-section.scss","size":459},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-size-file.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-size-file.scss","size":777},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-sizes-grid.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-sizes-grid.scss","size":244},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-space.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-space.scss","size":428},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-table.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-table.scss","size":876},"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-title.scss":{"id":"atlas-guide/dev_atlas-insights.scss/bindings/insights/_atlas-stat-title.scss","size":215},"atlas-guide/dev_atlas-prism.scss":{"id":"atlas-guide/dev_atlas-prism.scss","size":2450},"atlas-guide/dev_atlas-prism.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/dev_atlas-prism.scss/_dev-atlas-settings.scss","size":0},"atlas-guide/dev_atlas-prism.scss/_dev-atlas-settings.scss/_dev-atlas-settings.scss":{"id":"atlas-guide/dev_atlas-prism.scss/_dev-atlas-settings.scss/_dev-atlas-settings.scss","size":1694},"atlas-guide/dev_atlas-style.scss":{"id":"atlas-guide/dev_atlas-style.scss","size":6837},"atlas-guide/dev_atlas-style.scss/bindings":{"id":"atlas-guide/dev_atlas-style.scss/bindings","size":0},"atlas-guide/dev_atlas-style.scss/bindings/styleguide":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide","size":0},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-breaks.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-breaks.scss","size":911},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-columns.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-columns.scss","size":409},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-font.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-font.scss","size":890},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-layer.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-layer.scss","size":302},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-motion.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-motion.scss","size":717},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-palette.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-palette.scss","size":227},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-scale.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-scale.scss","size":733},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-section.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-section.scss","size":278},"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-space.scss":{"id":"atlas-guide/dev_atlas-style.scss/bindings/styleguide/_atlas-style-space.scss","size":1783},"atlas-guide/dev_atlas.scss":{"id":"atlas-guide/dev_atlas.scss","size":18716},"atlas-guide/dev_atlas.scss/bindings":{"id":"atlas-guide/dev_atlas.scss/bindings","size":0},"atlas-guide/dev_atlas.scss/bindings/component":{"id":"atlas-guide/dev_atlas.scss/bindings/component","size":0},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-aside.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-aside.scss","size":785},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-footer.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-footer.scss","size":537},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-structure.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-component-structure.scss","size":3686},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-constant.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-constant.scss","size":1393},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-digit.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-digit.scss","size":714},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-list.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-info-list.scss","size":418},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-playground.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-playground.scss","size":3568},"atlas-guide/dev_atlas.scss/bindings/component/_atlas-sparkline.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/component/_atlas-sparkline.scss","size":352},"atlas-guide/dev_atlas.scss/bindings/frame":{"id":"atlas-guide/dev_atlas.scss/bindings/frame","size":0},"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-component-type-ico.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-component-type-ico.scss","size":323},"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-content.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/frame/_atlas-content.scss","size":172},"atlas-guide/dev_atlas.scss/bindings/frame/_atlas.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/frame/_atlas.scss","size":4976},"atlas-guide/dev_atlas.scss/bindings/global":{"id":"atlas-guide/dev_atlas.scss/bindings/global","size":0},"atlas-guide/dev_atlas.scss/bindings/global/_global-normalization.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/global/_global-normalization.scss","size":192},"atlas-guide/dev_atlas.scss/bindings/guideline":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline","size":0},"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-coverage.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-coverage.scss","size":437},"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-landing.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-landing.scss","size":448},"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-toc.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-toc.scss","size":1139},"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-welcome.scss":{"id":"atlas-guide/dev_atlas.scss/bindings/guideline/_atlas-welcome.scss","size":489}};
 </script>
 
 <script src="assets/js/d3.v4.min.js"></script>
