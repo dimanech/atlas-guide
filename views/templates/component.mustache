@@ -1,5 +1,11 @@
 {{> header}}
 
+{{#isDeprecated}}
+    <div class="atlas-message-global _warn">
+        This component is deprecated!
+    </div>
+{{/isDeprecated}}
+
 {{> componentstataside}}
 
 <div class="atlas-component-type-ico">
@@ -9,7 +15,7 @@
     {{type}}
 </div>
 
-<section><!-- this is hacky, but we have sections in markdown, so we need to open and close it on wrapper -->
+<section><!-- this is hack, but we have sections in markdown, so we need to open and close it on wrapper -->
 {{{content.documentation}}}
 </section>
 

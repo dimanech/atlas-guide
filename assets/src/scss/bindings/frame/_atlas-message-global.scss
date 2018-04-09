@@ -1,0 +1,20 @@
+.atlas-message-global {
+	clear: both;
+	font-family: $font-sans-atlas;
+	font-size: 14px;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	margin: 0 -#{$space-md-atlas};
+	padding: $space-sm-atlas;
+	text-align: center;
+
+	&.error {
+		background: $color-coral-atlas;
+		color: $color-white-atlas;
+	}
+
+	&._warn {
+		background-color: $color-yellow-atlas;
+		color: $atlas-color-text;
+	}
+}

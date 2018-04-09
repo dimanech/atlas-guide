@@ -112,7 +112,7 @@ function makeComponent(url) {
     let docSet = [];
 
     function traverseDocumentedTree(components, sourcePath) {
-        components.forEach(component => {
+        components.forEach(function(component) {
             const isMakeAllComponents = sourcePath === undefined;
             const isFileInConfig = isMakeAllComponents ? true : sourcePath === component.src;
             const isFile = component.target;
@@ -123,6 +123,7 @@ function makeComponent(url) {
                     target: component.target,
                     templateString: getCachedTemplates(component.type, component.template),
                     type: component.type,
+                    isDeprecated: component.isDeprecated,
                     content: prepareContent(component),
                     subPages: projectTree.subPages
                 });

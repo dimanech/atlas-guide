@@ -31,6 +31,16 @@ function pageConfig(id, title, target, isDocs) {
         src: target,
         target: guideDest + id + '.html',
         template: isDocs ? templates.docs : templates.component,
+        isDeprecated: /deprecated/.test(title),
+        subPages: []
+    };
+}
+
+function categoryConfig(title) {
+    return {
+        title: title,
+        type: 'category',
+        isDeprecated: false,
         subPages: []
     };
 }
@@ -98,11 +108,7 @@ function makeProjectTree(atlasConfig) {
                     config.push(pageConfig(id, title, target, true));
                 }
             } else if (resource.isDirectory() && !isExcludedDirectory(name)) {
-                config.push({
-                    title: name,
-                    type: 'category',
-                    subPages: []
-                });
+                config.push(categoryConfig(name));
                 findComponents(target, config[config.length - 1].subPages, categoryName + name + '-');
             }
         });

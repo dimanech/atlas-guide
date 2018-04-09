@@ -16,22 +16,14 @@ const View = function(config) {
     this.pageTitle = config.title;
     this.content = config.content;
     this.type = config.type;
+    this.isDeprecated = config.isDeprecated;
     this.subPages = config.subPages; // could be cached
 };
 
 View.prototype.inline = () => (text, render) => inline(text, render);
 View.prototype.pluralize = () => (text, render) => pluralize(text, render);
 
-function prepareView(config) {
-    return new View({
-        title: config.title,
-        content: config.content,
-        type: config.type,
-        subPages: config.subPages
-    });
-}
-
 module.exports = {
     partials: partials,
-    prepareView: prepareView
+    prepareView: config => new View(config)
 };
