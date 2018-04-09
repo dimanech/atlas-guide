@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width"/>
     <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"/>
 
-    <title>Atlas - l-atlas-container</title>
+    <title>Atlas - b-atlas-bar_deprecated</title>
 
     <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-frame.css"/>
@@ -29,7 +29,7 @@
         gtag('config', 'UA-116690841-1');
     </script>
 </head>
-<body class="atlas-page atlas-page_container">
+<body class="atlas-page atlas-page_component">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0"
      style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
     <defs>
@@ -356,6 +356,9 @@
             <div class="atlas-content__inner">
 
 
+    <div class="atlas-message-global _warn">
+        This component is deprecated!
+    </div>
 
     <div role="complementary" class="atlas-component-aside">
         <div role="region" class="atlas-component-aside__section" aria-labelledby="atlas-component-included-in">
@@ -364,10 +367,10 @@
             </div>
             <div role="list" class="atlas-component-aside__list">
                     <div role="listitem" class="atlas-component-aside__list-item">
-                        <svg role="img" width="16" height="16">
-                            <use xlink:href="#icon-out"></use>
+                        <svg role="img" width="12" height="12" style="top:-1px">
+                            <use xlink:href="#icon-bad"></use>
                         </svg>
-                        dev_atlas-frame.scss
+                        Not included in any file!
                     </div>
             </div>
         </div>
@@ -375,152 +378,29 @@
 
 <div class="atlas-component-type-ico">
     <svg width="16" height="16" role="img">
-        <use xlink:href="#icon-container"></use>
+        <use xlink:href="#icon-component"></use>
     </svg>
-    container
+    component
 </div>
 
 <section><!-- this is hack, but we have sections in markdown, so we need to open and close it on wrapper -->
     </section>
     <section class="atlas-section">
-<span class="atlas-anchor" id="h1-l-atlas-container"></span>
+<span class="atlas-anchor" id="h1-b-atlas-bar"></span>
 <h1 class="atlas atlas-title atlas-title_1">
     <span class="atlas-title__text">
-        l-atlas-container
+        b-atlas-bar
     </span>
-    <a class="atlas-title__anchor" href="#h1-l-atlas-container" title="Copy link to this title">
+    <a class="atlas-title__anchor" href="#h1-b-atlas-bar" title="Copy link to this title">
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-ln"></use>
         </svg>
     </a>
     <span class="atlas-title__highlight"></span>
 </h1>
-<p class="atlas atlas-p">This is example of documentation for container component. <code>l-atlas-container</code> used as frame holder for main atlas page.</p>
-<p class="atlas atlas-p">It consist with 2 elements:</p>
-<div class="atlas atlas-code ">
-<pre><code class="language-">l-atlas-container
-    __aside
-    __main</code></pre>
-</div>
-<p class="atlas atlas-p">Aside has fixed positioning so the scroll view of main container create application like experience of 2 scroll views.</p>
-<figure class="atlas-playground atlas-playground_html js-playground">
-    <figcaption>
-        <button class="atlas-playground__summary" aria-controls="l-atlas-container-code-1" title="Expand html example">
-           <span class="atlas-playground__summary-text">
-               l-atlas-container-code-1
-           </span>
-            <svg class="atlas-playground__summary-ico" width="24" height="24" role="img">
-                <use xlink:href="#icon-code-example"></use>
-            </svg>
-        </button>
-        <div class="atlas-playground__details" id="l-atlas-container-code-1" aria-hidden="true">
-<pre><code class="language-html" contenteditable="true">&lt;div style&#x3D;&quot;transform: translate3d(0,0,0)&quot;&gt;&lt;!-- need this to hold pos:fixed --&gt;
-
-&lt;div class&#x3D;&quot;l-atlas-container&quot;&gt;
-    &lt;div class&#x3D;&quot;l-atlas-container__aside&quot;&gt;
-        Aside
-    &lt;&#x2F;div&gt;
-    &lt;div class&#x3D;&quot;l-atlas-container__main&quot;&gt;
-        Content
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;div&gt;
-
-&lt;&#x2F;div&gt;</code></pre>
-        </div>
-    </figcaption>
-    <div class="atlas-playground__example">
-        <div class="atlas-playground-test-frame js-playground__example-rubicon">
-<div style="transform: translate3d(0,0,0)"><!-- need this to hold pos:fixed -->
-
-<div class="l-atlas-container">
-    <div class="l-atlas-container__aside">
-        Aside
-    </div>
-    <div class="l-atlas-container__main">
-        Content
-    </div>
-</div>
-
-</div>
-        </div>
-    </div>
-    <span role="region" aria-live="polite" class="atlas-playground__notifier js-playground__notifier"></span>
-</figure>
-    </section>
-    <section class="atlas-section">
-<span class="atlas-anchor" id="h2-modifications"></span>
-<h2 class="atlas atlas-title atlas-title_2">
-    <span class="atlas-title__text">
-        Modifications
-    </span>
-    <a class="atlas-title__anchor" href="#h2-modifications" title="Copy link to this title">
-        <svg width="14" height="14" role="img">
-            <use xlink:href="#icon-ln"></use>
-        </svg>
-    </a>
-    <span class="atlas-title__highlight"></span>
-</h2>
-<span class="atlas-anchor" id="h3--code-js-aside-panel-hidden-code-"></span>
-<h3 class="atlas atlas-title atlas-title_3">
-    <span class="atlas-title__text">
-        <code>js-aside-panel-hidden</code>
-    </span>
-    <a class="atlas-title__anchor" href="#h3--code-js-aside-panel-hidden-code-" title="Copy link to this title">
-        <svg width="14" height="14" role="img">
-            <use xlink:href="#icon-ln"></use>
-        </svg>
-    </a>
-    <span class="atlas-title__highlight"></span>
-</h3>
-<p class="atlas atlas-p">We have only one modification for this component – <code>js-aside-panel-hidden</code>. This class called when aside is hidden.
-And used for hide parts of aside for this case.</p>
-<figure class="atlas-playground atlas-playground_html js-playground">
-    <figcaption>
-        <button class="atlas-playground__summary" aria-controls="l-atlas-container-code-2" title="Expand html example">
-           <span class="atlas-playground__summary-text">
-               l-atlas-container-code-2
-           </span>
-            <svg class="atlas-playground__summary-ico" width="24" height="24" role="img">
-                <use xlink:href="#icon-code-example"></use>
-            </svg>
-        </button>
-        <div class="atlas-playground__details" id="l-atlas-container-code-2" aria-hidden="true">
-<pre><code class="language-html" contenteditable="true">&lt;div style&#x3D;&quot;transform: translate3d(0,0,0)&quot;&gt;&lt;!-- need this to hold pos:fixed --&gt;
-
-&lt;div class&#x3D;&quot;l-atlas-container js-aside-panel-hidden&quot;&gt;
-    &lt;div class&#x3D;&quot;l-atlas-container__aside&quot;&gt;
-        &lt;div class&#x3D;&quot;atlas-aside__header&quot;&gt;
-            Aside
-        &lt;&#x2F;div&gt;
-    &lt;&#x2F;div&gt;
-    &lt;div class&#x3D;&quot;l-atlas-container__main&quot;&gt;
-        Content
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;div&gt;
-
-&lt;&#x2F;div&gt;</code></pre>
-        </div>
-    </figcaption>
-    <div class="atlas-playground__example">
-        <div class="atlas-playground-test-frame js-playground__example-rubicon">
-<div style="transform: translate3d(0,0,0)"><!-- need this to hold pos:fixed -->
-
-<div class="l-atlas-container js-aside-panel-hidden">
-    <div class="l-atlas-container__aside">
-        <div class="atlas-aside__header">
-            Aside
-        </div>
-    </div>
-    <div class="l-atlas-container__main">
-        Content
-    </div>
-</div>
-
-</div>
-        </div>
-    </div>
-    <span role="region" aria-live="polite" class="atlas-playground__notifier js-playground__notifier"></span>
-</figure>
+<p class="atlas atlas-p">This component is deprecated! Please use <a href="bindings-frame-b-atlas-component.html"><code>b-atlas-component</code></a> instead.
+This implementation will be removed in the next major release.</p>
+<p class="atlas atlas-p">Some component description...</p>
 
 </section>
 
@@ -529,7 +409,7 @@ And used for hide parts of aside for this case.</p>
             <div role="region" class="atlas-component-footer__section" aria-label="Ruleset sizes">
                 <figure class="atlas-info-digit _primary">
                     <div class="atlas-info-digit__digit">
-                        15
+                        2
                     </div>
                     <figcaption class="atlas-info-digit__details">
                         <div role="heading" aria-level="3" class="atlas-info-digit__title">
@@ -541,9 +421,9 @@ And used for hide parts of aside for this case.</p>
                     <title id="component-graph-title">Declaration sets size through the file</title>
                     <g class="atlas-sparkline__line">
                         <g class="atlas-sparkline__shadow">
-                            <path d="M0,54.85714285714286C0,54.85714285714286,37.48936933970039,3.266009813505277,58,0C76.38718620068349,-2.9278831825692775,96.97734889143176,16.983117526909275,116,27.42857142857143C135.66536408124801,38.226942948803746,154.05103064924262,61.420657863231455,174,64C192.78730869894355,66.42914288510967,212.49397868367262,47.17075137693655,232,45.714285714285715C251.16660284745151,44.28316357695821,290,54.85714285714286,290,54.85714285714286" stroke="currentColor" fill="none" filter="url(#blur-filter)"/>
+                            <path d="M0,38.4Z" stroke="currentColor" fill="none" filter="url(#blur-filter)"/>
                         </g>
-                        <path d="M0,54.85714285714286C0,54.85714285714286,37.48936933970039,3.266009813505277,58,0C76.38718620068349,-2.9278831825692775,96.97734889143176,16.983117526909275,116,27.42857142857143C135.66536408124801,38.226942948803746,154.05103064924262,61.420657863231455,174,64C192.78730869894355,66.42914288510967,212.49397868367262,47.17075137693655,232,45.714285714285715C251.16660284745151,44.28316357695821,290,54.85714285714286,290,54.85714285714286" stroke="currentColor" fill="none"/>
+                        <path d="M0,38.4Z" stroke="currentColor" fill="none"/>
                     </g>
                 </svg>
             </div>
@@ -582,40 +462,12 @@ And used for hide parts of aside for this case.</p>
             <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
                 <div role="list" class="atlas-info-list">
                     <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">2</span>
-                        <span class="atlas-info-list__name">position</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">2</span>
-                        <span class="atlas-info-list__name">width</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">2</span>
-                        <span class="atlas-info-list__name">z-index</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">2</span>
-                        <span class="atlas-info-list__name">margin-left</span>
+                        <span class="atlas-info-list__total">1</span>
+                        <span class="atlas-info-list__name">color</span>
                     </div>
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">top</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">bottom</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">box-shadow</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">left</span>
-                    </div>
-                    <div role="listitem" class="atlas-info-list__item">
-                        <span class="atlas-info-list__total">1</span>
-                        <span class="atlas-info-list__name">background-color</span>
+                        <span class="atlas-info-list__name">margin</span>
                     </div>
                 </div>
             </div>
@@ -628,38 +480,18 @@ And used for hide parts of aside for this case.</p>
                                     </div>
                                 </div>
                                 <div role="list" class="atlas-constant__details">
-                                        <div class="atlas-constant__status _error">
-                                            2
-                                            issues
-                                        </div>
-                                            <div role="listitem" class="atlas-constant__list">
-                                                <span class="atlas-constant__counter _1 _error">
-                                                    <svg role="img" width="16" height="16">
-                                                        <use xlink:href="#icon-circle"></use>
-                                                    </svg>
-                                                    <span class="atlas-constant__counter-digit">
-                                                        1
-                                                    </span>
-                                                </span>
-                                                <code>270px</code>&ensp;
-                                            </div>
-                                            <div role="listitem" class="atlas-constant__list">
-                                                <span class="atlas-constant__counter _1 _error">
-                                                    <svg role="img" width="16" height="16">
-                                                        <use xlink:href="#icon-circle"></use>
-                                                    </svg>
-                                                    <span class="atlas-constant__counter-digit">
-                                                        1
-                                                    </span>
-                                                </span>
-                                                <code>5px</code>&ensp;
-                                            </div>
+                                        <span class="atlas-constant__status _success">
+                                            <svg role="img" width="16" height="16">
+                                                <use xlink:href="#icon-good"></use>
+                                            </svg>
+                                            Consistent
+                                        </span>
                                 </div>
                             </div>
                             <div role="listitem" class="atlas-constant__item">
                                 <div class="atlas-constant__caption">
                                     <div class="atlas-constant__name">
-                                        backgroundColor
+                                        color
                                     </div>
                                 </div>
                                 <div role="list" class="atlas-constant__details">
@@ -669,6 +501,17 @@ And used for hide parts of aside for this case.</p>
                                             </svg>
                                             Consistent
                                         </span>
+                                        <div role="listitem" class="atlas-constant__list">
+                                            <span class="atlas-constant__counter _1 _warn">
+                                                <svg role="img" width="16" height="16">
+                                                    <use xlink:href="#icon-triangle"></use>
+                                                </svg>
+                                                <span class="atlas-constant__counter-digit">
+                                                    1
+                                                </span>
+                                            </span>
+                                            <code>#594199</code> could be changed to <code>$color-violet-atlas</code>
+                                        </div>
                                 </div>
                             </div>
                     </div>
@@ -684,42 +527,8 @@ And used for hide parts of aside for this case.</p>
     <div role="listitem" class="atlas-component-structure__node">
         <div class="atlas-component-structure__selector">
             <span class="atlas-component-structure__type _component" title="component"></span>
-            <span class="atlas-component-structure__name">.l-atlas-container</span><span class="atlas-component-structure__brackets"> {...}</span>
+            <span class="atlas-component-structure__name">.atlas-bar</span><span class="atlas-component-structure__brackets"> {...}</span>
         </div>
-            <div role="list" class="atlas-component-structure__nodes">
-    <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector">
-            <span class="atlas-component-structure__type _element" title="element"></span>
-            <span class="atlas-component-structure__name">&amp;__aside</span><span class="atlas-component-structure__brackets"> {...}</span>
-        </div>
-    </div>
-    <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector">
-            <span class="atlas-component-structure__type _element" title="element"></span>
-            <span class="atlas-component-structure__name">&amp;__main</span><span class="atlas-component-structure__brackets"> {...}</span>
-        </div>
-    </div>
-    <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector">
-            <span class="atlas-component-structure__type _modifier-adjacent" title="modifier-adjacent"></span>
-            <span class="atlas-component-structure__name">&amp;.js-aside-panel-hidden</span><span class="atlas-component-structure__brackets"> {...}</span>
-        </div>
-            <div role="list" class="atlas-component-structure__nodes">
-    <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector">
-            <span class="atlas-component-structure__type _element" title="element"></span>
-            <span class="atlas-component-structure__name">.l-atlas-container__aside</span><span class="atlas-component-structure__brackets"> {...}</span>
-        </div>
-    </div>
-    <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector">
-            <span class="atlas-component-structure__type _element" title="element"></span>
-            <span class="atlas-component-structure__name">.l-atlas-container__main</span><span class="atlas-component-structure__brackets"> {...}</span>
-        </div>
-    </div>
-            </div>
-    </div>
-            </div>
     </div>
                 </div>
             </div>
