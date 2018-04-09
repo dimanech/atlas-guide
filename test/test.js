@@ -186,6 +186,7 @@ describe('Atlas', function() {
                 const expected = [
                     'category-component.html',
                     'category-doc-guide.html',
+                    'component-deprecated.html',
                     'component.html',
                     'doc-guide.html',
                     'index.html'
@@ -202,7 +203,7 @@ describe('Atlas', function() {
 
             it('reports should be written', function() {
                 const fileCount = fs.readdirSync(guideDest).length;
-                assert.strictEqual(fileCount, 7, 'folder contain needed files count');
+                assert.strictEqual(fileCount, 8, 'folder contain needed files count');
             });
             it('should not process excluded files', function() {
                 const actual = fs.readdirSync(guideDest);
@@ -210,6 +211,7 @@ describe('Atlas', function() {
                     'bundle.html',
                     'category-component.html',
                     'category-doc-guide.html',
+                    'component-deprecated.html',
                     'component.html',
                     'doc-guide.html',
                     'index.html',
@@ -254,7 +256,7 @@ describe('Atlas', function() {
             it('bundle should be with cross deps graph', function() {
                 const fileContent = fs.readFileSync(guideDest + 'bundle.html', 'utf8');
                 const isContain =
-                    /window.importsData ={"nodes":\[{"id":"_component-undocumented","depth":0,"mass":0},{"id":/
+                    /window.importsData ={"nodes":\[{"id":"_component-deprecated","depth":0,"mass":0},{"id":"_component/
                         .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
@@ -272,12 +274,13 @@ describe('Atlas', function() {
             it('index should contain another components in navigation', function() {
                 const index = fs.readFileSync(path.join(guideDest, 'index.html'));
                 const categoryLink =
-                    /class="atlas-nav__ln _guide js-atlas-nav-ln" href="category-doc-guide.html"/
+                    /class="atlas-nav__ln _guide {2}js-atlas-nav-ln" href="category-doc-guide.html"/
                         .test(index);
-                const rootLink = /class="atlas-nav__ln _guide js-atlas-nav-ln" href="doc-guide.html"/.test(index);
+                const rootLink = /class="atlas-nav__ln _guide {2}js-atlas-nav-ln" href="doc-guide.html"/.test(index);
                 assert.strictEqual(categoryLink && rootLink, true,
                     'component contain another components in navigation');
             });
+            it('should have deprecated component');
             it('should have internal templates');
 
             after(function() {
@@ -508,7 +511,7 @@ describe('Atlas', function() {
             describe('getImportsGraph', function() {
                 it('should return right import graph without additional imports', function() {
                     const model = importGraph;
-                    assert.strictEqual(Object.keys(model.index).length, 9);
+                    assert.strictEqual(Object.keys(model.index).length, 10);
                 });
             });
 

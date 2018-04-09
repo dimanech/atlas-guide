@@ -4,7 +4,6 @@
 	line-height: 1.2;
 	list-style: none;
 	padding-bottom: $space-md-atlas;
-	text-transform: capitalize;
 
 	&__item {
 		display: block;
@@ -57,6 +56,8 @@
 		}
 
 		&._category {
+			text-transform: capitalize;
+
 			svg {
 				transform: rotate(90deg);
 				width: 8px;
@@ -74,6 +75,10 @@
 				margin-right: 3px;
 				width: 15px;
 			}
+		}
+
+		&._deprecated {
+			text-decoration: line-through;
 		}
 	}
 

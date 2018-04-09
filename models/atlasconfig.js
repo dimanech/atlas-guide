@@ -162,22 +162,24 @@ function getAdditionalPages(templates, dest, constants) {
 
     additionalPages.push({
         'id': 'index',
-        'title': 'about',
+        'title': 'About',
         'src': fs.existsSync(readmySrc) ? readmySrc : '',
         'target': path.join(dest, '/index.html'),
         'template': templates.about,
         'type': 'about',
+        'isDeprecated': false,
         'subPages': []
     });
 
     if (constants.isDefined) {
         additionalPages.push({
             'id': 'styleguide',
-            'title': 'styleguide',
+            'title': 'Styleguide',
             'src': '',
             'target': path.join(dest, '/styleguide.html'),
             'template': templates.styleguide,
             'type': 'styleguide',
+            'isDeprecated': false,
             'subPages': []
         });
     }
