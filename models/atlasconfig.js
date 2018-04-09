@@ -158,18 +158,17 @@ function getTemplates(config) {
 
 function getAdditionalPages(templates, dest, constants) {
     let additionalPages = [];
+    const readmySrc = path.join(projectRoot, 'README.md');
 
-    if (fs.existsSync(path.join(projectRoot, 'README.md'))) {
-        additionalPages.push({
-            'id': 'index',
-            'title': 'about',
-            'src': path.join(projectRoot, 'README.md'),
-            'target': path.join(dest, '/index.html'),
-            'template': templates.about,
-            'type': 'about',
-            'subPages': []
-        });
-    }
+    additionalPages.push({
+        'id': 'index',
+        'title': 'about',
+        'src': fs.existsSync(readmySrc) ? readmySrc : '',
+        'target': path.join(dest, '/index.html'),
+        'template': templates.about,
+        'type': 'about',
+        'subPages': []
+    });
 
     if (constants.isDefined) {
         additionalPages.push({
