@@ -11,5 +11,6 @@ Thumbs.db
 atlas
 assets/src
 .nyc_output
+coverage
 docs
 test

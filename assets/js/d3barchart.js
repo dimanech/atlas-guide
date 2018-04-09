@@ -9,7 +9,7 @@
     }
 
     BarChart.prototype.getData = function() {
-        return this.chartData = JSON.parse(
+        this.chartData = JSON.parse(
             this.instance.querySelector('defs').getAttribute('data-chart')
         );
     };

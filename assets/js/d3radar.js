@@ -9,7 +9,7 @@
     }
 
     LineChart.prototype.getData = function () {
-        return this.chartData = [
+        this.chartData = [
             {
                 'prop': 'padding',
                 'val': 3

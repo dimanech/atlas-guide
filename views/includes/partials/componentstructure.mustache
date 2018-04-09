@@ -1,8 +1,8 @@
 {{#nodes}}
     <div role="listitem" class="atlas-component-structure__node">
-        <div class="atlas-component-structure__selector" title="{{type}}">
-            <span class="atlas-component-structure__type atlas-component-structure__type_{{type}}"></span>
-            <span class="atlas-component-structure__name">{{node}}</span>{{#isBlock}} {...}{{/isBlock}}{{^isBlock}};{{/isBlock}}
+        <div class="atlas-component-structure__selector">
+            <span class="atlas-component-structure__type _{{type}}" title="{{type}}"></span>
+            <span class="atlas-component-structure__name">{{node}}</span><span class="atlas-component-structure__brackets">{{#isBlock}} {...}{{/isBlock}}{{^isBlock}};{{/isBlock}}</span>
         </div>
         {{#nodes.length}}
             <div role="list" class="atlas-component-structure__nodes">

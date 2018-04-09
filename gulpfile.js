@@ -79,10 +79,12 @@ const notifyChange = path => {
     console.log(`[CHANGED:] \x1b[32m${path}\x1b[0m`);
 };
 
-const createImportsGraph = () => importsGraph = require('sass-graph').parseDir(
-    pathConfig.ui.core.sass.src,
-    { loadPaths: [pathConfig.ui.lib.resources] }
-);
+const createImportsGraph = function () {
+    importsGraph = require('sass-graph').parseDir(
+        pathConfig.ui.core.sass.src,
+        {loadPaths: [pathConfig.ui.lib.resources]}
+    );
+};
 
 /**
  * Configurable Sass compilation
@@ -99,6 +101,8 @@ const sassCompile = config => {
             flexbox: 'no-2009'
         })
     ];
+
+    console.log(`[COMPILE:] \x1b[35m${config.source}\x1b[0m`);
 
     return gulp.src(config.source, {allowEmpty: true})
         .pipe(sourcemaps.init({

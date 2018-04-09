@@ -14,16 +14,11 @@
                 </figure>
                 <svg width="300" height="80" viewBox="0 0 300 80" class="atlas-info-digit atlas-sparkline" aria-labelledby="component-graph-title">
                     <title id="component-graph-title">Declaration sets size through the file</title>
-                    <defs>
-                        <filter id="blur-filter" x="0" y="0">
-                            <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
-                        </filter>
-                    </defs>
                     <g class="atlas-sparkline__line">
-                        <path d="{{ruleSetsLine}}" stroke="currentColor" fill="none"/>
                         <g class="atlas-sparkline__shadow">
                             <path d="{{ruleSetsLine}}" stroke="currentColor" fill="none" filter="url(#blur-filter)"/>
                         </g>
+                        <path d="{{ruleSetsLine}}" stroke="currentColor" fill="none"/>
                     </g>
                 </svg>
             </div>
@@ -89,47 +84,74 @@
             </div>
         {{/stats}}
             <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
-                <div class="atlas-info-list" role="list">
-                {{#componentProfileDetails}}
+                <div role="list" class="atlas-info-list">
+                {{#mostProps}}
                     <div role="listitem" class="atlas-info-list__item">
                         <span class="atlas-info-list__total">{{total}}</span>
                         <span class="atlas-info-list__name">{{name}}</span>
-                        {{#consistency}}
-                            <div class="atlas-constant">
-                                {{#allOk}}
-                                    <div class="atlas-constant__items _success">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-good"></use>
-                                        </svg>
-                                        Passed
-                                    </div>
-                                {{/allOk}}
-                                {{#notInConstants.count}}
-                                    <div class="atlas-constant__items _error">
-                                        <svg role="img" width="16" height="16">
-                                            <use xlink:href="#icon-bad"></use>
-                                        </svg>
-                                        {{notInConstants.count}}
-                                        {{#pluralize}}{{notInConstants.count}},fix,fixes{{/pluralize}} required
-                                    </div>
-                                    <div class="atlas-constant__list atlas">
-                                        {{#notInConstants.values}}
-                                            <code>{{.}}</code>&ensp;
-                                        {{/notInConstants.values}}
-                                    </div>
-                                {{/notInConstants.count}}
-                                {{#consider}}
-                                    <div class="atlas-constant__list _warn atlas">
-                                        {{#count}}<span class="atlas-constant__counter">+{{count}}</span>{{/count}}
-                                        <code>{{from}}</code> could be changed to <code>{{to}}</code>
-                                    </div>
-                                {{/consider}}
-                            </div>
-                        {{/consistency}}
                     </div>
-                {{/componentProfileDetails}}
+                {{/mostProps}}
                 </div>
             </div>
+            {{#usedConstants.length}}
+                <div role="region" class="atlas-component-footer__section" aria-label="Component profile">
+                    <div role="list" class="atlas-constant">
+                    {{#usedConstants}}
+                        {{#consistency}}
+                            <div role="listitem" class="atlas-constant__item">
+                                <div class="atlas-constant__caption">
+                                    <div class="atlas-constant__name">
+                                        {{name}}
+                                    </div>
+                                </div>
+                                <div role="list" class="atlas-constant__details">
+                                    {{#allOk}}
+                                        <span class="atlas-constant__status _success">
+                                            <svg role="img" width="16" height="16">
+                                                <use xlink:href="#icon-good"></use>
+                                            </svg>
+                                            Consistent
+                                        </span>
+                                    {{/allOk}}
+                                    {{#notInConstants.count}}
+                                        <div class="atlas-constant__status _error">
+                                            {{notInConstants.count}}
+                                            {{#pluralize}}{{notInConstants.count}},issue,issues{{/pluralize}}
+                                        </div>
+                                        {{#notInConstants.values}}
+                                            <div role="listitem" class="atlas-constant__list">
+                                                <span class="atlas-constant__counter _{{count}} _error">
+                                                    <svg role="img" width="16" height="16">
+                                                        <use xlink:href="#icon-circle"></use>
+                                                    </svg>
+                                                    <span class="atlas-constant__counter-digit">
+                                                        {{count}}
+                                                    </span>
+                                                </span>
+                                                <code>{{value}}</code>&ensp;
+                                            </div>
+                                        {{/notInConstants.values}}
+                                    {{/notInConstants.count}}
+                                    {{#consider}}
+                                        <div role="listitem" class="atlas-constant__list">
+                                            <span class="atlas-constant__counter _{{count}} _warn">
+                                                <svg role="img" width="16" height="16">
+                                                    <use xlink:href="#icon-triangle"></use>
+                                                </svg>
+                                                <span class="atlas-constant__counter-digit">
+                                                    {{count}}
+                                                </span>
+                                            </span>
+                                            <code>{{from}}</code> could be changed to <code>{{to}}</code>
+                                        </div>
+                                    {{/consider}}
+                                </div>
+                            </div>
+                        {{/consistency}}
+                    {{/usedConstants}}
+                    </div>
+                </div>
+            {{/usedConstants.length}}
         </div>
 
         <div class="atlas-component-footer__item">

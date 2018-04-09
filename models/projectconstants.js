@@ -38,17 +38,8 @@ function compileStyles(constants, additionalSassImports) {
     return styles.css.toString();
 }
 
-function getProjectConstants(constConfig, additionalSassImports) {
-    if (!constConfig.isDefined) {
-        return undefined;
-    }
-    const constSrc = constConfig.constantsSrc;
-    const constList = constConfig.constantsList;
-
-    const compiledConstants = compileStyles(getConstantsList(constSrc, constList), additionalSassImports);
-    const fileAST = postcss().process(compiledConstants).root;
-
-    let rawConstants = {
+function prepareConstantsData(fileAST, constList) {
+    let constants = {
         'color': [],
         'font': [],
         'scale': [],
@@ -63,7 +54,7 @@ function getProjectConstants(constConfig, additionalSassImports) {
         constList.forEach(constant => {
             if (constant.regex.test(rule.selector)) {
                 const value = rule.nodes[0].value;
-                rawConstants[constant.name].push({
+                constants[constant.name].push({
                     'name': rule.selector.replace(/\\/, ''),
                     'value': value
                 });
@@ -71,7 +62,20 @@ function getProjectConstants(constConfig, additionalSassImports) {
         });
     });
 
-    return rawConstants;
+    return constants;
+}
+
+function getProjectConstants(constConfig, additionalSassImports) {
+    if (!constConfig.isDefined) {
+        return undefined;
+    }
+    const constSrc = constConfig.constantsSrc;
+    const constList = constConfig.constantsList;
+
+    const compiledConstants = compileStyles(getConstantsList(constSrc, constList), additionalSassImports);
+    const fileAST = postcss().process(compiledConstants).root;
+
+    return prepareConstantsData(fileAST, constList);
 }
 
 module.exports = getProjectConstants;

@@ -31,7 +31,9 @@ function dataUri(background, backgroundImage, fontFaces) {
 
     dataUri.data.sort((a, b) => b.sizeRaw - a.sizeRaw);
 
-    dataUri.data.forEach(item => dataUri.total.raw += item.sizeRaw);
+    dataUri.data.forEach(item => {
+        dataUri.total.raw += item.sizeRaw;
+    });
     dataUri.total.fmt = formatBytes(dataUri.total.raw);
 
     return dataUri;

@@ -1,6 +1,6 @@
 .atlas-loader {
 	align-items: center;
-	background: rgba(white, 0.96);
+	background: rgba($color-white-atlas, 0.96);
 	bottom: 0;
 	color: $color-blue-atlas;
 	display: none;
@@ -14,7 +14,7 @@
 
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
-		background: rgba(white, 0.7);
+		background: rgba($color-white-atlas, 0.7);
 	}
 
 	.js-loading-frame & {

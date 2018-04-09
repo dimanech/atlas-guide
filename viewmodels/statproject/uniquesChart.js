@@ -59,9 +59,6 @@ function uniquesChart(stats) {
 
     keys.forEach(key => {
         let camelKey = _camelCase(key);
-        if (!uniques[camelKey]) {
-            return false;
-        }
         uniques[camelKey].chart = renderUniquesChart(uniques[camelKey], uniques.max);
     });
 

@@ -6,7 +6,7 @@
 ) {
 	@if ($__elem == "__root") {
 		@if ($_state == "stale") {
-			background: rgba(white, 0.97);
+			background: rgba($color-white-atlas, 0.97);
 			border: 1px solid #e0e0e0;
 			border-left: 7px solid $color-blue-atlas;
 			border-radius: 4px;

@@ -50,7 +50,7 @@
 		details[open] &,
 		&[aria-expanded="true"] {
 			background-color: #38382d;
-			color: white;
+			color: $color-white-atlas;
 
 			&::after {
 				background-color: #38382d;
@@ -59,7 +59,7 @@
 
 		&:focus:active {
 			background-color: darken(#38382d, 5%);
-			color: white;
+			color: $color-white-atlas;
 			transition: none;
 
 			&::after {
@@ -136,7 +136,7 @@
 	&__notifier {
 		background-color: rgba(black, 0.5);
 		border-radius: 5px;
-		color: white;
+		color: $color-white-atlas;
 		font-family: $font-mono-atlas;
 		font-size: 1.2rem;
 		font-style: normal;

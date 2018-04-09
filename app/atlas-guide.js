@@ -12,7 +12,6 @@ if (atlasBase.isCorrupted) {
         'build': () => {},
         'buildAll': () => {}
     };
-    return;
 }
 
 const projectTree = require(path.resolve(__dirname, '../models/projectdocumentedtree.js'))(atlasBase);
@@ -28,7 +27,7 @@ const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'
 const coverage = require(path.join(__dirname, '../viewmodels/coverage.js'));
 const styleguide = require(path.resolve(__dirname, '../viewmodels/styleguide.js'));
 
-const writePage = require(__dirname + '/utils/renderpage.js');
+const writePage = require(__dirname + '/utils/writepage.js');
 
 // Copy internal assets to the components destinations
 if (atlasBase.copyInternalAssets) {
@@ -74,21 +73,24 @@ function prepareContent(component) {
         content = page.content;
         tableOfContent = page.toc;
     }
-    if (component.type === 'styleguide') {
-        content = styleguide(constants);
-    }
-    if (component.type === 'component' || component.type === 'container') {
-        stat = statistics(
-            componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
-            componentImports(component.src),
-            constants
-        );
-    }
-    if (component.type === 'about') {
-        stat = {
-            'projectName': atlasConfig.getProjectInfo().name,
-            'coverage': coverage(projectTree.coverage)
-        };
+    switch (component.type) {
+        case 'styleguide':
+            content = styleguide(constants);
+            break;
+        case 'component':
+        case 'container':
+            stat = statistics(
+                componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
+                componentImports(component.src),
+                constants
+            );
+            break;
+        case 'about':
+            stat = {
+                'projectName': atlasConfig.getProjectInfo().name,
+                'coverage': coverage(projectTree.coverage)
+            };
+            break;
     }
 
     return {

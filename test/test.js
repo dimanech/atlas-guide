@@ -9,7 +9,7 @@ describe('Atlas', function() {
     let initialConfig = '';
 
     before(function() {
-        return initialConfig = fs.readFileSync('.atlasrc.json');
+        initialConfig = fs.readFileSync('.atlasrc.json');
     });
 
     after(function() {
@@ -629,6 +629,33 @@ describe('Atlas', function() {
                 assert.deepEqual(viewModel, expectedViewModel);
             });
         });
+        describe('componentstat', function() {
+            const componentstat = require(cwd + '/models/componentstat.js');
+            it('should return nothing if file not scss', function() {
+                const result = componentstat.getStatFor('/path/to/file.md', 'some');
+                assert.strictEqual(result, undefined);
+            });
+        });
+        describe('statimports', function() {
+            const statimports = require(cwd + '/viewmodels/statimports.js');
+            const importsGraph = {
+                index: {
+                    '/path/to/some.scss': {
+                        imports: ['/path/foo.scss', '/path/bar.scss']
+                    }
+                }
+            };
+
+            it('should not process excluded files', function() {
+                const result = statimports(importsGraph, new RegExp('some'));
+                assert.strictEqual(result.length, 0);
+            });
+            it('should return proper imports for standalone files', function() {
+                const result = statimports(importsGraph, new RegExp('foo'));
+                const expected = [{name: 'some.scss', imports: ['foo.scss', 'bar.scss']}];
+                assert.deepEqual(result, expected);
+            });
+        });
     });
     describe('format()', function() {
         const format = require(cwd + '/viewmodels/utils/format');
@@ -899,17 +926,126 @@ describe('Atlas', function() {
             });
         });
     });
-    describe('Component statistics', function() {
-        describe('getStatFor', function() {
-            it('should skip keyframes rules');
-            it('should correct calculate includes');
-            it('should correct calculate imports');
-            it('should correct calculate variables');
-            it('should correct calculate imported by');
-            it('should correct calculate total declarations');
-            it('should correct construct component selectors tree');
-            it('should return only uniq spaces');
-            it('should return only uniq scales');
+    describe('componentstat', function() {
+        describe('guessType', function() {
+            const guessType = require(cwd + '/models/componentstat/utils/guessSelectorType');
+            const componentPrefixRegExp = new RegExp('^.atlas-|^.l-');
+
+            describe('single selector', function() {
+                const tests = [
+                    {
+                        type: 'component',
+                        selectors: ['.atlas-component', '.l-component']
+                    }, {
+                        type: 'element',
+                        selectors: [
+                            'strong',
+                            '.atlas-component__element',
+                            '.atlas-component__element-name',
+                            '.atlas-component__element-name-2',
+                            '&__element'
+                        ]
+                    }, {
+                        type: 'element-implicit',
+                        selectors: ['.selector::before', '&::after']
+                    }, {
+                        type: 'modifier',
+                        selectors: [
+                            '.atlas-component_mod',
+                            '.atlas-component--mod',
+                            '&_m-mod',
+                            '&--mod',
+                            '.atlas-component__element_mod',
+                            '.atlas-component__element--mod'
+                        ]
+                    }, {
+                        type: 'modifier-adjacent',
+                        selectors: ['&.m-mod', '&.atlas-component'] // should not be modifier is the same component used
+                    }, {
+                        type: 'modifier-implicit',
+                        selectors: ['.selector:hover', '&:hover']
+                    }, {
+                        type: 'modifier-context',
+                        selectors: ['.selector &', '.atlas-component &']
+                    }, {
+                        type: 'mixin',
+                        selectors: ['include']
+                    }, {
+                        type: 'extend',
+                        selectors: ['extend']
+                    }, {
+                        type: 'condition',
+                        selectors: ['media', 'supports', 'if']
+                    }
+                ];
+                const getResult = selector => guessType(selector, componentPrefixRegExp);
+
+                tests.forEach(function(test) {
+                    it('should return `' + test.type + '` type', function() {
+                        test.selectors.forEach(function(selector) { // eslint-disable-line
+                            return assert.equal(getResult(selector), test.type);
+                        });
+                    });
+                });
+            });
+
+            describe('changed selectors', function() {});
+        });
+    });
+    describe('statcomponent', function() {
+        describe('prepareDisplayName', function() {
+            const ruleSizeStat = require(cwd + '/viewmodels/statcomponent/prepareDisplayName');
+
+            it('should return proper display names for "fontFamily"', function() {
+                assert.strictEqual(ruleSizeStat('fontFamily', true), 'Font family');
+                assert.strictEqual(ruleSizeStat('fontFamily', false), 'Font families');
+            });
+            it('should return proper display names for "fontSize"', function() {
+                assert.strictEqual(ruleSizeStat('fontSize', true), 'Font size');
+                assert.strictEqual(ruleSizeStat('fontSize', false), 'Font sizes');
+            });
+            it('should return proper display names for "backgroundColor"', function() {
+                assert.strictEqual(ruleSizeStat('backgroundColor', true), 'Background');
+                assert.strictEqual(ruleSizeStat('backgroundColor', false), 'Backgrounds');
+            });
+            it('should return proper display names for "mediaQuery"', function() {
+                assert.strictEqual(ruleSizeStat('mediaQuery', true), 'Media query');
+                assert.strictEqual(ruleSizeStat('mediaQuery', false), 'Media queries');
+            });
+            it('should return proper display names for "boxShadow"', function() {
+                assert.strictEqual(ruleSizeStat('boxShadow', true), 'Box shadow');
+                assert.strictEqual(ruleSizeStat('boxShadow', false), 'Box shadow');
+            });
+        });
+        describe('getComponentStat', function() {
+            const getConstantsStat = require(cwd + '/viewmodels/statcomponent/getConstantsUsage');
+            let valueList = ['0', '0.6rem', '0.6rem'];
+            let constants = {
+                'space': [
+                    {'name': '$space-off-atlas', 'value': '0'},
+                    {'name': '$space-sm-atlas', 'value': '0.6rem'},
+                    {'name': '$space-md-atlas', 'value': '1.2rem'}
+                ]
+            };
+
+            it('should return counter for suggest right props', function() {
+                const expectedResult = {notInConstants: {count: 0, values: []},
+                    allOk: true,
+                    consider: [
+                        {from: '0', to: '$space-off-atlas', count: 1},
+                        {from: '0.6rem', to: '$space-sm-atlas', count: 2}
+                    ]};
+                assert.deepEqual(getConstantsStat('padding', valueList, constants), expectedResult);
+            });
+            it('should return undefined in case of empty values list', function() {
+                valueList = [];
+                const expectedResult = undefined;
+                assert.deepEqual(getConstantsStat('padding', valueList, constants), expectedResult);
+            });
+            it('should return undefined in case of prop not much constants map', function() {
+                const expectedResult = undefined;
+                assert.deepEqual(getConstantsStat('overflow', valueList, constants), expectedResult);
+            });
         });
     });
 });

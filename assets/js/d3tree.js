@@ -62,7 +62,7 @@
         } else {
             y = 100 * d.depth + 300;
         }
-        return d.y = y;
+        d.y = y;
     });
 
     const svg = d3.select('#js-graph-svg')

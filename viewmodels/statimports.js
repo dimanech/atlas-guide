@@ -4,17 +4,17 @@ const path = require('path');
 
 function bundleImports(importsGraph, excludedSassFiles) {
     let importsData = [];
+    const filesList = importsGraph.index;
 
-    for (let prop in importsGraph.index) {
-        if (!importsGraph.index.hasOwnProperty(prop) || excludedSassFiles.test(prop)) {
-            continue;
+    Object.keys(filesList).forEach(item => {
+        if (excludedSassFiles.test(item)) {
+            return;
         }
-        const pathStr = prop.toString();
-        const fileName = path.basename(pathStr);
+        const fileName = path.basename(item.toString());
         const isPartial = /^_/i.test(fileName);
 
         if (!isPartial) {
-            const imports = importsGraph.index[prop].imports;
+            const imports = filesList[item].imports;
             const standaloneFile = {
                 'name': fileName,
                 'imports': []
@@ -23,7 +23,7 @@ function bundleImports(importsGraph, excludedSassFiles) {
             imports.forEach(imports => standaloneFile.imports.push(path.basename(imports.toString())));
             importsData.push(standaloneFile);
         }
-    }
+    });
 
     importsData.sort((a, b) => b.imports.length - a.imports.length);
 

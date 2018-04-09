@@ -1,16 +1,36 @@
 .atlas-constant {
-	font-size: 0.8rem;
-	font-weight: normal;
+	all: unset;
 	text-transform: none;
+	width: 100%;
 
-	&__items {
+	&__item {
+		display: flex;
+		margin: $space-md-atlas 0;
+	}
+
+	&__caption {
+		min-width: (100% / 3);
+	}
+
+	&__details {
 		display: block;
+		width: 100%;
+	}
+
+	&__name {
+		font-weight: bold;
+		text-transform: capitalize;
+	}
+
+	&__status {
+		display: block;
+		font-size: 0.8rem;
 		font-weight: normal;
-		margin-bottom: $space-sm-atlas / 2;
+		line-height: 1.6;
 
 		svg {
-			margin-bottom: -2px;
-			width: 14px;
+			margin-bottom: -3px;
+			width: 12px;
 		}
 
 		&._success {
@@ -26,22 +46,60 @@
 		display: block;
 		font-size: 0.8rem;
 		font-weight: normal;
-		margin-bottom: $space-sm-atlas / 2;
+		margin: ($space-sm-atlas / 2) 0;
+		padding-left: 16px;
 		position: relative;
 	}
 
 	&__counter {
-		background: $color-coral-atlas;
-		border-radius: 10px;
-		color: white;
-		font-size: 8px;
+		$size: 12px;
+		display: inline-block;
+		font-size: 10px;
 		font-weight: bold;
-		height: 10px;
-		left: -5px;
-		letter-spacing: -0.5px;
-		line-height: 10px;
+		height: $size;
+		left: 0;
+		line-height: $size;
 		position: absolute;
-		top: -5px;
-		width: 10px;
+		text-align: center;
+		text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+		top: 2px;
+		width: $size;
+
+		svg {
+			left: -2px;
+			position: absolute;
+			top: -2px;
+		}
+
+		&-digit {
+			position: relative;
+			z-index: 1;
+		}
+
+		&._warn {
+			color: $color-white-atlas;
+
+			svg {
+				color: $color-yellow-atlas;
+			}
+		}
+
+		&._error {
+			color: $color-white-atlas;
+
+			svg {
+				color: $color-coral-atlas;
+			}
+		}
+
+		&._1 {
+			color: transparent;
+			text-shadow: none;
+		}
+	}
+
+	code {
+		font-family: $font-mono-atlas;
+		font-size: 0.7rem;
 	}
 }

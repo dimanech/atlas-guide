@@ -1,6 +1,6 @@
 {
   "name": "atlas-guide",
-  "version": "0.6.8",
+  "version": "0.7.0",
   "license": "MIT",
   "description": "Atlas is living style-guides & pattern library static site generator with extensive CSS monitoring and components info that could be used virtually with any scss/css project",
   "keywords": [
@@ -8,9 +8,10 @@
     "styleguide-css",
     "styleguide-generator",
     "documentation-generator",
-    "livingstyleguide",
+    "living-styleguide",
     "scss-statistic",
     "css-statistic",
+    "statistic",
     "atlas",
     "hologram",
     "aigis"
@@ -39,7 +40,6 @@
     "autoprefixer": "^8.2.0",
     "coveralls": "^3.0.0",
     "eslint": "^4.19.1",
-    "eslint-config-standard": "^11.0.0",
     "gulp": "^4.0.0",
     "gulp-connect": "^5.5.0",
     "gulp-postcss": "^7.0.1",
@@ -66,7 +66,7 @@
     "atlas-guide": "bin/atlas-guide.js"
   },
   "scripts": {
-    "lint": "eslint **/*.js && stylelint assets/**/*.scss",
+    "lint": "eslint ./ && stylelint assets/**/*.scss",
     "test": "nyc mocha",
     "coverage": "nyc report --reporter=lcov --reporter=text-lcov | coveralls",
     "build": "gulp build",
