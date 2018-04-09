@@ -5,6 +5,14 @@
                 Included in:
             </div>
             <div role="list" class="atlas-component-aside__list">
+                {{^importedBy}}
+                    <div role="listitem" class="atlas-component-aside__list-item">
+                        <svg role="img" width="12" height="12" style="top:-1px">
+                            <use xlink:href="#icon-bad"></use>
+                        </svg>
+                        Not included in any file!
+                    </div>
+                {{/importedBy}}
                 {{#importedBy}}
                     <div role="listitem" class="atlas-component-aside__list-item">
                         <svg role="img" width="16" height="16">
