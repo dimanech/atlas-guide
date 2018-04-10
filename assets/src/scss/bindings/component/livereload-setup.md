@@ -1,13 +1,13 @@
 # Set up compilation and live reload
 
 Since Atlas is static page generator it is not provide any functionality for serving, livereloading and development setup.
-It is not depends from project infrastructure.
+This intended to not depend from project infrastructure.
 
 This page is also example of how regular markdown files will be used to create guideline page.
 
 ## Atlas compilation with gulp
 
-Since Atlas developed as styleguide-driven-development tool has 3 variants of work:
+Atlas designed as styleguide-driven-development tool and has 3 variants of work:
 
 1. single page generation
 2. all components page generation
@@ -19,7 +19,7 @@ With this you could achieve speed and performance with development tasks.
 
 For standard development flow you need:
 
-1. generate all components on start, since it could be changed from last running
+1. generate all components on start (because it could be changed from last running)
 2. rebuild changed page when source file is changed
 
 This two tasks could be easily achieved with gulp:
@@ -70,10 +70,19 @@ We show most simple way, by using CLI.
 }
 ```
 
+But if you use it with deploy you probably need to build all scss before build atlas. So it would look like this:
+
+```json
+{
+  "scripts": {
+    "build:guide": "node-sass /path/to/scss -o /path/to/css --output-style compressed && atlas-guide --build"
+  }
+}
+```
+
 #### Gulp
 
-But if you use it with deploy you probably need to build all scss before build atlas.
-This could be simple achieved with gulp:
+This also could be achieved with gulp:
 
 ```js
 gulp.task('atlas:compile:all', () => {
@@ -94,13 +103,13 @@ so npm scripts could be changed to this:
 
 ## Incremental sass compilation
 
-The first and the most problem that you faced when you start to work with many components that bundled to many separate files is that it is not trivial compile only changed files.
+The first and the most problem that you faced when you start to work with many components that bundled to many separate files is that it is not trivial to compile only changed files in gulp.
 
 Naive approach to pass all scss files overload the whole system and decrease development flow performance.
 All unneeded files are compiled, uploaded and reloaded on each single file change.
 
-This is not trivial to guess relation of sass files. Nor sass, neither node wrapper not provide any info about imports path.
-So for this case we need to build custom imports graph from our project. Lucky we have tool called `sass-graph` that could use to get this graph.
+This is not trivial to guess relation of sass files. Nor sass, neither node wrapper not provide any info about imports path (node-sass "native" watch use dependency graph to compile only needed files).
+So for this case we need to build custom imports graph from our project. Lucky we have tool called `sass-graph` that could be used to get this graph.
 
 ### Building sass imports graph
 
@@ -109,7 +118,7 @@ So as the first step we need to create dependency graph on each task-runner star
 ```js
 let importsGraph;
 
-const createImportsGraph = () => {
+const createImportsGraph = function() {
     importsGraph = require('sass-graph').parseDir(pathConfig.ui.core.sass.src, {
         loadPaths: [pathConfig.ui.lib.resources]
     });
@@ -118,7 +127,7 @@ const createImportsGraph = () => {
 
 ### Get affected file path
 
-The second step is to get the path to the standalone file in what particular changed file is imported.
+The second step is to get the path to the standalone file that imports particular changed file.
 
 ```js
 /**
@@ -149,7 +158,7 @@ const getResultedFilesList = changedFile => {
 };
 ```
 
-To deal with tasks secuances in gulp we need to add "side effect" variable to this function to get resulted files that we need to reload:
+To deal with tasks relations in gulp we need to add another variable to this function to get resulted files that we need to reload (this needed if you need to reload only css or the whole page):
 
 ```js
 const getResultedFilesList = changedFile => {
@@ -270,7 +279,7 @@ gulp.task('styles:watch', () => {
 
 ## Live reload with gulp and connect
 
-Live reload could be easely setup with gulp and connect. All you need is one single plugin `gulp-connect` that have both `connect` and `connect-liverlod` in the box.
+Live reload could be easily setup with gulp and connect. All you need is one single plugin `gulp-connect` that have both `connect` and `connect-liverelod` out of the box.
 
 ### Setup local server
 
@@ -325,7 +334,7 @@ or standalone task:
 
 ```js
 gulp.task('devServ:reload:styles', ['styles:compile:incremental'], function () {
-    return gulp.src(generateFilePath) // css only reload
+    return gulp.src(generateFilePath) // css only reload when /path/to/file.css is passed to the `src`
         .pipe(connect.reload());
 });
 ```
@@ -335,11 +344,12 @@ You need to count this to organize proper flow.
 
 ### Tasks sequences in gulp
 
-To proper organize livereloading you need to run you task in sequence "change css" -> "build atlas page" -> "reload atlas".
+To proper organize live-reloading you need to run you task in sequence "change css" -> "build atlas page" -> "reload atlas".
 
 One thing that you should know about gulp that all tasks by default runs in parallel rather in sequences.
 
-With gulp 3 you could use several ways to organize your tasks into sequences - 2nd argument of `task()` or use `gulp-sequences` plugin. In gulp 4 sequences is the standard feature.
+With gulp 3 you could use several ways to organize your tasks into sequences - 2nd argument of `task()` or use `gulp-sequences` plugin.
+In gulp 4 sequences is the standard feature.
 
 Gulp 3 build in sequences:
 
@@ -373,6 +383,28 @@ and complex tasks:
 ```js
 gulp.task('dev', ['devServ:up', 'styles:compile:all', 'styles:watch']);
 gulp.task('dev:atlas', ['devServ:up', 'styles:compile:all', 'atlas:compile:all', 'atlas:watch']);
+```
+
+#### Gulp 4 example
+
+```js
+gulp.task('styles:watch', done => {
+    createImportsGraph();
+    gulp.watch(
+        pathConfig.ui.core.sass.src + '**/*.scss',
+        gulp.series('styles:compile:incremental', 'server:reload:styles')
+    ).on('change', notifyChange);
+    done();
+});
+
+gulp.task('atlas:watch', done => {
+    createImportsGraph();
+    gulp.watch(
+        [pathConfig.ui.core.sass.src + '**/*.scss', pathConfig.ui.core.sass.src + '**/*.md'],
+        gulp.series('styles:compile:incremental', 'atlas:compile:incremental', 'server:reload:guide')
+    ).on('change', notifyChange);
+    return done();
+});
 ```
 
 ### Setup livereload on production site
