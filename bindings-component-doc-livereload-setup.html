@@ -433,6 +433,11 @@
             </a>
         </div>
         <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_4" href="#h4-gulp-4-example">
+                Gulp 4 example
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
             <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-setup-livereload-on-production-site">
                 Setup livereload on production site
             </a>
@@ -455,7 +460,7 @@
     <span class="atlas-title__highlight"></span>
 </h1>
 <p class="atlas atlas-p">Since Atlas is static page generator it is not provide any functionality for serving, livereloading and development setup.
-It is not depends from project infrastructure.</p>
+This intended to not depend from project infrastructure.</p>
 <p class="atlas atlas-p">This page is also example of how regular markdown files will be used to create guideline page.</p>
     </section>
     <section class="atlas-section">
@@ -471,7 +476,7 @@ It is not depends from project infrastructure.</p>
     </a>
     <span class="atlas-title__highlight"></span>
 </h2>
-<p class="atlas atlas-p">Since Atlas developed as styleguide-driven-development tool has 3 variants of work:</p>
+<p class="atlas atlas-p">Atlas designed as styleguide-driven-development tool and has 3 variants of work:</p>
 <ol class="atlas atlas-ol">
 	<li>single page generation</li>
 <li>all components page generation</li>
@@ -493,7 +498,7 @@ It is not depends from project infrastructure.</p>
 </h3>
 <p class="atlas atlas-p">For standard development flow you need:</p>
 <ol class="atlas atlas-ol">
-	<li>generate all components on start, since it could be changed from last running</li>
+	<li>generate all components on start (because it could be changed from last running)</li>
 <li>rebuild changed page when source file is changed</li>
 
 </ol>
@@ -559,6 +564,14 @@ We show most simple way, by using CLI.</p>
   }
 }</code></pre>
 </div>
+<p class="atlas atlas-p">But if you use it with deploy you probably need to build all scss before build atlas. So it would look like this:</p>
+<div class="atlas atlas-code json">
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;build:guide&quot;: &quot;node-sass &#x2F;path&#x2F;to&#x2F;scss -o &#x2F;path&#x2F;to&#x2F;css --output-style compressed &amp;&amp; atlas-guide --build&quot;
+  }
+}</code></pre>
+</div>
 <span class="atlas-anchor" id="h4-gulp"></span>
 <h4 class="atlas atlas-title atlas-title_4">
     <span class="atlas-title__text">
@@ -571,8 +584,7 @@ We show most simple way, by using CLI.</p>
     </a>
     <span class="atlas-title__highlight"></span>
 </h4>
-<p class="atlas atlas-p">But if you use it with deploy you probably need to build all scss before build atlas.
-This could be simple achieved with gulp:</p>
+<p class="atlas atlas-p">This also could be achieved with gulp:</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">gulp.task(&#39;atlas:compile:all&#39;, () &#x3D;&gt; {
     return require(&#39;atlas-guide&#39;).buildAll();
@@ -601,11 +613,11 @@ gulp.task(&#39;build&#39;, [&#39;styles:compile:all&#39;, &#39;atlas:compile:all
     </a>
     <span class="atlas-title__highlight"></span>
 </h2>
-<p class="atlas atlas-p">The first and the most problem that you faced when you start to work with many components that bundled to many separate files is that it is not trivial compile only changed files.</p>
+<p class="atlas atlas-p">The first and the most problem that you faced when you start to work with many components that bundled to many separate files is that it is not trivial to compile only changed files in gulp.</p>
 <p class="atlas atlas-p">Naive approach to pass all scss files overload the whole system and decrease development flow performance.
 All unneeded files are compiled, uploaded and reloaded on each single file change.</p>
-<p class="atlas atlas-p">This is not trivial to guess relation of sass files. Nor sass, neither node wrapper not provide any info about imports path.
-So for this case we need to build custom imports graph from our project. Lucky we have tool called <code>sass-graph</code> that could use to get this graph.</p>
+<p class="atlas atlas-p">This is not trivial to guess relation of sass files. Nor sass, neither node wrapper not provide any info about imports path (node-sass &quot;native&quot; watch use dependency graph to compile only needed files).
+So for this case we need to build custom imports graph from our project. Lucky we have tool called <code>sass-graph</code> that could be used to get this graph.</p>
 <span class="atlas-anchor" id="h3-building-sass-imports-graph"></span>
 <h3 class="atlas atlas-title atlas-title_3">
     <span class="atlas-title__text">
@@ -622,7 +634,7 @@ So for this case we need to build custom imports graph from our project. Lucky w
 <div class="atlas atlas-code js">
 <pre><code class="language-js">let importsGraph;
 
-const createImportsGraph &#x3D; () &#x3D;&gt; {
+const createImportsGraph &#x3D; function() {
     importsGraph &#x3D; require(&#39;sass-graph&#39;).parseDir(pathConfig.ui.core.sass.src, {
         loadPaths: [pathConfig.ui.lib.resources]
     });
@@ -640,7 +652,7 @@ const createImportsGraph &#x3D; () &#x3D;&gt; {
     </a>
     <span class="atlas-title__highlight"></span>
 </h3>
-<p class="atlas atlas-p">The second step is to get the path to the standalone file in what particular changed file is imported.</p>
+<p class="atlas atlas-p">The second step is to get the path to the standalone file that imports particular changed file.</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">&#x2F;**
  * Get file path that should be compiled
@@ -669,7 +681,7 @@ const getResultedFilesList &#x3D; changedFile &#x3D;&gt; {
     return resultedFilesPath;
 };</code></pre>
 </div>
-<p class="atlas atlas-p">To deal with tasks secuances in gulp we need to add &quot;side effect&quot; variable to this function to get resulted files that we need to reload:</p>
+<p class="atlas atlas-p">To deal with tasks relations in gulp we need to add another variable to this function to get resulted files that we need to reload (this needed if you need to reload only css or the whole page):</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">const getResultedFilesList &#x3D; changedFile &#x3D;&gt; {
     &#x2F;&#x2F; Ensure that changed file is Sass file
@@ -816,7 +828,7 @@ gulp.task(&#39;styles:watch&#39;, () &#x3D;&gt; {
     </a>
     <span class="atlas-title__highlight"></span>
 </h2>
-<p class="atlas atlas-p">Live reload could be easely setup with gulp and connect. All you need is one single plugin <code>gulp-connect</code> that have both <code>connect</code> and <code>connect-liverlod</code> in the box.</p>
+<p class="atlas atlas-p">Live reload could be easily setup with gulp and connect. All you need is one single plugin <code>gulp-connect</code> that have both <code>connect</code> and <code>connect-liverelod</code> out of the box.</p>
 <span class="atlas-anchor" id="h3-setup-local-server"></span>
 <h3 class="atlas atlas-title atlas-title_3">
     <span class="atlas-title__text">
@@ -883,7 +895,7 @@ We serve both Atlas and project assets (so we could use livereload on live proje
 <p class="atlas atlas-p">or standalone task:</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">gulp.task(&#39;devServ:reload:styles&#39;, [&#39;styles:compile:incremental&#39;], function () {
-    return gulp.src(generateFilePath) &#x2F;&#x2F; css only reload
+    return gulp.src(generateFilePath) &#x2F;&#x2F; css only reload when &#x2F;path&#x2F;to&#x2F;file.css is passed to the &#x60;src&#x60;
         .pipe(connect.reload());
 });</code></pre>
 </div>
@@ -901,9 +913,10 @@ You need to count this to organize proper flow.</p>
     </a>
     <span class="atlas-title__highlight"></span>
 </h3>
-<p class="atlas atlas-p">To proper organize livereloading you need to run you task in sequence &quot;change css&quot; -&gt; &quot;build atlas page&quot; -&gt; &quot;reload atlas&quot;.</p>
+<p class="atlas atlas-p">To proper organize live-reloading you need to run you task in sequence &quot;change css&quot; -&gt; &quot;build atlas page&quot; -&gt; &quot;reload atlas&quot;.</p>
 <p class="atlas atlas-p">One thing that you should know about gulp that all tasks by default runs in parallel rather in sequences.</p>
-<p class="atlas atlas-p">With gulp 3 you could use several ways to organize your tasks into sequences - 2nd argument of <code>task()</code> or use <code>gulp-sequences</code> plugin. In gulp 4 sequences is the standard feature.</p>
+<p class="atlas atlas-p">With gulp 3 you could use several ways to organize your tasks into sequences - 2nd argument of <code>task()</code> or use <code>gulp-sequences</code> plugin.
+In gulp 4 sequences is the standard feature.</p>
 <p class="atlas atlas-p">Gulp 3 build in sequences:</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">
@@ -930,6 +943,37 @@ gulp.task(&#39;devServ:reload:guide&#39;, [&#39;atlas:compile:incremental&#39;],
 <div class="atlas atlas-code js">
 <pre><code class="language-js">gulp.task(&#39;dev&#39;, [&#39;devServ:up&#39;, &#39;styles:compile:all&#39;, &#39;styles:watch&#39;]);
 gulp.task(&#39;dev:atlas&#39;, [&#39;devServ:up&#39;, &#39;styles:compile:all&#39;, &#39;atlas:compile:all&#39;, &#39;atlas:watch&#39;]);</code></pre>
+</div>
+<span class="atlas-anchor" id="h4-gulp-4-example"></span>
+<h4 class="atlas atlas-title atlas-title_4">
+    <span class="atlas-title__text">
+        Gulp 4 example
+    </span>
+    <a class="atlas-title__anchor" href="#h4-gulp-4-example" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h4>
+<div class="atlas atlas-code js">
+<pre><code class="language-js">gulp.task(&#39;styles:watch&#39;, done &#x3D;&gt; {
+    createImportsGraph();
+    gulp.watch(
+        pathConfig.ui.core.sass.src + &#39;**&#x2F;*.scss&#39;,
+        gulp.series(&#39;styles:compile:incremental&#39;, &#39;server:reload:styles&#39;)
+    ).on(&#39;change&#39;, notifyChange);
+    done();
+});
+
+gulp.task(&#39;atlas:watch&#39;, done &#x3D;&gt; {
+    createImportsGraph();
+    gulp.watch(
+        [pathConfig.ui.core.sass.src + &#39;**&#x2F;*.scss&#39;, pathConfig.ui.core.sass.src + &#39;**&#x2F;*.md&#39;],
+        gulp.series(&#39;styles:compile:incremental&#39;, &#39;atlas:compile:incremental&#39;, &#39;server:reload:guide&#39;)
+    ).on(&#39;change&#39;, notifyChange);
+    return done();
+});</code></pre>
 </div>
 <span class="atlas-anchor" id="h3-setup-livereload-on-production-site"></span>
 <h3 class="atlas atlas-title atlas-title_3">
