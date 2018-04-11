@@ -24,7 +24,7 @@ function dataUri(background, backgroundImage, fontFaces) {
                 size: formatBytes(size),
                 type: /data:(.*?)\//.exec(uriString)[1],
                 typeRaw: /data:(.*?),/.exec(uriString)[1],
-                displayValue: /data:image/.test(uriString) ? uriString : ''
+                displayValue: /data:image/.test(uriString) ? uriString.replace(/['"]/g, '') : ''
             });
         }
     });
