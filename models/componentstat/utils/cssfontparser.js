@@ -86,7 +86,7 @@ function parse(input) {
 }
 
 function quoteFamily(family) {
-    return /^(serif|sans-serif|monospace|cursive|fantasy|\$[a-zA-z]*)$/.test(family) ? family : ('"' + family + '"')
+    return /^(serif|sans-serif|monospace|cursive|fantasy|\$[a-zA-z]*)$/.test(family) ? family : ('"' + family + '"');
 }
 
 module.exports = function(input) {
