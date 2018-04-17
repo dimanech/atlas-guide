@@ -1,16 +1,22 @@
 'use strict';
 
+const fontParser = require('./cssfontparser.js');
+
 function getFont(value) {
-    const declList = value
-        .replace(/ ,/g, ',')
-        .replace(/ \/ ?/g, '/')
-        .split(' ');
-    const fontFamily = declList.pop(); // mandatory. always last in list
-    const fontSize = declList.pop().split('/'); // mandatory. before family. optional list
+    const parse = fontParser(value);
+    const result = {
+        fontSize: '',
+        fontFamily: ''
+    };
+
+    if (parse) {
+        result.fontSize = parse['font-size'];
+        result.fontFamily = parse['font-family'];
+    }
 
     return {
-        fontSize: fontSize[0],
-        fontFamily: fontFamily
+        fontSize: result.fontSize,
+        fontFamily: result.fontFamily
     };
 }
 
