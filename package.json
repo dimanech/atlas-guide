@@ -1,6 +1,6 @@
 {
   "name": "atlas-guide",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "license": "MIT",
   "description": "Atlas is living style-guides & pattern library static site generator with extensive CSS monitoring and components info that could be used virtually with any scss/css project",
   "keywords": [
@@ -74,7 +74,7 @@
     "preversion": "npm test",
     "version": "npm run build && git add -A assets",
     "postversion": "git push && git push --tags"
-},
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:dimanech/atlas-guide.git"
