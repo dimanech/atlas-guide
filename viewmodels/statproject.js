@@ -59,7 +59,7 @@ function statProject(stat) {
             importantRules: importantRules(stats.declarations.important),
             dataUri: dataUri(
                 stats.declarations.properties.background,
-                stats.declarations.properties['background-size'],
+                stats.declarations.properties['background-image'],
                 stats.fontFaces)
         });
     });

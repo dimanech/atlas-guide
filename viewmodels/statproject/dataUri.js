@@ -9,11 +9,13 @@ function dataUri(background, backgroundImage, fontFaces) {
     const dataUri = {
         'total': {
             raw: 0,
-            fmt: 0
+            fmt: 0,
+            count: 0
         },
         'data': []
         // nice to have selectors here
     };
+    const normalizeCSSString = str => str.replace(/^['"\s]*/, '').replace(/['"\s]*$/, '').replace(/['"]/g, '%22');
 
     props.forEach(value => {
         if (/data:/g.test(value)) {
@@ -24,13 +26,15 @@ function dataUri(background, backgroundImage, fontFaces) {
                 size: formatBytes(size),
                 type: /data:(.*?)\//.exec(uriString)[1],
                 typeRaw: /data:(.*?),/.exec(uriString)[1],
-                displayValue: /data:image/.test(uriString) ? uriString.replace(/['"]/g, '') : ''
+                displayValue: /data:image/.test(uriString) ? normalizeCSSString(uriString) : ''
             });
         }
     });
 
     dataUri.data.sort((a, b) => b.sizeRaw - a.sizeRaw);
 
+    // Fill total data
+    dataUri.total.count = dataUri.data.length;
     dataUri.data.forEach(item => {
         dataUri.total.raw += item.sizeRaw;
     });

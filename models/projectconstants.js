@@ -4,7 +4,7 @@ const fs = require('fs');
 const postcss = require('postcss');
 const scss = require('postcss-scss');
 const mustache = require('mustache');
-const sass = require('node-sass');
+const sass = require('sass');
 
 function getConstantsList(url, constantsList) {
     const file = fs.readFileSync(url, 'utf8');

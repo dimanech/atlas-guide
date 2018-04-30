@@ -5,6 +5,7 @@
 [![Linux build status](https://travis-ci.org/dimanech/atlas-guide.svg?branch=master)](https://travis-ci.org/dimanech/atlas-guide/)
 [![Win build status](https://ci.appveyor.com/api/projects/status/xiaw6yi35d527i67/branch/master?svg=true)](https://ci.appveyor.com/project/dimanech/atlas-guide/branch/master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/dimanech/atlas-guide.svg)](https://greenkeeper.io/)
+[![Known Vulnerabilities](https://snyk.io/test/github/dimanech/atlas-guide/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dimanech/atlas-guide?targetFile=package.json)
 [![npm version](https://badge.fury.io/js/atlas-guide.svg)](https://badge.fury.io/js/atlas-guide)
 
 Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive

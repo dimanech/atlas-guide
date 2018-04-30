@@ -230,7 +230,7 @@ describe('Atlas', function() {
             it('insights should be with specificity chart', function() {
                 const fileContent = fs.readFileSync(guideDest + 'insights.html', 'utf8');
                 const isContain =
-                    /"specificity":10},{"selector":".class","specificity":10},{"selector":".class__item-empty:hover",/
+                    /"data":10},{"selector":".class","data":10},{"selector":".class__item-empty:hover",/
                         .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
@@ -511,7 +511,7 @@ describe('Atlas', function() {
             describe('getImportsGraph', function() {
                 it('should return right import graph without additional imports', function() {
                     const model = importGraph;
-                    assert.strictEqual(Object.keys(model.index).length, 10);
+                    assert.strictEqual(Object.keys(model.index).length, 7);
                 });
             });
 
@@ -930,6 +930,60 @@ describe('Atlas', function() {
         });
     });
     describe('componentstat', function() {
+        describe('getFont', function() {
+            const getFont = require(cwd + '/models/componentstat/utils/getFont');
+            const tests = [
+                {
+                    name: 'normative, no spaces',
+                    property: '14px/1.2 Arial, Helvetica, sans-serif',
+                    result: ['14px', '"Arial", "Helvetica", sans-serif']
+                },
+                {
+                    name: 'normative, spaces, with brackets',
+                    property: '14rem/1.2 Arial,"Helvetica N",sans-serif',
+                    result: ['14rem', '"Arial", "Helvetica N", sans-serif']
+                },
+                {
+                    name: 'normative, full declaration',
+                    property: 'italic small-caps bold semi-condensed 14ex/1.2 cursive',
+                    result: ['14ex', 'cursive']
+                },
+                {
+                    name: 'not normative, size and family',
+                    property: '14pt Arial, Helvetica, sans-serif',
+                    result: ['14pt', '"Arial", "Helvetica", sans-serif']
+                },
+                {
+                    name: 'not normative with spaces, no brackets',
+                    property: '14em/1.2px Times New Roman,Arial,Times New Roman,sans-serif',
+                    result: ['14em', '"Times New Roman", "Arial", "Times New Roman", sans-serif']
+                },
+                {
+                    name: 'normative with variable',
+                    property: '14pc/1.2 $some',
+                    result: ['14pc', '$some']
+                },
+                {
+                    name: 'inherit',
+                    property: 'inherit',
+                    result: ['inherit', 'inherit']
+                },
+                {
+                    name: 'parse error',
+                    property: 'cursive',
+                    result: ['', '']
+                }
+            ];
+            tests.forEach(function(test) {
+                it('should return right value in `' + test.name + '` case', function() {
+                    const expectedResult = {
+                        fontSize: test.result[0],
+                        fontFamily: test.result[1]
+                    };
+                    assert.deepEqual(expectedResult, getFont(test.property));
+                });
+            });
+        });
         describe('guessType', function() {
             const guessType = require(cwd + '/models/componentstat/utils/guessSelectorType');
             const componentPrefixRegExp = new RegExp('^.atlas-|^.l-');
@@ -1018,6 +1072,10 @@ describe('Atlas', function() {
             it('should return proper display names for "boxShadow"', function() {
                 assert.strictEqual(ruleSizeStat('boxShadow', true), 'Box shadow');
                 assert.strictEqual(ruleSizeStat('boxShadow', false), 'Box shadow');
+            });
+            it('should return proper display names for any other values', function() {
+                assert.strictEqual(ruleSizeStat('margin', true), 'margin');
+                assert.strictEqual(ruleSizeStat('margin', false), 'margins');
             });
         });
         describe('getComponentStat', function() {

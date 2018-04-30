@@ -5,9 +5,7 @@ function getTopMostProperties(fileAST) {
     let redusedProps = {};
     let result = [];
 
-    fileAST.walkDecls(function(decl) {
-        allProps.push(decl.prop);
-    });
+    fileAST.walkDecls(decl => allProps.push(decl.prop));
 
     allProps.forEach(function(x) {
         redusedProps[x] = (redusedProps[x] || 0) + 1;
