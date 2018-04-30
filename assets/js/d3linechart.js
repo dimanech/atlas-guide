@@ -12,30 +12,11 @@
     }
 
     LineChart.prototype.getData = function () {
-        const unifyData = function (data) {
-            let unifData = [];
-
-            if (data[0].declarations !== undefined) {
-                data.forEach(item => {
-                    unifData.push({
-                        specificity: item.declarations,
-                        selector: item.selector
-                    });
-                });
-            } else {
-                unifData = data;
-            }
-
-            return unifData;
-        };
-
         let data = this.instance.querySelector('defs').getAttribute('data-chart');
 
         try {
             data = JSON.parse(data);
-            if (data.length) {
-                data = unifyData(data);
-            } else {
+            if (!data.length) {
                 return;
             }
         } catch (e) {
@@ -58,7 +39,7 @@
         }
 
         // Cache basic statistics
-        const dataArray = data.map(d => d.specificity).sort();
+        const dataArray = data.map(d => d.data).sort();
         const max = d3.max(dataArray);
         const mean = d3.mean(dataArray);
         //const iqtl = d3.quantile(dataArray, 0.25);
@@ -75,11 +56,11 @@
         const area = d3.area()
             .x((d, i) => scaleX(i))
             .y0(height)
-            .y1(d => scaleY(d.specificity));
+            .y1(d => scaleY(d.data));
 
         const line = d3.line()
             .x((d, i) => scaleX(i))
-            .y(d => scaleY(d.specificity));
+            .y(d => scaleY(d.data));
 
         // DOM
         svg.attr('viewBox', '0 0 ' +
@@ -148,7 +129,7 @@
                 return;
             }
 
-            const itemSpecificity = data[itemIndex].specificity;
+            const itemSpecificity = data[itemIndex].data;
             const itemSelector = data[itemIndex].selector;
 
             focus.attr('transform', 'translate(' + scaleX(itemIndex) + ',0)');

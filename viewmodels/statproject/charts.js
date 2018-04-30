@@ -4,8 +4,17 @@ const path = require('path');
 const format = require(path.join(__dirname, '../utils/format'));
 const formatNumbers = format.numbers;
 
-function renderLineChart(data) {
-    const dataStr = JSON.stringify(data);
+function normalizeData(data, field) {
+    return data.map(item => {
+        return {
+            selector: item.selector.replace(/'/g, '"'),
+            data: item[field]
+        };
+    });
+}
+
+function renderLineChart(data, type) {
+    const dataStr = JSON.stringify(normalizeData(data, type));
 
     return `
         <svg class="js-line-chart">
@@ -17,7 +26,7 @@ function renderLineChart(data) {
 function specificityChart(stats) {
     // simple array stats.selectors.getSpecificityGraph()
     return {
-        'chart': renderLineChart(stats.selectors.getSpecificityValues()),
+        'chart': renderLineChart(stats.selectors.getSpecificityValues(), 'specificity'),
         'max': stats.selectors.specificity.max,
         'average': formatNumbers(stats.selectors.specificity.average)
     };
@@ -25,7 +34,7 @@ function specificityChart(stats) {
 
 function ruleSizeChart(stats) {
     return {
-        'chart': renderLineChart(stats.rules.selectorRuleSizes),
+        'chart': renderLineChart(stats.rules.selectorRuleSizes, 'declarations'),
         'max': stats.rules.size.max,
         'average': formatNumbers(stats.rules.size.average)
     };
