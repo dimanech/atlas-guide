@@ -1073,6 +1073,10 @@ describe('Atlas', function() {
                 assert.strictEqual(ruleSizeStat('boxShadow', true), 'Box shadow');
                 assert.strictEqual(ruleSizeStat('boxShadow', false), 'Box shadow');
             });
+            it('should return proper display names for any other values', function() {
+                assert.strictEqual(ruleSizeStat('margin', true), 'margin');
+                assert.strictEqual(ruleSizeStat('margin', false), 'margins');
+            });
         });
         describe('getComponentStat', function() {
             const getConstantsStat = require(cwd + '/viewmodels/statcomponent/getConstantsUsage');
