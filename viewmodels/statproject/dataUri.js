@@ -9,7 +9,8 @@ function dataUri(background, backgroundImage, fontFaces) {
     const dataUri = {
         'total': {
             raw: 0,
-            fmt: 0
+            fmt: 0,
+            count: 0
         },
         'data': []
         // nice to have selectors here
@@ -32,6 +33,8 @@ function dataUri(background, backgroundImage, fontFaces) {
 
     dataUri.data.sort((a, b) => b.sizeRaw - a.sizeRaw);
 
+    // Fill total data
+    dataUri.total.count = dataUri.data.length;
     dataUri.data.forEach(item => {
         dataUri.total.raw += item.sizeRaw;
     });

@@ -75,12 +75,19 @@
                                 <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                 <span class="atlas-stat-info__popup">
                                     Data uri not the best approach to serve data (especially in HTTP2).
-                                    It blows CSS, hard to maintain and it comes with less decoding speed.
+                                    It blows CSS, make images render blocking resource and it comes with less decoding speed and cache invalidation issues.
+                                    Consider to avoid this practice.
                                 </span>
                             </span>
                         </h2>
 
                         <ul class="atlas-stat-columns">
+                            <li class="atlas-stat-columns__item">
+                                <figure class="atlas-stat-digit">
+                                    <p class="atlas-stat-digit__data">{{total.count}}</p>
+                                    <figcaption class="atlas-stat-digit__caption">Files</figcaption>
+                                </figure>
+                            </li>
                             <li class="atlas-stat-columns__item">
                                 <figure class="atlas-stat-digit">
                                     <p class="atlas-stat-digit__data">{{total.fmt}}</p>
@@ -248,7 +255,7 @@
                                 <span class="atlas-stat-info">
                                     <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                     <span class="atlas-stat-info__popup">
-                                        This classes potentially could be changed to single global class
+                                        This classes potentially could be changed to single class
                                     </span>
                                 </span>
                             </h4>
@@ -328,11 +335,11 @@
                     {{#selectors}}
                     <div class="atlas-stat-columns__item">
                         <h3 class="atlas-stat-section__title-sub">
-                            js- prefixed selectors
+                            {{jsPrefixedSelectors.length}} <code>js-</code> prefixed selectors
                             <span class="atlas-stat-info">
                                 <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                 <span class="atlas-stat-info__popup">
-                                    This selectors should not be used for styling
+                                    This selectors should not be used for styling, since it SoC violation
                                 </span>
                             </span>
                         </h3>
@@ -346,7 +353,7 @@
                     </div>
                     <div class="atlas-stat-columns__item">
                         <h3 class="atlas-stat-section__title-sub">
-                            Universal selectors
+                            {{universalSelectors.length}} Universal selectors
                             <span class="atlas-stat-info">
                                 <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                 <span class="atlas-stat-info__popup">
@@ -364,11 +371,11 @@
                     </div>
                     <div class="atlas-stat-columns__item">
                         <h3 class="atlas-stat-section__title-sub">
-                            Id selectors
+                            {{idSelectors.length}} Id selectors
                             <span class="atlas-stat-info">
                                 <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                 <span class="atlas-stat-info__popup">
-                                    It is bad practice to use IDs as selectors for specificity and reusability reasons.
+                                    It is bad practice to use IDs as selectors for specificity and reusability reasons
                                 </span>
                             </span>
                         </h3>
@@ -387,7 +394,7 @@
                             <span class="atlas-stat-info">
                                 <svg width="14" height="14" role="img"><use xlink:href="#icon-about"></use></svg>
                                 <span class="atlas-stat-info__popup">
-                                    Important rules could dramatically reduce project maintainability and scalability
+                                    Important rules could dramatically decrease project maintainability and scalability
                                 </span>
                             </span>
                         </h3>
@@ -400,7 +407,6 @@
                         </ul>
                     </div>
                 </div>
-
 
                 <h2 class="atlas-stat-title">Consistency</h2>
 
