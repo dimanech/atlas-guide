@@ -14,6 +14,7 @@ function dataUri(background, backgroundImage, fontFaces) {
         'data': []
         // nice to have selectors here
     };
+    const normalizeCSSString = str => str.replace(/^['"\s]*/, '').replace(/['"\s]*$/, '').replace(/['"]/g, '%22');
 
     props.forEach(value => {
         if (/data:/g.test(value)) {
@@ -24,7 +25,7 @@ function dataUri(background, backgroundImage, fontFaces) {
                 size: formatBytes(size),
                 type: /data:(.*?)\//.exec(uriString)[1],
                 typeRaw: /data:(.*?),/.exec(uriString)[1],
-                displayValue: /data:image/.test(uriString) ? uriString.replace(/['"]/g, '') : ''
+                displayValue: /data:image/.test(uriString) ? normalizeCSSString(uriString) : ''
             });
         }
     });
