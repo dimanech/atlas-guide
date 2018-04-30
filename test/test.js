@@ -230,7 +230,7 @@ describe('Atlas', function() {
             it('insights should be with specificity chart', function() {
                 const fileContent = fs.readFileSync(guideDest + 'insights.html', 'utf8');
                 const isContain =
-                    /"specificity":10},{"selector":".class","specificity":10},{"selector":".class__item-empty:hover",/
+                    /"data":10},{"selector":".class","data":10},{"selector":".class__item-empty:hover",/
                         .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
