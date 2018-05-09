@@ -351,7 +351,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    0.8.1
+    1.0.0
 </p>
         </div>
     </div>
@@ -410,7 +410,7 @@
     </a>
     <span class="atlas-title__highlight"></span>
 </h1>
-<p class="atlas atlas-p"><a href="https://coveralls.io/github/dimanech/atlas-guide?branch=master"><img src="https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master&amp;servic" alt="Coverage Status"></a>
+<p class="atlas atlas-p"><a href="https://coveralls.io/github/dimanech/atlas-guide?branch=master"><img src="https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master&amp;service" alt="Coverage Status"></a>
 <a href="https://codeclimate.com/github/dimanech/atlas-guide/maintainability"><img src="https://api.codeclimate.com/v1/badges/f37cf365f3315cfc287c/maintainability" alt="Maintainability"></a>
 <a href="https://travis-ci.org/dimanech/atlas-guide/"><img src="https://travis-ci.org/dimanech/atlas-guide.svg?branch=master" alt="Linux build status"></a>
 <a href="https://ci.appveyor.com/project/dimanech/atlas-guide/branch/master"><img src="https://ci.appveyor.com/api/projects/status/xiaw6yi35d527i67/branch/master?svg=true" alt="Win build status"></a>
@@ -419,10 +419,13 @@
 <a href="https://badge.fury.io/js/atlas-guide"><img src="https://badge.fury.io/js/atlas-guide.svg" alt="npm version"></a></p>
 <p class="atlas atlas-p">Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive
 styles monitoring and Sass components reports.</p>
-<p class="atlas atlas-p">It is opinionated because it is probably impossible to cover all cases in CSS/Sass.
-It designed primarily as &quot;Styleguide driven development&quot; tool with focus on split files approach and incapsulated components.</p>
-<p class="atlas atlas-p"><a href="https://dimanech.github.io/atlas-guide/">Live example</a>
-<a href="https://youtu.be/Vohb_Xl6S54">Video example</a></p>
+<p class="atlas atlas-p">It is opinionated because it is, probably, impossible to cover all cases in CSS/Sass.
+It designed primarily as &quot;Style-guide driven development&quot; tool with focus on splited files approach and incapsulated components with normative Sass imports structure.</p>
+<ul class="atlas atlas-ul">
+	<li><a href="https://dimanech.github.io/atlas-guide/">Live example</a></li>
+<li><a href="https://youtu.be/Vohb_Xl6S54">Video example</a></li>
+
+</ul>
 <p class="atlas atlas-p"><img src="docs/screens/atlas-component.jpeg" alt="atlas-component"></p>
     </section>
     <section class="atlas-section">
@@ -1155,6 +1158,46 @@ $scale-md: 1rem;</code></pre>
 <p class="atlas atlas-p">After that styleguide page and components stat hints would be generated beside components regular building cycle.</p>
     </section>
     <section class="atlas-section">
+<span class="atlas-anchor" id="h2-troubleshooting"></span>
+<h2 class="atlas atlas-title atlas-title_2">
+    <span class="atlas-title__text">
+        Troubleshooting
+    </span>
+    <a class="atlas-title__anchor" href="#h2-troubleshooting" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h2>
+<span class="atlas-anchor" id="h3-i-need-to-remove-unneeded-graphs-info-features-etc-how-to-do-this-"></span>
+<h3 class="atlas atlas-title atlas-title_3">
+    <span class="atlas-title__text">
+        I need to remove unneeded graphs, info, features etc. How to do this?
+    </span>
+    <a class="atlas-title__anchor" href="#h3-i-need-to-remove-unneeded-graphs-info-features-etc-how-to-do-this-" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h3>
+<p class="atlas atlas-p">The most robust way to do this is extend templates on project level and remove views that responsible for that.</p>
+<span class="atlas-anchor" id="h3-i-build-dependency-graph-but-it-has-too-much-duplicate-imports-since-each-our-resulted-file-include-the-same-files-"></span>
+<h3 class="atlas atlas-title atlas-title_3">
+    <span class="atlas-title__text">
+        I build dependency graph but it has too much duplicate imports since each our resulted file include the same files.
+    </span>
+    <a class="atlas-title__anchor" href="#h3-i-build-dependency-graph-but-it-has-too-much-duplicate-imports-since-each-our-resulted-file-include-the-same-files-" title="Copy link to this title">
+        <svg width="14" height="14" role="img">
+            <use xlink:href="#icon-ln"></use>
+        </svg>
+    </a>
+    <span class="atlas-title__highlight"></span>
+</h3>
+<p class="atlas atlas-p">To clean up the graph you could add duplicated files into scss ignore list. To do this put regexp to <code>excludedSassFiles</code> field.</p>
+    </section>
+    <section class="atlas-section">
 <span class="atlas-anchor" id="h2-contributing"></span>
 <h2 class="atlas atlas-title atlas-title_2">
     <span class="atlas-title__text">
@@ -1342,6 +1385,21 @@ $scale-md: 1rem;</code></pre>
         <div class="atlas-toc__item" role="listitem">
             <a class="atlas-toc__ln atlas-toc__ln_4" href="#h4-setup-constants">
                 Setup constants
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_2" href="#h2-troubleshooting">
+                Troubleshooting
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-i-need-to-remove-unneeded-graphs-info-features-etc-how-to-do-this-">
+                I need to remove unneeded graphs, info, features etc. How to do this?
+            </a>
+        </div>
+        <div class="atlas-toc__item" role="listitem">
+            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-i-build-dependency-graph-but-it-has-too-much-duplicate-imports-since-each-our-resulted-file-include-the-same-files-">
+                I build dependency graph but it has too much duplicate imports since each our resulted file include the same files.
             </a>
         </div>
         <div class="atlas-toc__item" role="listitem">
