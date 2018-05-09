@@ -661,22 +661,23 @@ describe('Atlas', function() {
         });
         describe('projectbundle', function() {
             const projectBundle = require(cwd + '/models/projectbundle.js');
-            const importsGraphs = require(cwd + '/test/fixtures/viewmodels/importsGraphs.js');
+            const importsGraph = require(cwd + '/models/projectimportsgraph.js').getImportsGraph;
             const importsGraphsExpected = require(cwd + '/test/fixtures/viewmodels/importsgraphs.json');
             const tests = [
-                {type: 'deepTree', description: 'for deepTree imports'}
-                // {type: 'flatTree', description: 'for deepTree imports'},
-                // {type: 'deepTreeMultipleLevels', description: 'for deep tree imports with multiple standalones'},
-                // {type: 'flatTreeExcludes', description: 'with excludes'}
+                {expected: 'deep', description: 'for deep tree imports'},
+                {expected: 'semi-flat', description: 'for flat imports'},
+                {expected: 'multi-level', description: 'for deep tree imports with multiple standalones'}
             ];
 
             tests.forEach(function(test) {
                 it('should return proper model ' + test.description, function() {
-                    const importsGraph = importsGraphs[test.type];
-                    const result = projectBundle(importsGraph, 'root', 'some/', new RegExp('_exclud'));
-                    const expected = test.type === 'flatTreeExcludes' ? 'flatTree' : test.type;
-
-                    assert.strictEqual(result, JSON.stringify(importsGraphsExpected[expected]));
+                    const graph =
+                        importsGraph({
+                            scssSrc: path.join(cwd, 'test', 'fixtures', 'projectStructures', test.expected),
+                            scssAdditionalImportsArray: []
+                        });
+                    const result = projectBundle(graph, 'root', 'some/', new RegExp('_exclud'));
+                    assert.deepEqual(JSON.parse(result), importsGraphsExpected[test.expected]);
                 });
             });
         });

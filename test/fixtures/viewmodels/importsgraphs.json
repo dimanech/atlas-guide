@@ -1,5 +1,5 @@
 {
-    "deepTree": {
+    "deep": {
         "root": {
             "id": "root",
             "size": 0
@@ -14,7 +14,7 @@
         },
         "root/standalone-1.scss/components/_index.scss": {
             "id": "root/standalone-1.scss/components/_index.scss",
-            "size": 0
+            "size": 19
         },
         "root/standalone-1.scss/components/_index.scss/components": {
             "id": "root/standalone-1.scss/components/_index.scss/components",
@@ -26,10 +26,10 @@
         },
         "root/standalone-1.scss/components/_index.scss/components/foo/_bar.scss": {
             "id": "root/standalone-1.scss/components/_index.scss/components/foo/_bar.scss",
-            "size": 0
+            "size": 22
         }
     },
-    "flatTree": {
+    "semi-flat": {
         "root": {
             "id": "root",
             "size": 0
@@ -44,11 +44,11 @@
         },
         "root/standalone-1.scss/components/_bar.scss": {
             "id": "root/standalone-1.scss/components/_bar.scss",
-            "size": 0
+            "size": 22
         },
         "root/standalone-1.scss/components/_foo.scss": {
             "id": "root/standalone-1.scss/components/_foo.scss",
-            "size": 0
+            "size": 22
         },
         "root/standalone-2.scss": {
             "id": "root/standalone-2.scss",
@@ -60,14 +60,14 @@
         },
         "root/standalone-2.scss/components/_bar.scss": {
             "id": "root/standalone-2.scss/components/_bar.scss",
-            "size": 0
+            "size": 22
         },
         "root/standalone-2.scss/components/_foo.scss": {
             "id": "root/standalone-2.scss/components/_foo.scss",
-            "size": 0
+            "size": 22
         }
     },
-    "deepTreeMultipleLevels": {
+    "multi-level": {
         "root": {
             "id": "root",
             "size": 0
@@ -82,7 +82,7 @@
         },
         "root/components-else-standalone-3.scss/components/_index.scss": {
             "id": "root/components-else-standalone-3.scss/components/_index.scss",
-            "size": 0
+            "size": 19
         },
         "root/components-else-standalone-3.scss/components/_index.scss/components": {
             "id": "root/components-else-standalone-3.scss/components/_index.scss/components",
@@ -94,7 +94,7 @@
         },
         "root/components-else-standalone-3.scss/components/_index.scss/components/foo/_bar.scss": {
             "id": "root/components-else-standalone-3.scss/components/_index.scss/components/foo/_bar.scss",
-            "size": 0
+            "size": 22
         },
         "root/components-standalone-2.scss": {
             "id": "root/components-standalone-2.scss",
@@ -106,7 +106,7 @@
         },
         "root/components-standalone-2.scss/components/_index.scss": {
             "id": "root/components-standalone-2.scss/components/_index.scss",
-            "size": 0
+            "size": 19
         },
         "root/components-standalone-2.scss/components/_index.scss/components": {
             "id": "root/components-standalone-2.scss/components/_index.scss/components",
@@ -118,7 +118,7 @@
         },
         "root/components-standalone-2.scss/components/_index.scss/components/foo/_bar.scss": {
             "id": "root/components-standalone-2.scss/components/_index.scss/components/foo/_bar.scss",
-            "size": 0
+            "size": 22
         },
         "root/standalone-1.scss": {
             "id": "root/standalone-1.scss",
@@ -130,7 +130,7 @@
         },
         "root/standalone-1.scss/components/_index.scss": {
             "id": "root/standalone-1.scss/components/_index.scss",
-            "size": 0
+            "size": 19
         },
         "root/standalone-1.scss/components/_index.scss/components": {
             "id": "root/standalone-1.scss/components/_index.scss/components",
@@ -142,7 +142,7 @@
         },
         "root/standalone-1.scss/components/_index.scss/components/foo/_bar.scss": {
             "id": "root/standalone-1.scss/components/_index.scss/components/foo/_bar.scss",
-            "size": 0
+            "size": 22
         }
     }
 }
