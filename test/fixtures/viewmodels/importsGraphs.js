@@ -5,19 +5,19 @@ const basePath = process.cwd().replace(/\\/g, '\\');
 const pathSep = path.sep !== '/' ? '\\' : '/';
 
 const deepTree = `{
-    "dir": "${basePath}${pathSep}",
+    "dir": "${path.join(basePath)}",
     "index": {
-        "${basePath}${pathSep}standalone-1.scss": {
+        "${path.join(basePath, 'standalone-1.scss')}": {
             "imports": [
-                "${basePath}${pathSep}components${pathSep}_index.scss"
+                "${path.join(basePath, 'components', '_index.scss')}"
             ]
         },
-        "${basePath}${pathSep}components${pathSep}foo${pathSep}_bar.scss": {
+        "${path.join(basePath, 'components', 'foo', '_bar.scss')}": {
             "imports": []
         },
-        "${basePath}${pathSep}components${pathSep}_index.scss": {
+        "${path.join(basePath, 'components', '_index.scss')}": {
             "imports": [
-                "${basePath}${pathSep}components${pathSep}foo${pathSep}_bar.scss"
+                "${path.join(basePath, 'components', 'foo', '_bar.scss')}"
             ]
         }
     }

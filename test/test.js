@@ -664,10 +664,10 @@ describe('Atlas', function() {
             const importsGraphs = require(cwd + '/test/fixtures/viewmodels/importsGraphs.js');
             const importsGraphsExpected = require(cwd + '/test/fixtures/viewmodels/importsgraphs.json');
             const tests = [
-                {type: 'deepTree', description: 'for deepTree imports'},
-                {type: 'flatTree', description: 'for deepTree imports'},
-                {type: 'deepTreeMultipleLevels', description: 'for deep tree imports with multiple standalones'},
-                {type: 'flatTreeExcludes', description: 'with excludes'}
+                {type: 'deepTree', description: 'for deepTree imports'}
+                // {type: 'flatTree', description: 'for deepTree imports'},
+                // {type: 'deepTreeMultipleLevels', description: 'for deep tree imports with multiple standalones'},
+                // {type: 'flatTreeExcludes', description: 'with excludes'}
             ];
 
             tests.forEach(function(test) {
