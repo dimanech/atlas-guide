@@ -41,7 +41,7 @@ function visitAncestors(importsGraph, ctx, file) {
         return;
     }
     const pathFromRoot = path.relative(pathToSCSS, file);
-    const newCtx = ctx + '/' + pathFromRoot;
+    const newCtx = ctx + '/' + pathFromRoot.replace(/\\\\/g, '/');
 
     recreatePathTree(ctx, pathFromRoot, file);
     importsGraph.index[file].imports.forEach(
