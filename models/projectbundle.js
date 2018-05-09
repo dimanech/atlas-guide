@@ -1,122 +1,104 @@
 'use strict';
 
-const fs = require('fs');
 const path = require('path');
+const fileSize = require('./utils/fileSize');
 
+const resultDelimiter = '/';
 let projectName;
-let pathToCSS;
 let pathToSCSS;
+let pathToCSS;
+let excludedSassFiles;
+let resultedGraph;
 
-function getfileSize(string) {
-    return Buffer.byteLength(string, 'utf8');
-}
-
-function getfileSizeWithoutComments(path) {
-    const fileString = fs.readFileSync(path, 'utf8');
-    const stripedFile = fileString.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
-
-    return getfileSize(stripedFile);
-}
-
-function getResultedFileSize(name) {
-    const filePath = path.join(pathToCSS, name.replace(/\.scss/, '.css'));
-    let fileString = '';
-
-    if (fs.existsSync(filePath)) {
-        fileString = fs.readFileSync(filePath, 'utf8');
-    }
-
-    return getfileSize(fileString);
-}
-
-function getDestinationList(pathStr, fileName) {
-    const sep = path.sep;
-    return path.relative(pathToSCSS, pathStr)
-        .replace(new RegExp(sep + fileName), '').split(sep);
-}
-
-function recreatePathTreeForPartial(importsPaths, importFile, fileName, partialFileSize, destinationList) {
-    let cumulativePath = projectName + '/' + importFile;
-    const pushNode = size => {
-        if (!importsPaths.hasOwnProperty(cumulativePath)) {
-            importsPaths[cumulativePath] = {
-                id: cumulativePath,
-                size: size
-            };
+/**
+ * Push each path item as separate node to the graph
+ * @param {string} ctx - prefix for transformed path in format like 'root/standalone-file.css'
+ * @param {string} relativePath - path to file relative to scss root
+ * @param {string} fullPath - absolute path to the file
+ */
+function recreatePathTree(ctx, relativePath, fullPath) {
+    const destinationList = relativePath.split(path.sep);
+    let cumulativePath = ctx;
+    destinationList.forEach(function(item) {
+        cumulativePath += resultDelimiter + item;
+        if (resultedGraph.hasOwnProperty(cumulativePath)) {
+            return;
         }
-    };
-
-    // push standalone resulted file
-    pushNode(getResultedFileSize(importFile));
-
-    // push all missing mediate folders
-    destinationList.forEach(item => {
-        cumulativePath = cumulativePath + '/' + item;
-        pushNode(0);
-    });
-
-    // push partial file
-    cumulativePath = cumulativePath + '/' + fileName;
-    pushNode(partialFileSize);
-}
-
-function recreatePathTreeForStandalone(importsPaths, standaloneFile) {
-    if (!importsPaths.hasOwnProperty(standaloneFile)) {
-        importsPaths[standaloneFile] = {
-            id: standaloneFile,
-            size: getResultedFileSize(standaloneFile, pathToCSS)
+        resultedGraph[cumulativePath] = {
+            id: cumulativePath,
+            size: item.match(/\.scss$/) ? fileSize.getFileSizeWithoutComments(fullPath) : 0
         };
-    }
+    });
 }
 
-function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSassFiles) {
-    projectName = projectNamePassed;
-    pathToCSS = pathToCSSPassed;
-    pathToSCSS = importsGraph.dir;
+/**
+ * Recursive visit all files and their imports up to the tree and process each import
+ * @param {object} importsGraph
+ * @param {string} ctx - prefix for transformed path in format like 'root/standalone-file.css'
+ * @param {string} file - absolute path to the file
+ */
+function visitAncestors(importsGraph, ctx, file) {
+    if (excludedSassFiles.test(file)) {
+        return;
+    }
+    const pathFromRoot = path.relative(pathToSCSS, file);
+    const newCtx = ctx + resultDelimiter + pathFromRoot.replace(/[\\|/]/g, resultDelimiter);
 
-    let importsPaths = {};
-    importsPaths[projectName] = {
+    recreatePathTree(ctx, pathFromRoot, file);
+    importsGraph.index[file].imports.forEach(
+        declaredImport => visitAncestors(importsGraph, newCtx, declaredImport));
+}
+
+/**
+ * Initialize transformed graph object and visit all standalone scss files imports up to the tree
+ * @param importsGraph
+ */
+function prepareImportsGraph(importsGraph) {
+    resultedGraph = {};
+    resultedGraph[projectName] = {
         id: projectName,
         size: 0
     };
 
     for (let file in importsGraph.index) {
-        if (
-            !importsGraph.index.hasOwnProperty(file) ||
+        if (!importsGraph.index.hasOwnProperty(file) ||
             excludedSassFiles.test(file) ||
-            // avoid to include additional imported sass component from graph
-            // we use relative path to find if component path outside of project
-            // we do this to avoid regexp with win paths
-            // this could be buggy
-            /^\.\./.test(path.relative(pathToSCSS, file))
+            /^_/.test(path.basename(file))
         ) {
             continue;
         }
-        const pathStr = file.toString();
-        const fileName = path.basename(pathStr);
-        const isPartial = /^_/i.test(fileName);
+        const standaloneFile = path.relative(pathToSCSS, file)
+        // replace path separator for deep nested standalone files
+        // "some/other/standalone.scss" become "some-other-standalone.scss"
+            .replace(/[\\\\|/]/g, '-');
+        const standaloneFileImports = importsGraph.index[file].imports;
+        const initialCtx = projectName + resultDelimiter + standaloneFile;
 
-        if (isPartial) {
-            const importedBy = importsGraph.index[file].importedBy;
-            const destinationList = getDestinationList(pathStr, fileName);
-            const partialFileSize = getfileSizeWithoutComments(file);
-
-            importedBy.forEach(importedBy => {
-                const importFile = path.relative(pathToSCSS, importedBy.toString()); // NB: could be import to partial
-                recreatePathTreeForPartial(importsPaths, importFile, fileName, partialFileSize, destinationList);
-            });
-        } else {
-            const standaloneFile = projectName + '/' + path.relative(pathToSCSS, pathStr);
-            recreatePathTreeForStandalone(importsPaths, standaloneFile);
-        }
+        resultedGraph[initialCtx] = {
+            id: initialCtx,
+            size: fileSize.getResultedCSSFileSize(path.basename(file), pathToCSS)
+        };
+        standaloneFileImports.forEach(item => visitAncestors(importsGraph, initialCtx, item));
     }
+}
 
-    const orderedPath = {};
-    Object.keys(importsPaths).sort().forEach(function (key) {
-        orderedPath[key] = importsPaths[key];
+function sortGraph() {
+    let orderedResultedGraph = {};
+    Object.keys(resultedGraph).sort().forEach(function(key) {
+        orderedResultedGraph[key] = resultedGraph[key];
     });
+    return orderedResultedGraph;
+}
 
-    return JSON.stringify(orderedPath);
+function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSassFilesPassed) {
+    projectName = projectNamePassed;
+    pathToSCSS = importsGraph.dir;
+    pathToCSS = pathToCSSPassed;
+    excludedSassFiles = excludedSassFilesPassed;
+
+    prepareImportsGraph(importsGraph);
+
+    return JSON.stringify(sortGraph(resultedGraph));
 }
 
 module.exports = getImports;

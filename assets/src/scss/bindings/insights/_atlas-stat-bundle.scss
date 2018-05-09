@@ -2,13 +2,24 @@
 	margin-left: -#{$space-md-atlas};
 	margin-top: -150px;
 
-	.atlas-link {}
+	.atlas-link {
+		stroke: $color-blue-atlas;
+	}
+
+	.atlas-size {
+		fill: rgba($color-blue-atlas, 0.2);
+		stroke: $color-blue79-atlas;
+	}
 
 	.atlas-node {
 		text {
 			fill: $atlas-color-text;
 			font-family: $font-mono-atlas;
 			font-size: 8px;
+		}
+
+		circle {
+			fill: $color-blue-atlas;
 		}
 
 		&._internal {
@@ -24,6 +35,10 @@
 				font-weight: bold;
 				text-anchor: middle;
 			}
+
+			circle {
+				fill: white;
+			}
 		}
 
 		&._1 {
@@ -33,7 +48,7 @@
 			}
 
 			circle {
-				r: 3px;
+				r: 4px;
 			}
 		}
 	}
