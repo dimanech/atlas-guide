@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const basePath = process.cwd();
+const basePath = process.cwd().replace(/\\/, '\\');
 const pathSep = path.sep !== '/' ? '\\' : '/';
 
 const deepTree = `{
