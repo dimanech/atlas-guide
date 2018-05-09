@@ -4,6 +4,7 @@ const path = require('path');
 
 let projectName;
 let pathToSCSS;
+let excludedSassFiles;
 let resultedGraph;
 
 function recreatePathTree(ctx, file) {
@@ -21,6 +22,9 @@ function recreatePathTree(ctx, file) {
 }
 
 function visitAncestors(importsGraph, ctx, file) {
+    if (excludedSassFiles.test(file)) {
+        return;
+    }
     const pathFromRoot = path.relative(pathToSCSS, file);
     const newCtx = ctx + '/' + pathFromRoot;
 
@@ -29,18 +33,17 @@ function visitAncestors(importsGraph, ctx, file) {
         declaredImport => visitAncestors(importsGraph, newCtx, declaredImport));
 }
 
-function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSassFiles) {
-    projectName = projectNamePassed;
-    pathToSCSS = importsGraph.dir;
+function prepareImportsGraph(importsGraph) {
     resultedGraph = {};
-
     resultedGraph[projectName] = {
         id: projectName
     };
 
     for (let file in importsGraph.index) {
-        if (!importsGraph.index.hasOwnProperty(file) || excludedSassFiles.test(file) ||
-            /^\.\./.test(path.relative(pathToSCSS, file)) || /^_/.test(path.basename(file))) {
+        if (!importsGraph.index.hasOwnProperty(file) ||
+            excludedSassFiles.test(file) ||
+            /^_/.test(path.basename(file))
+        ) {
             continue;
         }
         const standaloneFile = path.relative(pathToSCSS, file).replace(new RegExp(path.sep), '-');
@@ -52,12 +55,24 @@ function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSa
         };
         standaloneFileImports.forEach(item => visitAncestors(importsGraph, initialCtx, item));
     }
+}
 
+function sortGraph() {
     let orderedResultedGraph = {};
-    Object.keys(resultedGraph).sort().forEach(function (key) {
+    Object.keys(resultedGraph).sort().forEach(function(key) {
         orderedResultedGraph[key] = resultedGraph[key];
     });
-    return JSON.stringify(orderedResultedGraph);
+    return orderedResultedGraph;
+}
+
+function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSassFilesPassed) {
+    excludedSassFiles = excludedSassFilesPassed;
+    projectName = projectNamePassed;
+    pathToSCSS = importsGraph.dir;
+
+    prepareImportsGraph(importsGraph);
+
+    return JSON.stringify(sortGraph(resultedGraph));
 }
 
 module.exports = getImports;
