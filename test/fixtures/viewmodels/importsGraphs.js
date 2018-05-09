@@ -2,7 +2,7 @@
 
 const path = require('path');
 const basePath = process.cwd();
-const pathSep = path.sep;
+const pathSep = path.sep !== '/' ? '\\' : '/';
 
 const deepTree = `{
     "dir": "${basePath}${pathSep}",
