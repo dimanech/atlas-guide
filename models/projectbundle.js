@@ -3,6 +3,7 @@
 const path = require('path');
 const fileSize = require('./utils/fileSize');
 
+const resultDelimiter = '/';
 let projectName;
 let pathToSCSS;
 let pathToCSS;
@@ -19,7 +20,7 @@ function recreatePathTree(ctx, relativePath, fullPath) {
     const destinationList = relativePath.split(path.sep);
     let cumulativePath = ctx;
     destinationList.forEach(function(item) {
-        cumulativePath += '/' + item;
+        cumulativePath += resultDelimiter + item;
         if (resultedGraph.hasOwnProperty(cumulativePath)) {
             return;
         }
@@ -41,7 +42,7 @@ function visitAncestors(importsGraph, ctx, file) {
         return;
     }
     const pathFromRoot = path.relative(pathToSCSS, file);
-    const newCtx = ctx + '/' + pathFromRoot.replace(/\\\\/g, '/');
+    const newCtx = ctx + resultDelimiter + pathFromRoot.replace(/[\\|/]/g, resultDelimiter);
 
     recreatePathTree(ctx, pathFromRoot, file);
     importsGraph.index[file].imports.forEach(
@@ -71,7 +72,7 @@ function prepareImportsGraph(importsGraph) {
         // "some/other/standalone.scss" become "some-other-standalone.scss"
             .replace(/[\\\\|/]/g, '-');
         const standaloneFileImports = importsGraph.index[file].imports;
-        const initialCtx = projectName + '/' + standaloneFile;
+        const initialCtx = projectName + resultDelimiter + standaloneFile;
 
         resultedGraph[initialCtx] = {
             id: initialCtx,

@@ -664,20 +664,20 @@ describe('Atlas', function() {
             const importsGraph = require(cwd + '/models/projectimportsgraph.js').getImportsGraph;
             const importsGraphsExpected = require(cwd + '/test/fixtures/viewmodels/importsgraphs.json');
             const tests = [
-                {expected: 'deep', description: 'for deep tree imports'},
-                {expected: 'semi-flat', description: 'for flat imports'},
-                {expected: 'multi-level', description: 'for deep tree imports with multiple standalones'}
+                {type: 'deep', description: 'for deep tree imports'},
+                {type: 'semi-flat', description: 'for flat imports'},
+                {type: 'multi-level', description: 'for deep tree imports with multiple standalones'}
             ];
 
             tests.forEach(function(test) {
                 it('should return proper model ' + test.description, function() {
                     const graph =
                         importsGraph({
-                            scssSrc: path.join(cwd, 'test', 'fixtures', 'projectStructures', test.expected),
+                            scssSrc: path.join(cwd, 'test', 'fixtures', 'projectStructures', test.type),
                             scssAdditionalImportsArray: []
                         });
                     const result = projectBundle(graph, 'root', 'some/', new RegExp('_exclud'));
-                    assert.deepEqual(JSON.parse(result), importsGraphsExpected[test.expected]);
+                    assert.deepEqual(JSON.parse(result), importsGraphsExpected[test.type]);
                 });
             });
         });
