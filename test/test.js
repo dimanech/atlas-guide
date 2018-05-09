@@ -659,6 +659,112 @@ describe('Atlas', function() {
                 assert.deepEqual(result, expected);
             });
         });
+        describe.only('projectbundle', function() {
+            const projectBundle = require(cwd + '/models/projectbundle.js');
+
+            it('should return proper model for deep tree imports', function() {
+                const importsGraph = {
+                    dir: 'Users/dima/workspace/weiss/atlas/path/to/project/',
+                    index: {
+                        'Users/dima/workspace/weiss/atlas/path/to/project/standalone-1.scss': {
+                            imports: [
+                                'Users/dima/workspace/weiss/atlas/path/to/project/components/_index.scss'
+                            ]
+                        },
+                        'Users/dima/workspace/weiss/atlas/path/to/project/components/foo/_bar.scss': {
+                            imports: []
+                        },
+                        'Users/dima/workspace/weiss/atlas/path/to/project/components/_index.scss': {
+                            imports: [
+                                'Users/dima/workspace/weiss/atlas/path/to/project/components/foo/_bar.scss'
+                            ]
+                        }
+                    }
+                };
+                const result = projectBundle(importsGraph, 'root', 'some/', new RegExp('some'));
+                const expected = {
+                    'root': {
+                        'id': 'root'
+                    },
+                    'root/standalone-1.scss': {
+                        'id': 'root/standalone-1.scss'
+                    },
+                    'root/standalone-1.scss/components': {
+                        'id': 'root/standalone-1.scss/components'
+                    },
+                    'root/standalone-1.scss/components/_index.scss': {
+                        'id': 'root/standalone-1.scss/components/_index.scss'
+                    },
+                    'root/standalone-1.scss/components/_index.scss/components': {
+                        'id': 'root/standalone-1.scss/components/_index.scss/components'
+                    },
+                    'root/standalone-1.scss/components/_index.scss/components/foo': {
+                        'id': 'root/standalone-1.scss/components/_index.scss/components/foo'
+                    },
+                    'root/standalone-1.scss/components/_index.scss/components/foo/_bar.scss': {
+                        'id': 'root/standalone-1.scss/components/_index.scss/components/foo/_bar.scss'
+                    }
+                };
+                assert.strictEqual(result, JSON.stringify(expected));
+            });
+            it('should return proper model for flat tree imports', function() {
+                const importsGraph = {
+                    dir: 'Users/dima/workspace/weiss/atlas/path/to/project/',
+                    index: {
+                        'Users/dima/workspace/weiss/atlas/path/to/project/standalone-1.scss': {
+                            imports: [
+                                'Users/dima/workspace/weiss/atlas/path/to/project/components/_foo.scss',
+                                'Users/dima/workspace/weiss/atlas/path/to/project/components/_bar.scss'
+                            ]
+                        },
+                        'Users/dima/workspace/weiss/atlas/path/to/project/standalone-2.scss': {
+                            imports: [
+                                'Users/dima/workspace/weiss/atlas/path/to/project/components/_foo.scss',
+                                'Users/dima/workspace/weiss/atlas/path/to/project/components/_bar.scss'
+                            ]
+                        },
+                        'Users/dima/workspace/weiss/atlas/path/to/project/components/_foo.scss': {
+                            imports: []
+                        },
+                        'Users/dima/workspace/weiss/atlas/path/to/project/components/_bar.scss': {
+                            imports: []
+                        }
+                    }
+                };
+                const result = projectBundle(importsGraph, 'root', 'some/', new RegExp('some'));
+                const expected = {
+                    'root': {
+                        'id': 'root'
+                    },
+                    'root/standalone-1.scss': {
+                        'id': 'root/standalone-1.scss'
+                    },
+                    'root/standalone-1.scss/components': {
+                        'id': 'root/standalone-1.scss/components'
+                    },
+                    'root/standalone-1.scss/components/_bar.scss': {
+                        'id': 'root/standalone-1.scss/components/_bar.scss'
+                    },
+                    'root/standalone-1.scss/components/_foo.scss': {
+                        'id': 'root/standalone-1.scss/components/_foo.scss'
+                    },
+                    'root/standalone-2.scss': {
+                        'id': 'root/standalone-2.scss'
+                    },
+                    'root/standalone-2.scss/components': {
+                        'id': 'root/standalone-2.scss/components'
+                    },
+                    'root/standalone-2.scss/components/_bar.scss': {
+                        'id': 'root/standalone-2.scss/components/_bar.scss'
+                    },
+                    'root/standalone-2.scss/components/_foo.scss': {
+                        'id': 'root/standalone-2.scss/components/_foo.scss'
+                    }
+                };
+                fs.writeFileSync('graph.json', result, null, '\t');
+                assert.strictEqual(result, JSON.stringify(expected));
+            });
+        });
     });
     describe('format()', function() {
         const format = require(cwd + '/viewmodels/utils/format');
