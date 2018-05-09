@@ -66,7 +66,8 @@ function prepareImportsGraph(importsGraph) {
         ) {
             continue;
         }
-        const standaloneFile = path.relative(pathToSCSS, file).replace(new RegExp(path.sep), '-');
+        // replace path separator for deep nested standalone files like /root/some/other/standalone.scss
+        const standaloneFile = path.relative(pathToSCSS, file).replace(new RegExp(path.sep, 'g'), '-');
         const standaloneFileImports = importsGraph.index[file].imports;
         const initialCtx = projectName + '/' + standaloneFile;
 
