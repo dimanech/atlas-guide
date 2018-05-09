@@ -477,6 +477,16 @@ Other steps should be simple:
 
 After that styleguide page and components stat hints would be generated beside components regular building cycle.
 
+## Troubleshooting
+
+### I need to remove unneeded graphs, info, features etc. How to do this?
+
+The most robust way to do this is extend templates on project level and remove views that responsible for that.
+
+### I build dependency graph but it has too much duplicate imports since each our resulted file include the same files.
+
+To clean up the graph you could add duplicated files into scss ignore list. To do this put regexp to `excludedSassFiles` field.
+
 ## Contributing
 
 You are welcome for ideas, help and of course code contributing.
