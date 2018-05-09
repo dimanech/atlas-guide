@@ -79,7 +79,6 @@
         .enter().append('path')
         .attr('class', 'atlas-link')
         .attr('fill', 'none')
-        .attr('stroke', 'rgba(0, 0, 0, 0.5)')
         .attr('stroke-width', 0.5)
         .attr('d', d => 'M' + radialPoint(d.x, d.y) + 'L' + radialPoint(d.parent.x, d.parent.y));
 
@@ -89,8 +88,8 @@
         .attr('transform', d => 'translate(' + radialPoint(d.x, d.y) + ')');
 
     size.append('circle')
+        .attr('class', 'atlas-size')
         .attr('fill', d => z(rawdata[d.id].size))
-        .style('opacity', '0.5')
         .attr('r', d => markFileSize(d));
 
     const node = inner.selectAll('.atlas-node')

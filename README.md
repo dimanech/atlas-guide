@@ -1,6 +1,6 @@
 # Atlas-guide
 
-[![Coverage Status](https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master&servic)](https://coveralls.io/github/dimanech/atlas-guide?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master&service)](https://coveralls.io/github/dimanech/atlas-guide?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f37cf365f3315cfc287c/maintainability)](https://codeclimate.com/github/dimanech/atlas-guide/maintainability)
 [![Linux build status](https://travis-ci.org/dimanech/atlas-guide.svg?branch=master)](https://travis-ci.org/dimanech/atlas-guide/)
 [![Win build status](https://ci.appveyor.com/api/projects/status/xiaw6yi35d527i67/branch/master?svg=true)](https://ci.appveyor.com/project/dimanech/atlas-guide/branch/master)
@@ -11,11 +11,11 @@
 Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive
 styles monitoring and Sass components reports.
 
-It is opinionated because it is probably impossible to cover all cases in CSS/Sass.
-It designed primarily as "Styleguide driven development" tool with focus on split files approach and incapsulated components.
+It is opinionated because it is, probably, impossible to cover all cases in CSS/Sass.
+It designed primarily as "Style-guide driven development" tool with focus on splited files approach and incapsulated components with normative Sass imports structure.
 
-[Live example](https://dimanech.github.io/atlas-guide/)
-[Video example](https://youtu.be/Vohb_Xl6S54)
+* [Live example](https://dimanech.github.io/atlas-guide/)
+* [Video example](https://youtu.be/Vohb_Xl6S54)
 
 ![atlas-component](docs/screens/atlas-component.jpeg)
 
@@ -476,6 +476,16 @@ Other steps should be simple:
 ```
 
 After that styleguide page and components stat hints would be generated beside components regular building cycle.
+
+## Troubleshooting
+
+### I need to remove unneeded graphs, info, features etc. How to do this?
+
+The most robust way to do this is extend templates on project level and remove views that responsible for that.
+
+### I build dependency graph but it has too much duplicate imports since each our resulted file include the same files.
+
+To clean up the graph you could add duplicated files into scss ignore list. To do this put regexp to `excludedSassFiles` field.
 
 ## Contributing
 
