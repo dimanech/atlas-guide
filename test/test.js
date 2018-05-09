@@ -659,6 +659,28 @@ describe('Atlas', function() {
                 assert.deepEqual(result, expected);
             });
         });
+        describe('projectbundle', function() {
+            const projectBundle = require(cwd + '/models/projectbundle.js');
+            const importsGraph = require(cwd + '/models/projectimportsgraph.js').getImportsGraph;
+            const importsGraphsExpected = require(cwd + '/test/fixtures/viewmodels/importsgraphs.json');
+            const tests = [
+                {type: 'deep', description: 'for deep tree imports'},
+                {type: 'semi-flat', description: 'for flat imports'},
+                {type: 'multi-level', description: 'for deep tree imports with multiple standalones'}
+            ];
+
+            tests.forEach(function(test) {
+                it('should return proper model ' + test.description, function() {
+                    const graph =
+                        importsGraph({
+                            scssSrc: path.join(cwd, 'test', 'fixtures', 'projectStructures', test.type),
+                            scssAdditionalImportsArray: []
+                        });
+                    const result = projectBundle(graph, 'root', 'some/', new RegExp('_exclud'));
+                    assert.deepEqual(JSON.parse(result), importsGraphsExpected[test.type]);
+                });
+            });
+        });
     });
     describe('format()', function() {
         const format = require(cwd + '/viewmodels/utils/format');
