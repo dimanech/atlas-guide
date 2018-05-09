@@ -1,14 +1,22 @@
 'use strict';
 
 const path = require('path');
+const fileSize = require('./utils/fileSize');
 
 let projectName;
 let pathToSCSS;
+let pathToCSS;
 let excludedSassFiles;
 let resultedGraph;
 
-function recreatePathTree(ctx, file) {
-    const destinationList = file.split(path.sep);
+/**
+ * Push each path item as separate node to the graph
+ * @param {string} ctx - prefix for transformed path in format like 'root/standalone-file.css'
+ * @param {string} relativePath - path to file relative to scss root
+ * @param {string} fullPath - absolute path to the file
+ */
+function recreatePathTree(ctx, relativePath, fullPath) {
+    const destinationList = relativePath.split(path.sep);
     let cumulativePath = ctx;
     destinationList.forEach(function(item) {
         cumulativePath += '/' + item;
@@ -16,11 +24,18 @@ function recreatePathTree(ctx, file) {
             return;
         }
         resultedGraph[cumulativePath] = {
-            id: cumulativePath
+            id: cumulativePath,
+            size: item.match(/\.scss$/) ? fileSize.getFileSizeWithoutComments(fullPath) : 0
         };
     });
 }
 
+/**
+ * Recursive visit all files and their imports up to the tree and process each import
+ * @param {object} importsGraph
+ * @param {string} ctx - prefix for transformed path in format like 'root/standalone-file.css'
+ * @param {string} file - absolute path to the file
+ */
 function visitAncestors(importsGraph, ctx, file) {
     if (excludedSassFiles.test(file)) {
         return;
@@ -28,15 +43,20 @@ function visitAncestors(importsGraph, ctx, file) {
     const pathFromRoot = path.relative(pathToSCSS, file);
     const newCtx = ctx + '/' + pathFromRoot;
 
-    recreatePathTree(ctx, pathFromRoot);
+    recreatePathTree(ctx, pathFromRoot, file);
     importsGraph.index[file].imports.forEach(
         declaredImport => visitAncestors(importsGraph, newCtx, declaredImport));
 }
 
+/**
+ * Initialize transformed graph object and visit all standalone scss files imports up to the tree
+ * @param importsGraph
+ */
 function prepareImportsGraph(importsGraph) {
     resultedGraph = {};
     resultedGraph[projectName] = {
-        id: projectName
+        id: projectName,
+        size: 0
     };
 
     for (let file in importsGraph.index) {
@@ -51,7 +71,8 @@ function prepareImportsGraph(importsGraph) {
         const initialCtx = projectName + '/' + standaloneFile;
 
         resultedGraph[initialCtx] = {
-            id: initialCtx
+            id: initialCtx,
+            size: fileSize.getResultedCSSFileSize(path.basename(file), pathToCSS)
         };
         standaloneFileImports.forEach(item => visitAncestors(importsGraph, initialCtx, item));
     }
@@ -66,9 +87,10 @@ function sortGraph() {
 }
 
 function getImports(importsGraph, projectNamePassed, pathToCSSPassed, excludedSassFilesPassed) {
-    excludedSassFiles = excludedSassFilesPassed;
     projectName = projectNamePassed;
     pathToSCSS = importsGraph.dir;
+    pathToCSS = pathToCSSPassed;
+    excludedSassFiles = excludedSassFilesPassed;
 
     prepareImportsGraph(importsGraph);
 

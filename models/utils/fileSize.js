@@ -3,30 +3,44 @@
 const fs = require('fs');
 const path = require('path');
 
-function getfileSize(string) {
+function getFileSize(string) {
     return Buffer.byteLength(string, 'utf8');
 }
 
-function getfileSizeWithoutComments(path) {
-    const fileString = fs.readFileSync(path, 'utf8');
-    const stripedFile = fileString.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
-
-    return getfileSize(stripedFile);
+function getFileString(path) {
+    let fileString = '';
+    if (fs.existsSync(path)) {
+        fileString = fs.readFileSync(path, 'utf8');
+    }
+    return fileString;
 }
 
-function getResultedFileSize(name, pathToCSS) {
-    const filePath = path.join(pathToCSS, name.replace(/\.scss/, '.css'));
-    let fileString = '';
+/**
+ * Get file size without "C"-style comments
+ * @param path
+ * @return {int} file size in bytes
+ */
+function getFileSizeWithoutComments(path) {
+    const fileString = getFileString(path);
+    const stripedFile = fileString.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
 
-    if (fs.existsSync(filePath)) {
-        fileString = fs.readFileSync(filePath, 'utf8');
-    }
+    return getFileSize(stripedFile);
+}
 
-    return getfileSize(fileString);
+/**
+ * Get file size of compiled CSS file from SCSS standalone file name as argument
+ * @param {string} fileName - name of standalone SCSS file
+ * @param {string} pathToCSS - absolute path to CSS files directory
+ * @return {int} file size in bytes
+ */
+function getResultedFileSize(fileName, pathToCSS) {
+    const filePath = path.join(pathToCSS, fileName.replace(/\.scss/, '.css'));
+    const fileString = getFileString(filePath);
+
+    return getFileSize(fileString);
 }
 
 module.exports = {
-    getFileSize: getfileSize,
-    getFileSizeWithoutComments: getfileSizeWithoutComments,
+    getFileSizeWithoutComments: getFileSizeWithoutComments,
     getResultedCSSFileSize: getResultedFileSize
 };
