@@ -28,14 +28,11 @@
     }
 
     function markFileSize(d) {
-        const fileWeight = fileSize(rawdata[d.id].size);
-        let radius = 0;
+        let radius = fileSize(rawdata[d.id].size);
 
-        if (d.children) {
-            radius = fileWeight;
-        } else {
-            radius = fileWeight;
-        }
+        // if (d.children) {
+        //     radius = fileWeight;
+        // }
 
         if (d.depth === 0) {
             radius = 0;

@@ -82,7 +82,7 @@ function prepareImportsGraph(importsGraph) {
     }
 }
 
-function sortGraph() {
+function sortGraph(resultedGraph) {
     let orderedResultedGraph = {};
     Object.keys(resultedGraph).sort().forEach(function(key) {
         orderedResultedGraph[key] = resultedGraph[key];
