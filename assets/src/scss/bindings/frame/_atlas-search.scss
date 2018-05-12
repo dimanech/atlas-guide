@@ -1,10 +1,10 @@
 .atlas-search {
 	position: relative;
 
-	input {
+	&__input {
 		-webkit-appearance: none;
 		background: transparent;
-		border: 1px solid $aside-bd;
+		border: 1px solid $atlas-aside-bd;
 		border-radius: 5px;
 		font-family: $font-sans-atlas;
 		font-size: 13px;
@@ -16,7 +16,7 @@
 		width: 100%;
 
 		&:focus {
-			background: darken($aside-bg, 5%);
+			background: darken($atlas-aside-bg, 5%);
 		}
 
 		&::-webkit-search-cancel-button,
@@ -29,7 +29,7 @@
 		}
 	}
 
-	svg {
+	&__icon {
 		color: $atlas-color-text;
 		height: 16px;
 		left: 6px;
@@ -42,14 +42,15 @@
 		}
 	}
 
-	button {
-		background: darken($aside-bd, 30%);
+	&__clear {
+		background: darken($atlas-aside-bd, 30%);
 		border: none;
 		border-radius: 50%;
 		color: $color-white-atlas;
 		font-family: $font-sans-atlas;
-		font-size: 8px;
+		font-size: 12px;
 		height: 14px;
+		line-height: 14px;
 		outline: none;
 		padding: 0;
 		position: absolute;
@@ -60,7 +61,7 @@
 		width: 14px;
 
 		&:hover {
-			background: darken($aside-bd, 40%);
+			background: darken($atlas-aside-bd, 40%);
 		}
 
 		&:focus {
@@ -68,7 +69,7 @@
 		}
 
 		&:active {
-			background: darken($aside-bd, 50%);
+			background: darken($atlas-aside-bd, 50%);
 		}
 
 		.js-found & {

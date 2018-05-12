@@ -1,5 +1,5 @@
 .atlas-aside {
-	background-color: $aside-bg;
+	background-color: $atlas-aside-bg;
 	bottom: 0;
 	display: flex;
 	flex-direction: column;
@@ -26,7 +26,7 @@
 		position: relative;
 
 		&::after {
-			background: linear-gradient(rgba($color-white-atlas, 0), $aside-bg);
+			background: linear-gradient(rgba($color-white-atlas, 0), $atlas-aside-bg);
 			content: "";
 			display: block;
 			height: 20px;

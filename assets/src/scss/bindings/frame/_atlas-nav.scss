@@ -36,7 +36,7 @@
 		}
 
 		&.js-current-page {
-			background-color: $aside-selected;
+			background-color: $atlas-aside-selected;
 			color: black;
 			cursor: default;
 			pointer-events: none;
@@ -86,7 +86,7 @@
 	// Recursive nesting level structure - refactor me later
 	> .atlas-nav__item {
 		> .atlas-nav__ln {
-			background: $aside-bg;
+			background: $atlas-aside-bg;
 			display: block;
 			padding: $space-sm-atlas $space-md-atlas;
 			position: sticky;
