@@ -3,11 +3,11 @@
 	color: $atlas-color-text;
 	display: block;
 	font-family: $font-sans-atlas;
-	font-size: 10px;
+	font-size: rem(10);
 	line-height: 1.2;
 	margin: 0;
 	overflow: hidden;
-	padding: 10px;
+	padding: $space-sm-atlas;
 	text-align: center;
 	text-overflow: ellipsis;
 	white-space: nowrap;

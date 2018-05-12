@@ -76,7 +76,7 @@ $local-const: 10px;
 .b-test {
 	@extend %some;
 	box-shadow: $depth-2;
-	color: $color-yellow-atlas;
+	color: $color-orange-atlas;
 	font-size: inherit;
 }
 

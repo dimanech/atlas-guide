@@ -3,6 +3,10 @@
 		padding-bottom: $space-sm-atlas;
 		text-align: center;
 
+		svg {
+			height: rem(30);
+		}
+
 		//svg {
 		//	animation: dasharray 1s alternate;
 		//}

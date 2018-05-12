@@ -2,7 +2,7 @@
 	all: initial;
 	color: $atlas-color-text;
 	font-family: $font-sans-atlas;
-	font-size: 15px;
+	font-size: $atlas-scale-primary;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 
@@ -265,6 +265,11 @@
 		&:active {
 			color: $color-blue-atlas;
 		}
+
+		svg {
+			height: rem(14);
+			width: rem(14);
+		}
 	}
 
 	&__highlight {
@@ -318,7 +323,7 @@
 
 @keyframes target-highlight {
 	0% {
-		background-color: $color-yellow-atlas;
+		background-color: $color-orange-atlas;
 	}
 
 	100% {

@@ -3,13 +3,13 @@
 	background-size: 1px 100%;
 	float: right;
 	font-family: $font-sans-atlas;
-	font-size: 13px;
+	font-size: $atlas-scale-secondary;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	margin-left: $space-md-atlas;
 	padding-left: $space-md-atlas;
 	position: relative;
-	width: 250px;
+	width: rem(250);
 	z-index: 1;
 
 	&__section {
@@ -18,14 +18,14 @@
 
 	&__title {
 		font-weight: bold;
-		margin-bottom: 5px;
+		margin-bottom: $space-sm-atlas / 2;
 	}
 
 	&__list {}
 
 	&__list-item {
 		font-family: $font-mono-atlas;
-		font-size: $atlas-mono-small;
+		font-size: $atlas-scale-mono-small;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -33,7 +33,7 @@
 		svg {
 			color: $color-blue-atlas;
 			position: relative;
-			top: 2px;
+			top: rem(2);
 			vertical-align: text-bottom;
 		}
 	}

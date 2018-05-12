@@ -11,7 +11,7 @@
 	z-index: 1;
 
 	&__header {
-		padding: 10px;
+		padding: $space-sm-atlas;
 	}
 
 	&__content {
@@ -30,12 +30,12 @@
 			background: linear-gradient(rgba($color-white-atlas, 0), $atlas-aside-bg);
 			content: "";
 			display: block;
-			height: 20px;
+			height: $space-md-atlas;
 			left: 4px;
 			pointer-events: none;
 			position: absolute;
 			right: 0;
-			top: -20px;
+			top: -#{$space-md-atlas};
 			z-index: 2;
 		}
 	}

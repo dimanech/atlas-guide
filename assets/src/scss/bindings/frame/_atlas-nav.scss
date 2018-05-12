@@ -1,6 +1,6 @@
 .atlas-nav { // atlas-outline-view
 	font-family: $font-sans-atlas;
-	font-size: 13px;
+	font-size: $atlas-scale-secondary;
 	line-height: 1.2;
 	list-style: none;
 	padding-bottom: $space-md-atlas;
@@ -19,7 +19,7 @@
 		cursor: pointer;
 		display: block;
 		overflow: hidden;
-		padding: 2px 0 4px;
+		padding: rem(2) 0 rem(4);
 		position: relative;
 		text-decoration: none;
 		text-overflow: ellipsis;
@@ -44,10 +44,10 @@
 		}
 
 		svg {
-			height: 18px;
+			height: rem(18);
 			pointer-events: none;
 			vertical-align: text-bottom;
-			width: 18px;
+			width: rem(18);
 		}
 
 		&._landing {
@@ -61,20 +61,20 @@
 
 			svg {
 				transform: rotate(90deg);
-				width: 8px;
+				width: rem(8);
 			}
 		}
 
 		&._guide {
 			svg {
-				width: 14px;
+				width: rem(14);
 			}
 		}
 
 		&._about {
 			svg {
-				margin-right: 3px;
-				width: 15px;
+				margin-right: rem(3);
+				width: rem(15);
 			}
 		}
 

@@ -30,7 +30,7 @@
 
     function asideShow() {
         container.classList.remove('js-aside-panel-hidden');
-        resizeTo(270);
+        resizeTo(250);
     }
 
     function asideToggle(event) {

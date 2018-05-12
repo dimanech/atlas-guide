@@ -33,8 +33,9 @@
 		line-height: 1.6;
 
 		svg {
-			margin-bottom: -3px;
-			width: 12px;
+			height: rem(16);
+			margin-bottom: -#{rem(3)};
+			width: rem(12);
 		}
 
 		&._success {
@@ -51,28 +52,29 @@
 		font-size: 0.8rem;
 		font-weight: normal;
 		margin: ($space-sm-atlas / 2) 0;
-		padding-left: 16px;
+		padding-left: rem(16);
 		position: relative;
 	}
 
 	&__counter {
-		$size: 12px;
+		$size: rem(12);
 		display: inline-block;
-		font-size: 10px;
+		font-size: rem(10);
 		font-weight: bold;
 		height: $size;
 		left: 0;
 		line-height: $size;
 		position: absolute;
 		text-align: center;
-		top: 2px;
+		top: rem(2);
 		width: $size;
 
 		svg {
-			left: -2px;
+			height: rem(16);
+			left: -#{rem(2)};
 			position: absolute;
-			top: -2px;
-			width: 11px;
+			top: -#{rem(2)};
+			width: rem(11);
 		}
 
 		&-digit {
@@ -84,7 +86,7 @@
 			color: $color-white-atlas;
 
 			svg {
-				color: $color-yellow-atlas;
+				color: $color-orange-atlas;
 			}
 		}
 
