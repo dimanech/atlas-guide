@@ -1,0 +1,74 @@
+.atlas-stat-page {
+	.bar {
+		fill: $color-blue79-atlas;
+	}
+
+	.bar-caption {
+		fill: $atlas-color-text;
+		font-size: 0.8rem;
+	}
+
+	.bar-caption-bottom {
+		fill: $atlas-color-text;
+		font-size: 0.8rem;
+	}
+
+	.area {
+		fill: url("#atlas-blue-gradient");
+		stroke: none;
+
+		&._huge {
+			fill: $color-blue79-atlas;
+		}
+	}
+
+	.area-line {
+		stroke: $color-blue-atlas;
+
+		&._huge {
+			stroke: none;
+		}
+	}
+
+	.tick {
+		font-family: $font-mono-atlas;
+
+		line {
+			stroke: rgba(black, 0.1);
+		}
+
+		&.mean {
+			line {
+				stroke: hotpink;
+				stroke-dasharray: 5, 5;
+				stroke-width: 0.4px;
+			}
+
+			text {
+				fill: hotpink;
+			}
+		}
+	}
+
+	.focus {
+		color: $atlas-color-text;
+		fill: black;
+		font-family: $font-mono-atlas;
+
+		circle {
+			fill: $color-white-atlas;
+			stroke: $color-blue-atlas;
+			stroke-width: 1px;
+		}
+
+		text {
+			font-size: $atlas-mono-small;
+		}
+	}
+
+	.js-bar-chart,
+	.js-line-chart {
+		width: 100%;
+		//margin: 0 -#{$space-md-atlas} 0 0;
+	}
+}
