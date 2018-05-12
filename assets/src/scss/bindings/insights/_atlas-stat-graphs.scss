@@ -39,13 +39,13 @@
 
 		&.mean {
 			line {
-				stroke: hotpink;
+				stroke: $color-pink-atlas;
 				stroke-dasharray: 5, 5;
 				stroke-width: 0.4px;
 			}
 
 			text {
-				fill: hotpink;
+				fill: $color-pink-atlas;
 			}
 		}
 	}
