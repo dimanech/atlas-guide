@@ -97,6 +97,11 @@
 		margin-bottom: $space-md-atlas;
 		margin-top: $space-md-atlas;
 		padding-left: $space-md-atlas;
+
+		li {
+			margin: 0;
+			padding: 0;
+		}
 	}
 
 	&-ol {

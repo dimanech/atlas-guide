@@ -37,13 +37,13 @@
         {{#content.bundleImports}}
             <div class="atlas-stat-columns__item">
                 <div role="heading" aria-level="3" class="atlas-stat-section__title-sub">{{name}}</div>
-                <div role="list" class="atlas-stat-list _imports">
+                <ol role="list" class="atlas-stat-list _imports">
                     {{#imports}}
-                        <div role="listitem" class="atlas-stat-list__item">
+                        <li role="listitem" class="atlas-stat-list__item">
                             <div class="atlas-stat-item">{{.}}</div>
-                        </div>
+                        </li>
                     {{/imports}}
-                </div>
+                </ol>
             </div>
         {{/content.bundleImports}}
     </div>

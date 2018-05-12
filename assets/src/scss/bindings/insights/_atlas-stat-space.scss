@@ -1,10 +1,12 @@
 .atlas-stat-space {
+	all: unset;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 
 	&__item {
 		display: flex;
-		margin-bottom: 2px;
+		margin: 0 0 2px;
+		padding: 0;
 	}
 
 	&__line {

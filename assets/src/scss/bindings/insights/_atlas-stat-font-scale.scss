@@ -1,12 +1,17 @@
 .atlas-stat-font-scale {
-	align-items: flex-end;
+	all: unset;
+	align-items: flex-end; // stylelint-disable-line
 	display: flex;
 	flex-wrap: wrap;
 	font-family: $font-sans-atlas;
 	line-height: 1.2;
+	margin: 0;
+	padding: 0;
 
 	&__item {
-		margin-bottom: 4rem;
+		list-style: none;
+		margin: 0 0 4rem;
+		padding: 0;
 		position: relative;
 		width: (100%/10);
 	}

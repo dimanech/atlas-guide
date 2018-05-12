@@ -14,7 +14,7 @@
 	}
 
 	&__bean-name {
-		margin-top: $space-sm-atlas;
+		margin: $space-sm-atlas 0 $space-md-atlas;
 	}
 
 	&__stat {
@@ -25,7 +25,7 @@
 	.atlas-stat-list {
 		font-size: $atlas-mono-small;
 		list-style: none;
-		padding-left: 40px;
+		padding-left: $space-lg-atlas;
 	}
 }
 
