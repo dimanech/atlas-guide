@@ -18,6 +18,7 @@
 		color: inherit;
 		cursor: pointer;
 		display: block;
+		overflow: hidden;
 		padding: 2px 0 4px;
 		position: relative;
 		text-decoration: none;
@@ -88,7 +89,7 @@
 		> .atlas-nav__ln {
 			background: $atlas-aside-bg;
 			display: block;
-			padding: $space-sm-atlas $space-md-atlas;
+			padding: $space-sm-atlas 0 $space-sm-atlas $space-md-atlas;
 			position: sticky;
 			top: 0;
 			z-index: 1;
@@ -109,19 +110,16 @@
 		.atlas-nav__item {
 			> .atlas-nav__ln {
 				padding-left: ($space-md-atlas * 2);
-				padding-right: ($space-md-atlas * 2);
 			}
 
 			.atlas-nav__item {
 				> .atlas-nav__ln {
 					padding-left: ($space-md-atlas * 3);
-					padding-right: ($space-md-atlas * 3);
 				}
 
 				.atlas-nav__item {
 					> .atlas-nav__ln {
 						padding-left: ($space-md-atlas * 4);
-						padding-right: ($space-md-atlas * 4);
 					}
 				}
 			}

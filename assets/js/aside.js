@@ -13,7 +13,7 @@
     }
 
     function changeSize(event) {
-        if (event.pageX < 200) {
+        if (event.pageX < 0) {
             return;
         }
         if (container.classList.contains('js-aside-panel-hidden')) {
