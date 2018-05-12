@@ -72,9 +72,10 @@ function getProjectConstants(constConfig, additionalSassImports) {
     }
     const constSrc = constConfig.constantsSrc;
     const constList = constConfig.constantsList;
-    additionalSassImports.push(path.dirname(constSrc)); // add source of sass for case where constants has imports
+    const imports = additionalSassImports || [];
+    imports.push(path.dirname(constSrc)); // add source of sass file in case that constants has imports
 
-    const compiledConstants = compileStyles(getConstantsList(constSrc, constList), additionalSassImports);
+    const compiledConstants = compileStyles(getConstantsList(constSrc, constList), imports);
     const fileAST = postcss().process(compiledConstants).root;
 
     return prepareConstantsData(fileAST, constList);
