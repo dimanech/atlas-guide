@@ -80,6 +80,7 @@
 		$modifier: #2196f3;
 		$media: white;
 
+		&._container,
 		&._mixin {
 			background-color: $media;
 			color: $atlas-color-text;
@@ -93,6 +94,10 @@
 				color: transparent;
 				content: "↙";
 			}
+		}
+
+		&._container {
+			transform: rotate(45deg);
 		}
 
 		&._condition {
