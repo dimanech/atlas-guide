@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const postcss = require('postcss');
 const scss = require('postcss-scss');
 const mustache = require('mustache');
@@ -71,6 +72,7 @@ function getProjectConstants(constConfig, additionalSassImports) {
     }
     const constSrc = constConfig.constantsSrc;
     const constList = constConfig.constantsList;
+    additionalSassImports.push(path.dirname(constSrc)); // add source of sass for case where constants has imports
 
     const compiledConstants = compileStyles(getConstantsList(constSrc, constList), additionalSassImports);
     const fileAST = postcss().process(compiledConstants).root;
