@@ -37,7 +37,7 @@
     "sass-graph": "^3.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^8.4.1",
+    "autoprefixer": "^8.5.0",
     "coveralls": "^3.0.1",
     "eslint": "^4.19.1",
     "gulp": "^4.0.0",
@@ -45,9 +45,9 @@
     "gulp-postcss": "^7.0.1",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
-    "mocha": "^5.1.0",
-    "nyc": "^11.7.3",
-    "stylelint": "^9.2.0",
+    "mocha": "^5.2.0",
+    "nyc": "^11.8.0",
+    "stylelint": "^9.2.1",
     "stylelint-order": "^0.8.1",
     "stylelint-scss": "^3.1.0"
   },
