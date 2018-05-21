@@ -223,7 +223,7 @@ describe('Atlas', function() {
             it('insights should be with data', function() {
                 const fileContent = fs.readFileSync(guideDest + 'insights.html', 'utf8');
                 const isContain =
-                    /data-chart='\[{"name":"stat-test.css","raw":7500,"zipped":5238,"view":{"raw":"7kB","zipped":/
+                    /data-chart='\[{"name":"stat-test.css","raw":7500,"zipped":5238,"view":{"raw":"7KB","zipped":/
                         .test(fileContent);
                 assert.strictEqual(isContain, true, 'contain right data');
             });
