@@ -84,14 +84,26 @@ npm install atlas-guide
 
 ### Configuring
 
+#### Minimal configuration
+
 `.atlasrc.json`:
 
 ```json
 {
     "guideSrc": "path/to/scss/",
     "guideDest": "path/to/guide/",
-    "cssSrc": "path/to/css/"
+    "cssSrc": "path/to/css/",
+    "partials": {
+      "assetshead": "path/to/overloaded/project-head.mustache",
+    }
 }
+```
+
+`project-head.mustache`
+
+```html
+<link rel="stylesheet" type="text/css" href="../css/project.css"/>
+<link rel="stylesheet" type="text/css" href="../css/additional.css"/>
 ```
 
 Then in `package.json`
