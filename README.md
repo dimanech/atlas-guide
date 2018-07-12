@@ -8,10 +8,10 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/dimanech/atlas-guide/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dimanech/atlas-guide?targetFile=package.json)
 [![npm version](https://badge.fury.io/js/atlas-guide.svg)](https://badge.fury.io/js/atlas-guide)
 
-Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive styles monitoring and Sass components reports. It generate documentation from markdown files and documentation comment in sass files.
+Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive styles monitoring and Sass components reports. It generates documentation from markdown files and documentation comment in `scss` files.
 
-It is opinionated because it is, probably, impossible to cover all cases in CSS/Sass.
-It designed primarily as "Style-guide driven development" tool with focus on splited files approach and incapsulated components with normative Sass imports structure.
+It is opinionated. Because it is, probably, impossible to cover all cases in CSS/Sass.
+It designed primarily as "style-guide driven development" tool with focus on splited files approach and incapsulated components with normative Sass imports structure.
 
 * [Live example](https://dimanech.github.io/atlas-guide/)
 * [Video example](https://youtu.be/Vohb_Xl6S54)
@@ -515,7 +515,7 @@ To clean up the graph you could add duplicated files into scss ignore list. To d
 
 ### We have 2 document comments `/*md` in scss file, but only first is shown in documentation.
 
-This is done intentionaly. It all designed for 1 component 1 scss file structure. Otherwise it is very hard to keep compoents readable and writable and supportable.
+This is done intentionaly. It all designed for 1 component 1 scss file structure. Otherwise it is very hard to keep compoents readable and supportable.
 
 ## Contributing
 
