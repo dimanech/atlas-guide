@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const cssstat = require('cssstats');
+const cssstat = require('@dimanech/cssstat-core');
 
 function getProjectStat(projectName, cssSrc, cssExcludedFiles) {
     let projectCssStat = [];
