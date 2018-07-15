@@ -2,11 +2,12 @@ environment:
   YARN_IGNORE_ENGINES: true
 
   matrix:
-    - nodejs_version: "9"
-    - nodejs_version: "8"
+    - nodejs_version: '9'
+    - nodejs_version: '8'
 
 install:
   - ps: Install-Product node $env:nodejs_version
+  - ps: Install-Product npm '6'
   - npm ci
 
 test_script:
