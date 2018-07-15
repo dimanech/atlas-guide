@@ -7,7 +7,7 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - ps: Install-Product npm '6'
+  - ps: Install-Product npm 6
   - npm ci
 
 test_script:
