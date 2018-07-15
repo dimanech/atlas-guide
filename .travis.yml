@@ -16,13 +16,14 @@ branches:
     - /^greenkeeper/.*$/
 
 cache:
-  directories: node_modules
+  directories:
+    - '$HOME/.npm'
 
 before_install:
   - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest'
   - npm install -g greenkeeper-lockfile@1
 
-install: npm install
+install: npm ci
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
