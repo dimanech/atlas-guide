@@ -9,7 +9,7 @@ const sass = require('sass');
 
 function getConstantsList(url, constantsList) {
     const file = fs.readFileSync(url, 'utf8');
-    const fileAST = postcss().process(file, {parser: scss}).root;
+    const fileAST = postcss().process(file, { parser: scss }).root;
 
     let rawConstants = [];
 
@@ -76,7 +76,7 @@ function getProjectConstants(constConfig, additionalSassImports) {
     imports.push(path.dirname(constSrc)); // add source of sass file in case that constants has imports
 
     const compiledConstants = compileStyles(getConstantsList(constSrc, constList), imports);
-    const fileAST = postcss().process(compiledConstants).root;
+    const fileAST = postcss().process(compiledConstants, { stringifier: {} }).root;
 
     return prepareConstantsData(fileAST, constList);
 }
