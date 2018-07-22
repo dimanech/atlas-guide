@@ -33,13 +33,13 @@
     "mustache": "^2.3.0",
     "postcss": "^7.0.1",
     "postcss-scss": "^2.0.0",
-    "sass": "^1.9.2",
+    "sass": "^1.10.0",
     "sass-graph": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "9.0.1",
     "coveralls": "3.0.2",
-    "eslint": "5.1.0",
+    "eslint": "5.2.0",
     "gulp": "4.0.0",
     "gulp-connect": "5.5.0",
     "gulp-postcss": "7.0.1",
