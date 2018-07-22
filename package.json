@@ -31,13 +31,13 @@
     "lodash.uniq": "^4.5.0",
     "marked": "^0.4.0",
     "mustache": "^2.3.0",
-    "postcss": "^6.0.23",
-    "postcss-scss": "^1.0.6",
+    "postcss": "^7.0.1",
+    "postcss-scss": "^2.0.0",
     "sass": "^1.9.2",
     "sass-graph": "^3.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "8.6.5",
+    "autoprefixer": "9.0.1",
     "coveralls": "3.0.2",
     "eslint": "5.1.0",
     "gulp": "4.0.0",
