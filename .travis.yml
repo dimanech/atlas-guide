@@ -23,7 +23,7 @@ before_install:
   - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest'
   - npm install -g greenkeeper-lockfile
 
-install: case $TRAVIS_BRANCH in greenkeeper*) npm install;; *) npm ci;; esac;
+install: npm install
 
 before_script:
   - greenkeeper-lockfile-update
