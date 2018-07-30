@@ -2,19 +2,18 @@ environment:
   YARN_IGNORE_ENGINES: true
 
   matrix:
-    - nodejs_version: '9'
-    - nodejs_version: '8'
+  - nodejs_version: "9"
+  - nodejs_version: "8"
 
 install:
-  - ps: Install-Product node $env:nodejs_version
-  - npm install -g npm@6
-  - npm ci
+- ps: Install-Product node $env:nodejs_version
+- npm install
 
 test_script:
-  - npm test
+- npm test
 
 cache:
- - '%APPDATA%\npm-cache'
+- node_modules
 
 build: off
 deploy: off
