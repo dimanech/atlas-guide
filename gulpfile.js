@@ -145,8 +145,6 @@ const getAffectedSassFiles = changedFile => {
     const getResultedCSSPath = changedPath =>
         path.join(pathConfig.ui.core.sass.dest, path.basename(changedPath, '.scss') + '.css');
 
-    console.log(getResultedCSSPath(changedFile))
-
     if (path.basename(changedFile).match(/^_/)) {
         importsGraph.visitAncestors(changedFile, parent => {
             if (!path.basename(parent).match(/^_/)) {
