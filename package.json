@@ -37,7 +37,7 @@
     "sass-graph": "^3.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^9.1.5",
+    "autoprefixer": "9.1.5",
     "coveralls": "3.0.2",
     "eslint": "5.6.0",
     "gulp": "4.0.0",
@@ -46,7 +46,7 @@
     "gulp-sass": "4.0.1",
     "gulp-sourcemaps": "2.6.4",
     "mocha": "5.2.0",
-    "nyc": "^13.0.1",
+    "nyc": "13.0.1",
     "stylelint": "9.5.0",
     "stylelint-order": "1.0.0",
     "stylelint-scss": "3.3.1"
