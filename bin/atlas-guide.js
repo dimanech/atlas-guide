@@ -14,12 +14,14 @@ try {
             break;
         case '--help':
         default:
-            console.log(`Usage: atlas-guide [option]
+            console.log(`
+Usage: atlas-guide [option]
 
 Options:            
   --build                    build all atlas pages
   -v, --version              print Atlas-guide version
-  --help                     print this message`);
+  --help                     print this message
+            `);
     }
 } catch (e) {
     if (e.code === 'ENOENT') {

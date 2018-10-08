@@ -14,19 +14,22 @@ if (atlasBase.isCorrupted) {
     };
 }
 
+// Models
 const projectTree = require(path.resolve(__dirname, '../models/projectdocumentedtree.js'))(atlasBase);
-const deps = require(path.resolve(__dirname, '../models/projectimportsgraph.js'));
-const importsGraph = deps.getImportsGraph(atlasBase);
-const componentImports = src => deps.getFileImports(src, importsGraph);
+const projectImports = require(path.resolve(__dirname, '../models/projectimportsgraph.js'));
+const projectImportsGraph = projectImports.getImportsGraph(atlasBase);
+const componentImports = src => projectImports.getFileImports(src, projectImportsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
-const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(
-    atlasBase.constants, atlasBase.scssAdditionalImportsArray);
+const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(atlasBase.constants,
+    atlasBase.scssAdditionalImportsArray);
 const pageContent = require(path.join(__dirname, '../models/pagecontent.js'));
 
+// View models
 const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'));
 const coverage = require(path.join(__dirname, '../viewmodels/coverage.js'));
 const styleguide = require(path.resolve(__dirname, '../viewmodels/styleguide.js'));
 
+// Utils
 const writePage = require(__dirname + '/utils/writepage.js');
 
 // Copy internal assets to the components destinations
@@ -37,7 +40,7 @@ if (atlasBase.copyInternalAssets) {
     copyInternalAssets(assetsSrc, guideDest);
 }
 
-// Normalize path argument
+// Normalize path
 function normalizePath(url) {
     if (url !== undefined) {
         return path.isAbsolute(url) ? url : path.join(cwd, url);
@@ -148,7 +151,7 @@ module.exports = {
     'buildAll': function() {
         return Promise.all([
             makeComponent(),
-            require('./buildreports.js')(atlasConfig, projectTree, importsGraph)
+            require('./buildreports.js')(atlasConfig, projectTree, projectImportsGraph)
         ]);
     }
 };
