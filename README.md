@@ -128,9 +128,9 @@ Component description.
 
 Component example (Add one more backtick to make this example works):
 
-``html_example
+```html_example
 <h1>Some</h1>
-``
+```
 */
 
 .regular-scss-here {
