@@ -32,13 +32,13 @@
     "mustache": "^3.0.0",
     "postcss": "^7.0.5",
     "postcss-scss": "^2.0.0",
-    "sass": "^1.14.1",
-    "sass-graph": "^3.0.0"
+    "sass": "^1.14.2",
+    "sass-graph": "^3.0.2"
   },
   "devDependencies": {
     "autoprefixer": "9.1.5",
     "coveralls": "3.0.2",
-    "eslint": "5.6.0",
+    "eslint": "5.6.1",
     "gulp": "4.0.0",
     "gulp-connect": "5.6.1",
     "gulp-postcss": "8.0.0",
@@ -46,7 +46,7 @@
     "gulp-sourcemaps": "2.6.4",
     "mocha": "5.2.0",
     "nyc": "13.0.1",
-    "stylelint": "9.5.0",
+    "stylelint": "9.6.0",
     "stylelint-order": "1.0.0",
     "stylelint-scss": "3.3.1"
   },
