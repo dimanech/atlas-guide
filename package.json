@@ -36,13 +36,13 @@
     "sass-graph": "^3.0.2"
   },
   "devDependencies": {
-    "autoprefixer": "9.1.5",
+    "autoprefixer": "9.2.1",
     "coveralls": "3.0.2",
     "eslint": "5.6.1",
     "gulp": "4.0.0",
     "gulp-connect": "5.6.1",
     "gulp-postcss": "8.0.0",
-    "gulp-sass": "4.0.1",
+    "gulp-sass": "4.0.2",
     "gulp-sourcemaps": "2.6.4",
     "mocha": "5.2.0",
     "nyc": "13.0.1",
