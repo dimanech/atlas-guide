@@ -71,7 +71,8 @@
     "build": "gulp build",
     "copyhooks": "node .githooks/copy-hooks.js",
     "version": "npm run build && git add -A assets",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "debug": "node --nolazy --inspect-brk=9229 ./bin/atlas-guide --build"
   },
   "repository": {
     "type": "git",

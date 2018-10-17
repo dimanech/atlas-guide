@@ -445,7 +445,7 @@ See example guideline page or this repo `gulpfile.js` to get the idea how live r
 
 #### Complete Atlas generation
 
-Due to time efforts reports not generated in regular flow. To generate reports you need to call `npm atlas-guide --build-all`
+Due to time efforts reports not generated in regular flow. To generate reports you need to call `npm atlas-guide --build`
 or in JS:
 
 ```js
@@ -519,9 +519,7 @@ This is done intentionaly. It all designed for 1 component 1 scss file structure
 
 ## Contributing
 
-You are welcome for ideas, help and of course code contributing.
-
-We have git hooks with all validation. Please install it manually on first time by run `npm run copyhooks`.
+You are welcome for ideas, help and of course code contributing. Please see CONTRIBUTING for more details.
 
 ## License
 
