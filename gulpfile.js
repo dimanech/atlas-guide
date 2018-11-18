@@ -50,7 +50,7 @@ gulp.task('server:up', done => {
         middleware() {
             return [cors];
         },
-        https: true
+        https: false
     });
 
     done();
