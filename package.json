@@ -32,7 +32,7 @@
     "mustache": "^3.0.0",
     "postcss": "^7.0.5",
     "postcss-scss": "^2.0.0",
-    "sass": "^1.14.3",
+    "sass": "^1.15.1",
     "sass-graph": "^3.0.3"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
     "gulp-sass": "4.0.2",
     "gulp-sourcemaps": "2.6.4",
     "mocha": "5.2.0",
-    "nyc": "13.0.1",
+    "nyc": "13.1.0",
     "stylelint": "9.8.0",
     "stylelint-order": "1.0.0",
     "stylelint-scss": "3.4.0"
