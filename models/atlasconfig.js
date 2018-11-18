@@ -94,7 +94,7 @@ function getProjectInfo(configRaw) {
             printMessage('warn', 'Neither "projectName" in atlas, nor "name" in package.json is declared. ' +
                 '"atlas" name used instead.');
         } else {
-            projectName = pkg.name;
+            projectName = pkg.name.replace('/', '-'); // fix namespaced project names
         }
     }
 
