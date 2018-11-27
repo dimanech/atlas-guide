@@ -28,7 +28,7 @@
     "d3-shape": "^1.2.2",
     "lodash.camelcase": "^4.3.0",
     "lodash.uniq": "^4.5.0",
-    "marked": "^0.5.1",
+    "marked": "^0.5.2",
     "mustache": "^3.0.0",
     "postcss": "^7.0.5",
     "postcss-scss": "^2.0.0",
@@ -46,8 +46,8 @@
     "gulp-sourcemaps": "2.6.4",
     "mocha": "5.2.0",
     "nyc": "13.1.0",
-    "stylelint": "9.8.0",
-    "stylelint-order": "1.0.0",
+    "stylelint": "9.9.0",
+    "stylelint-order": "2.0.0",
     "stylelint-scss": "3.4.0"
   },
   "browserslist": [

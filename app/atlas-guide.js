@@ -21,7 +21,7 @@ const projectImportsGraph = projectImports.getImportsGraph(atlasBase);
 const componentImports = src => projectImports.getFileImports(src, projectImportsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
 const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(atlasBase.constants,
-    atlasBase.scssAdditionalImportsArray);
+    atlasBase.scssAdditionalImportsArray, atlasBase.constants.constantsFile);
 const pageContent = require(path.join(__dirname, '../models/pagecontent.js'));
 
 // View models

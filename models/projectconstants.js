@@ -1,24 +1,30 @@
 'use strict';
 
-const fs = require('fs');
 const path = require('path');
 const postcss = require('postcss');
 const scss = require('postcss-scss');
 const mustache = require('mustache');
 const sass = require('sass');
 
-function getConstantsList(url, constantsList) {
-    const file = fs.readFileSync(url, 'utf8');
-    const fileAST = postcss().process(file, { parser: scss }).root;
+/**
+ * Prepare constants data based on config and declared constants. This will be used to compile CSS
+ * with computed SCSS variables.
+ * @param {String} fileString scss with constants
+ * @param {Object} constantsList constants config
+ * @return {{rawConstants: Array, fileString: String}}
+ */
+function prepareConstantsData(fileString, constantsList) {
+    const fileAST = postcss().process(fileString, { parser: scss }).root;
 
     let rawConstants = [];
 
     fileAST.walkDecls(decl => {
         constantsList.forEach(constant => {
-            if (constant.regex.test(decl.prop)) {
+            if (constant.regex.test(decl.prop) && !/^--/.test(decl.prop)) { // exclude custom properties since
+                // we do not need to compile it
                 rawConstants.push({
                     'constName': decl.prop,
-                    'constNameSafe': '\\' + decl.prop
+                    'constNameSafe': '\\' + decl.prop // escape "&" string from selector name
                 });
             }
         });
@@ -26,20 +32,37 @@ function getConstantsList(url, constantsList) {
 
     return {
         rawConstants: rawConstants,
-        fileString: file
+        fileString: fileString
     };
 }
 
-function compileStyles(constants, additionalSassImports) {
-    const template = '{{>constants}} {{#content}} {{constNameSafe}} { color: {{constName}} } {{/content}}';
+/**
+ * Generate CSS file with all compiled SCSS variables filled into `constNameSafe { color: constName }`
+ * that will be parsed later to get all variables and values list.
+ * @param {Object} constantsData
+ * @param {Array} additionalSassImports
+ * @return {string} compiled CSS file string
+ */
+function compileStyles(constantsData, additionalSassImports) {
+    const template = '{{>constantsFile}} {{#constants}} {{constNameSafe}} { color: {{constName}} } {{/constants}}';
     const styles = sass.renderSync({
-        data: mustache.render(template, {content: constants.rawConstants}, {constants: constants.fileString}),
+        data: mustache.render(
+            template,
+            {constants: constantsData.rawConstants},
+            {constantsFile: constantsData.fileString}),
         includePaths: additionalSassImports
     });
+
     return styles.css.toString();
 }
 
-function prepareConstantsData(fileAST, constList) {
+/**
+ * Walk over file and fill out constants arrays with `name, value` objects
+ * @param fileAST
+ * @param constList
+ * @return {{color: Array, font: Array, scale: Array, space: Array, breakpoint: Array, depth: Array, motion: Array}}
+ */
+function getConstants(fileAST, constList) {
     let constants = {
         'color': [],
         'font': [],
@@ -53,12 +76,20 @@ function prepareConstantsData(fileAST, constList) {
 
     fileAST.walkRules(rule => {
         constList.forEach(constant => {
-            if (constant.regex.test(rule.selector)) {
-                const value = rule.nodes[0].value;
-                constants[constant.name].push({
-                    'name': rule.selector.replace(/\\/, ''),
-                    'value': value
+            if (rule.selector === ':root') {
+                rule.walkDecls(constant.regex, decl => {
+                    constants[constant.name].push({
+                        'name': decl.prop,
+                        'value': decl.value
+                    });
                 });
+            } else {
+                if (constant.regex.test(rule.selector)) {
+                    constants[constant.name].push({
+                        'name': rule.selector.replace(/\\/, ''),
+                        'value': rule.nodes[0].value
+                    });
+                }
             }
         });
     });
@@ -70,15 +101,15 @@ function getProjectConstants(constConfig, additionalSassImports) {
     if (!constConfig.isDefined) {
         return undefined;
     }
-    const constSrc = constConfig.constantsSrc;
-    const constList = constConfig.constantsList;
+    const constRegexpsList = constConfig.constantsList;
+    const constFileString = constConfig.constantsFile;
     const imports = additionalSassImports || [];
-    imports.push(path.dirname(constSrc)); // add source of sass file in case that constants has imports
+    imports.push(path.dirname(constConfig.constantsSrc)); // in case if file itself contain imports
 
-    const compiledConstants = compileStyles(getConstantsList(constSrc, constList), imports);
-    const fileAST = postcss().process(compiledConstants, { stringifier: {} }).root;
+    const compiledConstants = compileStyles(prepareConstantsData(constFileString, constRegexpsList), imports);
+    const compiledConstantsAST = postcss().process(compiledConstants, { stringifier: {} }).root;
 
-    return prepareConstantsData(fileAST, constList);
+    return getConstants(compiledConstantsAST, constRegexpsList);
 }
 
 module.exports = getProjectConstants;

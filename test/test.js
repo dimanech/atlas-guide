@@ -681,6 +681,139 @@ describe('Atlas', function() {
                 });
             });
         });
+        describe('projectconstants', function() {
+            const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+                'guideSrc': 'test/fixtures/atlas/',
+                'guideDest': 'test/results/',
+                'cssSrc': 'test/fixtures/atlas/css/',
+                'projectConstants': {
+                    'constantsSrc': '/test/fixtures/atlas/_excluded-settings.scss',
+                    'colorPrefix': 'color',
+                    'fontPrefix': 'font',
+                    'scalePrefix': 'scale',
+                    'spacePrefix': 'space',
+                    'motionPrefix': 'motion',
+                    'depthPrefix': 'depth',
+                    'breakpointPrefix': 'break'
+                }
+            });
+
+            it('should return undefined if props not declared', function() {
+                const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+                    'guideSrc': 'test/fixtures/atlas/',
+                    'guideDest': 'test/results/',
+                    'cssSrc': 'test/fixtures/atlas/css/'
+                });
+                const viewModel = require(cwd + '/models/projectconstants.js')(baseConfig.constants);
+
+                assert.strictEqual(viewModel, undefined);
+            });
+            it('should return proper model for custom properties only', function() {
+                baseConfig.constants.constantsFile = `
+                :root {
+                    --color-yellow-atlas: #fae20f;
+                    --font-mono-atlas: "DejaVu Sans Mono", monospace;
+                    --scale-sm-atlas: 0.8rem;
+                    $size-line-atlas: 1.2rem;
+                    --space-sm-atlas: #{$size-line-atlas / 2};
+                    --motion-ease: cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s;
+                    --depth-1: 0 3px 10px 1px rgba(black, 0.34);
+                    --break-sm: 767px;
+                }
+                `;
+                const viewModel = require(cwd + '/models/projectconstants.js')(baseConfig.constants);
+                const expectedViewModel = {
+                    'color': [{'name': '--color-yellow-atlas', 'value': '#fae20f'}],
+                    'font': [{'name': '--font-mono-atlas', 'value': '"DejaVu Sans Mono", monospace'}],
+                    'scale': [{'name': '--scale-sm-atlas', 'value': '0.8rem'}],
+                    'space': [{'name': '--space-sm-atlas', 'value': '0.6rem'}],
+                    'breakpoint': [{'name': '--break-sm', 'value': '767px'}],
+                    'depth': [{'name': '--depth-1', 'value': '0 3px 10px 1px rgba(black, 0.34)'}],
+                    'motion': [{'name': '--motion-ease', 'value': 'cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s'}]
+                };
+
+                assert.deepEqual(viewModel, expectedViewModel);
+            });
+            it('should return proper model for SCSS constants only', function() {
+                baseConfig.constants.constantsFile = `
+                    $color-yellow-atlas: #fae20f;
+                    $font-mono-atlas: "DejaVu Sans Mono", monospace;
+                    $scale-sm-atlas: 0.8rem;
+                    $size-line-atlas: 1.2rem;
+                    $space-sm-atlas: $size-line-atlas / 2;
+                    $motion-ease: cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s;
+                    $depth-1: 0 3px 10px 1px rgba(black, 0.34);
+                    $break-sm: 767px;
+                `;
+                const viewModel = require(cwd + '/models/projectconstants.js')(baseConfig.constants);
+                const expectedViewModel = {
+                    'color': [{'name': '$color-yellow-atlas', 'value': '#fae20f'}],
+                    'font': [{'name': '$font-mono-atlas', 'value': '"DejaVu Sans Mono", monospace'}],
+                    'scale': [{'name': '$scale-sm-atlas', 'value': '0.8rem'}],
+                    'space': [{'name': '$space-sm-atlas', 'value': '0.6rem'}],
+                    'breakpoint': [{'name': '$break-sm', 'value': '767px'}],
+                    'depth': [{'name': '$depth-1', 'value': '0 3px 10px 1px rgba(0, 0, 0, 0.34)'}],
+                    'motion': [{'name': '$motion-ease', 'value': 'cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s'}]
+                };
+
+                assert.deepEqual(viewModel, expectedViewModel);
+            });
+            it('should return proper model for mix constants and custom props', function() {
+                baseConfig.constants.constantsFile = `
+                    $color-green-atlas: #fae20f;
+                    :root {
+                        --color-yellow-atlas: #fae20f;
+                    }
+                `;
+                const viewModel = require(cwd + '/models/projectconstants.js')(baseConfig.constants);
+                const expectedViewModel = {
+                    'breakpoint': [],
+                    'color': [{
+                        'name': '--color-yellow-atlas',
+                        'value': '#fae20f'
+                    }, {
+                        'name': '$color-green-atlas',
+                        'value': '#fae20f'
+                    }],
+                    'depth': [],
+                    'font': [],
+                    'motion': [],
+                    'scale': [],
+                    'space': []
+                };
+
+                assert.deepEqual(viewModel, expectedViewModel);
+            });
+            it('should ignore undeclared constants', function() {
+                const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+                    'guideSrc': 'test/fixtures/atlas/',
+                    'guideDest': 'test/results/',
+                    'cssSrc': 'test/fixtures/atlas/css/',
+                    'projectConstants': {
+                        'constantsSrc': '/test/fixtures/atlas/_excluded-settings.scss',
+                        'colorPrefix': 'color'
+                    }
+                });
+                baseConfig.constants.constantsFile = `
+                    $brand-green-atlas: #fae20f;
+                    :root {
+                        --brand-yellow-atlas: #fae20f;
+                    }
+                `;
+                const viewModel = require(cwd + '/models/projectconstants.js')(baseConfig.constants);
+                const expectedViewModel = {
+                    'breakpoint': [],
+                    'color': [],
+                    'depth': [],
+                    'font': [],
+                    'motion': [],
+                    'scale': [],
+                    'space': []
+                };
+
+                assert.deepEqual(viewModel, expectedViewModel);
+            });
+        });
     });
     describe('format()', function() {
         const format = require(cwd + '/viewmodels/utils/format');
@@ -1112,12 +1245,14 @@ describe('Atlas', function() {
             };
 
             it('should return counter for suggest right props', function() {
-                const expectedResult = {notInConstants: {count: 0, values: []},
+                const expectedResult = {
+                    notInConstants: {count: 0, values: []},
                     allOk: true,
                     consider: [
                         {from: '0', to: '$space-off-atlas', count: 1},
                         {from: '0.6rem', to: '$space-sm-atlas', count: 2}
-                    ]};
+                    ]
+                };
                 assert.deepEqual(getConstantsStat('padding', valueList, constants), expectedResult);
             });
             it('should return undefined in case of empty values list', function() {

@@ -190,7 +190,13 @@ function getAdditionalPages(templates, dest, constants) {
 function getDeclaredConstants(configRaw) {
     const config = getConfig(configRaw);
     const constantsList = [
-        'colorPrefix', 'fontPrefix', 'scalePrefix', 'spacePrefix', 'motionPrefix', 'depthPrefix', 'breakpointPrefix'
+        'colorPrefix',
+        'fontPrefix',
+        'scalePrefix',
+        'spacePrefix',
+        'motionPrefix',
+        'depthPrefix',
+        'breakpointPrefix'
     ];
     let projectConstants = {
         'isDefined': false,
@@ -203,6 +209,7 @@ function getDeclaredConstants(configRaw) {
         if (fs.existsSync(constantsSrc)) {
             projectConstants.isDefined = true;
             projectConstants.constantsSrc = constantsSrc;
+            projectConstants.constantsFile = fs.readFileSync(constantsSrc, 'utf8');
         } else {
             printMessage('warn', '"projectConstants" is declared, but constants file not found (' + constantsSrc +
                 '). Constants could not be fetched.');
@@ -212,15 +219,12 @@ function getDeclaredConstants(configRaw) {
     }
 
     constantsList.forEach(constant => {
-        if (constant === undefined) {
-            return;
-        }
-        const constantName = constant.replace(/Prefix/g, '');
-        const declaredConstant = config.projectConstants[constant];
+        const internalConstantName = constant.replace(/Prefix/g, ''); // remove "Prefix" from "colorPrefix" string
+        const declaredConstantName = config.projectConstants[constant];
 
         return projectConstants.constantsList.push({
-            'name': constantName,
-            'regex': new RegExp(declaredConstant !== undefined ? '\\$' + declaredConstant : '.^')
+            'name': internalConstantName,
+            'regex': new RegExp(declaredConstantName !== undefined ? '(\\$|--)' + declaredConstantName : '.^')
         });
     });
 
