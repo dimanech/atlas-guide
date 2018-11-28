@@ -42,7 +42,7 @@ function isPathConfigured(config, name) {
 function fillTemplatesConfig(templatesConfig, internalTemplatesPath, name) {
     let templates = {};
 
-    fs.readdirSync(path.join(__dirname, internalTemplatesPath)).forEach(function(item) {
+    fs.readdirSync(path.join(__dirname, internalTemplatesPath)).forEach(item => {
         templates[path.basename(item, '.mustache')] = '';
     });
 
