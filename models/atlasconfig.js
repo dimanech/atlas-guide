@@ -28,11 +28,11 @@ function getComponentsPrefix(config) {
 
 function isPathConfigured(config, name) {
     if (!config) {
-        printMessage('error', '"' + name + '" not defined. This config is required.');
+        printMessage('error', '"' + name + '" not defined. This field is mandatory');
         return true;
     } else if (!fs.existsSync(path.join(projectRoot, config))) {
         printMessage('error', '"' + name + '" (' + config + ') in config unavailable or unreadable. ' +
-            'Please check this path in config.');
+            'Please check this path in config');
         return true;
     } else {
         return false;
@@ -124,7 +124,7 @@ function getMandatoryBaseConfig(config) {
         if (!fs.existsSync(scssSrc)) {
             atlasConfig.scssSrc = atlasConfig.guideSrc;
             printMessage('warn', '"scssSrc" is defined, but directory (' + config.scssSrc + ') unavailable or ' +
-                'unreadable. "cssSrc" directory used as fallback.');
+                'unreadable. "cssSrc" directory used as fallback');
         } else {
             atlasConfig.scssSrc = scssSrc;
         }
