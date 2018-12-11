@@ -17,7 +17,7 @@ function warnConstants(valuesList, constantsList) {
             }
             // push defined and used constant
             // interpolation and operators could be used with variable so we need a regexp for this
-            if (new RegExp('\\' + constant.name + '|auto|inherit|initial').test(value)) {
+            if (new RegExp('\\' + constant.name + '|auto|inherit|initial', 'g').test(value)) {
                 used.push(value);
                 isConstantAlreadyFound = true;
             }

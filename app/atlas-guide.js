@@ -21,22 +21,22 @@ const projectImportsGraph = projectImports.getImportsGraph(atlasBase);
 const componentImports = src => projectImports.getFileImports(src, projectImportsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
 const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(atlasBase.constants,
-    atlasBase.scssAdditionalImportsArray);
-const pageContent = require(path.join(__dirname, '../models/pagecontent.js'));
+    atlasBase.scssAdditionalImportsArray, atlasBase.constants.constantsFile);
+const pageContent = require(path.resolve(__dirname, '../models/pagecontent.js'));
 
 // View models
-const statistics = require(path.join(__dirname, '../viewmodels/statcomponent.js'));
-const coverage = require(path.join(__dirname, '../viewmodels/coverage.js'));
+const statistics = require(path.resolve(__dirname, '../viewmodels/statcomponent.js'));
+const coverage = require(path.resolve(__dirname, '../viewmodels/coverage.js'));
 const styleguide = require(path.resolve(__dirname, '../viewmodels/styleguide.js'));
 
 // Utils
-const writePage = require(__dirname + '/utils/writepage.js');
+const writePage = require(path.join(__dirname, '/utils/writepage.js'));
 
 // Copy internal assets to the components destinations
 if (atlasBase.copyInternalAssets) {
     const guideDest = atlasBase.guideDest;
     const assetsSrc = atlasBase.internalAssetsPath;
-    const copyInternalAssets = require(__dirname + '/utils/copyassets.js');
+    const copyInternalAssets = require(path.join(__dirname, '/utils/copyassets.js'));
     copyInternalAssets(assetsSrc, guideDest);
 }
 

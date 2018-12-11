@@ -16,7 +16,7 @@ module.exports = function(atlasConfig, projectTree, importsGraph) {
     const excludedSassFiles = atlasBase.excludedSassFiles;
 
     // Models
-    const projectStat = require(path.resolve(__dirname, '../models/projectcssstat.js'))(
+    const cssStat = require(path.resolve(__dirname, '../models/projectcssstat.js'))(
         projectName, cssSrc, excludedCssFiles);
     const projectFileSizes = require(path.resolve(__dirname, '../models/projectfilesize.js'))(guideSrc);
     const bundle = require(path.resolve(__dirname, '../models/projectbundle.js'))(
@@ -48,7 +48,7 @@ module.exports = function(atlasConfig, projectTree, importsGraph) {
         'target': path.join(guideDest, '/insights.html'),
         'templateString': fs.readFileSync(templates.insights, 'utf8'),
         'type': 'insights',
-        'content': statProject(projectStat, projectName),
+        'content': statProject(cssStat, projectName),
         'subPages': projectTree.subPages
     }];
 

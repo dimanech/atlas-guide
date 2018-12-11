@@ -28,11 +28,11 @@ function getComponentsPrefix(config) {
 
 function isPathConfigured(config, name) {
     if (!config) {
-        printMessage('error', '"' + name + '" not defined. This config is required.');
+        printMessage('error', '"' + name + '" not defined. This field is mandatory');
         return true;
     } else if (!fs.existsSync(path.join(projectRoot, config))) {
         printMessage('error', '"' + name + '" (' + config + ') in config unavailable or unreadable. ' +
-            'Please check this path in config.');
+            'Please check this path in config');
         return true;
     } else {
         return false;
@@ -42,7 +42,7 @@ function isPathConfigured(config, name) {
 function fillTemplatesConfig(templatesConfig, internalTemplatesPath, name) {
     let templates = {};
 
-    fs.readdirSync(path.join(__dirname, internalTemplatesPath)).forEach(function(item) {
+    fs.readdirSync(path.join(__dirname, internalTemplatesPath)).forEach(item => {
         templates[path.basename(item, '.mustache')] = '';
     });
 
@@ -124,7 +124,7 @@ function getMandatoryBaseConfig(config) {
         if (!fs.existsSync(scssSrc)) {
             atlasConfig.scssSrc = atlasConfig.guideSrc;
             printMessage('warn', '"scssSrc" is defined, but directory (' + config.scssSrc + ') unavailable or ' +
-                'unreadable. "cssSrc" directory used as fallback.');
+                'unreadable. "cssSrc" directory used as fallback');
         } else {
             atlasConfig.scssSrc = scssSrc;
         }
@@ -190,7 +190,13 @@ function getAdditionalPages(templates, dest, constants) {
 function getDeclaredConstants(configRaw) {
     const config = getConfig(configRaw);
     const constantsList = [
-        'colorPrefix', 'fontPrefix', 'scalePrefix', 'spacePrefix', 'motionPrefix', 'depthPrefix', 'breakpointPrefix'
+        'colorPrefix',
+        'fontPrefix',
+        'scalePrefix',
+        'spacePrefix',
+        'motionPrefix',
+        'depthPrefix',
+        'breakpointPrefix'
     ];
     let projectConstants = {
         'isDefined': false,
@@ -203,6 +209,7 @@ function getDeclaredConstants(configRaw) {
         if (fs.existsSync(constantsSrc)) {
             projectConstants.isDefined = true;
             projectConstants.constantsSrc = constantsSrc;
+            projectConstants.constantsFile = fs.readFileSync(constantsSrc, 'utf8');
         } else {
             printMessage('warn', '"projectConstants" is declared, but constants file not found (' + constantsSrc +
                 '). Constants could not be fetched.');
@@ -212,15 +219,12 @@ function getDeclaredConstants(configRaw) {
     }
 
     constantsList.forEach(constant => {
-        if (constant === undefined) {
-            return;
-        }
-        const constantName = constant.replace(/Prefix/g, '');
-        const declaredConstant = config.projectConstants[constant];
+        const internalConstantName = constant.replace(/Prefix/g, ''); // remove "Prefix" from "colorPrefix" string
+        const declaredConstantName = config.projectConstants[constant];
 
         return projectConstants.constantsList.push({
-            'name': constantName,
-            'regex': new RegExp(declaredConstant !== undefined ? '\\$' + declaredConstant : '.^')
+            'name': internalConstantName,
+            'regex': new RegExp(declaredConstantName !== undefined ? '(\\$|--)' + declaredConstantName : '.^')
         });
     });
 
