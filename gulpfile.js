@@ -50,7 +50,7 @@ gulp.task('server:up', done => {
         middleware() {
             return [cors];
         },
-        https: false
+        https: false // disable it due to https://github.com/intesso/connect-livereload/issues/79
     });
 
     done();
