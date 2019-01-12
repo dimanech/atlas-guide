@@ -36,7 +36,7 @@
     "sass-graph": "^3.0.3"
   },
   "devDependencies": {
-    "autoprefixer": "9.4.0",
+    "autoprefixer": "9.4.4",
     "coveralls": "3.0.2",
     "eslint": "5.9.0",
     "gulp": "4.0.0",
@@ -48,7 +48,7 @@
     "nyc": "13.1.0",
     "stylelint": "9.9.0",
     "stylelint-order": "2.0.0",
-    "stylelint-scss": "3.4.1"
+    "stylelint-scss": "3.4.4"
   },
   "browserslist": [
     "last 2 Chrome versions",
