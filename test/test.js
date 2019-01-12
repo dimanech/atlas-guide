@@ -444,6 +444,15 @@ describe('Atlas', function() {
             });
         });
 
+        context('when index src is defined', function() {
+            // const getIndexPageSource = require(path.join(cwd, '/models/config/indexpagesource'));
+
+            it('should check if it exist');
+            it('should fall to guide root README.md');
+            it('should fall to project root README.md');
+            it('should return empty string if no fallback');
+        });
+
         context('when overloaded templates is defined', function() {
             context('but template not available', function() {
                 it('should throw message and fall gracefully');
