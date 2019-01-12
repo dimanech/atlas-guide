@@ -510,8 +510,7 @@ describe('Atlas', function() {
 
             describe('getImportsGraph', function() {
                 it('should return right import graph without additional imports', function() {
-                    const model = importGraph;
-                    assert.strictEqual(Object.keys(model.index).length, 7);
+                    assert.strictEqual(Object.keys(importGraph.index).length, 8);
                 });
             });
 

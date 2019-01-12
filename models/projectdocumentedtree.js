@@ -11,8 +11,9 @@ let templates;
 function isDocumented(filePath) {
     const file = fs.readFileSync(filePath, 'utf8');
     const docComment = /\/\*md(\r\n|\n)(((\r\n|\n)|.)*?)\*\//g;
+    const exec = docComment.exec(file);
 
-    return docComment.exec(file);
+    return !!(exec !== null && exec[2].trim());
 }
 
 function isExcludedFile(name) {
