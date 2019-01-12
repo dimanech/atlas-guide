@@ -451,6 +451,11 @@ describe('Atlas', function() {
             const undefinedSrc = 'not-exist.md';
             const inexistentReadme = path.join(cwd, 'test/fixtures/atlas/category');
 
+            it('should use defined in config index sourc', function() {
+                const definedSrc = 'test/fixtures/atlas/guide.md';
+                const result = getIndexPageSource(projectRoot, guideSrc, definedSrc);
+                assert.strictEqual(path.join(cwd, definedSrc), result);
+            });
             it('should fall to guide root README.md', function() {
                 const result = getIndexPageSource(projectRoot, guideSrc, undefinedSrc);
                 assert.strictEqual(path.join(guideSrc, 'README.md'), result);
