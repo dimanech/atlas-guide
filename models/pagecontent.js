@@ -43,17 +43,39 @@ renderer.table = (header, body) => mustache.render(elements.table, {header: head
 
 renderer.hr = () => elements.hr;
 
-function getMdFromComment(filePath) {
+/**
+ * @typedef {Object} commentContent
+ * @property {string} content comment content
+ * @property {boolean} isNeedStat do we disable statistic for component
+ */
+/**
+ * Get comment text from special type of CSS comment
+ * @param {string} filePath
+ * @return {commentContent}
+ */
+function getCommentContent(filePath) {
     const file = fs.readFileSync(filePath, 'utf8');
-    const docComment = /\/\*md(\r\n|\n)(((\r\n|\n)|.)*?)\*\//g; // prefix should be moved to config
-    const match = docComment.exec(file);
-    const colorizeYellow = str => '\x1b[33m' + str + '\x1b[0m';
+    const documentationCommentRegexp = /\/\*md(\r\n|\n)(((\r\n|\n)|.)*?)\*\//g;
+    const statRegexp = /@no-stat(\r\n|\n)/g;
+    const match = documentationCommentRegexp.exec(file);
 
     if (match !== null) {
-        return match[2];
+        const fullContent = match[2];
+        const isNeedStat = !statRegexp.test(fullContent);
+        const strippedContent = fullContent.replace(statRegexp, '');
+
+        return {
+            content: isNeedStat ? fullContent : strippedContent,
+            isNeedStat: isNeedStat
+        };
     } else {
+        const colorizeYellow = str => '\x1b[33m' + str + '\x1b[0m';
         console.warn(colorizeYellow('Warn: ') + 'Atlas: Content for import not found in ' + filePath);
-        return '';
+
+        return {
+            content: '',
+            isNeedStat: false
+        };
     }
 }
 
@@ -61,10 +83,11 @@ function mdImport(fileURL, options) {
     options = options || {};
 
     let codeItemCount = 0;
-    let content;
+    let content = '';
     let toc = [];
+    let isNeedStat = false;
 
-    // We need to keep this renderers here because they changes from page to page
+    // We need to keep renderers here because they changes page to page
     renderer.heading = (text, level) => {
         const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
         const heading = {
@@ -101,12 +124,15 @@ function mdImport(fileURL, options) {
     if (path.extname(fileURL) === '.md') {
         content = marked(fs.readFileSync(fileURL, 'utf8'));
     } else {
-        content = marked(getMdFromComment(fileURL));
+        const comment = getCommentContent(fileURL);
+        isNeedStat = comment.isNeedStat;
+        content = marked(comment.content);
     }
 
     return {
         content: content,
-        toc: toc
+        toc: toc,
+        isNeedStat: isNeedStat
     };
 }
 

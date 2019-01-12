@@ -70,9 +70,10 @@ function prepareContent(component) {
     let content;
     let tableOfContent;
     let stat;
+    let page;
 
-    if (component.src !== '') {
-        const page = pageContent(component.src, {'title': component.title});
+    if (component.src !== '') { // could be stat pages or custom defined file
+        page = pageContent(component.src, {'title': component.title});
         content = page.content;
         tableOfContent = page.toc;
     }
@@ -82,11 +83,13 @@ function prepareContent(component) {
             break;
         case 'component':
         case 'container':
-            stat = statistics(
-                componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
-                componentImports(component.src),
-                constants
-            );
+            if (page.isNeedStat) {
+                stat = statistics(
+                    componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
+                    componentImports(component.src),
+                    constants
+                );
+            }
             break;
         case 'about':
             stat = {
@@ -115,7 +118,7 @@ function makeComponent(url) {
     let docSet = [];
 
     function traverseDocumentedTree(components, sourcePath) {
-        components.forEach(function(component) {
+        components.forEach(component => {
             const isMakeAllComponents = sourcePath === undefined;
             const isFileInConfig = isMakeAllComponents ? true : sourcePath === component.src;
             const isFile = component.target;
