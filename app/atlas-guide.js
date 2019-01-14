@@ -71,11 +71,13 @@ function prepareContent(component) {
     let tableOfContent;
     let stat;
     let page;
+    let isNeedStat;
 
     if (component.src !== '') { // could be stat pages or custom defined file
         page = pageContent(component.src, {'title': component.title});
         content = page.content;
         tableOfContent = page.toc;
+        isNeedStat = page.isNeedStat;
     }
     switch (component.type) {
         case 'styleguide':
@@ -83,7 +85,7 @@ function prepareContent(component) {
             break;
         case 'component':
         case 'container':
-            if (page.isNeedStat) {
+            if (isNeedStat) {
                 stat = statistics(
                     componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
                     componentImports(component.src),
