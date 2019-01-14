@@ -8,9 +8,10 @@ const atlasConfig = require(path.resolve(__dirname, '../models/atlasconfig.js'))
 const atlasBase = atlasConfig.getBase();
 if (atlasBase.isCorrupted) {
     module.exports = {
-        'build': () => {},
-        'buildAll': () => {}
+        'build': () => new Promise(resolve => resolve('Config is corrupted')),
+        'buildAll': () => new Promise(resolve => resolve('Config is corrupted'))
     };
+    return;
 }
 
 // Models
