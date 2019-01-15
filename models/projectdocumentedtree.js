@@ -16,9 +16,7 @@ function isDocumented(filePath) {
     return !!(exec !== null && exec[2].trim());
 }
 
-function isExcludedFile(name) {
-    return excludedSassFiles.test(name);
-}
+const isExcludedFile = name => excludedSassFiles.test(name);
 
 function isExcludedDirectory(name) {
     return excludedDirs.test(name);
@@ -87,7 +85,7 @@ function makeProjectTree(atlasConfig) {
     function findComponents(url, config, categoryName) {
         const dir = fs.readdirSync(url);
 
-        dir.forEach(function(res) {
+        dir.forEach(res => {
             let name = res;
             let target = path.join(url, name);
             let resource = fs.statSync(target);

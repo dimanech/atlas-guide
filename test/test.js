@@ -184,6 +184,7 @@ describe('Atlas', function() {
             it('should generate all components pages', function() {
                 const actualFiles = fs.readdirSync(guideDest);
                 const expected = [
+                    'category-component-no-stat.html',
                     'category-component.html',
                     'category-doc-guide.html',
                     'component-deprecated.html',
@@ -201,14 +202,15 @@ describe('Atlas', function() {
                 atlas.buildAll().then(() => done());
             });
 
-            it('reports should be written', function() {
+            it('reports should be written', function() { // FIXME: dumb test
                 const fileCount = fs.readdirSync(guideDest).length;
-                assert.strictEqual(fileCount, 8, 'folder contain needed files count');
+                assert.strictEqual(fileCount, 9, 'folder contain needed files count');
             });
             it('should not process excluded files', function() {
                 const actual = fs.readdirSync(guideDest);
                 const expected = [
                     'bundle.html',
+                    'category-component-no-stat.html',
                     'category-component.html',
                     'category-doc-guide.html',
                     'component-deprecated.html',
@@ -537,7 +539,7 @@ describe('Atlas', function() {
 
             describe('getImportsGraph', function() {
                 it('should return right import graph without additional imports', function() {
-                    assert.strictEqual(Object.keys(importGraph.index).length, 8);
+                    assert.strictEqual(Object.keys(importGraph.index).length, 9);
                 });
             });
 
@@ -631,7 +633,11 @@ describe('Atlas', function() {
             });
             it('should falls if no comment in file', function() {
                 const result = pageContent('test/fixtures/atlas/_component-undocumented.scss');
-                assert.deepEqual(result, {content: '', toc: []});
+                assert.deepEqual(result, {content: '', toc: [], isNeedStat: false});
+            });
+            it('should pass false for statistics if found declaration', function() {
+                const result = pageContent('test/fixtures/atlas/category/_component-no-stat.scss');
+                assert.deepEqual(result, {content: '', toc: [], isNeedStat: false});
             });
             it('should falls if wrong path to file');
         });
