@@ -37,9 +37,9 @@ describe('Build', function() {
     });
 
     describe('Single component', function() {
-        const expectedFile = path.join(cwd, guideDest, 'component.html');
-
         describe('Existed absolute path', function() {
+            const expectedFile = path.join(cwd, guideDest, 'component.html');
+
             before(function(done) {
                 const atlas = require(cwd + '/app/atlas-guide');
                 atlas.build(path.join(cwd, '/test/fixtures/atlas/_component.scss')).then(() => done()); // eslint-disable-line
@@ -74,9 +74,11 @@ describe('Build', function() {
         });
 
         describe('Existed relative path', function() {
+            const expectedFile = path.join(cwd, guideDest, 'component-deprecated.html');
+
             before(function(done) {
                 const atlas = require(cwd + '/app/atlas-guide');
-                atlas.build('./test/fixtures/atlas/_component.scss').then(() => done()); // eslint-disable-line
+                atlas.build('./test/fixtures/atlas/_component-deprecated.scss').then(() => done()); // eslint-disable-line
             });
 
             after(function() {
@@ -90,7 +92,7 @@ describe('Build', function() {
 
             it('should be with content', function() {
                 const expectedFileContent = fs.readFileSync(expectedFile, 'utf8');
-                const result = /h1-b-component-test/.test(expectedFileContent);
+                const result = /h1-b-component-deprecated/.test(expectedFileContent);
                 assert.strictEqual(result, true, 'component file have expected content');
             });
         });
@@ -119,6 +121,26 @@ describe('Build', function() {
                 } catch (e) {
                     done('failed');
                 }
+            });
+        });
+
+        describe('Should not write file with not changed content', function() {
+            const expectedFile = path.join(cwd, guideDest, 'category-component.html');
+
+            beforeEach(function(done) {
+                const atlas = require(cwd + '/app/atlas-guide');
+                atlas.build(path.join(cwd, '/test/fixtures/atlas/category/_component.scss')).then(() => done()); // eslint-disable-line
+            });
+
+            it('should be written', function() {
+                const generatedFile = fs.existsSync(expectedFile);
+                assert.strictEqual(generatedFile, true, 'component file exitst');
+                fs.unlinkSync(expectedFile);
+            });
+
+            it('should not be written', function() {
+                const generatedFile = fs.existsSync(expectedFile);
+                assert.strictEqual(generatedFile, false, 'component file not exitst');
             });
         });
     });
