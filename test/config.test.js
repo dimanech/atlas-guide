@@ -93,6 +93,28 @@ describe('Config', function() {
                 });
                 assert.strictEqual(atlasConfig.isCorrupted, true, '"guideDest" not available');
             });
+            it('should not fall if createDestFolder checked', function() {
+                const destination = 'test/results/some';
+                const atlasConfig = config.getBase({
+                    'guideSrc': 'assets/src/scss/',
+                    'guideDest': destination,
+                    'cssSrc': 'assets/css/',
+                    'createDestFolder': true
+                });
+                assert.strictEqual(atlasConfig.isCorrupted, undefined,
+                    '"guideDest" not fall because of "createDestFolder"');
+            });
+            it('should create dest folder if createDestFolder checked', function() {
+                const destination = 'test/results/some';
+                config.getBase({
+                    'guideSrc': 'assets/src/scss/',
+                    'guideDest': destination,
+                    'cssSrc': 'assets/css/',
+                    'createDestFolder': true
+                });
+                assert.strictEqual(fs.existsSync(path.join(cwd, destination)), true,
+                    '"guideDest" directory is created');
+            });
             it('should fall gracefully and show message', function() {
                 const atlasConfig = config.getBase({
                     'guideSrc': 'assets/src/scss/',
