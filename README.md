@@ -289,6 +289,9 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
         "motionPrefix": "motion",
         "depthPrefix": "depth",
         "breakpointPrefix": "break"
+    },
+    "projectInfo": {
+        "name": "some-project-name"
     }
 }
 ```
@@ -315,6 +318,8 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
     * `motionPrefix` {string} – prefix for animation/transition presets. If not defined it would be skipped.
     * `depthPrefix` {string} – prefix for layering/shadows system. If not defined it would be skipped.
     * `breakpointPrefix` {string} – prefix for used breakpoints. If not defined it would be skipped.
+* `projectInfo`
+    * `name` {string} - custom name of the project. Otherwise package name will be used.
 
 ## Usage
 

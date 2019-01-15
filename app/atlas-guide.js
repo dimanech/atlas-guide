@@ -2,9 +2,8 @@
 
 const path = require('path');
 const fs = require('fs');
-const cwd = process.cwd();
 
-// Get basic models
+// Prepare config and basic models
 const atlasConfig = require(path.resolve(__dirname, '../models/atlasconfig.js'));
 const atlasBase = atlasConfig.getBase();
 if (atlasBase.isCorrupted) {
@@ -18,11 +17,11 @@ if (atlasBase.isCorrupted) {
 const projectTree = require(path.resolve(__dirname, '../models/projectdocumentedtree.js'))(atlasBase);
 const projectImports = require(path.resolve(__dirname, '../models/projectimportsgraph.js'));
 const projectImportsGraph = projectImports.getImportsGraph(atlasBase);
+const projectConstants = require(path.resolve(__dirname, '../models/projectconstants.js'))(atlasBase.constants,
+    atlasBase.scssAdditionalImportsArray, atlasBase.constants.constantsFile);
 const componentImports = src => projectImports.getFileImports(src, projectImportsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
-const constants = require(path.resolve(__dirname, '../models/projectconstants.js'))(atlasBase.constants,
-    atlasBase.scssAdditionalImportsArray, atlasBase.constants.constantsFile);
-const pageContent = require(path.resolve(__dirname, '../models/pagecontent.js'));
+const renderedPageContent = require(path.resolve(__dirname, '../models/pagecontent.js'));
 
 // View models
 const statistics = require(path.resolve(__dirname, '../viewmodels/statcomponent.js'));
@@ -30,7 +29,8 @@ const coverage = require(path.resolve(__dirname, '../viewmodels/coverage.js'));
 const styleguide = require(path.resolve(__dirname, '../viewmodels/styleguide.js'));
 
 // Utils
-const writePage = require(path.join(__dirname, '/utils/writepage.js'));
+const normalizePath = require('./utils/normalizepath');
+const writePage = require('./utils/writepage');
 
 // Copy internal assets to the components destinations
 if (atlasBase.copyInternalAssets) {
@@ -38,15 +38,6 @@ if (atlasBase.copyInternalAssets) {
     const assetsSrc = atlasBase.internalAssetsPath;
     const copyInternalAssets = require(path.join(__dirname, '/utils/copyassets.js'));
     copyInternalAssets(assetsSrc, guideDest);
-}
-
-// Normalize path
-function normalizePath(url) {
-    if (url !== undefined) {
-        return path.isAbsolute(url) ? url : path.join(cwd, url);
-    } else {
-        return url;
-    }
 }
 
 // Cache basic templates
@@ -67,8 +58,8 @@ function getCachedTemplates(type, path) {
     }
 }
 
-// Prepare content
-function prepareContent(component) {
+// Prepare content model depending on component type
+function prepareContentModel(component) {
     let content;
     let tableOfContent;
     let stat;
@@ -76,14 +67,14 @@ function prepareContent(component) {
     let isNeedStat;
 
     if (component.src !== '') { // could be stat pages or custom defined file
-        page = pageContent(component.src, {'title': component.title});
+        page = renderedPageContent(component.src, {'title': component.title});
         content = page.content;
         tableOfContent = page.toc;
         isNeedStat = page.isNeedStat;
     }
     switch (component.type) {
         case 'styleguide':
-            content = styleguide(constants);
+            content = styleguide(projectConstants);
             break;
         case 'component':
         case 'container':
@@ -91,7 +82,7 @@ function prepareContent(component) {
                 stat = statistics(
                     componentStat.getStatFor(component.src, atlasBase.componentPrefixes),
                     componentImports(component.src),
-                    constants
+                    projectConstants
                 );
             }
             break;
@@ -134,7 +125,7 @@ function makeComponent(url) {
                     templateString: getCachedTemplates(component.type, component.template),
                     type: component.type,
                     isDeprecated: component.isDeprecated,
-                    content: prepareContent(component),
+                    content: prepareContentModel(component),
                     subPages: projectTree.subPages
                 });
 
