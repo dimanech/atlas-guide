@@ -11,8 +11,9 @@ let templates;
 function isDocumented(filePath) {
     const file = fs.readFileSync(filePath, 'utf8');
     const docComment = /\/\*md(\r\n|\n)(((\r\n|\n)|.)*?)\*\//g;
+    const exec = docComment.exec(file);
 
-    return docComment.exec(file);
+    return !!(exec !== null && exec[2].trim());
 }
 
 const isExcludedFile = name => excludedSassFiles.test(name);
@@ -100,7 +101,8 @@ function makeProjectTree(atlasConfig) {
                     const id = categoryName + title;
                     config.push(pageConfig(id, title, target, false));
                 }
-                if (path.extname(name) === '.md') {
+                if (path.extname(name) === '.md' && !/^README\.md/.test(categoryName + name)) { // this is hacky way
+                    // to exclude root README.md
                     const title = path.basename(name, '.md');
                     const id = categoryName + 'doc-' + path.basename(name, '.md');
                     config.push(pageConfig(id, title, target, true));

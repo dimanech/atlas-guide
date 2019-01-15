@@ -446,6 +446,33 @@ describe('Atlas', function() {
             });
         });
 
+        context('when index src is defined', function() {
+            const getIndexPageSource = require(path.join(cwd, '/models/config/indexpagesource'));
+            const projectRoot = cwd;
+            const guideSrc = path.join(cwd, 'test/fixtures/atlas');
+            const undefinedSrc = 'not-exist.md';
+            const inexistentReadme = path.join(cwd, 'test/fixtures/atlas/category');
+
+            it('should use defined in config index sourc', function() {
+                const definedSrc = 'test/fixtures/atlas/guide.md';
+                const result = getIndexPageSource(projectRoot, guideSrc, definedSrc);
+                assert.strictEqual(path.join(cwd, definedSrc), result);
+            });
+            it('should fall to guide root README.md', function() {
+                const result = getIndexPageSource(projectRoot, guideSrc, undefinedSrc);
+                assert.strictEqual(path.join(guideSrc, 'README.md'), result);
+            });
+            it('should fall to project root README.md', function() {
+                const result = getIndexPageSource(projectRoot, inexistentReadme, undefinedSrc);
+                assert.strictEqual(path.join(projectRoot, 'README.md'), result);
+            });
+            it('should return empty string if no fallback', function() {
+                const result = getIndexPageSource(inexistentReadme, inexistentReadme, undefinedSrc);
+                assert.strictEqual('', result);
+            });
+            it('should exclude README.md from guide root');
+        });
+
         context('when overloaded templates is defined', function() {
             context('but template not available', function() {
                 it('should throw message and fall gracefully');
@@ -512,8 +539,7 @@ describe('Atlas', function() {
 
             describe('getImportsGraph', function() {
                 it('should return right import graph without additional imports', function() {
-                    const model = importGraph;
-                    assert.strictEqual(Object.keys(model.index).length, 8);
+                    assert.strictEqual(Object.keys(importGraph.index).length, 9);
                 });
             });
 

@@ -28,7 +28,7 @@
     "d3-shape": "^1.2.2",
     "lodash.camelcase": "^4.3.0",
     "lodash.uniq": "^4.5.0",
-    "marked": "^0.5.2",
+    "marked": "^0.6.0",
     "mustache": "^3.0.0",
     "postcss": "^7.0.5",
     "postcss-scss": "^2.0.0",
@@ -36,7 +36,7 @@
     "sass-graph": "^3.0.3"
   },
   "devDependencies": {
-    "autoprefixer": "9.4.4",
+    "autoprefixer": "9.4.5",
     "coveralls": "3.0.2",
     "eslint": "5.9.0",
     "gulp": "4.0.0",
@@ -48,7 +48,7 @@
     "nyc": "13.1.0",
     "stylelint": "9.9.0",
     "stylelint-order": "2.0.0",
-    "stylelint-scss": "3.4.4"
+    "stylelint-scss": "3.5.0"
   },
   "browserslist": [
     "last 2 Chrome versions",

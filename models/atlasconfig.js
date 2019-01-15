@@ -148,6 +148,7 @@ function getOptionalBaseConfigs(config) {
     atlasConfig.internalAssetsPath = path.join(__dirname, '../assets');
 
     atlasConfig.componentPrefixes = getComponentsPrefix(config);
+    atlasConfig.indexPageSource = config.indexPageSource || 'not-exist.md';
 
     return atlasConfig;
 }
@@ -156,14 +157,13 @@ function getTemplates(config) {
     return fillTemplatesConfig(config.templates, '../views/templates/', 'template');
 }
 
-function getAdditionalPages(templates, dest, constants) {
+function getAdditionalPages(templates, dest, constants, indexSrc) {
     let additionalPages = [];
-    const readmySrc = path.join(projectRoot, 'README.md');
 
     additionalPages.push({
         'id': 'index',
         'title': 'About',
-        'src': fs.existsSync(readmySrc) ? readmySrc : '',
+        'src': indexSrc,
         'target': path.join(dest, '/index.html'),
         'template': templates.about,
         'type': 'about',
@@ -243,8 +243,13 @@ function getBaseConfig(configRaw) {
     const baseOptional = getOptionalBaseConfigs(config);
     const templates = {templates: getTemplates(config)};
     const constants = {constants: getDeclaredConstants(config)};
+    const getIndexPageSource = require('./config/indexpagesource');
     const additionalPages = {additionalPages: getAdditionalPages(
-        templates.templates, baseMandatory.guideDest, constants.constants)};
+        templates.templates,
+        baseMandatory.guideDest,
+        constants.constants,
+        getIndexPageSource(projectRoot, baseMandatory.guideSrc, baseOptional.indexPageSource)
+    )};
 
     return Object.assign({}, baseMandatory, baseOptional, templates, additionalPages, constants);
 }

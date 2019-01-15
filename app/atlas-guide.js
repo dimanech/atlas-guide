@@ -56,13 +56,15 @@ const cachedTemplates = {
 };
 
 function getCachedTemplates(type, path) {
-    if (type === 'guide') {
-        return cachedTemplates.guide;
+    switch (type) {
+        case 'guide':
+            return cachedTemplates.guide;
+        case 'component':
+        case 'container':
+            return cachedTemplates.component;
+        default:
+            return fs.readFileSync(path, 'utf8');
     }
-    if (type === 'component' || type === 'container') {
-        return cachedTemplates.component;
-    }
-    return fs.readFileSync(path, 'utf8');
 }
 
 // Prepare content
