@@ -102,6 +102,19 @@ function prepareContentModel(component) {
     };
 }
 
+let cachedContent = {};
+const isContentChanged = (url, content) => {
+    if (url === undefined) {
+        return true;
+    }
+    if (content !== cachedContent[url]) {
+        cachedContent[url] = content;
+        return true;
+    } else {
+        return false;
+    }
+};
+
 /**
  * Walk though documented files in project and generate particular page (if path specified) or full docset if no path
  * provided.
@@ -120,15 +133,18 @@ function makeComponent(url) {
             const isFile = component.target;
 
             if (isFile && isFileInConfig) {
-                docSet.push({
-                    title: component.title,
-                    target: component.target,
-                    templateString: getCachedTemplates(component.type, component.template),
-                    type: component.type,
-                    isDeprecated: component.isDeprecated,
-                    content: prepareContentModel(component),
-                    subPages: projectTree.subPages
-                });
+                const content = prepareContentModel(component);
+                if (isContentChanged(sourcePath, content.documentation)) {
+                    docSet.push({
+                        title: component.title,
+                        target: component.target,
+                        templateString: getCachedTemplates(component.type, component.template),
+                        type: component.type,
+                        isDeprecated: component.isDeprecated,
+                        content: content,
+                        subPages: projectTree.subPages
+                    });
+                }
 
                 if (!isMakeAllComponents) {
                     return;
