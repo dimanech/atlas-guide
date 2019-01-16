@@ -4,25 +4,36 @@ const fs = require('fs');
 const path = require('path');
 const projectRoot = process.cwd();
 const printMessage = require('../utils/printmessage');
-const isPathConfigured = require('./utils').isPathConfigured;
+const absPath = relPath => path.join(projectRoot, relPath, '/');
+const isPathReachable = (destination, name) => {
+    if (!destination) {
+        printMessage('error', '"' + name + '" not defined. This field is mandatory');
+        return false;
+    } else if (!fs.existsSync(absPath(destination))) {
+        printMessage('error', '"' + name + '" (' + destination + ') in config unavailable or unreadable. ' +
+            'Please check this path in config');
+        return false;
+    } else {
+        return true;
+    }
+};
 
 function getMandatoryBaseConfig(config) {
-    let atlasConfig = {};
-    if (isPathConfigured(config.guideSrc, 'guideSrc') ||
-        isPathConfigured(config.guideDest, 'guideDest') ||
-        isPathConfigured(config.cssSrc, 'cssSrc')) {
-        return {isCorrupted: true}; // return with corrupted config if we don't have crucial fields
+    if (!isPathReachable(config.guideSrc, 'guideSrc') ||
+        !isPathReachable(config.cssSrc, 'cssSrc')) {
+        return { isCorrupted: true }; // return with corrupted config if we don't have critical info
     }
+    let atlasConfig = {};
 
     // Process mandatory configs
-    atlasConfig.guideSrc = path.join(projectRoot, config.guideSrc, '/');
-    atlasConfig.guideDest = path.join(projectRoot, config.guideDest, '/');
-    atlasConfig.cssSrc = path.join(projectRoot, config.cssSrc, '/');
+    atlasConfig.guideSrc = absPath(config.guideSrc);
+    atlasConfig.cssSrc = absPath(config.cssSrc);
 
+    // Check if scssSrc defined as alternative for documentation root
     if (config.scssSrc === undefined) {
         atlasConfig.scssSrc = atlasConfig.guideSrc;
     } else {
-        const scssSrc = path.join(projectRoot, config.scssSrc, '/');
+        const scssSrc = absPath(config.scssSrc);
         if (!fs.existsSync(scssSrc)) {
             atlasConfig.scssSrc = atlasConfig.guideSrc;
             printMessage('warn', '"scssSrc" is defined, but directory (' + config.scssSrc + ') unavailable or ' +
@@ -31,6 +42,24 @@ function getMandatoryBaseConfig(config) {
             atlasConfig.scssSrc = scssSrc;
         }
     }
+
+    // Check and create destination directory if needed
+    const createDestination = config.createDestFolder || false;
+    if (!config.guideDest) {
+        printMessage('error', '"guideDest" not defined. This field is mandatory');
+        return { isCorrupted: true };
+    }
+    if (!fs.existsSync(absPath(config.guideDest))) {
+        if (createDestination) {
+            fs.mkdirSync(path.join(projectRoot, config.guideDest));
+            printMessage('warn', '"guideDest": ' + config.guideDest + ' directory created');
+        } else {
+            printMessage('error', '"guideDest" (' + config.guideDest + ') in config unavailable or unreadable. ' +
+                'Please check this path in config');
+            return { isCorrupted: true };
+        }
+    }
+    atlasConfig.guideDest = absPath(config.guideDest);
 
     return atlasConfig;
 }
