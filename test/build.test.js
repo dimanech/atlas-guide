@@ -5,6 +5,8 @@ const fs = require('fs');
 const assert = require('assert');
 const cwd = process.cwd();
 
+// TODO: add test for "copyInternalAssets": true!
+
 describe('Build', function() {
     const guideDest = 'test/results/';
     let initialConfig = '';
@@ -219,10 +221,16 @@ describe('Build', function() {
             const atlas = require(cwd + '/app/atlas-guide');
             atlas.buildAll().then(() => done());
         });
+        after(function() {
+            fs.readdirSync(guideDest).forEach(item => {
+                fs.unlinkSync(path.join(cwd, guideDest, item));
+            });
+        });
 
-        it('reports should be written', function() { // FIXME: dumb test
-            const fileCount = fs.readdirSync(guideDest).length;
-            assert.strictEqual(fileCount, 9, 'folder contain needed files count');
+        it('reports should be written', function() {
+            const actual = fs.readdirSync(guideDest);
+            const isHaveReports = !!(actual.includes('bundle.html') && actual.includes('insights.html'));
+            assert.strictEqual(isHaveReports, true, 'folder contain needed files count');
         });
         it('should not process excluded files', function() {
             const actual = fs.readdirSync(guideDest);
@@ -302,11 +310,5 @@ describe('Build', function() {
         });
         it('should have deprecated component');
         it('should have internal templates');
-
-        after(function() {
-            fs.readdirSync(guideDest).forEach(item => {
-                fs.unlinkSync(path.join(cwd, guideDest, item));
-            });
-        });
     });
 });
