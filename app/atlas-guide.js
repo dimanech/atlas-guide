@@ -20,6 +20,7 @@ const projectImports = require(path.resolve(__dirname, '../models/projectimports
 const projectImportsGraph = projectImports.getImportsGraph(atlasBase);
 const projectConstants = require(path.resolve(__dirname, '../models/projectconstants.js'))(atlasBase.constants,
     atlasBase.scssAdditionalImportsArray, atlasBase.constants.constantsFile);
+const projectInfo = atlasConfig.getProjectInfo();
 const componentImports = src => projectImports.getFileImports(src, projectImportsGraph);
 const componentStat = require(path.resolve(__dirname, '../models/componentstat.js'));
 const renderedPageContent = require(path.resolve(__dirname, '../models/pagecontent.js'));
@@ -166,7 +167,7 @@ module.exports = {
     'buildAll': function() {
         return Promise.all([
             makeComponent(),
-            require('./buildreports.js')(atlasConfig, projectTree, projectImportsGraph)
+            require('./buildreports.js')(atlasBase, projectTree, projectImportsGraph, projectInfo)
         ]);
     }
 };

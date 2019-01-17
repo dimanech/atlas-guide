@@ -4,10 +4,10 @@ const path = require('path');
 const fs = require('fs');
 const writePage = require(path.join(__dirname, 'utils/writepage.js'));
 
-module.exports = function(atlasConfig, projectTree, importsGraph) {
+module.exports = function(atlasConfig, projectTree, importsGraph, projectInfo) {
     // Config
-    const atlasBase = atlasConfig.getBase();
-    const projectName = atlasConfig.getProjectInfo().name;
+    const atlasBase = atlasConfig;
+    const projectName = projectInfo.name;
     const guideSrc = atlasBase.guideSrc;
     const guideDest = atlasBase.guideDest;
     const cssSrc = atlasBase.cssSrc;
