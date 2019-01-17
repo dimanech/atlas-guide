@@ -15,7 +15,7 @@ function getOptionalBaseConfigs(config) {
 
     const copyInternalAssets = config.copyInternalAssets;
     atlasConfig.copyInternalAssets = copyInternalAssets !== undefined ? copyInternalAssets : true;
-    atlasConfig.internalAssetsPath = path.join(__dirname, '../assets');
+    atlasConfig.internalAssetsPath = path.join(__dirname, '../../assets');
 
     atlasConfig.componentPrefixes = getComponentsPrefix(config);
     atlasConfig.indexPageSource = config.indexPageSource || 'not-exist.md';
