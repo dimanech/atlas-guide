@@ -18,7 +18,7 @@ function getOptionalBaseConfigs(config) {
     atlasConfig.internalAssetsPath = path.join(__dirname, '../../assets');
 
     atlasConfig.componentPrefixes = getComponentsPrefix(config);
-    atlasConfig.indexPageSource = config.indexPageSource || 'not-exist.md';
+    atlasConfig.indexPageSource = config.indexPageSource;
 
     return atlasConfig;
 }
