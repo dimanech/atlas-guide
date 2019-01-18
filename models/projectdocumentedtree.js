@@ -16,6 +16,25 @@ function isDocumented(filePath) {
     return !!(exec !== null && exec[2].trim());
 }
 
+/**
+ * Traverse array of objects and removes those objects
+ * which are categories and doesn't have any sub-pages
+ * @param {Array} collection - array of objects
+ */
+function removeEmptyCategories(collection) {
+    for (let i = collection.length - 1; i >= 0; i--) {
+        if (collection[i].type === 'category') {
+            if (collection[i].subPages.length) {
+                removeEmptyCategories(collection[i].subPages);
+            }
+
+            if (collection[i].subPages.length === 0) {
+                collection.splice(i, 1);
+            }
+        }
+    }
+}
+
 const isExcludedFile = name => excludedSassFiles.test(name);
 
 function isExcludedDirectory(name) {
@@ -115,6 +134,7 @@ function makeProjectTree(atlasConfig) {
     }
 
     findComponents(atlasConfig.guideSrc, docSet.subPages, '');
+    removeEmptyCategories(docSet.subPages);
 
     if (atlasConfig.additionalPages.length) {
         atlasConfig.additionalPages.forEach(page => docSet.subPages.push(page));
