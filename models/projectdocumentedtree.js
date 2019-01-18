@@ -134,6 +134,7 @@ function makeProjectTree(atlasConfig) {
     }
 
     findComponents(atlasConfig.guideSrc, docSet.subPages, '');
+    removeEmptyCategories(docSet.subPages);
 
     if (atlasConfig.additionalPages.length) {
         atlasConfig.additionalPages.forEach(page => docSet.subPages.push(page));
