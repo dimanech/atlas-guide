@@ -48,7 +48,7 @@
     "nyc": "13.2.0",
     "stylelint": "9.10.1",
     "stylelint-order": "2.0.0",
-    "stylelint-scss": "3.5.2"
+    "stylelint-scss": "3.5.3"
   },
   "browserslist": [
     "last 2 Chrome versions",
