@@ -7,7 +7,7 @@
 const assert = require('assert');
 const parse = require('../models/componentstat/utils/cssfontparser.js');
 
-describe.only('CSS Font parser', function() {
+describe('CSS Font parser', function() {
     it('returns null on invalid css font values', function() {
         assert.strictEqual(parse(''), null);
         assert.strictEqual(parse('Arial'), null);

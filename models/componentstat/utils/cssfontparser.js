@@ -14,14 +14,14 @@ var states = {
     BEFORE_FONT_FAMILY: 4
 };
 
-function isFontSize(buffer) {
-    return (/^((xx|x)-large|(xx|s)-small|small|large|medium)$/.test(buffer) ||
-        /^(larg|small)er$/.test(buffer) ||
-        /^([+-])?([0-9]*\.)?[0-9]+(em|ex|ch|rem|vh|vw|vmin|vmax|px|mm|cm|in|pt|pc|%)$/.test(buffer));
+function isLineHeight(string) {
+    return (/^([+-])?([0-9]*\.)?[0-9]+(em|ex|ch|rem|vh|vw|vmin|vmax|px|mm|cm|in|pt|pc|%)?$/.test(string));
 }
 
-function isLineHeight(buffer) {
-    return /^([+-])?([0-9]*\.)?[0-9]+(em|ex|ch|rem|vh|vw|vmin|vmax|px|mm|cm|in|pt|pc|%)?$/.test(buffer);
+function isFontSize(string) {
+    return (/^([+-])?([0-9]*\.)?[0-9]+(em|ex|ch|rem|vh|vw|vmin|vmax|px|mm|cm|in|pt|pc|%)$/.test(string) ||
+        /^((xx|x)-large|(xx|s)-small|small|large|medium)$/.test(string) ||
+        /^(larg|small)er$/.test(string));
 }
 
 /**
@@ -45,41 +45,48 @@ function parseIdentifier(str) {
     return identifiers.join(' ');
 }
 
-function parseVariation(buffer, result) {
+function variationType(string) {
+    var type = '';
     switch (true) {
-        case isFontSize(buffer):
-            result['font-size'] = buffer;
+        case isFontSize(string):
+            type = 'font-size';
             break;
-        case /^(italic|oblique)$/.test(buffer):
-            result['font-style'] = buffer;
+        case /^(italic|oblique)$/.test(string):
+            type = 'font-style';
             break;
-        case /^small-caps$/.test(buffer):
-            result['font-variant'] = buffer;
+        case /^small-caps$/.test(string):
+            type = 'font-variant';
             break;
-        case /^(bold(er)?|lighter|[1-9]00)$/.test(buffer):
-            result['font-weight'] = buffer;
+        case /^(bold(er)?|lighter|[1-9]00)$/.test(string):
+            type = 'font-weight';
             break;
-        case /^((ultra|extra|semi)-)?(condensed|expanded)$/.test(buffer):
-            result['font-stretch'] = buffer;
+        case /^((ultra|extra|semi)-)?(condensed|expanded)$/.test(string):
+            type = 'font-stretch';
             break;
     }
+    return type;
 }
 
-function getQuotedString(input, i, currentChar) {
-    var startedQuote = currentChar;
-    var closedQuote = i + 1;
+/**
+ * @param {string} input - full string to parse
+ * @param {number} index - current character index
+ * @param {string} quoteChar - current character value
+ * @return {object|null}
+ */
+function getQuotedString(input, index, quoteChar) {
+    var closedQuoteIndex = index + 1;
 
     do {
-        closedQuote = input.indexOf(startedQuote, closedQuote) + 1;
-        if (!closedQuote) {
+        closedQuoteIndex = input.indexOf(quoteChar, closedQuoteIndex) + 1;
+        if (!closedQuoteIndex) {
             // If a string is not closed by a ' or " return null.
             return null;
         }
-    } while (input.charAt(closedQuote - 2) === '\\');
+    } while (input.charAt(closedQuoteIndex - 2) === '\\');
 
     return {
-        string: input.slice(i, closedQuote),
-        endPosition: closedQuote
+        content: input.slice(index, closedQuoteIndex),
+        endPosition: closedQuoteIndex
     };
 }
 
@@ -100,9 +107,9 @@ function parse(input) {
         if (state === states.BEFORE_FONT_FAMILY && (currentChar === '"' || currentChar === '\'')) {
             var quotedStr = getQuotedString(input, i, currentChar);
             if (quotedStr === null) {
-                return null;
+                return null; // parse() return null if closed quote not found
             }
-            result['font-family'].push(quotedStr.string);
+            result['font-family'].push(quotedStr.content);
             i = quotedStr.endPosition - 1;
             state = states.FONT_FAMILY;
             buffer = '';
@@ -116,8 +123,11 @@ function parse(input) {
             }
             buffer = '';
         } else if (state === states.VARIATION && (currentChar === ' ' || currentChar === '/')) {
-            parseVariation(buffer, result);
-            if (isFontSize(buffer)) {
+            var variation = variationType(buffer);
+            if (variation) {
+                result[variation] = buffer;
+            }
+            if (variation === 'font-size') {
                 state = currentChar === '/' ? states.LINE_HEIGHT : states.BEFORE_FONT_FAMILY;
             }
             buffer = '';
