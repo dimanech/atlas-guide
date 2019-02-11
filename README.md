@@ -218,8 +218,8 @@ To make this happen you need to add `partials` to the config, with paths to the 
 ```json
 {
     "partials": {
-      "assetshead": "path/to/overloaded/project-head.mustache",
-      "assetsfooter": "path/to/overloaded/project-footer.mustache"
+      "assetshead": "project-root/path/to/project-head.mustache",
+      "assetsfooter": "project-root/path/to/project-footer.mustache"
     }
 }
 ```
@@ -227,14 +227,14 @@ To make this happen you need to add `partials` to the config, with paths to the 
 ...and add links to your project CSS/JS. Ex: `project-head.mustache`:
 
 ```html
-<link rel="stylesheet" type="text/css" href="../relative/path/from/generated/css/to/project.css"/>
-<link rel="stylesheet" type="text/css" href="../any/additional.css"/>
+<link rel="stylesheet" type="text/css" href="../relative/path/from/generated/html/to/css/project.css"/>
+<link rel="stylesheet" type="text/css" href="../relative/path/from/generated/html/to/any/css/additional.css"/>
 ```
 
 `project-footer.mustache`:
 
 ```html
-<script src="../js/bundle.js"></script>
+<script src="../relative/path/from/generated/html/to/js/bundle.js"></script>
 ```
 
 Note, that paths should be related to generated HTML, no matter where templates are stored. This is simple include that will be incorporated into resulted html.
@@ -245,10 +245,10 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
 
 ```json
 {
-    "guideSrc": "path/to/components/directory/",
-    "guideDest": "path/where/atlas/will/be/placed/",
-    "cssSrc": "path/to/css/",
-    "scssSrc": "path/to/scss/",
+    "guideSrc": "project-root/path/to/components/directory/",
+    "guideDest": "project-root/path/where/atlas/will/be/placed/",
+    "cssSrc": "project-root/path/to/css/",
+    "scssSrc": "project-root/path/to/scss/",
     "scssAdditionalImportsArray": "",
     "componentPrefixes": ["b-", "l-"],
     "excludedCssFiles": "dev_",
@@ -256,7 +256,7 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
     "excludedDirs": "dev_",
     "copyInternalAssets": true,
     "createDestFolder": false,
-    "indexPageSource": "relative/to/project/path/to/file.md",
+    "indexPageSource": "project-root/path/to/file.md",
     "templates": {
         "about": "",
         "bundle": "",
@@ -268,7 +268,7 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
     "includes": {
         "aside": "",
         "assetsfooter": "",
-        "assetshead": "",
+        "assetshead": "project-root/path/to/head.mustache",
         "componentstataside": "",
         "componentstatfooter": "",
         "componentstatstructure": "",
@@ -282,7 +282,7 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
         "welcome": ""
     },
     "projectConstants": {
-        "constantsSrc": "path/to/project-settings.scss",
+        "constantsSrc": "project-root/path/to/project-settings.scss",
         "colorPrefix": "color",
         "fontPrefix": "font",
         "scalePrefix": "scale",
@@ -426,7 +426,7 @@ All "_" in code block "fences" will be removed, but original "fence" will be add
 To inline some resources like svg icons, inlined styles etc. you could use `inline` helper. Ex:
 
 ```html
-{{#inline}}assets/src/images/icons.svg{{/inline}}
+{{#inline}}project-root/assets/src/images/icons.svg{{/inline}}
 ```
 
 This helper use path to file from your *project root*. Virtually any file could be inlined.
