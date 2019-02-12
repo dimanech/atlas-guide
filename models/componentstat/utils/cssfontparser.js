@@ -7,7 +7,7 @@
 /**
  * @enum {number}
  */
-var states = {
+const states = {
     VARIATION: 1,
     LINE_HEIGHT: 2,
     FONT_FAMILY: 3,
@@ -24,6 +24,10 @@ function isFontSize(string) {
         /^(larg|small)er$/.test(string));
 }
 
+function unqote(string) {
+    return string.replace(/^["']|["']$/g, '');
+}
+
 /**
  * Attempt to parse a string as an identifier. Return
  * a normalized identifier, or null when the string
@@ -33,20 +37,22 @@ function isFontSize(string) {
  * @return {string|null}
  */
 function parseIdentifier(str) {
-    var identifiers = str.replace(/^\s+|\s+$/, '').replace(/\s+/g, ' ').split(' ');
+    let identifiers = str.replace(/^\s+|\s+$/, '').replace(/\s+/g, ' ').split(' ');
 
-    for (var i = 0; i < identifiers.length; i += 1) {
+    for (let i = 0; i < identifiers.length; i += 1) {
         if (/^(-?\d|--)/.test(identifiers[i]) ||
-            !/^([_a-zA-Z0-9-]|[^\0-\237]|(\\[0-9a-f]{1,6}(\r\n|[ \n\r\t\f])?|\\[^\n\r\f0-9a-f]))+$/
+            !/^([$_a-zA-Z0-9-]|[^\0-\237]|(\\[0-9a-f]{1,6}(\r\n|[ \n\r\t\f])?|\\[^\n\r\f0-9a-f]))+$/
                 .test(identifiers[i])) {
             return null;
         }
     }
+
     return identifiers.join(' ');
 }
 
 function variationType(string) {
-    var type = '';
+    let type = '';
+
     switch (true) {
         case isFontSize(string):
             type = 'font-size';
@@ -64,6 +70,7 @@ function variationType(string) {
             type = 'font-stretch';
             break;
     }
+
     return type;
 }
 
@@ -74,7 +81,7 @@ function variationType(string) {
  * @return {object|null}
  */
 function getQuotedString(input, index, quoteChar) {
-    var closedQuoteIndex = index + 1;
+    let closedQuoteIndex = index + 1;
 
     do {
         closedQuoteIndex = input.indexOf(quoteChar, closedQuoteIndex) + 1;
@@ -95,21 +102,21 @@ function getQuotedString(input, index, quoteChar) {
  * @return {Object|null}
  */
 function parse(input) {
-    var state = states.VARIATION,
+    let state = states.VARIATION,
         buffer = '',
         result = {
             'font-family': []
         };
 
-    for (var i = 0; i < input.length; i += 1) {
-        var currentChar = input.charAt(i);
+    for (let i = 0; i < input.length; i += 1) {
+        const currentChar = input.charAt(i);
 
         if (state === states.BEFORE_FONT_FAMILY && (currentChar === '"' || currentChar === '\'')) {
-            var quotedStr = getQuotedString(input, i, currentChar);
+            const quotedStr = getQuotedString(input, i, currentChar);
             if (quotedStr === null) {
                 return null; // parse() return null if closed quote not found
             }
-            result['font-family'].push(quotedStr.content);
+            result['font-family'].push(unqote(quotedStr.content));
             i = quotedStr.endPosition - 1;
             state = states.FONT_FAMILY;
             buffer = '';
@@ -117,13 +124,13 @@ function parse(input) {
             state = states.BEFORE_FONT_FAMILY;
             buffer = '';
         } else if (state === states.BEFORE_FONT_FAMILY && currentChar === ',') {
-            var identifier = parseIdentifier(buffer);
+            const identifier = parseIdentifier(buffer);
             if (identifier) {
-                result['font-family'].push(identifier);
+                result['font-family'].push(unqote(identifier));
             }
             buffer = '';
         } else if (state === states.VARIATION && (currentChar === ' ' || currentChar === '/')) {
-            var variation = variationType(buffer);
+            const variation = variationType(buffer);
             if (variation) {
                 result[variation] = buffer;
             }
@@ -149,7 +156,7 @@ function parse(input) {
     }
 
     if (state === states.BEFORE_FONT_FAMILY) {
-        var fontFamily = parseIdentifier(buffer);
+        const fontFamily = parseIdentifier(buffer);
 
         if (fontFamily) {
             result['font-family'].push(fontFamily);

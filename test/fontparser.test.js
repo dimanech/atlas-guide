@@ -40,29 +40,29 @@ describe('CSS Font parser', function() {
     it('handles quoted family names correctly', function() {
         assert.deepStrictEqual(parse('12px "Times New Roman"'), {
             'font-size': '12px',
-            'font-family': ['"Times New Roman"']
+            'font-family': ['Times New Roman']
         });
         assert.deepStrictEqual(parse('12px \'Times New Roman\''), {
             'font-size': '12px',
-            'font-family': ['\'Times New Roman\'']
+            'font-family': ['Times New Roman']
         });
 
         assert.deepStrictEqual(parse('12px "Times\\\' New Roman"'), {
             'font-size': '12px',
-            'font-family': ['"Times\\\' New Roman"']
+            'font-family': ['Times\\\' New Roman']
         });
         assert.deepStrictEqual(parse('12px \'Times\\" New Roman\''), {
             'font-size': '12px',
-            'font-family': ['\'Times\\" New Roman\'']
+            'font-family': ['Times\\" New Roman']
         });
 
         assert.deepStrictEqual(parse('12px "Times\\" New Roman"'), {
             'font-size': '12px',
-            'font-family': ['"Times\\" New Roman"']
+            'font-family': ['Times\\" New Roman']
         });
         assert.deepStrictEqual(parse('12px \'Times\\\' New Roman\''), {
             'font-size': '12px',
-            'font-family': ['\'Times\\\' New Roman\'']
+            'font-family': ['Times\\\' New Roman']
         });
     });
 
@@ -83,7 +83,7 @@ describe('CSS Font parser', function() {
         assert.strictEqual(parse('12px \'Lucida\' Grande'), null);
         assert.strictEqual(parse('12px Ahem!'), null);
         assert.strictEqual(parse('12px Hawaii 5-0'), null);
-        assert.strictEqual(parse('12px $42'), null);
+        // assert.strictEqual(parse('12px $42'), null); // remove this because $ is variable identifier in scss
     });
 
     it('correctly parses escaped characters in identifiers', function() {
