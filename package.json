@@ -43,7 +43,7 @@
     "gulp-connect": "5.7.0",
     "gulp-postcss": "8.0.0",
     "gulp-sass": "4.0.2",
-    "gulp-sourcemaps": "2.6.4",
+    "gulp-sourcemaps": "2.6.5",
     "mocha": "5.2.0",
     "nyc": "13.2.0",
     "stylelint": "9.10.1",
