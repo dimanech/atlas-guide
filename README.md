@@ -302,7 +302,7 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
 * !`cssSrc` {string} – path to generated CSS. Used for statistical reports.
 * `scssSrc` {string} – path to root of SCSS files. Optional. Used for generate statistical reports. It should be used if `guideSrc` is different from scss root. If not defined – `guideSrc` will be used. Proper path to root scss files needed to generate dependencies graph.
 * `scssAdditionalImportsArray` {array} – array of additional sass imports, if they used. Needed for statistical reports and styleguide auto generation.
-* `componentPrefixes` {array of strings} – ['component', 'container'] prefixes that used for components and containers on project. It used to identify components types and will be used to categorize types of documents. Ex: `['c-', 'l-']`, `['atlas-', 'l-']`
+* `componentPrefixes` {array of strings} – ['component', 'container'] prefixes that used for components and containers on project. It used to properly guess component types in component structure info (in footer). Ex: `['c-', 'l-']`, `['atlas-', 'l-']`
 * `excludedCssFiles` {regexp} – CSS files that would not be processed in statistical reports.
 * `excludedSassFiles` {regexp} – Sass files that would not be processed in statistical reports.
 * `excludedDirs` {regexp} – directories that will be excluded from doc sets.

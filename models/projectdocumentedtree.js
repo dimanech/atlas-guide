@@ -45,7 +45,7 @@ function pageConfig(id, title, target, isDocs) {
     return {
         id: id,
         title: title,
-        type: isDocs ? 'guide' : /^l-/i.test(title) ? 'container' : 'component',
+        type: isDocs ? 'guide' : /^l-/i.test(title) ? 'container' : 'component', // TODO: configuration
         src: target,
         target: guideDest + id + '.html',
         template: isDocs ? templates.docs : templates.component,
