@@ -13,6 +13,7 @@
 	&__name {
 		margin-bottom: $space-sm-atlas;
 		margin-right: $space-sm-atlas;
+		white-space: nowrap;
 
 		&::after {
 			content: ":";

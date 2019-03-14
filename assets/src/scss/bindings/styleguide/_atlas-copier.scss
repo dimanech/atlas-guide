@@ -1,0 +1,44 @@
+.atlas-copier {
+	cursor: pointer;
+	position: relative;
+
+	&__message {
+		background-color: rgba(black, 0.5);
+		border-radius: 5px;
+		color: $color-white-atlas;
+		font-family: $font-mono-atlas;
+		font-size: $atlas-scale-secondary;
+		font-style: normal;
+		left: 50%;
+		line-height: 10px;
+		min-width: 20px;
+		padding: $space-md-atlas;
+		pointer-events: none;
+		position: absolute;
+		text-align: center;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		transition: ease 0.6s;
+		transition-property: opacity, visibility;
+		z-index: 10;
+	}
+
+	&__text {
+		all: unset;
+		appearance: none;
+		background-color: transparent;
+		border: none;
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;
+		text-align: inherit;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&:hover &__text {
+		color: $color-blue-atlas;
+	}
+}

@@ -23,7 +23,7 @@
         <div role="heading" aria-level="2" class="atlas-style-section__title">Color palette</div>
         <div role="list" class="atlas-style-columns _span6">
             {{#color}}
-                <div role="listitem" class="atlas-style-columns__item">
+                <div role="listitem" class="atlas-style-columns__item atlas-copier js-copier">
                     <div class="atlas-style-palette">
                         <svg class="atlas-style-palette__swatch" viewBox="0 0 64 84" width="64" height="84" preserveAspectRatio="none">
                             <rect width="64" height="84" fill="{{value}}"></rect>
@@ -31,7 +31,9 @@
                         <div class="atlas-style-palette__text" style="color:{{value}}">
                             Aa
                         </div>
-                        <div class="atlas-style-palette__caption">{{name}}</div>
+                        <div class="atlas-style-palette__caption">
+                            <input type="text" readonly class="atlas-copier__text js-copier-text" value="{{name}}" role="presentation" />
+                        </div>
                     </div>
                 </div>
             {{/color}}
@@ -44,13 +46,13 @@
         <div role="heading" aria-level="2" class="atlas-style-section__title">Spaces</div>
         <div class="atlas-style-space">
         {{#space}}
-            <div class="atlas-style-space__item">
+            <div class="atlas-style-space__item atlas-copier js-copier">
                 <div class="atlas-style-space__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed
                     cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
                     Praesent mauris.</div>
                 <div class="atlas-style-space__spacer" style="padding-bottom:{{value}}">
                     <div class="atlas-style-space__name" style="line-height:{{value}}">
-                        {{name}}
+                        <input type="text" readonly value="{{name}}" class="atlas-copier__text js-copier-text" role="presentation"/>
                     </div>
                     <div class="atlas-style-space-ruler">
                         <span style="line-height:{{value}}">{{value}}</span>
@@ -61,7 +63,7 @@
         </div>
         <div class="atlas-style-space _vertical">
         {{#space}}
-            <div class="atlas-style-space__item">
+            <div class="atlas-style-space__item atlas-copier js-copier">
                 <div class="atlas-style-space__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
                     nec odio. Praesent libero. Sed
                     cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
@@ -69,7 +71,7 @@
                 </div>
                 <div class="atlas-style-space__spacer" style="padding-right:{{value}}">
                     <div class="atlas-style-space__name" style="line-height:{{value}}">
-                        {{name}}
+                        <input type="text" readonly value="{{name}}" class="atlas-copier__text js-copier-text" role="presentation" />
                     </div>
                     <div class="atlas-style-space-ruler _bottom">
                         <span>{{value}}</span>
@@ -80,10 +82,10 @@
         </div>
         <div class="atlas-style-columns _box">
         {{#space}}
-            <div class="atlas-style-columns__item">
+            <div class="atlas-style-columns__item atlas-copier js-copier">
                 <div class="atlas-style-box" style="padding:{{value}}">
                     <div class="atlas-style-box__inner">
-                        {{name}}
+                        <input type="text" readonly class="atlas-copier__text js-copier-text" value="{{name}}" role="presentation"/>
                     </div>
                     <div class="atlas-style-space-ruler _middle" style="height:{{value}};line-height:{{value}}">
                         <span>{{value}}</span>
@@ -99,7 +101,7 @@
     <section class="atlas-style-section">
         <div role="heading" aria-level="2" class="atlas-style-section__title">Scales</div>
         {{#scale}}
-        <div class="atlas-style-scale">
+        <div class="atlas-style-scale atlas-copier js-copier">
             <div class="atlas-style-scale__text" style="font-size:{{value}}">
                 <div class="atlas-style-space-ruler _left" style="line-height:{{value}}">
                     <span>{{value}}</span>
@@ -107,7 +109,7 @@
                 <div class="atlas-style-scale__text-content"></div>
             </div>
             <div class="atlas-style-scale__name">
-                {{name}}
+                <input type="text" readonly class="atlas-copier__text js-copier-text" value="{{name}}" role="presentation"/>
             </div>
         </div>
         {{/scale}}
@@ -119,14 +121,16 @@
         <div role="heading" aria-level="2" class="atlas-style-section__title">Fonts</div>
         <div class="atlas-style-columns _span3">
         {{#font}}
-            <div class="atlas-style-columns__item">
+            <div class="atlas-style-columns__item atlas-copier js-copier">
                 <div class="atlas-style-font _{{name}}" style="font-family:{{value}}">
                     <div class="atlas-style-font__example _logo"></div>
                     <div class="atlas-style-font__example _characters"></div>
                     <div class="atlas-style-font__example _characters-capital"></div>
                     <div class="atlas-style-font__example _digits"></div>
                     <div class="atlas-style-font__caption">
-                        <div class="atlas-style-font__name">{{name}}</div>
+                        <div class="atlas-style-font__name">
+                            <input type="text" readonly class="atlas-copier__text js-copier-text" value="{{name}}" role="presentation"/>
+                        </div>
                         <div class="atlas-style-font__value">{{value}}</div>
                     </div>
                 </div>
@@ -141,9 +145,11 @@
         <div role="heading" aria-level="2" class="atlas-style-section__title">Breakpoints</div>
         <div role="list" class="atlas-style-breaks">
         {{#breakpoint}}
-            <div role="listitem" class="atlas-style-breaks__item">
+            <div role="listitem" class="atlas-style-breaks__item atlas-copier js-copier">
                 <div class="atlas-style-breaks__item-inner">
-                    <div class="atlas-style-breaks__name">{{name}}</div>
+                    <div class="atlas-style-breaks__name">
+                        <input type="text" readonly class="atlas-copier__text js-copier-text" value="{{name}}" role="presentation"/>
+                    </div>
                     <div class="atlas-style-breaks__value">{{value}}</div>
                 </div>
             </div>
@@ -161,9 +167,11 @@
         <div role="heading" aria-level="2" class="atlas-style-section__title">Layering</div>
         <div role="list" class="atlas-style-columns _span6">
             {{#depth}}
-                <div role="listitem" class="atlas-style-columns__item">
+                <div role="listitem" class="atlas-style-columns__item atlas-copier js-copier">
                     <div class="atlas-style-layer">
-                        <div class="atlas-style-layer__box" style="box-shadow:{{value}}">{{name}}</div>
+                        <div class="atlas-style-layer__box" style="box-shadow:{{value}}">
+                            <input type="text" readonly class="atlas-copier__text js-copier-text" value="{{name}}" role="presentation"/>
+                        </div>
                     </div>
                 </div>
                 <div role="listitem" class="atlas-style-columns__item">&nbsp;</div>
@@ -176,9 +184,9 @@
         <section class="atlas-style-section">
             <div role="heading" aria-level="2" class="atlas-style-section__title">Motion</div>
             {{#motion}}
-                <div class="atlas-style-motion">
+                <div class="atlas-style-motion atlas-copier js-copier">
                     <div class="atlas-style-motion__caption">
-                        {{name}}
+                        <input type="text" readonly class="atlas-copier__text js-copier-text" value="{{name}}" role="presentation"/>
                     </div>
                     <div class="atlas-style-motion__frame">
                         <div class="atlas-style-motion__ball" style="animation: atlas-transition-example {{value}} infinite;animation-duration: 3s;animation-direction: alternate;"></div>
@@ -192,5 +200,6 @@
 
 <script src="assets/js/d3.v4.min.js"></script>
 <script src="assets/js/d3breakpoints.js"></script>
+<script src="assets/js/copier.js"></script>
 
 {{> footer}}
