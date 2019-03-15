@@ -20,8 +20,8 @@ function prepareConstantsData(fileString, constantsList) {
 
     fileAST.walkDecls(decl => {
         constantsList.forEach(constant => {
-            if (constant.regex.test(decl.prop) && !/^--/.test(decl.prop)) { // exclude custom properties since
-                // we do not need to compile it
+            if (new RegExp(constant.regex).test(decl.prop) && !/^--/.test(decl.prop)) { // exclude custom properties
+                // since we do not need to compile it
                 rawConstants.push({
                     'constName': decl.prop,
                     'constNameSafe': '\\' + decl.prop // escape "&" string from selector name
@@ -77,14 +77,14 @@ function getConstants(fileAST, constList) {
     fileAST.walkRules(rule => {
         constList.forEach(constant => {
             if (rule.selector === ':root') {
-                rule.walkDecls(constant.regex, decl => {
+                rule.walkDecls(new RegExp(constant.regex), decl => {
                     constants[constant.name].push({
                         'name': decl.prop,
                         'value': decl.value
                     });
                 });
             } else {
-                if (constant.regex.test(rule.selector)) {
+                if (new RegExp(constant.regex).test(rule.selector)) {
                     constants[constant.name].push({
                         'name': rule.selector.replace(/\\/, ''),
                         'value': rule.nodes[0].value
@@ -104,7 +104,7 @@ function getProjectConstants(constConfig, additionalSassImports) {
     const constRegexpsList = constConfig.constantsList;
     const constFileString = constConfig.constantsFile;
     const imports = additionalSassImports || [];
-    imports.push(path.dirname(constConfig.constantsSrc)); // in case if file itself contain imports
+    constConfig.constantsSrc.forEach(item => imports.push(path.dirname(item)));// in case if file itself contain imports
 
     const compiledConstants = compileStyles(prepareConstantsData(constFileString, constRegexpsList), imports);
     const compiledConstantsAST = postcss().process(compiledConstants, { stringifier: {} }).root;

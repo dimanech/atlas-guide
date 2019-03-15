@@ -238,4 +238,132 @@ describe('Config', function() {
             it('should use overloaded partial');
         });
     });
+
+    context('when constants are defined', function() {
+        const fallReturn = {
+            constantsList: [],
+            isDefined: false
+        };
+
+        context('but contain no data', function() {
+            it('should not throw any errors', function() {
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'projectConstants': {}
+                });
+                assert.deepStrictEqual(atlasConfig.constants, fallReturn);
+            });
+        });
+        context('but source file not defined', function() {
+            it('should throw message and fall gracefully', function() { // TODO
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'projectConstants': {
+                        'colorPrefix': 'color',
+                        'fontPrefix': 'font'
+                    }
+                });
+                assert.deepStrictEqual(atlasConfig.constants, fallReturn);
+            });
+        });
+        context('but some source files is not available', function() {
+            it('should throw message and fall gracefully', function() {
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'projectConstants': {
+                        'constantsSrc': 'test/fixtures/atlas/_notexist.scss',
+                        'colorPrefix': 'color'
+                    }
+                });
+                assert.deepStrictEqual(atlasConfig.constants, fallReturn);
+            });
+            it('should throw message and fall gracefully if array of files is defied', function() {
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'projectConstants': {
+                        'constantsSrc': [
+                            'test/fixtures/atlas/_notexist.scss',
+                            'test/fixtures/atlas/_notexist2.scss'
+                        ],
+                        'colorPrefix': 'color'
+                    }
+                });
+                assert.deepStrictEqual(atlasConfig.constants, fallReturn);
+            });
+            it('should throw message and fall gracefully if even one file from array not avilable', function() {
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'projectConstants': {
+                        'constantsSrc': [
+                            'test/fixtures/atlas/_excluded-settings.scss',
+                            'test/fixtures/atlas/_notexist.scss'
+                        ],
+                        'colorPrefix': 'color'
+                    }
+                });
+                assert.deepStrictEqual(atlasConfig.constants, fallReturn);
+            });
+        });
+        context('and all ok', function() {
+            it('should return proper result for single source', function() {
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'projectConstants': {
+                        'constantsSrc': 'test/fixtures/atlas/_excluded-settings.scss',
+                        'colorPrefix': 'color',
+                        'fontPrefix': 'font',
+                        'scalePrefix': 'scale',
+                        'spacePrefix': 'space',
+                        'motionPrefix': 'motion',
+                        'depthPrefix': 'depth',
+                        'breakpointPrefix': 'break'
+                    }
+                });
+                const result = require(path.join(cwd, '/test/fixtures/models/constants.json'));
+                result.constantsSrc = [path.join(cwd, 'test/fixtures/atlas/_excluded-settings.scss')];
+
+                assert.deepStrictEqual(atlasConfig.constants, result);
+            });
+            it('should return proper result for multiple source', function() {
+                const atlasConfig = config.getBase({
+                    'guideSrc': '/assets/src/scss/',
+                    'guideDest': 'test/results',
+                    'cssSrc': '/assets/css/',
+                    'projectConstants': {
+                        'constantsSrc': [
+                            'test/fixtures/atlas/_excluded-settings.scss',
+                            'test/fixtures/atlas/_component-deprecated.scss'
+                        ],
+                        'colorPrefix': 'color',
+                        'fontPrefix': 'font',
+                        'scalePrefix': 'scale',
+                        'spacePrefix': 'space',
+                        'motionPrefix': 'motion',
+                        'depthPrefix': 'depth',
+                        'breakpointPrefix': 'break'
+                    }
+                });
+                const expectedResult = require(path.join(cwd, '/test/fixtures/models/constants.json'));
+                expectedResult.constantsSrc = [
+                    path.join(cwd, 'test/fixtures/atlas/_excluded-settings.scss'),
+                    path.join(cwd, 'test/fixtures/atlas/_component-deprecated.scss')
+                ];
+                expectedResult.constantsFile += '/*md\n\n# b-component deprecated\n\n*/\n\n.class {\n\tmargin: 0;\n}\n';
+
+                assert.deepStrictEqual(atlasConfig.constants, expectedResult);
+            });
+        });
+    });
 });

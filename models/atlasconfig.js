@@ -61,11 +61,15 @@ function getBaseConfig(configRaw) {
     if (baseMandatory.isCorrupted) {
         return { isCorrupted: true };
     }
+
     const baseOptional = require('./config/configoptional')(config);
 
     const templates = { templates: fillTemplatesConfig(config.templates, '../views/templates/', 'template') };
+
     const constants = { constants: require('./config/constants')(config) };
+
     const getIndexPageSource = require('./config/indexpagesource');
+
     const additionalPages = { additionalPages: require('./config/additionalpages')(
         templates.templates,
         baseMandatory.guideDest,
