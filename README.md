@@ -267,7 +267,7 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
     },
     "includes": {
         "aside": "",
-        "assetsfooter": "",
+        "assetsfooter": "project-root/path/to/foot.mustache",
         "assetshead": "project-root/path/to/head.mustache",
         "componentstataside": "",
         "componentstatfooter": "",
@@ -506,7 +506,7 @@ Other steps should be simple:
     "scssSrc": "path/to/scss/",
     "scssAdditionalImportsArray": ["path/to/additional/sass/files"],
     "projectConstants": {
-        "constantsSrc": "path/to/project-settings.scss",
+        "constantsSrc": ["path/to/project-settings.scss", "path/to/other-file.scss"],
         "colorPrefix": "color",
         "fontPrefix": "font",
         "scalePrefix": "scale",
