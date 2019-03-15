@@ -9,13 +9,13 @@
 
 	.node__circle {
 		fill: $color-blue-atlas;
-		stroke: white;
+		stroke: $color-white-atlas;
 	}
 
 	.node__text {
 		fill: currentColor;
 		font-family: $font-mono-atlas;
-		font-size: $atlas-mono-small;
+		font-size: $atlas-scale-mono-small;
 
 		&._partial {
 			fill: $color-blue-atlas;

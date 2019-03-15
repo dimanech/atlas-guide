@@ -4,6 +4,9 @@ function guessSelectorType(name, componentPrefixRegExp) {
     let type;
     switch (true) {
         // parse prefix
+        case /(^mixin)|(^at-root)/.test(name):
+            type = 'container';
+            break;
         case /^include/.test(name):
             type = 'mixin';
             break;

@@ -1,7 +1,7 @@
 'use strict';
 
 const _uniq = require('lodash.uniq');
-const formatNumbers = require(__dirname + '/utils/format').numbers;
+const formatNumbers = require('./utils/format').numbers;
 
 const getConstantsUsage = require('./statcomponent/getConstantsUsage');
 const ruleSetChart = require('./statcomponent/ruleSetChart');

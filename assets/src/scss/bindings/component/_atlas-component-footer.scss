@@ -4,7 +4,7 @@
 	display: flex;
 	float: none;
 	font-family: $font-sans-atlas;
-	font-size: 15px;
+	font-size: $atlas-scale-primary;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	justify-content: space-between;

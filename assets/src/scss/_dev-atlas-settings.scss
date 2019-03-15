@@ -1,5 +1,8 @@
+@import "helpers/index";
+
 // Palette
 $color-grey60-atlas: hsl(0, 0%, 60%);
+$color-grey70-atlas: hsl(0, 0%, 70%);
 $color-grey80-atlas: hsl(0, 0%, 80%);
 $color-grey90-atlas: hsl(0, 0%, 90%);
 $color-grey95-atlas: hsl(0, 0%, 95%);
@@ -8,12 +11,11 @@ $color-white-atlas: hsl(0, 0%, 100%);
 $color-blue-atlas: hsl(213, 75%, 54%);
 $color-blue79-atlas: hsl(213, 66%, 79%);
 
-$color-violet-atlas: #594199;
-$color-fuchsia-atlas: #bc1f8c;
-$color-coral-atlas: #f15d5c;
-$color-yellow-atlas: #fae20f;
-$color-green-atlas: #98cb52;
-$color-aqua-atlas: #46c2c7;
+$color-pink-atlas: hsl(328, 100%, 60%);
+$color-red-atlas: hsl(0, 92%, 60%);
+$color-orange-atlas: hsl(38, 92%, 60%);
+$color-yellow-atlas: hsl(53, 92%, 60%);
+$color-green-atlas: hsl(85, 60%, 60%);
 
 // Fonts
 $font-sans-atlas: "Arial", "FreeSans", sans-serif;
@@ -24,8 +26,8 @@ $size-font-atlas: 1rem; // 16px
 $size-line-atlas: $size-font-atlas * 1.25; // 20px
 
 // Scales
-$scale-sm-atlas: 0.8rem;
-$scale-md-atlas: 1rem;
+$scale-sm-atlas: rem(13);
+$scale-md-atlas: rem(15);
 $scale-lg-atlas: 1.25rem;
 $scale-xl-atlas: 1.563rem;
 $scale-xxl-atlas: 2.441rem;
@@ -58,8 +60,16 @@ $break-md: 1024px;
 $break-sm: 767px;
 
 // Applied colors
-$atlas-color-text: hsl(210, 2%, 35%);
-$atlas-color-divider: hsl(0, 1%, 70%);
+$atlas-color-text: hsl(210, 0%, 35%);
+$atlas-color-divider: $color-grey70-atlas;
+$atlas-aside-bg: $color-grey95-atlas;
+$atlas-aside-bd: hsl(0, 0%, 87%);
+$atlas-aside-selected: hsl(0, 0%, 88%);
 
 // Applied sizes
-$atlas-mono-small: 0.7rem;
+$atlas-scale-mono-small: rem(11);
+$atlas-scale-primary: $scale-md-atlas;
+$atlas-scale-secondary: $scale-sm-atlas;
+
+// Applied radiuses
+$atlas-radius: rem(5);

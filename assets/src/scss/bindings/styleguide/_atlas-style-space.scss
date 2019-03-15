@@ -16,7 +16,7 @@
 	&__spacer {
 		background-color: lighten($color-blue79-atlas, 15%);
 		font-family: $font-mono-atlas;
-		font-size: $atlas-mono-small;
+		font-size: $atlas-scale-mono-small;
 		position: relative;
 		text-align: center;
 	}
@@ -44,7 +44,7 @@
 	box-sizing: border-box;
 	color: deeppink;
 	font-family: $font-mono-atlas;
-	font-size: $atlas-mono-small;
+	font-size: $atlas-scale-mono-small;
 	margin-left: 5px;
 	padding-right: 5px;
 	position: absolute;
@@ -104,7 +104,7 @@
 		box-sizing: border-box;
 		display: flex;
 		font-family: $font-mono-atlas;
-		font-size: $atlas-mono-small;
+		font-size: $atlas-scale-mono-small;
 		height: 100px;
 		text-align: center;
 		width: 100px;

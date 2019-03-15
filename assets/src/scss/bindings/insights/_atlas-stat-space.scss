@@ -1,20 +1,23 @@
 .atlas-stat-space {
+	all: unset;
+	display: block;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 
 	&__item {
 		display: flex;
-		margin-bottom: 2px;
+		margin: 0 0 2px;
+		padding: 0;
 	}
 
 	&__line {
 		background-color: $color-blue79-atlas;
-		border-right: 1px solid hotpink;
+		border-right: 1px solid $color-pink-atlas;
 	}
 
 	&__caption {
 		font-family: $font-mono-atlas;
-		font-size: $atlas-mono-small;
+		font-size: $atlas-scale-mono-small;
 		font-weight: normal;
 		padding-right: 5px;
 		position: relative;

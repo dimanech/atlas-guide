@@ -12,24 +12,24 @@
 
 	&__nodes {
 		background: linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)) no-repeat;
-		background-position: 26px 0;
+		background-position: rem(26) 0;
 		background-size: 1px 100%;
 		font-family: $font-mono-atlas;
 		font-size: 0.8rem;
 		list-style: none;
-		padding-bottom: 5px;
+		padding-bottom: rem(5);
 		padding-left: $space-md-atlas;
 		position: relative;
 
 		&::after {
 			background-color: rgba(0, 0, 0, 0.3);
-			border-radius: 5px;
+			border-radius: $atlas-radius;
 			bottom: 0;
 			content: "";
-			height: 3px;
-			left: 25px;
+			height: rem(3);
+			left: rem(25);
 			position: absolute;
-			width: 3px;
+			width: rem(3);
 		}
 
 		.atlas-component-structure__nodes {
@@ -45,7 +45,7 @@
 	&__node {
 		font-size: 0.8rem;
 		line-height: 1.4;
-		margin: 5px 0;
+		margin: rem(5) 0;
 	}
 
 	&__type {
@@ -55,15 +55,15 @@
 		color: $color-white-atlas;
 		display: inline-block;
 		font-family: $font-sans-atlas;
-		font-size: 11px;
+		font-size: rem(11);
 		font-weight: bold;
-		height: 15px;
-		line-height: 14px;
+		height: rem(15);
+		line-height: rem(14);
 		position: relative;
 		text-align: center;
 		text-shadow: 0 0 1px rgba(black, 0.5);
-		top: -1px;
-		width: 15px;
+		top: -#{rem(1)};
+		width: rem(15);
 
 		//&::after {
 		//	border: 3px solid #fafafa;
@@ -80,6 +80,7 @@
 		$modifier: #2196f3;
 		$media: white;
 
+		&._container,
 		&._mixin {
 			background-color: $media;
 			color: $atlas-color-text;
@@ -93,6 +94,10 @@
 				color: transparent;
 				content: "↙";
 			}
+		}
+
+		&._container {
+			transform: rotate(45deg);
 		}
 
 		&._condition {

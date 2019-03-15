@@ -1,22 +1,26 @@
 .atlas-search {
 	position: relative;
 
-	input {
+	$filter-icon-size: rem(16);
+	$clear-icon-size: rem(14);
+	$icon-indent: rem(6);
+
+	&__input {
 		-webkit-appearance: none;
 		background: transparent;
-		border: 1px solid $aside-bd;
-		border-radius: 5px;
+		border: 1px solid $atlas-aside-bd;
+		border-radius: $atlas-radius;
 		font-family: $font-sans-atlas;
-		font-size: 13px;
-		height: 25px;
-		line-height: 25px;
+		font-size: rem(13);
+		height: rem(25);
+		line-height: rem(25);
 		outline: none;
-		padding: 0 10px;
-		text-indent: 16px;
+		padding: 0 $space-sm-atlas;
+		text-indent: $filter-icon-size;
 		width: 100%;
 
 		&:focus {
-			background: darken($aside-bg, 5%);
+			background: darken($atlas-aside-bg, 5%);
 		}
 
 		&::-webkit-search-cancel-button,
@@ -29,38 +33,37 @@
 		}
 	}
 
-	svg {
+	&__icon {
 		color: $atlas-color-text;
-		height: 16px;
-		left: 6px;
+		height: $filter-icon-size;
+		left: $icon-indent;
 		position: absolute;
-		top: 5px;
-		width: 16px;
+		top: rem(5);
+		width: $filter-icon-size;
 
 		.js-found & {
 			color: $color-blue-atlas;
 		}
 	}
 
-	button {
-		background: darken($aside-bd, 30%);
+	&__clear {
+		background: darken($atlas-aside-bd, 30%);
 		border: none;
 		border-radius: 50%;
 		color: $color-white-atlas;
-		font-family: $font-sans-atlas;
-		font-size: 8px;
-		height: 14px;
+		height: $clear-icon-size;
+		line-height: $clear-icon-size;
 		outline: none;
 		padding: 0;
 		position: absolute;
-		right: 5px;
-		top: 6px;
+		right: $icon-indent;
+		top: rem(6);
 		transform: scale(0);
 		transition: transform ease 0.2s;
-		width: 14px;
+		width: $clear-icon-size;
 
 		&:hover {
-			background: darken($aside-bd, 40%);
+			background: darken($atlas-aside-bd, 40%);
 		}
 
 		&:focus {
@@ -68,7 +71,7 @@
 		}
 
 		&:active {
-			background: darken($aside-bd, 50%);
+			background: darken($atlas-aside-bd, 50%);
 		}
 
 		.js-found & {

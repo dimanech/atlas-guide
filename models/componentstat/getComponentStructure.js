@@ -29,7 +29,7 @@ function getComponentStructure(fileAST, componentPrefixRegExp) {
                 structure.push({
                     'node': nodeSelector,
                     // 'annotation': isAnnotated ? node.nodes[0].text : '',
-                    'type': guessType(nodeSelector, componentPrefix),
+                    'type': componentType,
                     'isBlock': componentType !== 'mixin',
                     'nodes': []
                 });

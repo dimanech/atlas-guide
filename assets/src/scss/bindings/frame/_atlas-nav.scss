@@ -1,6 +1,6 @@
 .atlas-nav { // atlas-outline-view
 	font-family: $font-sans-atlas;
-	font-size: 13px;
+	font-size: $atlas-scale-secondary;
 	line-height: 1.2;
 	list-style: none;
 	padding-bottom: $space-md-atlas;
@@ -18,7 +18,8 @@
 		color: inherit;
 		cursor: pointer;
 		display: block;
-		padding: 2px 0 4px;
+		overflow: hidden;
+		padding: rem(2) 0 rem(4);
 		position: relative;
 		text-decoration: none;
 		text-overflow: ellipsis;
@@ -36,17 +37,17 @@
 		}
 
 		&.js-current-page {
-			background-color: $aside-selected;
+			background-color: $atlas-aside-selected;
 			color: black;
 			cursor: default;
 			pointer-events: none;
 		}
 
 		svg {
-			height: 18px;
+			height: rem(18);
 			pointer-events: none;
 			vertical-align: text-bottom;
-			width: 18px;
+			width: rem(18);
 		}
 
 		&._landing {
@@ -60,20 +61,20 @@
 
 			svg {
 				transform: rotate(90deg);
-				width: 8px;
+				width: rem(8);
 			}
 		}
 
 		&._guide {
 			svg {
-				width: 14px;
+				width: rem(14);
 			}
 		}
 
 		&._about {
 			svg {
-				margin-right: 3px;
-				width: 15px;
+				margin-right: rem(3);
+				width: rem(15);
 			}
 		}
 
@@ -86,9 +87,9 @@
 	// Recursive nesting level structure - refactor me later
 	> .atlas-nav__item {
 		> .atlas-nav__ln {
-			background: $aside-bg;
+			background: $atlas-aside-bg;
 			display: block;
-			padding: $space-sm-atlas $space-md-atlas;
+			padding: $space-sm-atlas 0 $space-sm-atlas $space-md-atlas;
 			position: sticky;
 			top: 0;
 			z-index: 1;
@@ -109,19 +110,16 @@
 		.atlas-nav__item {
 			> .atlas-nav__ln {
 				padding-left: ($space-md-atlas * 2);
-				padding-right: ($space-md-atlas * 2);
 			}
 
 			.atlas-nav__item {
 				> .atlas-nav__ln {
 					padding-left: ($space-md-atlas * 3);
-					padding-right: ($space-md-atlas * 3);
 				}
 
 				.atlas-nav__item {
 					> .atlas-nav__ln {
 						padding-left: ($space-md-atlas * 4);
-						padding-right: ($space-md-atlas * 4);
 					}
 				}
 			}

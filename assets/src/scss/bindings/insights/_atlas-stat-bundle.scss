@@ -9,6 +9,7 @@
 	.atlas-size {
 		fill: rgba($color-blue-atlas, 0.2);
 		stroke: $color-blue79-atlas;
+		stroke-dasharray: 3;
 	}
 
 	.atlas-node {
@@ -37,7 +38,7 @@
 			}
 
 			circle {
-				fill: white;
+				fill: $color-white-atlas;
 			}
 		}
 

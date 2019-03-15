@@ -2,7 +2,7 @@
 	all: initial;
 	color: $atlas-color-text;
 	font-family: $font-sans-atlas;
-	font-size: 15px;
+	font-size: $atlas-scale-primary;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 
@@ -97,6 +97,11 @@
 		margin-bottom: $space-md-atlas;
 		margin-top: $space-md-atlas;
 		padding-left: $space-md-atlas;
+
+		li {
+			margin: 0;
+			padding: 0;
+		}
 	}
 
 	&-ol {
@@ -142,7 +147,8 @@
 		pre {
 			background-color: lighten($color-grey95-atlas, 4%);
 			border: 1px solid $color-grey95-atlas;
-			border-radius: 5px;
+			border-radius: 3px;
+			margin: 0 0 $space-md-atlas;
 			overflow: auto;
 			padding: $space-sm-atlas;
 
@@ -154,17 +160,36 @@
 			}
 		}
 
+		&[class*="_bad"],
+		&[class*="_good"] {
+			&::after {
+				display: block;
+				font-size: 0.8em;
+				font-weight: bold;
+				line-height: $space-md-atlas;
+				margin: -#{$space-md-atlas} 0 $space-md-atlas;
+			}
+		}
+
 		&[class*="_bad"] {
 			pre {
-				background-color: lighten($color-coral-atlas, 30%);
-				border-color: lighten($color-coral-atlas, 16%);
+				border-color: lighten($color-red-atlas, 16%);
+			}
+
+			&::after {
+				color: $color-red-atlas;
+				content: "Don’t.";
 			}
 		}
 
 		&[class*="_good"] {
 			pre {
-				background-color: lighten($color-green-atlas, 40%);
 				border-color: lighten($color-green-atlas, 16%);
+			}
+
+			&::after {
+				color: $color-green-atlas;
+				content: "Do.";
 			}
 		}
 	}
@@ -240,6 +265,11 @@
 		&:active {
 			color: $color-blue-atlas;
 		}
+
+		svg {
+			height: rem(14);
+			width: rem(14);
+		}
 	}
 
 	&__highlight {
@@ -293,7 +323,7 @@
 
 @keyframes target-highlight {
 	0% {
-		background-color: $color-yellow-atlas;
+		background-color: $color-orange-atlas;
 	}
 
 	100% {

@@ -1,4 +1,4 @@
-.atlas-component-type-ico {
+.atlas-overline {
 	font-family: $font-sans-atlas;
 	font-size: $scale-lg-atlas;
 	line-height: $space-md-atlas;
@@ -8,9 +8,9 @@
 
 	svg {
 		color: $color-blue-atlas;
-		height: 24px;
+		height: rem(24);
 		position: relative;
-		top: 4px;
-		width: 24px;
+		top: rem(4);
+		width: rem(24);
 	}
 }

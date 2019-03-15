@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/dev_atlas-insights.css"/>
 
 <div class="atlas-stat-sizes-page-title">
-    <div class="atlas-component-type-ico">
+    <div class="atlas-overline">
         <svg width="16" height="16" role="img">
             <use xlink:href="#icon-bundle"></use>
         </svg>
@@ -37,13 +37,13 @@
         {{#content.bundleImports}}
             <div class="atlas-stat-columns__item">
                 <div role="heading" aria-level="3" class="atlas-stat-section__title-sub">{{name}}</div>
-                <div role="list" class="atlas-stat-list _imports">
+                <ol role="list" class="atlas-stat-list _imports">
                     {{#imports}}
-                        <div role="listitem" class="atlas-stat-list__item">
+                        <li role="listitem" class="atlas-stat-list__item">
                             <div class="atlas-stat-item">{{.}}</div>
-                        </div>
+                        </li>
                     {{/imports}}
-                </div>
+                </ol>
             </div>
         {{/content.bundleImports}}
     </div>
@@ -62,11 +62,15 @@
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-about"></use>
         </svg>
-        <div class="atlas-cross-dependencies-legend__caption">This graph shows cross components dependencies and help you run
-            project without unneeded relations and orphans.</div>
-        <dvi class="atlas-cross-dependencies-legend__example">For example, global components bundle should not have any
+        <div class="atlas-cross-dependencies-legend__caption">
+            This graph shows cross components dependencies and help you run
+            project without unneeded relations and orphans.
+        </div>
+        <div class="atlas-cross-dependencies-legend__example">
+            For example, global components bundle should not have any
             dependencies, since by the name it already included in all
-            areas. Also components that not included in any resulted CSS file probably redundant.</dvi>
+            areas. Also components that not included in any resulted CSS file probably redundant.
+        </div>
         <div role="list" class="atlas-cross-dependencies-legend__list">
             <div role="listitem">
                 <svg width="4.5" height="4.5">

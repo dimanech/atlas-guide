@@ -1,3 +1,11 @@
+.atlas-stat-chart-caption {
+	all: unset;
+	font-family: $font-sans-atlas;
+	font-size: 0.8rem;
+	font-weight: bold;
+	margin: $space-sm-atlas 0;
+}
+
 .atlas-stat-chart {
 	display: flex;
 	font-family: $font-sans-atlas;
@@ -10,110 +18,21 @@
 	}
 
 	&__legend {
+		color: $atlas-color-text;
+		font-family: $font-sans-atlas;
+		font-size: 0.6rem;
 		margin-top: $space-md-atlas;
 	}
 
 	&__bean-name {
-		margin-top: $space-sm-atlas;
+		margin: $space-sm-atlas 0 $space-md-atlas;
 	}
 
 	&__stat {
-		margin-top: $space-md-atlas;
-		text-align: left;
-	}
-
-	.atlas-stat-list {
-		font-size: $atlas-mono-small;
+		font-size: $atlas-scale-mono-small;
 		list-style: none;
-		padding-left: 40px;
-	}
-}
-
-.atlas-stat-chart-caption {
-	all: unset;
-	font-family: $font-sans-atlas;
-	font-size: 0.8rem;
-	font-weight: bold;
-	margin: $space-sm-atlas 0;
-}
-
-.atlas-stat-page {
-	.bar {
-		fill: $color-blue79-atlas;
-	}
-
-	.bar-caption {
-		fill: $atlas-color-text;
-		font-size: 0.8rem;
-	}
-
-	.bar-caption-bottom {
-		fill: $atlas-color-text;
-		font-size: 0.8rem;
-	}
-
-	.area {
-		fill: url("#atlas-blue-gradient");
-		stroke: none;
-
-		&._huge {
-			fill: $color-blue79-atlas;
-		}
-	}
-
-	.area-line {
-		stroke: $color-blue-atlas;
-
-		&._huge {
-			stroke: none;
-		}
-	}
-
-	.tick {
-		font-family: $font-mono-atlas;
-
-		line {
-			stroke: rgba(black, 0.1);
-		}
-
-		&.mean {
-			line {
-				stroke: hotpink;
-				stroke-dasharray: 5, 5;
-				stroke-width: 0.4;
-			}
-
-			text {
-				fill: hotpink;
-			}
-		}
-	}
-
-	.focus {
-		color: $atlas-color-text;
-		fill: black;
-		font-family: $font-mono-atlas;
-
-		circle {
-			fill: $color-white-atlas;
-			stroke: $color-blue-atlas;
-			stroke-width: 1px;
-		}
-
-		text {
-			font-size: $atlas-mono-small;
-		}
-	}
-
-	.js-bar-chart,
-	.js-line-chart {
-		width: 100%;
-		//margin: 0 -#{$space-md-atlas} 0 0;
-	}
-
-	.atlas-stat-chart__legend {
-		color: $atlas-color-text;
-		font-family: $font-sans-atlas;
-		font-size: 0.6rem;
+		margin-top: $space-md-atlas;
+		padding-left: $space-lg-atlas;
+		text-align: left;
 	}
 }

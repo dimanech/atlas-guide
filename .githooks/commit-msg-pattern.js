@@ -3,7 +3,7 @@
 
 const fs = require('fs');
 
-const commitRegExp = new RegExp('^(ADD|RM|UP|FIX|WIP): (.*)|^(Merge|Revert|Finish).+');
+const commitRegExp = new RegExp('^(ADD|RM|UP|FIX|WIP): (.*)|^(Merge|Revert|Finish|[0-9]).+');
 const errorMsg = '[GUARD]: Your commit message not match pattern "ADD|RM|UP|FIX|WIP:" or "Merge|Revert|Finish"';
 
 console.log('[GUARD]: validate commit message...');

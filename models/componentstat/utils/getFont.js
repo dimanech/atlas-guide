@@ -1,23 +1,31 @@
 'use strict';
 
 const fontParser = require('./cssfontparser.js');
+const quoteFamily = family =>
+    /^(serif|sans-serif|monospace|cursive|fantasy|\$[a-zA-Z]*)$/.test(family) ? family : ('"' + family + '"');
 
-function getFont(value) {
-    const parse = fontParser(value);
-    const result = {
-        fontSize: '',
-        fontFamily: ''
-    };
-
-    if (parse) {
-        result.fontSize = parse['font-size'];
-        result.fontFamily = parse['font-family'];
+function prepareFontData(input) {
+    if (/^(inherit|initial)$/.test(input)) {
+        return {
+            fontSize: input,
+            fontFamily: input
+        };
     }
 
-    return {
-        fontSize: result.fontSize,
-        fontFamily: result.fontFamily
-    };
+    input = input.replace(/\s*\/\s*/, '/');
+    let result = fontParser(input);
+
+    if (result) {
+        return {
+            fontSize: result['font-size'],
+            fontFamily: result['font-family'].map(quoteFamily).join(', ')
+        };
+    } else {
+        return {
+            fontSize: '',
+            fontFamily: ''
+        };
+    }
 }
 
-module.exports = getFont;
+module.exports = prepareFontData;

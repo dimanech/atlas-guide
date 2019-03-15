@@ -53,7 +53,6 @@
         svg.attr('viewBox', '0 0 ' +
             (width + margin.left + margin.right) + ' ' +
             (height + margin.top + margin.bottom));
-        // Bars
         const inner = svg.append('g')
             .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 

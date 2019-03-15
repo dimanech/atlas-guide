@@ -4,10 +4,10 @@ const path = require('path');
 const fs = require('fs');
 const writePage = require(path.join(__dirname, 'utils/writepage.js'));
 
-module.exports = function(atlasConfig, projectTree, importsGraph) {
+module.exports = function(atlasConfig, projectTree, importsGraph, projectInfo) {
     // Config
-    const atlasBase = atlasConfig.getBase();
-    const projectName = atlasConfig.getProjectInfo().name;
+    const atlasBase = atlasConfig;
+    const projectName = projectInfo.name;
     const guideSrc = atlasBase.guideSrc;
     const guideDest = atlasBase.guideDest;
     const cssSrc = atlasBase.cssSrc;
@@ -16,7 +16,7 @@ module.exports = function(atlasConfig, projectTree, importsGraph) {
     const excludedSassFiles = atlasBase.excludedSassFiles;
 
     // Models
-    const projectStat = require(path.resolve(__dirname, '../models/projectcssstat.js'))(
+    const cssStat = require(path.resolve(__dirname, '../models/projectcssstat.js'))(
         projectName, cssSrc, excludedCssFiles);
     const projectFileSizes = require(path.resolve(__dirname, '../models/projectfilesize.js'))(guideSrc);
     const bundle = require(path.resolve(__dirname, '../models/projectbundle.js'))(
@@ -48,7 +48,7 @@ module.exports = function(atlasConfig, projectTree, importsGraph) {
         'target': path.join(guideDest, '/insights.html'),
         'templateString': fs.readFileSync(templates.insights, 'utf8'),
         'type': 'insights',
-        'content': statProject(projectStat, projectName),
+        'content': statProject(cssStat, projectName),
         'subPages': projectTree.subPages
     }];
 

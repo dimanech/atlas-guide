@@ -11,13 +11,31 @@ let templates;
 function isDocumented(filePath) {
     const file = fs.readFileSync(filePath, 'utf8');
     const docComment = /\/\*md(\r\n|\n)(((\r\n|\n)|.)*?)\*\//g;
+    const exec = docComment.exec(file);
 
-    return docComment.exec(file);
+    return !!(exec !== null && exec[2].trim());
 }
 
-function isExcludedFile(name) {
-    return excludedSassFiles.test(name);
+/**
+ * Traverse array of objects and removes those objects
+ * which are categories and doesn't have any sub-pages
+ * @param {Array} collection - array of objects
+ */
+function removeEmptyCategories(collection) {
+    for (let i = collection.length - 1; i >= 0; i--) {
+        if (collection[i].type === 'category') {
+            if (collection[i].subPages.length) {
+                removeEmptyCategories(collection[i].subPages);
+            }
+
+            if (collection[i].subPages.length === 0) {
+                collection.splice(i, 1);
+            }
+        }
+    }
 }
+
+const isExcludedFile = name => excludedSassFiles.test(name);
 
 function isExcludedDirectory(name) {
     return excludedDirs.test(name);
@@ -27,7 +45,7 @@ function pageConfig(id, title, target, isDocs) {
     return {
         id: id,
         title: title,
-        type: isDocs ? 'guide' : /^l-/i.test(title) ? 'container' : 'component',
+        type: isDocs ? 'guide' : /^l-/i.test(title) ? 'container' : 'component', // TODO: configuration
         src: target,
         target: guideDest + id + '.html',
         template: isDocs ? templates.docs : templates.component,
@@ -86,7 +104,7 @@ function makeProjectTree(atlasConfig) {
     function findComponents(url, config, categoryName) {
         const dir = fs.readdirSync(url);
 
-        dir.forEach(function(res) {
+        dir.forEach(res => {
             let name = res;
             let target = path.join(url, name);
             let resource = fs.statSync(target);
@@ -102,7 +120,8 @@ function makeProjectTree(atlasConfig) {
                     const id = categoryName + title;
                     config.push(pageConfig(id, title, target, false));
                 }
-                if (path.extname(name) === '.md') {
+                if (path.extname(name) === '.md' && !/^README\.md/.test(categoryName + name)) { // this is hacky way
+                    // to exclude root README.md
                     const title = path.basename(name, '.md');
                     const id = categoryName + 'doc-' + path.basename(name, '.md');
                     config.push(pageConfig(id, title, target, true));
@@ -115,6 +134,7 @@ function makeProjectTree(atlasConfig) {
     }
 
     findComponents(atlasConfig.guideSrc, docSet.subPages, '');
+    removeEmptyCategories(docSet.subPages);
 
     if (atlasConfig.additionalPages.length) {
         atlasConfig.additionalPages.forEach(page => docSet.subPages.push(page));

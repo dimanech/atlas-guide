@@ -1,4 +1,5 @@
 /*md
+@no-stat
 
 # b-atlas-bar
 
@@ -6,6 +7,8 @@ This component is deprecated! Please use [`b-atlas-component`](bindings-frame-b-
 This implementation will be removed in the next major release.
 
 To make component deprecated just add "deprecated" word to component file name.
+
+You could add `@no-stat` under the `md` comment to prevent of stat gathering.
 
 */
 

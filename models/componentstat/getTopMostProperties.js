@@ -2,18 +2,18 @@
 
 function getTopMostProperties(fileAST) {
     let allProps = [];
-    let redusedProps = {};
+    let reducedProps = {};
     let result = [];
 
     fileAST.walkDecls(decl => allProps.push(decl.prop));
 
     allProps.forEach(function(x) {
-        redusedProps[x] = (redusedProps[x] || 0) + 1;
+        reducedProps[x] = (reducedProps[x] || 0) + 1;
     });
 
-    Object.keys(redusedProps).map(item => result.push({
+    Object.keys(reducedProps).map(item => result.push({
         name: item,
-        total: redusedProps[item]
+        total: reducedProps[item]
     }));
 
     result.sort((a, b) => b.total - a.total);

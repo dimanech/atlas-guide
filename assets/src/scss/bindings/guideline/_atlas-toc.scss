@@ -4,7 +4,7 @@
 	bottom: 0;
 	float: right;
 	font-family: $font-sans-atlas;
-	font-size: 12px;
+	font-size: rem(12);
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	margin-left: $space-md-atlas;
@@ -38,33 +38,33 @@
 		}
 
 		&:active {
-			color: $color-yellow-atlas;
+			color: $color-orange-atlas;
 		}
 
 		&_1 {
-			font-size: 14px;
+			font-size: rem(14);
 			font-weight: bold;
 		}
 
 		&_2 {
 			font-weight: bold;
-			margin-left: 20px;
+			margin-left: $space-md-atlas;
 		}
 
 		&_3 {
-			margin-left: 40px;
+			margin-left: $space-md-atlas * 2;
 		}
 
 		&_4 {
-			margin-left: 60px;
+			margin-left: $space-md-atlas * 3;
 		}
 
 		&_5 {
-			margin-left: 80px;
+			margin-left: $space-md-atlas * 4;
 		}
 
 		&_6 {
-			margin-left: 100px;
+			margin-left: $space-md-atlas * 5;
 		}
 	}
 }

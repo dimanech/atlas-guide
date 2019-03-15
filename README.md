@@ -8,11 +8,10 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/dimanech/atlas-guide/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dimanech/atlas-guide?targetFile=package.json)
 [![npm version](https://badge.fury.io/js/atlas-guide.svg)](https://badge.fury.io/js/atlas-guide)
 
-Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive
-styles monitoring and Sass components reports.
+Atlas is living style-guide, pattern library, guidelines and documentation static site generator with extensive styles monitoring and Sass components reports. It generates documentation from markdown files and documentation comment in `scss` files.
 
-It is opinionated because it is, probably, impossible to cover all cases in CSS/Sass.
-It designed primarily as "Style-guide driven development" tool with focus on splited files approach and incapsulated components with normative Sass imports structure.
+It is opinionated. Because it is, probably, impossible to cover all cases in CSS/Sass.
+It designed primarily as "style-guide driven development" tool with focus on splited files approach and incapsulated components with normative Sass imports structure.
 
 * [Live example](https://dimanech.github.io/atlas-guide/)
 * [Video example](https://youtu.be/Vohb_Xl6S54)
@@ -84,14 +83,26 @@ npm install atlas-guide
 
 ### Configuring
 
+#### Minimal configuration
+
 `.atlasrc.json`:
 
 ```json
 {
     "guideSrc": "path/to/scss/",
     "guideDest": "path/to/guide/",
-    "cssSrc": "path/to/css/"
+    "cssSrc": "path/to/css/",
+    "partials": {
+      "assetshead": "path/to/overloaded/project-head.mustache",
+    }
 }
+```
+
+`project-head.mustache`
+
+```html
+<link rel="stylesheet" type="text/css" href="../path/to/your/css/project.css"/>
+<link rel="stylesheet" type="text/css" href="../css/additional.css"/>
 ```
 
 Then in `package.json`
@@ -207,45 +218,45 @@ To make this happen you need to add `partials` to the config, with paths to the 
 ```json
 {
     "partials": {
-      "assetshead": "guide/project-head.mustache",
-      "assetsfooter": "guide/project-footer.mustache"
+      "assetshead": "project-root/path/to/project-head.mustache",
+      "assetsfooter": "project-root/path/to/project-footer.mustache"
     }
 }
 ```
 
-...and add links to your project CSS/JS. Ex: `project-head.mustache`
+...and add links to your project CSS/JS. Ex: `project-head.mustache`:
 
 ```html
-<link rel="stylesheet" type="text/css" href="../css/project.css"/>
-<link rel="stylesheet" type="text/css" href="../css/additional.css"/>
+<link rel="stylesheet" type="text/css" href="../relative/path/from/generated/html/to/css/project.css"/>
+<link rel="stylesheet" type="text/css" href="../relative/path/from/generated/html/to/any/css/additional.css"/>
 ```
 
 `project-footer.mustache`:
 
 ```html
-<script src="../js/bundle.js"></script>
+<script src="../relative/path/from/generated/html/to/js/bundle.js"></script>
 ```
 
-Note, that paths should be related to generated HTML, no matter where templates are stored. This is simple include that
-will be incorporated into resulted html.
+Note, that paths should be related to generated HTML, no matter where templates are stored. This is simple include that will be incorporated into resulted html.
 
-All templates and partials in Atlas could be overwritten. Please see this repo views folder to get list of all templates
-and partials.
+All templates and partials in Atlas could be overwritten. Please see this repo views folder to get list of all templates and partials.
 
-### All available configuration options
+### Configuration options
 
 ```json
 {
-    "guideSrc": "path/to/components/directory/",
-    "guideDest": "path/where/atlas/will/be/placed/",
-    "cssSrc": "path/to/css/",
-    "scssSrc": "path/to/scss/",
+    "guideSrc": "project-root/path/to/components/directory/",
+    "guideDest": "project-root/path/where/atlas/will/be/placed/",
+    "cssSrc": "project-root/path/to/css/",
+    "scssSrc": "project-root/path/to/scss/",
     "scssAdditionalImportsArray": "",
     "componentPrefixes": ["b-", "l-"],
     "excludedCssFiles": "dev_",
     "excludedSassFiles": "dev_",
     "excludedDirs": "dev_",
     "copyInternalAssets": true,
+    "createDestFolder": false,
+    "indexPageSource": "project-root/path/to/file.md",
     "templates": {
         "about": "",
         "bundle": "",
@@ -256,21 +267,22 @@ and partials.
     },
     "includes": {
         "aside": "",
-        "assetsfooter": "",
-        "assetshead": "",
+        "assetsfooter": "project-root/path/to/foot.mustache",
+        "assetshead": "project-root/path/to/head.mustache",
         "componentstataside": "",
         "componentstatfooter": "",
         "componentstatstructure": "",
         "copyright": "",
         "footer": "",
         "header": "",
+        "icons": "",
         "logo": "",
         "navigation": "",
         "toc": "",
         "welcome": ""
     },
     "projectConstants": {
-        "constantsSrc": "path/to/project-settings.scss",
+        "constantsSrc": ["project-root/path/to/project-settings.scss"],
         "colorPrefix": "color",
         "fontPrefix": "font",
         "scalePrefix": "scale",
@@ -278,18 +290,43 @@ and partials.
         "motionPrefix": "motion",
         "depthPrefix": "depth",
         "breakpointPrefix": "break"
+    },
+    "projectInfo": {
+        "name": "some-project-name"
     }
 }
 ```
 
-`scssSrc` is optional. It should be used if `guideSrc` is different from scss root. If not defined – `guideSrc` will be used.
-Proper path to root scss files needed to generate dependencies graph.
+* !`guideSrc` {string} – path to scss files that documented. It is not mandatory that it should be scss root, it could be any folder, but in this case you need to additionaly provide `scssSrc` for statistic reports.
+* !`guideDest` {string} – path to generated files folder.
+* !`cssSrc` {string} – path to generated CSS. Used for statistical reports.
+* `scssSrc` {string} – path to root of SCSS files. Optional. Used for generate statistical reports. It should be used if `guideSrc` is different from scss root. If not defined – `guideSrc` will be used. Proper path to root scss files needed to generate dependencies graph.
+* `scssAdditionalImportsArray` {array} – array of additional sass imports, if they used. Needed for statistical reports and styleguide auto generation.
+* `componentPrefixes` {array of strings} – ['component', 'container'] prefixes that used for components and containers on project. It used to properly guess component types in component structure info (in footer). Ex: `['c-', 'l-']`, `['atlas-', 'l-']`
+* `excludedCssFiles` {regexp} – CSS files that would not be processed in statistical reports.
+* `excludedSassFiles` {regexp} – Sass files that would not be processed in statistical reports.
+* `excludedDirs` {regexp} – directories that will be excluded from doc sets.
+* `copyInternalAssets` {bool} – copy internal Atlas assets (CSS and JS) to generated folder on each start. This would be usefull if you use completly custom style for guide and support it separatly.
+* `createDestFolder` {bool} - create destination directory if it is not exist. Default if `false`.
+* `indexPageSource` {string} - path to custom markdown file that will be used in index.html. Otherwise atlas try to find README.md in guide src and in the root of the project.
+* `templates`– use this field to use your own templates for guide generation.
+* `includes` – use this field to use your own partials and includes.
+* `projectConstants` – this field is used to autogenerated styleguide and projects variable usage panel in components footer. It based on prefix system.
+    * `constantsSrc` {string} | [{string}] – path or array of paths to file/s with project constants. Paths should be relative to project root.
+    * `colorPrefix` {string} – prefix used to identify color variables. Ex: `color` = `$color-red`, `$color-green`; `brand` = `$brand-red`, `$brand-green` etc. If not defined it would be skipped.
+    * `fontPrefix` {string} – prefix used for font families constants. If not defined it would be skipped.
+    * `scalePrefix` {string} – prefix used for font scaling constants. If not defined it would be skipped.
+    * `spacePrefix` {string} – prefix used for spaces system. If not defined it would be skipped.
+    * `motionPrefix` {string} – prefix for animation/transition presets. If not defined it would be skipped.
+    * `depthPrefix` {string} – prefix for layering/shadows system. If not defined it would be skipped.
+    * `breakpointPrefix` {string} – prefix for used breakpoints. If not defined it would be skipped.
+* `projectInfo`
+    * `name` {string} - custom name of the project. Otherwise package name will be used.
 
 ## Usage
 
 Atlas like Vim consists of two functions - beeping and corrupting files. But with minor difference.
-It generate guide and generate reports. You need to document code to make it "beeping" and provide config to make it
-generate files.
+It generates guide and generates reports. You need to document code to make it "beeping" and provide config to make it generate files.
 
 In this section we need to cover 2 topics - documenting and reports configuration.
 
@@ -372,8 +409,7 @@ Simple `html`, `scss`, `css` "fences" become regular code-block:
 
 #### Styling code "fences"
 
-All "_" in code block "fences" will be removed, but original "fence" will be added as CSS-class, so you could
-use it to style code by your needs. Atlas by default style 2 class `*_bad`, `*_good`. This could be used in guidelines.
+All "_" in code block "fences" will be removed, but original "fence" will be added as CSS-class, so you could use it to style code by your needs. Atlas by default style 2 class `*_bad`, `*_good`. This could be used in guidelines.
 
 ```md
 ``html_bad
@@ -390,10 +426,10 @@ use it to style code by your needs. Atlas by default style 2 class `*_bad`, `*_g
 To inline some resources like svg icons, inlined styles etc. you could use `inline` helper. Ex:
 
 ```html
-{{#inline}}assets/src/images/icons.svg{{/inline}}
+{{#inline}}project-root/assets/src/images/icons.svg{{/inline}}
 ```
 
-This helper use path to file from your project root. Virtually any file could be inlined.
+This helper use path to file from your *project root*. Virtually any file could be inlined.
 
 ### Guideline/Documentation page
 
@@ -403,7 +439,7 @@ Simply put regular markdown file to components tree and they automatically becom
 
 #### Incremental builds
 
-Regular development flow could be organized like this – build all guide pages on start and incrementally rebuild pages on file changes:
+Regular development flow could be organized in this way – build all guide pages on start and incrementally rebuild pages on file changes:
 
 ```js
 const atlas = require('atlas-guide');
@@ -419,7 +455,7 @@ See example guideline page or this repo `gulpfile.js` to get the idea how live r
 
 #### Complete Atlas generation
 
-Due to time efforts reports not generated in regular flow. To generate reports you need to call `npm atlas-guide --build-all`
+Due to time efforts reports not generated in regular flow. To generate reports you need to call `npm atlas-guide --build`
 or in JS:
 
 ```js
@@ -429,14 +465,14 @@ atlas.buildAll().then(...); // compile all components, guidelines and reports
 
 ### Autogenerated styleguide based on project constants
 
-Atlas could automatically generate (styleguide page)[https://dimanech.github.io/atlas-guide/styleguide.html] and warn if this constants not used in (component statistic)[https://dimanech.github.io/atlas-guide/bindings-frame-b-atlas-component.html#h2-component-footer]
+Atlas could automatically generate [styleguide page](https://dimanech.github.io/atlas-guide/styleguide.html) and warn if this constants not used in [component statistic](https://dimanech.github.io/atlas-guide/bindings-frame-b-atlas-component.html#h2-component-footer)
 if project constants is setup.
 
 #### Setup constants
 
 This set up could be a tricky part, because it required full sass compilation and has some limitations.
 
-First you need to use constants in simple form. Ex:
+First you need to use constants in *simple form*. Ex:
 
 ```scss
 $color-violet: #594199;
@@ -444,11 +480,18 @@ $color-fuchsia: #bc1f8c;
 
 $scale-sm: 0.8rem;
 $scale-md: 1rem;
+
+// or alternatively CSS custom properties could be used
+
+:root {
+    --font-sans: "Arial", "FreeSans", sans-serif;
+    --font-serif: "Times New Roman", "Times", "FreeSerif", "Nimbus Roman No9 L", serif;
+}
 ```
 
-No lists, maps or functions that do some thing with it not supported.
+Lists, maps or functions is not supported.
 
-Second. If you use additional import array in sass, please, add it to config first `"scssAdditionalImportsArray": ["path/to/additional/sass/files"]`.
+Second. If you use *additional imports array* in sass, please, add it to config first `"scssAdditionalImportsArray": ["path/to/additional/sass/files"]`.
 
 Other steps should be simple:
 
@@ -463,7 +506,7 @@ Other steps should be simple:
     "scssSrc": "path/to/scss/",
     "scssAdditionalImportsArray": ["path/to/additional/sass/files"],
     "projectConstants": {
-        "constantsSrc": "path/to/project-settings.scss",
+        "constantsSrc": ["path/to/project-settings.scss", "path/to/other-file.scss"],
         "colorPrefix": "color",
         "fontPrefix": "font",
         "scalePrefix": "scale",
@@ -487,11 +530,13 @@ The most robust way to do this is extend templates on project level and remove v
 
 To clean up the graph you could add duplicated files into scss ignore list. To do this put regexp to `excludedSassFiles` field.
 
+### We have 2 document comments `/*md` in scss file, but only first is shown in documentation.
+
+This is done intentionally. It all designed for 1 component 1 scss file structure. Otherwise it is very hard to keep compoents readable and supportable.
+
 ## Contributing
 
-You are welcome for ideas, help and of course code contributing.
-
-We have git hooks with all validation. Please install it manually on first time by run `npm run copyhooks`.
+You are welcome for ideas, help and of course code contributing. Please see CONTRIBUTING for more details.
 
 ## License
 

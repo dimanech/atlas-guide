@@ -50,7 +50,7 @@ gulp.task('server:up', done => {
         middleware() {
             return [cors];
         },
-        https: true
+        https: false // disable it due to https://github.com/intesso/connect-livereload/issues/79
     });
 
     done();
@@ -82,7 +82,7 @@ const notifyChange = path => {
 const createImportsGraph = function () {
     importsGraph = require('sass-graph').parseDir(
         pathConfig.ui.core.sass.src,
-        {loadPaths: [pathConfig.ui.lib.resources]}
+        { loadPaths: [pathConfig.ui.lib.resources] }
     );
 };
 
@@ -131,37 +131,36 @@ const sassCompile = config => {
 
 /**
  * Get list of files that affected by changed file
- * @param {string} changedFile - changed file path
+ * @param {string} changedFilePath - changed file path
  * @return {array} pathsArray - Array of strings. Path to the main scss files that includes changed file.
  */
-const getAffectedSassFiles = changedFile => {
+const getAffectedSassFiles = changedFilePath => {
     // Ensure that changed file is Sass file
-    if (path.extname(changedFile) !== '.scss') {
+    if (path.extname(changedFilePath) !== '.scss') {
         return ['not.scss'];
     }
-
     let resultedFilesPaths = []; // used for compilation
     let resultedCSSPaths = []; // used for reload
-    const getResultedCSSPath = path => path
-        .replace(pathConfig.ui.core.sass.src, pathConfig.ui.core.sass.dest)
-        .replace('.scss', '.css');
+    const getResultedCSSPath = sassPath =>
+        path.join(pathConfig.ui.core.sass.dest, path.basename(sassPath, '.scss') + '.css');
+    const isPartial = file => path.basename(file).match(/^_/);
 
-    if (path.basename(changedFile).match(/^_/)) {
-        importsGraph.visitAncestors(changedFile, parent => {
-            if (!path.basename(parent).match(/^_/)) {
+    if (isPartial(changedFilePath)) {
+        importsGraph.visitAncestors(changedFilePath, parent => {
+            if (!isPartial(parent)) {
                 resultedFilesPaths.push(parent);
                 resultedCSSPaths.push(getResultedCSSPath(parent));
             }
         });
     } else {
-        resultedFilesPaths.push(changedFile);
-        resultedCSSPaths = [getResultedCSSPath(changedFile)];
+        resultedFilesPaths.push(changedFilePath);
+        resultedCSSPaths = [getResultedCSSPath(changedFilePath)];
         createImportsGraph(); // Rebuild imports graph
     }
 
     affectedFilesPaths = resultedCSSPaths; // Used to reload styles. Not very good, better solution should be found
     // return passed path if file not listed in graph and it is partial
-    return resultedFilesPaths.length === 0 ? [changedFile] : resultedFilesPaths;
+    return resultedFilesPaths.length === 0 ? [changedFilePath] : resultedFilesPaths;
 };
 
 // Compile all Sass files
