@@ -43,13 +43,13 @@
             <stop stop-color="#2cbbfc" offset="100%"></stop>
         </linearGradient>
         <filter id="blur-filter" x="0" y="0">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3"></feGaussianBlur>
         </filter>
     </defs>
     <symbol id="icon-code-example" viewBox="0 0 24 24">
         <path
             d="M14.304 19.302a.989.989 0 0 0 0 1.407 1.009 1.009 0 0 0 1.418 0l2.955-2.93c.43-.426.43-1.111.009-1.539l-2.974-2.949a1.009 1.009 0 0 0-1.418 0 .989.989 0 0 0 0 1.407l2.327 2.307-2.317 2.297zM9.707 4.698a.988.988 0 0 0 0-1.407 1.01 1.01 0 0 0-1.418 0l-2.966 2.94a1.09 1.09 0 0 0 0 1.548l2.956 2.93a1.01 1.01 0 0 0 1.418 0 .988.988 0 0 0 0-1.407L7.38 7.005l2.327-2.307zm-3 14.009l12-12a1 1 0 1 0-1.414-1.414l-12 12a1 1 0 0 0 1.414 1.414z"
-            fill="currentColor" role="presentation"></path>
+            fill="currentColor"></path>
     </symbol>
     <symbol id="icon-component" viewBox="0 0 24 24">
         <g stroke="currentColor" fill="none" fill-rule="evenodd" stroke-width="1">
@@ -134,8 +134,7 @@
             <path d="M 17.717 10.681 L 18.746 12.396 C 19.031 12.869 18.877 13.484 18.404 13.768 L 5.544 21.49 C 5.071 21.775 4.456 21.621 4.172 21.148 L 3.143 19.433 C 2.859 18.96 3.012 18.345 3.485 18.061 L 16.345 10.339 C 16.818 10.055 17.433 10.208 17.717 10.681 Z"></path>
             <path d="M 11.52 5.734 L 13.259 6.723 C 13.739 6.995 13.907 7.606 13.634 8.086 L 6.223 21.127 C 5.95 21.607 5.339 21.775 4.859 21.502 L 3.12 20.514 C 2.64 20.242 2.472 19.631 2.745 19.151 L 10.157 6.11 C 10.429 5.63 11.04 5.462 11.52 5.734 Z"></path>
             <path d="M 4 4.633 L 6 4.633 C 6.552 4.633 7 5.081 7 5.633 L 7 20.633 C 7 21.185 6.552 21.633 6 21.633 L 4 21.633 C 3.448 21.633 3 21.185 3 20.633 L 3 5.633 C 3 5.081 3.448 4.633 4 4.633 Z"></path>
-            <path d=" M 4.409 20.01 C 4.409 19.734 4.634 19.51 4.909 19.51 C 5.185 19.51 5.409 19.734 5.409 20.01 C 5.409 20.286 5.185 20.51 4.909 20.51 C 4.634 20.51 4.409 20.286 4.409 20.01 Z "
-                  fill="rgb(0,0,0)"></path>
+            <path d=" M 4.409 20.01 C 4.409 19.734 4.634 19.51 4.909 19.51 C 5.185 19.51 5.409 19.734 5.409 20.01 C 5.409 20.286 5.185 20.51 4.909 20.51 C 4.634 20.51 4.409 20.286 4.409 20.01 Z "></path>
         </g>
     </symbol>
     <symbol id="icon-bundle" viewBox="0 0 24 24">
@@ -177,6 +176,12 @@
             <path d="M7.56 3.425h13.015V16.44" stroke-width="3.06772"></path>
         </g>
     </symbol>
+    <symbol id="icon-cancel" viewBox="0 0 24 24">
+        <g fill="currentColor">
+            <rect x="10.106" y="0.124" width="3.929" height="23.612" transform="matrix(-0.707,-0.707,0.707,-0.707,12.169,28.9)"></rect>
+            <rect x="10.254" y="-0.208" width="3.929" height="23.739" transform="matrix(-0.707,0.707,-0.707,-0.707,29.103,11.267)"></rect>
+        </g>
+    </symbol>
 </svg>
 <div class="l-atlas-container" id="js-atlas-container">
 <div class="l-atlas-container__aside" id="js-atlas-aside" role="contentinfo">
@@ -206,11 +211,11 @@
                 </div>
                 <div class="atlas-header__search">
                     <div class="atlas-search" role="search">
-                        <svg width="14" height="14" role="img">
-                            <use xlink:href="#icon-filter"></use>
-                        </svg>
-                        <input type="search" id="js-atlas-search" placeholder="Filter" />
-                        <button id="js-atlas-search-clear">✕</button>
+                        <svg class="atlas-search__icon" width="14" height="14" role="img"><use xlink:href="#icon-filter"></use></svg>
+                        <input class="atlas-search__input" type="search" id="js-atlas-search" placeholder="Filter" />
+                        <button class="atlas-search__clear" id="js-atlas-search-clear" title="Clear input">
+                            <svg width="8" height="14" role="img"><use xlink:href="#icon-cancel"></use></svg>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -279,35 +284,7 @@
     </div>
             </div>
     </div>
-    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
-        <a class="atlas-nav__ln _category  js-atlas-nav-ln" 
-            data-name="guideline">
-            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
-            guideline
-        </a>
-    </div>
-    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
-        <a class="atlas-nav__ln _category  js-atlas-nav-ln" 
-            data-name="insights">
-            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
-            insights
-        </a>
-    </div>
-    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
-        <a class="atlas-nav__ln _category  js-atlas-nav-ln" 
-            data-name="styleguide">
-            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
-            styleguide
-        </a>
-    </div>
             </div>
-    </div>
-    <div role="listitem" class="atlas-nav__item atlas-nav__item_category">
-        <a class="atlas-nav__ln _category  js-atlas-nav-ln" 
-            data-name="defintions">
-            <svg width="14" height="14" role="img"><use xlink:href="#icon-category"></use></svg>
-            defintions
-        </a>
     </div>
     <div role="listitem" class="atlas-nav__item atlas-nav__item_about">
         <a class="atlas-nav__ln _about  js-atlas-nav-ln" href="index.html" id="nav-index"
@@ -351,7 +328,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    1.0.0
+    1.3.3
 </p>
         </div>
     </div>
@@ -430,7 +407,7 @@
         </div>
     </div>
 
-<div class="atlas-component-type-ico">
+<div class="atlas-overline">
     <svg width="16" height="16" role="img">
         <use xlink:href="#icon-component"></use>
     </svg>
