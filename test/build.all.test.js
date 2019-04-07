@@ -16,7 +16,7 @@ describe('All', function() {
                 "guideSrc": "test/fixtures/atlas/",
                 "guideDest": "${guideDest}",
                 "cssSrc": "test/fixtures/atlas/css",
-                "copyInternalAssets": true,
+                "copyInternalAssets": "true",
                 "excludedSassFiles": "^excluded",
                 "excludedCssFiles": "^excluded",
                 "partials": {
@@ -30,7 +30,7 @@ describe('All', function() {
         `, 'utf8');
         fs.unlinkSync(path.join(cwd, guideDest, '.gitkeep'));
 
-        const atlas = require(cwd + '/app/atlas-guide');
+        const atlas = require(path.join(cwd, '/app/atlas-guide')).withConfig('./.atlasrc.json');
         atlas.buildAll().then(() => done());
     });
     after(function() {
@@ -78,7 +78,7 @@ describe('All', function() {
             'index.html',
             'insights.html'
         ];
-        assert.deepEqual(actual, expected, 'folder do not contain exclude files');
+        assert.deepStrictEqual(actual, expected, 'folder do not contain exclude files');
     });
     it('should process all files when no exclusion is declared');
     it('insights should be with data', function() {

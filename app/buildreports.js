@@ -1,19 +1,15 @@
 'use strict';
 
 const path = require('path');
-const fs = require('fs');
-const writePage = require(path.join(__dirname, 'utils/writepage.js'));
 
-module.exports = function(atlasConfig, projectTree, importsGraph, projectInfo) {
+module.exports = function(atlasConfig, projectTree, importsGraph, writePage) {
     // Config
-    const atlasBase = atlasConfig;
-    const projectName = projectInfo.name;
-    const guideSrc = atlasBase.guideSrc;
-    const guideDest = atlasBase.guideDest;
-    const cssSrc = atlasBase.cssSrc;
-    const templates = atlasBase.templates;
-    const excludedCssFiles = atlasBase.excludedCssFiles;
-    const excludedSassFiles = atlasBase.excludedSassFiles;
+    const projectName = atlasConfig.projectInfo.name;
+    const guideSrc = atlasConfig.guideSrc;
+    const guideDest = atlasConfig.guideDest;
+    const cssSrc = atlasConfig.cssSrc;
+    const excludedCssFiles = atlasConfig.excludedCssFiles;
+    const excludedSassFiles = atlasConfig.excludedSassFiles;
 
     // Models
     const cssStat = require(path.resolve(__dirname, '../models/projectcssstat.js'))(
@@ -30,27 +26,27 @@ module.exports = function(atlasConfig, projectTree, importsGraph, projectInfo) {
 
     // Page configs
     const reportsPages = [{
-        'id': 'bundle',
-        'title': 'bundle',
-        'target': path.join(guideDest, '/bundle.html'),
-        'templateString': fs.readFileSync(templates.bundle, 'utf8'),
-        'type': 'insights',
-        'content': {
+        id: 'bundle',
+        title: 'bundle',
+        target: path.join(guideDest, '/bundle.html'),
+        template: 'bundle',
+        type: 'insights', // TODO: ??
+        content: {
             weight: statFileWeight(projectFileSizes),
             crossDeps: statCrossDeps(importsGraph, excludedSassFiles),
             tree: bundle,
             bundleImports: statImports(importsGraph, excludedSassFiles)
-        },
-        'subPages': projectTree.subPages
+        }
     }, {
-        'id': 'insights',
-        'title': 'insights',
-        'target': path.join(guideDest, '/insights.html'),
-        'templateString': fs.readFileSync(templates.insights, 'utf8'),
-        'type': 'insights',
-        'content': statProject(cssStat, projectName),
-        'subPages': projectTree.subPages
+        id: 'insights',
+        title: 'insights',
+        target: path.join(guideDest, '/insights.html'),
+        template: 'insights',
+        type: 'insights',
+        content: statProject(cssStat, projectName)
     }];
 
-    return Promise.all(reportsPages.map(writePage));
+    return {
+        buildReports: () => Promise.all(reportsPages.map(writePage))
+    };
 };

@@ -163,7 +163,7 @@ describe('Units', function() {
                     {selector: '.heavy-1', declarations: 17},
                     {selector: '.heavy-2', declarations: 18}];
                 const result = ruleSizeStat(data);
-                assert.deepEqual(result, {
+                assert.deepStrictEqual(result, {
                     heavy: [
                         {selector: '.heavy', declarations: 20},
                         {selector: '.heavy-2', declarations: 18},
@@ -210,7 +210,7 @@ describe('Units', function() {
                     'selectors': 4
                 }
                 ];
-                assert.deepEqual(result, expectedResult);
+                assert.deepStrictEqual(result, expectedResult);
             });
         });
         describe('totals', function() {
@@ -241,12 +241,12 @@ describe('Units', function() {
                 ];
                 const result = parseSpaces(data);
                 const expectedResult = ['calc(100px + 2em) 20px', '30px', '20px', '0'];
-                assert.deepEqual(result, expectedResult);
+                assert.deepStrictEqual(result, expectedResult);
             });
             it('should return only uniq values', function() {
                 const data = ['20px', '20px', '20px', '0'];
                 const result = parseSpaces(data);
-                assert.deepEqual(result, ['20px', '0']);
+                assert.deepStrictEqual(result, ['20px', '0']);
             });
         });
         describe('sortSizes', function() {
@@ -259,12 +259,12 @@ describe('Units', function() {
                 const data = [0];
                 const result = sortSizes(data);
                 const expectedResult = [{
-                    orig: '0',
+                    orig: 0,
                     abs: 0,
                     isNegative: false,
                     normalized: 0
                 }];
-                assert.deepEqual(result, expectedResult);
+                assert.deepStrictEqual(result, expectedResult);
             });
             it('should proper process strings', function() {
                 const data = ['-20px'];
@@ -275,7 +275,7 @@ describe('Units', function() {
                     isNegative: true,
                     normalized: 20
                 }];
-                assert.deepEqual(result, expectedResult);
+                assert.deepStrictEqual(result, expectedResult);
             });
         });
     });
@@ -330,7 +330,7 @@ describe('Units', function() {
                         fontSize: test.result[0],
                         fontFamily: test.result[1]
                     };
-                    assert.deepEqual(expectedResult, getFont(test.property));
+                    assert.deepStrictEqual(expectedResult, getFont(test.property));
                 });
             });
         });
@@ -448,16 +448,16 @@ describe('Units', function() {
                         {from: '0.6rem', to: '$space-sm-atlas', count: 2}
                     ]
                 };
-                assert.deepEqual(getConstantsStat('padding', valueList, constants), expectedResult);
+                assert.deepStrictEqual(getConstantsStat('padding', valueList, constants), expectedResult);
             });
             it('should return undefined in case of empty values list', function() {
                 valueList = [];
                 const expectedResult = undefined;
-                assert.deepEqual(getConstantsStat('padding', valueList, constants), expectedResult);
+                assert.deepStrictEqual(getConstantsStat('padding', valueList, constants), expectedResult);
             });
             it('should return undefined in case of prop not much constants map', function() {
                 const expectedResult = undefined;
-                assert.deepEqual(getConstantsStat('overflow', valueList, constants), expectedResult);
+                assert.deepStrictEqual(getConstantsStat('overflow', valueList, constants), expectedResult);
             });
         });
     });

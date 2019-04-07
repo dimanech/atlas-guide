@@ -36,10 +36,7 @@ function removeEmptyCategories(collection) {
 }
 
 const isExcludedFile = name => excludedSassFiles.test(name);
-
-function isExcludedDirectory(name) {
-    return excludedDirs.test(name);
-}
+const isExcludedDirectory = name => excludedDirs.test(name);
 
 function pageConfig(id, title, target, isDocs) {
     return {

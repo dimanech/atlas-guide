@@ -12,11 +12,6 @@
 	top: 0;
 	z-index: 2;
 
-	@supports (backdrop-filter: blur(10px)) {
-		backdrop-filter: saturate(180%) blur(10px);
-		background: rgba($color-white-atlas, 0.7);
-	}
-
 	.js-loading-frame & {
 		display: flex;
 	}

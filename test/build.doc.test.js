@@ -6,45 +6,39 @@ const assert = require('assert');
 const cwd = process.cwd();
 
 describe('Single guideline', function() {
-    let initialConfig = '';
     const guideDest = 'test/results/';
     const expectedFile = path.join(cwd, guideDest, 'doc-guide.html');
 
     before(function(done) {
-        initialConfig = fs.readFileSync('.atlasrc.json');
-        fs.writeFileSync('.atlasrc.json', `
-            {
-                "guideSrc": "test/fixtures/atlas/",
-                "guideDest": "${guideDest}",
-                "cssSrc": "test/fixtures/atlas/css",
-                "copyInternalAssets": false,
-                "excludedSassFiles": "^excluded",
-                "excludedCssFiles": "^excluded",
-                "partials": {
-                  "assetsfooter": "test/fixtures/includes/assetsfooter.mustache",
-                  "assetshead": "test/fixtures/includes/assetshead.mustache"
-                },
-                "templates": {
-                    "guide": "test/fixtures/templates/guide.mustache"
-                }
-            }
-        `, 'utf8');
         fs.unlinkSync(path.join(cwd, guideDest, '.gitkeep'));
 
-        const atlas = require(cwd + '/app/atlas-guide');
+        const atlas = require(cwd + '/app/atlas-guide').withConfig({
+            'guideSrc': 'test/fixtures/atlas/',
+            'guideDest': guideDest,
+            'cssSrc': 'test/fixtures/atlas/css',
+            'copyInternalAssets': false,
+            'excludedSassFiles': '^excluded',
+            'excludedCssFiles': '^excluded',
+            'partials': {
+                'assetsfooter': 'test/fixtures/includes/assetsfooter.mustache',
+                'assetshead': 'test/fixtures/includes/assetshead.mustache'
+            },
+            'templates': {
+                'guide': 'test/fixtures/templates/guide.mustache'
+            }
+        });
         atlas.build(path.join(cwd, '/test/fixtures/atlas/guide.md')).then(() => done());
     });
 
     after(function() {
         fs.unlinkSync(expectedFile);
-        fs.writeFileSync('.atlasrc.json', initialConfig, 'utf8');
         fs.writeFileSync(path.join(cwd, guideDest, '.gitkeep'), '', 'utf8');
     });
 
     it('only one file should be written', function() {
         const actual = fs.readdirSync(guideDest);
         const expected = ['doc-guide.html'];
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it('should be written', function() {

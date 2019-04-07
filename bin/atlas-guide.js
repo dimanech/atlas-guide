@@ -6,7 +6,8 @@ const arg = process.argv[2];
 try {
     switch (arg) {
         case '--build':
-            require('../app/atlas-guide').buildAll();
+        case '-b':
+            require('../app/atlas-guide').withConfig(process.argv[3]).buildAll();
             break;
         case '--version':
         case '-v':
@@ -15,10 +16,10 @@ try {
         case '--help':
         default:
             console.log(`
-Usage: atlas-guide [option]
+Usage: atlas-guide [option] ?[config]
 
 Options:            
-  --build                    build all atlas pages
+  -b, --build                build all atlas pages, followed with config '--build ./path/to/conf.json'
   -v, --version              print Atlas-guide version
   --help                     print this message
             `);
