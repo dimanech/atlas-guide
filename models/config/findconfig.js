@@ -5,21 +5,19 @@ const path = require('path');
 const projectRoot = process.cwd();
 const printMessage = require('../utils/printmessage');
 
-function findConfig(configSrc) {
-    const pkg = require(path.join(projectRoot, 'package.json'));
-
-    if (configSrc !== undefined) { // need for tests mostly. Any object could be passed as config.
-        return configSrc;
-    }
-    if (fs.existsSync(path.join(projectRoot, '.atlasrc.json'))) {
-        return require(path.join(projectRoot, '.atlasrc.json'));
-    }
-    if (pkg.atlasConfig !== undefined) {
-        return pkg.atlasConfig;
+function findConfig(config) {
+    if (config !== undefined) {
+        if (typeof config === 'object') {
+            return config;
+        }
+        const configPath = path.join(projectRoot, config);
+        if (fs.existsSync(configPath)) {
+            return require(configPath);
+        }
     }
 
-    printMessage('error', 'Could not find Atlas configuration. Please create file ".atlasrc.json" or add ' +
-        '"atlasConfig" in "package.json"');
+    printMessage('error', 'Could not find Atlas configuration. Please pass path to config ' +
+        'or raw config object into atlas.withConfig()');
 
     return undefined;
 }

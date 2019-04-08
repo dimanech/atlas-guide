@@ -23,11 +23,11 @@ describe('Config', function() {
 
     context('when config not defined', function() {
         it('should fall if config is not defined in package.json', function() {
-            const atlasConfig = config.getBase();
+            const atlasConfig = config();
             assert.strictEqual(atlasConfig.isCorrupted, true, 'atlasConfig undefined');
         });
         it('should fall if config is not defined in project root', function() {
-            const atlasConfig = config.getBase();
+            const atlasConfig = config();
             assert.strictEqual(atlasConfig.isCorrupted, true, 'atlasConfig undefined');
         });
     });
@@ -35,21 +35,21 @@ describe('Config', function() {
     context('when config is defined', function() {
         context('but basic config not declared', function() {
             it('should falls gracefully if "guideSrc" not declared in config', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideDest': 'test/fixtures/results/guide/',
                     'cssSrc': 'test/results/'
                 });
                 assert.strictEqual(atlasConfig.isCorrupted, true, '"guideSrc" not declared');
             });
             it('should falls gracefully if "guideDest" not declared in config', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': 'assets/src/scss/',
                     'cssSrc': 'assets/css/'
                 });
                 assert.strictEqual(atlasConfig.isCorrupted, true, '"guideDest" not declared');
             });
             it('should falls gracefully if "cssSrc" not declared in config', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': 'assets/src/scss/',
                     'guideDest': 'test/results/'
                 });
@@ -57,8 +57,8 @@ describe('Config', function() {
             });
         });
         context('but path without end slash', function() {
-            it('config should hadle it', function() {
-                const atlasConfig = config.getBase({
+            it('config should handle it', function() {
+                const atlasConfig = config({
                     'guideSrc': 'assets/src/scss',
                     'guideDest': 'test/results',
                     'cssSrc': 'assets/css'
@@ -73,12 +73,12 @@ describe('Config', function() {
                     'guideDest': path.join(cwd, 'test/results/'),
                     'cssSrc': path.join(cwd, 'assets/css/')
                 };
-                assert.deepEqual(actualConfig, expectedConfig, 'end slash not handled');
+                assert.deepStrictEqual(actualConfig, expectedConfig, 'end slash not handled');
             });
         });
         context('but files not available', function() {
             it('should fall gracefully and show message', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': 'path/to/src/',
                     'guideDest': 'test/results/',
                     'cssSrc': 'assets/css/'
@@ -86,7 +86,7 @@ describe('Config', function() {
                 assert.strictEqual(atlasConfig.isCorrupted, true, '"guideSrc" not available');
             });
             it('should fall gracefully and show message', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': 'assets/src/scss/',
                     'guideDest': 'path/to/dest',
                     'cssSrc': 'assets/css/'
@@ -95,7 +95,7 @@ describe('Config', function() {
             });
             it('should not fall if createDestFolder checked', function() {
                 const destination = 'test/results/some';
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': 'assets/src/scss/',
                     'guideDest': destination,
                     'cssSrc': 'assets/css/',
@@ -106,7 +106,7 @@ describe('Config', function() {
             });
             it('should create dest folder if createDestFolder checked', function() {
                 const destination = 'test/results/some';
-                config.getBase({
+                config({
                     'guideSrc': 'assets/src/scss/',
                     'guideDest': destination,
                     'cssSrc': 'assets/css/',
@@ -116,7 +116,7 @@ describe('Config', function() {
                     '"guideDest" directory is created');
             });
             it('should fall gracefully and show message', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': 'assets/src/scss/',
                     'guideDest': 'test/results/',
                     'cssSrc': 'path/to/css/'
@@ -124,7 +124,7 @@ describe('Config', function() {
                 assert.strictEqual(atlasConfig.isCorrupted, true, '"cssSrc" not available');
             });
             it('should warn that "scssSrc" not available and use "guideSrc"', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': 'assets/src/scss/',
                     'guideDest': 'test/results/',
                     'cssSrc': 'assets/css/',
@@ -136,7 +136,7 @@ describe('Config', function() {
         context('and valid', function() {
             const config = require(path.resolve(__dirname, '../models/atlasconfig.js'));
             it('should return absolute path to existent resource', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/'
@@ -155,7 +155,7 @@ describe('Config', function() {
 
     context('when component prefix is defined', function() {
         it('should process list to regexp', function() {
-            const atlasConfig = config.getBase({
+            const atlasConfig = config({
                 'guideSrc': '/assets/src/scss/',
                 'guideDest': 'test/results',
                 'cssSrc': '/assets/css/',
@@ -164,7 +164,7 @@ describe('Config', function() {
             assert.strictEqual(atlasConfig.componentPrefixes.toString(), '/^.atlas-|^.l-/');
         });
         it('should handle invalid list', function() {
-            const atlasConfig = config.getBase({
+            const atlasConfig = config({
                 'guideSrc': '/assets/src/scss/',
                 'guideDest': 'test/results',
                 'cssSrc': '/assets/css/',
@@ -173,7 +173,7 @@ describe('Config', function() {
             assert.strictEqual(atlasConfig.componentPrefixes.toString(), '/^.b-|^.l-/');
         });
         it('should return default list if not declared', function() {
-            const atlasConfig = config.getBase({
+            const atlasConfig = config({
                 'guideSrc': '/assets/src/scss/',
                 'guideDest': 'test/results',
                 'cssSrc': '/assets/css/'
@@ -247,7 +247,7 @@ describe('Config', function() {
 
         context('but contain no data', function() {
             it('should not throw any errors', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/',
@@ -257,8 +257,8 @@ describe('Config', function() {
             });
         });
         context('but source file not defined', function() {
-            it('should throw message and fall gracefully', function() { // TODO
-                const atlasConfig = config.getBase({
+            it('should throw message and fall gracefully', function() {
+                const atlasConfig = config({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/',
@@ -272,7 +272,7 @@ describe('Config', function() {
         });
         context('but some source files is not available', function() {
             it('should throw message and fall gracefully', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/',
@@ -284,7 +284,7 @@ describe('Config', function() {
                 assert.deepStrictEqual(atlasConfig.constants, fallReturn);
             });
             it('should throw message and fall gracefully if array of files is defied', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/',
@@ -299,7 +299,7 @@ describe('Config', function() {
                 assert.deepStrictEqual(atlasConfig.constants, fallReturn);
             });
             it('should throw message and fall gracefully if even one file from array not avilable', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/',
@@ -316,7 +316,7 @@ describe('Config', function() {
         });
         context('and all ok', function() {
             it('should return proper result for single source', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/',
@@ -337,7 +337,7 @@ describe('Config', function() {
                 assert.deepStrictEqual(atlasConfig.constants, result);
             });
             it('should return proper result for multiple source', function() {
-                const atlasConfig = config.getBase({
+                const atlasConfig = config({
                     'guideSrc': '/assets/src/scss/',
                     'guideDest': 'test/results',
                     'cssSrc': '/assets/css/',

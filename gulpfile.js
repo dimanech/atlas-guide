@@ -191,7 +191,7 @@ gulp.task('styles:watch', done => {
  * Guide generation
  */
 // if installed it should be require('atlas-guide');
-const atlas = require('./app/atlas-guide.js');
+const atlas = require('./app/atlas-guide.js').withConfig('./.atlasrc.json');
 
 // Compile all components pages
 gulp.task('atlas:compile', done => atlas.build().then(done()));

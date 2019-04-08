@@ -30,8 +30,7 @@ const fillTemplatesConfig = (templatesConfig, internalTemplatesPath, name) => {
 };
 const getConfig = require('./config/findconfig');
 
-function getProjectInfo(configRaw) {
-    const config = getConfig(configRaw);
+function getProjectInfo(config) {
     const pkg = require(path.join(projectRoot, 'package.json'));
     let projectName = 'atlas';
 
@@ -47,10 +46,20 @@ function getProjectInfo(configRaw) {
     }
 
     return {
-        'name': projectName,
-        'version': pkg.version || ''
+        name: projectName,
+        version: pkg.version || ''
     };
 }
+
+// function getPartialsConfig(config) {
+//     let partials = fillTemplatesConfig(config.partials, '../views/includes/partials/', 'partial');
+//
+//     Object.keys(partials).forEach(function(partial) {
+//         partials[partial] = fs.readFileSync(partials[partial], 'utf8');
+//     });
+//
+//     return partials;
+// }
 
 function getBaseConfig(configRaw) {
     const config = getConfig(configRaw);
@@ -70,29 +79,20 @@ function getBaseConfig(configRaw) {
 
     const getIndexPageSource = require('./config/indexpagesource');
 
-    const additionalPages = { additionalPages: require('./config/additionalpages')(
-        templates.templates,
-        baseMandatory.guideDest,
-        constants.constants,
-        getIndexPageSource(projectRoot, baseMandatory.guideSrc, baseOptional.indexPageSource)
-    )};
+    const additionalPages = {
+        additionalPages: require('./config/additionalpages')(
+            templates.templates,
+            baseMandatory.guideDest,
+            constants.constants,
+            getIndexPageSource(projectRoot, baseMandatory.guideSrc, baseOptional.indexPageSource)
+        )
+    };
 
-    return Object.assign({}, baseMandatory, baseOptional, templates, additionalPages, constants);
+    const partials = { partials: fillTemplatesConfig(config.partials, '../views/includes/partials/', 'partial') };
+
+    const projectInfo = { projectInfo: getProjectInfo(config) };
+
+    return Object.assign({}, baseMandatory, baseOptional, templates, additionalPages, constants, partials, projectInfo);
 }
 
-function getPartialsConfig(configRaw) {
-    const config = getConfig(configRaw);
-    let partials = fillTemplatesConfig(config.partials, '../views/includes/partials/', 'partial');
-
-    Object.keys(partials).forEach(function (partial) {
-        partials[partial] = fs.readFileSync(partials[partial], 'utf8');
-    });
-
-    return partials;
-}
-
-module.exports = {
-    'getProjectInfo': getProjectInfo,
-    'getBase': getBaseConfig,
-    'getPartials': getPartialsConfig
-};
+module.exports = getBaseConfig;
