@@ -328,7 +328,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    1.3.3
+    2.0.0-0
 </p>
         </div>
     </div>
@@ -387,7 +387,7 @@
     </a>
     <span class="atlas-title__highlight"></span>
 </h1>
-<p class="atlas atlas-p"><a href="https://coveralls.io/github/dimanech/atlas-guide?branch=master"><img src="https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master&service" alt="Coverage Status"></a>
+<p class="atlas atlas-p"><a href="https://coveralls.io/github/dimanech/atlas-guide?branch=master"><img src="https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master" alt="Coverage Status"></a>
 <a href="https://codeclimate.com/github/dimanech/atlas-guide/maintainability"><img src="https://api.codeclimate.com/v1/badges/f37cf365f3315cfc287c/maintainability" alt="Maintainability"></a>
 <a href="https://travis-ci.org/dimanech/atlas-guide/"><img src="https://travis-ci.org/dimanech/atlas-guide.svg?branch=master" alt="Linux build status"></a>
 <a href="https://ci.appveyor.com/project/dimanech/atlas-guide/branch/master"><img src="https://ci.appveyor.com/api/projects/status/xiaw6yi35d527i67/branch/master?svg=true" alt="Win build status"></a>
@@ -594,7 +594,7 @@ to be used in different tool like Dash or other platforms. No incompatible synta
 <div class="atlas atlas-code json">
 <pre><code class="language-json">{
   &quot;scripts&quot;: {
-    &quot;build-atlas&quot;: &quot;atlas-guide --build&quot;
+    &quot;build-atlas&quot;: &quot;atlas-guide --build&#x3D;.&#x2F;path&#x2F;to&#x2F;config.json&quot;
   }
 }</code></pre>
 </div>
@@ -658,10 +658,11 @@ Component example (Add one more backtick to make this example works):
     <span class="atlas-title__highlight"></span>
 </h3>
 <div class="atlas atlas-code js">
-<pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;);
+<pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;).withConfig(&#39;.&#x2F;project&#x2F;root&#x2F;path&#x2F;to&#x2F;config.json&#39;);
+&#x2F;&#x2F; or atlas &#x3D; require(&#39;atlas-guide&#39;).withConfig({ rawConfigObject });
 atlas.build().then(...); &#x2F;&#x2F; build all guide files without reports. Returns promise.
-atlas.build(&#39;&#x2F;absolute&#x2F;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;).then(...); &#x2F;&#x2F; compile only particular file, if it marked as documented in project tree
-atlas.buildAll().then(...); &#x2F;&#x2F; compile all guide and reports. Returns promise.</code></pre>
+atlas.build(&#39;&#x2F;absolute&#x2F;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;).then(...); &#x2F;&#x2F; compile only particular file, if it marked as documented in project tree. Returns promise.
+atlas.buildAll().then(...); &#x2F;&#x2F; compile all guide pages and reports. Returns promise.</code></pre>
 </div>
 <p class="atlas atlas-p">Use <code>atlas.build()</code> for incremental development builds, where it is not required to have extensive heavy-weight statistic.</p>
 <span class="atlas-anchor" id="h3-cli"></span>
@@ -677,10 +678,10 @@ atlas.buildAll().then(...); &#x2F;&#x2F; compile all guide and reports. Returns 
     <span class="atlas-title__highlight"></span>
 </h3>
 <div class="atlas atlas-code shell">
-<pre><code class="language-shell">Usage: atlas-guide [option]
+<pre><code class="language-shell">Usage: atlas-guide [OPTION]
 
-Options:
-  --build                    build all atlas pages
+Options:            
+  -b, --build&#x3D;FILE           build all atlas pages, followed with config &#39;--build&#x3D;.&#x2F;path&#x2F;to&#x2F;config.json&#39;
   -v, --version              print Atlas-guide version
   --help                     print this message</code></pre>
 </div>
@@ -698,25 +699,8 @@ Options:
     </a>
     <span class="atlas-title__highlight"></span>
 </h2>
-<p class="atlas atlas-p">Atlas search configuration in this order:</p>
-<ol class="atlas atlas-ol">
-	<li><code>.atlasrc.json</code> in project root</li>
-<li><code>atlasConfig</code> field in <code>package.json</code></li>
-
-</ol>
-<span class="atlas-anchor" id="h3--code-atlasrc-json-code-"></span>
-<h3 class="atlas atlas-title atlas-title_3">
-    <span class="atlas-title__text">
-        <code>.atlasrc.json</code>
-    </span>
-    <a class="atlas-title__anchor" href="#h3--code-atlasrc-json-code-" title="Copy link to this title">
-        <svg width="14" height="14" role="img">
-            <use xlink:href="#icon-ln"></use>
-        </svg>
-    </a>
-    <span class="atlas-title__highlight"></span>
-</h3>
-<p class="atlas atlas-p">By default atlas search for configuration in <code>.atlasrc.json</code> file in the root of the project.</p>
+<p class="atlas atlas-p">Atlas v1.4.1 will search configuration in several places (Please see docs <a href="https://github.com/dimanech/atlas-guide/blob/v1.4.1/README.md#configuration">here</a>). 
+Atlas v 2.0.0 require explicit configuration in <code>.withConfig()</code> method.</p>
 <p class="atlas atlas-p">Minimal configuration:</p>
 <div class="atlas atlas-code json">
 <pre><code class="language-json">{
@@ -725,32 +709,64 @@ Options:
     &quot;cssSrc&quot;: &quot;assets&#x2F;css&#x2F;&quot;
 }</code></pre>
 </div>
-<span class="atlas-anchor" id="h3--code-atlasconfig-code-in-code-package-json-code-"></span>
+<p class="atlas atlas-p">You could place it wherever you want and target with:</p>
+<div class="atlas atlas-code js">
+<pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;).withConfig(&#39;.&#x2F;from&#x2F;project&#x2F;root&#x2F;path&#x2F;to&#x2F;my&#x2F;config.json&#39;);</code></pre>
+</div>
+<p class="atlas atlas-p">or with rawConfig object if you call atlas from js:</p>
+<div class="atlas atlas-code js">
+<pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;).withConfig({
+    guideSrc: &#39;assets&#x2F;scss&#x2F;&#39;,
+    guideDest: &#39;guide&#x2F;&#39;,
+    cssSrc: &#39;assets&#x2F;css&#x2F;&#39;
+    &#x2F;&#x2F; etc
+});</code></pre>
+</div>
+<span class="atlas-anchor" id="h3-different-configuration-for-different-brands"></span>
 <h3 class="atlas atlas-title atlas-title_3">
     <span class="atlas-title__text">
-        <code>atlasConfig</code> in <code>package.json</code>
+        different configuration for different brands
     </span>
-    <a class="atlas-title__anchor" href="#h3--code-atlasconfig-code-in-code-package-json-code-" title="Copy link to this title">
+    <a class="atlas-title__anchor" href="#h3-different-configuration-for-different-brands" title="Copy link to this title">
         <svg width="14" height="14" role="img">
             <use xlink:href="#icon-ln"></use>
         </svg>
     </a>
     <span class="atlas-title__highlight"></span>
 </h3>
-<p class="atlas atlas-p">If you project stores all configurations in <code>package.json</code> you probably want to store atlas configuration here also.
-To do that add <code>atlasConfig</code> field to your <code>package.json</code>.</p>
-<p class="atlas atlas-p">Note: if you have both <code>.atlasrc.json</code> and <code>package.json</code> -- <code>.atlasrc.json</code> will be used.</p>
-<p class="atlas atlas-p">Minimal configuration:</p>
+<p class="atlas atlas-p">Suppose you store brand configuration into <code>package.json</code>:</p>
 <div class="atlas atlas-code json">
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;some-project&quot;,
   &quot;version&quot;: &quot;0.0.1&quot;,
-  &quot;atlasConfig&quot;: {
-    &quot;guideSrc&quot;: &quot;assets&#x2F;scss&#x2F;&quot;,
-    &quot;guideDest&quot;: &quot;guide&#x2F;&quot;,
-    &quot;cssSrc&quot;: &quot;assets&#x2F;css&#x2F;&quot;
+  &quot;brands&quot;: {
+    &quot;one&quot;: {
+        &quot;guide&quot;: {
+            &quot;guideSrc&quot;: &quot;assets&#x2F;scss&#x2F;&quot;,
+            &quot;guideDest&quot;: &quot;guide&#x2F;&quot;,
+            &quot;cssSrc&quot;: &quot;assets&#x2F;css&#x2F;&quot;
+        }
+    },
+    &quot;another&quot;: {
+        &quot;guide&quot;: {
+            &quot;guideSrc&quot;: &quot;another&#x2F;assets&#x2F;scss&#x2F;&quot;,
+            &quot;guideDest&quot;: &quot;another&#x2F;guide&#x2F;&quot;,
+            &quot;cssSrc&quot;: &quot;another&#x2F;assets&#x2F;css&#x2F;&quot;
+        }
+    }
   }
 }</code></pre>
+</div>
+<p class="atlas atlas-p">than you could build guide like this:</p>
+<div class="atlas atlas-code js">
+<pre><code class="language-js">const pkg &#x3D; require(&#39;package.json&#39;);
+const atlasGuide &#x3D; require(&#39;atlas-guide&#39;);
+
+const buildBrandOne &#x3D; atlasGuide.withConfig(pkg.brands.one).buildAll().then(...);
+const buildBrandAnother &#x3D; atlasGuide.withConfig(pkg.brands.another).buildAll().then(...);
+
+const buildPageBrandOne &#x3D; atlasGuide.withConfig(pkg.brands.one).build(&#39;&#x2F;abs&#x2F;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;).then(...);
+const buildPageBrandAnother &#x3D; atlasGuide.withConfig(pkg.brands.another).build(&#39;&#x2F;abs&#x2F;path&#x2F;to&#x2F;changed&#x2F;file.scss&#39;).then(...);</code></pre>
 </div>
 <span class="atlas-anchor" id="h3-templates-overwrites"></span>
 <h3 class="atlas atlas-title atlas-title_3">
@@ -1086,7 +1102,7 @@ That render component playground instead of code-example. This keeps documentati
 </h4>
 <p class="atlas atlas-p">Regular development flow could be organized in this way – build all guide pages on start and incrementally rebuild pages on file changes:</p>
 <div class="atlas atlas-code js">
-<pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;);
+<pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;).withConfig({config: &#39;here&#39;});
 atlas.build().then(...); &#x2F;&#x2F; build all guide files without reports
 
 &#x2F;&#x2F; watch for changes, get changed file path and build needed page:
@@ -1120,7 +1136,7 @@ atlas.build(&#39;&#x2F;absolute&#x2F;path&#x2F;to&#x2F;changed&#x2F;file.scss&#3
 <p class="atlas atlas-p">Due to time efforts reports not generated in regular flow. To generate reports you need to call <code>npm atlas-guide --build</code>
 or in JS:</p>
 <div class="atlas atlas-code js">
-<pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;);
+<pre><code class="language-js">const atlas &#x3D; require(&#39;atlas-guide&#39;).withConfig({config: &#39;here&#39;});
 atlas.buildAll().then(...); &#x2F;&#x2F; compile all components, guidelines and reports</code></pre>
 </div>
 <span class="atlas-anchor" id="h3-autogenerated-styleguide-based-on-project-constants"></span>
@@ -1275,7 +1291,7 @@ $scale-md: 1rem;
     </a>
     <span class="atlas-title__highlight"></span>
 </h2>
-<p class="atlas atlas-p">Copyright © 2018, D. Nechepurenko. Published under MIT license.</p>
+<p class="atlas atlas-p">Copyright © 2019, D. Nechepurenko. Published under MIT license.</p>
 
             </section>
         </main>
@@ -1352,13 +1368,8 @@ $scale-md: 1rem;
             </a>
         </div>
         <div class="atlas-toc__item" role="listitem">
-            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3--code-atlasrc-json-code-">
-                <code>.atlasrc.json</code>
-            </a>
-        </div>
-        <div class="atlas-toc__item" role="listitem">
-            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3--code-atlasconfig-code-in-code-package-json-code-">
-                <code>atlasConfig</code> in <code>package.json</code>
+            <a class="atlas-toc__ln atlas-toc__ln_3" href="#h3-different-configuration-for-different-brands">
+                different configuration for different brands
             </a>
         </div>
         <div class="atlas-toc__item" role="listitem">

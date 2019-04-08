@@ -328,7 +328,7 @@
 <p class="atlas-footer-copyright">
     &copy; 2018
     atlas-guide
-    1.3.3
+    2.0.0-0
 </p>
         </div>
     </div>
@@ -494,7 +494,7 @@ This intended to not depend from project infrastructure.</p>
 <p class="atlas atlas-p">This two tasks could be easily achieved with gulp:</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">let generateFilePath &#x3D; [];
-const atlas &#x3D; require(&#39;atlas-guide&#39;);
+const atlas &#x3D; require(&#39;atlas-guide&#39;).withConfig(&#39;.&#x2F;.atlasrc.json&#39;);
 
 &#x2F;&#x2F; Build all components pages
 gulp.task(&#39;atlas:compile&#39;, () &#x3D;&gt; atlas.build());
@@ -549,7 +549,7 @@ We show most simple way, by using CLI.</p>
 <div class="atlas atlas-code json">
 <pre><code class="language-json">{
   &quot;scripts&quot;: {
-    &quot;build:guide&quot;: &quot;atlas-guide --build&quot;
+    &quot;build:guide&quot;: &quot;atlas-guide --build&#x3D;.&#x2F;.atlasrc.json&quot;
   }
 }</code></pre>
 </div>
@@ -557,7 +557,7 @@ We show most simple way, by using CLI.</p>
 <div class="atlas atlas-code json">
 <pre><code class="language-json">{
   &quot;scripts&quot;: {
-    &quot;build:guide&quot;: &quot;node-sass &#x2F;path&#x2F;to&#x2F;scss -o &#x2F;path&#x2F;to&#x2F;css --output-style compressed &amp;&amp; atlas-guide --build&quot;
+    &quot;build:guide&quot;: &quot;node-sass &#x2F;path&#x2F;to&#x2F;scss -o &#x2F;path&#x2F;to&#x2F;css --output-style compressed &amp;&amp; atlas-guide --build&#x3D;.&#x2F;.atlasrc.json&quot;
   }
 }</code></pre>
 </div>
@@ -576,7 +576,7 @@ We show most simple way, by using CLI.</p>
 <p class="atlas atlas-p">This also could be achieved with gulp:</p>
 <div class="atlas atlas-code js">
 <pre><code class="language-js">gulp.task(&#39;atlas:compile:all&#39;, () &#x3D;&gt; {
-    return require(&#39;atlas-guide&#39;).buildAll();
+    return require(&#39;atlas-guide&#39;).withConfig(&#39;.&#x2F;.atlasrc.json&#39;).buildAll();
 });
 gulp.task(&#39;build&#39;, [&#39;styles:compile:all&#39;, &#39;atlas:compile:all&#39;]);</code></pre>
 </div>
