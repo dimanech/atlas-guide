@@ -110,7 +110,7 @@ Then in `package.json`
 ```json
 {
   "scripts": {
-    "build-atlas": "atlas-guide --build"
+    "build-atlas": "atlas-guide --build=./path/to/config.json"
   }
 }
 ```
@@ -149,10 +149,11 @@ See example guideline page or this repo gulp to get the idea how live reload and
 ### API
 
 ```js
-const atlas = require('atlas-guide');
+const atlas = require('atlas-guide').withConfig('./project/root/path/to/config.json');
+// or atlas = require('atlas-guide').withConfig({ rawConfigObject });
 atlas.build().then(...); // build all guide files without reports. Returns promise.
-atlas.build('/absolute/path/to/changed/file.scss').then(...); // compile only particular file, if it marked as documented in project tree
-atlas.buildAll().then(...); // compile all guide and reports. Returns promise.
+atlas.build('/absolute/path/to/changed/file.scss').then(...); // compile only particular file, if it marked as documented in project tree. Returns promise.
+atlas.buildAll().then(...); // compile all guide pages and reports. Returns promise.
 ```
 
 Use `atlas.build()` for incremental development builds, where it is not required to have extensive heavy-weight statistic.
@@ -160,24 +161,18 @@ Use `atlas.build()` for incremental development builds, where it is not required
 ### CLI
 
 ```shell
-Usage: atlas-guide [option]
+Usage: atlas-guide [OPTION]
 
-Options:
-  --build                    build all atlas pages
+Options:            
+  -b, --build=FILE           build all atlas pages, followed with config '--build=./path/to/config.json'
   -v, --version              print Atlas-guide version
   --help                     print this message
 ```
 
 ## Configuration
 
-Atlas search configuration in this order:
-
-1. `.atlasrc.json` in project root
-2. `atlasConfig` field in `package.json`
-
-### `.atlasrc.json`
-
-By default atlas search for configuration in `.atlasrc.json` file in the root of the project.
+Atlas v1.4.1 will search configuration in several places (Please see docs [here](https://github.com/dimanech/atlas-guide/blob/v1.4.1/README.md#configuration)). 
+Atlas v 2.0.0 require explicit configuration in `.withConfig()` method.
 
 Minimal configuration:
 
@@ -189,25 +184,61 @@ Minimal configuration:
 }
 ```
 
-### `atlasConfig` in `package.json`
+You could place it wherever you want and target with:
 
-If you project stores all configurations in `package.json` you probably want to store atlas configuration here also.
-To do that add `atlasConfig` field to your `package.json`.
+```js
+const atlas = require('atlas-guide').withConfig('./from/project/root/path/to/my/config.json');
+```
 
-Note: if you have both `.atlasrc.json` and `package.json` -- `.atlasrc.json` will be used.
+or with rawConfig object if you call atlas from js:
 
-Minimal configuration:
+```js
+const atlas = require('atlas-guide').withConfig({
+    guideSrc: 'assets/scss/',
+    guideDest: 'guide/',
+    cssSrc: 'assets/css/'
+    // etc
+});
+```
+
+### different configuration for different brands
+
+Suppose you store brand configuration into `package.json`:
 
 ```json
 {
   "name": "some-project",
   "version": "0.0.1",
-  "atlasConfig": {
-    "guideSrc": "assets/scss/",
-    "guideDest": "guide/",
-    "cssSrc": "assets/css/"
+  "brands": {
+    "one": {
+        "guide": {
+            "guideSrc": "assets/scss/",
+            "guideDest": "guide/",
+            "cssSrc": "assets/css/"
+        }
+    },
+    "another": {
+        "guide": {
+            "guideSrc": "another/assets/scss/",
+            "guideDest": "another/guide/",
+            "cssSrc": "another/assets/css/"
+        }
+    }
   }
 }
+```
+
+than you could build guide like this:
+
+```js
+const pkg = require('package.json');
+const atlasGuide = require('atlas-guide');
+
+const buildBrandOne = atlasGuide.withConfig(pkg.brands.one).buildAll().then(...);
+const buildBrandAnother = atlasGuide.withConfig(pkg.brands.another).buildAll().then(...);
+
+const buildPageBrandOne = atlasGuide.withConfig(pkg.brands.one).build('/abs/path/to/changed/file.scss').then(...);
+const buildPageBrandAnother = atlasGuide.withConfig(pkg.brands.another).build('/abs/path/to/changed/file.scss').then(...);
 ```
 
 ### Templates overwrites
@@ -442,7 +473,7 @@ Simply put regular markdown file to components tree and they automatically becom
 Regular development flow could be organized in this way – build all guide pages on start and incrementally rebuild pages on file changes:
 
 ```js
-const atlas = require('atlas-guide');
+const atlas = require('atlas-guide').withConfig({config: 'here'});
 atlas.build().then(...); // build all guide files without reports
 
 // watch for changes, get changed file path and build needed page:
@@ -459,7 +490,7 @@ Due to time efforts reports not generated in regular flow. To generate reports y
 or in JS:
 
 ```js
-const atlas = require('atlas-guide');
+const atlas = require('atlas-guide').withConfig({config: 'here'});
 atlas.buildAll().then(...); // compile all components, guidelines and reports
 ```
 
@@ -540,4 +571,4 @@ You are welcome for ideas, help and of course code contributing. Please see CONT
 
 ## License
 
-Copyright © 2018, D. Nechepurenko. Published under MIT license.
+Copyright © 2019, D. Nechepurenko. Published under MIT license.

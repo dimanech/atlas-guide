@@ -26,7 +26,7 @@ This two tasks could be easily achieved with gulp:
 
 ```js
 let generateFilePath = [];
-const atlas = require('atlas-guide');
+const atlas = require('atlas-guide').withConfig('./.atlasrc.json');
 
 // Build all components pages
 gulp.task('atlas:compile', () => atlas.build());
@@ -65,7 +65,7 @@ We show most simple way, by using CLI.
 ```json
 {
   "scripts": {
-    "build:guide": "atlas-guide --build"
+    "build:guide": "atlas-guide --build=./.atlasrc.json"
   }
 }
 ```
@@ -75,7 +75,7 @@ But if you use it with deploy you probably need to build all scss before build a
 ```json
 {
   "scripts": {
-    "build:guide": "node-sass /path/to/scss -o /path/to/css --output-style compressed && atlas-guide --build"
+    "build:guide": "node-sass /path/to/scss -o /path/to/css --output-style compressed && atlas-guide --build=./.atlasrc.json"
   }
 }
 ```
@@ -86,7 +86,7 @@ This also could be achieved with gulp:
 
 ```js
 gulp.task('atlas:compile:all', () => {
-    return require('atlas-guide').buildAll();
+    return require('atlas-guide').withConfig('./.atlasrc.json').buildAll();
 });
 gulp.task('build', ['styles:compile:all', 'atlas:compile:all']);
 ```

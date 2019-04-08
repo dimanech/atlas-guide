@@ -6,7 +6,7 @@ const cwd = process.cwd();
 
 describe('Models', function() {
     describe('styleguide', function() {
-        const config = require(cwd + '/models/atlasconfig.js').getBase({
+        const config = require(cwd + '/models/atlasconfig.js')({
             'guideSrc': 'test/fixtures/atlas/',
             'guideDest': 'test/results/',
             'cssSrc': 'test/fixtures/atlas/css/',
@@ -30,7 +30,7 @@ describe('Models', function() {
         });
     });
     describe('projectimportsgraph', function() {
-        const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+        const baseConfig = require(cwd + '/models/atlasconfig.js')({
             'guideSrc': 'test/fixtures/atlas/',
             'guideDest': 'test/results/',
             'cssSrc': 'test/fixtures/atlas/css/'
@@ -77,7 +77,7 @@ describe('Models', function() {
     describe('statcomponent', function() {
         it('should return proper transformed model without defined constants', function() {
             const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
-            const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+            const baseConfig = require(cwd + '/models/atlasconfig.js')({
                 'guideSrc': 'test/fixtures/atlas/',
                 'guideDest': 'test/results/',
                 'cssSrc': 'test/fixtures/atlas/css/'
@@ -92,12 +92,12 @@ describe('Models', function() {
             const viewModel = require(cwd + '/viewmodels/statcomponent.js')(
                 componentStat, componentImports, constants);
             const expectedViewModel = require(cwd + '/test/fixtures/viewmodels/statcomponent.json');
-            assert.deepEqual(viewModel, expectedViewModel);
+            assert.deepStrictEqual(viewModel, expectedViewModel);
         });
 
         it('should return proper transformed model with defined constants', function() {
             const componentPath = path.join(cwd, '/test/fixtures/atlas/_component.scss');
-            const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+            const baseConfig = require(cwd + '/models/atlasconfig.js')({
                 'guideSrc': 'test/fixtures/atlas/',
                 'guideDest': 'test/results/',
                 'cssSrc': 'test/fixtures/atlas/css/',
@@ -121,7 +121,7 @@ describe('Models', function() {
             const viewModel = require(cwd + '/viewmodels/statcomponent.js')(
                 componentStat, componentImports, constants);
             const expectedViewModel = require(cwd + '/test/fixtures/viewmodels/statcomponent-const.json');
-            assert.deepEqual(viewModel, expectedViewModel);
+            assert.deepStrictEqual(viewModel, expectedViewModel);
         });
     });
     describe('pagecontent', function() {
@@ -130,15 +130,15 @@ describe('Models', function() {
         it('should return comment content if path is right', function() {
             const result = pageContent('test/fixtures/atlas/_component.scss');
             const expectedResult = require(cwd + '/test/fixtures/viewmodels/pagecontent.json');
-            assert.deepEqual(result, expectedResult);
+            assert.deepStrictEqual(result, expectedResult);
         });
         it('should falls if no comment in file', function() {
             const result = pageContent('test/fixtures/atlas/_component-undocumented.scss');
-            assert.deepEqual(result, {content: '', toc: [], isNeedStat: false});
+            assert.deepStrictEqual(result, {content: '', toc: [], isNeedStat: false});
         });
         it('should pass false for statistics if found declaration', function() {
             const result = pageContent('test/fixtures/atlas/category/_component-no-stat.scss');
-            assert.deepEqual(result, {content: '', toc: [], isNeedStat: false});
+            assert.deepStrictEqual(result, {content: '', toc: [], isNeedStat: false});
         });
         it('should falls if wrong path to file');
     });
@@ -146,7 +146,7 @@ describe('Models', function() {
         let projectStat;
 
         before(function() {
-            const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+            const baseConfig = require(cwd + '/models/atlasconfig.js')({
                 'guideSrc': 'test/fixtures/atlas/',
                 'guideDest': 'test/results/',
                 'cssSrc': 'test/fixtures/atlas/css/'
@@ -162,7 +162,7 @@ describe('Models', function() {
             const projectName = 'atlas-guide';
             const viewModel = statProject(projectStat, projectName);
             const expectedViewModel = require(cwd + '/test/fixtures/viewmodels/statproject.json');
-            assert.deepEqual(viewModel, expectedViewModel);
+            assert.deepStrictEqual(viewModel, expectedViewModel);
         });
     });
     describe('componentstat', function() {
@@ -189,7 +189,7 @@ describe('Models', function() {
         it('should return proper imports for standalone files', function() {
             const result = statimports(importsGraph, new RegExp('foo'));
             const expected = [{name: 'some.scss', imports: ['foo.scss', 'bar.scss']}];
-            assert.deepEqual(result, expected);
+            assert.deepStrictEqual(result, expected);
         });
     });
     describe('projectbundle', function() {
@@ -210,12 +210,12 @@ describe('Models', function() {
                         scssAdditionalImportsArray: []
                     });
                 const result = projectBundle(graph, 'root', 'some/', new RegExp('_exclud'));
-                assert.deepEqual(JSON.parse(result), importsGraphsExpected[test.type]);
+                assert.deepStrictEqual(JSON.parse(result), importsGraphsExpected[test.type]);
             });
         });
     });
     describe('projectconstants', function() {
-        const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+        const baseConfig = require(cwd + '/models/atlasconfig.js')({
             'guideSrc': 'test/fixtures/atlas/',
             'guideDest': 'test/results/',
             'cssSrc': 'test/fixtures/atlas/css/',
@@ -232,7 +232,7 @@ describe('Models', function() {
         });
 
         it('should return undefined if props not declared', function() {
-            const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+            const baseConfig = require(cwd + '/models/atlasconfig.js')({
                 'guideSrc': 'test/fixtures/atlas/',
                 'guideDest': 'test/results/',
                 'cssSrc': 'test/fixtures/atlas/css/'
@@ -265,7 +265,7 @@ describe('Models', function() {
                 'motion': [{'name': '--motion-ease', 'value': 'cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s'}]
             };
 
-            assert.deepEqual(viewModel, expectedViewModel);
+            assert.deepStrictEqual(viewModel, expectedViewModel);
         });
         it('should return proper model for SCSS constants only', function() {
             baseConfig.constants.constantsFile = `
@@ -289,7 +289,7 @@ describe('Models', function() {
                 'motion': [{'name': '$motion-ease', 'value': 'cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s'}]
             };
 
-            assert.deepEqual(viewModel, expectedViewModel);
+            assert.deepStrictEqual(viewModel, expectedViewModel);
         });
         it('should return proper model for mix constants and custom props', function() {
             baseConfig.constants.constantsFile = `
@@ -315,10 +315,10 @@ describe('Models', function() {
                 'space': []
             };
 
-            assert.deepEqual(viewModel, expectedViewModel);
+            assert.deepStrictEqual(viewModel, expectedViewModel);
         });
         it('should ignore undeclared constants', function() {
-            const baseConfig = require(cwd + '/models/atlasconfig.js').getBase({
+            const baseConfig = require(cwd + '/models/atlasconfig.js')({
                 'guideSrc': 'test/fixtures/atlas/',
                 'guideDest': 'test/results/',
                 'cssSrc': 'test/fixtures/atlas/css/',
@@ -344,7 +344,7 @@ describe('Models', function() {
                 'space': []
             };
 
-            assert.deepEqual(viewModel, expectedViewModel);
+            assert.deepStrictEqual(viewModel, expectedViewModel);
         });
     });
 });

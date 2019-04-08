@@ -23,6 +23,8 @@
 
 	&._vertical {
 		display: flex;
+		overflow: hidden;
+		overflow-x: auto;
 
 		.atlas-style-space__item {
 			display: flex;
