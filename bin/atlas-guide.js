@@ -16,7 +16,7 @@ try {
         case '--help':
         default:
             console.log(`
-Usage: atlas-guide [option] ?[config]
+Usage: atlas-guide [option ?config]
 
 Options:            
   -b, --build                build all atlas pages, followed with config '--build ./path/to/conf.json'
@@ -31,6 +31,5 @@ Options:
         console.error('Error: ' + e.message);
     }
 
-    // console.log(e.stack);
     process.exit(1);
 }

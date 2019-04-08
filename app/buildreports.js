@@ -30,7 +30,7 @@ module.exports = function(atlasConfig, projectTree, importsGraph, writePage) {
         title: 'bundle',
         target: path.join(guideDest, '/bundle.html'),
         template: 'bundle',
-        type: 'insights', // TODO: ??
+        type: 'bundle',
         content: {
             weight: statFileWeight(projectFileSizes),
             crossDeps: statCrossDeps(importsGraph, excludedSassFiles),

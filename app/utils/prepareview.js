@@ -11,9 +11,9 @@ module.exports = function init(projectInfo, subPages) {
         };
         this.title = config.title;
         this.content = config.content;
-        this.type = config.type;
+        this.type = config.type; // Icon in page header
         this.isDeprecated = config.isDeprecated;
-        this.subPages = subPages.subPages; // Pages tree
+        this.subPages = subPages.subPages; // Aside navigation pages tree
     };
 
     View.prototype.inline = () => (text, render) => inline(text, render);

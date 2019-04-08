@@ -161,7 +161,7 @@ Use `atlas.build()` for incremental development builds, where it is not required
 ### CLI
 
 ```shell
-Usage: atlas-guide [option] ?[config]
+Usage: atlas-guide [option ?config]
 
 Options:            
   -b, --build                build all atlas pages, followed with config '--build ./path/to/conf.json'
@@ -187,7 +187,7 @@ Minimal configuration:
 You could place it wherever you want and target with:
 
 ```js
-const atlas = require('atlas-guide').withConfig('./project/root/path/to/my/config.json');
+const atlas = require('atlas-guide').withConfig('./from/project/root/path/to/my/config.json');
 ```
 
 or with rawConfig object if you call atlas from js:
@@ -219,9 +219,9 @@ Suppose you store brand configuration into `package.json`:
     },
     "another": {
         "guide": {
-            "guideSrc": "assets/scss/",
-            "guideDest": "guide/",
-            "cssSrc": "assets/css/"
+            "guideSrc": "another/assets/scss/",
+            "guideDest": "another/guide/",
+            "cssSrc": "another/assets/css/"
         }
     }
   }
@@ -234,8 +234,11 @@ than you could build guide like this:
 const pkg = require('package.json');
 const atlasGuide = require('atlas-guide');
 
-const buildBrandOne = atlasGuide.withConfig(pkg.brands.one).buildAll();
-const buildBrandAnother = atlasGuide.withConfig(pkg.brands.another).buildAll();
+const buildBrandOne = atlasGuide.withConfig(pkg.brands.one).buildAll().then(...);
+const buildBrandAnother = atlasGuide.withConfig(pkg.brands.another).buildAll().then(...);
+
+const buildPageBrandOne = atlasGuide.withConfig(pkg.brands.one).build('/abs/path/to/changed/file.scss').then(...);
+const buildPageBrandAnother = atlasGuide.withConfig(pkg.brands.another).build('/abs/path/to/changed/file.scss').then(...);
 ```
 
 ### Templates overwrites
@@ -470,7 +473,7 @@ Simply put regular markdown file to components tree and they automatically becom
 Regular development flow could be organized in this way – build all guide pages on start and incrementally rebuild pages on file changes:
 
 ```js
-const atlas = require('atlas-guide');
+const atlas = require('atlas-guide').withConfig({config: 'here'});
 atlas.build().then(...); // build all guide files without reports
 
 // watch for changes, get changed file path and build needed page:
@@ -487,7 +490,7 @@ Due to time efforts reports not generated in regular flow. To generate reports y
 or in JS:
 
 ```js
-const atlas = require('atlas-guide');
+const atlas = require('atlas-guide').withConfig({config: 'here'});
 atlas.buildAll().then(...); // compile all components, guidelines and reports
 ```
 
@@ -568,4 +571,4 @@ You are welcome for ideas, help and of course code contributing. Please see CONT
 
 ## License
 
-Copyright © 2018, D. Nechepurenko. Published under MIT license.
+Copyright © 2019, D. Nechepurenko. Published under MIT license.
