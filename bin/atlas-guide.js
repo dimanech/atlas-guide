@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 'use strict';
 
-const arg = process.argv[2];
+const parseOption = arg => arg.split(/=/);
+const arg = parseOption(process.argv[2]);
 
 try {
-    switch (arg) {
+    switch (arg[0]) {
         case '--build':
         case '-b':
-            require('../app/atlas-guide').withConfig(process.argv[3]).buildAll();
+            require('../app/atlas-guide').withConfig(arg[1]).buildAll();
             break;
         case '--version':
         case '-v':
@@ -16,10 +17,10 @@ try {
         case '--help':
         default:
             console.log(`
-Usage: atlas-guide [option ?config]
+Usage: atlas-guide [OPTION]
 
 Options:            
-  -b, --build                build all atlas pages, followed with config '--build ./path/to/conf.json'
+  -b, --build=FILE           build all atlas pages, followed with config '--build=./path/to/config.json'
   -v, --version              print Atlas-guide version
   --help                     print this message
             `);
@@ -30,6 +31,5 @@ Options:
     } else {
         console.error('Error: ' + e.message);
     }
-
     process.exit(1);
 }

@@ -65,7 +65,7 @@ We show most simple way, by using CLI.
 ```json
 {
   "scripts": {
-    "build:guide": "atlas-guide --build './.atlasrc.json'"
+    "build:guide": "atlas-guide --build=./.atlasrc.json"
   }
 }
 ```
@@ -75,7 +75,7 @@ But if you use it with deploy you probably need to build all scss before build a
 ```json
 {
   "scripts": {
-    "build:guide": "node-sass /path/to/scss -o /path/to/css --output-style compressed && atlas-guide --build './.atlasrc.json'"
+    "build:guide": "node-sass /path/to/scss -o /path/to/css --output-style compressed && atlas-guide --build=./.atlasrc.json"
   }
 }
 ```

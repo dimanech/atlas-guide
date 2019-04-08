@@ -110,7 +110,7 @@ Then in `package.json`
 ```json
 {
   "scripts": {
-    "build-atlas": "atlas-guide --build ./path/to/config.json"
+    "build-atlas": "atlas-guide --build=./path/to/config.json"
   }
 }
 ```
@@ -161,10 +161,10 @@ Use `atlas.build()` for incremental development builds, where it is not required
 ### CLI
 
 ```shell
-Usage: atlas-guide [option ?config]
+Usage: atlas-guide [OPTION]
 
 Options:            
-  -b, --build                build all atlas pages, followed with config '--build ./path/to/conf.json'
+  -b, --build=FILE           build all atlas pages, followed with config '--build=./path/to/config.json'
   -v, --version              print Atlas-guide version
   --help                     print this message
 ```
