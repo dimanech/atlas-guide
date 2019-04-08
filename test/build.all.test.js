@@ -144,4 +144,12 @@ describe('All', function() {
     it('should contain copy and version');
     it('should have deprecated component');
     it('should have internal templates');
+    it('should not throw an error if no config is declared', function(done) {
+        const atlasGuide = require(path.join(cwd, '/app/atlas-guide')).withConfig('./.inexistentatlasrc.json');
+        try {
+            atlasGuide.buildAll().then(() => done());
+        } catch (e) {
+            done('failed');
+        }
+    });
 });

@@ -33,6 +33,16 @@ describe('Build', function() {
     });
 
     describe('Single component', function() {
+        describe('Wrong config', function() {
+            it('should not throw an error if it has wrong config', function(done) {
+                const atlasGuide = require(path.join(cwd, '/app/atlas-guide')).withConfig('./.inexistentatlasrc.json');
+                try {
+                    atlasGuide.build('/path/to/file.css').then(() => done());
+                } catch (e) {
+                    done('failed');
+                }
+            });
+        });
         describe('Existed absolute path', function() {
             const expectedFile = path.join(cwd, guideDest, 'component.html');
 
