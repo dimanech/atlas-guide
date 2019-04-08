@@ -1,17 +1,18 @@
-
-            {
-                "guideSrc": "test/fixtures/atlas/",
-                "guideDest": "test/results/",
-                "cssSrc": "test/fixtures/atlas/css",
-                "copyInternalAssets": false,
-                "excludedSassFiles": "^excluded",
-                "excludedCssFiles": "^excluded",
-                "partials": {
-                  "assetsfooter": "test/fixtures/includes/assetsfooter.mustache",
-                  "assetshead": "test/fixtures/includes/assetshead.mustache"
-                },
-                "templates": {
-                    "guide": "test/fixtures/templates/guide.mustache"
-                }
-            }
-        
+{
+    "guideSrc": "assets/src/scss/",
+    "guideDest": "atlas",
+    "cssSrc": "assets/css/",
+    "copyInternalAssets": false,
+    "excludedSassFiles": "_dev-atlas-settings|_dev-atlas-definitions",
+    "componentPrefixes": ["atlas-", "l-"],
+    "projectConstants": {
+        "constantsSrc": "assets/src/scss/_dev-atlas-settings.scss",
+        "colorPrefix": "color",
+        "fontPrefix": "font",
+        "scalePrefix": "scale",
+        "spacePrefix": "space",
+        "motionPrefix": "motion",
+        "depthPrefix": "depth",
+        "breakpointPrefix": "break"
+    }
+}
