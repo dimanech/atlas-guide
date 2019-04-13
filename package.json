@@ -46,7 +46,7 @@
     "gulp-sourcemaps": "2.6.5",
     "mocha": "6.1.2",
     "nyc": "13.3.0",
-    "stylelint": "9.10.1",
+    "stylelint": "10.0.0",
     "stylelint-order": "2.2.1",
     "stylelint-scss": "3.5.4"
   },
