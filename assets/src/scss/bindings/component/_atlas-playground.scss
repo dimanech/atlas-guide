@@ -161,6 +161,21 @@
 		}
 	}
 
+	&__copy-button {
+		appearance: none;
+		background-color: transparent;
+		border: none;
+		color: $color-grey80-atlas;
+		cursor: pointer;
+		position: absolute;
+		right: 10px;
+		top: 0;
+
+		&:hover {
+			color: $color-white-atlas;
+		}
+	}
+
 	// Frame for screenshot caption
 	&-test-frame {
 		// overflow: auto;
