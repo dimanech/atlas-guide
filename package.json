@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "autoprefixer": "9.6.0",
-    "coveralls": "3.0.3",
-    "eslint": "5.16.0",
+    "coveralls": "3.0.4",
+    "eslint": "6.0.0",
     "gulp": "4.0.2",
     "gulp-connect": "5.7.0",
     "gulp-postcss": "8.0.0",
@@ -46,7 +46,7 @@
     "gulp-sourcemaps": "2.6.5",
     "mocha": "6.1.4",
     "nyc": "14.1.1",
-    "stylelint": "10.0.1",
+    "stylelint": "10.1.0",
     "stylelint-order": "3.0.0",
     "stylelint-scss": "3.7.0"
   },
