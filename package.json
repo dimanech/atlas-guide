@@ -1,6 +1,6 @@
 {
   "name": "atlas-guide",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "description": "Atlas is living style-guides & pattern library static site generator with extensive CSS monitoring and components info that could be used virtually with any scss/css project",
   "keywords": [
