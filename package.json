@@ -33,7 +33,8 @@
     "postcss": "^7.0.17",
     "postcss-scss": "^2.0.0",
     "sass": "^1.22.1",
-    "sass-graph": "^3.0.4"
+    "sass-graph": "^3.0.4",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "autoprefixer": "9.6.0",
@@ -72,11 +73,14 @@
     "copyhooks": "node .githooks/copy-hooks.js",
     "version": "npm run build && git add -A assets",
     "postversion": "git push && git push --tags",
-    "debug": "node --nolazy --inspect-brk=9229 ./bin/atlas-guide --build"
+    "debug": "node --nolazy --inspect-brk=9229 ./bin/atlas-guide --build",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:dimanech/atlas-guide.git"
   },
-  "author": "Nechepurenko D."
+  "author": "Nechepurenko D.",
+  "snyk": true
 }
