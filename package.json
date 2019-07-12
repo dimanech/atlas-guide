@@ -47,7 +47,7 @@
     "mocha": "6.1.4",
     "nyc": "14.1.1",
     "stylelint": "10.1.0",
-    "stylelint-order": "3.0.0",
+    "stylelint-order": "3.0.1",
     "stylelint-scss": "3.8.0"
   },
   "browserslist": [
