@@ -23,7 +23,7 @@ module.exports = function(atlasConfig, projectTree, projectImportsGraph, project
         let isNeedStat;
 
         if (component.src !== '') { // could be stat pages or custom defined file
-            page = renderedPageContent(component.src, {'title': component.title});
+            page = renderedPageContent(component.src, {'title': component.title}, atlasConfig);
             content = page.content;
             tableOfContent = page.toc;
             isNeedStat = page.isNeedStat;

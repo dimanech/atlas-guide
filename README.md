@@ -324,6 +324,9 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
     },
     "projectInfo": {
         "name": "some-project-name"
+    },
+    "projectDependencies": {
+        "pug": ["project-root/path/to/pug-dependencies.pug"]
     }
 }
 ```
@@ -353,6 +356,8 @@ All templates and partials in Atlas could be overwritten. Please see this repo v
     * `breakpointPrefix` {string} – prefix for used breakpoints. If not defined it would be skipped.
 * `projectInfo`
     * `name` {string} - custom name of the project. Otherwise package name will be used.
+* `projectDependencies` – this field is used to add specific files for the system
+    * `pug` {string} | [{string}] - path or array of paths to file/s with project's pug dependencies.
 
 ## Usage
 
@@ -405,10 +410,10 @@ Note: Please avoid some tricky markdown construction, because `marked` super fas
 
 #### Component example
 
-Atlas extends markdown code block "fences" notation with custom type (just like Hologram) -- `html_example`.
+Atlas extends markdown code block "fences" notation with custom type (just like Hologram) -- `html_example` || `pug_example`.
 That render component playground instead of code-example. This keeps documentation compatible with regular markdown.
 
-To create component example you need to add code-block with `html_example`:
+To create component example you need to add code-block with `html_example` of `pug_example`:
 
 ```scss
 /*md
@@ -419,10 +424,19 @@ To create component example you need to add code-block with `html_example`:
 
 */
 ```
+```scss
+/*md
+
+``pug_example
+h1 Add one more backtick to make this example works
+``
+
+*/
+```
 
 #### Regular code blocks
 
-Simple `html`, `scss`, `css` "fences" become regular code-block:
+Simple `html`, `scss`, `css`, `json`, `pug` "fences" become regular code-block:
 
 ```scss
 /*md

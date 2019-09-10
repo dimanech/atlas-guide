@@ -1,0 +1,22 @@
+<figure class="atlas-playground atlas-playground_{{language}} js-playground">
+    <figcaption>
+        <button class="atlas-playground__summary" aria-controls="{{title}}-pug" title="Expand {{language}} example">
+           <span class="atlas-playground__summary-text">
+               {{title}}
+           </span>
+            <svg class="atlas-playground__summary-ico" width="24" height="24" role="img">
+                <use xlink:href="#icon-code-example"></use>
+            </svg>
+        </button>
+        <div class="atlas-playground__details js-copier" id="{{title}}-pug" aria-hidden="true">
+            <button class="atlas-playground__copy-button js-copier-button">Copy</button>
+<pre><code class="js-copier-text language-{{language}}" contenteditable="true">{{pug}}</code></pre>
+        </div>
+    </figcaption>
+    <div class="atlas-playground__example">
+        <div class="atlas-playground-test-frame js-playground__example-rubicon">
+{{{code}}}
+        </div>
+    </div>
+    <span role="region" aria-live="polite" class="atlas-playground__notifier js-playground__notifier"></span>
+</figure>

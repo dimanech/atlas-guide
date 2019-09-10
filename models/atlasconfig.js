@@ -61,6 +61,23 @@ function getProjectInfo(config) {
 //     return partials;
 // }
 
+function getProjectDependencies(projectDependencies) {
+    if (!projectDependencies) {
+        return {};
+    } else {
+        for (const key in projectDependencies) {
+            if (projectDependencies.hasOwnProperty(key)) {
+                const itemsData = projectDependencies[key];
+                const items = Array.isArray(itemsData) ? itemsData : [itemsData];
+                projectDependencies[key] = items.map((src) => {
+                    return path.join(projectRoot, src);
+                });
+            }
+        }
+        return projectDependencies;
+    }
+}
+
 function getBaseConfig(configRaw) {
     const config = getConfig(configRaw);
     if (config === undefined) {
@@ -90,9 +107,11 @@ function getBaseConfig(configRaw) {
 
     const partials = { partials: fillTemplatesConfig(config.partials, '../views/includes/partials/', 'partial') };
 
+    const projectDependencies = { projectDependencies: getProjectDependencies(config.projectDependencies) };
+
     const projectInfo = { projectInfo: getProjectInfo(config) };
 
-    return Object.assign({}, baseMandatory, baseOptional, templates, additionalPages, constants, partials, projectInfo);
+    return Object.assign({}, baseMandatory, baseOptional, templates, additionalPages, constants, partials, projectInfo, projectDependencies);
 }
 
 module.exports = getBaseConfig;

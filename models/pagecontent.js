@@ -22,6 +22,7 @@ const getFile = fileURL => fs.readFileSync(path.join(__dirname, fileURL), 'utf8'
 const elements = {
     'heading': getFile(markdownTemplates + 'heading.mustache'),
     'example': getFile(markdownTemplates + 'example.mustache'),
+    'pug': getFile(markdownTemplates + 'pug.mustache'),
     'code': getFile(markdownTemplates + 'code.mustache'),
     'hr': getFile(markdownTemplates + 'hr.mustache'),
     'paragraph': getFile(markdownTemplates + 'paragraph.mustache'),
@@ -42,6 +43,22 @@ renderer.list = (body, ordered) => {
 renderer.table = (header, body) => mustache.render(elements.table, {header: header, body: body});
 
 renderer.hr = () => elements.hr;
+
+function preparePUGDependencies(constantsPUG) {
+    const sourcesListRaw = Array.isArray(constantsPUG) ? constantsPUG : [constantsPUG];
+
+    let contaminatedSources = '';
+
+    sourcesListRaw.forEach(source => {
+        if (!fs.existsSync(source)) {
+            throw source;
+        }
+        const content = fs.readFileSync(source, 'utf8');
+        contaminatedSources += `\n${content}`;
+    });
+
+    return contaminatedSources;
+}
 
 /**
  * @typedef {Object} commentContent
@@ -79,7 +96,7 @@ function getCommentContent(filePath) {
     }
 }
 
-function mdImport(fileURL, options) {
+function mdImport(fileURL, options, config) {
     options = options || {};
 
     let codeItemCount = 0;
@@ -118,7 +135,23 @@ function mdImport(fileURL, options) {
         });
 
         codeItemCount += 1;
-        return language === 'html_example' ? exampleMarkup : regularMarkup;
+
+        switch (language) {
+            case 'pug_example':
+                const pug = require('pug');
+                const settingsFilesData = preparePUGDependencies(config.projectDependencies.pug);
+                const pugMarkup = mustache.render(elements.pug, {
+                    pug: code,
+                    code: pug.render(`${settingsFilesData}\n${code}`),
+                    language: language.replace(/_example/, ''),
+                    title: options.title + '-code-' + codeItemCount
+                });
+                return pugMarkup;
+            case 'html_example':
+                return exampleMarkup;
+            default:
+                return regularMarkup;
+        }
     };
 
     if (path.extname(fileURL) === '.md') {
