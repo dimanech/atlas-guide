@@ -12,6 +12,7 @@
 Thumbs.db
 *.sublime-project
 *.sublime-workspace
+*.code-workspace
 .idea
 .metadata
 *.tern-project

@@ -44,22 +44,6 @@ renderer.table = (header, body) => mustache.render(elements.table, {header: head
 
 renderer.hr = () => elements.hr;
 
-function preparePUGDependencies(constantsPUG) {
-    const sourcesListRaw = Array.isArray(constantsPUG) ? constantsPUG : [constantsPUG];
-
-    let contaminatedSources = '';
-
-    sourcesListRaw.forEach(source => {
-        if (!fs.existsSync(source)) {
-            throw source;
-        }
-        const content = fs.readFileSync(source, 'utf8');
-        contaminatedSources += `\n${content}`;
-    });
-
-    return contaminatedSources;
-}
-
 /**
  * @typedef {Object} commentContent
  * @property {string} content comment content
@@ -93,6 +77,50 @@ function getCommentContent(filePath) {
             content: '',
             isNeedStat: false
         };
+    }
+}
+
+/**
+ * Get all the content from the assets
+ * @property {(string|Object[])} constants
+ * @return {string}
+ */
+function prepareDependencies(constants) {
+    const sourcesListRaw = Array.isArray(constants) ? constants : [constants];
+
+    let contaminatedSources = '';
+
+    sourcesListRaw.forEach(source => {
+        if (!fs.existsSync(source)) {
+            throw source;
+        }
+        const content = fs.readFileSync(source, 'utf8');
+        contaminatedSources += `\n${content}`;
+    });
+
+    return contaminatedSources;
+}
+
+/**
+ * Render HTML from PUG
+ * @property {string} code
+ * @property {Object} config
+ * @return {string}
+ */
+function getPugFullContent(code, config) {
+    const pug = require('pug');
+    let pugAssets = '';
+
+    if (config.projectDependencies.pug) {
+        pugAssets = prepareDependencies(config.projectDependencies.pug);
+    }
+
+    try {
+        return pug.render(`${pugAssets}${pugAssets ? '\n' : ''}${code}`);
+    }
+    catch (error) {
+        console.log('Please, check your pug assets, the pug could not compile your code');
+        return code;
     }
 }
 
@@ -138,15 +166,12 @@ function mdImport(fileURL, options, config) {
 
         switch (language) {
             case 'pug_example':
-                const pug = require('pug');
-                const settingsFilesData = preparePUGDependencies(config.projectDependencies.pug);
-                const pugMarkup = mustache.render(elements.pug, {
+                return mustache.render(elements.pug, {
                     pug: code,
-                    code: pug.render(`${settingsFilesData}\n${code}`),
+                    code: getPugFullContent(code, config),
                     language: language.replace(/_example/, ''),
                     title: options.title + '-code-' + codeItemCount
                 });
-                return pugMarkup;
             case 'html_example':
                 return exampleMarkup;
             default:

@@ -61,18 +61,21 @@ function getProjectInfo(config) {
 //     return partials;
 // }
 
+/**
+ * Get project dependencies and return with right paths
+ * @property {Object} projectDependencies
+ * @return {Object}
+ */
 function getProjectDependencies(projectDependencies) {
     if (!projectDependencies) {
         return {};
     } else {
         for (const key in projectDependencies) {
-            if (projectDependencies.hasOwnProperty(key)) {
-                const itemsData = projectDependencies[key];
-                const items = Array.isArray(itemsData) ? itemsData : [itemsData];
-                projectDependencies[key] = items.map((src) => {
-                    return path.join(projectRoot, src);
-                });
-            }
+            const itemsData = projectDependencies[key];
+            const items = Array.isArray(itemsData) ? itemsData : [itemsData];
+            projectDependencies[key] = items.map((src) => {
+                return path.join(projectRoot, src);
+            });
         }
         return projectDependencies;
     }
@@ -111,7 +114,17 @@ function getBaseConfig(configRaw) {
 
     const projectInfo = { projectInfo: getProjectInfo(config) };
 
-    return Object.assign({}, baseMandatory, baseOptional, templates, additionalPages, constants, partials, projectInfo, projectDependencies);
+    return Object.assign(
+        {},
+        baseMandatory,
+        baseOptional,
+        templates,
+        additionalPages,
+        constants,
+        partials,
+        projectInfo,
+        projectDependencies
+    );
 }
 
 module.exports = getBaseConfig;

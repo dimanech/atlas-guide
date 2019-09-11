@@ -32,6 +32,7 @@
     "mustache": "^3.0.0",
     "postcss": "^7.0.17",
     "postcss-scss": "^2.0.0",
+    "pug": "^2.0.4",
     "sass": "^1.22.1",
     "sass-graph": "^3.0.4"
   },
