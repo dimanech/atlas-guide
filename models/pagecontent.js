@@ -117,8 +117,7 @@ function getPugFullContent(code, config) {
 
     try {
         return pug.render(`${pugAssets}${pugAssets ? '\n' : ''}${code}`);
-    }
-    catch (error) {
+    } catch (error) {
         console.log('Please, check your pug assets, the pug could not compile your code');
         return code;
     }
