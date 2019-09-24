@@ -29,10 +29,10 @@
     "lodash.camelcase": "^4.3.0",
     "lodash.uniq": "^4.5.0",
     "marked": "^0.7.0",
-    "mustache": "^3.0.3",
+    "mustache": "^3.1.0",
     "postcss": "^7.0.18",
     "postcss-scss": "^2.0.0",
-    "sass": "^1.22.10",
+    "sass": "^1.22.12",
     "sass-graph": "^3.0.4"
   },
   "devDependencies": {
