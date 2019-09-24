@@ -48,7 +48,7 @@
     "nyc": "14.1.1",
     "snyk": "1.226.1",
     "stylelint": "10.1.0",
-    "stylelint-order": "3.1.0",
+    "stylelint-order": "3.1.1",
     "stylelint-scss": "3.11.0"
   },
   "browserslist": [
