@@ -2,8 +2,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/dimanech/atlas-guide/badge.svg?branch=master)](https://coveralls.io/github/dimanech/atlas-guide?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f37cf365f3315cfc287c/maintainability)](https://codeclimate.com/github/dimanech/atlas-guide/maintainability)
-[![Actions Status](https://github.com/dimanech/atlas-guide/workflows/master/badge.svg)](https://github.com/dimanech/atlas-guide/actions)
-
+[![Actions Status](https://github.com/dimanech/atlas-guide/workflows/tests-master/badge.svg)](https://github.com/dimanech/atlas-guide/actions)
 [![Greenkeeper badge](https://badges.greenkeeper.io/dimanech/atlas-guide.svg)](https://greenkeeper.io/)
 [![Known Vulnerabilities](https://snyk.io/test/github/dimanech/atlas-guide/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dimanech/atlas-guide?targetFile=package.json)
 [![npm version](https://badge.fury.io/js/atlas-guide.svg)](https://badge.fury.io/js/atlas-guide)
