@@ -52,7 +52,7 @@
 			padding-bottom: 100%;
 			position: relative;
 
-			&._display {
+			&._display { /* stylelint-disable-line */
 				@include chessboard();
 			}
 

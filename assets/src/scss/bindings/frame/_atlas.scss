@@ -210,6 +210,7 @@
 .atlas-ul,
 .atlas-ol,
 .atlas-code {
+	color: $atlas-color-text; // revert text to darkgrey for all clients that have alterations
 	max-width: 800px;
 }
 
