@@ -36,7 +36,7 @@
     "sass-graph": "^3.0.4"
   },
   "devDependencies": {
-    "autoprefixer": "9.7.3",
+    "autoprefixer": "9.7.4",
     "coveralls": "3.0.9",
     "eslint": "6.4.0",
     "gulp": "4.0.2",
