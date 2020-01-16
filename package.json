@@ -29,7 +29,7 @@
     "lodash.camelcase": "^4.3.0",
     "lodash.uniq": "^4.5.0",
     "marked": "^0.8.0",
-    "mustache": "^3.2.0",
+    "mustache": "^4.0.0",
     "postcss": "^7.0.25",
     "postcss-scss": "^2.0.0",
     "sass": "^1.23.7",
