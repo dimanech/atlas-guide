@@ -1,7 +1,7 @@
 .atlas-playground {
 	clear: both;
-	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	margin: 0 -#{$space-sm-atlas} $space-md-atlas;
 	padding: 0 $space-sm-atlas $space-sm-atlas;
 	position: relative;
@@ -109,6 +109,8 @@
 
 		pre {
 			background-color: transparent;
+			font-style: normal;
+			font-weight: normal;
 			max-height: 40vh;
 			overflow: auto;
 			padding: $space-sm-atlas;

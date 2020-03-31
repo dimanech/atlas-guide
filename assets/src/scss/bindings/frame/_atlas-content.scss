@@ -1,4 +1,7 @@
 .atlas-content {
+	all: initial;
+	color: $atlas-color-text;
+
 	&__inner {
 		margin: 0 auto;
 		min-height: calc(100vh - #{$space-md-atlas * 2});

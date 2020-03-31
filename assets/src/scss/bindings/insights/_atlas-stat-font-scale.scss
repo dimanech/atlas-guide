@@ -1,6 +1,7 @@
 .atlas-stat-font-scale {
-	all: unset;
+	all: initial;
 	align-items: flex-end; // stylelint-disable-line
+	color: $atlas-color-text;
 	display: flex;
 	flex-wrap: wrap;
 	font-family: $font-sans-atlas;
@@ -19,12 +20,15 @@
 	&__example {
 		border-bottom: 1px solid $color-pink-atlas;
 		border-top: 1px solid $color-pink-atlas;
+		font-style: normal;
+		font-weight: normal;
 		overflow: hidden;
 	}
 
 	&__size {
 		font-family: $font-mono-atlas;
 		font-size: $atlas-scale-mono-small;
+		font-style: normal;
 		font-weight: bold;
 		margin-top: 10px;
 		max-width: 90px;

@@ -1,4 +1,7 @@
 .atlas-stat-item {
+	all: initial;
+	font-family: $font-mono-atlas;
+	font-size: 0.7rem;
 	line-height: 1.2;
 
 	&._normal {

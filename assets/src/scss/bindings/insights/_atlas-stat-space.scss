@@ -1,5 +1,6 @@
 .atlas-stat-space {
-	all: unset;
+	all: initial;
+	color: $atlas-color-text;
 	display: block;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -18,6 +19,7 @@
 	&__caption {
 		font-family: $font-mono-atlas;
 		font-size: $atlas-scale-mono-small;
+		font-style: normal;
 		font-weight: normal;
 		padding-right: 5px;
 		position: relative;

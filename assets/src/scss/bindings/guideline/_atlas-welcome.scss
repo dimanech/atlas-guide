@@ -1,7 +1,9 @@
 .atlas-welcome {
+	all: initial;
+	color: $atlas-color-text;
 	font-family: $font-sans-atlas;
-	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	overflow: hidden;
 	position: relative;
 
