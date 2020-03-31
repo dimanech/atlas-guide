@@ -10,6 +10,14 @@
 		margin: $margin;
 	}
 
+	a {
+		text-decoration: underline;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
 	p {
 		font-family: "Georgia", serif;
 		font-style: italic;
