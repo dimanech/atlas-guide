@@ -56,6 +56,38 @@
         </div>
     </header>
 
+    <div class="atlas-cross-dependencies-list">
+        <div class="atlas-cross-dependencies-list__column">
+            <div role="heading" aria-level="2" class="atlas-cross-dependencies-list__title">
+                Orphans
+            </div>
+            <div role="list" class="atlas-stat-list _imports">
+                {{#content.crossDeps.orphans}}
+                    <div role="listitem" class="atlas-stat-list__item">
+                        <div class="atlas-stat-item" title="{{name}}">{{displayName}}</div>
+                    </div>
+                {{/content.crossDeps.orphans}}
+            </div>
+            {{^content.crossDeps.orphans}}
+                No orphans found!
+            {{/content.crossDeps.orphans}}
+        </div>
+        <div class="atlas-cross-dependencies-list__column">
+            <div role="heading" aria-level="2" class="atlas-cross-dependencies-list__title">
+                Duplicated imports
+            </div>
+            <div role="list" class="atlas-stat-list _imports">
+                {{#content.crossDeps.duplicates}}
+                    <div role="listitem" class="atlas-stat-list__item">
+                        <div class="atlas-stat-item" title="{{name}}">
+                            <strong>{{displayName}} ({{total}})</strong>: {{#importedBy}}{{.}}, {{/importedBy}}
+                        </div>
+                    </div>
+                {{/content.crossDeps.duplicates}}
+            </div>
+        </div>
+    </div>
+
     <svg id="js-cross-dependencies-graph" class="atlas-cross-dependencies-graph"></svg>
 
     <div class="atlas-cross-dependencies-legend atlas atlas-p">
@@ -123,7 +155,7 @@
 </section>
 
 <script>
-    window.importsData ={{{content.crossDeps}}};
+    window.importsData ={{{content.crossDeps.graphData}}};
     window.bundleTree ={{{content.tree}}};
 </script>
 

@@ -1,0 +1,19 @@
+.atlas-cross-dependencies-list {
+	color: $atlas-color-text;
+	display: flex;
+	font-family: $font-sans-atlas;
+
+	&__column {
+		width: 100%;
+	}
+
+	&__title {
+		font-size: $scale-lg-atlas;
+		font-weight: bold;
+		margin: $space-sm-atlas 0;
+	}
+
+	&__entry {
+		display: block;
+	}
+}

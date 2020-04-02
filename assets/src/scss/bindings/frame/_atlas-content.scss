@@ -1,6 +1,7 @@
 .atlas-content {
 	all: initial;
 	color: $atlas-color-text;
+	display: block;
 
 	&__inner {
 		margin: 0 auto;

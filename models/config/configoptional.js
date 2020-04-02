@@ -9,9 +9,9 @@ function getOptionalBaseConfigs(config) {
     // Optional configs
     atlasConfig.scssAdditionalImportsArray = config.scssAdditionalImportsArray || [];
 
-    atlasConfig.excludedDirs = new RegExp(config.excludedDirs || '.^', 'g');
-    atlasConfig.excludedCssFiles = new RegExp(config.excludedCssFiles || '.^', 'g');
-    atlasConfig.excludedSassFiles = new RegExp(config.excludedSassFiles || '.^', 'g');
+    atlasConfig.excludedDirs = new RegExp(config.excludedDirs || '.^');
+    atlasConfig.excludedCssFiles = new RegExp(config.excludedCssFiles || '.^');
+    atlasConfig.excludedSassFiles = new RegExp(config.excludedSassFiles || '.^');
 
     const copyInternalAssets = config.copyInternalAssets;
     atlasConfig.copyInternalAssets = copyInternalAssets !== undefined ? copyInternalAssets : true;
