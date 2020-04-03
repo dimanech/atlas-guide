@@ -10,6 +10,7 @@
 		background: transparent;
 		border: 1px solid $atlas-aside-bd;
 		border-radius: $atlas-radius;
+		box-sizing: border-box;
 		font-family: $font-sans-atlas;
 		font-size: rem(13);
 		height: rem(25);
