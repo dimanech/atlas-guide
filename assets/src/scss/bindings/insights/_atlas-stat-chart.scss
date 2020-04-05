@@ -25,7 +25,13 @@
 	}
 
 	&__bean-name {
-		margin: $space-sm-atlas 0 $space-md-atlas;
+		margin: $space-sm-atlas 0 0;
+	}
+
+	&__bean-caption {
+		color: $color-grey60-atlas;
+		font-size: 0.8rem;
+		margin: 0 0 $space-md-atlas;
 	}
 
 	&__stat {

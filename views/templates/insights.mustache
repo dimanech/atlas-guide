@@ -421,31 +421,40 @@
                             </span>
                         </span>
                     </h3>
-                    <p class="atlas-stat-chart-caption">{{uniquesChart.total}} total, {{uniquesChart.unique}} unique declarations</p>
+                    <p class="atlas-stat-chart-caption">
+                        {{uniquesChart.total}} total, {{uniquesChart.unique}} unique declarations.
+                        Reusability index: {{uniquesChart.reusability}}%.
+                    </p>
                     <div class="atlas-stat-chart">
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.color.chart}}}
                             <div class="atlas-stat-chart__bean-name">Color</div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.color.reusability}}% reusability index</div>
                         </div>
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.backgroundColor.chart}}}
                             <div class="atlas-stat-chart__bean-name">Background Color</div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.backgroundColor.reusability}}% reusability index</div>
                         </div>
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.fontSize.chart}}}
                             <div class="atlas-stat-chart__bean-name">Font Size</div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.fontSize.reusability}}% reusability index</div>
                         </div>
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.fontFamily.chart}}}
                             <div class="atlas-stat-chart__bean-name">Font Family</div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.fontFamily.reusability}}% reusability index</div>
                         </div>
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.borderRadius.chart}}}
                             <div class="atlas-stat-chart__bean-name">Border radius</div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.borderRadius.reusability}}% reusability index</div>
                         </div>
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.zIndex.chart}}}
                             <div class="atlas-stat-chart__bean-name">Z-index</div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.zIndex.reusability}}% reusability index</div>
                         </div>
                     </div>
                 </section>
@@ -581,14 +590,17 @@
                             </span>
                         </span>
                     </h3>
-                    <p class="atlas-stat-chart-caption">{{uniquesChart.total}} total, {{uniquesChart.unique}} unique declarations</p>
+                    <p class="atlas-stat-chart-caption">
+                        {{uniquesChart.total}} total, {{uniquesChart.unique}} unique declarations.
+                        Reusability index: {{uniquesChart.reusability}}%.
+                    </p>
                     <div class="atlas-stat-chart">
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.margin.chart}}}
                             <div class="atlas-stat-chart__bean-name">
-                                {{uniques.margin.length}}
-                                {{#pluralize}}{{uniques.margin.length}},Margin,Margins{{/pluralize}}
+                                {{#pluralize}}{{uniquesChart.margin.total}},Margin,Margins{{/pluralize}}
                             </div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.margin.reusability}}% reusability index</div>
                             {{#uniques.margin.length}}
                                 <ul class="atlas-stat-chart__stat atlas-stat-space">
                                     {{#uniques.margin}}
@@ -603,9 +615,9 @@
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.padding.chart}}}
                             <div class="atlas-stat-chart__bean-name">
-                                {{uniques.padding.length}}
-                                {{#pluralize}}{{uniques.padding.length}},Padding,Paddings{{/pluralize}}
+                                {{#pluralize}}{{uniquesChart.padding.total}},Padding,Paddings{{/pluralize}}
                             </div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.padding.reusability}}% reusability index</div>
                             {{#uniques.padding.length}}
                                 <ul class="atlas-stat-chart__stat atlas-stat-space">
                                     {{#uniques.padding}}
@@ -620,9 +632,9 @@
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.lineHeight.chart}}}
                             <div class="atlas-stat-chart__bean-name">
-                                {{uniques.lineHeight.length}}
-                                {{#pluralize}}{{uniques.lineHeight.length}},Line Height,Line Heights{{/pluralize}}
+                                {{#pluralize}}{{uniquesChart.lineHeight.total}},Line Height,Line Heights{{/pluralize}}
                             </div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.lineHeight.reusability}}% reusability index</div>
                             {{#uniques.lineHeight.length}}
                                 <ul class="atlas-stat-chart__stat atlas-stat-list">
                                     {{#uniques.lineHeight}}
@@ -636,9 +648,9 @@
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.width.chart}}}
                             <div class="atlas-stat-chart__bean-name">
-                                {{uniques.width.length}}
-                                {{#pluralize}}{{uniques.width.length}},Width,Widths{{/pluralize}}
+                                {{#pluralize}}{{uniquesChart.width.total}},Width,Widths{{/pluralize}}
                             </div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.width.reusability}}% reusability index</div>
                             {{#uniques.width.length}}
                                 <ul class="atlas-stat-chart__stat atlas-stat-list">
                                     {{#uniques.width}}
@@ -652,9 +664,9 @@
                         <div class="atlas-stat-chart__item">
                             {{{uniquesChart.height.chart}}}
                             <div class="atlas-stat-chart__bean-name">
-                                {{uniques.height.length}}
-                                {{#pluralize}}{{uniques.height.length}},Height,Heights{{/pluralize}}
+                                {{#pluralize}}{{uniquesChart.height.total}},Height,Heights{{/pluralize}}
                             </div>
+                            <div class="atlas-stat-chart__bean-caption">{{uniquesChart.height.reusability}}% reusability index</div>
                             {{#uniques.height.length}}
                                 <ul class="atlas-stat-chart__stat atlas-stat-list">
                                     {{#uniques.height}}
