@@ -15,9 +15,13 @@
 	}
 
 	&__ln {
+		all: initial;
 		color: inherit;
 		cursor: pointer;
 		display: block;
+		font-family: $font-sans-atlas;
+		font-size: $atlas-scale-secondary;
+		line-height: 1.2;
 		overflow: hidden;
 		padding: rem(2) 0 rem(4);
 		position: relative;
@@ -30,6 +34,7 @@
 		&:hover,
 		&:focus {
 			color: black;
+			text-decoration: none;
 		}
 
 		&:active {
@@ -133,7 +138,7 @@
 		}
 	}
 
-	.atlas-nav__ln._category.js-collapsed {
+	.atlas-nav__ln._category.js-collapsed { /* stylelint-disable-line */
 		svg { /* stylelint-disable-line */
 			transform: rotate(0);
 		}

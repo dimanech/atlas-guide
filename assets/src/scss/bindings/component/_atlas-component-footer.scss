@@ -1,12 +1,14 @@
 .atlas-component-footer {
+	all: initial;
 	background: #fafafa;
 	clear: both;
+	color: $atlas-color-text;
 	display: flex;
 	float: none;
 	font-family: $font-sans-atlas;
 	font-size: $atlas-scale-primary;
-	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	justify-content: space-between;
 	margin: $space-lg-atlas -#{$space-md-atlas} -#{$space-md-atlas};
 

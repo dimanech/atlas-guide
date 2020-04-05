@@ -8,8 +8,9 @@
                 <use xlink:href="#icon-code-example"></use>
             </svg>
         </button>
-        <div class="atlas-playground__details" id="{{title}}" aria-hidden="true">
-<pre><code class="language-{{language}}" contenteditable="true">{{code}}</code></pre>
+        <div class="atlas-playground__details js-copier" id="{{title}}" aria-hidden="true">
+            <button class="atlas-playground__copy-button js-copier-button">Copy</button>
+<pre><code class="js-copier-text language-{{language}}" contenteditable="true">{{code}}</code></pre>
         </div>
     </figcaption>
     <div class="atlas-playground__example">

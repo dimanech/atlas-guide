@@ -5,8 +5,20 @@ const path = require('path');
 let pathToSCSS;
 let excludedFilesRegexp;
 const isPartial = fileName => /^_/i.test(fileName);
-const isExcludedFile = file => excludedFilesRegexp.test(file);
+const isExcludedFile = fileName => excludedFilesRegexp.test(fileName);
 const getReducedPath = str => str.replace(pathToSCSS, '').replace(/(^\/)|(\\)/, '').replace(/\.scss/, '');
+
+function prepareDuplicatesModel(name, data) {
+    const importedBy = data.importedBy;
+    const reducedPath = getReducedPath(name);
+
+    return {
+        name: reducedPath,
+        displayName: path.basename(reducedPath),
+        total: importedBy.length,
+        importedBy: Array.from(importedBy, item => getReducedPath(item))
+    };
+}
 
 function prepareImportsData(importsGraph, excludesRegexp) {
     pathToSCSS = new RegExp(path.resolve(importsGraph.dir).replace(/\\/g, '\\\\'));
@@ -16,9 +28,12 @@ function prepareImportsData(importsGraph, excludesRegexp) {
         'nodes': [],
         'links': []
     };
+    let orphans = [];
+    let duplicates = [];
 
     Object.keys(importsGraph.index).forEach(prop => {
         const fileName = path.basename(prop.toString(), '.scss');
+
         if (isExcludedFile(fileName)) {
             return;
         }
@@ -34,6 +49,8 @@ function prepareImportsData(importsGraph, excludesRegexp) {
             });
 
             if (weight > 1) {
+                duplicates.push(prepareDuplicatesModel(prop, importsGraph.index[prop]));
+
                 importsPaths.nodes.push({
                     'id': getReducedPath(prop),
                     'depth': 2,
@@ -46,8 +63,13 @@ function prepareImportsData(importsGraph, excludesRegexp) {
                     });
                 });
             } else if (importedBy.length === 0) {
+                const name = getReducedPath(prop);
+                orphans.push({
+                    name: name,
+                    displayName: path.basename(name)
+                });
                 importsPaths.nodes.push({
-                    'id': getReducedPath(prop),
+                    'id': name,
                     'depth': 0,
                     'mass': 0
                 });
@@ -61,7 +83,13 @@ function prepareImportsData(importsGraph, excludesRegexp) {
         }
     });
 
-    return JSON.stringify(importsPaths);
+    duplicates.sort((a, b) => b.importedBy.length - a.importedBy.length);
+
+    return {
+        graphData: JSON.stringify(importsPaths),
+        orphans: orphans,
+        duplicates: duplicates
+    };
 }
 
 module.exports = prepareImportsData;

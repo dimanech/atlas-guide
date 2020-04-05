@@ -1,6 +1,6 @@
 {
   "name": "atlas-guide",
-  "version": "2.0.0-0",
+  "version": "2.2.0",
   "license": "MIT",
   "description": "Atlas is living style-guides & pattern library static site generator with extensive CSS monitoring and components info that could be used virtually with any scss/css project",
   "keywords": [
@@ -22,33 +22,34 @@
   },
   "dependencies": {
     "@dimanech/cssstat-core": "3.2.1",
-    "d3-color": "^1.2.3",
-    "d3-format": "^1.3.2",
-    "d3-scale": "^3.0.0",
-    "d3-shape": "^1.3.3",
+    "d3-color": "^1.4.0",
+    "d3-format": "^1.4.4",
+    "d3-scale": "^3.2.1",
+    "d3-shape": "^1.3.7",
     "lodash.camelcase": "^4.3.0",
     "lodash.uniq": "^4.5.0",
-    "marked": "^0.6.2",
-    "mustache": "^3.0.0",
-    "postcss": "^7.0.14",
+    "marked": "^0.8.2",
+    "mustache": "^4.0.1",
+    "postcss": "^7.0.27",
     "postcss-scss": "^2.0.0",
-    "sass": "^1.16.1",
-    "sass-graph": "^3.0.3"
+    "sass": "^1.26.3",
+    "sass-graph": "^3.0.4"
   },
   "devDependencies": {
-    "autoprefixer": "9.5.1",
-    "coveralls": "3.0.3",
-    "eslint": "5.15.3",
-    "gulp": "4.0.0",
+    "autoprefixer": "9.7.5",
+    "coveralls": "3.0.11",
+    "eslint": "6.8.0",
+    "gulp": "4.0.2",
     "gulp-connect": "5.7.0",
     "gulp-postcss": "8.0.0",
     "gulp-sass": "4.0.2",
     "gulp-sourcemaps": "2.6.5",
-    "mocha": "6.1.2",
-    "nyc": "13.3.0",
-    "stylelint": "9.10.1",
-    "stylelint-order": "2.2.0",
-    "stylelint-scss": "3.5.4"
+    "mocha": "7.1.1",
+    "nyc": "15.0.0",
+    "snyk": "1.305.0",
+    "stylelint": "13.2.1",
+    "stylelint-order": "4.0.0",
+    "stylelint-scss": "3.16.0"
   },
   "browserslist": [
     "last 2 Chrome versions",
@@ -72,11 +73,14 @@
     "copyhooks": "node .githooks/copy-hooks.js",
     "version": "npm run build && git add -A assets",
     "postversion": "git push && git push --tags",
-    "debug": "node --nolazy --inspect-brk=9229 ./bin/atlas-guide --build"
+    "debug": "node --nolazy --inspect-brk=9229 ./bin/atlas-guide --build",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:dimanech/atlas-guide.git"
   },
-  "author": "Nechepurenko D."
+  "author": "Nechepurenko D.",
+  "snyk": true
 }

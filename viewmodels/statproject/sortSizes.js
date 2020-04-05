@@ -50,7 +50,23 @@ function sortSizes(size) {
         return false;
     }
     let result = [];
-    const sortBy = (a, b) => a.abs > b.abs ? -1 : 1;
+    const sortBy = (a, b) => {
+        if (a.abs > b.abs) {
+            return -1;
+        }
+        if (a.abs < b.abs) {
+            return 1;
+        }
+
+        if (a.orig > b.orig) {
+            return 1;
+        }
+        if (a.orig < b.orig) {
+            return -1;
+        }
+
+        return 0;
+    };
 
     size.forEach(item => {
         const abs = convertFontToAbsoluteUnits(item);

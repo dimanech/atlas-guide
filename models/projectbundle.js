@@ -21,7 +21,7 @@ function recreatePathTree(ctx, relativePath, fullPath) {
     let cumulativePath = ctx;
     destinationList.forEach(function(item) {
         cumulativePath += resultDelimiter + item;
-        if (resultedGraph.hasOwnProperty(cumulativePath)) {
+        if (Object.hasOwnProperty.call(resultedGraph, cumulativePath)) {
             return;
         }
         resultedGraph[cumulativePath] = {
@@ -61,7 +61,7 @@ function prepareImportsGraph(importsGraph) {
     };
 
     for (let file in importsGraph.index) {
-        if (!importsGraph.index.hasOwnProperty(file) ||
+        if (!Object.hasOwnProperty.call(importsGraph.index, file) ||
             excludedSassFiles.test(file) ||
             /^_/.test(path.basename(file))
         ) {

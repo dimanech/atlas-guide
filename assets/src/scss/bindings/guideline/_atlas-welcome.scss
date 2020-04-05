@@ -1,8 +1,9 @@
 .atlas-welcome {
-	color: $fg;
+	all: initial;
+	color: $atlas-color-text;
 	font-family: $font-sans-atlas;
-	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	overflow: hidden;
 	position: relative;
 
@@ -14,15 +15,14 @@
 
 	&__title {
 		font-size: 4rem;
-		font-weight: normal;
+		font-weight: bold;
 		hyphens: manual;
 		line-height: $space-md-atlas * 3;
 		margin-bottom: $space-md-atlas;
-		text-align: right;
 
 		strong {
 			display: block;
-			font-weight: normal;
+			font-weight: bold;
 		}
 	}
 }

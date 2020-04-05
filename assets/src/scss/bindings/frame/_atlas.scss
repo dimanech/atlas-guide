@@ -5,6 +5,7 @@
 	font-size: $atlas-scale-primary;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+	font-weight: normal;
 
 	&-title {
 		display: block;
@@ -210,6 +211,7 @@
 .atlas-ul,
 .atlas-ol,
 .atlas-code {
+	color: $atlas-color-text; // revert text to darkgrey for all clients that have alterations
 	max-width: 800px;
 }
 

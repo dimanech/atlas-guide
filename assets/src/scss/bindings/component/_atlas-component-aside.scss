@@ -1,11 +1,13 @@
 .atlas-component-aside {
+	all: initial;
 	background: linear-gradient(to top, rgba(black, 0), rgba(black, 0.1)) no-repeat;
 	background-size: 1px 100%;
+	color: $atlas-color-text;
 	float: right;
 	font-family: $font-sans-atlas;
 	font-size: $atlas-scale-secondary;
-	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	margin-left: $space-md-atlas;
 	padding-left: $space-md-atlas;
 	position: relative;

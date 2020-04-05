@@ -13,7 +13,7 @@ const fillTemplatesConfig = (templatesConfig, internalTemplatesPath, name) => {
     });
 
     Object.keys(templates).forEach(template => {
-        if (templatesConfig !== undefined && templatesConfig.hasOwnProperty(template)) {
+        if (templatesConfig !== undefined && Object.hasOwnProperty.call(templatesConfig, template)) {
             const templatePath = path.join(projectRoot, templatesConfig[template]);
             if (fs.existsSync(templatePath)) {
                 templates[template] = templatePath;
