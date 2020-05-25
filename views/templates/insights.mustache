@@ -346,7 +346,7 @@
                         <ul class="atlas-stat-list _scroll">
                             {{#jsPrefixedSelectors}}
                                 <li class="atlas-stat-list__item">
-                                    <p class="atlas-stat-item">{{.}}</p>
+                                    <div class="atlas-stat-item">{{.}}</div>
                                 </li>
                             {{/jsPrefixedSelectors}}
                         </ul>
@@ -364,7 +364,7 @@
                         <ul class="atlas-stat-list _scroll">
                             {{#universalSelectors}}
                                 <li class="atlas-stat-list__item">
-                                    <p class="atlas-stat-item">{{.}}</p>
+                                    <div class="atlas-stat-item">{{.}}</div>
                                 </li>
                             {{/universalSelectors}}
                         </ul>
@@ -382,7 +382,7 @@
                         <ul class="atlas-stat-list _scroll">
                             {{#idSelectors}}
                                 <li class="atlas-stat-list__item">
-                                    <p class="atlas-stat-item">{{.}}</p>
+                                    <div class="atlas-stat-item">{{.}}</div>
                                 </li>
                             {{/idSelectors}}
                         </ul>
@@ -401,7 +401,7 @@
                         <ul class="atlas-stat-list _scroll">
                             {{#importantRules.rules}}
                                 <li class="atlas-stat-list__item">
-                                    <p class="atlas-stat-item">{{property}}: {{value}}</p>
+                                    <div class="atlas-stat-item">{{property}}: {{value}}</div>
                                 </li>
                             {{/importantRules.rules}}
                         </ul>
@@ -559,7 +559,7 @@
                     <ul class="atlas-stat-list _indexes">
                         {{#uniques.borderRadius}}
                             <li class="atlas-stat-list__item">
-                                <p class="atlas-stat-item">{{.}}</p>
+                                <div class="atlas-stat-item">{{.}}</div>
                             </li>
                         {{/uniques.borderRadius}}
                     </ul>
@@ -573,7 +573,7 @@
                     <ul class="atlas-stat-list _indexes">
                         {{#uniques.zIndexSorted}}
                             <li class="atlas-stat-list__item">
-                                <p class="atlas-stat-item" style="font-family:{{.}}">{{.}}</p>
+                                <div class="atlas-stat-item" style="font-family:{{.}}">{{.}}</div>
                             </li>
                         {{/uniques.zIndexSorted}}
                     </ul>
@@ -639,7 +639,7 @@
                                 <ul class="atlas-stat-chart__stat atlas-stat-list">
                                     {{#uniques.lineHeight}}
                                         <li class="atlas-stat-list__item">
-                                            <p class="atlas-stat-item">{{.}}</p>
+                                            <div class="atlas-stat-item">{{.}}</div>
                                         </li>
                                     {{/uniques.lineHeight}}
                                 </ul>
@@ -655,7 +655,7 @@
                                 <ul class="atlas-stat-chart__stat atlas-stat-list">
                                     {{#uniques.width}}
                                         <li class="atlas-stat-list__item">
-                                            <p class="atlas-stat-item">{{.}}</p>
+                                            <div class="atlas-stat-item">{{.}}</div>
                                         </li>
                                     {{/uniques.width}}
                                 </ul>
@@ -671,7 +671,7 @@
                                 <ul class="atlas-stat-chart__stat atlas-stat-list">
                                     {{#uniques.height}}
                                         <li class="atlas-stat-list__item">
-                                            <p class="atlas-stat-item">{{.}}</p>
+                                            <div class="atlas-stat-item">{{.}}</div>
                                         </li>
                                     {{/uniques.height}}
                                 </ul>
@@ -695,7 +695,7 @@
                     <ul class="atlas-stat-list">
                         {{#uniques.mediaQueries}}
                             <li class="atlas-stat-list__item">
-                                <p class="atlas-stat-item">{{.}}</p>
+                                <div class="atlas-stat-item">{{.}}</div>
                             </li>
                         {{/uniques.mediaQueries}}
                     </ul>
