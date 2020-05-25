@@ -4,10 +4,12 @@
 
 	body {
 		background: green;
+		font-size: 14px;
 		font-family: "Georgia", serif;
 		font-style: italic;
 		font-weight: bold;
 		margin: $margin;
+		color: red;
 	}
 
 	a {
@@ -47,4 +49,9 @@
 		margin: $font-size;
 		padding: $margin;
 	}
+}
+
+.b-component {
+	color: green;
+	font-family: "Comic Sans MS", fantasy;
 }
