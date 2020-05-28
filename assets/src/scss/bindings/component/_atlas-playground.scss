@@ -90,7 +90,7 @@
 		z-index: 1;
 
 		&:focus {
-			outline: none;
+			outline: none !important; // stylelint-disable-line
 		}
 
 		&[aria-hidden="true"] {
