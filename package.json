@@ -46,7 +46,7 @@
     "gulp-sourcemaps": "2.6.5",
     "mocha": "7.2.0",
     "nyc": "15.0.1",
-    "snyk": "1.327.0",
+    "snyk": "1.330.3",
     "stylelint": "13.5.0",
     "stylelint-order": "4.0.0",
     "stylelint-scss": "3.17.2"
