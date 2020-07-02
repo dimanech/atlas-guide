@@ -3,7 +3,7 @@
 (function () {
     const d3 = window.d3;
     const height = 1000;
-    const width = document.querySelector('.atlas-content').offsetWidth;
+    const width = document.querySelector('.atlas-content__inner').offsetWidth;
 
     const rawdata = window.bundleTree;
     const maxSize = d3.max(Object.keys(rawdata).map(d => rawdata[d].size));
