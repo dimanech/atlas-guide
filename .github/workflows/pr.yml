@@ -12,20 +12,20 @@ jobs:
         node-version: 12.x
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - uses: ./.github/actions/tests
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: ./.github/actions/tests
 
-    - name: npm install
-      run: npm install
-      env:
-        CI: true
-    - name: lint and test
-      run: |
-        npm run lint
-        npm run test
-      env:
-        CI: true
+      - name: npm install
+        run: npm install
+        env:
+          CI: true
+      - name: lint and test
+        run: |
+          npm run lint
+          npm run test
+        env:
+          CI: true
