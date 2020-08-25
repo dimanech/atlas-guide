@@ -346,5 +346,29 @@ describe('Models', function() {
 
             assert.deepStrictEqual(viewModel, expectedViewModel);
         });
+        it('should warn about not proper imports', function() {
+            const baseConfig = require(cwd + '/models/atlasconfig.js')({
+                'guideSrc': 'test/fixtures/atlas/',
+                'guideDest': 'test/results/',
+                'cssSrc': 'test/fixtures/atlas/css/',
+                'projectConstants': {
+                    'constantsSrc': '/test/fixtures/atlas/_excluded-settings.scss',
+                    'colorPrefix': 'color'
+                }
+            });
+            baseConfig.constants.constantsFile = '@import "../inexistent_file";';
+            const viewModel = require(cwd + '/models/projectconstants.js')(baseConfig.constants);
+            const expectedViewModel = {
+                'breakpoint': [],
+                'color': [],
+                'depth': [],
+                'font': [],
+                'motion': [],
+                'scale': [],
+                'space': []
+            };
+
+            assert.deepStrictEqual(viewModel, expectedViewModel);
+        });
     });
 });

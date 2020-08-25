@@ -45,15 +45,24 @@ function prepareConstantsData(fileString, constantsList) {
  */
 function compileStyles(constantsData, additionalSassImports) {
     const template = '{{>constantsFile}} {{#constants}} {{constNameSafe}} { color: {{constName}} } {{/constants}}';
-    const styles = sass.renderSync({
-        data: mustache.render(
-            template,
-            {constants: constantsData.rawConstants},
-            {constantsFile: constantsData.fileString}),
-        includePaths: additionalSassImports
-    });
+    let cssString = '';
 
-    return styles.css.toString();
+    try {
+        const styles = sass.renderSync({
+            data: mustache.render(
+                template,
+                {constants: constantsData.rawConstants},
+                {constantsFile: constantsData.fileString}),
+            includePaths: additionalSassImports
+        });
+        cssString = styles.css.toString();
+    } catch (error) {
+        console.log('Warn: Atlas: Could not compile configuration file. ' +
+            'Styleguide page and consistency checks could not be prepared.\n' +
+            'Ensure that "scssAdditionalImportsArray" has all additional imports paths.\n', error.formatted);
+    }
+
+    return cssString;
 }
 
 /**
