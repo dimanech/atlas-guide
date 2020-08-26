@@ -1,7 +1,7 @@
 .atlas-stat-digit {
 	all: unset;
 	font-family: $font-sans-atlas;
-	font-size: 4rem;
+	font-size: 64px;
 	font-weight: bold;
 	line-height: 1;
 	min-width: 190px;
@@ -16,14 +16,14 @@
 	&__caption {
 		all: unset;
 		display: block;
-		font-size: 1rem;
+		font-size: 16px;
 		line-height: 1.2;
 		padding: 0;
 		text-transform: capitalize;
 	}
 
 	&._large {
-		font-size: 5rem;
+		font-size: 80;
 	}
 
 	&._color {

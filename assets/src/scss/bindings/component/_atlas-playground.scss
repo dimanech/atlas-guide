@@ -113,8 +113,24 @@
 			font-weight: normal;
 			max-height: 40vh;
 			overflow: auto;
-			padding: $space-sm-atlas;
-			padding-top: 0;
+
+			&::-webkit-scrollbar {
+				height: 8px;
+				width: 8px;
+			}
+
+			&::-webkit-scrollbar-track {
+				border-radius: 10px;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background-color: #29291e;
+				border-radius: 10px;
+			}
+
+			&::-webkit-scrollbar-corner {
+				background-color: transparent;
+			}
 		}
 
 		code {
@@ -123,6 +139,13 @@
 			font-size: 12.75px;
 			line-height: 1.2;
 			outline: none;
+
+			// stylelint-disable
+			* {
+				outline: none !important;
+			}
+
+			// stylelint-enable
 		}
 	}
 
@@ -140,7 +163,7 @@
 		border-radius: 5px;
 		color: $color-white-atlas;
 		font-family: $font-mono-atlas;
-		font-size: 1.2rem;
+		font-size: 20px;
 		font-style: normal;
 		left: 50%;
 		line-height: 20px;

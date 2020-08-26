@@ -11,7 +11,7 @@
 	margin-left: $space-md-atlas;
 	padding-left: $space-md-atlas;
 	position: relative;
-	width: rem(250);
+	width: 250px;
 	z-index: 1;
 
 	&__section {
@@ -35,7 +35,7 @@
 		svg {
 			color: $color-blue-atlas;
 			position: relative;
-			top: rem(2);
+			top: 2px;
 			vertical-align: text-bottom;
 		}
 	}

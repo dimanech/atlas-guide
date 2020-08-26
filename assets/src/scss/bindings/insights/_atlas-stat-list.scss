@@ -3,7 +3,7 @@
 	color: $color-blue-atlas;
 	display: block;
 	font-family: $font-mono-atlas;
-	font-size: 0.8rem;
+	font-size: 12.8px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	line-height: 1.2;
@@ -23,7 +23,7 @@
 	}
 
 	&._tops {
-		font-size: 1rem;
+		font-size: 16px;
 	}
 
 	&._scroll {
@@ -33,6 +33,6 @@
 
 	&._imports {
 		list-style-type: decimal-leading-zero;
-		padding-left: 2rem;
+		padding-left: 32px;
 	}
 }

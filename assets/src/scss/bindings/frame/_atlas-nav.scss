@@ -23,7 +23,7 @@
 		font-size: $atlas-scale-secondary;
 		line-height: 1.2;
 		overflow: hidden;
-		padding: rem(2) 0 rem(4);
+		padding: 2px 0 4px;
 		position: relative;
 		text-decoration: none;
 		text-overflow: ellipsis;
@@ -49,10 +49,10 @@
 		}
 
 		svg {
-			height: rem(18);
+			height: 18px;
 			pointer-events: none;
 			vertical-align: text-bottom;
-			width: rem(18);
+			width: 18px;
 		}
 
 		&._landing {
@@ -66,20 +66,20 @@
 
 			svg {
 				transform: rotate(90deg);
-				width: rem(8);
+				width: 8px;
 			}
 		}
 
 		&._guide {
 			svg {
-				width: rem(14);
+				width: 14px;
 			}
 		}
 
 		&._about {
 			svg {
-				margin-right: rem(3);
-				width: rem(15);
+				margin-right: 3px;
+				width: 15px;
 			}
 		}
 

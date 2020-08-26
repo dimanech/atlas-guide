@@ -1,7 +1,7 @@
 .atlas-info-digit {
 	align-items: flex-end;
 	display: flex;
-	font-size: rem(13);
+	font-size: 12.8px;
 	margin: $space-md-atlas 0;
 	max-width: (100%/3);
 	position: relative;
@@ -9,10 +9,10 @@
 
 	&__digit {
 		color: $color-blue-atlas;
-		font-size: rem(48);
+		font-size: 48px;
 		font-weight: normal;
 		line-height: 1;
-		margin-right: rem(5);
+		margin-right: 5px;
 	}
 
 	&__details {
@@ -20,7 +20,7 @@
 	}
 
 	&__title {
-		font-size: rem(16);
+		font-size: 16px;
 		font-weight: bold;
 	}
 
@@ -46,7 +46,7 @@
 
 	&._primary {
 		.atlas-info-digit__digit {
-			font-size: rem(64);
+			font-size: 64px;
 			font-weight: normal;
 		}
 	}

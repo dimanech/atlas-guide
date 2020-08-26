@@ -64,13 +64,13 @@ And used for hide parts of aside for this case.
 		left: 0;
 		position: fixed;
 		top: 0;
-		width: rem(250);
+		width: 250px;
 		z-index: 2;
 	}
 
 	&__main {
 		background-color: $color-white-atlas;
-		margin-left: rem(250);
+		margin-left: 250px;
 		position: relative;
 		z-index: 1;
 	}

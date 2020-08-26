@@ -1,7 +1,7 @@
 .atlas-stat-chart-caption {
 	all: unset;
 	font-family: $font-sans-atlas;
-	font-size: 0.8rem;
+	font-size: 12.8px;
 	font-weight: bold;
 	margin: $space-sm-atlas 0;
 }
@@ -13,14 +13,14 @@
 	text-align: center;
 
 	&__item {
-		font-size: 1rem;
+		font-size: 16px;
 		width: 100%;
 	}
 
 	&__legend {
 		color: $atlas-color-text;
 		font-family: $font-sans-atlas;
-		font-size: 0.6rem;
+		font-size: 9.6px;
 		margin-top: $space-md-atlas;
 	}
 
@@ -30,7 +30,7 @@
 
 	&__bean-caption {
 		color: $color-grey60-atlas;
-		font-size: 0.8rem;
+		font-size: 12.8px;
 		margin: 0 0 $space-md-atlas;
 	}
 

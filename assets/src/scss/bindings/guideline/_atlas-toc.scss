@@ -5,7 +5,7 @@
 	bottom: 0;
 	float: right;
 	font-family: $font-sans-atlas;
-	font-size: rem(12);
+	font-size: 12px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	margin-left: $space-md-atlas;
@@ -43,7 +43,7 @@
 		}
 
 		&_1 {
-			font-size: rem(14);
+			font-size: 14px;
 			font-weight: bold;
 		}
 

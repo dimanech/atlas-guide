@@ -124,11 +124,11 @@ $local-var: 10px;
 		background: center center orange no-repeat;
 		color: red;
 		font: normal 20px / 1.2 serif; /* stylelint-disable-line */
-		padding: 1.25rem !important; /* stylelint-disable-line */
+		padding: 20px !important; /* stylelint-disable-line */
 	}
 
 	&__item-empty {
-		padding: 1.25rem;
+		padding: 20px;
 
 		&:hover {
 			outline: none;
@@ -139,7 +139,7 @@ $local-var: 10px;
 		float: left;
 		font: normal 20px sans; /* stylelint-disable-line */
 		height: 100px;
-		padding: 2.5rem;
+		padding: 40;
 		width: 100px;
 	}
 }
