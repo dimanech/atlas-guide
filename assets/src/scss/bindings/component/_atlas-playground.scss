@@ -138,14 +138,7 @@
 			font-family: $font-mono-atlas;
 			font-size: 12.75px;
 			line-height: 1.2;
-			outline: none;
-
-			// stylelint-disable
-			* {
-				outline: none !important;
-			}
-
-			// stylelint-enable
+			outline: none !important; // stylelint-disable-line
 		}
 	}
 
