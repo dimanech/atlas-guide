@@ -17,7 +17,7 @@
         "function-linear-gradient-no-nonstandard-direction": true,
         "function-blacklist": null,
         "function-url-no-scheme-relative": true,
-        "function-url-scheme-blacklist": ["/^http/", "/^www/"],
+        "function-url-scheme-disallowed-list": ["/^http/", "/^www/"],
         "function-url-scheme-whitelist": null,
         "function-whitelist": null,
         "function-comma-newline-after": "always-multi-line",
@@ -30,7 +30,7 @@
         "function-parentheses-space-inside": "never-single-line",
         "function-url-quotes": "always",
         "function-whitespace-after": "always",
-        
+
         "number-max-precision": 10,
         "number-leading-zero": "always",
         "number-no-trailing-zeros": true,
@@ -41,12 +41,12 @@
         "length-zero-no-unit": true,
 
         "time-min-milliseconds": 100,
-        
+
         "unit-blacklist": null,
         "unit-whitelist": null,
         "unit-no-unknown": true,
         "unit-case": "lower",
-    
+
         "value-no-vendor-prefix": true,
         "value-keyword-case": ["lower", {"ignoreKeywords": ["/^[U+].*$/"]}],
 
@@ -55,7 +55,7 @@
         "value-list-comma-space-after": "always-single-line",
         "value-list-comma-space-before": "never",
         "value-list-max-empty-lines": 0,
-        
+
         "custom-property-pattern": null,
         "custom-property-empty-line-before": [
             "always",
@@ -72,7 +72,7 @@
         ],
 
         "shorthand-property-no-redundant-values": true,
-        
+
         "property-blacklist": null,
         "property-no-vendor-prefix": null,
         "property-whitelist": null,
@@ -80,7 +80,7 @@
         "property-no-unknown": true,
 
         "keyframe-declaration-no-important": true,
-    
+
         "declaration-no-important": true,
         "declaration-property-unit-blacklist": null,
         "declaration-property-unit-whitelist": null,
@@ -109,7 +109,7 @@
         "declaration-block-semicolon-space-after": "always-single-line",
         "declaration-block-semicolon-space-before": "never",
         "declaration-block-trailing-semicolon": "always",
-    
+
         "block-no-empty": null,
         "block-closing-brace-empty-line-before": "never",
         "block-closing-brace-newline-after": ["always", {
@@ -122,7 +122,7 @@
         "block-opening-brace-newline-after": "always-multi-line",
         "block-opening-brace-newline-before": null,
         "block-opening-brace-space-after": "always-single-line",
-    
+
         "selector-pseudo-class-no-unknown": true,
         "selector-pseudo-element-no-unknown": true,
         "selector-type-no-unknown": true,
@@ -173,7 +173,7 @@
                 ]
             }
         ],
-    
+
         "media-feature-name-no-unknown": true,
         "media-feature-name-blacklist": null,
         "media-feature-name-no-vendor-prefix": null,
@@ -189,9 +189,9 @@
         "media-query-list-comma-newline-before": null,
         "media-query-list-comma-space-after": "always-single-line",
         "media-query-list-comma-space-before": "never",
-        
+
         "custom-media-pattern": null,
-        
+
         "at-rule-no-unknown": null,
         "at-rule-blacklist": null,
         "at-rule-no-vendor-prefix": true,
@@ -215,19 +215,19 @@
         "at-rule-name-space-after": "always",
         "at-rule-semicolon-newline-after": "always",
         "at-rule-semicolon-space-before": null,
-    
+
         "comment-no-empty": true,
         "comment-word-blacklist": null,
         "comment-empty-line-before": null,
         "comment-whitespace-inside": null,
-        
+
         "no-descending-specificity": null,
         "no-duplicate-at-import-rules": true,
         "no-duplicate-selectors": true,
         "no-empty-source": true,
         "no-extra-semicolons": true,
         "no-invalid-double-slash-comments": true,
-        
+
         "max-nesting-depth": 4,
         "no-unknown-animations": null,
         "indentation": [
@@ -243,56 +243,56 @@
         "no-missing-end-of-source-newline": true,
 
         "order/properties-alphabetical-order": true,
-        
+
         "scss/at-else-closing-brace-newline-after": null,
         "scss/at-else-closing-brace-space-after": null,
         "scss/at-else-empty-line-before": "never",
         "scss/at-else-if-parentheses-space-before": null,
-        
+
         "scss/at-extend-no-missing-placeholder": true,
-        
+
         "scss/at-function-named-arguments": null,
         "scss/at-function-parentheses-space-before": "never",
         "scss/at-function-pattern": null,
-        
+
         "scss/at-if-closing-brace-newline-after": null,
         "scss/at-if-closing-brace-space-after": null,
-        
+
         "scss/at-import-no-partial-leading-underscore": true,
         "scss/at-import-partial-extension-blacklist": null,
         "scss/at-import-partial-extension-whitelist": null,
-        
+
         "scss/at-mixin-argumentless-call-parentheses": null,
         "scss/at-mixin-named-arguments": null,
         "scss/at-mixin-parentheses-space-before": "never",
         "scss/at-mixin-pattern": null,
-        
+
         "scss/at-rule-no-unknown": null,
-        
+
         "scss/dollar-variable-colon-newline-after": null,
         "scss/dollar-variable-colon-space-after": null,
         "scss/dollar-variable-colon-space-before": null,
         "scss/dollar-variable-empty-line-before": null,
         "scss/dollar-variable-no-missing-interpolation": null,
         "scss/dollar-variable-pattern": null,
-        
+
         "scss/percent-placeholder-pattern": null,
-        
+
         "scss/double-slash-comment-empty-line-before": null,
         "scss/double-slash-comment-inline": null,
         "scss/double-slash-comment-whitespace-inside": null,
-        
+
         "scss/declaration-nested-properties": "never",
         "scss/declaration-nested-properties-no-divided-groups": null,
-        
+
         "scss/media-feature-value-dollar-variable": null,
-        
+
         "scss/operator-no-newline-after": true,
         "scss/operator-no-newline-before": true,
         "scss/operator-no-unspaced": null,
-        
+
         "scss/partial-no-import": null,
-        
+
         "scss/selector-no-redundant-nesting-selector": true
     }
 }
