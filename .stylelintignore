@@ -1,0 +1,12 @@
+**/*.js
+node_modules/*
+assets/js/*.min.js
+assets/**/*.css
+**/*.js
+**/*.json
+**/*.mustache
+**/*.jpeg
+**/*.svg
+test/*
+*.md
+LICENSE
