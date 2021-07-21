@@ -1,6 +1,6 @@
 {
   "name": "atlas-guide",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "license": "MIT",
   "description": "Atlas is living style-guides & pattern library static site generator with extensive CSS monitoring and components info that could be used virtually with any scss/css project",
   "keywords": [
@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@dimanech/cssstat-core": "3.2.1",
-    "d3-color": "^3.0.0",
-    "d3-format": "^3.0.1",
-    "d3-scale": "^4.0.0",
+    "d3-color": "^2.0.0",
+    "d3-format": "^2.0.0",
+    "d3-scale": "^3.3.0",
     "d3-shape": "^3.0.1",
     "lodash.camelcase": "^4.3.0",
     "lodash.uniq": "^4.5.0",

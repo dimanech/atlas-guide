@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // Palette
 $color-grey60-atlas: hsl(0, 0%, 60%);
 $color-grey70-atlas: hsl(0, 0%, 70%);
@@ -32,9 +34,9 @@ $scale-xxl-atlas: 39px;
 $scale-xxxl-atlas: 48.8px;
 
 // Spaces
-$space-sm-atlas: $size-line-atlas / 2; // 10px
+$space-sm-atlas: math.div($size-line-atlas, 2); // 10px
 $space-md-atlas: $size-line-atlas; // 20px
-$space-xm-atlas: $size-line-atlas / 2 * 3; // 30px
+$space-xm-atlas: math.div($size-line-atlas, 2) * 3; // 30px
 $space-lg-atlas: $size-line-atlas * 2; // 40px
 $space-xl-atlas: $size-line-atlas * 3; // 60px
 
