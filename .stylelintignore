@@ -5,8 +5,10 @@ assets/**/*.css
 **/*.js
 **/*.json
 **/*.mustache
+**/*.html
 **/*.jpeg
 **/*.svg
+**/*.css.map
 test/*
 *.md
 LICENSE
