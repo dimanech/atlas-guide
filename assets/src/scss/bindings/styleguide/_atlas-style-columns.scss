@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .atlas-style-columns {
 	display: flex;
 	flex-wrap: wrap;
@@ -12,14 +14,14 @@
 
 	&._span6 {
 		.atlas-style-columns__item {
-			width: (100%/6);
+			width: math.div(100%, 6);
 		}
 	}
 
 	&._span3 {
 		.atlas-style-columns__item {
-			min-width: (100%/3);
-			width: (100%/3);
+			min-width: math.div(100%, 3);
+			width: math.div(100%, 3);
 		}
 	}
 

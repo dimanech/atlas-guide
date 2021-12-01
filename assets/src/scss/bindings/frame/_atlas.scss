@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .atlas {
 	all: initial;
 	color: $atlas-color-text;
@@ -116,7 +118,7 @@
 
 		th,
 		td {
-			padding: #{$space-sm-atlas / 2} $space-sm-atlas #{$space-sm-atlas / 2} 0;
+			padding: #{math.div($space-sm-atlas, 2)} $space-sm-atlas #{math.div($space-sm-atlas, 2)} 0;
 		}
 
 		th {

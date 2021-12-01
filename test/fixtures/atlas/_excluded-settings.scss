@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // Palette
 $color-yellow-atlas: #fae20f;
 $color-green-atlas: #98cb52;
@@ -15,7 +17,7 @@ $size-line-atlas: 1.2rem;
 
 // Spaces
 $space-off-atlas: 0;
-$space-sm-atlas: $size-line-atlas / 2; // 10px
+$space-sm-atlas: math.div($size-line-atlas, 2); // 10px
 $space-md-atlas: $size-line-atlas; // 20px
 
 // Depth

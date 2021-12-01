@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .atlas-stat-font-scale {
 	all: initial;
 	align-items: flex-end; // stylelint-disable-line
@@ -14,7 +16,7 @@
 		margin: 0 0 64px;
 		padding: 0;
 		position: relative;
-		width: (100%/10);
+		width: math.div(100%, 10);
 	}
 
 	&__example {

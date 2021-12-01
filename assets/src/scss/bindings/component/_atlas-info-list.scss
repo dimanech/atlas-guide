@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .atlas-info-list {
 	display: flex;
 	flex-wrap: wrap;
@@ -10,14 +12,14 @@
 
 	&__item {
 		margin: 0 0 $space-md-atlas;
-		width: (100%/3);
+		width: math.div(100%, 3);
 	}
 
 	&__total {
 		color: $color-blue-atlas;
 		font-size: 32px;
 		font-weight: normal;
-		padding-right: $space-sm-atlas / 2;
+		padding-right: math.div($space-sm-atlas, 2);
 	}
 
 	&__name {

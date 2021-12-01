@@ -208,16 +208,16 @@
 @mixin blueprint() {
 	background-color: $atlas-color-text;
 	background-image:
-		linear-gradient(0deg, transparent 7px, hsla(205, 65, 80%, 0.25) 7px),
-		linear-gradient(90deg, transparent 7px, hsla(205, 65, 80%, 0.25) 7px);
+		linear-gradient(0deg, transparent 7px, hsla(205, 65%, 80%, 0.25) 7px),
+		linear-gradient(90deg, transparent 7px, hsla(205, 65%, 80%, 0.25) 7px);
 	background-position: left top;
 	background-size: 8px 8px;
 	padding: 0;
 
 	* { /* stylelint-disable-line */
-		background-color: hsla(205, 65, 80%, 0.125);
-		color: hsl(205, 65, 80%);
-		outline: hsla(205, 65, 80%, 0.5) solid 1px;
+		background-color: hsla(205, 65%, 80%, 0.125);
+		color: hsl(205, 65%, 80%);
+		outline: hsla(205, 65%, 80%, 0.5) solid 1px;
 	}
 }
 

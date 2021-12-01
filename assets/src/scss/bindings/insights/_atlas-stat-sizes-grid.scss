@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .atlas-stat-sizes-grid {
 	display: block;
 	margin-top: -80px;
@@ -6,7 +8,7 @@
 		display: inline-block;
 		padding: $space-sm-atlas;
 		vertical-align: bottom;
-		width: (100%/10);
+		width: math.div(100%, 10);
 	}
 }
 

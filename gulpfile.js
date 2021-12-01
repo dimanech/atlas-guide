@@ -91,7 +91,7 @@ const createImportsGraph = function () {
  * @param {Object} config
  */
 const sassCompile = config => {
-    const sass = require('gulp-sass');
+    const sass = require('gulp-sass')(require('sass'));
     const postcss = require('gulp-postcss');
     const autoprefixer = require('autoprefixer');
     const sourcemaps = require('gulp-sourcemaps');

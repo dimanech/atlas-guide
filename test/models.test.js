@@ -243,12 +243,13 @@ describe('Models', function() {
         });
         it('should return proper model for custom properties only', function() {
             baseConfig.constants.constantsFile = `
+                @use 'sass:math';
                 :root {
                     --color-yellow-atlas: #fae20f;
                     --font-mono-atlas: "DejaVu Sans Mono", monospace;
                     --scale-sm-atlas: 0.8rem;
                     $size-line-atlas: 1.2rem;
-                    --space-sm-atlas: #{$size-line-atlas / 2};
+                    --space-sm-atlas: #{math.div($size-line-atlas, 2)};
                     --motion-ease: cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s;
                     --depth-1: 0 3px 10px 1px rgba(black, 0.34);
                     --break-sm: 767px;
@@ -269,11 +270,12 @@ describe('Models', function() {
         });
         it('should return proper model for SCSS constants only', function() {
             baseConfig.constants.constantsFile = `
+                    @use 'sass:math';
                     $color-yellow-atlas: #fae20f;
                     $font-mono-atlas: "DejaVu Sans Mono", monospace;
                     $scale-sm-atlas: 0.8rem;
                     $size-line-atlas: 1.2rem;
-                    $space-sm-atlas: $size-line-atlas / 2;
+                    $space-sm-atlas: math.div($size-line-atlas, 2);
                     $motion-ease: cubic-bezier(0.65, 0.05, 0.36, 1) 0.3s;
                     $depth-1: 0 3px 10px 1px rgba(black, 0.34);
                     $break-sm: 767px;

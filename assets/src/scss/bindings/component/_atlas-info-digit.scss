@@ -1,9 +1,11 @@
+@use "sass:math";
+
 .atlas-info-digit {
 	align-items: flex-end;
 	display: flex;
 	font-size: 12.8px;
 	margin: $space-md-atlas 0;
-	max-width: (100%/3);
+	max-width: math.div(100%, 3);
 	position: relative;
 	width: 50%;
 

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .atlas-style-motion {
 	display: flex;
 
@@ -19,12 +21,12 @@
 		animation-play-state: paused !important; /* stylelint-disable-line */
 		background-color: $color-blue-atlas;
 		border-radius: 100%;
-		height: $space-md-atlas / 2;
+		height: math.div($space-md-atlas, 2);
 		left: 0;
 		position: absolute;
 		top: 0;
 		transform: translateY(50%);
-		width: $space-md-atlas / 2;
+		width: math.div($space-md-atlas, 2);
 
 		.atlas-style-motion:hover & {
 			animation-play-state: initial !important; /* stylelint-disable-line */

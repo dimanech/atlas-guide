@@ -1,6 +1,6 @@
 {
   "name": "atlas-guide",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "license": "MIT",
   "description": "Atlas is living style-guides & pattern library static site generator with extensive CSS monitoring and components info that could be used virtually with any scss/css project",
   "keywords": [
@@ -38,7 +38,7 @@
   "devDependencies": {
     "autoprefixer": "10.4.0",
     "eslint": "8.3.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-connect": "5.7.0",
     "gulp-postcss": "9.0.1",
     "gulp-sass": "5.0.0",

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .atlas-component-aside {
 	all: initial;
 	background: linear-gradient(to top, rgba(black, 0), rgba(black, 0.1)) no-repeat;
@@ -20,7 +22,7 @@
 
 	&__title {
 		font-weight: bold;
-		margin-bottom: $space-sm-atlas / 2;
+		margin-bottom: math.div($space-sm-atlas, 2);
 	}
 
 	&__list {}

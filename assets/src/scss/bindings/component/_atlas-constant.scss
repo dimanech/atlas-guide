@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .atlas-constant {
 	all: unset;
 	text-transform: none;
@@ -9,7 +11,7 @@
 	}
 
 	&__caption {
-		min-width: (100% / 3);
+		min-width: math.div(100%, 3);
 	}
 
 	&__details {
@@ -34,7 +36,7 @@
 
 		svg {
 			height: 16px;
-			margin-bottom: -#{3px};
+			margin-bottom: -3px;
 			width: 12px;
 		}
 
@@ -51,7 +53,7 @@
 		display: block;
 		font-size: 12.8px;
 		font-weight: normal;
-		margin: ($space-sm-atlas / 2) 0;
+		margin: math.div($space-sm-atlas, 2) 0;
 		padding-left: 16px;
 		position: relative;
 	}
@@ -71,9 +73,9 @@
 
 		svg {
 			height: 16px;
-			left: -#{2px};
+			left: -2px;
 			position: absolute;
-			top: -#{2px};
+			top: -2px;
 			width: 11px;
 		}
 

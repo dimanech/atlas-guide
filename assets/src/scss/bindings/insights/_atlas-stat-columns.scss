@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .atlas-stat-columns {
 	all: unset;
 	display: flex;
@@ -10,7 +12,7 @@
 		box-sizing: border-box;
 		display: block;
 		padding: $space-md-atlas;
-		width: (100%/4);
+		width: math.div(100%, 4);
 	}
 
 	&__title {
@@ -26,7 +28,7 @@
 
 	&._condenced {
 		.atlas-stat-columns__item {
-			width: (100%/10);
+			width: math.div(100%, 10);
 		}
 	}
 
@@ -36,19 +38,19 @@
 		.atlas-stat-columns__item {
 			overflow: hidden;
 			padding: 0 0 $space-md-atlas;
-			width: (100%/10);
+			width: math.div(100%, 10);
 		}
 	}
 
 	&._fonts {
 		.atlas-stat-columns__item {
-			width: (100%/3);
+			width: math.div(100%, 3);
 		}
 	}
 
 	&._selectors {
 		.atlas-stat-columns__item {
-			width: (100%/2);
+			width: math.div(100%, 2);
 		}
 	}
 
@@ -57,7 +59,7 @@
 		margin-top: $space-lg-atlas;
 
 		.atlas-stat-columns__item {
-			width: (100%/3);
+			width: math.div(100%, 3);
 		}
 	}
 }
