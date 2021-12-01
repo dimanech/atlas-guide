@@ -334,8 +334,6 @@ describe('Config', function() {
                 const result = require(path.join(cwd, '/test/fixtures/models/constants.json'));
                 result.constantsSrc = [path.join(cwd, 'test/fixtures/atlas/_excluded-settings.scss')];
 
-                fs.writeFileSync('constants.json', JSON.stringify(atlasConfig.constants), null, '\t');
-
                 assert.deepStrictEqual(atlasConfig.constants, result);
             });
             it('should return proper result for multiple source', function() {
