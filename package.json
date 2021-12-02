@@ -21,7 +21,7 @@
     "npm": ">=5.4"
   },
   "dependencies": {
-    "@dimanech/cssstat-core": "3.2.1",
+    "@dimanech/cssstat-core": "3.3.0",
     "d3-color": "^1.4.1",
     "d3-format": "^1.4.5",
     "d3-scale": "^2.2.2",
