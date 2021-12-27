@@ -33,7 +33,7 @@
     "postcss": "^8.4.4",
     "postcss-scss": "^4.0.2",
     "sass": "^1.44.0",
-    "sass-graph": "^3.0.5"
+    "sass-graph": "^4.0.0"
   },
   "devDependencies": {
     "autoprefixer": "10.4.0",
