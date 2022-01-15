@@ -28,7 +28,7 @@
     "d3-shape": "^2.1.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.uniq": "^4.5.0",
-    "marked": "^3.0.8",
+    "marked": "^4.0.10",
     "mustache": "^4.2.0",
     "postcss": "^8.4.4",
     "postcss-scss": "^4.0.2",
