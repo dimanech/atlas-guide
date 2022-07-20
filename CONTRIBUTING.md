@@ -46,4 +46,4 @@ Additional resources: [VSCode](https://code.visualstudio.com/docs/nodejs/nodejs-
 
 ### Run tests
 
-To run test pleas lunch `npm run test`. Please note that tests not contains stubs and use real FS for all files manipulation.
+To run test please lunch `npm run test`. Please note that tests not contains stubs and use real FS for all files manipulation.
