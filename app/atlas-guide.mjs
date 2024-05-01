@@ -1,6 +1,6 @@
 import getBaseConfig from '../models/atlasconfig.mjs';
 import makeProjectTree from '../models/projectdocumentedtree.mjs';
-import {getImportsGraph, getFileImports} from '../models/projectimportsgraph.mjs';
+import { getImportsGraph } from '../models/projectimportsgraph.mjs';
 import writePageModule from './utils/writepage.mjs';
 import buildComponentModule from './buildcomponet.mjs';
 import buildReportsModule from './buildreports.mjs';
@@ -17,13 +17,11 @@ export default function withConfig(configPath) {
     }
 
     const projectTree = makeProjectTree(atlasConfig);
-    const projectImports = null ;// getFileImports(atlasConfig); // TODO remove me!! projectImportsModule passed to buildComponentModule prepareCOntentModule ;
     const projectImportsGraph = getImportsGraph(atlasConfig);
 
     const writePage = writePageModule(atlasConfig, projectTree).writePage;
 
-    const buildComponent = buildComponentModule(atlasConfig, projectTree, projectImportsGraph,
-        projectImports, writePage).buildComponent;
+    const buildComponent = buildComponentModule(atlasConfig, projectTree, projectImportsGraph, writePage).buildComponent;
 
     const buildReports = buildReportsModule(atlasConfig, projectTree, projectImportsGraph,
         writePage).buildReports;

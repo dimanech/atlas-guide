@@ -14,8 +14,8 @@ const isContentChanged = (url, content) => {
     }
 };
 
-export default function(atlasConfig, projectTree, projectImportsGraph, projectImports, writePage) {
-    const prepareContent = prepareContentModule(atlasConfig, projectTree, projectImportsGraph).prepareContent; // TODO: passed here importGraph function
+export default function(atlasConfig, projectTree, projectImportsGraph, writePage) {
+    const prepareContent = prepareContentModule(atlasConfig, projectTree, projectImportsGraph).prepareContent;
 
     function buildComponent(url) {
         const source = normalizePath(url);

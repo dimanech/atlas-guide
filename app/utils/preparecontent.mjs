@@ -6,7 +6,7 @@ import coverage from '../../viewmodels/coverage.mjs';
 import styleguide from '../../viewmodels/styleguide.mjs';
 import { getFileImports } from '../../models/projectimportsgraph.mjs';
 
-export default function(atlasConfig, projectTree, projectImportsGraph) { // TODO: last argument graph getFileImports
+export default function(atlasConfig, projectTree, projectImportsGraph) {
     const projectConstants = getProjectConstants(atlasConfig.constants, atlasConfig.scssAdditionalImportsArray, atlasConfig.constants.constantsFile);
     const componentImports = src => getFileImports(src, projectImportsGraph);
 
