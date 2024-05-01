@@ -21,10 +21,11 @@ export default function atlasGuide(configPath) {
 
     const writePage = writePageModule(atlasConfig, projectTree).writePage;
 
-    const buildComponent = buildComponentModule(atlasConfig, projectTree, projectImportsGraph, writePage).buildComponent;
+    const buildComponent = buildComponentModule(atlasConfig, projectTree,
+        projectImportsGraph, writePage).buildComponent;
 
-    const buildReports = buildReportsModule(atlasConfig, projectTree, projectImportsGraph,
-        writePage).buildReports;
+    const buildReports = buildReportsModule(atlasConfig, projectTree,
+        projectImportsGraph, writePage).buildReports;
 
     if (atlasConfig.copyInternalAssets) {
         copyAssets(atlasConfig.internalAssetsPath, atlasConfig.guideDest);

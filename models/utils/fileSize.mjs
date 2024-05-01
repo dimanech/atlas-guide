@@ -9,20 +9,20 @@ const getFileString = (filePath) => {
         fileString = fs.readFileSync(filePath, 'utf8');
     }
     return fileString;
-}
+};
 
 const getFileSizeWithoutComments = (filePath) => {
     const fileString = getFileString(filePath);
     const stripedFile = fileString.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
 
     return getFileSize(stripedFile);
-}
+};
 
 const getResultedFileSize = (fileName, pathToCSS) => {
     const filePath = path.join(pathToCSS, fileName.replace(/\.scss/, '.css'));
     const fileString = getFileString(filePath);
 
     return getFileSize(fileString);
-}
+};
 
 export { getFileSizeWithoutComments, getResultedFileSize };

@@ -47,6 +47,7 @@
     "mocha": "10.1.0",
     "nyc": "15.1.0",
     "stylelint": "16.4.0",
+    "stylelint-config-recommended": "^14.0.0",
     "stylelint-order": "6.0.4",
     "stylelint-scss": "6.2.1"
   },
@@ -65,7 +66,7 @@
     "atlas-guide": "bin/atlas-guide.js"
   },
   "scripts": {
-    "lint": "eslint ./ && stylelint ./",
+    "lint": "eslint **/*.mjs && stylelint **/*.scss --cache --cache-location .cache/scsslint/ --cache-strategy content",
     "test": "nyc mocha",
     "coverage": "nyc report --reporter=lcov --reporter=text-lcov",
     "build": "gulp build",

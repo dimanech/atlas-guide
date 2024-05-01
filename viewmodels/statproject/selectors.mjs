@@ -22,7 +22,7 @@ const getAdditionalStat = (selectors) => {
     });
 
     return stat;
-}
+};
 
 const selectors = (selectors) => {
     const additionalStat = getAdditionalStat(selectors);
@@ -59,6 +59,6 @@ const selectors = (selectors) => {
         universalSelectors: additionalStat.universalSelectors,
         idSelectors: additionalStat.idSelectors
     };
-}
+};
 
 export default selectors;

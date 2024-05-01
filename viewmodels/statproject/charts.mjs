@@ -7,7 +7,7 @@ const normalizeData = (data, field) => {
             data: item[field]
         };
     });
-}
+};
 
 const renderLineChart = (data, type) => {
     const dataStr = JSON.stringify(normalizeData(data, type));
@@ -17,7 +17,7 @@ const renderLineChart = (data, type) => {
             <defs data-chart='${dataStr}'></defs>
         </svg>
         `;
-}
+};
 
 const specificityChart = (stats) => {
     return {
@@ -25,7 +25,7 @@ const specificityChart = (stats) => {
         'max': stats.selectors.specificity.max,
         'average': formatNumbers(stats.selectors.specificity.average)
     };
-}
+};
 
 const ruleSizeChart = (stats) => {
     return {
@@ -33,6 +33,6 @@ const ruleSizeChart = (stats) => {
         'max': stats.rules.size.max,
         'average': formatNumbers(stats.rules.size.average)
     };
-}
+};
 
 export { specificityChart, ruleSizeChart };

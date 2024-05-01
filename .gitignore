@@ -21,7 +21,7 @@ RemoteSystemsTempFiles
 
 logs
 *.log
-*.swp
+.cache
 *.map
 .grunt
 
@@ -30,4 +30,3 @@ node_modules
 
 *.html
 atlas/*
-

@@ -22,8 +22,8 @@ const getProjectStat = (projectName, cssSrc, cssExcludedFiles) => {
                 name: path.basename(file),
                 stat: cssstat(fileContent, {
                     importantDeclarations: true,
-                    mediaQueries: false,
-                }),
+                    mediaQueries: false
+                })
             });
 
             const sizesStat = projectCssStat[projectCssStat.length - 1].stat;
@@ -34,8 +34,8 @@ const getProjectStat = (projectName, cssSrc, cssExcludedFiles) => {
                 zipped: sizesStat.gzipSize,
                 view: {
                     raw: sizesStat.humanizedSize,
-                    zipped: sizesStat.humanizedGzipSize,
-                },
+                    zipped: sizesStat.humanizedGzipSize
+                }
             });
 
             contaminatedCss += fileContent;
@@ -45,7 +45,7 @@ const getProjectStat = (projectName, cssSrc, cssExcludedFiles) => {
     projectCssStat.unshift({
         name: projectName,
         stat: cssstat(contaminatedCss),
-        filesSizes: filesSizes,
+        filesSizes: filesSizes
     });
 
     return projectCssStat;

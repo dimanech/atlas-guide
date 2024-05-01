@@ -17,6 +17,6 @@ const ruleSetChart = (dataArr) => {
         .x((d, i) => scaleX(i))
         .y(d => scaleY(d))
         .curve(curveCatmullRom.alpha(0.5))(dataArr);
-}
+};
 
 export default ruleSetChart;

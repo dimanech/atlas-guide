@@ -39,6 +39,7 @@ describe('Build', function() {
                 try {
                     atlas.build('/path/to/file.css').then(() => done());
                 } catch (e) {
+                    console.log(e);
                     done('failed');
                 }
             });
@@ -104,8 +105,9 @@ describe('Build', function() {
         describe('Wrong path', function() {
             it('should not trow an error on unexisted file with relative path', function(done) {
                 try {
-                    atlas.build('./test/fixtures/atlas_component.scss').then(() => done()); // eslint-disable-line
+                    atlas.build('./test/fixtures/atlas_component.scss').then(() => done());
                 } catch (e) {
+                    console.log(e);
                     done('failed');
                 }
             });
@@ -113,13 +115,15 @@ describe('Build', function() {
                 try {
                     atlas.build(path.join(cwd, '/test/fixtures/atlas/_some.scss')).then(() => done()); // eslint-disable-line
                 } catch (e) {
+                    console.log(e);
                     done('failed');
                 }
             });
             it('should not trow an error on directory path', function(done) {
                 try {
-                    atlas.build('./test/fixtures/atlas/').then(() => done()); // eslint-disable-line
+                    atlas.build('./test/fixtures/atlas/').then(() => done());
                 } catch (e) {
+                    console.log(e);
                     done('failed');
                 }
             });

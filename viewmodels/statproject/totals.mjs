@@ -11,6 +11,6 @@ const totals = (stats) => {
         declarations: formatNumbers(stats.declarations.total),
         properties: formatNumbers(Object.keys(stats.declarations.properties).length)
     };
-}
+};
 
 export default totals;

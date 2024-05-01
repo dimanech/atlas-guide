@@ -1,4 +1,4 @@
-'use strict';
+
 
 (function() {
     const asidePanel = document.getElementById('js-atlas-aside');

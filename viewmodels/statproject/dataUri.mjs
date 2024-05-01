@@ -35,6 +35,6 @@ const dataUri = (background, backgroundImage, fontFaces) => {
     dataUri.total.fmt = formatBytes(dataUri.total.raw);
 
     return dataUri;
-}
+};
 
 export default dataUri;

@@ -149,6 +149,7 @@ describe('All', function() {
         try {
             atlas.buildAll().then(() => done());
         } catch (e) {
+            console.log(e);
             done('failed');
         }
     });

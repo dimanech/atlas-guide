@@ -1,4 +1,4 @@
-'use strict';
+
 
 (function () {
     const navigation = document.getElementById('js-atlas-navigation');

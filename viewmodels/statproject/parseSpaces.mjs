@@ -15,6 +15,6 @@ const parseSpaces = (spacesArray) => {
     });
 
     return _uniq(allMargins);
-}
+};
 
 export default parseSpaces;

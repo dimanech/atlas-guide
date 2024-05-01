@@ -22,6 +22,6 @@ const ruleSizeStat = (selectorsList) => {
         (a, b) => b.declarations - a.declarations));
 
     return rulesetStat;
-}
+};
 
 export default ruleSizeStat;

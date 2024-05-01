@@ -1,4 +1,4 @@
-'use strict';
+
 
 (function () {
     const container = document.getElementById('js-atlas-container');

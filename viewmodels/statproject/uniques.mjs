@@ -29,6 +29,6 @@ const uniques = (stats) => {
     uniques.padding = sortSizes(parseSpaces(stats.declarations.properties.padding));
 
     return uniques;
-}
+};
 
 export default uniques;

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-'use strict';
 
 const parseOption = arg => arg.split(/=/);
 const arg = parseOption(process.argv[2]);
+import fs from 'node:fs';
 import atlasGuide from '../app/atlas-guide.mjs';
 
 function getJSON(filePath) {

@@ -48,6 +48,6 @@ const getStatistic = (componentStat, componentImports, projectConstants) => {
     }
 
     return viewModel;
-}
+};
 
 export default getStatistic;

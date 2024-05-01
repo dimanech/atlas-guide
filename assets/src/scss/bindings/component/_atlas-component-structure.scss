@@ -49,6 +49,20 @@
 	}
 
 	&__type {
+
+		//&::after {
+		//	border: 3px solid #fafafa;
+		//	bottom: -3px;
+		//	content: "";
+		//	left: -3px;
+		//	position: absolute;
+		//	right: -3px;
+		//	top: -3px;
+		//}
+		$component: #e56daa;
+		$element: #6d7ce5;
+		$modifier: #2196f3;
+		$media: white;
 		background: grey;
 		border-radius: 3px;
 		box-shadow: 0 2px 3px rgba(black, 0.1);
@@ -64,21 +78,6 @@
 		text-shadow: 0 0 1px rgba(black, 0.5);
 		top: -#{1px};
 		width: 15px;
-
-		//&::after {
-		//	border: 3px solid #fafafa;
-		//	bottom: -3px;
-		//	content: "";
-		//	left: -3px;
-		//	position: absolute;
-		//	right: -3px;
-		//	top: -3px;
-		//}
-
-		$component: #e56daa;
-		$element: #6d7ce5;
-		$modifier: #2196f3;
-		$media: white;
 
 		&._container,
 		&._mixin {

@@ -18,10 +18,10 @@
 			padding: $space-sm-atlas;
 			position: absolute;
 			z-index: 10;
-		} @else if($_state == "activated") {
+		} @else if ($_state == "activated") {
 			display: block;
 		}
-	} @else if($__elem == "__arrow") {
+	} @else if ($__elem == "__arrow") {
 		border-bottom: 7px solid transparent;
 		border-right: 7px solid $color-blue-atlas;
 		border-top: 7px solid transparent;

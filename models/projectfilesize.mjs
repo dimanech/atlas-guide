@@ -33,7 +33,7 @@ const prepareComponentsFileSizesStat = (guideSrc) => {
                 findComponents(target);
             }
         }
-    }
+    };
 
     findComponents(guideSrc);
 

@@ -1,4 +1,4 @@
-'use strict';
+
 
 (function() {
     // chat scroll + rounded line

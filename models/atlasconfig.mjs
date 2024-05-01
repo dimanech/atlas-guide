@@ -29,7 +29,8 @@ const fillTemplatesConfig = (templatesConfig, internalTemplatesPath, name) => {
                 templates[template] = templatePath;
                 return;
             } else {
-                printMessage('warn', `"${template} ${name}" is declared, but file not found. 'Internal partial used for this include.`);
+                printMessage('warn',
+                    `"${template} ${name}" is declared, but file not found. 'Internal partial used for this include.`);
             }
         }
         templates[template] = path.join(__dirname, internalTemplatesPath, `${template}.mustache`);
@@ -55,7 +56,8 @@ const getProjectInfo = config => {
         projectName = config.projectInfo.name;
     } else {
         if (!pkg.name) {
-            printMessage('warn', 'Neither "projectName" in atlas, nor "name" in package.json is declared. "atlas" name used instead.');
+            printMessage('warn',
+                'Neither "projectName" in atlas, nor "name" in package.json is declared. "atlas" name used instead.');
         } else {
             projectName = pkg.name.replace('/', '-'); // fix namespaced project names
         }
@@ -65,7 +67,7 @@ const getProjectInfo = config => {
         name: projectName,
         version: pkg.version || ''
     };
-}
+};
 
 const getBaseConfig = configRaw => {
     const config = getConfig(configRaw);
@@ -96,7 +98,8 @@ const getBaseConfig = configRaw => {
 
     const projectInfo = { projectInfo: getProjectInfo(config) };
 
-    return {...baseMandatory, ...baseOptional, ...templates, ...additionalPages, ...constants, ...partials, ...projectInfo };
-}
+    return { ...baseMandatory, ...baseOptional, ...templates,
+        ...additionalPages, ...constants, ...partials, ...projectInfo };
+};
 
 export default getBaseConfig;

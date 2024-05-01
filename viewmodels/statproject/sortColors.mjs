@@ -8,7 +8,7 @@ const categorizeValue = (color) => {
     } else {
         return color;
     }
-}
+};
 
 const sortColors = (colors) => {
     return colors.sort((colorA, colorB) => {
@@ -20,6 +20,6 @@ const sortColors = (colors) => {
             colorBhsla.l - colorAhsla.l ||
             colorAhsla.s - colorBhsla.s;
     });
-}
+};
 
 export default sortColors;

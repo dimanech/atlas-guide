@@ -1,9 +1,8 @@
 .atlas-search {
-	position: relative;
-
 	$filter-icon-size: 16px;
 	$clear-icon-size: 14px;
 	$icon-indent: 6px;
+	position: relative;
 
 	&__input {
 		-webkit-appearance: none;

@@ -27,4 +27,4 @@ const formatBytes = bytes => {
     }
 };
 
-export { formatNumbers, formatBytes }
+export { formatNumbers, formatBytes };
