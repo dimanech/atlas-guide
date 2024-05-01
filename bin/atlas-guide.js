@@ -19,7 +19,7 @@ try {
             console.log(`
 Usage: atlas-guide [OPTION]
 
-Options:            
+Options:
   -b, --build=FILE           build all atlas pages, followed with config '--build=./path/to/config.json'
   -v, --version              print Atlas-guide version
   --help                     print this message
