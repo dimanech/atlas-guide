@@ -1,4 +1,4 @@
-import d3fmt from 'd3-format';
+import { format } from 'd3-format';
 
 const formatNumbers = number => {
     if (!number) {
@@ -7,14 +7,14 @@ const formatNumbers = number => {
     const length = number.toString().length;
 
     if (length > 4) {
-        return d3fmt.format('.2s')(number);
+        return format('.2s')(number);
     } else {
-        return d3fmt.format(',')(number);
+        return format(',')(number);
     }
 };
 
 const formatBytes = bytes => {
-    const fmt = d3fmt.format('.0f');
+    const fmt = format('.0f');
 
     if (bytes < 1024) {
         return fmt(bytes) + 'B';

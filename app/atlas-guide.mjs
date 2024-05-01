@@ -6,7 +6,7 @@ import buildComponentModule from './buildcomponet.mjs';
 import buildReportsModule from './buildreports.mjs';
 import copyAssets from './utils/copyassets.mjs';
 
-export default function withConfig(configPath) {
+export default function atlasGuide(configPath) {
     const atlasConfig = getBaseConfig(configPath);
 
     if (atlasConfig.isCorrupted) {

@@ -1,5 +1,4 @@
-// import { join } from 'path';
-import { formatBytes } from '../utils/format.mjs'; // path.join(__dirname, '../utils/format'));
+import { formatBytes } from '../utils/format.mjs';
 
 const dataUri = (background, backgroundImage, fontFaces) => {
     const props = [].concat(background).concat(backgroundImage).concat(fontFaces.src);

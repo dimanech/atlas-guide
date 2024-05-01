@@ -1,14 +1,14 @@
 import fs from 'node:fs';
 import path, { dirname } from 'node:path';
-import marked from 'marked';
+import { setOptions, Renderer, marked } from 'marked';
 import mustache from 'mustache';
-const renderer = new marked.Renderer();
+const renderer = new Renderer();
 
 import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-marked.setOptions({
+setOptions({
     renderer: renderer,
     gfm: true,
     tables: true,

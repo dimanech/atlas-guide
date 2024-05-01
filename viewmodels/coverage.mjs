@@ -1,15 +1,15 @@
-import d3scale from 'd3-scale';
-import d3fmt from 'd3-format';
+import { scaleLinear } from 'd3-scale';
+import { format } from 'd3-format';
 
 const coverageFunction = (coverage) => {
-    const scale = d3scale.scaleLinear()
+    const scale = scaleLinear()
         .domain([0, coverage.all])
         .range([0, 500]);
 
     const coveredPercent = coverage.covered / coverage.all * 100;
 
     return {
-        'coveredPercent': d3fmt.format('.1f')(coveredPercent),
+        'coveredPercent': format('.1f')(coveredPercent),
         'all': coverage.all,
         'covered': coverage.covered,
         'graph': {

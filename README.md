@@ -148,7 +148,8 @@ See example guideline page or this repo gulp to get the idea how live reload and
 ### API
 
 ```js
-const atlas = require('atlas-guide').withConfig('./project/root/path/to/config.json');
+import atlasGuide from 'atlas-guide';
+const atlas = atlasGuide.withConfig('./project/root/path/to/config.json');
 // or atlas = require('atlas-guide').withConfig({ rawConfigObject });
 atlas.build().then(...); // build all guide files without reports. Returns promise.
 atlas.build('/absolute/path/to/changed/file.scss').then(...); // compile only particular file, if it marked as documented in project tree. Returns promise.
@@ -186,13 +187,15 @@ Minimal configuration:
 You could place it wherever you want and target with:
 
 ```js
-const atlas = require('atlas-guide').withConfig('./from/project/root/path/to/my/config.json');
+import atlasGuide from 'atlas-guide';
+const atlas = atlasGuide('./from/project/root/path/to/my/config.json');
 ```
 
 or with rawConfig object if you call atlas from js:
 
 ```js
-const atlas = require('atlas-guide').withConfig({
+import atlasGuide from 'atlas-guide';
+const atlas = atlasGuide({
     guideSrc: 'assets/scss/',
     guideDest: 'guide/',
     cssSrc: 'assets/css/'
@@ -230,8 +233,8 @@ Suppose you store brand configuration into `package.json`:
 than you could build guide like this:
 
 ```js
-const pkg = require('package.json');
-const atlasGuide = require('atlas-guide');
+import pkg from './package.json' assert { type: 'json' };
+import atlasGuide from 'atlas-guide';
 
 const buildBrandOne = atlasGuide.withConfig(pkg.brands.one).buildAll().then(...);
 const buildBrandAnother = atlasGuide.withConfig(pkg.brands.another).buildAll().then(...);
@@ -472,7 +475,8 @@ Simply put regular markdown file to components tree and they automatically becom
 Regular development flow could be organized in this way – build all guide pages on start and incrementally rebuild pages on file changes:
 
 ```js
-const atlas = require('atlas-guide').withConfig({config: 'here'});
+import atlasGuide from 'atlas-guide';
+const atlas = atlasGuide({config: 'here'});
 atlas.build().then(...); // build all guide files without reports
 
 // watch for changes, get changed file path and build needed page:
@@ -489,7 +493,8 @@ Due to time efforts reports not generated in regular flow. To generate reports y
 or in JS:
 
 ```js
-const atlas = require('atlas-guide').withConfig({config: 'here'});
+import atlasGuide from 'atlas-guide';
+const atlas = atlasGuide({config: 'here'});
 atlas.buildAll().then(...); // compile all components, guidelines and reports
 ```
 
@@ -556,7 +561,7 @@ After that styleguide page and components stat hints would be generated beside c
 
 The most robust way to do this is extend templates on project level and remove views that responsible for that.
 
-### I build dependency graph but it has too much duplicate imports since each our resulted file include the same files.
+### I build dependency graph, but it has too much duplicate imports since each our resulted file include the same files.
 
 To clean up the graph you could add duplicated files into scss ignore list. To do this put regexp to `excludedSassFiles` field.
 
@@ -570,4 +575,4 @@ You are welcome for ideas, help and of course code contributing. Please see CONT
 
 ## License
 
-Copyright © 2019, D. Nechepurenko. Published under MIT license.
+Copyright © 2024, D. Nechepurenko. Published under MIT license.

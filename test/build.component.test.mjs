@@ -3,7 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert';
 const cwd = process.cwd();
 
-import atlasGuideWithConfig from '../app/atlas-guide.mjs';
+import atlasGuide from '../app/atlas-guide.mjs';
 
 describe('Build', function() {
     const guideDest = 'test/results/';
@@ -11,7 +11,7 @@ describe('Build', function() {
 
     before(function() {
         fs.unlinkSync(path.join(cwd, guideDest, '.gitkeep'));
-        atlas = atlasGuideWithConfig({
+        atlas = atlasGuide({
             'guideSrc': 'test/fixtures/atlas/',
             'guideDest': guideDest,
             'cssSrc': 'test/fixtures/atlas/css',
@@ -35,9 +35,9 @@ describe('Build', function() {
     describe('Single component', function() {
         describe('Wrong config', function() {
             it('should not throw an error if it has wrong config', function(done) {
-                const atlasGuide = atlasGuideWithConfig('./.inexistentatlasrc.json');
+                const atlas = atlasGuide('./.inexistentatlasrc.json');
                 try {
-                    atlasGuide.build('/path/to/file.css').then(() => done());
+                    atlas.build('/path/to/file.css').then(() => done());
                 } catch (e) {
                     done('failed');
                 }

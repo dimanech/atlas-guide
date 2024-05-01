@@ -1,5 +1,4 @@
-// import path from 'node:path';
-import { formatNumbers } from '../utils/format.mjs'; // path.join(__dirname, '../utils/format')
+import { formatNumbers } from '../utils/format.mjs';
 
 const totals = (stats) => {
     if (!stats) {

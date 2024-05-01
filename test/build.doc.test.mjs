@@ -3,7 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert';
 const cwd = process.cwd();
 
-import atlasGuideWithConfig from '../app/atlas-guide.mjs';
+import atlasGuide from '../app/atlas-guide.mjs';
 
 describe('Single guideline', function() {
     const guideDest = 'test/results/';
@@ -12,7 +12,7 @@ describe('Single guideline', function() {
     before(function(done) {
         fs.unlinkSync(path.join(cwd, guideDest, '.gitkeep'));
 
-        const atlas = atlasGuideWithConfig({
+        const atlas = atlasGuide({
             'guideSrc': 'test/fixtures/atlas/',
             'guideDest': guideDest,
             'cssSrc': 'test/fixtures/atlas/css',

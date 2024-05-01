@@ -1,7 +1,7 @@
 # Set up compilation and live reload
 
 Since Atlas is static page generator it is not provide any functionality for serving, livereloading and development setup.
-This intended to not depend from project infrastructure.
+This intended to not depends on project infrastructure.
 
 This page is also example of how regular markdown files will be used to create guideline page.
 
@@ -26,7 +26,8 @@ This two tasks could be easily achieved with gulp:
 
 ```js
 let generateFilePath = [];
-const atlas = require('atlas-guide').withConfig('./.atlasrc.json');
+import atlasGuide from 'atlas-guide';
+const atlas = atlasGuide('./.atlasrc.json');
 
 // Build all components pages
 gulp.task('atlas:compile', () => atlas.build());
@@ -86,7 +87,7 @@ This also could be achieved with gulp:
 
 ```js
 gulp.task('atlas:compile:all', () => {
-    return require('atlas-guide').withConfig('./.atlasrc.json').buildAll();
+    return atlasGuide('./.atlasrc.json').buildAll();
 });
 gulp.task('build', ['styles:compile:all', 'atlas:compile:all']);
 ```
@@ -116,10 +117,11 @@ So for this case we need to build custom imports graph from our project. Lucky w
 So as the first step we need to create dependency graph on each task-runner start.
 
 ```js
+import sassGraph from 'sass-graph';
 let importsGraph;
 
 const createImportsGraph = function() {
-    importsGraph = require('sass-graph').parseDir(pathConfig.ui.core.sass.src, {
+    importsGraph = sassGraph.parseDir(pathConfig.ui.core.sass.src, {
         loadPaths: [pathConfig.ui.lib.resources]
     });
 };
@@ -196,28 +198,31 @@ const getResultedFilesList = changedFile => {
 And the sass compilation:
 
 ```js
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+import gulpPostcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import gulpSourcemaps from 'gulp-sourcemaps';
+
 /**
  * Configurable Sass compilation
  * @param {Object} config
  */
 const sassCompile = config => {
-    const sass = require('gulp-sass');
-    const postcss = require('gulp-postcss');
-    const autoprefixer = require('autoprefixer');
-    const sourcemaps = require('gulp-sourcemaps');
-
     const postProcessors = [
         autoprefixer({
             flexbox: 'no-2009'
         })
     ];
 
-    return gulp.src(config.source)
-        .pipe(sourcemaps.init({
+    console.log(`[COMPILE:] \x1b[35m${config.source}\x1b[0m`);
+
+    return gulp.src(config.source, {allowEmpty: true})
+        .pipe(gulpSourcemaps.init({
             loadMaps: true,
             largeFile: true
         }))
-        .pipe(sass({ // this config match rust sass implementation
+        .pipe(gulpSass(dartSass)({
             includePaths: config.alsoSearchIn,
             sourceMap: false,
             outputStyle: 'compressed',
@@ -227,13 +232,13 @@ const sassCompile = config => {
             precision: 10,
             errLogToConsole: true
         }))
-        .on('error', function (error) { // this not disconnect pipe on error
+        .on('error', function (error) {
             console.log('\x07');
-            console.log('\x1b[35m' + error.message + '\x1b[0m');
+            console.error('\x1b[35m' + error.message + '\x1b[0m');
             this.emit('end');
         })
-        .pipe(postcss(postProcessors))
-        .pipe(sourcemaps.write('.'))
+        .pipe(gulpPostcss(postProcessors))
+        .pipe(gulpSourcemaps.write('.'))
         .pipe(gulp.dest(config.dest));
 };
 ```

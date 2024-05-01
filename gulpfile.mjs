@@ -1,8 +1,13 @@
-'use strict';
-
-const path = require('path');
-const gulp = require('gulp');
-const connect = require('gulp-connect');
+import path from 'node:path';
+import gulp from 'gulp';
+import connect from 'gulp-connect';
+import atlasGuide from './app/atlas-guide.mjs';
+import sassGraph from 'sass-graph';
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+import gulpPostcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import gulpSourcemaps from 'gulp-sourcemaps';
 
 const pathConfig = {
     'ui': {
@@ -80,7 +85,7 @@ const notifyChange = path => {
 };
 
 const createImportsGraph = function () {
-    importsGraph = require('sass-graph').parseDir(
+    importsGraph = sassGraph.parseDir(
         pathConfig.ui.core.sass.src,
         { loadPaths: [pathConfig.ui.lib.resources] }
     );
@@ -91,11 +96,6 @@ const createImportsGraph = function () {
  * @param {Object} config
  */
 const sassCompile = config => {
-    const sass = require('gulp-sass')(require('sass'));
-    const postcss = require('gulp-postcss');
-    const autoprefixer = require('autoprefixer');
-    const sourcemaps = require('gulp-sourcemaps');
-
     const postProcessors = [
         autoprefixer({
             flexbox: 'no-2009'
@@ -105,11 +105,11 @@ const sassCompile = config => {
     console.log(`[COMPILE:] \x1b[35m${config.source}\x1b[0m`);
 
     return gulp.src(config.source, {allowEmpty: true})
-        .pipe(sourcemaps.init({
+        .pipe(gulpSourcemaps.init({
             loadMaps: true,
             largeFile: true
         }))
-        .pipe(sass({
+        .pipe(gulpSass(dartSass)({
             includePaths: config.alsoSearchIn,
             sourceMap: false,
             outputStyle: 'compressed',
@@ -124,8 +124,8 @@ const sassCompile = config => {
             console.error('\x1b[35m' + error.message + '\x1b[0m');
             this.emit('end');
         })
-        .pipe(postcss(postProcessors))
-        .pipe(sourcemaps.write('.'))
+        .pipe(gulpPostcss(postProcessors))
+        .pipe(gulpSourcemaps.write('.'))
         .pipe(gulp.dest(config.dest));
 };
 
@@ -190,8 +190,8 @@ gulp.task('styles:watch', done => {
 /*
  * Guide generation
  */
-// if installed it should be require('atlas-guide');
-const atlas = require('./app/atlas-guide.js').withConfig('./.atlasrc.json');
+// if installed it should be import atlasGuide from 'atlas-guide';
+const atlas = atlasGuide('./.atlasrc.json');
 
 // Compile all components pages
 gulp.task('atlas:compile', done => atlas.build().then(done()));

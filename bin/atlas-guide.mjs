@@ -3,16 +3,22 @@
 
 const parseOption = arg => arg.split(/=/);
 const arg = parseOption(process.argv[2]);
+import atlasGuide from '../app/atlas-guide.mjs';
+
+function getJSON(filePath) {
+    const rawData = fs.readFileSync(filePath);
+    return JSON.parse(rawData);
+}
 
 try {
     switch (arg[0]) {
         case '--build':
         case '-b':
-            require('../app/atlas-guide').withConfig(arg[1]).buildAll();
+            atlasGuide(arg[1]).buildAll();
             break;
         case '--version':
         case '-v':
-            console.log('atlas-guide ' + require('../package').version);
+            console.log('atlas-guide ' + getJSON('../package').version);
             break;
         case '--help':
         default:

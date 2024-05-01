@@ -3,7 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert';
 const cwd = process.cwd();
 
-import atlasGuideWithConfig from '../app/atlas-guide.mjs';
+import atlasGuide from '../app/atlas-guide.mjs';
 
 describe('All', function() {
     const guideDest = 'test/results/';
@@ -30,7 +30,7 @@ describe('All', function() {
         `, 'utf8');
         fs.unlinkSync(path.join(cwd, guideDest, '.gitkeep'));
 
-        const atlas = atlasGuideWithConfig('./.atlasrc.json');
+        const atlas = atlasGuide('./.atlasrc.json');
         atlas.buildAll().then(() => done());
     });
     after(function() {
@@ -145,9 +145,9 @@ describe('All', function() {
     it('should have deprecated component');
     it('should have internal templates');
     it('should not throw an error if no config is declared', function(done) {
-        const atlasGuide = atlasGuideWithConfig('./.inexistentatlasrc.json');
+        const atlas = atlasGuide('./.inexistentatlasrc.json');
         try {
-            atlasGuide.buildAll().then(() => done());
+            atlas.buildAll().then(() => done());
         } catch (e) {
             done('failed');
         }
