@@ -17,8 +17,8 @@
     "aigis"
   ],
   "engines": {
-    "node": ">=12",
-    "npm": ">=5.4"
+    "node": ">=18",
+    "npm": ">=8"
   },
   "dependencies": {
     "@dimanech/cssstat-core": "3.3.1",
