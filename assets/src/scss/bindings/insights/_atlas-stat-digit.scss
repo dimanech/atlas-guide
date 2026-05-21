@@ -1,6 +1,9 @@
+@use "../../defintions/chessboard";
+@use "../../dev-atlas-settings";
+
 .atlas-stat-digit {
 	all: unset;
-	font-family: $font-sans-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	font-size: 64px;
 	font-weight: bold;
 	line-height: 1;
@@ -8,7 +11,7 @@
 
 	&__data {
 		all: unset;
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 		display: block;
 		letter-spacing: -0.06em;
 	}
@@ -32,16 +35,16 @@
 		width: 100%;
 
 		svg.atlas-stat-digit__data {
-			@include chessboard();
+			@include chessboard.chessboard();
 			width: 100%;
 		}
 
 		.atlas-stat-digit__caption {
-			font-family: $font-mono-atlas;
-			font-size: $atlas-scale-mono-small;
+			font-family: dev-atlas-settings.$font-mono-atlas;
+			font-size: dev-atlas-settings.$atlas-scale-mono-small;
 			margin-right: 4px;
 			overflow: hidden;
-			padding-top: $space-sm-atlas;
+			padding-top: dev-atlas-settings.$space-sm-atlas;
 			text-overflow: ellipsis;
 			text-transform: none;
 		}
@@ -53,7 +56,7 @@
 			position: relative;
 
 			&._display { /* stylelint-disable-line */
-				@include chessboard();
+				@include chessboard.chessboard();
 			}
 
 			div {

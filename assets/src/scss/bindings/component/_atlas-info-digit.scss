@@ -1,16 +1,19 @@
+@use "../../defintions/tooltip";
+@use "../../dev-atlas-settings";
+
 @use "sass:math";
 
 .atlas-info-digit {
 	align-items: flex-end;
 	display: flex;
 	font-size: 12.8px;
-	margin: $space-md-atlas 0;
+	margin: dev-atlas-settings.$space-md-atlas 0;
 	max-width: math.div(100%, 3);
 	position: relative;
 	width: 50%;
 
 	&__digit {
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 		font-size: 48px;
 		font-weight: normal;
 		line-height: 1;
@@ -27,14 +30,14 @@
 	}
 
 	&__popup {
-		@include tooltip($_state: stale);
+		@include tooltip.tooltip($_state: stale);
 
 		&::before {
-			@include tooltip(__arrow);
+			@include tooltip.tooltip(__arrow);
 		}
 
 		.atlas-info-digit:hover & {
-			@include tooltip($_state: activated);
+			@include tooltip.tooltip($_state: activated);
 		}
 	}
 

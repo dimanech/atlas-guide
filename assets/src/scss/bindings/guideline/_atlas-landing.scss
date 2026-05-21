@@ -1,13 +1,15 @@
-$bg: $color-yellow-atlas;
-$fg: $color-white-atlas;
-$accent: $atlas-color-text;
+@use "../../dev-atlas-settings";
+
+$bg: dev-atlas-settings.$color-yellow-atlas;
+$fg: dev-atlas-settings.$color-white-atlas;
+$accent: dev-atlas-settings.$atlas-color-text;
 
 .atlas-landing {
 	&__head {
 		align-items: center;
 		background: $bg;
-		margin: 0 -#{$space-md-atlas};
-		padding: $space-md-atlas;
+		margin: 0 -#{dev-atlas-settings.$space-md-atlas};
+		padding: dev-atlas-settings.$space-md-atlas;
 		padding-right: 0;
 		position: relative;
 	}

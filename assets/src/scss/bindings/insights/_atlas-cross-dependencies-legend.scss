@@ -1,26 +1,29 @@
+@use "sass:color";
+@use "../../dev-atlas-settings";
+
 .atlas-cross-dependencies-legend {
 	align-items: flex-start;
 	//border-top: 1px solid $atlas-color-divider;
 	display: flex;
 	justify-content: space-between;
-	margin: $space-sm-atlas 0 $space-lg-atlas;
+	margin: dev-atlas-settings.$space-sm-atlas 0 dev-atlas-settings.$space-lg-atlas;
 	max-width: none;
-	padding: $scale-sm-atlas 0 0;
+	padding: dev-atlas-settings.$scale-sm-atlas 0 0;
 
 	kbd {
-		background-color: $color-grey80-atlas;
-		border: 1px solid $atlas-color-divider;
+		background-color: dev-atlas-settings.$color-grey80-atlas;
+		border: 1px solid dev-atlas-settings.$atlas-color-divider;
 		border-radius: 3px;
-		box-shadow: 1px 2px 0 darken($atlas-color-divider, 20%);
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		box-shadow: 1px 2px 0 color.adjust(dev-atlas-settings.$atlas-color-divider, $lightness: -20%);
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		font-weight: bold;
 		margin: 3px;
 		padding: 0 3px;
 	}
 
 	> svg {
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 		height: 20px;
 		min-width: 50px;
 		width: 50px;
@@ -29,20 +32,20 @@
 	&__caption {
 		font-size: 19px;
 		margin-bottom: 5px;
-		margin-right: $space-md-atlas;
+		margin-right: dev-atlas-settings.$space-md-atlas;
 		width: 50%;
 	}
 
 	&__example {
 		font-size: 14.4px;
-		margin-right: $space-md-atlas;
+		margin-right: dev-atlas-settings.$space-md-atlas;
 		text-align: justify;
 		width: 50%;
 	}
 
 	&__list {
 		font-size: 14.4px;
-		margin: 0 0 0 $space-md-atlas;
+		margin: 0 0 0 dev-atlas-settings.$space-md-atlas;
 		min-width: 20%;
 		padding: 0;
 

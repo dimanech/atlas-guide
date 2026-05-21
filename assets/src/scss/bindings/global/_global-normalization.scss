@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 ul,
 ol,
 p {
@@ -21,8 +23,8 @@ figure {
 }
 
 body {
-	background: $color-white-atlas;
-	color: $atlas-color-text;
+	background: dev-atlas-settings.$color-white-atlas;
+	color: dev-atlas-settings.$atlas-color-text;
 	margin: 0;
 	padding: 0;
 }

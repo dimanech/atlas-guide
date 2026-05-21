@@ -1,14 +1,16 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-chart-caption {
 	all: unset;
-	font-family: $font-sans-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	font-size: 12.8px;
 	font-weight: bold;
-	margin: $space-sm-atlas 0;
+	margin: dev-atlas-settings.$space-sm-atlas 0;
 }
 
 .atlas-stat-chart {
 	display: flex;
-	font-family: $font-sans-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	font-weight: bold;
 	text-align: center;
 
@@ -18,27 +20,27 @@
 	}
 
 	&__legend {
-		color: $atlas-color-text;
-		font-family: $font-sans-atlas;
+		color: dev-atlas-settings.$atlas-color-text;
+		font-family: dev-atlas-settings.$font-sans-atlas;
 		font-size: 9.6px;
-		margin-top: $space-md-atlas;
+		margin-top: dev-atlas-settings.$space-md-atlas;
 	}
 
 	&__bean-name {
-		margin: $space-sm-atlas 0 0;
+		margin: dev-atlas-settings.$space-sm-atlas 0 0;
 	}
 
 	&__bean-caption {
-		color: $color-grey60-atlas;
+		color: dev-atlas-settings.$color-grey60-atlas;
 		font-size: 12.8px;
-		margin: 0 0 $space-md-atlas;
+		margin: 0 0 dev-atlas-settings.$space-md-atlas;
 	}
 
 	&__stat {
-		font-size: $atlas-scale-mono-small;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		list-style: none;
-		margin-top: $space-md-atlas;
-		padding-left: $space-lg-atlas;
+		margin-top: dev-atlas-settings.$space-md-atlas;
+		padding-left: dev-atlas-settings.$space-lg-atlas;
 		text-align: left;
 	}
 }

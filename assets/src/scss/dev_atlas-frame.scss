@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
-@import "dev-atlas-definitions";
+@use "dev-atlas-definitions";
 
-@import "bindings/frame/l-atlas-container";
-@import "bindings/frame/atlas-search";
-@import "bindings/frame/atlas-aside-ctrl";
-@import "bindings/frame/atlas-header";
-@import "bindings/frame/atlas-aside";
-@import "bindings/frame/atlas-nav";
-@import "bindings/frame/atlas-footer-copyright";
-@import "bindings/frame/atlas-loader";
+@use "bindings/frame/l-atlas-container";
+@use "bindings/frame/atlas-search";
+@use "bindings/frame/atlas-aside-ctrl";
+@use "bindings/frame/atlas-header";
+@use "bindings/frame/atlas-aside";
+@use "bindings/frame/atlas-nav";
+@use "bindings/frame/atlas-footer-copyright";
+@use "bindings/frame/atlas-loader";

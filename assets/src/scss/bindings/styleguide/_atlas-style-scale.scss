@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 .atlas-style-scale {
 	align-items: center;
 	display: flex;
@@ -24,10 +26,10 @@
 	}
 
 	&__name {
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		min-width: 200px;
-		padding-left: $space-md-atlas;
+		padding-left: dev-atlas-settings.$space-md-atlas;
 		width: 200px;
 	}
 }

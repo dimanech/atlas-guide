@@ -1,5 +1,7 @@
+@use "../../dev-atlas-settings";
+
 .atlas-style-palette {
-	font-family: $font-sans-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	text-align: center;
 
 	&__swatch {
@@ -11,7 +13,7 @@
 	}
 
 	&__caption {
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 	}
 }

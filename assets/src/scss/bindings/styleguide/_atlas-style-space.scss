@@ -1,9 +1,12 @@
+@use "sass:color";
+@use "../../dev-atlas-settings";
+
 .atlas-style-space {
-	margin: $space-lg-atlas 0;
+	margin: dev-atlas-settings.$space-lg-atlas 0;
 
 	&__text {
-		background-color: $color-blue79-atlas;
-		color: $color-blue79-atlas;
+		background-color: dev-atlas-settings.$color-blue79-atlas;
+		color: dev-atlas-settings.$color-blue79-atlas;
 	}
 
 	&__name {
@@ -14,9 +17,9 @@
 	}
 
 	&__spacer {
-		background-color: lighten($color-blue79-atlas, 15%);
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		background-color: color.adjust(dev-atlas-settings.$color-blue79-atlas, $lightness: 15%);
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		position: relative;
 		text-align: center;
 	}
@@ -32,7 +35,7 @@
 		}
 
 		.atlas-style-space__name {
-			padding-left: $space-sm-atlas;
+			padding-left: dev-atlas-settings.$space-sm-atlas;
 			transform: rotate(90deg);
 			white-space: nowrap;
 		}
@@ -45,8 +48,8 @@
 	bottom: 0;
 	box-sizing: border-box;
 	color: deeppink;
-	font-family: $font-mono-atlas;
-	font-size: $atlas-scale-mono-small;
+	font-family: dev-atlas-settings.$font-mono-atlas;
+	font-size: dev-atlas-settings.$atlas-scale-mono-small;
 	margin-left: 5px;
 	padding-right: 5px;
 	position: absolute;
@@ -96,17 +99,17 @@
 }
 
 .atlas-style-box {
-	background-color: lighten($color-blue79-atlas, 15%);
+	background-color: color.adjust(dev-atlas-settings.$color-blue79-atlas, $lightness: 15%);
 	box-sizing: border-box;
 	position: relative;
 
 	&__inner {
 		align-items: center;
-		background-color: $color-white-atlas;
+		background-color: dev-atlas-settings.$color-white-atlas;
 		box-sizing: border-box;
 		display: flex;
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		height: 100px;
 		text-align: center;
 		width: 100px;

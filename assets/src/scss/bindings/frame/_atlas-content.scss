@@ -1,13 +1,15 @@
+@use "../../dev-atlas-settings";
+
 .atlas-content {
 	all: unset;
 	box-sizing: border-box;
-	color: $atlas-color-text;
+	color: dev-atlas-settings.$atlas-color-text;
 	display: block;
 
 	&__inner {
 		margin: 0 auto;
-		min-height: calc(100vh - #{$space-md-atlas * 2});
-		padding: $space-md-atlas;
+		min-height: calc(100vh - #{dev-atlas-settings.$space-md-atlas * 2});
+		padding: dev-atlas-settings.$space-md-atlas;
 		padding-top: 0;
 		position: relative;
 	}

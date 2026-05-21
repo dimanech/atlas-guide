@@ -1,26 +1,28 @@
+@use "../../dev-atlas-settings";
+
 .atlas-component-footer {
 	all: initial;
 	background: #fafafa;
 	clear: both;
-	color: $atlas-color-text;
+	color: dev-atlas-settings.$atlas-color-text;
 	display: flex;
 	float: none;
-	font-family: $font-sans-atlas;
-	font-size: $atlas-scale-primary;
+	font-family: dev-atlas-settings.$font-sans-atlas;
+	font-size: dev-atlas-settings.$atlas-scale-primary;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	justify-content: space-between;
-	margin: $space-lg-atlas -#{$space-md-atlas} -#{$space-md-atlas};
+	margin: dev-atlas-settings.$space-lg-atlas -#{dev-atlas-settings.$space-md-atlas} -#{dev-atlas-settings.$space-md-atlas};
 
 	&__item {
-		padding: $space-md-atlas;
+		padding: dev-atlas-settings.$space-md-atlas;
 		width: 50%;
 	}
 
 	&__section {
 		display: flex;
 		margin: 0;
-		padding: $space-md-atlas 0 0;
+		padding: dev-atlas-settings.$space-md-atlas 0 0;
 		position: relative;
 
 		& + & {

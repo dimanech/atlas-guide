@@ -1,10 +1,12 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-title {
 	all: unset;
-	color: $atlas-color-text;
+	color: dev-atlas-settings.$atlas-color-text;
 	display: block;
-	font-family: $font-sans-atlas;
-	font-size: $scale-xxl-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
+	font-size: dev-atlas-settings.$scale-xxl-atlas;
 	font-weight: bold;
 	letter-spacing: -0.04em;
-	margin: $space-lg-atlas 0;
+	margin: dev-atlas-settings.$space-lg-atlas 0;
 }

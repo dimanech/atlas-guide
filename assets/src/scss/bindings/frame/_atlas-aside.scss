@@ -1,8 +1,10 @@
+@use "../../dev-atlas-settings";
+
 .atlas-aside {
 	all: initial;
-	background-color: $atlas-aside-bg;
+	background-color: dev-atlas-settings.$atlas-aside-bg;
 	bottom: 0;
-	color: $atlas-color-text;
+	color: dev-atlas-settings.$atlas-color-text;
 	display: flex;
 	flex-direction: column;
 	-moz-osx-font-smoothing: grayscale;
@@ -13,7 +15,7 @@
 	z-index: 1;
 
 	&__header {
-		padding: $space-sm-atlas;
+		padding: dev-atlas-settings.$space-sm-atlas;
 	}
 
 	&__content {
@@ -25,19 +27,19 @@
 
 	&__footer {
 		margin-top: auto;
-		padding-top: $space-md-atlas;
+		padding-top: dev-atlas-settings.$space-md-atlas;
 		position: relative;
 
 		&::after {
-			background: linear-gradient(rgba($color-white-atlas, 0), $atlas-aside-bg);
+			background: linear-gradient(rgba(dev-atlas-settings.$color-white-atlas, 0), dev-atlas-settings.$atlas-aside-bg);
 			content: "";
 			display: block;
-			height: $space-md-atlas;
+			height: dev-atlas-settings.$space-md-atlas;
 			left: 4px;
 			pointer-events: none;
 			position: absolute;
 			right: 0;
-			top: -#{$space-md-atlas};
+			top: -#{dev-atlas-settings.$space-md-atlas};
 			z-index: 2;
 		}
 	}

@@ -1,20 +1,22 @@
+@use "../../dev-atlas-settings";
+
 .atlas-message-global {
 	clear: both;
-	font-family: $font-sans-atlas;
-	font-size: $atlas-scale-secondary;
+	font-family: dev-atlas-settings.$font-sans-atlas;
+	font-size: dev-atlas-settings.$atlas-scale-secondary;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	margin: 0 -#{$space-md-atlas};
-	padding: $space-sm-atlas;
+	margin: 0 -#{dev-atlas-settings.$space-md-atlas};
+	padding: dev-atlas-settings.$space-sm-atlas;
 	text-align: center;
 
 	&.error {
-		background: $color-red-atlas;
-		color: $color-white-atlas;
+		background: dev-atlas-settings.$color-red-atlas;
+		color: dev-atlas-settings.$color-white-atlas;
 	}
 
 	&._warn {
-		background-color: $color-orange-atlas;
-		color: $atlas-color-text;
+		background-color: dev-atlas-settings.$color-orange-atlas;
+		color: dev-atlas-settings.$atlas-color-text;
 	}
 }

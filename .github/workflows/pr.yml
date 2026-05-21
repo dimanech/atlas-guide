@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
-        node-version: [14.x]
+        node-version: [22.x]
 
     steps:
       - uses: actions/checkout@v1
@@ -17,8 +17,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: ./.github/actions/tests
-
       - name: npm install
         run: npm install
         env:

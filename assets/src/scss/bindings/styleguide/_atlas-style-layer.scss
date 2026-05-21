@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 .atlas-style-layer {
 	padding-bottom: 100%;
 	position: relative;
@@ -6,8 +8,8 @@
 	&__box {
 		align-items: center;
 		display: flex;
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		height: 100%;
 		justify-content: center;
 		position: absolute;

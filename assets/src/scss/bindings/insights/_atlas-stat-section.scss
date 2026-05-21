@@ -1,26 +1,28 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-section {
 	all: initial;
-	color: $atlas-color-text;
-	margin: $space-xl-atlas 0;
+	color: dev-atlas-settings.$atlas-color-text;
+	margin: dev-atlas-settings.$space-xl-atlas 0;
 	position: relative;
 
 	&__title,
 	&__title-sub {
 		all: initial;
-		color: $atlas-color-text;
+		color: dev-atlas-settings.$atlas-color-text;
 		display: block;
-		font-family: $font-sans-atlas;
+		font-family: dev-atlas-settings.$font-sans-atlas;
 		font-weight: bold;
 		letter-spacing: -0.04em;
 	}
 
 	&__title {
-		font-size: $scale-xl-atlas;
-		margin: $space-lg-atlas 0 $space-md-atlas;
+		font-size: dev-atlas-settings.$scale-xl-atlas;
+		margin: dev-atlas-settings.$space-lg-atlas 0 dev-atlas-settings.$space-md-atlas;
 	}
 
 	&__title-sub {
-		font-size: $scale-lg-atlas;
-		margin: $space-sm-atlas 0;
+		font-size: dev-atlas-settings.$scale-lg-atlas;
+		margin: dev-atlas-settings.$space-sm-atlas 0;
 	}
 }

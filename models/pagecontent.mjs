@@ -11,12 +11,8 @@ const __dirname = dirname(__filename);
 setOptions({
     renderer: renderer,
     gfm: true,
-    tables: true,
     breaks: false,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false
+    pedantic: false
 });
 
 const markdownTemplates = '../views/includes/markdown/';
@@ -32,16 +28,35 @@ const elements = {
     'table': getFile(markdownTemplates + 'table.mustache')
 };
 
-renderer.paragraph = text => mustache.render(elements.paragraph, {text: text});
-
-renderer.list = (body, ordered) => {
-    const ol = mustache.render(elements.ol, {body: body});
-    const ul = mustache.render(elements.ul, {body: body});
-
-    return ordered ? ol : ul;
+renderer.paragraph = function({ tokens }) {
+    return mustache.render(elements.paragraph, {text: this.parser.parseInline(tokens)});
 };
 
-renderer.table = (header, body) => mustache.render(elements.table, {header: header, body: body});
+renderer.list = function(token) {
+    let body = '';
+    for (const item of token.items) {
+        body += this.listitem(item);
+    }
+    const template = token.ordered ? elements.ol : elements.ul;
+    return mustache.render(template, {body: body});
+};
+
+renderer.table = function(token) {
+    let headerCells = '';
+    for (const cell of token.header) {
+        headerCells += this.tablecell(cell);
+    }
+    const header = this.tablerow({text: headerCells});
+    let body = '';
+    for (const row of token.rows) {
+        let rowCells = '';
+        for (const cell of row) {
+            rowCells += this.tablecell(cell);
+        }
+        body += this.tablerow({text: rowCells});
+    }
+    return mustache.render(elements.table, {header: header, body: body});
+};
 
 renderer.hr = () => elements.hr;
 
@@ -85,36 +100,35 @@ function mdImport(fileURL, options) {
     options = options || {};
 
     let codeItemCount = 0;
-    let content = '';
+    let content;
     let toc = [];
     let isNeedStat = false;
 
     // We need to keep renderers here because they changes page to page
-    renderer.heading = (text, level) => {
+    renderer.heading = function({ tokens, depth, text }) {
+        const renderedText = this.parser.parseInline(tokens);
         const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
         const heading = {
-            text: text,
-            level: level,
+            text: renderedText,
+            level: depth,
             escapedText: escapedText,
-            isSection: level <= 2
+            isSection: depth <= 2
         };
         toc.push(heading);
         return mustache.render(elements.heading, heading);
     };
 
-    renderer.code = (code, language) => {
-        if (language === undefined) {
-            language = '';
-        }
+    renderer.code = ({ text, lang }) => {
+        const language = lang === undefined ? '' : lang;
 
         const exampleMarkup = mustache.render(elements.example, {
-            code: code,
+            code: text,
             language: language.replace(/_example/, ''),
             title: options.title + '-code-' + codeItemCount
         });
 
         const regularMarkup = mustache.render(elements.code, {
-            code: code,
+            code: text,
             language: language.replace(/_.*$/, ''),
             class: language
         });

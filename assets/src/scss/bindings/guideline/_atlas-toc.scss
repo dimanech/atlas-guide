@@ -1,20 +1,23 @@
+@use "sass:color";
+@use "../../dev-atlas-settings";
+
 .atlas-toc {
 	all: initial;
-	background: $color-white-atlas linear-gradient(to top, rgba(black, 0), rgba(black, 0.1)) no-repeat;
+	background: dev-atlas-settings.$color-white-atlas linear-gradient(to top, rgba(black, 0), rgba(black, 0.1)) no-repeat;
 	background-size: 1px 100%;
 	bottom: 0;
 	float: right;
-	font-family: $font-sans-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	font-size: 12px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	margin-left: $space-md-atlas;
+	margin-left: dev-atlas-settings.$space-md-atlas;
 	overflow: auto;
 	-webkit-overscroll-behavior: contain;
 	-ms-scroll-chaining: none;
 	overscroll-behavior: contain; /* stylelint-disable-line */
-	padding-left: $space-md-atlas;
-	padding-top: $space-sm-atlas;
+	padding-left: dev-atlas-settings.$space-md-atlas;
+	padding-top: dev-atlas-settings.$space-sm-atlas;
 	position: relative;
 	right: 0;
 	top: 0;
@@ -26,7 +29,7 @@
 	}
 
 	&__ln {
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 		display: block;
 		overflow: hidden;
 		text-decoration: underline;
@@ -35,11 +38,11 @@
 
 		&:hover,
 		&:focus {
-			color: darken($color-blue-atlas, 15%);
+			color: color.adjust(dev-atlas-settings.$color-blue-atlas, $lightness: -15%);
 		}
 
 		&:active {
-			color: $color-orange-atlas;
+			color: dev-atlas-settings.$color-orange-atlas;
 		}
 
 		&_1 {
@@ -49,23 +52,23 @@
 
 		&_2 {
 			font-weight: bold;
-			margin-left: $space-md-atlas;
+			margin-left: dev-atlas-settings.$space-md-atlas;
 		}
 
 		&_3 {
-			margin-left: $space-md-atlas * 2;
+			margin-left: dev-atlas-settings.$space-md-atlas * 2;
 		}
 
 		&_4 {
-			margin-left: $space-md-atlas * 3;
+			margin-left: dev-atlas-settings.$space-md-atlas * 3;
 		}
 
 		&_5 {
-			margin-left: $space-md-atlas * 4;
+			margin-left: dev-atlas-settings.$space-md-atlas * 4;
 		}
 
 		&_6 {
-			margin-left: $space-md-atlas * 5;
+			margin-left: dev-atlas-settings.$space-md-atlas * 5;
 		}
 	}
 }

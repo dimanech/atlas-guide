@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 /*md
 
 # l-atlas-container
@@ -60,7 +62,7 @@ And used for hide parts of aside for this case.
 
 	&__aside {
 		bottom: 0;
-		box-shadow: 1px 0 0 0 $atlas-aside-bd;
+		box-shadow: 1px 0 0 0 dev-atlas-settings.$atlas-aside-bd;
 		left: 0;
 		position: fixed;
 		top: 0;
@@ -69,7 +71,7 @@ And used for hide parts of aside for this case.
 	}
 
 	&__main {
-		background-color: $color-white-atlas;
+		background-color: dev-atlas-settings.$color-white-atlas;
 		margin-left: 250px;
 		position: relative;
 		z-index: 1;

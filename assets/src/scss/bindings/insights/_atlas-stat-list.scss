@@ -1,15 +1,17 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-list {
 	all: initial;
-	color: $color-blue-atlas;
+	color: dev-atlas-settings.$color-blue-atlas;
 	display: block;
-	font-family: $font-mono-atlas;
+	font-family: dev-atlas-settings.$font-mono-atlas;
 	font-size: 12.8px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	line-height: 1.2;
 	list-style-type: disc;
-	margin: $space-md-atlas 0;
-	padding: 0 $space-md-atlas;
+	margin: dev-atlas-settings.$space-md-atlas 0;
+	padding: 0 dev-atlas-settings.$space-md-atlas;
 
 	&__item {
 		display: list-item;
@@ -18,7 +20,7 @@
 	}
 
 	.atlas-stat-item {
-		color: $atlas-color-text;
+		color: dev-atlas-settings.$atlas-color-text;
 		overflow: visible;
 	}
 

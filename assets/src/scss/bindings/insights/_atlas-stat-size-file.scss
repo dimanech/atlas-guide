@@ -1,13 +1,15 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-size-file {
 	all: initial;
-	border-bottom: 1px solid $color-blue79-atlas;
-	color: $atlas-color-text;
+	border-bottom: 1px solid dev-atlas-settings.$color-blue79-atlas;
+	color: dev-atlas-settings.$atlas-color-text;
 	display: block;
-	font-family: $font-mono-atlas;
-	font-size: $atlas-scale-mono-small;
+	font-family: dev-atlas-settings.$font-mono-atlas;
+	font-size: dev-atlas-settings.$atlas-scale-mono-small;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	line-height: $space-md-atlas;
+	line-height: dev-atlas-settings.$space-md-atlas;
 	padding-top: 80px;
 	position: relative;
 
@@ -17,8 +19,8 @@
 		vertical-align: bottom;
 
 		rect {
-			fill: $color-blue79-atlas;
-			stroke: $color-blue-atlas;
+			fill: dev-atlas-settings.$color-blue79-atlas;
+			stroke: dev-atlas-settings.$color-blue-atlas;
 			stroke-width: 1px;
 		}
 	}
@@ -34,7 +36,7 @@
 	}
 
 	&__size {
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 	}
 
 	&__title {

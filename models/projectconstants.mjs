@@ -2,7 +2,7 @@ import path from 'node:path';
 import postcss from 'postcss';
 import scss from 'postcss-scss';
 import mustache from 'mustache';
-import sass from 'sass';
+import * as sass from 'sass';
 
 /**
  * Prepare constants data based on config and declared constants. This will be used to compile CSS
@@ -46,18 +46,18 @@ function compileStyles(constantsData, additionalSassImports) {
     let cssString = '';
 
     try {
-        const styles = sass.renderSync({
-            data: mustache.render(
+        const styles = sass.compileString(
+            mustache.render(
                 template,
                 {constants: constantsData.rawConstants},
                 {constantsFile: constantsData.fileString}),
-            includePaths: additionalSassImports
-        });
-        cssString = styles.css.toString();
+            {loadPaths: additionalSassImports}
+        );
+        cssString = styles.css;
     } catch (error) {
         console.log('Warn: Atlas: Could not compile configuration file. ' +
             'Styleguide page and consistency checks could not be prepared.\n' +
-            'Ensure that "scssAdditionalImportsArray" has all additional imports paths.\n', error.formatted);
+            'Ensure that "scssAdditionalImportsArray" has all additional imports paths.\n', error.message);
     }
 
     return cssString;

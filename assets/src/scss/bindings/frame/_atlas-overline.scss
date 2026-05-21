@@ -1,13 +1,15 @@
+@use "../../dev-atlas-settings";
+
 .atlas-overline {
-	font-family: $font-sans-atlas;
-	font-size: $scale-lg-atlas;
-	line-height: $space-md-atlas;
-	margin-bottom: -#{$space-md-atlas};
-	padding-top: $space-md-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
+	font-size: dev-atlas-settings.$scale-lg-atlas;
+	line-height: dev-atlas-settings.$space-md-atlas;
+	margin-bottom: -#{dev-atlas-settings.$space-md-atlas};
+	padding-top: dev-atlas-settings.$space-md-atlas;
 	text-transform: capitalize;
 
 	svg {
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 		height: 24px;
 		position: relative;
 		top: 4px;

@@ -1,24 +1,26 @@
+@use "../../dev-atlas-settings";
+
 .atlas-cross-dependencies-graph {
-	color: $atlas-color-text;
-	margin-top: -#{$space-md-atlas};
+	color: dev-atlas-settings.$atlas-color-text;
+	margin-top: -#{dev-atlas-settings.$space-md-atlas};
 	user-select: none;
 
 	.link {
-		stroke: $color-blue-atlas;
+		stroke: dev-atlas-settings.$color-blue-atlas;
 	}
 
 	.node__circle {
-		fill: $color-blue-atlas;
-		stroke: $color-white-atlas;
+		fill: dev-atlas-settings.$color-blue-atlas;
+		stroke: dev-atlas-settings.$color-white-atlas;
 	}
 
 	.node__text {
 		fill: currentColor;
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 
 		&._partial {
-			fill: $color-blue-atlas;
+			fill: dev-atlas-settings.$color-blue-atlas;
 		}
 	}
 }

@@ -1,6 +1,9 @@
+@use "../../defintions/tooltip";
+@use "../../dev-atlas-settings";
+
 .atlas-stat-info {
 	display: inline-block;
-	font-family: $font-sans-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	font-size: 12.8px;
 	font-weight: normal;
 	letter-spacing: 0;
@@ -8,25 +11,25 @@
 	position: relative;
 
 	svg {
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 		cursor: help;
 		display: block;
 	}
 
 	&__popup {
-		@include tooltip($_state: stale, $orientation: left);
+		@include tooltip.tooltip($_state: stale, $orientation: left);
 		bottom: -10px;
 		left: 20px;
 		min-width: 200px;
 
 		&::before {
-			@include tooltip(__arrow);
+			@include tooltip.tooltip(__arrow);
 		}
 	}
 
 	&:hover {
 		.atlas-stat-info__popup {
-			@include tooltip($_state: activated);
+			@include tooltip.tooltip($_state: activated);
 		}
 	}
 }

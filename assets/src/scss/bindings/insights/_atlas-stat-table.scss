@@ -1,6 +1,8 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-table {
 	display: block;
-	font-family: $font-mono-atlas;
+	font-family: dev-atlas-settings.$font-mono-atlas;
 	font-size: 12.8px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -15,7 +17,7 @@
 
 	&__head {
 		.atlas-stat-table__cell {
-			border-bottom: 1px solid $atlas-color-divider;
+			border-bottom: 1px solid dev-atlas-settings.$atlas-color-divider;
 		}
 	}
 
@@ -29,17 +31,17 @@
 
 		&:nth-child(even) {
 			.atlas-stat-table__cell {
-				background-color: rgba($color-blue79-atlas, 0.15);
+				background-color: rgba(dev-atlas-settings.$color-blue79-atlas, 0.15);
 			}
 		}
 	}
 
 	&__cell {
-		padding: 0.3em $space-md-atlas;
+		padding: 0.3em dev-atlas-settings.$space-md-atlas;
 		vertical-align: top;
 
 		&._title {
-			border-right: 1px solid $atlas-color-divider;
+			border-right: 1px solid dev-atlas-settings.$atlas-color-divider;
 			font-weight: bold;
 			min-width: 100px;
 			overflow: hidden;

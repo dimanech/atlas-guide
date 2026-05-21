@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 @use "sass:math";
 
 .atlas-style-columns {
@@ -5,7 +7,7 @@
 	flex-wrap: wrap;
 
 	&__item {
-		margin-bottom: $space-md-atlas;
+		margin-bottom: dev-atlas-settings.$space-md-atlas;
 
 		&._bottom {
 			align-self: flex-end;
