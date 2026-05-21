@@ -1,9 +1,12 @@
+@use "sass:color";
+@use "../../dev-atlas-settings";
+
 .atlas-nav { // atlas-outline-view
-	font-family: $font-sans-atlas;
-	font-size: $atlas-scale-secondary;
+	font-family: dev-atlas-settings.$font-sans-atlas;
+	font-size: dev-atlas-settings.$atlas-scale-secondary;
 	line-height: 1.2;
 	list-style: none;
-	padding-bottom: $space-md-atlas;
+	padding-bottom: dev-atlas-settings.$space-md-atlas;
 
 	&__item {
 		display: block;
@@ -19,8 +22,8 @@
 		color: inherit;
 		cursor: pointer;
 		display: block;
-		font-family: $font-sans-atlas;
-		font-size: $atlas-scale-secondary;
+		font-family: dev-atlas-settings.$font-sans-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-secondary;
 		line-height: 1.2;
 		overflow: hidden;
 		padding: 2px 0 4px;
@@ -38,11 +41,11 @@
 		}
 
 		&:active {
-			color: $color-blue-atlas;
+			color: dev-atlas-settings.$color-blue-atlas;
 		}
 
 		&.js-current-page {
-			background-color: $atlas-aside-selected;
+			background-color: dev-atlas-settings.$atlas-aside-selected;
 			color: black;
 			cursor: default;
 			pointer-events: none;
@@ -92,9 +95,9 @@
 	// Recursive nesting level structure - refactor me later
 	> .atlas-nav__item {
 		> .atlas-nav__ln {
-			background: $atlas-aside-bg;
+			background: dev-atlas-settings.$atlas-aside-bg;
 			display: block;
-			padding: $space-sm-atlas 0 $space-sm-atlas $space-md-atlas;
+			padding: dev-atlas-settings.$space-sm-atlas 0 dev-atlas-settings.$space-sm-atlas dev-atlas-settings.$space-md-atlas;
 			position: sticky;
 			top: 0;
 			z-index: 1;
@@ -106,25 +109,25 @@
 				bottom: 0;
 				content: "";
 				height: 1px;
-				left: $space-md-atlas;
+				left: dev-atlas-settings.$space-md-atlas;
 				position: absolute;
-				right: $space-md-atlas;
+				right: dev-atlas-settings.$space-md-atlas;
 			}
 		}
 
 		.atlas-nav__item {
 			> .atlas-nav__ln {
-				padding-left: ($space-md-atlas * 2);
+				padding-left: (dev-atlas-settings.$space-md-atlas * 2);
 			}
 
 			.atlas-nav__item {
 				> .atlas-nav__ln {
-					padding-left: ($space-md-atlas * 3);
+					padding-left: (dev-atlas-settings.$space-md-atlas * 3);
 				}
 
 				.atlas-nav__item {
 					> .atlas-nav__ln {
-						padding-left: ($space-md-atlas * 4);
+						padding-left: (dev-atlas-settings.$space-md-atlas * 4);
 					}
 				}
 			}
@@ -151,7 +154,7 @@
 
 .js-searching {
 	.atlas-nav__ln {
-		color: lighten($atlas-color-text, 40%);
+		color: color.adjust(dev-atlas-settings.$atlas-color-text, $lightness: 40%);
 		cursor: default;
 		pointer-events: none;
 	}
@@ -159,14 +162,14 @@
 
 .js-found {
 	.atlas-nav__ln {
-		color: lighten($atlas-color-text, 40%);
+		color: color.adjust(dev-atlas-settings.$atlas-color-text, $lightness: 40%);
 		cursor: default;
 		display: none;
 		pointer-events: none;
 	}
 
 	.atlas-nav__ln.js-relevant {
-		color: $atlas-color-text;
+		color: dev-atlas-settings.$atlas-color-text;
 		cursor: pointer;
 		display: block;
 		pointer-events: initial;
@@ -177,7 +180,7 @@
 		}
 
 		&:active {
-			color: $color-blue-atlas;
+			color: dev-atlas-settings.$color-blue-atlas;
 		}
 	}
 

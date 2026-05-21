@@ -1,29 +1,32 @@
+@use "sass:color";
+@use "../../dev-atlas-settings";
+
 .atlas-component-structure {
-	margin-bottom: $space-lg-atlas;
-	margin-top: $space-lg-atlas;
+	margin-bottom: dev-atlas-settings.$space-lg-atlas;
+	margin-top: dev-atlas-settings.$space-lg-atlas;
 
 	&__title {
 		display: none;
-		font-size: $scale-lg-atlas;
+		font-size: dev-atlas-settings.$scale-lg-atlas;
 		font-weight: bold;
-		line-height: $space-md-atlas;
-		margin-bottom: $space-md-atlas;
+		line-height: dev-atlas-settings.$space-md-atlas;
+		margin-bottom: dev-atlas-settings.$space-md-atlas;
 	}
 
 	&__nodes {
 		background: linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)) no-repeat;
 		background-position: 26px 0;
 		background-size: 1px 100%;
-		font-family: $font-mono-atlas;
+		font-family: dev-atlas-settings.$font-mono-atlas;
 		font-size: 12.8px;
 		list-style: none;
 		padding-bottom: 5px;
-		padding-left: $space-md-atlas;
+		padding-left: dev-atlas-settings.$space-md-atlas;
 		position: relative;
 
 		&::after {
 			background-color: rgba(0, 0, 0, 0.3);
-			border-radius: $atlas-radius;
+			border-radius: dev-atlas-settings.$atlas-radius;
 			bottom: 0;
 			content: "";
 			height: 3px;
@@ -66,9 +69,9 @@
 		background: grey;
 		border-radius: 3px;
 		box-shadow: 0 2px 3px rgba(black, 0.1);
-		color: $color-white-atlas;
+		color: dev-atlas-settings.$color-white-atlas;
 		display: inline-block;
-		font-family: $font-sans-atlas;
+		font-family: dev-atlas-settings.$font-sans-atlas;
 		font-size: 11px;
 		font-weight: bold;
 		height: 15px;
@@ -82,7 +85,7 @@
 		&._container,
 		&._mixin {
 			background-color: $media;
-			color: $atlas-color-text;
+			color: dev-atlas-settings.$atlas-color-text;
 			text-shadow: none;
 
 			&::before {
@@ -101,7 +104,7 @@
 
 		&._condition {
 			background-color: $media;
-			color: $atlas-color-text;
+			color: dev-atlas-settings.$atlas-color-text;
 			text-shadow: none;
 
 			&::before {
@@ -111,7 +114,7 @@
 
 		&._extend {
 			background-color: $media;
-			color: $atlas-color-text;
+			color: dev-atlas-settings.$atlas-color-text;
 			text-shadow: none;
 
 			&::before {
@@ -140,7 +143,7 @@
 		}
 
 		&._modifier-adjacent {
-			background-color: darken($modifier, 10%);
+			background-color: color.adjust($modifier, $lightness: -10%);
 
 			&::before {
 				content: "ma";
@@ -148,7 +151,7 @@
 		}
 
 		&._modifier-implicit {
-			background-color: lighten($modifier, 10%);
+			background-color: color.adjust($modifier, $lightness: 10%);
 
 			&::before {
 				content: "mi";
@@ -156,7 +159,7 @@
 		}
 
 		&._modifier-context {
-			background-color: darken($modifier, 10%);
+			background-color: color.adjust($modifier, $lightness: -10%);
 
 			&::before {
 				content: "mc";
@@ -172,7 +175,7 @@
 		}
 
 		&._element-implicit {
-			background-color: lighten($element, 10%);
+			background-color: color.adjust($element, $lightness: 10%);
 
 			&::before {
 				content: "ei";

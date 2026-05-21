@@ -1,27 +1,29 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-bundle {
-	margin-left: -#{$space-md-atlas};
+	margin-left: -#{dev-atlas-settings.$space-md-atlas};
 	margin-top: -150px;
 	width: 100%;
 
 	.atlas-link {
-		stroke: $color-blue-atlas;
+		stroke: dev-atlas-settings.$color-blue-atlas;
 	}
 
 	.atlas-size {
-		fill: rgba($color-blue-atlas, 0.2);
-		stroke: $color-blue79-atlas;
+		fill: rgba(dev-atlas-settings.$color-blue-atlas, 0.2);
+		stroke: dev-atlas-settings.$color-blue79-atlas;
 		stroke-dasharray: 3;
 	}
 
 	.atlas-node {
 		text {
-			fill: $atlas-color-text;
-			font-family: $font-mono-atlas;
+			fill: dev-atlas-settings.$atlas-color-text;
+			font-family: dev-atlas-settings.$font-mono-atlas;
 			font-size: 8px;
 		}
 
 		circle {
-			fill: $color-blue-atlas;
+			fill: dev-atlas-settings.$color-blue-atlas;
 		}
 
 		&._internal {
@@ -32,21 +34,21 @@
 
 		&._0 {
 			text {
-				font-family: $font-sans-atlas;
-				font-size: $scale-xl-atlas;
+				font-family: dev-atlas-settings.$font-sans-atlas;
+				font-size: dev-atlas-settings.$scale-xl-atlas;
 				font-weight: bold;
 				text-anchor: middle;
 			}
 
 			circle {
-				fill: $color-white-atlas;
+				fill: dev-atlas-settings.$color-white-atlas;
 			}
 		}
 
 		&._1 {
 			text {
-				font-family: $font-sans-atlas;
-				font-size: $scale-md-atlas;
+				font-family: dev-atlas-settings.$font-sans-atlas;
+				font-size: dev-atlas-settings.$scale-md-atlas;
 			}
 
 			circle {

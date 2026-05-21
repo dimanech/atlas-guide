@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 .atlas-aside-ctrl {
 	background: rgba(0, 0, 0, 0);
 	border: none;
@@ -32,7 +34,7 @@
 
 	&:hover,
 	&:focus {
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 	}
 
 	.js-aside-panel-hidden & {

@@ -1,7 +1,9 @@
+@use "../../dev-atlas-settings";
+
 .atlas-welcome {
 	all: initial;
-	color: $atlas-color-text;
-	font-family: $font-sans-atlas;
+	color: dev-atlas-settings.$atlas-color-text;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow: hidden;
@@ -17,8 +19,8 @@
 		font-size: 64px;
 		font-weight: bold;
 		hyphens: manual;
-		line-height: $space-md-atlas * 3;
-		margin-bottom: $space-md-atlas;
+		line-height: dev-atlas-settings.$space-md-atlas * 3;
+		margin-bottom: dev-atlas-settings.$space-md-atlas;
 
 		strong {
 			display: block;

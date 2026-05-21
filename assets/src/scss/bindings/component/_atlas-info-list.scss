@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 @use "sass:math";
 
 .atlas-info-list {
@@ -5,24 +7,24 @@
 	flex-wrap: wrap;
 	font-weight: bold;
 	list-style: none;
-	margin: 0 0 $space-md-atlas;
+	margin: 0 0 dev-atlas-settings.$space-md-atlas;
 	padding: 0;
 	text-transform: capitalize;
 	width: 100%;
 
 	&__item {
-		margin: 0 0 $space-md-atlas;
+		margin: 0 0 dev-atlas-settings.$space-md-atlas;
 		width: math.div(100%, 3);
 	}
 
 	&__total {
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 		font-size: 32px;
 		font-weight: normal;
-		padding-right: math.div($space-sm-atlas, 2);
+		padding-right: math.div(dev-atlas-settings.$space-sm-atlas, 2);
 	}
 
 	&__name {
-		padding-right: $space-sm-atlas;
+		padding-right: dev-atlas-settings.$space-sm-atlas;
 	}
 }

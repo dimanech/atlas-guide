@@ -1,15 +1,17 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-page {
 	.bar {
-		fill: $color-blue79-atlas;
+		fill: dev-atlas-settings.$color-blue79-atlas;
 	}
 
 	.bar-caption {
-		fill: $atlas-color-text;
+		fill: dev-atlas-settings.$atlas-color-text;
 		font-size: 12.8px;
 	}
 
 	.bar-caption-bottom {
-		fill: $atlas-color-text;
+		fill: dev-atlas-settings.$atlas-color-text;
 		font-size: 12.8px;
 	}
 
@@ -18,12 +20,12 @@
 		stroke: none;
 
 		&._huge {
-			fill: $color-blue79-atlas;
+			fill: dev-atlas-settings.$color-blue79-atlas;
 		}
 	}
 
 	.area-line {
-		stroke: $color-blue-atlas;
+		stroke: dev-atlas-settings.$color-blue-atlas;
 
 		&._huge {
 			stroke: none;
@@ -31,7 +33,7 @@
 	}
 
 	.tick {
-		font-family: $font-mono-atlas;
+		font-family: dev-atlas-settings.$font-mono-atlas;
 
 		line {
 			stroke: rgba(black, 0.1);
@@ -39,30 +41,30 @@
 
 		&.mean {
 			line {
-				stroke: $color-pink-atlas;
+				stroke: dev-atlas-settings.$color-pink-atlas;
 				stroke-dasharray: 5, 5;
 				stroke-width: 0.4px;
 			}
 
 			text {
-				fill: $color-pink-atlas;
+				fill: dev-atlas-settings.$color-pink-atlas;
 			}
 		}
 	}
 
 	.focus {
-		color: $atlas-color-text;
+		color: dev-atlas-settings.$atlas-color-text;
 		fill: black;
-		font-family: $font-mono-atlas;
+		font-family: dev-atlas-settings.$font-mono-atlas;
 
 		circle {
-			fill: $color-white-atlas;
-			stroke: $color-blue-atlas;
+			fill: dev-atlas-settings.$color-white-atlas;
+			stroke: dev-atlas-settings.$color-blue-atlas;
 			stroke-width: 1px;
 		}
 
 		text {
-			font-size: $atlas-scale-mono-small;
+			font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		}
 	}
 

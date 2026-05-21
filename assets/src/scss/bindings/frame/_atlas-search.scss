@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "../../dev-atlas-settings";
+
 .atlas-search {
 	$filter-icon-size: 16px;
 	$clear-icon-size: 14px;
@@ -7,20 +10,20 @@
 	&__input {
 		-webkit-appearance: none;
 		background: transparent;
-		border: 1px solid $atlas-aside-bd;
-		border-radius: $atlas-radius;
+		border: 1px solid dev-atlas-settings.$atlas-aside-bd;
+		border-radius: dev-atlas-settings.$atlas-radius;
 		box-sizing: border-box;
-		font-family: $font-sans-atlas;
+		font-family: dev-atlas-settings.$font-sans-atlas;
 		font-size: 12px;
 		height: 25px;
 		line-height: 25px;
 		outline: none;
-		padding: 0 $space-sm-atlas;
+		padding: 0 dev-atlas-settings.$space-sm-atlas;
 		text-indent: $filter-icon-size;
 		width: 100%;
 
 		&:focus {
-			background: darken($atlas-aside-bg, 5%);
+			background: color.adjust(dev-atlas-settings.$atlas-aside-bg, $lightness: -5%);
 		}
 
 		&::-webkit-search-cancel-button,
@@ -34,7 +37,7 @@
 	}
 
 	&__icon {
-		color: $atlas-color-text;
+		color: dev-atlas-settings.$atlas-color-text;
 		height: $filter-icon-size;
 		left: $icon-indent;
 		position: absolute;
@@ -42,15 +45,15 @@
 		width: $filter-icon-size;
 
 		.js-found & {
-			color: $color-blue-atlas;
+			color: dev-atlas-settings.$color-blue-atlas;
 		}
 	}
 
 	&__clear {
-		background: darken($atlas-aside-bd, 30%);
+		background: color.adjust(dev-atlas-settings.$atlas-aside-bd, $lightness: -30%);
 		border: none;
 		border-radius: 50%;
-		color: $color-white-atlas;
+		color: dev-atlas-settings.$color-white-atlas;
 		height: $clear-icon-size;
 		line-height: $clear-icon-size;
 		outline: none;
@@ -63,15 +66,15 @@
 		width: $clear-icon-size;
 
 		&:hover {
-			background: darken($atlas-aside-bd, 40%);
+			background: color.adjust(dev-atlas-settings.$atlas-aside-bd, $lightness: -40%);
 		}
 
 		&:focus {
-			background: $color-blue-atlas;
+			background: dev-atlas-settings.$color-blue-atlas;
 		}
 
 		&:active {
-			background: darken($atlas-aside-bd, 50%);
+			background: color.adjust(dev-atlas-settings.$atlas-aside-bd, $lightness: -50%);
 		}
 
 		.js-found & {

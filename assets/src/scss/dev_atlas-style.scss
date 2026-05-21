@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
-@import "dev-atlas-definitions";
+@use "dev-atlas-definitions";
 
-@import "bindings/styleguide/atlas-style-section";
-@import "bindings/styleguide/atlas-style-columns";
-@import "bindings/styleguide/atlas-style-palette";
-@import "bindings/styleguide/atlas-style-scale";
-@import "bindings/styleguide/atlas-style-font";
-@import "bindings/styleguide/atlas-style-layer";
-@import "bindings/styleguide/atlas-style-motion";
-@import "bindings/styleguide/atlas-style-space";
-@import "bindings/styleguide/atlas-style-breaks";
+@use "bindings/styleguide/atlas-style-section";
+@use "bindings/styleguide/atlas-style-columns";
+@use "bindings/styleguide/atlas-style-palette";
+@use "bindings/styleguide/atlas-style-scale";
+@use "bindings/styleguide/atlas-style-font";
+@use "bindings/styleguide/atlas-style-layer";
+@use "bindings/styleguide/atlas-style-motion";
+@use "bindings/styleguide/atlas-style-space";
+@use "bindings/styleguide/atlas-style-breaks";

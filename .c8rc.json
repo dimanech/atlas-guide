@@ -1,0 +1,6 @@
+{
+    "all": true,
+    "include": ["app/**/*.mjs", "models/**/*.mjs", "viewmodels/**/*.mjs"],
+    "exclude": ["test/**", "assets/**", "coverage/**", "tmp/**"],
+    "reporter": ["text", "html", "lcov"]
+}

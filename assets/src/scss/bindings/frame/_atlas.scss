@@ -1,9 +1,12 @@
+@use "sass:color";
+@use "../../dev-atlas-settings";
+
 @use "sass:math";
 
 .atlas {
 	all: initial;
-	color: $atlas-color-text;
-	font-family: $font-sans-atlas;
+	color: dev-atlas-settings.$atlas-color-text;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	font-size: 16px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -15,8 +18,8 @@
 		&_1,
 		&_2,
 		&_3 {
-			margin-bottom: $space-md-atlas;
-			margin-top: $space-lg-atlas;
+			margin-bottom: dev-atlas-settings.$space-md-atlas;
+			margin-top: dev-atlas-settings.$space-lg-atlas;
 		}
 
 		&_1,
@@ -27,55 +30,55 @@
 		&_6 {
 			font-weight: bold;
 			letter-spacing: -0.03em;
-			margin-bottom: $space-md-atlas;
+			margin-bottom: dev-atlas-settings.$space-md-atlas;
 		}
 
 		&_1 {
-			font-size: $scale-xxl-atlas;
+			font-size: dev-atlas-settings.$scale-xxl-atlas;
 			font-weight: bold;
 			letter-spacing: -0.04em;
 			line-height: 44px;
-			margin-top: $space-md-atlas;
+			margin-top: dev-atlas-settings.$space-md-atlas;
 			padding-top: 16px;
 		}
 
 		&_2 {
-			font-size: $scale-xl-atlas;
-			line-height: $space-lg-atlas;
+			font-size: dev-atlas-settings.$scale-xl-atlas;
+			line-height: dev-atlas-settings.$space-lg-atlas;
 		}
 
 		&_3 {
-			font-size: $scale-lg-atlas;
-			line-height: $space-md-atlas;
+			font-size: dev-atlas-settings.$scale-lg-atlas;
+			line-height: dev-atlas-settings.$space-md-atlas;
 		}
 
 		&_4 {
-			font-size: $scale-md-atlas;
+			font-size: dev-atlas-settings.$scale-md-atlas;
 			font-weight: bold;
-			line-height: $space-md-atlas;
+			line-height: dev-atlas-settings.$space-md-atlas;
 			text-transform: uppercase;
 		}
 
 		&_5 {
-			font-size: $scale-sm-atlas;
+			font-size: dev-atlas-settings.$scale-sm-atlas;
 			font-weight: bold;
-			line-height: $space-md-atlas;
+			line-height: dev-atlas-settings.$space-md-atlas;
 			text-transform: uppercase;
 		}
 
 		&_6 {
-			font-size: $scale-sm-atlas;
-			line-height: $space-md-atlas;
+			font-size: dev-atlas-settings.$scale-sm-atlas;
+			line-height: dev-atlas-settings.$space-md-atlas;
 		}
 	}
 
 	&-p {
 		display: block;
-		margin: 0 0 $space-md-atlas;
+		margin: 0 0 dev-atlas-settings.$space-md-atlas;
 		padding: 0;
 
 		a {
-			color: $color-blue-atlas;
+			color: dev-atlas-settings.$color-blue-atlas;
 			text-decoration: underline;
 			word-break: break-word;
 		}
@@ -88,18 +91,18 @@
 	&-hr {
 		border: none;
 		border-top: 1px solid;
-		color: $color-grey80-atlas;
+		color: dev-atlas-settings.$color-grey80-atlas;
 		display: block;
-		margin: $space-lg-atlas auto;
+		margin: dev-atlas-settings.$space-lg-atlas auto;
 	}
 
 	&-ol,
 	&-ul {
 		display: block;
 		list-style: disc;
-		margin-bottom: $space-md-atlas;
-		margin-top: $space-md-atlas;
-		padding-left: $space-md-atlas;
+		margin-bottom: dev-atlas-settings.$space-md-atlas;
+		margin-top: dev-atlas-settings.$space-md-atlas;
+		padding-left: dev-atlas-settings.$space-md-atlas;
 
 		li {
 			margin: 0;
@@ -114,22 +117,22 @@
 	&-table {
 		border-collapse: collapse;
 		display: table;
-		margin-bottom: $space-md-atlas;
+		margin-bottom: dev-atlas-settings.$space-md-atlas;
 
 		th,
 		td {
-			padding: #{math.div($space-sm-atlas, 2)} $space-sm-atlas #{math.div($space-sm-atlas, 2)} 0;
+			padding: #{math.div(dev-atlas-settings.$space-sm-atlas, 2)} dev-atlas-settings.$space-sm-atlas #{math.div(dev-atlas-settings.$space-sm-atlas, 2)} 0;
 		}
 
 		th {
-			border-bottom: 2px solid $atlas-color-divider;
+			border-bottom: 2px solid dev-atlas-settings.$atlas-color-divider;
 			font-weight: bold;
 		}
 	}
 
 	&-code {
 		display: block;
-		font-family: $font-mono-atlas;
+		font-family: dev-atlas-settings.$font-mono-atlas;
 		font-weight: 400;
 		line-height: 1.5;
 		position: relative;
@@ -148,12 +151,12 @@
 		}
 
 		pre {
-			background-color: lighten($color-grey95-atlas, 4%);
-			border: 1px solid $color-grey95-atlas;
+			background-color: color.adjust(dev-atlas-settings.$color-grey95-atlas, $lightness: 4%);
+			border: 1px solid dev-atlas-settings.$color-grey95-atlas;
 			border-radius: 3px;
-			margin: 0 0 $space-md-atlas;
+			margin: 0 0 dev-atlas-settings.$space-md-atlas;
 			overflow: auto;
-			padding: $space-sm-atlas;
+			padding: dev-atlas-settings.$space-sm-atlas;
 
 			code {
 				background: transparent;
@@ -169,39 +172,39 @@
 				display: block;
 				font-size: 0.8em;
 				font-weight: bold;
-				line-height: $space-md-atlas;
-				margin: -#{$space-md-atlas} 0 $space-md-atlas;
+				line-height: dev-atlas-settings.$space-md-atlas;
+				margin: -#{dev-atlas-settings.$space-md-atlas} 0 dev-atlas-settings.$space-md-atlas;
 			}
 		}
 
 		&[class*="_bad"] {
 			pre {
-				border-color: lighten($color-red-atlas, 16%);
+				border-color: color.adjust(dev-atlas-settings.$color-red-atlas, $lightness: 16%);
 			}
 
 			&::after {
-				color: $color-red-atlas;
+				color: dev-atlas-settings.$color-red-atlas;
 				content: "Don’t.";
 			}
 		}
 
 		&[class*="_good"] {
 			pre {
-				border-color: lighten($color-green-atlas, 16%);
+				border-color: color.adjust(dev-atlas-settings.$color-green-atlas, $lightness: 16%);
 			}
 
 			&::after {
-				color: $color-green-atlas;
+				color: dev-atlas-settings.$color-green-atlas;
 				content: "Do.";
 			}
 		}
 	}
 
 	code {
-		background-color: lighten($color-grey90-atlas, 5%);
-		border: 1px solid $color-grey90-atlas;
+		background-color: color.adjust(dev-atlas-settings.$color-grey90-atlas, $lightness: 5%);
+		border: 1px solid dev-atlas-settings.$color-grey90-atlas;
 		border-radius: 5px;
-		font-family: $font-mono-atlas;
+		font-family: dev-atlas-settings.$font-mono-atlas;
 		font-size: 0.85em;
 		line-height: 1.2;
 		padding: 0.1em 0.3em;
@@ -213,7 +216,7 @@
 .atlas-ul,
 .atlas-ol,
 .atlas-code {
-	color: $atlas-color-text; // revert text to darkgrey for all clients that have alterations
+	color: dev-atlas-settings.$atlas-color-text; // revert text to darkgrey for all clients that have alterations
 	max-width: 800px;
 }
 
@@ -221,9 +224,9 @@
 .atlas-content__inner {
 	.atlas-title_1 {
 		+ .atlas-p {
-			font-size: $scale-lg-atlas;
+			font-size: dev-atlas-settings.$scale-lg-atlas;
 			line-height: 1.2;
-			margin-bottom: $space-lg-atlas;
+			margin-bottom: dev-atlas-settings.$space-lg-atlas;
 		}
 	}
 }
@@ -241,9 +244,9 @@
 	}
 
 	&__anchor {
-		color: $color-grey80-atlas;
-		font-size: $scale-lg-atlas;
-		padding-left: $space-md-atlas;
+		color: dev-atlas-settings.$color-grey80-atlas;
+		font-size: dev-atlas-settings.$scale-lg-atlas;
+		padding-left: dev-atlas-settings.$space-md-atlas;
 
 		&::after {
 			background: linear-gradient(to left, rgba(black, 0.1), rgba(black, 0)) no-repeat right bottom;
@@ -259,7 +262,7 @@
 
 		&:hover,
 		&:focus {
-			color: $color-grey60-atlas;
+			color: dev-atlas-settings.$color-grey60-atlas;
 
 			&::after {
 				width: 100%;
@@ -267,7 +270,7 @@
 		}
 
 		&:active {
-			color: $color-blue-atlas;
+			color: dev-atlas-settings.$color-blue-atlas;
 		}
 
 		svg {
@@ -278,10 +281,10 @@
 
 	&__highlight {
 		bottom: -5px;
-		left: -#{$space-md-atlas};
+		left: -#{dev-atlas-settings.$space-md-atlas};
 		pointer-events: none;
 		position: absolute;
-		right: -#{$space-md-atlas};
+		right: -#{dev-atlas-settings.$space-md-atlas};
 		top: -5px;
 		z-index: 0;
 	}
@@ -304,17 +307,17 @@
 }
 
 .atlas-title_2 { /* stylelint-disable-line */
-	background: rgba($color-white-atlas, 0.9);
+	background: rgba(dev-atlas-settings.$color-white-atlas, 0.9);
 	border-bottom: 1px solid rgba(black, 0.1);
-	margin: 0 -#{$space-md-atlas} $space-lg-atlas;
-	padding: $space-sm-atlas $space-md-atlas;
+	margin: 0 -#{dev-atlas-settings.$space-md-atlas} dev-atlas-settings.$space-lg-atlas;
+	padding: dev-atlas-settings.$space-sm-atlas dev-atlas-settings.$space-md-atlas;
 	position: sticky;
 	top: -1px; // compensate composition positioning bug
 	z-index: 5;
 
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
-		background: rgba($color-white-atlas, 0.7);
+		background: rgba(dev-atlas-settings.$color-white-atlas, 0.7);
 	}
 
 	.atlas-title__highlight {
@@ -327,7 +330,7 @@
 
 @keyframes target-highlight {
 	0% {
-		background-color: $color-orange-atlas;
+		background-color: dev-atlas-settings.$color-orange-atlas;
 	}
 
 	100% {

@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 .atlas-copier {
 	cursor: pointer;
 	position: relative;
@@ -5,14 +7,14 @@
 	&__message {
 		background-color: rgba(black, 0.5);
 		border-radius: 5px;
-		color: $color-white-atlas;
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-secondary;
+		color: dev-atlas-settings.$color-white-atlas;
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-secondary;
 		font-style: normal;
 		left: 50%;
 		line-height: 10px;
 		min-width: 20px;
-		padding: $space-md-atlas;
+		padding: dev-atlas-settings.$space-md-atlas;
 		pointer-events: none;
 		position: absolute;
 		text-align: center;
@@ -39,6 +41,6 @@
 	}
 
 	&:hover &__text {
-		color: $color-blue-atlas;
+		color: dev-atlas-settings.$color-blue-atlas;
 	}
 }

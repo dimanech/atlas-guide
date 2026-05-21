@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-font {
 	display: flex;
 	flex-direction: column;
@@ -44,11 +46,11 @@
 	}
 
 	&__name {
-		border-top: 1px solid $atlas-color-divider;
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		border-top: 1px solid dev-atlas-settings.$atlas-color-divider;
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		font-weight: bold;
-		margin-top: $space-sm-atlas;
-		padding-top: $space-sm-atlas;
+		margin-top: dev-atlas-settings.$space-sm-atlas;
+		padding-top: dev-atlas-settings.$space-sm-atlas;
 	}
 }

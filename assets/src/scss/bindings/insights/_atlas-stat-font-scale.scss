@@ -1,12 +1,14 @@
+@use "../../dev-atlas-settings";
+
 @use "sass:math";
 
 .atlas-stat-font-scale {
 	all: initial;
 	align-items: flex-end; // stylelint-disable-line
-	color: $atlas-color-text;
+	color: dev-atlas-settings.$atlas-color-text;
 	display: flex;
 	flex-wrap: wrap;
-	font-family: $font-sans-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	line-height: 1.2;
 	margin: 0;
 	padding: 0;
@@ -20,16 +22,16 @@
 	}
 
 	&__example {
-		border-bottom: 1px solid $color-pink-atlas;
-		border-top: 1px solid $color-pink-atlas;
+		border-bottom: 1px solid dev-atlas-settings.$color-pink-atlas;
+		border-top: 1px solid dev-atlas-settings.$color-pink-atlas;
 		font-style: normal;
 		font-weight: normal;
 		overflow: hidden;
 	}
 
 	&__size {
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		font-style: normal;
 		font-weight: bold;
 		margin-top: 10px;

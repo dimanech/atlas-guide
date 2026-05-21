@@ -1,6 +1,8 @@
+@use "../../dev-atlas-settings";
+
 .atlas-header {
 	&__logo {
-		padding-bottom: $space-sm-atlas;
+		padding-bottom: dev-atlas-settings.$space-sm-atlas;
 		text-align: center;
 
 		svg {

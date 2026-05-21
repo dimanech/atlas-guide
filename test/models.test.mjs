@@ -51,7 +51,6 @@ describe('Models', function() {
             'guideDest': 'test/results/',
             'cssSrc': 'test/fixtures/atlas/css/'
         });
-        // const graph = require(cwd + '/models/projectimportsgraph.js');
         const importGraph = getImportsGraph(baseConfig);
 
         describe('getImportsGraph', function() {
@@ -135,8 +134,6 @@ describe('Models', function() {
         });
     });
     describe('pagecontent', function() {
-        // const pageContent = require(cwd + '/models/pagecontent');
-
         it('should return comment content if path is right', function() {
             const result = pageContent('test/fixtures/atlas/_component.scss');
             const expectedResult = getJSON(cwd + '/test/fixtures/viewmodels/pagecontent.json');
@@ -168,22 +165,19 @@ describe('Models', function() {
         });
 
         it('should return proper view model', function() {
-            // const statProject = require(cwd + '/viewmodels/statproject.js');
             const projectName = 'atlas-guide';
-            const viewModel = statProject(projectStat, projectName);
+            const viewModel = statProject(projectStat, projectName); // TODO
             const expectedViewModel = getJSON(cwd + '/test/fixtures/viewmodels/statproject.json');
             assert.deepStrictEqual(viewModel, expectedViewModel);
         });
     });
     describe('componentstat', function() {
-        // const componentstat = require(cwd + '/models/componentstat.js');
         it('should return nothing if file not scss', function() {
             const result = componentStat('/path/to/file.md', 'some');
             assert.strictEqual(result, undefined);
         });
     });
     describe('statimports', function() {
-        // const statimports = require(cwd + '/viewmodels/statimports.js');
         const importsGraph = {
             index: {
                 '/path/to/some.scss': {
@@ -203,8 +197,6 @@ describe('Models', function() {
         });
     });
     describe('projectbundle', function() {
-        // const projectBundle = require(cwd + '/models/projectbundle.js');
-        // const importsGraph = require(cwd + '/models/projectimportsgraph.js').getImportsGraph;
         const importsGraphsExpected = getJSON(cwd + '/test/fixtures/viewmodels/importsgraphs.json');
         const tests = [
             {type: 'deep', description: 'for deep tree imports'},
@@ -368,8 +360,11 @@ describe('Models', function() {
                     'colorPrefix': 'color'
                 }
             });
-            baseConfig.constants.constantsFile = '@import "../inexistent_file";';
+            baseConfig.constants.constantsFile = '@use "../inexistent_file";';
+            const originalLog = console.log;
+            console.log = () => {};
             const viewModel = getProjectConstants(baseConfig.constants);
+            console.log = originalLog;
             const expectedViewModel = {
                 'breakpoint': [],
                 'color': [],

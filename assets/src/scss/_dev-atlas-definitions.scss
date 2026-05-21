@@ -1,4 +1,4 @@
-@import "dev-atlas-settings";
+@use "dev-atlas-settings";
 
-@import "defintions/chessboard";
-@import "defintions/tooltip";
+@use "defintions/chessboard";
+@use "defintions/tooltip";

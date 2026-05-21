@@ -1,19 +1,22 @@
+@use "sass:color";
+@use "../../dev-atlas-settings";
+
 .atlas-playground {
 	clear: both;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	margin: 0 -#{$space-sm-atlas} $space-md-atlas;
-	padding: 0 $space-sm-atlas $space-sm-atlas;
+	margin: 0 -#{dev-atlas-settings.$space-sm-atlas} dev-atlas-settings.$space-md-atlas;
+	padding: 0 dev-atlas-settings.$space-sm-atlas dev-atlas-settings.$space-sm-atlas;
 	position: relative;
 
 	&__summary {
 		align-items: center;
 		background: transparent;
 		border: none;
-		color: $color-grey80-atlas;
+		color: dev-atlas-settings.$color-grey80-atlas;
 		cursor: pointer;
 		display: flex;
-		font-family: $font-mono-atlas;
+		font-family: dev-atlas-settings.$font-mono-atlas;
 		justify-content: space-between;
 		outline: none;
 		overflow: hidden;
@@ -27,7 +30,7 @@
 		}
 
 		&::after {
-			background-color: lighten($color-grey90-atlas, 10%);
+			background-color: color.adjust(dev-atlas-settings.$color-grey90-atlas, $lightness: 10%);
 			border-radius: 5px;
 			bottom: 0;
 			content: "";
@@ -40,17 +43,17 @@
 
 		&:hover,
 		&:focus {
-			color: $atlas-color-text;
+			color: dev-atlas-settings.$atlas-color-text;
 
 			&::after {
-				background-color: $color-grey95-atlas;
+				background-color: dev-atlas-settings.$color-grey95-atlas;
 			}
 		}
 
 		details[open] &,
 		&[aria-expanded="true"] {
 			background-color: #38382d;
-			color: $color-white-atlas;
+			color: dev-atlas-settings.$color-white-atlas;
 
 			&::after {
 				background-color: #38382d;
@@ -58,17 +61,17 @@
 		}
 
 		&:focus:active {
-			background-color: darken(#38382d, 5%);
-			color: $color-white-atlas;
+			background-color: color.adjust(#38382d, $lightness: -5%);
+			color: dev-atlas-settings.$color-white-atlas;
 			transition: none;
 
 			&::after {
-				background-color: darken(#38382d, 5%);
+				background-color: color.adjust(#38382d, $lightness: -5%);
 			}
 		}
 
 		&-text {
-			font-size: $atlas-scale-mono-small;
+			font-size: dev-atlas-settings.$atlas-scale-mono-small;
 			line-height: 25px;
 			pointer-events: none;
 			position: relative;
@@ -135,7 +138,7 @@
 
 		code {
 			color: whitesmoke;
-			font-family: $font-mono-atlas;
+			font-family: dev-atlas-settings.$font-mono-atlas;
 			font-size: 12.75px;
 			line-height: 1.2;
 			outline: none !important; // stylelint-disable-line
@@ -143,10 +146,10 @@
 	}
 
 	&__example {
-		background-color: $color-white-atlas;
-		border: 1px solid $color-grey90-atlas;
+		background-color: dev-atlas-settings.$color-white-atlas;
+		border: 1px solid dev-atlas-settings.$color-grey90-atlas;
 		border-radius: 3px;
-		padding: $space-sm-atlas;
+		padding: dev-atlas-settings.$space-sm-atlas;
 		position: relative;
 		z-index: 1;
 	}
@@ -154,15 +157,15 @@
 	&__notifier {
 		background-color: rgba(black, 0.5);
 		border-radius: 5px;
-		color: $color-white-atlas;
-		font-family: $font-mono-atlas;
+		color: dev-atlas-settings.$color-white-atlas;
+		font-family: dev-atlas-settings.$font-mono-atlas;
 		font-size: 20px;
 		font-style: normal;
 		left: 50%;
 		line-height: 20px;
 		min-width: 20px;
 		opacity: 0;
-		padding: $space-md-atlas;
+		padding: dev-atlas-settings.$space-md-atlas;
 		pointer-events: none;
 		position: absolute;
 		text-align: center;
@@ -183,14 +186,14 @@
 		appearance: none;
 		background-color: transparent;
 		border: none;
-		color: $color-grey80-atlas;
+		color: dev-atlas-settings.$color-grey80-atlas;
 		cursor: pointer;
 		position: absolute;
 		right: 10px;
 		top: 0;
 
 		&:hover {
-			color: $color-white-atlas;
+			color: dev-atlas-settings.$color-white-atlas;
 		}
 	}
 
@@ -206,7 +209,7 @@
 // Blueprint
 .atlas-playground.js-opened {
 	.atlas-playground__example {
-		background-color: $atlas-color-text;
+		background-color: dev-atlas-settings.$atlas-color-text;
 		background-image:
 			linear-gradient(0deg, transparent 7px, hsla(205, 65%, 80%, 0.25) 7px),
 			linear-gradient(90deg, transparent 7px, hsla(205, 65%, 80%, 0.25) 7px);

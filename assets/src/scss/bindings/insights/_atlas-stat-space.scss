@@ -1,6 +1,8 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-space {
 	all: initial;
-	color: $atlas-color-text;
+	color: dev-atlas-settings.$atlas-color-text;
 	display: block;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -12,13 +14,13 @@
 	}
 
 	&__line {
-		background-color: $color-blue79-atlas;
-		border-right: 1px solid $color-pink-atlas;
+		background-color: dev-atlas-settings.$color-blue79-atlas;
+		border-right: 1px solid dev-atlas-settings.$color-pink-atlas;
 	}
 
 	&__caption {
-		font-family: $font-mono-atlas;
-		font-size: $atlas-scale-mono-small;
+		font-family: dev-atlas-settings.$font-mono-atlas;
+		font-size: dev-atlas-settings.$atlas-scale-mono-small;
 		font-style: normal;
 		font-weight: normal;
 		padding-right: 5px;

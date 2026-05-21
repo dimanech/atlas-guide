@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@import "dev-atlas-settings";
+@use "dev-atlas-settings";
 
 .atlas-playground {
 	pre[class*="language-"] {

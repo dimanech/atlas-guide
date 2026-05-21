@@ -1,3 +1,5 @@
+@use "../../dev-atlas-settings";
+
 @use "sass:math";
 
 .atlas-constant {
@@ -7,7 +9,7 @@
 
 	&__item {
 		display: flex;
-		margin: $space-md-atlas 0;
+		margin: dev-atlas-settings.$space-md-atlas 0;
 	}
 
 	&__caption {
@@ -41,11 +43,11 @@
 		}
 
 		&._success {
-			color: $color-green-atlas;
+			color: dev-atlas-settings.$color-green-atlas;
 		}
 
 		&._error {
-			color: $color-red-atlas;
+			color: dev-atlas-settings.$color-red-atlas;
 		}
 	}
 
@@ -53,7 +55,7 @@
 		display: block;
 		font-size: 12.8px;
 		font-weight: normal;
-		margin: math.div($space-sm-atlas, 2) 0;
+		margin: math.div(dev-atlas-settings.$space-sm-atlas, 2) 0;
 		padding-left: 16px;
 		position: relative;
 	}
@@ -85,18 +87,18 @@
 		}
 
 		&._warn {
-			color: $color-white-atlas;
+			color: dev-atlas-settings.$color-white-atlas;
 
 			svg {
-				color: $color-orange-atlas;
+				color: dev-atlas-settings.$color-orange-atlas;
 			}
 		}
 
 		&._error {
-			color: $color-white-atlas;
+			color: dev-atlas-settings.$color-white-atlas;
 
 			svg {
-				color: $color-red-atlas;
+				color: dev-atlas-settings.$color-red-atlas;
 			}
 		}
 
@@ -107,7 +109,7 @@
 	}
 
 	code {
-		font-family: $font-mono-atlas;
+		font-family: dev-atlas-settings.$font-mono-atlas;
 		font-size: 11.2px;
 	}
 }

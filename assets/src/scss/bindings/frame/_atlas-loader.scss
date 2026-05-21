@@ -1,8 +1,10 @@
+@use "../../dev-atlas-settings";
+
 .atlas-loader {
 	align-items: center;
-	background: rgba($color-white-atlas, 0.96);
+	background: rgba(dev-atlas-settings.$color-white-atlas, 0.96);
 	bottom: 0;
-	color: $color-blue-atlas;
+	color: dev-atlas-settings.$color-blue-atlas;
 	display: none;
 	justify-content: center;
 	left: 0;

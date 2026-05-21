@@ -1,6 +1,8 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-item {
 	all: initial;
-	font-family: $font-mono-atlas;
+	font-family: dev-atlas-settings.$font-mono-atlas;
 	font-size: 11.2px;
 	line-height: 1.2;
 

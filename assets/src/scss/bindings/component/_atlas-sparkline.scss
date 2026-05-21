@@ -1,6 +1,8 @@
+@use "../../dev-atlas-settings";
+
 .atlas-sparkline {
 	//height: 64px;
-	margin: $space-sm-atlas 0 0 $space-lg-atlas;
+	margin: dev-atlas-settings.$space-sm-atlas 0 0 dev-atlas-settings.$space-lg-atlas;
 	max-width: none;
 	width: 100%;
 

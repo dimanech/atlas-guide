@@ -1,30 +1,32 @@
+@use "../../dev-atlas-settings";
+
 .atlas-stat-header {
 	align-items: stretch;
-	background: rgba($color-white-atlas, 0.9);
+	background: rgba(dev-atlas-settings.$color-white-atlas, 0.9);
 	border-bottom: 1px solid rgba(black, 0.1);
-	color: $atlas-color-text;
+	color: dev-atlas-settings.$atlas-color-text;
 	display: flex;
-	font-family: $font-sans-atlas;
+	font-family: dev-atlas-settings.$font-sans-atlas;
 	font-size: 32px;
 	font-weight: bold;
 	letter-spacing: -0.06em;
 	line-height: 1.2;
-	margin: 0 -#{$space-md-atlas} $space-lg-atlas;
-	padding: $space-sm-atlas $space-md-atlas;
+	margin: 0 -#{dev-atlas-settings.$space-md-atlas} dev-atlas-settings.$space-lg-atlas;
+	padding: dev-atlas-settings.$space-sm-atlas dev-atlas-settings.$space-md-atlas;
 	position: sticky;
 	top: -1px; // compensate composition positioning bug
 	z-index: 5;
 
 	@supports (backdrop-filter: blur(10px)) {
 		backdrop-filter: saturate(180%) blur(10px);
-		background: rgba($color-white-atlas, 0.7);
+		background: rgba(dev-atlas-settings.$color-white-atlas, 0.7);
 	}
 
 	&__title {
 		all: initial;
-		color: $atlas-color-text;
+		color: dev-atlas-settings.$atlas-color-text;
 		display: block;
-		font-family: $font-sans-atlas;
+		font-family: dev-atlas-settings.$font-sans-atlas;
 		font-size: 32px;
 		font-weight: bold;
 		letter-spacing: -0.04em;
