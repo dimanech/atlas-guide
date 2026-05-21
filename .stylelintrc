@@ -56,7 +56,10 @@
         "scss/selector-no-redundant-nesting-selector": true,
         "at-rule-no-unknown": null,
         "block-no-empty": null,
+        "declaration-property-value-keyword-no-deprecated": null,
+        "declaration-property-value-no-unknown": null,
         "function-no-unknown": null,
-        "no-descending-specificity": null
+        "no-descending-specificity": null,
+        "property-no-deprecated": null
     }
 }

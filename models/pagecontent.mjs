@@ -100,7 +100,7 @@ function mdImport(fileURL, options) {
     options = options || {};
 
     let codeItemCount = 0;
-    let content = '';
+    let content;
     let toc = [];
     let isNeedStat = false;
 
