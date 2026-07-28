@@ -30,7 +30,7 @@
     "lodash.uniq": "^4.5.0",
     "marked": "4.0.10",
     "mustache": "^4.2.0",
-    "postcss": "8.4.31",
+    "postcss": "8.5.24",
     "postcss-scss": "^4.0.9",
     "sass": "^1.76.0",
     "sass-graph": "^4.0.1"
